@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c24c8b45a352b1b428aea847b22784f8, type: 3}
+  m_Name: Rare B2
+  m_EditorClassIdentifier: 
+  <ThisWeaponCode>k__BackingField: 7
+  <WeaponName>k__BackingField: Opti Arc Cannon B2 Caliver
+  <BaseDamage>k__BackingField: 100
+  <CritDamage>k__BackingField: 0
+  <SideEffects>k__BackingField: 01000000
+  <SideEffectsRate>k__BackingField: 14000000
+  <SideEffectsFrequency>k__BackingField: 04000000
+  <SideEffectsDuration>k__BackingField: 01000000
+  <BackSprite>k__BackingField: {fileID: 21300000, guid: a6dd494a005855c4a826c3c11ebf23f1, type: 3}
+  <MiddleSprite>k__BackingField: {fileID: 21300000, guid: bccedbc62cc6e5e4eaa97ea861f2b513, type: 3}
+  <FrontSprite>k__BackingField: {fileID: 21300000, guid: 2a04d63779c5d72459ea11dca4c34508, type: 3}
+  <Ammo>k__BackingField: {fileID: 21300000, guid: e675e8f779a29564c8ca9996a6ae1436, type: 3}

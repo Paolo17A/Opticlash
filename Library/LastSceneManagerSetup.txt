@@ -1,0 +1,9 @@
+sceneSetups:
+- path: Assets/001 - Opticlash/000 - Scenes/PersistentScene.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
+- path: Assets/001 - Opticlash/000 - Scenes/CombatScene.unity
+  isLoaded: 1
+  isActive: 0
+  isSubScene: 0

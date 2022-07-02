@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b2693c71f3c3747bca6ff10209fb2a, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: 
+  <PlayfabID>k__BackingField: 777777775646
+  <DisplayName>k__BackingField: aruxo
+  <LUID>k__BackingField: 
+  <EnergyCount>k__BackingField: 20
+  <AmmoCount>k__BackingField: 200
+  <Optibit>k__BackingField: 0
+  <CurrentHealth>k__BackingField: 100
+  <MaxHealth>k__BackingField: 100
+  <ActiveWeaponID>k__BackingField: 
+  <ActiveWeapon>k__BackingField: {fileID: 11400000, guid: f7c1ebabe1829894d99f41c3e80533b6, type: 2}
+  <HealInstanceID>k__BackingField: 
+  <HealCharges>k__BackingField: 0
+  <BreakRemovalInstanceID>k__BackingField: 
+  <BreakRemovalCharges>k__BackingField: 0
+  <WeakRemovalInstanceID>k__BackingField: 
+  <WeakRemovalCharges>k__BackingField: 0
+  <FreezeRemovalInstanceID>k__BackingField: 
+  <FreezeRemovalCharges>k__BackingField: 0
+  <ParalyzeRemovalInstanceID>k__BackingField: 
+  <ParalyzeRemovalCharges>k__BackingField: 0
+  <ConfuseRemovalInstanceID>k__BackingField: 
+  <ConfuseRemovalCharges>k__BackingField: 0
+  <BurnRemovalInstanceID>k__BackingField: 
+  <BurnRemovalCharges>k__BackingField: 0
