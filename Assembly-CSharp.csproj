@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.15</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.16</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>2020.3.23f1</UnityVersion>
@@ -105,6 +105,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinePerformance.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\004 - Enemy\EnemyData.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\003 - LevelSelect\LevelSelectController.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\KaboomController.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\002 - Settings\SettingsCore.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\CombatController.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasic.cs" />
@@ -112,7 +113,7 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\GameManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
-    <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\KaboomController.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\005 - Costume\CostumeData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\003 - TextMesh Pro\Shaders\TMPro.cginc" />

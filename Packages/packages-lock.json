@@ -7,7 +7,7 @@
       "dependencies": {
         "com.unity.ugui": "1.0.0"
       },
-      "hash": "553c6fa73386138a42aff8b00e096183149a4fbb"
+      "hash": "3c6546ea01c5a155fe47fc837c5ad1393a420f9d"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
@@ -49,7 +49,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.15",
+      "version": "2.0.16",
       "depth": 0,
       "source": "registry",
       "dependencies": {

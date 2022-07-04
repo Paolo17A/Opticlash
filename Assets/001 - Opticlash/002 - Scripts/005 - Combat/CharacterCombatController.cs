@@ -52,6 +52,9 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField] private GameObject HealthBar { get; set; }
     [field: SerializeField] private GameObject HealthSlider { get; set; }
 
+    [field: Header("COSTUME DATA")]
+    [field: SerializeField] private GameObject Costume { get; set; }
+
     [field: Header("WEAPON DATA")]
     [field: SerializeField] private GameObject Cannon { get; set; }
     [field: SerializeField] private GameObject CannonBlast { get; set; }
@@ -102,18 +105,32 @@ public class CharacterCombatController : MonoBehaviour
                 if(DoubleDamageActivated)
                 {
                     CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * 2);
-                    DoubleDamageTurnsCooldown--;
-                    if(DoubleDamageTurnsCooldown == 0)
-                        DoubleDamageActivated = false;
+                    DoubleDamageActivated = false;
                 }
                 else
-                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage);
+                    CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage);
+
+                if(DoubleDamageTurnsCooldown > 0)
+                {
+                    DoubleDamageTurnsCooldown--;
+                    if (DoubleDamageTurnsCooldown == 0)
+                        CombatCore.DoubleDamageBtn.interactable = true;
+                }
             }
         }
     }
 
-    public void InitializePlayerCannon()
+    public void InitializePlayer()
     {
+        #region COSTUME
+        if(PlayerData.ActiveCostume == null)
+            Costume.SetActive(false);
+        else
+        {
+            Costume.SetActive(true);
+            Costume.GetComponent<SpriteRenderer>().sprite = PlayerData.ActiveCostume.CostumeSprite;
+        }
+        #endregion
         #region CANNON SPPRITES
         CannonBackSprite.sprite = PlayerData.ActiveWeapon.BackSprite;
         CannonMiddleSprite.sprite = PlayerData.ActiveWeapon.MiddleSprite;
@@ -135,6 +152,7 @@ public class CharacterCombatController : MonoBehaviour
         HealthSlider.transform.localScale = new Vector3(1f, 1f, 0f);
         HealthSlider.transform.localPosition = new Vector3(0f, 0f, 10f);
         #endregion
+        ShieldInstancesRemaining = 5;
         MaxHealth = PlayerData.MaxHealth;
         CombatCore.SpawnNextEnemy();
         CurrentCombatState = CombatState.WALKING;
@@ -154,12 +172,26 @@ public class CharacterCombatController : MonoBehaviour
     #region POWERUPS
     public void ActivateDoubleDamage()
     {
-        if(!DoubleDamageActivated)
+        if (!DoubleDamageActivated && DoubleDamageTurnsCooldown == 0 && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
         {
             DoubleDamageActivated = true;
             DoubleDamageTurnsCooldown = 3;
+            CombatCore.DoubleDamageBtn.interactable = false;
         }
+        else
+            Debug.Log("Double damage is on cooldown for " + DoubleDamageTurnsCooldown + " more turns");
     }
+
+    public void ActivateShield()
+    {
+        if (!ShieldsActivated && ShieldInstancesRemaining > 0 && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
+        {
+            ShieldsActivated = true;
+            CombatCore.ShieldBtn.interactable = false;
+        }
+        else
+            Debug.Log("Shield is already activated");
+    }    
     #endregion
 
     #region ANIMATION EVENTS
@@ -196,7 +228,19 @@ public class CharacterCombatController : MonoBehaviour
         if (_damageReceived > 0)
         {
             CurrentCombatState = CombatState.ATTACKED;
-            PlayerData.CurrentHealth -= _damageReceived;
+            if(ShieldsActivated)
+            {
+                PlayerData.CurrentHealth -= _damageReceived / 3;
+                ShieldsActivated = false;
+                ShieldInstancesRemaining--;
+                if(ShieldInstancesRemaining > 0)
+                    CombatCore.ShieldBtn.interactable = true;
+                else
+                    CombatCore.ShieldBtn.interactable = false;
+            }
+            else
+                PlayerData.CurrentHealth -= _damageReceived;
+
             HealthSlider.transform.localScale = new Vector3((float)PlayerData.CurrentHealth / MaxHealth, 1f, 0f);
             HealthSlider.transform.localPosition = new Vector3(HealthSlider.transform.localScale.x - 1, HealthSlider.transform.localPosition.y, HealthSlider.transform.localPosition.z);
         }

@@ -38,16 +38,20 @@ public class CombatController : MonoBehaviour
             CombatCore.UIAnimator.SetBool("GameOver", false);
             CombatCore.AmmoTMP.text = "Ammo: " + PlayerData.AmmoCount.ToString();
             CombatCore.SpawnEnemies();
-            SpawnedPlayer.GetComponent<CharacterCombatController>().InitializePlayerCannon();
+            SpawnedPlayer.GetComponent<CharacterCombatController>().InitializePlayer();
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
         {
+            CombatCore.ProcessPowerUpInteractability();
+            CombatCore.ProcessSkillsInteractability();
             CombatCore.RoundCounter++;
             CombatCore.RoundTMP.text = "Round: " + CombatCore.RoundCounter.ToString();
             CombatCore.timerCoroutine = StartCoroutine(CombatCore.StartQuestionTimer());
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.PLAYERTURN)
         {
+            CombatCore.DoubleDamageBtn.interactable = false;
+            CombatCore.ShieldBtn.interactable = false;
             CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().ProjectileSpawned = false;
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.ENEMYTURN)

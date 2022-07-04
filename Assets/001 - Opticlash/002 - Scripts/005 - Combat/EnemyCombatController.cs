@@ -57,10 +57,11 @@ public class EnemyCombatController : MonoBehaviour
     [field: SerializeField] private CombatCore CombatCore { get; set; }
 
     [field: Header("ENEMY DATA")]
-    [field: SerializeField] private EnemyData EnemyData { get; set; }
+    //[field: SerializeField] private EnemyData EnemyData { get; set; }
     [field: SerializeField] private Animator EnemyAnim { get; set; }
     [field: SerializeField][field: ReadOnly] public int CurrentHealth { get; set; }
-    [field: SerializeField][field: ReadOnly] private int DamageDeal { get; set; }
+    [field: SerializeField] public int MaxHealth { get; set; }
+    [field: SerializeField] private int DamageDeal { get; set; }
     [field: SerializeField] private GameObject HealthBar { get; set; }
     [field: SerializeField] private GameObject HealthSlider { get; set; }
 
@@ -76,9 +77,8 @@ public class EnemyCombatController : MonoBehaviour
     public void InitializeEnemy()
     {
         ResetHealthBar();
-        CurrentHealth = EnemyData.Health;
-        DamageDeal = EnemyData.Damage;
-        HealthSlider.transform.localScale = new Vector3((float)CurrentHealth / EnemyData.Health, 1f, 0f);
+        CurrentHealth = MaxHealth;
+        HealthSlider.transform.localScale = new Vector3((float)CurrentHealth / MaxHealth, 1f, 0f);
         HealthSlider.transform.localPosition = new Vector3(0f, 0f, 10f);
         CurrentCombatState = CombatState.IDLE;
         IsCurrentEnemy = true;
@@ -107,7 +107,7 @@ public class EnemyCombatController : MonoBehaviour
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.WALKING)
         {
             foreach (GameObject enemy in CombatCore.Enemies)
-                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, enemy.transform.GetChild(0).GetComponent<EnemyCombatController>().OriginalEnemyPosition, 0.3f * Time.deltaTime);
+                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, enemy.transform.GetChild(0).GetComponent<EnemyCombatController>().OriginalEnemyPosition, 0.1f * Time.deltaTime);
 
             if (Vector2.Distance(CombatCore.CurrentEnemy.transform.position, CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().OriginalEnemyPosition) < 0.01f)
             {
@@ -153,7 +153,7 @@ public class EnemyCombatController : MonoBehaviour
         {
             IsCurrentEnemy = false;
             CurrentCombatState = CombatState.IDLE;
-            transform.parent.position = new Vector3(65f, transform.parent.position.y, transform.parent.position.z);
+            transform.parent.position = new Vector3(325f, transform.parent.position.y, transform.parent.position.z);
             ResetHealthBar();
             CombatCore.SpawnNextEnemy();
             if(CombatCore.CurrentCombatState != CombatCore.CombatState.GAMEOVER)
@@ -170,7 +170,7 @@ public class EnemyCombatController : MonoBehaviour
     {
         CurrentCombatState = CombatState.ATTACKED;
         CurrentHealth -= _damageReceived;
-        HealthSlider.transform.localScale = new Vector3((float)CurrentHealth / EnemyData.Health, 1f, 0f);
+        HealthSlider.transform.localScale = new Vector3((float)CurrentHealth / MaxHealth, 1f, 0f);
         HealthSlider.transform.localPosition = new Vector3(HealthSlider.transform.localScale.x - 1, HealthSlider.transform.localPosition.y, HealthSlider.transform.localPosition.z);
     }
 

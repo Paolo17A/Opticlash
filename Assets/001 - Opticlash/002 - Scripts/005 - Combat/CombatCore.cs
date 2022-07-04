@@ -67,6 +67,18 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField][field: ReadOnly] public int StageCounter { get; set; }
     [field: SerializeField] public TextMeshProUGUI StageTMP { get; set; }
 
+    [field: Header("POWER UPS")]
+    [field: SerializeField] public Button DoubleDamageBtn { get; set; }
+    [field: SerializeField] public Button ShieldBtn { get; set; }
+
+    [field: Header("SKILLS")]
+    [field: SerializeField] public Button HealBtn { get; set; }
+    [field: SerializeField] public Button BreakRemoveBtn { get; set; }
+    [field: SerializeField] public Button WeakRemoveBtn { get; set; }
+    [field: SerializeField] public Button FreezeRemoveBtn { get; set; }
+    [field: SerializeField] public Button ParalyzeRemoveBtn { get; set; }
+    [field: SerializeField] public Button ConfuseRemoveBtn { get; set; }
+
     [field: Header("LOCAL PLAYER DATA")]
     [field: SerializeField] public GameObject SpawnedPlayer { get; set; }
 
@@ -131,6 +143,66 @@ public class CombatCore : MonoBehaviour
     public void StopTimerCoroutine()
     {
         StopCoroutine(timerCoroutine);
+    }
+    #endregion
+
+    #region UI
+    public void ProcessPowerUpInteractability()
+    {
+        if (SpawnedPlayer.GetComponent<CharacterCombatController>().DoubleDamageTurnsCooldown == 0 && !SpawnedPlayer.GetComponent<CharacterCombatController>().DoubleDamageActivated)
+            DoubleDamageBtn.interactable = true;
+        else
+            DoubleDamageBtn.interactable = false;
+
+        if (SpawnedPlayer.GetComponent<CharacterCombatController>().ShieldInstancesRemaining > 0 && !SpawnedPlayer.GetComponent<CharacterCombatController>().ShieldsActivated)
+            ShieldBtn.interactable = true;
+        else
+            ShieldBtn.interactable = false;
+    }
+
+    public void ProcessSkillsInteractability()
+    {
+        if (PlayerData.HealCharges > 0)
+            HealBtn.interactable = true;
+        else
+            HealBtn.interactable = false;
+
+        if (PlayerData.BreakRemovalCharges > 0)
+            BreakRemoveBtn.interactable = true;
+        else
+            BreakRemoveBtn.interactable = false;
+
+        if (PlayerData.WeakRemovalCharges > 0)
+            WeakRemoveBtn.interactable = true;
+        else
+            WeakRemoveBtn.interactable = false;
+
+        if (PlayerData.FreezeRemovalCharges > 0)
+            FreezeRemoveBtn.interactable = true;
+        else
+            FreezeRemoveBtn.interactable = false;
+
+        if (PlayerData.ParalyzeRemovalCharges > 0)
+            ParalyzeRemoveBtn.interactable = true;
+        else
+            ParalyzeRemoveBtn.interactable = false;
+
+        if (PlayerData.ConfuseRemovalCharges > 0)
+            ConfuseRemoveBtn.interactable = true;
+        else
+            ConfuseRemoveBtn.interactable = false;
+    }
+
+    public void ShowPowerUps()
+    {
+        if(CurrentCombatState == CombatState.TIMER)
+            UIAnimator.SetBool("ShowingPowerUps", true);
+    }
+
+    public void ShowItems()
+    {
+        if (CurrentCombatState == CombatState.TIMER)
+            UIAnimator.SetBool("ShowingPowerUps", false);
     }
     #endregion
 

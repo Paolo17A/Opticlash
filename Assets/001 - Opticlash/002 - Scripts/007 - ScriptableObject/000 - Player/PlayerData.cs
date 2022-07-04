@@ -27,6 +27,9 @@ public class PlayerData : ScriptableObject
     [field: SerializeField] public WeaponData ActiveWeapon { get; set; }
     [field: SerializeField] public Dictionary<string, WeaponData> OwnedWeapons { get; set; }
 
+    [field: Header("COSTUMES")]
+    [field: SerializeField] public CostumeData ActiveCostume { get; set; }
+
     [field: Header("ITEMS")]
     [field: SerializeField] public string HealInstanceID { get; set; }
     [field: SerializeField] public int HealCharges { get; set; }
