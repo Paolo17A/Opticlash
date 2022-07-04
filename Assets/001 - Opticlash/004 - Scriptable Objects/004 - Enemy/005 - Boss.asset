@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <EnemyPrefab>k__BackingField: {fileID: 8699332136276960067, guid: 4f36d2ed247f5b44c86a807f5b85a41a, type: 3}
   <Health>k__BackingField: 750
-  <Damage>k__BackingField: 150
+  <Damage>k__BackingField: 15
   bonusDamage: 0
   bonusDroppedXP: 0
   statusEffect: 0

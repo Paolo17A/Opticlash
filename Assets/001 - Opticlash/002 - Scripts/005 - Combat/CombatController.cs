@@ -21,13 +21,21 @@ public class CombatController : MonoBehaviour
 
     private void Awake()
     {
-        CombatCore.Enemies = new Queue<GameObject>();
+        CombatCore.EnemyQueue = new Queue<GameObject>();
+    }
+
+    private void Start()
+    {
+        CombatCore.CurrentCombatState = CombatCore.CombatState.SPAWNING;
     }
 
     private void CombatStateChange(object sender, EventArgs e)
     {
         if (CombatCore.CurrentCombatState == CombatCore.CombatState.SPAWNING)
         {
+            PlayerData.CurrentHealth = PlayerData.MaxHealth;
+            PlayerData.AmmoCount = 200;
+            CombatCore.UIAnimator.SetBool("GameOver", false);
             CombatCore.AmmoTMP.text = "Ammo: " + PlayerData.AmmoCount.ToString();
             CombatCore.SpawnEnemies();
             SpawnedPlayer.GetComponent<CharacterCombatController>().InitializePlayerCannon();
@@ -40,28 +48,45 @@ public class CombatController : MonoBehaviour
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.PLAYERTURN)
         {
-            Debug.Log("You are now attacking the enemy");
             CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().ProjectileSpawned = false;
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.ENEMYTURN)
         {
-            Debug.Log("Enemy will now attack you");
-            CombatCore.CurrentEnemy.GetComponent<EnemyCombatController>().DoneAttacking = false;
-            //CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+            CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().DoneAttacking = false;
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.GAMEOVER)
         {
-            Debug.Log("Stage is over");
+            CombatCore.UIAnimator.SetBool("GameOver", true);
+            CombatCore.StopTimerCoroutine();
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.WALKING)
         {
-            Debug.Log("Character and enemy are walking");
-
+            SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.WALKING;
         }
     }
 
-    private void Start()
+    public void CombatStateToIndex(int state)
     {
-        CombatCore.CurrentCombatState = CombatCore.CombatState.SPAWNING;
+        switch (state)
+        {
+            case (int)CombatCore.CombatState.SPAWNING:
+                CombatCore.CurrentCombatState = CombatCore.CombatState.SPAWNING;
+                break;
+            case (int)CombatCore.CombatState.TIMER:
+                CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+                break;
+            case (int)CombatCore.CombatState.PLAYERTURN:
+                CombatCore.CurrentCombatState = CombatCore.CombatState.PLAYERTURN;
+                break;
+            case (int)CombatCore.CombatState.ENEMYTURN:
+                CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+                break;
+            case (int)CombatCore.CombatState.GAMEOVER:
+                CombatCore.CurrentCombatState = CombatCore.CombatState.GAMEOVER;
+                break;
+            case (int)CombatCore.CombatState.WALKING:
+                CombatCore.CurrentCombatState = CombatCore.CombatState.WALKING;
+                break;
+        }
     }
 }

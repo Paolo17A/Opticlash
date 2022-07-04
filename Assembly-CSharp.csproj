@@ -112,6 +112,7 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\GameManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\KaboomController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\003 - TextMesh Pro\Shaders\TMPro.cginc" />

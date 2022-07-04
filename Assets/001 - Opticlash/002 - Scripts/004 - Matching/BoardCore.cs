@@ -28,8 +28,8 @@ public class BoardCore : MonoBehaviour
     private void OnEnable()
     {
         GameManager.Instance.SceneController.ActionPass = true;
-        //Debug.Log(GameManager.Instance.SceneController.ActionPass);
     }
+
     private void Awake()
     {
         AllGems = new GemController[Width, Height];
@@ -102,7 +102,8 @@ public class BoardCore : MonoBehaviour
                 DestroyMatchedGemAt(MatchFinder.CurrentMatches[i].PositionIndex, MatchFinder.CurrentMatches[i].BoardPosition);
             }
         }
-        CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
+        if(CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().CurrentHealth > 0 && CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING && CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState != CharacterCombatController.CombatState.WALKING)
+            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
         StartCoroutine(DecreaseRowCoroutine());
     }
 
@@ -150,25 +151,24 @@ public class BoardCore : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         MatchFinder.FindAllMatches();
 
-        Debug.Log("Matches found: " + MatchFinder.CurrentMatches.Count);
         if(MatchFinder.CurrentMatches.Count > 0)
         {
             yield return new WaitForSeconds(0.5f);
-            //CombatCore.CurrentCombatState = CombatCore.CombatState.PLAYERTURN;
             DestroyMatches();
         }    
         else
         {
             yield return new WaitForSeconds(0.5f);
             ShuffleBtn.interactable = true;
-            CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+            if(CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING)
+                CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
             CurrentBoardState = BoardState.MOVING;
         }
     }
 
     public void ShuffleBoard()
     {
-        if(CurrentBoardState != BoardState.WAITING)
+        if(CurrentBoardState != BoardState.WAITING && CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING)
         {
             ShuffleBtn.interactable = false;
             CurrentBoardState = BoardState.WAITING;

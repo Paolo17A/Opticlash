@@ -51,6 +51,7 @@ public class CombatCore : MonoBehaviour
     //=================================================================================
     [SerializeField][ReadOnly] private CombatState currentCombatState;
     [field: SerializeField] private PlayerData PlayerData { get; set; }
+    [field: SerializeField] public Animator UIAnimator { get; set; }
 
     [Header("LOADING")]
     [SerializeField] private GameObject loadingPanel;
@@ -63,16 +64,16 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public TextMeshProUGUI AmmoTMP { get; set; }
     [field: SerializeField][field: ReadOnly] public int RoundCounter { get; set; }
     [field: SerializeField] public TextMeshProUGUI RoundTMP { get; set; }
+    [field: SerializeField][field: ReadOnly] public int StageCounter { get; set; }
+    [field: SerializeField] public TextMeshProUGUI StageTMP { get; set; }
 
     [field: Header("LOCAL PLAYER DATA")]
     [field: SerializeField] public GameObject SpawnedPlayer { get; set; }
 
     [field: Header("LOCAL ENEMY DATA")]
     [field: SerializeField][field: ReadOnly] public GameObject CurrentEnemy { get; set; }
-    [field: SerializeField] private Transform EnemyContainer { get; set; }
-    [field: SerializeField][field: ReadOnly] public Queue<GameObject> Enemies { get; set; }
-    [SerializeField] private Transform enemyAttackPoint;
-    [SerializeField] private Transform enemyOriginalPosition;
+    [field: SerializeField] public List<GameObject> Enemies { get; set; }
+    [field: SerializeField][field: ReadOnly] public Queue<GameObject> EnemyQueue { get; set; }
 
     [Header("DEBUGGER")]
     public Coroutine timerCoroutine;
@@ -81,25 +82,32 @@ public class CombatCore : MonoBehaviour
     #region SPAWNING
     public void SpawnEnemies()
     {
-        foreach (Transform child in EnemyContainer.transform)
+        StageCounter = 0;
+        StageTMP.text = StageCounter.ToString();
+        RoundCounter = 0;
+        RoundTMP.text = RoundCounter.ToString();
+        float startingPos = 15f;
+        EnemyQueue.Clear();
+        foreach (GameObject enemy in Enemies)
         {
-            child.gameObject.SetActive(false);
-            Enemies.Enqueue(child.gameObject);
+            enemy.SetActive(true);
+            enemy.transform.position = new Vector3(startingPos, enemy.transform.position.y, enemy.transform.position.z);
+            startingPos += 10f;
+            EnemyQueue.Enqueue(enemy);
         }
-
-        SpawnNextEnemy();
     }
 
     public void SpawnNextEnemy()
     {
-        CurrentEnemy = Enemies.Dequeue();
-        CurrentEnemy.SetActive(true);
-        CurrentEnemy.GetComponent<EnemyCombatController>().InitializeEnemy();
-        if(Enemies.Count == 0)
+        if(EnemyQueue.Count > 0)
         {
-            foreach (Transform child in EnemyContainer.transform)
-                Enemies.Enqueue(child.gameObject);
+            StageCounter++;
+            StageTMP.text = StageCounter.ToString();
+            CurrentEnemy = EnemyQueue.Dequeue();
+            CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().InitializeEnemy();
         }
+        else
+            CurrentCombatState = CombatState.GAMEOVER;
     }
     #endregion
 
@@ -124,58 +132,6 @@ public class CombatCore : MonoBehaviour
     {
         StopCoroutine(timerCoroutine);
     }
-    #endregion
-
-    #region ENEMY
-    /*public IEnumerator AttackPlayer()
-    {
-        spawnedEnemy.GetComponent<EnemyCombatController>().CombatStateData.CurrentCombatState = CombatStateData.CombatState.APPROACH;
-
-        yield return new WaitUntil(() => spawnedEnemy.GetComponent<EnemyCombatController>().CombatStateData.CurrentCombatState == CombatStateData.CombatState.IDLE ||
-                                         spawnedEnemy.GetComponent<EnemyCombatController>().CombatStateData.CurrentCombatState == CombatStateData.CombatState.DYING);
-
-        if (spawnedPlayer.GetComponent<CharacterCombatController>().IsDead)
-        {
-            GameManager.Instance.CombatData.CurrentCombatState = CombatData.CombatState.GAMEOVER;
-        }
-
-        if (!spawnedPlayer.GetComponent<CharacterCombatController>().IsDead)
-        {
-            GameManager.Instance.CombatData.CurrentCombatState = CombatData.CombatState.TIMER;
-        }
-    }
-
-    private void SpawnNextEnemy()
-    {
-        EnemyData thisEnemyData = enemyDataQueue.Dequeue();
-        SpawnedEnemy = Instantiate(thisEnemyData.enemyPrefab);
-        SpawnedEnemy.transform.SetParent(enemyContainer);
-        SpawnedEnemy.transform.localPosition = Vector3.zero;
-        SpawnedEnemy.GetComponent<EnemyCombatController>().CombatCore = this;
-        SpawnedEnemy.GetComponent<EnemyCombatController>().ThisEnemyData = thisEnemyData;
-        SpawnedEnemy.GetComponent<EnemyCombatController>().PlayerTarget = SpawnedPlayer;
-        SpawnedEnemy.GetComponent<EnemyCombatController>().OriginalEnemyPosition = enemyOriginalPosition;
-        SpawnedEnemy.GetComponent<EnemyCombatController>().EnemyAttackPoint = enemyAttackPoint;
-        SpawnedEnemy.GetComponent<EnemyCombatController>().EnemyTransformParent = enemyContainer;
-    }
-
-    public IEnumerator ProcessEnemyDeath(GameObject deadEnemy)
-    {
-        Destroy(deadEnemy);
-
-        if (enemyDataQueue.Count > 0)
-        {
-            yield return new WaitForSeconds(0.5f);
-            questionCore.StopQuestionTimer();
-            SpawnNextEnemy();
-            GameManager.Instance.CombatData.CurrentCombatState = CombatData.CombatState.TIMER;
-        }
-        else
-        {
-            questionCore.StopQuestionTimer();
-            GameManager.Instance.CombatData.CurrentCombatState = CombatData.CombatState.GAMEOVER;
-        }
-    }*/
     #endregion
 
     #region UTILITY
