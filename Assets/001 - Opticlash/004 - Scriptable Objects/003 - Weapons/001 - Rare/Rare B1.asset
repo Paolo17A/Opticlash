@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ThisWeaponCode>k__BackingField: 6
   <WeaponName>k__BackingField: Opti Arc Cannon B1 Caliver
-  <BaseDamage>k__BackingField: 100
+  <BaseDamage>k__BackingField: 6.3
   <CritDamage>k__BackingField: 160
+  <Accuracy>k__BackingField: 86
+  <StartingAmmo>k__BackingField: 200
   <SideEffects>k__BackingField: 02000000
   <SideEffectsRate>k__BackingField: 14000000
   <SideEffectsFrequency>k__BackingField: 04000000

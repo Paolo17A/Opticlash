@@ -200,8 +200,8 @@ public class BoardCore : MonoBehaviour
                     gemsFromBoard.RemoveAt(randomGemIndex);
                 }
             }
-            PlayerData.AmmoCount -= 10;
-            CombatCore.RoundTMP.text = PlayerData.AmmoCount.ToString();
+            CombatCore.AmmoCount -= 10;
+            CombatCore.RoundTMP.text = CombatCore.AmmoCount.ToString();
             StartCoroutine(FillBoardCoroutine());
         }
     }

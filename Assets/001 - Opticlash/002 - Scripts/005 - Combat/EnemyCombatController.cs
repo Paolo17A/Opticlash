@@ -53,17 +53,24 @@ public class EnemyCombatController : MonoBehaviour
     }
     #endregion
     //========================================================================================
+    public enum SideEffect { NONE, BREAK, PIERCE, WEAK, PARALYZE, CONFUSE, BURN, FREEZE }
     [SerializeField][ReadOnly] private CombatState currentCombatState;
     [field: SerializeField] private CombatCore CombatCore { get; set; }
 
     [field: Header("ENEMY DATA")]
-    //[field: SerializeField] private EnemyData EnemyData { get; set; }
     [field: SerializeField] private Animator EnemyAnim { get; set; }
-    [field: SerializeField][field: ReadOnly] public int CurrentHealth { get; set; }
+    [field: SerializeField][field: ReadOnly] public float CurrentHealth { get; set; }
     [field: SerializeField] public int MaxHealth { get; set; }
-    [field: SerializeField] private int DamageDeal { get; set; }
+    [field: SerializeField] private float DamageDeal { get; set; }
+    [field: SerializeField] public float EvasionValue { get; set; }
     [field: SerializeField] private GameObject HealthBar { get; set; }
     [field: SerializeField] private GameObject HealthSlider { get; set; }
+
+    [field: Header("SIDE EFFECTS")]
+    [field: SerializeField] private SideEffect ThisSideEffect { get; set; }
+    [field: SerializeField] private int SideEffectRate { get; set; }
+    [field: SerializeField] private int SideEffectDuration { get; set; }
+    [field: SerializeField] private float SideEffectDamage { get; set; }
 
     [field: Header("TRANSFORMS")]
     [field: SerializeField] public Vector3 OriginalEnemyPosition { get; set; }
@@ -94,7 +101,18 @@ public class EnemyCombatController : MonoBehaviour
                 if (Vector2.Distance(transform.parent.position, OriginalEnemyPosition) > 0.01f)
                     transform.parent.position = Vector2.MoveTowards(transform.parent.position, OriginalEnemyPosition, 7 * Time.deltaTime);
                 else
-                    CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+                {
+                    if(CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect == SideEffect.FREEZE)
+                    {
+                        DoneAttacking = false;
+                        CurrentCombatState = CombatState.IDLE;
+                        CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().SideEffectInstancesRemaining--;
+                        if (CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().SideEffectInstancesRemaining == 0)
+                            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect = SideEffect.NONE;
+                    }
+                    else
+                        CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+                }
             }
             else
             {
@@ -119,7 +137,6 @@ public class EnemyCombatController : MonoBehaviour
 
     private void CombatStateChange(object sender, EventArgs e)
     {
-        Debug.Log("Current state: " + CurrentCombatState);
         EnemyAnim.SetInteger("index", (int)CurrentCombatState);
     }
 
@@ -128,6 +145,16 @@ public class EnemyCombatController : MonoBehaviour
     public void AttackPlayer()
     {
         CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().TakeDamageFromEnemy(DamageDeal);
+
+        #region SIDE EFFECTS
+        //  Only inflict a side effect if the modulo between the current round and the side effect rate is zero AND if the player is not inflicted with a status effect yet
+        if (ThisSideEffect != SideEffect.NONE && (CombatCore.RoundCounter % SideEffectRate == 0) && CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect == SideEffect.NONE)
+        {
+            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect = ThisSideEffect;
+            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().SideEffectDamage = SideEffectDamage;
+            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().SideEffectInstancesRemaining = SideEffectDuration;
+        }
+        #endregion
     }
 
     public void ReturnToStarting()
@@ -166,7 +193,7 @@ public class EnemyCombatController : MonoBehaviour
     #endregion
 
     #region DAMAGE
-    public void TakeDamageFromPlayer(int _damageReceived)
+    public void TakeDamageFromPlayer(float _damageReceived)
     {
         CurrentCombatState = CombatState.ATTACKED;
         CurrentHealth -= _damageReceived;

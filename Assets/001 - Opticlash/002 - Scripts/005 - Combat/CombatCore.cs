@@ -19,7 +19,8 @@ public class CombatCore : MonoBehaviour
         PLAYERTURN,
         ENEMYTURN,
         GAMEOVER,
-        WALKING
+        WALKING,
+        WARPING
     }
 
     private event EventHandler combatStateChange;
@@ -62,6 +63,7 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI TimerTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private float CurrentCountdownNumber { get; set; }
     [field: SerializeField] public TextMeshProUGUI AmmoTMP { get; set; }
+    [field: SerializeField][field: ReadOnly] public int AmmoCount { get; set; }
     [field: SerializeField][field: ReadOnly] public int RoundCounter { get; set; }
     [field: SerializeField] public TextMeshProUGUI RoundTMP { get; set; }
     [field: SerializeField][field: ReadOnly] public int StageCounter { get; set; }
@@ -70,6 +72,8 @@ public class CombatCore : MonoBehaviour
     [field: Header("POWER UPS")]
     [field: SerializeField] public Button DoubleDamageBtn { get; set; }
     [field: SerializeField] public Button ShieldBtn { get; set; }
+    [field: SerializeField] public Button WarpBtn { get; set; }
+    [field: SerializeField] public int MonstersSkipped { get; set; }
 
     [field: Header("SKILLS")]
     [field: SerializeField] public Button HealBtn { get; set; }
@@ -116,6 +120,7 @@ public class CombatCore : MonoBehaviour
             StageCounter++;
             StageTMP.text = StageCounter.ToString();
             CurrentEnemy = EnemyQueue.Dequeue();
+            SpawnedPlayer.GetComponent<CharacterCombatController>().ShotAccuracy = PlayerData.ActiveWeapon.Accuracy - CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().EvasionValue;
             CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().InitializeEnemy();
         }
         else
@@ -146,6 +151,22 @@ public class CombatCore : MonoBehaviour
     }
     #endregion
 
+    #region WARPING
+    public void WarpToNextEnemy()
+    {
+        for (int i = 0; i < SpawnedPlayer.GetComponent<CharacterCombatController>().MonstersToSkip; i++)
+        {
+            if(EnemyQueue.Count > 0)
+            {
+                StageCounter++;
+                StageTMP.text = StageCounter.ToString();
+                CurrentEnemy = EnemyQueue.Dequeue();
+
+            }
+        }
+    }
+    #endregion
+
     #region UI
     public void ProcessPowerUpInteractability()
     {
@@ -158,6 +179,11 @@ public class CombatCore : MonoBehaviour
             ShieldBtn.interactable = true;
         else
             ShieldBtn.interactable = false;
+
+        if (SpawnedPlayer.GetComponent<CharacterCombatController>().WarpGunInstancesRemaining > 0 && !SpawnedPlayer.GetComponent<CharacterCombatController>().WarpActivated)
+            WarpBtn.interactable = true;
+        else
+            WarpBtn.interactable = false;
     }
 
     public void ProcessSkillsInteractability()

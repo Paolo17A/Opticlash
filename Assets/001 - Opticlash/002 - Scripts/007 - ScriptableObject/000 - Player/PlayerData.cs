@@ -15,7 +15,6 @@ public class PlayerData : ScriptableObject
 
     [field: Header("VIRTUAL CURRENCY")]
     [field: SerializeField] public int EnergyCount { get; set; }
-    [field: SerializeField] public int AmmoCount { get; set; }
     [field: SerializeField] public int Optibit { get; set; }
 
     [field: Header("STATS")]
@@ -66,7 +65,6 @@ public class PlayerData : ScriptableObject
         DisplayName = "";
         LUID = "";
 
-        AmmoCount = 0;
         Optibit = 0;
         EnergyCount = 0;
 

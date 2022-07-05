@@ -11,8 +11,12 @@ public class WeaponData : ScriptableObject
 
     [field: SerializeField] public WeaponCode ThisWeaponCode { get; set; }
     [field: SerializeField] public string WeaponName { get; set; }
-    [field: SerializeField] public int BaseDamage { get; set; }
+    [field: SerializeField] public float BaseDamage { get; set; }
     [field: SerializeField] public int CritDamage { get; set; }
+    [field: SerializeField] public int Accuracy { get; set; }
+    [field: SerializeField] public int StartingAmmo { get; set; }
+
+    [field: Header("SIDE EFFECTS")]
     [field: SerializeField] public List<SideEffect> SideEffects { get; set; }
     [field: SerializeField] public List<int> SideEffectsRate { get; set; }
     [field: SerializeField] public List<int> SideEffectsFrequency { get; set; }

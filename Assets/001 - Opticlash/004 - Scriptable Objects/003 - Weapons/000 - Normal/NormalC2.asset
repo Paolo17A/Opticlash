@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ThisWeaponCode>k__BackingField: 2
   <WeaponName>k__BackingField: Opti Cannon C2 Caliver
-  <BaseDamage>k__BackingField: 50
+  <BaseDamage>k__BackingField: 5.2
   <CritDamage>k__BackingField: 0
+  <Accuracy>k__BackingField: 82
+  <StartingAmmo>k__BackingField: 150
   <SideEffects>k__BackingField: 01000000
   <SideEffectsRate>k__BackingField: 14000000
   <SideEffectsFrequency>k__BackingField: 05000000

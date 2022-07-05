@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ThisWeaponCode>k__BackingField: 10
   <WeaponName>k__BackingField: 'Opti Proton Cannon A1 Caliver '
-  <BaseDamage>k__BackingField: 150
+  <BaseDamage>k__BackingField: 7.3
   <CritDamage>k__BackingField: 255
+  <Accuracy>k__BackingField: 90
+  <StartingAmmo>k__BackingField: 250
   <SideEffects>k__BackingField: 0200000007000000
   <SideEffectsRate>k__BackingField: 1900000014000000
   <SideEffectsFrequency>k__BackingField: 0300000001000000

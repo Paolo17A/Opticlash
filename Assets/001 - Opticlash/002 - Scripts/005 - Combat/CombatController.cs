@@ -34,9 +34,9 @@ public class CombatController : MonoBehaviour
         if (CombatCore.CurrentCombatState == CombatCore.CombatState.SPAWNING)
         {
             PlayerData.CurrentHealth = PlayerData.MaxHealth;
-            PlayerData.AmmoCount = 200;
+            CombatCore.AmmoCount = PlayerData.ActiveWeapon.StartingAmmo;
             CombatCore.UIAnimator.SetBool("GameOver", false);
-            CombatCore.AmmoTMP.text = "Ammo: " + PlayerData.AmmoCount.ToString();
+            CombatCore.AmmoTMP.text = "Ammo: " + CombatCore.AmmoCount.ToString();
             CombatCore.SpawnEnemies();
             SpawnedPlayer.GetComponent<CharacterCombatController>().InitializePlayer();
         }
@@ -67,6 +67,10 @@ public class CombatController : MonoBehaviour
         {
             SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.WALKING;
         }
+        else if (CombatCore.CurrentCombatState == CombatCore.CombatState.WARPING)
+        {
+            Debug.Log("Current state is warping");
+        }
     }
 
     public void CombatStateToIndex(int state)
@@ -90,6 +94,9 @@ public class CombatController : MonoBehaviour
                 break;
             case (int)CombatCore.CombatState.WALKING:
                 CombatCore.CurrentCombatState = CombatCore.CombatState.WALKING;
+                break;
+            case (int)CombatCore.CombatState.WARPING:
+                CombatCore.CurrentCombatState = CombatCore.CombatState.WARPING;
                 break;
         }
     }

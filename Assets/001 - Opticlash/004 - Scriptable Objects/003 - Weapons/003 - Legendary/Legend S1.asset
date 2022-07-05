@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ThisWeaponCode>k__BackingField: 13
   <WeaponName>k__BackingField: 'Opti Particle Cannon S1 Caliver '
-  <BaseDamage>k__BackingField: 200
+  <BaseDamage>k__BackingField: 9
   <CritDamage>k__BackingField: 360
+  <Accuracy>k__BackingField: 95
+  <StartingAmmo>k__BackingField: 300
   <SideEffects>k__BackingField: 020000000800000004000000
   <SideEffectsRate>k__BackingField: 1e0000001900000064000000
   <SideEffectsFrequency>k__BackingField: 020000000100000001000000

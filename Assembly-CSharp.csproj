@@ -73,6 +73,7 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\004 - Matching\GemController.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListeners.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\005 - Costume\CostumeData.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\000 - Player\PlayerData.cs" />
@@ -113,7 +114,6 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\GameManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
-    <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\005 - Costume\CostumeData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\003 - TextMesh Pro\Shaders\TMPro.cginc" />
