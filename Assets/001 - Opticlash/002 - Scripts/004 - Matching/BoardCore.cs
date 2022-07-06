@@ -161,7 +161,17 @@ public class BoardCore : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             ShuffleBtn.interactable = true;
             if(CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING)
-                CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+            {
+                if(CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffect == WeaponData.SideEffect.FREEZE)
+                {
+                    CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+                    CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffectInstancesLeft--;
+                    if (CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffectInstancesLeft == 0)
+                        CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffect = WeaponData.SideEffect.NONE;
+                }
+                else
+                    CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+            }
             CurrentBoardState = BoardState.MOVING;
         }
     }

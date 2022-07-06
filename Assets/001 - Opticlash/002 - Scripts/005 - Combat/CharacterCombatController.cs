@@ -103,9 +103,7 @@ public class CharacterCombatController : MonoBehaviour
         if (ProjectileSpawned)
         {
             if (Vector2.Distance(Projectile.transform.position, ProjectileEndPoint.position) > 0.01f)
-            {
                 Projectile.transform.position = Vector2.MoveTowards(Projectile.transform.position, ProjectileEndPoint.position, 11 * Time.deltaTime);
-            }
             else
             {
                 int randomNum = UnityEngine.Random.Range(0, 100);
@@ -131,6 +129,22 @@ public class CharacterCombatController : MonoBehaviour
                         else
                             CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage);
                     }
+
+                    #region SIDE EFFECT
+                    for (int i = 0; i < PlayerData.ActiveWeapon.SideEffects.Count; i++)
+                    {
+                        //  Only inflict a weapon side effect if Opti is not under Break side effect and if the current enemy currently does not have a status effect
+                        if(CurrentSideEffect != EnemyCombatController.SideEffect.BREAK && CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffect == WeaponData.SideEffect.NONE)
+                        {
+                            int randomNumber = UnityEngine.Random.Range(0,100);
+                            if(CombatCore.RoundCounter % PlayerData.ActiveWeapon.SideEffectsFrequency[i] == 0 &&  randomNumber >= PlayerData.ActiveWeapon.SideEffectsRate[i])
+                            {
+                                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffect = PlayerData.ActiveWeapon.SideEffects[i];
+                                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffectInstancesLeft = PlayerData.ActiveWeapon.SideEffectsDuration[i];
+                            }
+                        }
+                    }
+                    #endregion
 
                     if (DoubleDamageTurnsCooldown > 0)
                     {

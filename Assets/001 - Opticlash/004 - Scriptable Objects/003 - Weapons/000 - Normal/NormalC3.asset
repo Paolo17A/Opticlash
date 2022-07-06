@@ -15,13 +15,16 @@ MonoBehaviour:
   <ThisWeaponCode>k__BackingField: 3
   <WeaponName>k__BackingField: Opti Cannon C3 Caliver
   <BaseDamage>k__BackingField: 5.5
-  <CritDamage>k__BackingField: 75
   <Accuracy>k__BackingField: 83
   <StartingAmmo>k__BackingField: 150
-  <SideEffects>k__BackingField: 02000000
-  <SideEffectsRate>k__BackingField: 14000000
-  <SideEffectsFrequency>k__BackingField: 05000000
-  <SideEffectsDuration>k__BackingField: 01000000
+  <SideEffects>k__BackingField: 
+  <SideEffectsRate>k__BackingField: 
+  <SideEffectsFrequency>k__BackingField: 
+  <SideEffectsDuration>k__BackingField: 
+  <HasCrit>k__BackingField: 1
+  <CritMultiplier>k__BackingField: 1.5
+  <CritRate>k__BackingField: 20
+  <CritFrequency>k__BackingField: 5
   <BackSprite>k__BackingField: {fileID: 21300000, guid: 6399b6dd2db9ead4192d7b7e633715bb, type: 3}
   <MiddleSprite>k__BackingField: {fileID: 21300000, guid: ab3240c80e48b6146952e132bfb31e17, type: 3}
   <FrontSprite>k__BackingField: {fileID: 21300000, guid: da57369241439744cb652cba6156f1e5, type: 3}
