@@ -15,13 +15,20 @@ MonoBehaviour:
   <ThisWeaponCode>k__BackingField: 7
   <WeaponName>k__BackingField: Opti Arc Cannon B2 Caliver
   <BaseDamage>k__BackingField: 6.5
-  <CritDamage>k__BackingField: 0
   <Accuracy>k__BackingField: 87
   <StartingAmmo>k__BackingField: 200
-  <SideEffects>k__BackingField: 01000000
-  <SideEffectsRate>k__BackingField: 14000000
-  <SideEffectsFrequency>k__BackingField: 04000000
-  <SideEffectsDuration>k__BackingField: 01000000
+  <SideEffects>k__BackingField: 
+  <SideEffectsRate>k__BackingField: 
+  <SideEffectsFrequency>k__BackingField: 
+  <SideEffectsDuration>k__BackingField: 
+  <HasCrit>k__BackingField: 0
+  <CritMultiplier>k__BackingField: 0
+  <CritRate>k__BackingField: 0
+  <CritFrequency>k__BackingField: 0
+  <HasBonusBullets>k__BackingField: 1
+  <BonusBullets>k__BackingField: 1
+  <BonusRate>k__BackingField: 2
+  <BonusFrequency>k__BackingField: 4
   <BackSprite>k__BackingField: {fileID: 21300000, guid: a6dd494a005855c4a826c3c11ebf23f1, type: 3}
   <MiddleSprite>k__BackingField: {fileID: 21300000, guid: bccedbc62cc6e5e4eaa97ea861f2b513, type: 3}
   <FrontSprite>k__BackingField: {fileID: 21300000, guid: 2a04d63779c5d72459ea11dca4c34508, type: 3}

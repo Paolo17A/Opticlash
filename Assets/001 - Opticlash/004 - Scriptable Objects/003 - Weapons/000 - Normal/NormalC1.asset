@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ThisWeaponCode>k__BackingField: 1
   <WeaponName>k__BackingField: Opti Cannon C1 Caliver
-  <BaseDamage>k__BackingField: 50
+  <BaseDamage>k__BackingField: 5
   <Accuracy>k__BackingField: 81
   <StartingAmmo>k__BackingField: 150
   <SideEffects>k__BackingField: 

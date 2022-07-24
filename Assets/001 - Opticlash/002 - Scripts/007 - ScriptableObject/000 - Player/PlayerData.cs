@@ -12,6 +12,7 @@ public class PlayerData : ScriptableObject
     [field: SerializeField] public string PlayfabID { get; set; }
     [field: SerializeField] public string DisplayName { get; set; }
     [field: SerializeField] public string LUID { get; set; }
+    [field: SerializeField] public int CurrentStage { get; set; }
 
     [field: Header("VIRTUAL CURRENCY")]
     [field: SerializeField] public int EnergyCount { get; set; }

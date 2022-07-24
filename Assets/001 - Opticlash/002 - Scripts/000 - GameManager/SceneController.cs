@@ -99,8 +99,8 @@ public class SceneController : MonoBehaviour
 
     public IEnumerator Loading()
     {
-        /*int randomIndex = UnityEngine.Random.Range(0, backgroundSprites.Count);
-        backgroundImage.sprite = backgroundSprites[randomIndex];*/
+        int randomIndex = UnityEngine.Random.Range(0, backgroundSprites.Count);
+        backgroundImage.sprite = backgroundSprites[randomIndex];
         Time.timeScale = 0f;
 
         actionPass = false;

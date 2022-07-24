@@ -7,7 +7,7 @@ using MyBox;
 public class WeaponData : ScriptableObject
 {
     public enum WeaponCode { NONE, C1, C2, C3, C4, C5, B1, B2, B3, B4, A1, A2, A3, S1, S2};
-    public enum SideEffect { NONE, DOUBLE, STRONGER, BREAK, WEAK, FREEZE, PARALYZE, CONFUSE, BURN, TRIPLE}
+    public enum SideEffect { NONE, STRONGER, BREAK, WEAK, FREEZE, PARALYZE, CONFUSE, BURN }
 
     [field: SerializeField] public WeaponCode ThisWeaponCode { get; set; }
     [field: SerializeField] public string WeaponName { get; set; }
@@ -26,6 +26,12 @@ public class WeaponData : ScriptableObject
     [field: SerializeField] public float CritMultiplier { get; set; }
     [field: SerializeField] public int CritRate { get; set; }
     [field: SerializeField] public int CritFrequency { get; set; }
+
+    [field: Header("BONUS BULLETS")]
+    [field: SerializeField] public bool HasBonusBullets { get; set; }
+    [field: SerializeField] public int BonusBullets { get; set; }
+    [field: SerializeField] public int BonusRate { get; set; }
+    [field: SerializeField] public int BonusFrequency { get; set; }
 
     [field: Header("SPRITES")]
     [field: SerializeField] public Sprite BackSprite { get; set; }

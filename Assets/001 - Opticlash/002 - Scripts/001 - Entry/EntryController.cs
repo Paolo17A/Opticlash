@@ -25,6 +25,12 @@ public class EntryController : MonoBehaviour
         {
             EntryCore.UsernameLoginTMP.text = PlayerPrefs.GetString("Username");
             EntryCore.PasswordLoginTMP.text = PlayerPrefs.GetString("Password");
+            if(GameManager.Instance.DebugMode)
+            {
+                EntryCore.ResetLoginPanel();
+                EntryCore.CurrentEntryState = EntryCore.EntryStates.NONE;
+                GameManager.Instance.SceneController.CurrentScene = "CombatScene";
+            }
             //LoginCore.LoginWithPlayfab(PlayerPrefs.GetString("Username"), PlayerPrefs.GetString("Password"));
         }
 
@@ -49,6 +55,9 @@ public class EntryController : MonoBehaviour
                 break;
             case (int)EntryCore.EntryStates.SETTINGS:
                 EntryCore.CurrentEntryState = EntryCore.EntryStates.SETTINGS;
+                break;
+            case (int)EntryCore.EntryStates.METHODS:
+                EntryCore.CurrentEntryState = EntryCore.EntryStates.METHODS;
                 break;
         }
     }

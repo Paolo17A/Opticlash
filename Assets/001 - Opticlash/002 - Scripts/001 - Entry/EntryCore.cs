@@ -16,7 +16,8 @@ public class EntryCore : MonoBehaviour
         PLAY,
         LOGIN,
         LINKS,
-        SETTINGS
+        SETTINGS,
+        METHODS
     }
 
     private event EventHandler entryStateChange;
@@ -85,7 +86,7 @@ public class EntryCore : MonoBehaviour
 
             ResetLoginPanel();
             CurrentEntryState = EntryStates.NONE;
-            GameManager.Instance.SceneController.CurrentScene = "CombatScene";
+            GameManager.Instance.SceneController.CurrentScene = "LobbyScene";
         }
         else
         {

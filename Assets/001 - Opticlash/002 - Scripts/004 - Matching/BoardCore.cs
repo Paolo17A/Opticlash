@@ -19,6 +19,7 @@ public class BoardCore : MonoBehaviour
     [field: SerializeField] public GemController[,] AllGems { get; set; }
     [field: SerializeField] public float moveSpeed { get; set; }
     [field: SerializeField] public BoardState CurrentBoardState { get; set; }
+    [field: SerializeField] public int ShotsEarned { get; set; }
 
     [field: Header("DEBUGGER")]
     private int randomGemIndex;
@@ -59,7 +60,7 @@ public class BoardCore : MonoBehaviour
 
     private void SpawnGem(Vector2Int spawnPosition, GemController gemToSpawn)
     {
-        spawnedGem = Instantiate(gemToSpawn, new Vector3(spawnPosition.x + (0.3f * spawnPosition.x), spawnPosition.y + Height + (0.3f * spawnPosition.y)), Quaternion.identity);
+        spawnedGem = Instantiate(gemToSpawn, new Vector3(0.5f + spawnPosition.x + (0.37f * spawnPosition.x), 1f + spawnPosition.y + Height + (0.37f * spawnPosition.y)), Quaternion.identity);
         spawnedGem.transform.SetParent(transform);
         spawnedGem.name = "Gem - " + spawnPosition.x + ", " + spawnPosition.y;
         AllGems[spawnPosition.x, spawnPosition.y] = spawnedGem;
@@ -103,7 +104,11 @@ public class BoardCore : MonoBehaviour
             }
         }
         if(CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().CurrentHealth > 0 && CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING && CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState != CharacterCombatController.CombatState.WALKING)
-            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
+        {
+            ShotsEarned++;
+            Debug.Log("Shots Earned:" + ShotsEarned);
+            //CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
+        }
         StartCoroutine(DecreaseRowCoroutine());
     }
 
@@ -162,15 +167,16 @@ public class BoardCore : MonoBehaviour
             ShuffleBtn.interactable = true;
             if(CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING)
             {
-                if(CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffect == WeaponData.SideEffect.FREEZE)
+                Debug.Log("Opti should shoot at least " + ShotsEarned + " times");
+                if (PlayerData.ActiveWeapon.HasBonusBullets && CombatCore.RoundCounter % PlayerData.ActiveWeapon.BonusFrequency == 0 && Random.Range(0, 100) < PlayerData.ActiveWeapon.BonusRate)
                 {
-                    CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
-                    CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffectInstancesLeft--;
-                    if (CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffectInstancesLeft == 0)
-                        CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffect = WeaponData.SideEffect.NONE;
+                    Debug.Log("Will shoot extra bullets");
+                    ShotsEarned += PlayerData.ActiveWeapon.BonusBullets;
                 }
                 else
-                    CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+                    Debug.Log("no extra bullets");
+                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
+                //CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
             }
             CurrentBoardState = BoardState.MOVING;
         }
@@ -205,7 +211,7 @@ public class BoardCore : MonoBehaviour
                         randomGemIndex = Random.Range(0, Gems.Length);
                         iterations++;
                     }
-                    gemsFromBoard[randomGemIndex].InititalizeGem(new Vector2Int(x, y), this, new Vector2(x + (0.3f * x), y + Height + (0.3f * y)), CombatCore);
+                    gemsFromBoard[randomGemIndex].InititalizeGem(new Vector2Int(x, y), this, new Vector2(0.5f + x + (0.37f * x),1f + y + Height + (0.37f * y)), CombatCore);
                     AllGems[x, y] = gemsFromBoard[randomGemIndex];
                     gemsFromBoard.RemoveAt(randomGemIndex);
                 }

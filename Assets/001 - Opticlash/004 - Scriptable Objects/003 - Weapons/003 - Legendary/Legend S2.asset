@@ -15,13 +15,20 @@ MonoBehaviour:
   <ThisWeaponCode>k__BackingField: 14
   <WeaponName>k__BackingField: 'Opti Particle Cannon S2 Caliver '
   <BaseDamage>k__BackingField: 10
-  <CritDamage>k__BackingField: 360
   <Accuracy>k__BackingField: 95
   <StartingAmmo>k__BackingField: 300
-  <SideEffects>k__BackingField: 020000000700000004000000
-  <SideEffectsRate>k__BackingField: 1e0000001900000064000000
-  <SideEffectsFrequency>k__BackingField: 020000000100000001000000
-  <SideEffectsDuration>k__BackingField: 010000000300000003000000
+  <SideEffects>k__BackingField: 0600000003000000
+  <SideEffectsRate>k__BackingField: 1900000064000000
+  <SideEffectsFrequency>k__BackingField: 0100000001000000
+  <SideEffectsDuration>k__BackingField: 0300000003000000
+  <HasCrit>k__BackingField: 1
+  <CritMultiplier>k__BackingField: 1.8
+  <CritRate>k__BackingField: 30
+  <CritFrequency>k__BackingField: 2
+  <HasBonusBullets>k__BackingField: 0
+  <BonusBullets>k__BackingField: 0
+  <BonusRate>k__BackingField: 0
+  <BonusFrequency>k__BackingField: 0
   <BackSprite>k__BackingField: {fileID: 21300000, guid: 049521e756436244580aaa78786c4af9, type: 3}
   <MiddleSprite>k__BackingField: {fileID: 21300000, guid: 6bde58b7f810cfc4db16a2b46c7563ae, type: 3}
   <FrontSprite>k__BackingField: {fileID: 21300000, guid: 7d357169bdbe3a342b11da9a769340fc, type: 3}

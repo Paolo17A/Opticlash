@@ -545,7 +545,8 @@ MonoBehaviour:
   loadingCG: {fileID: 8588077751864487470}
   backgroundImage: {fileID: 8588077752557446665}
   backgroundSprites:
-  - {fileID: 21300000, guid: d34b5a105a2098b418359c70fef1e08d, type: 3}
+  - {fileID: 21300000, guid: b6efe2b69d6864c4aa14079a9fe70cc3, type: 3}
+  - {fileID: 21300000, guid: fea4c240a89d00e44bab47da9d058978, type: 3}
   easeType: 14
   speed: 0.25
   loadingBarSpeed: 1
@@ -751,7 +752,7 @@ MonoBehaviour:
   - {fileID: 876344079}
   - {fileID: 251851744}
   <DebugMode>k__BackingField: 1
-  SceneToLoad: CombatScene
+  SceneToLoad: EntryScene
   <PanelActivated>k__BackingField: 0
   <MyUICamera>k__BackingField: {fileID: 415185209}
   <MainCamera>k__BackingField: {fileID: 1931867518}
@@ -1642,7 +1643,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: eb12af7cb46de6f47bf8d5f167c4ac0a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6efe2b69d6864c4aa14079a9fe70cc3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

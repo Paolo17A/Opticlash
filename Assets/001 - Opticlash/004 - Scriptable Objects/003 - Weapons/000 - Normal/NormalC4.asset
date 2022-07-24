@@ -17,7 +17,7 @@ MonoBehaviour:
   <BaseDamage>k__BackingField: 5.8
   <Accuracy>k__BackingField: 84
   <StartingAmmo>k__BackingField: 150
-  <SideEffects>k__BackingField: 04000000
+  <SideEffects>k__BackingField: 03000000
   <SideEffectsRate>k__BackingField: 0a000000
   <SideEffectsFrequency>k__BackingField: 01000000
   <SideEffectsDuration>k__BackingField: 02000000
@@ -25,6 +25,10 @@ MonoBehaviour:
   <CritMultiplier>k__BackingField: 1.5
   <CritRate>k__BackingField: 20
   <CritFrequency>k__BackingField: 5
+  <HasBonusBullets>k__BackingField: 0
+  <BonusBullets>k__BackingField: 0
+  <BonusRate>k__BackingField: 0
+  <BonusFrequency>k__BackingField: 0
   <BackSprite>k__BackingField: {fileID: 21300000, guid: f7a2669652a0b5643bf7b4196d85866a, type: 3}
   <MiddleSprite>k__BackingField: {fileID: 21300000, guid: e5cbbeeb2741f544ca4a5cb9a34bf24b, type: 3}
   <FrontSprite>k__BackingField: {fileID: 21300000, guid: 47d63a1231f08c74488abc0811c3cb1e, type: 3}

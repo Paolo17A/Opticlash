@@ -144,7 +144,10 @@ public class GemController : MonoBehaviour
             else
             {
                 if(CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING)
+                {
+                    BoardCore.ShotsEarned = 0;
                     CombatCore.CurrentCombatState = CombatCore.CombatState.PLAYERTURN;
+                }
                 CombatCore.StopTimerCoroutine();
                 BoardCore.DestroyMatches();
             }

@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: -1383819141
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e906b2fcbc6db7d488e7b8c4c5514376, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e89a8879e2c9a4043b7834214fbb17d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.8820513, y: 0.8871795}
+  m_Size: {x: 1.36, y: 1.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -96,10 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c7327ee4fc32d94b8116565c5e57ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CombatCore: {fileID: 0}
   <ThisGemType>k__BackingField: 3
   <BurstEffect>k__BackingField: {fileID: 5170788263967090288, guid: fb8a856d23b2ecc49aa21fa6a95c184e, type: 3}
   <PositionIndex>k__BackingField: {x: 0, y: 0}
   <PreviousPosition>k__BackingField: {x: 0, y: 0}
+  <BoardPosition>k__BackingField: {x: 0, y: 0}
+  <PreviousBoardPosition>k__BackingField: {x: 0, y: 0}
   <BoardCore>k__BackingField: {fileID: 0}
   isMatched: 0
   initialTouchPoint: {x: 0, y: 0}
@@ -124,8 +127,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.26, y: 1.26}
-    newSize: {x: 0.8820513, y: 0.8871795}
+    oldSize: {x: 1.36, y: 1.36}
+    newSize: {x: 1.36, y: 1.36}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

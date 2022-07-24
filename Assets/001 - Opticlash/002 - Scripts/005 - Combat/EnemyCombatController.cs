@@ -60,18 +60,18 @@ public class EnemyCombatController : MonoBehaviour
 
     [field: Header("ENEMY DATA")]
     [field: SerializeField] private Animator EnemyAnim { get; set; }
-    [field: SerializeField] private AttackType EnemyAttackType { get; set; }
+    [field: SerializeField] public AttackType EnemyAttackType { get; set; }
     [field: SerializeField][field: ReadOnly] public float CurrentHealth { get; set; }
     [field: SerializeField] public int MaxHealth { get; set; }
-    [field: SerializeField] private float DamageDeal { get; set; }
+    [field: SerializeField] public float DamageDeal { get; set; }
     [field: SerializeField] public float EvasionValue { get; set; }
     [field: SerializeField] private GameObject HealthBar { get; set; }
     [field: SerializeField] private GameObject HealthSlider { get; set; }
 
     [field: Header("AFFLICTED SIDE EFFECT")]
-    [field: SerializeField] public WeaponData.SideEffect AfflictedSideEffect { get; set; }
-    [field: SerializeField] public float AfflictedSideEffectDamage { get; set; }
-    [field: SerializeField] public int AfflictedSideEffectInstancesLeft { get; set; }
+    [field: SerializeField][field: ReadOnly] public WeaponData.SideEffect AfflictedSideEffect { get; set; }
+    [field: SerializeField][field: ReadOnly] public float AfflictedSideEffectDamage { get; set; }
+    [field: SerializeField][field: ReadOnly] public int AfflictedSideEffectInstancesLeft { get; set; }
     [field: SerializeField][field: ReadOnly] private bool BurnInstanceAccepted { get; set; }
 
     [field: Header("PASSIVE SIDE EFFECT")]
@@ -80,6 +80,10 @@ public class EnemyCombatController : MonoBehaviour
     [field: SerializeField] private int SideEffectDuration { get; set; }
     [field: SerializeField] private float SideEffectDamage { get; set; }
 
+    [field: Header("LASER ABILITY")]
+    [field: SerializeField] private bool CanShootLaser { get; set; }
+    [field: SerializeField] private int LaserFrequency { get; set; }    
+
     [field: Header("TRANSFORMS")]
     [field: SerializeField] public Vector3 OriginalEnemyPosition { get; set; }
     [field: SerializeField] private Vector3 EnemyAttackPosition { get; set; }
@@ -87,6 +91,7 @@ public class EnemyCombatController : MonoBehaviour
     [field: Header("DEBUGGER")]
     [field: SerializeField][field: ReadOnly] public bool DoneAttacking { get; set; }
     [field: SerializeField][field: ReadOnly] public bool IsCurrentEnemy { get; set; }
+    [field:SerializeField][field: ReadOnly] private bool ShootingLaser { get; set; }
     //========================================================================================
 
     public void InitializeEnemy()
@@ -104,27 +109,82 @@ public class EnemyCombatController : MonoBehaviour
         HealthBar.transform.rotation = Quaternion.identity;
         if(CombatCore.CurrentCombatState == CombatCore.CombatState.ENEMYTURN && CurrentCombatState == CombatState.IDLE && IsCurrentEnemy)
         {
-            if(DoneAttacking)
+            if(EnemyAttackType == AttackType.MELEE)
             {
-                if(EnemyAttackType == AttackType.MELEE)
+                if (DoneAttacking)
                 {
-
+                    if (Vector2.Distance(transform.parent.position, OriginalEnemyPosition) > 0.01f)
+                        transform.parent.position = Vector2.MoveTowards(transform.parent.position, OriginalEnemyPosition, 7 * Time.deltaTime);
+                    else
+                    {
+                        if (CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect == SideEffect.FREEZE)
+                        {
+                            DoneAttacking = false;
+                            CurrentCombatState = CombatState.IDLE;
+                        }
+                        else
+                        {
+                            CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+                            if (AfflictedSideEffect != WeaponData.SideEffect.NONE && AfflictedSideEffectInstancesLeft > 0)
+                            {
+                                AfflictedSideEffectInstancesLeft--;
+                                if (AfflictedSideEffectInstancesLeft == 0)
+                                    AfflictedSideEffect = WeaponData.SideEffect.NONE;
+                            }
+                        }
+                    }
                 }
-                else if (EnemyAttackType == AttackType.RANGED)
-                {
-
-                }
-                if (Vector2.Distance(transform.parent.position, OriginalEnemyPosition) > 0.01f)
-                    transform.parent.position = Vector2.MoveTowards(transform.parent.position, OriginalEnemyPosition, 7 * Time.deltaTime);
                 else
                 {
-                    if(CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect == SideEffect.FREEZE)
+                    if (AfflictedSideEffect == WeaponData.SideEffect.PARALYZE)
+                    {
+                        if (UnityEngine.Random.Range(0, 100) < 20)
+                        {
+                            CurrentCombatState = CombatState.ATTACKED;
+                            DoneAttacking = true;
+                        }
+                        else
+                        {
+                            if (Vector2.Distance(transform.parent.position, EnemyAttackPosition) > 0.01f)
+                                transform.parent.position = Vector2.MoveTowards(transform.parent.position, EnemyAttackPosition, 7 * Time.deltaTime);
+                            else
+                                CurrentCombatState = CombatState.ATTACKING;
+                        }
+                    }
+                    else if (AfflictedSideEffect == WeaponData.SideEffect.CONFUSE)
+                    {
+                        if (UnityEngine.Random.Range(0, 100) < 20)
+                            TakeDamageFromPlayer(DamageDeal);
+                        else
+                        {
+                            if (Vector2.Distance(transform.parent.position, EnemyAttackPosition) > 0.01f)
+                                transform.parent.position = Vector2.MoveTowards(transform.parent.position, EnemyAttackPosition, 7 * Time.deltaTime);
+                            else
+                                CurrentCombatState = CombatState.ATTACKING;
+                        }
+                    }
+                    else if (AfflictedSideEffect == WeaponData.SideEffect.FREEZE)
+                    {
+                        DoneAttacking = true;
+                    }
+                    // Enemy has no side effects to process and will move and attack regularly
+                    else
+                    {
+                        if (Vector2.Distance(transform.parent.position, EnemyAttackPosition) > 0.01f)
+                            transform.parent.position = Vector2.MoveTowards(transform.parent.position, EnemyAttackPosition, 7 * Time.deltaTime);
+                        else
+                            CurrentCombatState = CombatState.ATTACKING;
+                    }
+                }
+            }
+            else if (EnemyAttackType == AttackType.RANGED)
+            {
+                if(DoneAttacking)
+                {
+                    if (CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect == SideEffect.FREEZE)
                     {
                         DoneAttacking = false;
                         CurrentCombatState = CombatState.IDLE;
-                        CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().SideEffectInstancesRemaining--;
-                        if (CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().SideEffectInstancesRemaining == 0)
-                            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect = SideEffect.NONE;
                     }
                     else
                     {
@@ -137,40 +197,32 @@ public class EnemyCombatController : MonoBehaviour
                         }
                     }
                 }
-            }
-            else
-            {
-                int randomNum = UnityEngine.Random.Range(0, 100);
-                if (AfflictedSideEffect == WeaponData.SideEffect.PARALYZE)
-                {
-                    if (randomNum < 20)
-                        CurrentCombatState = CombatState.ATTACKED;
-                    else
-                    {
-                        if (Vector2.Distance(transform.parent.position, EnemyAttackPosition) > 0.01f)
-                            transform.parent.position = Vector2.MoveTowards(transform.parent.position, EnemyAttackPosition, 7 * Time.deltaTime);
-                        else
-                            CurrentCombatState = CombatState.ATTACKING;
-                    }
-                }
-                else if (AfflictedSideEffect == WeaponData.SideEffect.CONFUSE)
-                {
-                    if (randomNum < 20)
-                        TakeDamageFromPlayer(DamageDeal);
-                    else
-                    {
-                        if (Vector2.Distance(transform.parent.position, EnemyAttackPosition) > 0.01f)
-                            transform.parent.position = Vector2.MoveTowards(transform.parent.position, EnemyAttackPosition, 7 * Time.deltaTime);
-                        else
-                            CurrentCombatState = CombatState.ATTACKING;
-                    }
-                }
                 else
                 {
-                    if (Vector2.Distance(transform.parent.position, EnemyAttackPosition) > 0.01f)
-                        transform.parent.position = Vector2.MoveTowards(transform.parent.position, EnemyAttackPosition, 7 * Time.deltaTime);
+                    if (!ShootingLaser && Vector2.Distance(CombatCore.EnemyProjectile.transform.position, CombatCore.SpawnedPlayer.transform.position) > 0.01f)
+                        CombatCore.EnemyProjectile.transform.position = Vector2.MoveTowards(CombatCore.EnemyProjectile.transform.position, CombatCore.SpawnedPlayer.transform.position, 7 * Time.deltaTime);
+                    else if (ShootingLaser && Vector2.Distance(CombatCore.EnemyLaser.transform.position, CombatCore.SpawnedPlayer.transform.position) > 0.01f)
+                        CombatCore.EnemyLaser.transform.position = Vector2.MoveTowards(CombatCore.EnemyLaser.transform.position, CombatCore.SpawnedPlayer.transform.position, 7 * Time.deltaTime);
+
                     else
-                        CurrentCombatState = CombatState.ATTACKING;
+                    {
+                        Debug.Log("Enemy projectile has hit Opti");
+                        CombatCore.EnemyProjectile.SetActive(false);
+                        CombatCore.EnemyLaser.SetActive(false);
+                        DoneAttacking = true;
+                        if(ShootingLaser)
+                        {
+                            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().TakeDamageFromEnemy(DamageDeal * 3);
+                        }
+                        else
+                        {
+                            if (AfflictedSideEffect == WeaponData.SideEffect.WEAK)
+                                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().TakeDamageFromEnemy(DamageDeal / 2);
+                            else
+                                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().TakeDamageFromEnemy(DamageDeal);
+                        }
+                        
+                    }
                 }
             }
         }
@@ -196,28 +248,56 @@ public class EnemyCombatController : MonoBehaviour
     #region ANIMATION EVENTS
     public void AttackPlayer()
     {
-        if(AfflictedSideEffect == WeaponData.SideEffect.WEAK)
-            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().TakeDamageFromEnemy(DamageDeal / 2);
-        else
-            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().TakeDamageFromEnemy(DamageDeal);
-
-        #region SIDE EFFECTS
-        //  Only inflict a side effect if the modulo between the current round and the side effect rate is zero AND if the player is not inflicted with a status effect yet
-        if (ThisSideEffect != SideEffect.NONE && (CombatCore.RoundCounter % SideEffectRate == 0) && CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect == SideEffect.NONE && AfflictedSideEffect != WeaponData.SideEffect.BREAK)
+        if(EnemyAttackType == AttackType.MELEE)
         {
-            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect = ThisSideEffect;
-            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().SideEffectDamage = SideEffectDamage;
-            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().SideEffectInstancesRemaining = SideEffectDuration;
+            if (AfflictedSideEffect == WeaponData.SideEffect.WEAK)
+                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().TakeDamageFromEnemy(DamageDeal / 2);
+            else
+                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().TakeDamageFromEnemy(DamageDeal);
+
+            #region SIDE EFFECTS
+            //  Only inflict a side effect if the modulo between the current round and the side effect rate is zero AND if the player is not inflicted with a status effect yet
+            if (ThisSideEffect != SideEffect.NONE && (CombatCore.RoundCounter % SideEffectRate == 0 || CombatCore.RoundCounter == SideEffectRate) && CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect == SideEffect.NONE && AfflictedSideEffect != WeaponData.SideEffect.BREAK)
+            {
+                Debug.Log("The current round is: " + CombatCore.RoundCounter + " and the side effect rate is: " + SideEffectRate);
+                Debug.Log("Will inflict: " + ThisSideEffect);
+                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect = ThisSideEffect;
+                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().SideEffectDamage = SideEffectDamage;
+                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().SideEffectInstancesRemaining = SideEffectDuration;
+            }
+            #endregion
         }
-        #endregion
+        else if (EnemyAttackType == AttackType.RANGED)
+        {
+            
+            DoneAttacking = false;
+
+            if (CanShootLaser && (CombatCore.RoundCounter % LaserFrequency == 0 || CombatCore.RoundCounter == LaserFrequency))
+            {
+                Debug.Log("laser should be activated now");
+                ShootingLaser = true;
+                CombatCore.EnemyLaser.transform.position = CombatCore.EnemyLaserStartingPoint;
+                CombatCore.EnemyLaser.SetActive(true);
+            }
+            else
+            {
+                Debug.Log("projectile should be activated now");
+                ShootingLaser = false;
+                CombatCore.EnemyProjectile.transform.position = CombatCore.EnemyProjectileStartingPoint;
+                CombatCore.EnemyProjectile.SetActive(true);
+            }
+            
+        }
     }
 
     public void ReturnToStarting()
     {
         CurrentCombatState = CombatState.IDLE;
-        DoneAttacking = true;
+        if(EnemyAttackType == AttackType.MELEE)
+            DoneAttacking = true;
     }
 
+    // Process health is only called AFTER getting hit
     public void ProcessHealth()
     {
         if (CurrentHealth > 0)
@@ -227,13 +307,23 @@ public class EnemyCombatController : MonoBehaviour
             if (AfflictedSideEffect == WeaponData.SideEffect.BURN && !BurnInstanceAccepted)
             {
                 BurnInstanceAccepted = true;
-                CurrentCombatState = CombatState.ATTACKED;
+                //CurrentCombatState = CombatState.ATTACKED;
                 CurrentHealth -= AfflictedSideEffectDamage;
                 AfflictedSideEffectInstancesLeft--;
                 if (AfflictedSideEffectInstancesLeft == 0)
                     AfflictedSideEffect = WeaponData.SideEffect.NONE;
             }
+            else if (AfflictedSideEffect == WeaponData.SideEffect.PARALYZE)
+            {
+                Debug.Log("Enemy is paralyzed");
+            }
+            else if (AfflictedSideEffect == WeaponData.SideEffect.FREEZE)
+            {
+                Debug.Log("Enemy is frozen");
+
+            }
             #endregion
+            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().ProcessEndAttack();
         }
         else
         {
