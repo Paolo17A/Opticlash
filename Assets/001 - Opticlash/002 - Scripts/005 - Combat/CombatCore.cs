@@ -68,6 +68,7 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public TextMeshProUGUI RoundTMP { get; set; }
     [field: SerializeField][field: ReadOnly] public int StageCounter { get; set; }
     [field: SerializeField] public TextMeshProUGUI StageTMP { get; set; }
+    [field: SerializeField] [field: ReadOnly] public int MonstersKilled { get; set; }
 
     [field: Header("POWER UPS")]
     [field: SerializeField] public Button DoubleDamageBtn { get; set; }
@@ -80,11 +81,17 @@ public class CombatCore : MonoBehaviour
 
     [field: Header("SKILLS")]
     [field: SerializeField] public Button HealBtn { get; set; }
+    [field: SerializeField] public TextMeshProUGUI HealChargesTMP { get; set; }
     [field: SerializeField] public Button BreakRemoveBtn { get; set; }
+    [field: SerializeField] public TextMeshProUGUI BreakChargesTMP { get; set; }
     [field: SerializeField] public Button WeakRemoveBtn { get; set; }
+    [field: SerializeField] public TextMeshProUGUI WeakChargesTMP { get; set; }
     [field: SerializeField] public Button FreezeRemoveBtn { get; set; }
+    [field: SerializeField] public TextMeshProUGUI FreezeChargesTMP { get; set; }
     [field: SerializeField] public Button ParalyzeRemoveBtn { get; set; }
+    [field: SerializeField] public TextMeshProUGUI ParalyzeChargesTMP { get; set; }
     [field: SerializeField] public Button ConfuseRemoveBtn { get; set; }
+    [field: SerializeField] public TextMeshProUGUI ConfuseChargesTMP { get; set; }
 
     [field: Header("LOCAL PLAYER DATA")]
     [field: SerializeField] public GameObject SpawnedPlayer { get; set; }
@@ -99,18 +106,31 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public Vector3 EnemyLaserStartingPoint { get; set; }
 
     [field: Header("GAME OVER")]
+    [field: SerializeField] public TextMeshProUGUI MonstersKilledTMP { get; set; }
     [field: SerializeField] private TextMeshProUGUI RewardTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int NormalFragmentDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI NormalFragmentTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int RareFragmentDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI RareFragmentTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int EpicFragmentDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI EpicFragmentTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int LegendFragmentDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI LegendFragmentTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int HealSkillDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI HealGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int BreakRemoveDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI BreakGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int WeakRemoveDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI WeakGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int FreezeRemoveDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI FreezeGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int ParalyzeRemoveDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI ParalyzeGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int ConfuseRemoveDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI ConfuseGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int BurnRemoveDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI BurnGainedTMP { get; set; }
+
     [Header("DEBUGGER")]
     public Coroutine timerCoroutine;
     private int randomDropper;
@@ -248,34 +268,70 @@ public class CombatCore : MonoBehaviour
     public void ProcessSkillsInteractability()
     {
         if (PlayerData.HealCharges > 0)
+        {
+            HealChargesTMP.text = PlayerData.HealCharges.ToString();
             HealBtn.interactable = true;
+        }
         else
+        {
+            HealChargesTMP.text = "0";
             HealBtn.interactable = false;
+        }
 
         if (PlayerData.BreakRemovalCharges > 0)
+        {
+            BreakChargesTMP.text = PlayerData.BreakRemovalCharges.ToString();
             BreakRemoveBtn.interactable = true;
+        }
         else
+        {
+            BreakChargesTMP.text = "0";
             BreakRemoveBtn.interactable = false;
+        }
 
         if (PlayerData.WeakRemovalCharges > 0)
+        {
+            WeakChargesTMP.text = PlayerData.WeakRemovalCharges.ToString();
             WeakRemoveBtn.interactable = true;
+        }
         else
+        {
+            WeakChargesTMP.text = "0";
             WeakRemoveBtn.interactable = false;
+        }
 
         if (PlayerData.FreezeRemovalCharges > 0)
+        {
+            FreezeChargesTMP.text = PlayerData.FreezeRemovalCharges.ToString();
             FreezeRemoveBtn.interactable = true;
+        }
         else
+        {
+            FreezeChargesTMP.text = "0";
             FreezeRemoveBtn.interactable = false;
+        }
 
         if (PlayerData.ParalyzeRemovalCharges > 0)
+        {
+            ParalyzeChargesTMP.text = PlayerData.ParalyzeRemovalCharges.ToString();
             ParalyzeRemoveBtn.interactable = true;
+        }
         else
+        {
+            ParalyzeChargesTMP.text = "0";
             ParalyzeRemoveBtn.interactable = false;
+        }
 
         if (PlayerData.ConfuseRemovalCharges > 0)
+        {
+            ConfuseChargesTMP.text = PlayerData.ConfuseRemovalCharges.ToString();
             ConfuseRemoveBtn.interactable = true;
+        }
         else
+        {
+            ConfuseChargesTMP.text = "0";
             ConfuseRemoveBtn.interactable = false;
+        }
     }
 
     public void ShowPowerUps()
@@ -299,200 +355,250 @@ public class CombatCore : MonoBehaviour
         RareFragmentDropped = 0;
         EpicFragmentDropped = 0;
         LegendFragmentDropped = 0;
+        HealSkillDropped = 0;
+        BreakRemoveDropped = 0;
+        BurnRemoveDropped = 0;
+        WeakRemoveDropped = 0;
+        ParalyzeRemoveDropped = 0;
+        FreezeRemoveDropped = 0;
+        ConfuseRemoveDropped = 0;
         #endregion
+
         #region DROPPERS
         if (StageCounter >= 1 && StageCounter <= 9)
         {
+            RewardTMP.text = UnityEngine.Random.Range(0, 100).ToString();
             NormalFragmentDropped = UnityEngine.Random.Range(1,2);
 
-            // Random Skills
-            randomDropper = UnityEngine.Random.Range(1,100);
-            if (randomDropper < 5)
+            if (UnityEngine.Random.Range(1, 100) < 5)
                 DropRandomSkillItem(1);
         }
         else if (StageCounter >= 10 && StageCounter <= 19)
         {
+            RewardTMP.text = UnityEngine.Random.Range(0, 200).ToString();
             NormalFragmentDropped = UnityEngine.Random.Range(1, 3);
 
-            // Random Skills
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 5)
+            if (UnityEngine.Random.Range(1, 100) < 5)
                 DropRandomSkillItem(1);
         }
         else if (StageCounter >= 20 && StageCounter <= 29)
         {
+            RewardTMP.text = UnityEngine.Random.Range(0, 300).ToString();
             NormalFragmentDropped = UnityEngine.Random.Range(1, 4);
 
-            // Random Skills
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 5)
+            if (UnityEngine.Random.Range(1, 100) < 5)
                 DropRandomSkillItem(2);
         }
         else if (StageCounter >= 30 && StageCounter <= 39)
         {
+            RewardTMP.text = UnityEngine.Random.Range(0, 400).ToString();
             NormalFragmentDropped = UnityEngine.Random.Range(1, 6);
 
-            // Rare Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 50)
+            if (UnityEngine.Random.Range(1, 100) < 50)
                 RareFragmentDropped = UnityEngine.Random.Range(1, 2);
 
-            // Random Skills
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 10)
+            if (UnityEngine.Random.Range(1, 100) < 10)
                 DropRandomSkillItem(2);
         }
         else if (StageCounter >= 40 && StageCounter <= 49)
         {
+            RewardTMP.text = UnityEngine.Random.Range(0, 500).ToString();
             NormalFragmentDropped = UnityEngine.Random.Range(1, 7);
 
-            //  Rare Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 50)
+            if (UnityEngine.Random.Range(1, 100) < 50)
                 RareFragmentDropped = UnityEngine.Random.Range(1, 2);
 
-            //  Random Skills
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 10)
+            if (UnityEngine.Random.Range(1, 100) < 10)
                 DropRandomSkillItem(2);
         }
         else if (StageCounter >= 50 && StageCounter <= 59)
         {
+            RewardTMP.text = UnityEngine.Random.Range(0, 600).ToString();
             NormalFragmentDropped = UnityEngine.Random.Range(1, 8);
 
-            //  Rare Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 50)
+            if (UnityEngine.Random.Range(1, 100) < 50)
                 RareFragmentDropped = UnityEngine.Random.Range(1, 3);
 
-            // Random Skills
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 15)
+            if (UnityEngine.Random.Range(1, 100) < 15)
                 DropRandomSkillItem(3);
         }
         else if (StageCounter >= 60 && StageCounter <= 69)
         {
+            RewardTMP.text = UnityEngine.Random.Range(0, 700).ToString();
             NormalFragmentDropped = UnityEngine.Random.Range(1, 9);
 
-            //  Rare Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 50)
+            if (UnityEngine.Random.Range(1, 100) < 50)
                 RareFragmentDropped = UnityEngine.Random.Range(1, 4);
 
-            //  Epic Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 25)
+            if (UnityEngine.Random.Range(1, 100) < 25)
                 EpicFragmentDropped = 1;
 
-            //  Random Skills
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 15)
+            if (UnityEngine.Random.Range(1, 100) < 15)
                 DropRandomSkillItem(3);
         }
         else if (StageCounter >= 70 && StageCounter <= 79)
         {
+            RewardTMP.text = UnityEngine.Random.Range(0, 800).ToString();
             NormalFragmentDropped = UnityEngine.Random.Range(1, 10);
 
-            //  Rare Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 50)
+            if (UnityEngine.Random.Range(1, 100) < 50)
                 RareFragmentDropped = UnityEngine.Random.Range(1, 5);
 
-            //  Epic Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 25)
+            if (UnityEngine.Random.Range(1, 100) < 25)
                 EpicFragmentDropped = UnityEngine.Random.Range(1, 2);
 
-            //  Random Skills
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 15)
+            if (UnityEngine.Random.Range(1, 100) < 15)
                 DropRandomSkillItem(4);
         }
         else if (StageCounter >= 80 && StageCounter <= 89)
         {
+            RewardTMP.text = UnityEngine.Random.Range(0, 900).ToString();
             NormalFragmentDropped = UnityEngine.Random.Range(1, 10);
 
-            //  Rare Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 50)
+            if (UnityEngine.Random.Range(1, 100) < 50)
                 RareFragmentDropped = UnityEngine.Random.Range(1, 5);
 
-            //  Epic Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 25)
+            if (UnityEngine.Random.Range(1, 100) < 25)
                 EpicFragmentDropped = UnityEngine.Random.Range(1, 2);
 
-            //  Legend Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 15)
+            if (UnityEngine.Random.Range(1, 100) < 15)
                 LegendFragmentDropped = 1;
 
-            //  Random Skills
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 15)
+            if (UnityEngine.Random.Range(1, 100) < 15)
                 DropRandomSkillItem(5);
         }
         else if (StageCounter >= 90 && StageCounter <= 99)
         {
+            RewardTMP.text = UnityEngine.Random.Range(0, 900).ToString();
             NormalFragmentDropped = UnityEngine.Random.Range(1, 10);
 
-            //  Rare Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 50)
+            if (UnityEngine.Random.Range(1, 100) < 50)
                 RareFragmentDropped = UnityEngine.Random.Range(1, 5);
 
-            //  Epic Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 25)
+            if (UnityEngine.Random.Range(1, 100) < 25)
                 EpicFragmentDropped = UnityEngine.Random.Range(1, 2);
 
-            //  Legend Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 15)
+            if (UnityEngine.Random.Range(1, 100) < 15)
                 LegendFragmentDropped = 1;
 
-            //  Random Skills
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 20)
+            if (UnityEngine.Random.Range(1, 100) < 20)
                 DropRandomSkillItem(5);
         }
         else if (StageCounter == 100)
         {
+            RewardTMP.text = "1000";
             NormalFragmentDropped = UnityEngine.Random.Range(1, 10);
 
-            //  Rare Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 50)
+            if (UnityEngine.Random.Range(1, 100) < 50)
                 RareFragmentDropped = UnityEngine.Random.Range(1, 10);
 
-            //  Epic Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 25)
+            if (UnityEngine.Random.Range(1, 100) < 25)
                 EpicFragmentDropped = UnityEngine.Random.Range(1, 10);
 
-            //  Legend Fragments
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 15)
+            if (UnityEngine.Random.Range(1, 100) < 15)
                 LegendFragmentDropped = UnityEngine.Random.Range(1, 10);
 
-            //  Random Skills
-            randomDropper = UnityEngine.Random.Range(1, 100);
-            if (randomDropper < 20)
+            if (UnityEngine.Random.Range(1, 100) < 20)
                 DropRandomSkillItem(10);
         }
         #endregion
 
-        RewardTMP.text = "Normal Fragments: " + NormalFragmentDropped + "\n Rare Framents: " + RareFragmentDropped + "\n Epic Fragments: " + EpicFragmentDropped + "\n " +
-            "Legendary Fragments: " + LegendFragmentDropped;
+        #region DISPLAY
+        if (NormalFragmentDropped > 0)
+        {
+            NormalFragmentTMP.gameObject.SetActive(true);
+            NormalFragmentTMP.text = NormalFragmentDropped.ToString();
+        }
+        else
+            NormalFragmentTMP.gameObject.SetActive(false);
+
+        if (RareFragmentDropped > 0)
+        {
+            RareFragmentTMP.gameObject.SetActive(true);
+            RareFragmentTMP.text = RareFragmentDropped.ToString();
+        }
+        else
+            RareFragmentTMP.gameObject.SetActive(false);
+
+        if (EpicFragmentDropped > 0)
+        {
+            EpicFragmentTMP.gameObject.SetActive(true);
+            EpicFragmentTMP.text = EpicFragmentDropped.ToString();
+        }
+        else
+            EpicFragmentTMP.gameObject.SetActive(false);
+
+        if (LegendFragmentDropped > 0)
+        {
+            LegendFragmentTMP.gameObject.SetActive(true);
+            LegendFragmentTMP.text = LegendFragmentDropped.ToString();
+        }
+        else
+            LegendFragmentTMP.gameObject.SetActive(false);
+
+        if (HealSkillDropped > 0)
+        {
+            HealGainedTMP.gameObject.SetActive(true);
+            HealGainedTMP.text = HealSkillDropped.ToString();
+        }
+        else
+            HealGainedTMP.gameObject.SetActive(false);
+
+        if (BreakRemoveDropped > 0)
+        {
+            BreakGainedTMP.gameObject.SetActive(true);
+            BreakGainedTMP.text = BreakRemoveDropped.ToString();
+        }
+        else
+            BreakGainedTMP.gameObject.SetActive(false);
+
+        if (WeakRemoveDropped > 0)
+        {
+            WeakGainedTMP.gameObject.SetActive(true);
+            WeakGainedTMP.text = WeakRemoveDropped.ToString();
+        }
+        else
+            WeakGainedTMP.gameObject.SetActive(false);
+
+        if (FreezeRemoveDropped > 0)
+        {
+            FreezeGainedTMP.gameObject.SetActive(true);
+            FreezeGainedTMP.text = FreezeRemoveDropped.ToString();
+        }
+        else
+            FreezeGainedTMP.gameObject.SetActive(false);
+
+        if (ParalyzeRemoveDropped > 0)
+        {
+            ParalyzeGainedTMP.gameObject.SetActive(true);
+            ParalyzeGainedTMP.text = ParalyzeRemoveDropped.ToString();
+        }
+        else
+            ParalyzeGainedTMP.gameObject.SetActive(false);
+
+        if (ConfuseRemoveDropped > 0)
+        {
+            ConfuseGainedTMP.gameObject.SetActive(true);
+            ConfuseGainedTMP.text = ConfuseRemoveDropped.ToString();
+        }
+        else
+            ConfuseGainedTMP.gameObject.SetActive(false);
+
+        if (BurnRemoveDropped > 0)
+        {
+            BurnGainedTMP.gameObject.SetActive(true);
+            BurnGainedTMP.text = BurnRemoveDropped.ToString();
+        }
+        else
+            BurnGainedTMP.gameObject.SetActive(false);
+        #endregion
     }
 
     private void DropRandomSkillItem(int maxSkillDrop)
     {
-        int skillsToDrop = UnityEngine.Random.Range(1, maxSkillDrop);
-        for (int i = 0; i < skillsToDrop; i++)
+        for (int i = 0; i < UnityEngine.Random.Range(1, maxSkillDrop); i++)
         {
-            int randomSkill = UnityEngine.Random.Range(0, 6);
-            switch(randomSkill)
+            switch(UnityEngine.Random.Range(0, 6))
             {
                 case 0:
                     HealSkillDropped++;

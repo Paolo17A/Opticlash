@@ -92,7 +92,14 @@ public class EnemyCombatController : MonoBehaviour
     [field: SerializeField][field: ReadOnly] public bool DoneAttacking { get; set; }
     [field: SerializeField][field: ReadOnly] public bool IsCurrentEnemy { get; set; }
     [field:SerializeField][field: ReadOnly] private bool ShootingLaser { get; set; }
+    [field: SerializeField][field: ReadOnly] private CharacterCombatController Opti { get; set; }
+
     //========================================================================================
+
+    private void Start()
+    {
+        Opti = CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>();
+    }
 
     public void InitializeEnemy()
     {
@@ -129,7 +136,10 @@ public class EnemyCombatController : MonoBehaviour
                             {
                                 AfflictedSideEffectInstancesLeft--;
                                 if (AfflictedSideEffectInstancesLeft == 0)
+                                {
                                     AfflictedSideEffect = WeaponData.SideEffect.NONE;
+                                    Opti.StatusEffectImage.gameObject.SetActive(false);
+                                }
                             }
                         }
                     }
@@ -181,7 +191,7 @@ public class EnemyCombatController : MonoBehaviour
             {
                 if(DoneAttacking)
                 {
-                    if (CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect == SideEffect.FREEZE)
+                    if (Opti.CurrentSideEffect == SideEffect.FREEZE)
                     {
                         DoneAttacking = false;
                         CurrentCombatState = CombatState.IDLE;
@@ -193,7 +203,10 @@ public class EnemyCombatController : MonoBehaviour
                         {
                             AfflictedSideEffectInstancesLeft--;
                             if (AfflictedSideEffectInstancesLeft == 0)
+                            {
                                 AfflictedSideEffect = WeaponData.SideEffect.NONE;
+                                Opti.StatusEffectImage.gameObject.SetActive(false);
+                            }
                         }
                     }
                 }
@@ -212,14 +225,14 @@ public class EnemyCombatController : MonoBehaviour
                         DoneAttacking = true;
                         if(ShootingLaser)
                         {
-                            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().TakeDamageFromEnemy(DamageDeal * 3);
+                            Opti.TakeDamageFromEnemy(DamageDeal * 3);
                         }
                         else
                         {
                             if (AfflictedSideEffect == WeaponData.SideEffect.WEAK)
-                                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().TakeDamageFromEnemy(DamageDeal / 2);
+                                Opti.TakeDamageFromEnemy(DamageDeal / 2);
                             else
-                                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().TakeDamageFromEnemy(DamageDeal);
+                                Opti.TakeDamageFromEnemy(DamageDeal);
                         }
                         
                     }
@@ -233,7 +246,7 @@ public class EnemyCombatController : MonoBehaviour
 
             if (Vector2.Distance(CombatCore.CurrentEnemy.transform.position, CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().OriginalEnemyPosition) < 0.01f)
             {
-                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.IDLE;
+                Opti.CurrentCombatState = CharacterCombatController.CombatState.IDLE;
                 CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
             }
         }
@@ -241,6 +254,7 @@ public class EnemyCombatController : MonoBehaviour
 
     private void CombatStateChange(object sender, EventArgs e)
     {
+        Debug.Log("Current enemy state: " + CurrentCombatState);
         EnemyAnim.SetInteger("index", (int)CurrentCombatState);
     }
 
@@ -251,19 +265,41 @@ public class EnemyCombatController : MonoBehaviour
         if(EnemyAttackType == AttackType.MELEE)
         {
             if (AfflictedSideEffect == WeaponData.SideEffect.WEAK)
-                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().TakeDamageFromEnemy(DamageDeal / 2);
+                Opti.TakeDamageFromEnemy(DamageDeal / 2);
             else
-                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().TakeDamageFromEnemy(DamageDeal);
+                Opti.TakeDamageFromEnemy(DamageDeal);
 
             #region SIDE EFFECTS
             //  Only inflict a side effect if the modulo between the current round and the side effect rate is zero AND if the player is not inflicted with a status effect yet
-            if (ThisSideEffect != SideEffect.NONE && (CombatCore.RoundCounter % SideEffectRate == 0 || CombatCore.RoundCounter == SideEffectRate) && CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect == SideEffect.NONE && AfflictedSideEffect != WeaponData.SideEffect.BREAK)
+            if (ThisSideEffect != SideEffect.NONE && (CombatCore.RoundCounter % SideEffectRate == 0 || CombatCore.RoundCounter == SideEffectRate) && Opti.CurrentSideEffect == SideEffect.NONE && AfflictedSideEffect != WeaponData.SideEffect.BREAK)
             {
                 Debug.Log("The current round is: " + CombatCore.RoundCounter + " and the side effect rate is: " + SideEffectRate);
                 Debug.Log("Will inflict: " + ThisSideEffect);
-                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentSideEffect = ThisSideEffect;
-                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().SideEffectDamage = SideEffectDamage;
-                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().SideEffectInstancesRemaining = SideEffectDuration;
+                Opti.CurrentSideEffect = ThisSideEffect;
+                Opti.SideEffectDamage = SideEffectDamage;
+                Opti.SideEffectInstancesRemaining = SideEffectDuration;
+
+                switch(Opti.CurrentSideEffect)
+                {
+                    case SideEffect.BREAK:
+                        Opti.SetBreakEffect();
+                        break;
+                    case SideEffect.BURN:
+                        Opti.SetBurnEffect();
+                        break;
+                    case SideEffect.CONFUSE:
+                        Opti.SetConfuseEffect();
+                        break;
+                    case SideEffect.FREEZE:
+                        Opti.SetFreezeEffect();
+                        break;
+                    case SideEffect.PARALYZE:
+                        Opti.SetParalyzeEffect();
+                        break;
+                    case SideEffect.WEAK:
+                        Opti.SetWeakEffect();
+                        break;
+                }
             }
             #endregion
         }
@@ -323,7 +359,7 @@ public class EnemyCombatController : MonoBehaviour
 
             }
             #endregion
-            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().ProcessEndAttack();
+            Opti.ProcessEndAttack();
         }
         else
         {
@@ -336,6 +372,7 @@ public class EnemyCombatController : MonoBehaviour
     {
         if(CurrentCombatState == CombatState.DYING)
         {
+            CombatCore.MonstersKilled++;
             IsCurrentEnemy = false;
             CurrentCombatState = CombatState.IDLE;
             transform.parent.position = new Vector3(325f, transform.parent.position.y, transform.parent.position.z);
@@ -344,7 +381,7 @@ public class EnemyCombatController : MonoBehaviour
             if(CombatCore.CurrentCombatState != CombatCore.CombatState.GAMEOVER)
             {
                 CombatCore.CurrentCombatState = CombatCore.CombatState.WALKING;
-                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.WALKING;
+                Opti.CurrentCombatState = CharacterCombatController.CombatState.WALKING;
             }
         }
     }

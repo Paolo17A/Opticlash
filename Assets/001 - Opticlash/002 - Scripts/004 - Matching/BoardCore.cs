@@ -24,6 +24,7 @@ public class BoardCore : MonoBehaviour
     [field: Header("DEBUGGER")]
     private int randomGemIndex;
     private GemController spawnedGem;
+    private bool shuffling;
 
     //===================================================================================
     private void OnEnable()
@@ -114,7 +115,7 @@ public class BoardCore : MonoBehaviour
 
     private IEnumerator DecreaseRowCoroutine()
     {
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.1f);
 
         int nullCounter = 0;
         for (int x = 0; x < Width; x++)
@@ -126,7 +127,7 @@ public class BoardCore : MonoBehaviour
                 else if (nullCounter > 0)
                 {
                     AllGems[x, y].PositionIndex = new Vector2Int(x, y - nullCounter);
-                    AllGems[x, y].BoardPosition = new Vector2(1.3f * x, 1.3f * (y - nullCounter) + Height);
+                    AllGems[x, y].BoardPosition = new Vector2(0.5f + (1.37f * x),1f + (1.37f * (y - nullCounter) + Height));
                     AllGems[x, y - nullCounter] = AllGems[x, y];
                     AllGems[x, y] = null;
                 }
@@ -138,7 +139,7 @@ public class BoardCore : MonoBehaviour
 
     private IEnumerator FillBoardCoroutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         #region REFILL BOARD
         for (int x = 0; x < Width; x++)
         {
@@ -153,17 +154,17 @@ public class BoardCore : MonoBehaviour
         }
         #endregion
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         MatchFinder.FindAllMatches();
 
         if(MatchFinder.CurrentMatches.Count > 0)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             DestroyMatches();
         }    
         else
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             ShuffleBtn.interactable = true;
             if(CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING)
             {
@@ -175,8 +176,15 @@ public class BoardCore : MonoBehaviour
                 }
                 else
                     Debug.Log("no extra bullets");
-                CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
-                //CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+
+                if(shuffling)
+                {
+                    CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+                    shuffling = false;
+                }
+                else
+                    CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
+
             }
             CurrentBoardState = BoardState.MOVING;
         }
@@ -218,6 +226,7 @@ public class BoardCore : MonoBehaviour
             }
             CombatCore.AmmoCount -= 10;
             CombatCore.RoundTMP.text = CombatCore.AmmoCount.ToString();
+            shuffling = true;
             StartCoroutine(FillBoardCoroutine());
         }
     }

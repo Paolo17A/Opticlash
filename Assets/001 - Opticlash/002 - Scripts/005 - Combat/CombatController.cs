@@ -34,6 +34,7 @@ public class CombatController : MonoBehaviour
         Debug.Log(CombatCore.CurrentCombatState);
         if (CombatCore.CurrentCombatState == CombatCore.CombatState.SPAWNING)
         {
+            CombatCore.MonstersKilled = 0;
             PlayerData.CurrentHealth = PlayerData.MaxHealth;
             CombatCore.AmmoCount = PlayerData.ActiveWeapon.StartingAmmo;
             CombatCore.UIAnimator.SetBool("GameOver", false);
@@ -90,6 +91,7 @@ public class CombatController : MonoBehaviour
         {
             CombatCore.UIAnimator.SetBool("GameOver", true);
             CombatCore.StopTimerCoroutine();
+            CombatCore.MonstersKilledTMP.text = CombatCore.MonstersKilled.ToString();
             CombatCore.GrantRewardedItems();
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.WALKING)
@@ -98,9 +100,7 @@ public class CombatController : MonoBehaviour
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.WARPING)
         {
-            Debug.Log("Current state is warping");
             CombatCore.StopTimerCoroutine();
-            //CombatCore.WarpToNextEnemy();
         }
     }
 

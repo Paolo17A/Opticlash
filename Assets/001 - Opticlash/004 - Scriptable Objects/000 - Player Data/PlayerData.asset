@@ -24,16 +24,16 @@ MonoBehaviour:
   <ActiveWeapon>k__BackingField: {fileID: 11400000, guid: eb3ffbcca3abf4f498c615ef18356fd0, type: 2}
   <ActiveCostume>k__BackingField: {fileID: 11400000, guid: 92b1f494f9ca37a42bd808416a6c6252, type: 2}
   <HealInstanceID>k__BackingField: 
-  <HealCharges>k__BackingField: 0
+  <HealCharges>k__BackingField: 1
   <BreakRemovalInstanceID>k__BackingField: 
-  <BreakRemovalCharges>k__BackingField: 0
+  <BreakRemovalCharges>k__BackingField: 1
   <WeakRemovalInstanceID>k__BackingField: 
-  <WeakRemovalCharges>k__BackingField: 0
+  <WeakRemovalCharges>k__BackingField: 1
   <FreezeRemovalInstanceID>k__BackingField: 
-  <FreezeRemovalCharges>k__BackingField: 0
+  <FreezeRemovalCharges>k__BackingField: 1
   <ParalyzeRemovalInstanceID>k__BackingField: 
-  <ParalyzeRemovalCharges>k__BackingField: 0
+  <ParalyzeRemovalCharges>k__BackingField: 1
   <ConfuseRemovalInstanceID>k__BackingField: 
-  <ConfuseRemovalCharges>k__BackingField: 0
+  <ConfuseRemovalCharges>k__BackingField: 1
   <BurnRemovalInstanceID>k__BackingField: 
-  <BurnRemovalCharges>k__BackingField: 0
+  <BurnRemovalCharges>k__BackingField: 1

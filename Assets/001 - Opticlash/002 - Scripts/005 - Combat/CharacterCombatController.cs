@@ -75,10 +75,27 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField] public int MonstersToSkip { get; set; }
 
     [field: Header("SIDE EFFECTS")]
+    [field: SerializeField] public SpriteRenderer StatusEffectImage { get; set; }
+    [field: SerializeField] private SpriteRenderer StatusEffectText { get; set; }
+    [field: SerializeField] public Animator StatusEffectTextAnimator { get; set; }
     [field: SerializeField][field: ReadOnly] public EnemyCombatController.SideEffect CurrentSideEffect { get; set; }
-    [field: SerializeField][field: ReadOnly] public float SideEffectDamage;
-    [field: SerializeField][field: ReadOnly] public int SideEffectInstancesRemaining;
-    [field: SerializeField][field: ReadOnly] private bool BurnInstanceAccepted { get; set; } 
+    [field: SerializeField][field: ReadOnly] public float SideEffectDamage { get; set; }
+    [field: SerializeField][field: ReadOnly] public int SideEffectInstancesRemaining { get; set; }
+    [field: SerializeField][field: ReadOnly] private bool BurnInstanceAccepted { get; set; }
+
+    [field: Header("SIDE EFFECT ROSTER")]
+    [field: SerializeField] private Sprite BreakLogoSprite { get; set; }
+    [field: SerializeField] private Sprite BreakTextSprite { get; set; }
+    [field: SerializeField] private Sprite BurnLogoSprite { get; set; }
+    [field: SerializeField] private Sprite BurnTextSprite { get; set; }
+    [field: SerializeField] private Sprite ConfuseLogoSprite { get; set; }
+    [field: SerializeField] private Sprite ConfuseTextSprite { get; set; }
+    [field: SerializeField] private Sprite FreezeLogoSprite { get; set; }
+    [field: SerializeField] private Sprite FreezeTextSprite { get; set; }
+    [field: SerializeField] private Sprite ParalyzeLogoSprite { get; set; }
+    [field: SerializeField] private Sprite ParalyzeTextSprite { get; set; }
+    [field: SerializeField] private Sprite WeakLogoSprite { get; set; }
+    [field: SerializeField] private Sprite WeakTextSprite { get; set; }
 
     [field: Header("PROJECTILES")]
     [field: SerializeField] private GameObject Projectile { get; set; }
@@ -199,7 +216,8 @@ public class CharacterCombatController : MonoBehaviour
                         if (DoubleDamageTurnsCooldown == 0)
                             CombatCore.DoubleDamageBtn.interactable = true;
                     }
-                    CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+                    ProcessEndAttack();
+                    //CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
                 }
                 
             }
@@ -250,10 +268,10 @@ public class CharacterCombatController : MonoBehaviour
         HealthSlider.transform.localScale = new Vector3(1f, 1f, 0f);
         HealthSlider.transform.localPosition = new Vector3(0f, 0f, 10f);
         #endregion
+        RemoveSideEffects();
         ShieldInstancesRemaining = 5;
         MaxHealth = PlayerData.MaxHealth;
         CurrentHealth = MaxHealth;
-        //CombatCore.SpawnNextEnemy();
         CombatCore.SetCorrectStage();
         CurrentCombatState = CombatState.WALKING;
         CombatCore.CurrentCombatState = CombatCore.CombatState.WALKING;
@@ -264,11 +282,7 @@ public class CharacterCombatController : MonoBehaviour
     {
         PlayerAnimator.SetInteger("index", (int)CurrentCombatState);
         if (CurrentCombatState == CombatState.IDLE || CurrentCombatState == CombatState.WALKING)
-        {
             Cannon.SetActive(false);
-            /*if (BoardCore.ShotsEarned > 0)
-                CurrentCombatState = CombatState.ATTACKING;*/
-        }
             
         if (CurrentCombatState == CombatState.ATTACKING)
             Cannon.SetActive(true);
@@ -320,6 +334,7 @@ public class CharacterCombatController : MonoBehaviour
             if (PlayerData.HealCharges > 0)
             {
                 PlayerData.HealCharges--;
+                CombatCore.HealChargesTMP.text = PlayerData.HealCharges.ToString();
                 if (PlayerData.HealCharges == 0)
                     CombatCore.HealBtn.interactable = false;
                 CurrentHealth += 10f;
@@ -337,6 +352,7 @@ public class CharacterCombatController : MonoBehaviour
             if(PlayerData.BreakRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.BREAK)
             {
                 PlayerData.BreakRemovalCharges--;
+                CombatCore.BreakChargesTMP.text = PlayerData.BreakRemovalCharges.ToString();
                 if(PlayerData.BreakRemovalCharges == 0)
                     CombatCore.BreakRemoveBtn.interactable = false;
                 RemoveSideEffects();
@@ -351,6 +367,7 @@ public class CharacterCombatController : MonoBehaviour
             if (PlayerData.WeakRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.WEAK)
             {
                 PlayerData.WeakRemovalCharges--;
+                CombatCore.WeakChargesTMP.text = PlayerData.WeakRemovalCharges.ToString();
                 if (PlayerData.WeakRemovalCharges == 0)
                     CombatCore.WeakRemoveBtn.interactable = false;
                 RemoveSideEffects();
@@ -366,6 +383,7 @@ public class CharacterCombatController : MonoBehaviour
             if (PlayerData.FreezeRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.FREEZE)
             {
                 PlayerData.FreezeRemovalCharges--;
+                CombatCore.FreezeChargesTMP.text = PlayerData.FreezeRemovalCharges.ToString();
                 if (PlayerData.FreezeRemovalCharges == 0)
                     CombatCore.FreezeRemoveBtn.interactable = false;
                 RemoveSideEffects();
@@ -381,6 +399,7 @@ public class CharacterCombatController : MonoBehaviour
             if (PlayerData.ParalyzeRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.PARALYZE)
             {
                 PlayerData.ParalyzeRemovalCharges--;
+                CombatCore.ParalyzeChargesTMP.text = PlayerData.ParalyzeRemovalCharges.ToString();
                 if (PlayerData.ParalyzeRemovalCharges == 0)
                     CombatCore.ParalyzeRemoveBtn.interactable = false;
                 RemoveSideEffects();
@@ -396,6 +415,7 @@ public class CharacterCombatController : MonoBehaviour
             if (PlayerData.ConfuseRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.CONFUSE)
             {
                 PlayerData.ConfuseRemovalCharges--;
+                CombatCore.ConfuseChargesTMP.text = PlayerData.ConfuseRemovalCharges.ToString();
                 if (PlayerData.ConfuseRemovalCharges == 0)
                     CombatCore.ConfuseRemoveBtn.interactable = false;
                 RemoveSideEffects();
@@ -423,7 +443,54 @@ public class CharacterCombatController : MonoBehaviour
     {
         SideEffectInstancesRemaining = 0;
         SideEffectDamage = 0;
+        StatusEffectImage.gameObject.SetActive(false);
+        StatusEffectText.color = new Color(255, 255, 255, 0);
         CurrentSideEffect = EnemyCombatController.SideEffect.NONE;
+    }
+    #endregion
+
+    #region SIDE EFFECTS
+    public void SetBreakEffect()
+    {
+        StatusEffectImage.gameObject.SetActive(true);
+        StatusEffectImage.sprite = BreakLogoSprite;
+        StatusEffectText.sprite = BreakTextSprite;
+    }
+
+    public void SetBurnEffect()
+    {
+        StatusEffectImage.gameObject.SetActive(true);
+        StatusEffectImage.sprite = BurnLogoSprite;
+        StatusEffectText.sprite = BurnTextSprite;
+    }
+    public void SetConfuseEffect()
+    {
+        StatusEffectImage.gameObject.SetActive(true);
+        StatusEffectImage.sprite = ConfuseLogoSprite;
+        StatusEffectText.sprite = ConfuseTextSprite;
+    }
+    public void SetFreezeEffect()
+    {
+        StatusEffectImage.gameObject.SetActive(true);
+        StatusEffectImage.sprite = FreezeLogoSprite;
+        StatusEffectText.sprite = FreezeTextSprite;
+    }
+    public void SetParalyzeEffect()
+    {
+        StatusEffectImage.gameObject.SetActive(true);
+        StatusEffectImage.sprite = ParalyzeLogoSprite;
+        StatusEffectText.sprite = ParalyzeTextSprite;
+    }
+    public void SetWeakEffect()
+    {
+        StatusEffectImage.gameObject.SetActive(true);
+        StatusEffectImage.sprite = WeakLogoSprite;
+        StatusEffectText.sprite = WeakTextSprite;
+    }
+
+    public void ActivateSideEffect()
+    {
+
     }
     #endregion
 
@@ -439,6 +506,7 @@ public class CharacterCombatController : MonoBehaviour
                 if (CurrentSideEffect == EnemyCombatController.SideEffect.BURN && !BurnInstanceAccepted)
                 {
                     BurnInstanceAccepted = true;
+                    StatusEffectTextAnimator.SetTrigger("ShowStatus");
                     CurrentCombatState = CombatState.ATTACKED;
                     CurrentHealth -= SideEffectDamage;
                 }
@@ -449,6 +517,7 @@ public class CharacterCombatController : MonoBehaviour
                 if (SideEffectInstancesRemaining == 0)
                 {
                     CurrentSideEffect = EnemyCombatController.SideEffect.NONE;
+                    StatusEffectImage.gameObject.SetActive(false);
                     EffectNewlyRemoved = true;
                 }
             }
@@ -467,7 +536,10 @@ public class CharacterCombatController : MonoBehaviour
         BoardCore.ShotsEarned--;
         Debug.Log("Shots left: " + BoardCore.ShotsEarned);
         if (BoardCore.ShotsEarned == 0)
+        {
+            //CurrentCombatState = CombatState.IDLE;
             CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+        }
         else
         {
             CurrentCombatState = CombatState.ATTACKING;
@@ -482,22 +554,24 @@ public class CharacterCombatController : MonoBehaviour
     public void AttackEnemy()
     {
         BurnInstanceAccepted = false;
-        int randomNum = UnityEngine.Random.Range(0, 100);
         if (CurrentSideEffect == EnemyCombatController.SideEffect.PARALYZE)
         {
-            if (randomNum < 20)
+            if (UnityEngine.Random.Range(0, 100) < 20)
             {
                 Debug.Log("You are paralyzed and cannot attack");
                 CurrentCombatState = CombatState.ATTACKED;
+                StatusEffectTextAnimator.SetTrigger("ShowStatus");
+                CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
             }
             else
                 AttackSequence();
         }
         else if (CurrentSideEffect == EnemyCombatController.SideEffect.CONFUSE)
         {
-            if (randomNum < 20)
+            if (UnityEngine.Random.Range(0, 100) < 20)
             {
                 Debug.Log("You are confused and will attack yourself");
+                StatusEffectTextAnimator.SetTrigger("ShowStatus");
                 TakeDamageFromEnemy(PlayerData.ActiveWeapon.BaseDamage);
             }
                 
@@ -544,6 +618,9 @@ public class CharacterCombatController : MonoBehaviour
 
             HealthSlider.transform.localScale = new Vector3(CurrentHealth / MaxHealth, 1f, 0f);
             HealthSlider.transform.localPosition = new Vector3(HealthSlider.transform.localScale.x - 1, HealthSlider.transform.localPosition.y, HealthSlider.transform.localPosition.z);
+
+            if (CurrentSideEffect == EnemyCombatController.SideEffect.CONFUSE)
+                CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
         }
     }
 
