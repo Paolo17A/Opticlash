@@ -17,16 +17,59 @@ MonoBehaviour:
   <LUID>k__BackingField: 
   <CurrentStage>k__BackingField: 1
   <EnergyCount>k__BackingField: 20
-  <Optibit>k__BackingField: 0
+  <Optibit>k__BackingField: 2000
   <CurrentHealth>k__BackingField: 100
   <MaxHealth>k__BackingField: 100
-  <ActiveWeaponID>k__BackingField: 
+  <ActiveWeaponID>k__BackingField: defaultWeapon
   <ActiveWeapon>k__BackingField: {fileID: 11400000, guid: eb3ffbcca3abf4f498c615ef18356fd0, type: 2}
-  <ActiveCostume>k__BackingField: {fileID: 11400000, guid: 92b1f494f9ca37a42bd808416a6c6252, type: 2}
+  <OwnedWeapons>k__BackingField:
+  - {fileID: 11400000, guid: e58b2b3803e848140bf807589421281f, type: 2}
+  - {fileID: 11400000, guid: 024174ab56a73784d9048a8f4a4a99dd, type: 2}
+  - {fileID: 11400000, guid: 0181b593f0d019c47886354740f2007e, type: 2}
+  - {fileID: 11400000, guid: 0d6b5bb373cf84844914e662ab28d671, type: 2}
+  - {fileID: 11400000, guid: 5fc066b7ed6f27d4097392f17f2a631d, type: 2}
+  - {fileID: 11400000, guid: 11822d9fb1b17164ab49c37635800756, type: 2}
+  - {fileID: 11400000, guid: 9a748ef36ba78284abfae327bd977db2, type: 2}
+  - {fileID: 11400000, guid: c436fff682243454790635e655ea9a33, type: 2}
+  - {fileID: 11400000, guid: 0e8d384a8c11b0d4a80e17f8946fe09e, type: 2}
+  - {fileID: 11400000, guid: 696792945cea764419e1cdba48d9a1ca, type: 2}
+  - {fileID: 11400000, guid: cb27cfdeee6ef104180c230a74ffcf8c, type: 2}
+  - {fileID: 11400000, guid: 59d01a6379735a443b2a45c2c0c2d975, type: 2}
+  - {fileID: 11400000, guid: 21f5eb14f9899664c922819ff4de32fa, type: 2}
+  - {fileID: 11400000, guid: a64286ec2ff2887499ac13bec49db3d5, type: 2}
+  - {fileID: 11400000, guid: bed8a968fde0673408f180b8641aa0e4, type: 2}
+  - {fileID: 11400000, guid: 6a8740eb145c2214b918031df3fcfef6, type: 2}
+  - {fileID: 11400000, guid: d918f21db2ae3ef4fa9e5fb1bf9ddab3, type: 2}
+  - {fileID: 11400000, guid: beddd73a86cab8545a05c5d86a1bab8c, type: 2}
+  - {fileID: 11400000, guid: ae2a13a90f6a7a14cae240862cf3270d, type: 2}
+  - {fileID: 11400000, guid: 902f54c116301d744a696a6cfad2a4bd, type: 2}
+  - {fileID: 11400000, guid: 04fd04c99c689be4ca4384a17f841b9f, type: 2}
+  - {fileID: 11400000, guid: d80100bd92040cb46a19b98b6cc7eb97, type: 2}
+  - {fileID: 11400000, guid: fe128a11ebe8b534a8cf4e0383626039, type: 2}
+  - {fileID: 11400000, guid: fea1ab2aafa29b8408f92b665cd3438b, type: 2}
+  - {fileID: 11400000, guid: 0af6d00370991e1449445f26531eb0dc, type: 2}
+  - {fileID: 11400000, guid: 51906b8007465624ea0ecb4275470b63, type: 2}
+  - {fileID: 11400000, guid: a17eee4fe9b04364187fb250d0bb229a, type: 2}
+  - {fileID: 11400000, guid: e5a016bbcbfd85e4fbfa3dc4dc30ec49, type: 2}
+  - {fileID: 11400000, guid: 74693d90e5ac64244b43dc7f63caa18a, type: 2}
+  - {fileID: 11400000, guid: c8309acfd25c8e84ea96873124a85029, type: 2}
+  <ActiveConstumeInstanceID>k__BackingField: currentlyEquippedCostume
+  <ActiveCostume>k__BackingField: {fileID: 0}
+  <OwnedCostumes>k__BackingField:
+  - {fileID: 11400000, guid: 6c8fa252fbe8f60419277beb70a68c08, type: 2}
+  - {fileID: 11400000, guid: a7bfe0174e0887c44b94c55263cc397e, type: 2}
+  - {fileID: 11400000, guid: b887d3af5ae4e5b438163ae0c5f2caa0, type: 2}
+  - {fileID: 11400000, guid: 8dd04601c9fb9374ca68c2238f91750f, type: 2}
+  - {fileID: 11400000, guid: 8b790b685c24dc84d958d6ddca786c1e, type: 2}
+  - {fileID: 11400000, guid: 56cc711316ebf4e42a1fe434e31f7eb6, type: 2}
+  - {fileID: 11400000, guid: bbddba1832785c04094b0fc29a432dd1, type: 2}
+  - {fileID: 11400000, guid: 4ced7ccb8bae5064daeeedf19f245d6d, type: 2}
+  - {fileID: 11400000, guid: b518ce250db3adf4abb63703f3d8a563, type: 2}
+  - {fileID: 11400000, guid: c2024f9a356e40a4fa918e1fa9fe3571, type: 2}
   <HealInstanceID>k__BackingField: 
   <HealCharges>k__BackingField: 1
   <BreakRemovalInstanceID>k__BackingField: 
-  <BreakRemovalCharges>k__BackingField: 1
+  <BreakRemovalCharges>k__BackingField: 2
   <WeakRemovalInstanceID>k__BackingField: 
   <WeakRemovalCharges>k__BackingField: 1
   <FreezeRemovalInstanceID>k__BackingField: 
@@ -37,3 +80,7 @@ MonoBehaviour:
   <ConfuseRemovalCharges>k__BackingField: 1
   <BurnRemovalInstanceID>k__BackingField: 
   <BurnRemovalCharges>k__BackingField: 1
+  <NormalFragments>k__BackingField: 500
+  <RareFragments>k__BackingField: 600
+  <EpicFragments>k__BackingField: 700
+  <LegendFragments>k__BackingField: 800

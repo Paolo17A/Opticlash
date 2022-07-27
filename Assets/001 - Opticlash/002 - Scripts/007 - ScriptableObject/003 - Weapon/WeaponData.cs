@@ -6,7 +6,7 @@ using MyBox;
 [CreateAssetMenu(fileName = "Weapon", menuName = "Opticlash/Data/WeaponData")]
 public class WeaponData : ScriptableObject
 {
-    public enum WeaponCode { NONE, C1, C2, C3, C4, C5, B1, B2, B3, B4, A1, A2, A3, S1, S2};
+    public enum WeaponCode { NONE, C1, C2, C3, C4, C5, B1, B2, B3, B4, A1, A2, A3, S1, S2 };
     public enum SideEffect { NONE, STRONGER, BREAK, WEAK, FREEZE, PARALYZE, CONFUSE, BURN }
 
     [field: SerializeField] public WeaponCode ThisWeaponCode { get; set; }
@@ -37,5 +37,7 @@ public class WeaponData : ScriptableObject
     [field: SerializeField] public Sprite BackSprite { get; set; }
     [field: SerializeField] public Sprite MiddleSprite { get; set; }
     [field: SerializeField] public Sprite FrontSprite { get; set; }
+    [field: SerializeField] public Sprite EquippedSprite {get; set;}
+    [field: SerializeField] public Sprite InfoSprite { get; set; }
     [field: SerializeField] public Sprite Ammo { get; set; }
 }

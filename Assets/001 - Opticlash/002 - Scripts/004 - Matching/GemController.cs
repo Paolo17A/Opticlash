@@ -138,7 +138,7 @@ public class GemController : MonoBehaviour
                 BoardCore.AllGems[PositionIndex.x, PositionIndex.y] = this;
                 BoardCore.AllGems[otherGem.PositionIndex.x, otherGem.PositionIndex.y] = otherGem;
 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.3f);
                 BoardCore.CurrentBoardState = BoardCore.BoardState.MOVING;
             }
             else

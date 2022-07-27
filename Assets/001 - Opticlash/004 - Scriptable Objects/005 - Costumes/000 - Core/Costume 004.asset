@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961d0a4ca759156498527d424bb851a0, type: 3}
+  m_Name: Costume 004
+  m_EditorClassIdentifier: 
+  <CostumeID>k__BackingField: Costume004
+  <CostumeName>k__BackingField: Cypher Costume
+  <CostumeSprite>k__BackingField: {fileID: 21300000, guid: ea50f7057910ed748b3929f126f03998, type: 3}
+  <InfoSprite>k__BackingField: {fileID: 21300000, guid: a38b8b63c114df34c95e3138d51d6a33, type: 3}

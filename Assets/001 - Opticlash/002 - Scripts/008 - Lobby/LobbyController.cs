@@ -24,12 +24,37 @@ public class LobbyController : MonoBehaviour
         StartCoroutine(DelayForPanel());
     }
 
+    private void Awake()
+    {
+        LobbyCore.ActualCostumesOwned = new List<CustomCostumeData>();
+        LobbyCore.ActualOwnedWeapons = new List<CustomWeaponData>();
+    }
+    private void Start()
+    {
+        LobbyCore.DisplayOptibits();
+
+        //testing purposes
+        LobbyCore.GetActiveCannon();
+        LobbyCore.GetActiveCostume();
+    }
+
     private IEnumerator DelayForPanel()
     {
         yield return new WaitForSecondsRealtime(0.5f);
         LobbyCore.LobbyAnimator.SetInteger("index", (int)LobbyCore.CurrentLobbyState);
+        if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.SHOP)
+            LobbyCore.DisplayShopItem();
+        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.INVENTORY)
+            LobbyCore.InitializeInventory();
+        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.CRAFT)
+            LobbyCore.InitializeCrafting();
+        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.EQUIP)
+            LobbyCore.InitializeWeapons();
+        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.COSTUME)
+            LobbyCore.InitializeCostumes();
     }
 
+    [field: SerializeField] private PlayerData PlayerData { get; set; }
     [field: SerializeField] private LobbyCore LobbyCore { get; set; }
 
     public void LobbyStateToIndex(int state)
@@ -48,8 +73,8 @@ public class LobbyController : MonoBehaviour
             case (int)LobbyCore.LobbyStates.INVENTORY:
                 LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.INVENTORY;
                 break;
-            case (int)LobbyCore.LobbyStates.EVENT:
-                LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.EVENT;
+            case (int)LobbyCore.LobbyStates.CRAFT:
+                LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.CRAFT;
                 break;
             case (int)LobbyCore.LobbyStates.QUEST:
                 LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.QUEST;

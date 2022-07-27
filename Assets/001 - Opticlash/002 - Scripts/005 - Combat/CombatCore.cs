@@ -94,10 +94,10 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public TextMeshProUGUI ConfuseChargesTMP { get; set; }
 
     [field: Header("LOCAL PLAYER DATA")]
-    [field: SerializeField] public GameObject SpawnedPlayer { get; set; }
+    [field: SerializeField] public CharacterCombatController SpawnedPlayer { get; set; }
 
     [field: Header("LOCAL ENEMY DATA")]
-    [field: SerializeField][field: ReadOnly] public GameObject CurrentEnemy { get; set; }
+    [field: SerializeField][field: ReadOnly] public EnemyCombatController CurrentEnemy { get; set; }
     [field: SerializeField] public List<GameObject> Enemies { get; set; }
     [field: SerializeField][field: ReadOnly] public Queue<GameObject> EnemyQueue { get; set; }
     [field: SerializeField] public GameObject EnemyProjectile { get; set; }
@@ -133,7 +133,6 @@ public class CombatCore : MonoBehaviour
 
     [Header("DEBUGGER")]
     public Coroutine timerCoroutine;
-    private int randomDropper;
     //=================================================================================
 
     #region SPAWNING
@@ -161,9 +160,9 @@ public class CombatCore : MonoBehaviour
             PlayerData.CurrentStage++;
             StageCounter++;
             StageTMP.text = StageCounter.ToString();
-            CurrentEnemy = EnemyQueue.Dequeue();
-            SpawnedPlayer.GetComponent<CharacterCombatController>().ShotAccuracy = PlayerData.ActiveWeapon.Accuracy - CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().EvasionValue;
-            CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().InitializeEnemy();
+            CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
+            SpawnedPlayer.ShotAccuracy = PlayerData.ActiveWeapon.Accuracy - CurrentEnemy.EvasionValue;
+            CurrentEnemy.InitializeEnemy();
         }
         else
             CurrentCombatState = CombatState.GAMEOVER;
@@ -200,12 +199,12 @@ public class CombatCore : MonoBehaviour
         {
             StageCounter++;
             StageTMP.text = StageCounter.ToString();
-            CurrentEnemy = EnemyQueue.Dequeue();
-            SpawnedPlayer.GetComponent<CharacterCombatController>().ShotAccuracy = PlayerData.ActiveWeapon.Accuracy - CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().EvasionValue;
+            CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
+            SpawnedPlayer.ShotAccuracy = PlayerData.ActiveWeapon.Accuracy - CurrentEnemy.EvasionValue;
             if(i < PlayerData.CurrentStage - 1)
-                CurrentEnemy.transform.position = new Vector3(Enemies[Enemies.Count - 1].transform.position.x + 10 + (10 * i), CurrentEnemy.transform.position.y, CurrentEnemy.transform.position.z);
+                CurrentEnemy.gameObject.transform.parent.position = new Vector3(Enemies[Enemies.Count - 1].transform.position.x + 10 + (10 * i), CurrentEnemy.gameObject.transform.parent.position.y, CurrentEnemy.gameObject.transform.parent.position.z);
         }
-        CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().InitializeEnemy();
+        CurrentEnemy.InitializeEnemy();
 
         for (int i = 0; i < Enemies.Count; i++)
         {
@@ -215,27 +214,27 @@ public class CombatCore : MonoBehaviour
     public void WarpToNextEnemy()
     {
         FlashAnimator.SetTrigger("Flash");
-        if(EnemyQueue.Count > SpawnedPlayer.GetComponent<CharacterCombatController>().MonstersToSkip)
+        if(EnemyQueue.Count > SpawnedPlayer.MonstersToSkip)
         {
-            CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().IsCurrentEnemy = false;
-            CurrentEnemy.transform.position = new Vector3(Enemies[Enemies.Count - 1].transform.position.x + 10, CurrentEnemy.transform.position.y, CurrentEnemy.transform.position.z);
-            for (int i = 0; i < SpawnedPlayer.GetComponent<CharacterCombatController>().MonstersToSkip - 1; i++)
+            CurrentEnemy.IsCurrentEnemy = false;
+            CurrentEnemy.transform.position = new Vector3(Enemies[Enemies.Count - 1].transform.position.x + 10, CurrentEnemy.gameObject.transform.position.y, CurrentEnemy.gameObject.transform.position.z);
+            for (int i = 0; i < SpawnedPlayer.MonstersToSkip - 1; i++)
             {
                 StageCounter++;
                 StageTMP.text = StageCounter.ToString();
-                CurrentEnemy = EnemyQueue.Dequeue();
-                CurrentEnemy.transform.position = new Vector3(Enemies[Enemies.Count - 1].transform.position.x + 10 + (10 * (i + 1)), CurrentEnemy.transform.position.y, CurrentEnemy.transform.position.z);
+                CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
+                CurrentEnemy.transform.position = new Vector3(Enemies[Enemies.Count - 1].transform.position.x + 10 + (10 * (i + 1)), CurrentEnemy.gameObject.transform.position.y, CurrentEnemy.gameObject.transform.position.z);
             }
             StageCounter++;
             StageTMP.text = StageCounter.ToString();
-            CurrentEnemy = EnemyQueue.Dequeue();
-            CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().InitializeEnemy();
+            CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
+            CurrentEnemy.InitializeEnemy();
             
             for(int i = 0; i < Enemies.Count; i++)
             {
-                Enemies[i].transform.position = new Vector3(Enemies[i].transform.position.x - (10 * SpawnedPlayer.GetComponent<CharacterCombatController>().MonstersToSkip), Enemies[i].transform.position.y, Enemies[i].transform.position.z);
+                Enemies[i].transform.position = new Vector3(Enemies[i].transform.position.x - (10 * SpawnedPlayer.MonstersToSkip), Enemies[i].transform.position.y, Enemies[i].transform.position.z);
             }
-            SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.WALKING;
+            SpawnedPlayer.CurrentCombatState = CharacterCombatController.CombatState.WALKING;
             CurrentCombatState = CombatState.WALKING;
         }
         else
@@ -249,17 +248,17 @@ public class CombatCore : MonoBehaviour
     #region UI
     public void ProcessPowerUpInteractability()
     {
-        if (SpawnedPlayer.GetComponent<CharacterCombatController>().DoubleDamageTurnsCooldown == 0 && !SpawnedPlayer.GetComponent<CharacterCombatController>().DoubleDamageActivated)
+        if (SpawnedPlayer.DoubleDamageTurnsCooldown == 0 && !SpawnedPlayer.DoubleDamageActivated)
             DoubleDamageBtn.interactable = true;
         else
             DoubleDamageBtn.interactable = false;
 
-        if (SpawnedPlayer.GetComponent<CharacterCombatController>().ShieldInstancesRemaining > 0 && !SpawnedPlayer.GetComponent<CharacterCombatController>().ShieldsActivated)
+        if (SpawnedPlayer.ShieldInstancesRemaining > 0 && !SpawnedPlayer.ShieldsActivated)
             ShieldBtn.interactable = true;
         else
             ShieldBtn.interactable = false;
 
-        if (SpawnedPlayer.GetComponent<CharacterCombatController>().WarpGunInstancesRemaining > 0 && !SpawnedPlayer.GetComponent<CharacterCombatController>().WarpActivated)
+        if (SpawnedPlayer.WarpGunInstancesRemaining > 0 && !SpawnedPlayer.WarpActivated)
             WarpBtn.interactable = true;
         else
             WarpBtn.interactable = false;

@@ -7,7 +7,6 @@ public class CombatController : MonoBehaviour
 {
     [field: SerializeField] private CombatCore CombatCore { get; set; }
     [field: SerializeField] private PlayerData PlayerData { get; set; }
-    [field: SerializeField] private GameObject SpawnedPlayer { get; set; }
 
     private void OnEnable()
     {
@@ -26,6 +25,12 @@ public class CombatController : MonoBehaviour
 
     private void Start()
     {
+        foreach (CustomWeaponData weapon in PlayerData.OwnedWeapons)
+            if (weapon.WeaponInstanceID == PlayerData.ActiveWeaponID)
+            {
+                PlayerData.ActiveWeapon = weapon.BaseWeaponData;
+                break;
+            }
         CombatCore.CurrentCombatState = CombatCore.CombatState.SPAWNING;
     }
 
@@ -40,7 +45,7 @@ public class CombatController : MonoBehaviour
             CombatCore.UIAnimator.SetBool("GameOver", false);
             CombatCore.AmmoTMP.text = "Ammo: " + CombatCore.AmmoCount.ToString();
             CombatCore.SpawnEnemies();
-            SpawnedPlayer.GetComponent<CharacterCombatController>().InitializePlayer();
+            CombatCore.SpawnedPlayer.InitializePlayer();
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
         {
@@ -54,37 +59,15 @@ public class CombatController : MonoBehaviour
         {
             CombatCore.DoubleDamageBtn.interactable = false;
             CombatCore.ShieldBtn.interactable = false;
-            CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().ProjectileSpawned = false;
+            CombatCore.SpawnedPlayer.ProjectileSpawned = false;
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.ENEMYTURN)
         {
-            if (CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().EnemyAttackType == EnemyCombatController.AttackType.MELEE)
-                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().DoneAttacking = false;
+            if (CombatCore.CurrentEnemy.EnemyAttackType == EnemyCombatController.AttackType.MELEE)
+                CombatCore.CurrentEnemy.DoneAttacking = false;
 
-            else if (CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().EnemyAttackType == EnemyCombatController.AttackType.RANGED)
-            {
-                if (CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffect == WeaponData.SideEffect.PARALYZE)
-                {
-                    if (UnityEngine.Random.Range(0, 5) == 1)
-                    {
-                        CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().CurrentCombatState = CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().CurrentCombatState =  EnemyCombatController.CombatState.ATTACKED;
-                        CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().DoneAttacking = true;
-                    }
-                    else
-                        CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().CurrentCombatState = EnemyCombatController.CombatState.ATTACKING;
-                }
-                else if (CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffect == WeaponData.SideEffect.CONFUSE)
-                {
-                    if (UnityEngine.Random.Range(0, 5) == 1)
-                        CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().DamageDeal);
-                    else
-                        CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().CurrentCombatState = EnemyCombatController.CombatState.ATTACKING;
-                }
-                else if (CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffect == WeaponData.SideEffect.FREEZE)
-                    CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().DoneAttacking = true;
-                else
-                    CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().CurrentCombatState = EnemyCombatController.CombatState.ATTACKING;
-            }
+            else if (CombatCore.CurrentEnemy.EnemyAttackType == EnemyCombatController.AttackType.RANGED)
+                CombatCore.CurrentEnemy.CurrentCombatState = EnemyCombatController.CombatState.ATTACKING;
 
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.GAMEOVER)
@@ -96,7 +79,7 @@ public class CombatController : MonoBehaviour
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.WALKING)
         {
-            SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.WALKING;
+            CombatCore.SpawnedPlayer.CurrentCombatState = CharacterCombatController.CombatState.WALKING;
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.WARPING)
         {

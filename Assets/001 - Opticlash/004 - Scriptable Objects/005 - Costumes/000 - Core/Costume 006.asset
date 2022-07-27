@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961d0a4ca759156498527d424bb851a0, type: 3}
+  m_Name: Costume 006
+  m_EditorClassIdentifier: 
+  <CostumeID>k__BackingField: Costume006
+  <CostumeName>k__BackingField: Wind-up Opti
+  <CostumeSprite>k__BackingField: {fileID: 21300000, guid: 3e337dc9d1cb7ef4b854cd7579ba5d3a, type: 3}
+  <InfoSprite>k__BackingField: {fileID: 21300000, guid: 89b98ff1131b8384a8077f51400996ae, type: 3}

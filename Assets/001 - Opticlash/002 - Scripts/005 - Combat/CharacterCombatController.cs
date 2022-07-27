@@ -82,6 +82,7 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField][field: ReadOnly] public float SideEffectDamage { get; set; }
     [field: SerializeField][field: ReadOnly] public int SideEffectInstancesRemaining { get; set; }
     [field: SerializeField][field: ReadOnly] private bool BurnInstanceAccepted { get; set; }
+    [field: SerializeField][field: ReadOnly] public bool StatusEffectActivated { get; set; }
 
     [field: Header("SIDE EFFECT ROSTER")]
     [field: SerializeField] private Sprite BreakLogoSprite { get; set; }
@@ -106,6 +107,7 @@ public class CharacterCombatController : MonoBehaviour
     [field: Header("DEBUGGER")]
     [field: SerializeField][field: ReadOnly] public float ShotAccuracy { get; set; }
     [field: SerializeField][field: ReadOnly] public bool EffectNewlyRemoved { get; set; }
+    [field: SerializeField][field: ReadOnly] public bool ProjectileCoroutineAllowed { get; set; }
 
     //===================================================================================
     private void OnEnable()
@@ -116,6 +118,11 @@ public class CharacterCombatController : MonoBehaviour
     private void OnDisable()
     {
         playerCombatStateChange -= CombatStateChange;
+    }
+
+    private void Start()
+    {
+        ProjectileCoroutineAllowed = true;
     }
 
     private void Update()
@@ -132,95 +139,91 @@ public class CharacterCombatController : MonoBehaviour
         }
         else if (ProjectileSpawned)
         {
-            if (Vector2.Distance(Projectile.transform.position, ProjectileEndPoint.position) > 0.01f)
-                Projectile.transform.position = Vector2.MoveTowards(Projectile.transform.position, ProjectileEndPoint.position, 11 * Time.deltaTime);
-            else
+            //  Projectile is still traveling
+            /*if (Vector2.Distance(Projectile.transform.position, ProjectileEndPoint.position) > 0.01f)
+                Projectile.transform.position = Vector2.MoveTowards(Projectile.transform.position, ProjectileEndPoint.position, 13 * Time.deltaTime);*/
+            if (ProjectileCoroutineAllowed)
+                StartCoroutine(Projectile.GetComponent<ProjectileController>().GoByTheRoute());
+            // Projectile has reached its destination
+            /*else
             {
-                //  HIT
-                if(ShotAccuracy >= UnityEngine.Random.Range(0, 100))
+                ProcessHitOrMiss();
+            }*/
+        }
+    }
+
+    public void ProcessHitOrMiss()
+    {
+        //  HIT
+        if (ShotAccuracy >= UnityEngine.Random.Range(0, 100))
+        {
+            Projectile.SetActive(false);
+            ProjectileSpawned = false;
+            Kaboom.SetActive(true);
+            if (DoubleDamageActivated)
+            {
+                if (CurrentSideEffect == EnemyCombatController.SideEffect.WEAK)
                 {
-                    Projectile.SetActive(false);
-                    ProjectileSpawned = false;
-                    Kaboom.SetActive(true);
-                    if (DoubleDamageActivated)
-                    {
-                        if (CurrentSideEffect == EnemyCombatController.SideEffect.WEAK)
-                        {
-                            if(PlayerData.ActiveWeapon.HasCrit && UnityEngine.Random.Range(0,100) <= PlayerData.ActiveWeapon.CritRate && CombatCore.RoundCounter % PlayerData.ActiveWeapon.CritFrequency == 0 && CombatCore.RoundCounter > PlayerData.ActiveWeapon.CritFrequency)
-                                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * PlayerData.ActiveWeapon.CritMultiplier);
-                            else
-                                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage);
-                        }
-                        else
-                        {
-                            if (PlayerData.ActiveWeapon.HasCrit && UnityEngine.Random.Range(0, 100) <= PlayerData.ActiveWeapon.CritRate && CombatCore.RoundCounter % PlayerData.ActiveWeapon.CritFrequency == 0 && CombatCore.RoundCounter > PlayerData.ActiveWeapon.CritFrequency)
-                                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * PlayerData.ActiveWeapon.CritMultiplier * 2);
-                            else
-                                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * 2);
-                        }
-                        DoubleDamageActivated = false;
-                    }
+                    if (WillCrit())
+                        CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * PlayerData.ActiveWeapon.CritMultiplier);
                     else
-                    {
-                        if (CurrentSideEffect == EnemyCombatController.SideEffect.WEAK)
-                        {
-                            if (PlayerData.ActiveWeapon.HasCrit && UnityEngine.Random.Range(0, 100) <= PlayerData.ActiveWeapon.CritRate && CombatCore.RoundCounter % PlayerData.ActiveWeapon.CritFrequency == 0 && CombatCore.RoundCounter > PlayerData.ActiveWeapon.CritFrequency)
-                                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * PlayerData.ActiveWeapon.CritMultiplier / 2);
-                            else
-                                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage / 2);
-                        }
-                        else
-                        {
-                            if (PlayerData.ActiveWeapon.HasCrit && UnityEngine.Random.Range(0,100) <= PlayerData.ActiveWeapon.CritRate && CombatCore.RoundCounter % PlayerData.ActiveWeapon.CritFrequency == 0 && CombatCore.RoundCounter > PlayerData.ActiveWeapon.CritFrequency)
-                                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * PlayerData.ActiveWeapon.CritMultiplier);
-                            else
-                                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage);
-                        }
-                    }
-
-                    #region SIDE EFFECT
-                    for (int i = 0; i < PlayerData.ActiveWeapon.SideEffects.Count; i++)
-                    {
-                        //  Only inflict a weapon side effect if Opti is not under Break side effect and if the current enemy currently does not have a status effect
-                        if(CurrentSideEffect != EnemyCombatController.SideEffect.BREAK && CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffect == WeaponData.SideEffect.NONE)
-                        {
-                            if(CombatCore.RoundCounter % PlayerData.ActiveWeapon.SideEffectsFrequency[i] == 0 && UnityEngine.Random.Range(0, 100) <= PlayerData.ActiveWeapon.SideEffectsRate[i])
-                            {
-                                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffect = PlayerData.ActiveWeapon.SideEffects[i];
-                                CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffectInstancesLeft = PlayerData.ActiveWeapon.SideEffectsDuration[i];
-                            }
-                        }
-                    }
-                    #endregion
-
-                    if (DoubleDamageTurnsCooldown > 0)
-                    {
-                        DoubleDamageTurnsCooldown--;
-                        if (DoubleDamageTurnsCooldown == 0)
-                            CombatCore.DoubleDamageBtn.interactable = true;
-                    }
-
-                    
+                        CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage);
                 }
-                //MISS
                 else
                 {
-                    Debug.Log("YOU MISSED");
-                    Projectile.SetActive(false);
-                    ProjectileSpawned = false;
-                    if (DoubleDamageActivated)
-                        DoubleDamageActivated = false;
-                    if (DoubleDamageTurnsCooldown > 0)
-                    {
-                        DoubleDamageTurnsCooldown--;
-                        if (DoubleDamageTurnsCooldown == 0)
-                            CombatCore.DoubleDamageBtn.interactable = true;
-                    }
-                    ProcessEndAttack();
-                    //CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+                    if (WillCrit())
+                        CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * PlayerData.ActiveWeapon.CritMultiplier * 2);
+                    else
+                        CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * 2);
                 }
-                
+                DoubleDamageActivated = false;
             }
+            else
+            {
+                if (CurrentSideEffect == EnemyCombatController.SideEffect.WEAK)
+                {
+                    if (WillCrit())
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * PlayerData.ActiveWeapon.CritMultiplier / 2);
+                    else
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage / 2);
+                }
+                else
+                {
+                    if (WillCrit())
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * PlayerData.ActiveWeapon.CritMultiplier);
+                    else
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage);
+                }
+            }
+
+            #region SIDE EFFECT
+            for (int i = 0; i < PlayerData.ActiveWeapon.SideEffects.Count; i++)
+            {
+                //  Only inflict a weapon side effect if Opti is not under Break side effect and if the current enemy currently does not have a status effect
+                if (CurrentSideEffect != EnemyCombatController.SideEffect.BREAK && CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().AfflictedSideEffect == WeaponData.SideEffect.NONE)
+                {
+                    if (CombatCore.RoundCounter % PlayerData.ActiveWeapon.SideEffectsFrequency[i] == 0 && UnityEngine.Random.Range(0, 100) <= PlayerData.ActiveWeapon.SideEffectsRate[i])
+                    {
+                        CombatCore.CurrentEnemy.AfflictedSideEffect = PlayerData.ActiveWeapon.SideEffects[i];
+                        CombatCore.CurrentEnemy.AfflictedSideEffectInstancesLeft = PlayerData.ActiveWeapon.SideEffectsDuration[i];
+                    }
+                }
+            }
+            #endregion
+
+            ProcessDoubleDamage();
+        }
+        //MISS
+        else
+        {
+            Debug.Log("YOU MISSED");
+            Projectile.SetActive(false);
+            ProjectileSpawned = false;
+            if (DoubleDamageActivated)
+                DoubleDamageActivated = false;
+            ProcessDoubleDamage();
+            ProcessEndAttack();
+            //CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
         }
     }
 
@@ -280,12 +283,13 @@ public class CharacterCombatController : MonoBehaviour
 
     private void CombatStateChange(object sender, EventArgs e)
     {
+        Debug.Log("Current Opti state: " + CurrentCombatState);
         PlayerAnimator.SetInteger("index", (int)CurrentCombatState);
-        if (CurrentCombatState == CombatState.IDLE || CurrentCombatState == CombatState.WALKING)
+        /*if (CurrentCombatState == CombatState.IDLE || CurrentCombatState == CombatState.WALKING)
             Cannon.SetActive(false);
             
         if (CurrentCombatState == CombatState.ATTACKING)
-            Cannon.SetActive(true);
+            Cannon.SetActive(true);*/
     }
 
     #region POWERUPS
@@ -499,28 +503,50 @@ public class CharacterCombatController : MonoBehaviour
     {
         if (CurrentHealth > 0)
         {
-            CurrentCombatState = CombatState.IDLE;
-            if(CurrentSideEffect != EnemyCombatController.SideEffect.NONE)
+            if (CurrentSideEffect == EnemyCombatController.SideEffect.NONE)
             {
-                #region BURN
-                if (CurrentSideEffect == EnemyCombatController.SideEffect.BURN && !BurnInstanceAccepted)
+                Debug.Log("had no status effect yet");
+                if (CombatCore.CurrentEnemy.WillInflictStatusEffect())
                 {
-                    BurnInstanceAccepted = true;
-                    StatusEffectTextAnimator.SetTrigger("ShowStatus");
-                    CurrentCombatState = CombatState.ATTACKED;
-                    CurrentHealth -= SideEffectDamage;
-                }
-                #endregion
-                Debug.Log("Old: " + SideEffectInstancesRemaining);
-                SideEffectInstancesRemaining--;
-                Debug.Log("New: " + SideEffectInstancesRemaining);
-                if (SideEffectInstancesRemaining == 0)
-                {
-                    CurrentSideEffect = EnemyCombatController.SideEffect.NONE;
-                    StatusEffectImage.gameObject.SetActive(false);
-                    EffectNewlyRemoved = true;
+                    CurrentSideEffect = CombatCore.CurrentEnemy.ThisSideEffect;
+                    SideEffectDamage = CombatCore.CurrentEnemy.SideEffectDamage;
+                    SideEffectInstancesRemaining = CombatCore.CurrentEnemy.SideEffectDuration;
+
+                    switch (CurrentSideEffect)
+                    {
+                        case EnemyCombatController.SideEffect.BREAK:
+                            SetBreakEffect();
+                            break;
+                        case EnemyCombatController.SideEffect.BURN:
+                            SetBurnEffect();
+                            break;
+                        case EnemyCombatController.SideEffect.CONFUSE:
+                            SetConfuseEffect();
+                            break;
+                        case EnemyCombatController.SideEffect.FREEZE:
+                            SetFreezeEffect();
+                            break;
+                        case EnemyCombatController.SideEffect.PARALYZE:
+                            SetParalyzeEffect();
+                            break;
+                        case EnemyCombatController.SideEffect.WEAK:
+                            SetWeakEffect();
+                            break;
+                    }
                 }
             }
+            else if (StatusEffectActivated)
+            {
+                Debug.Log("has status effect");
+                
+                if (CurrentSideEffect == EnemyCombatController.SideEffect.PARALYZE || CurrentSideEffect == EnemyCombatController.SideEffect.CONFUSE)
+                    CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+                ProcessStatusEffectInstances();
+            }
+            else if (SideEffectInstancesRemaining > 0)
+                ProcessStatusEffectInstances();
+
+           CurrentCombatState = CombatState.IDLE;
         }
         else
         {
@@ -534,16 +560,10 @@ public class CharacterCombatController : MonoBehaviour
     public void ProcessEndAttack()
     {
         BoardCore.ShotsEarned--;
-        Debug.Log("Shots left: " + BoardCore.ShotsEarned);
         if (BoardCore.ShotsEarned == 0)
-        {
-            //CurrentCombatState = CombatState.IDLE;
             CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
-        }
         else
-        {
             CurrentCombatState = CombatState.ATTACKING;
-        }
     }
 
     public void ProcessDeath()
@@ -553,15 +573,13 @@ public class CharacterCombatController : MonoBehaviour
 
     public void AttackEnemy()
     {
-        BurnInstanceAccepted = false;
+        //BurnInstanceAccepted = false;
         if (CurrentSideEffect == EnemyCombatController.SideEffect.PARALYZE)
         {
             if (UnityEngine.Random.Range(0, 100) < 20)
             {
-                Debug.Log("You are paralyzed and cannot attack");
-                CurrentCombatState = CombatState.ATTACKED;
+                StatusEffectActivated = true;
                 StatusEffectTextAnimator.SetTrigger("ShowStatus");
-                CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
             }
             else
                 AttackSequence();
@@ -570,26 +588,26 @@ public class CharacterCombatController : MonoBehaviour
         {
             if (UnityEngine.Random.Range(0, 100) < 20)
             {
-                Debug.Log("You are confused and will attack yourself");
+                StatusEffectActivated = true;
                 StatusEffectTextAnimator.SetTrigger("ShowStatus");
-                TakeDamageFromEnemy(PlayerData.ActiveWeapon.BaseDamage);
+                TakeDamageFromSelf();
             }
-                
             else
                 AttackSequence();
         }
+        else if (CurrentSideEffect ==  EnemyCombatController.SideEffect.WEAK || CurrentSideEffect == EnemyCombatController.SideEffect.BREAK)
+        {
+            StatusEffectTextAnimator.SetTrigger("ShowStatus");
+            AttackSequence();
+        }
+        else if (CurrentSideEffect == EnemyCombatController.SideEffect.FREEZE)
+        {
+            Debug.Log("Frozen");
+            StatusEffectActivated = true;
+            StatusEffectTextAnimator.SetTrigger("ShowStatus");
+        }
         else
             AttackSequence();
-    }
-
-    private void AttackSequence()
-    {
-        CannonBlast.SetActive(false);
-        Projectile.SetActive(true);
-        Projectile.transform.position = ProjectileStartingPoint.position;
-        ProjectileSpawned = true;
-        CombatCore.AmmoCount--;
-        CombatCore.AmmoTMP.text = "Ammo: " + CombatCore.AmmoCount.ToString();
     }
 
     public void TakeDamageFromEnemy(float _damageReceived)
@@ -601,9 +619,7 @@ public class CharacterCombatController : MonoBehaviour
             {
                 // Do not mitigate the damages if you are pierced
                 if(CurrentSideEffect == EnemyCombatController.SideEffect.PIERCE)
-                {
                     CurrentHealth -= _damageReceived;
-                }
                 else
                     CurrentHealth -= _damageReceived / 3;
                 ShieldsActivated = false;
@@ -616,11 +632,17 @@ public class CharacterCombatController : MonoBehaviour
             else
                 CurrentHealth -= _damageReceived;
 
-            HealthSlider.transform.localScale = new Vector3(CurrentHealth / MaxHealth, 1f, 0f);
-            HealthSlider.transform.localPosition = new Vector3(HealthSlider.transform.localScale.x - 1, HealthSlider.transform.localPosition.y, HealthSlider.transform.localPosition.z);
+            UpdateHealthBar();
+        }
+    }
 
-            if (CurrentSideEffect == EnemyCombatController.SideEffect.CONFUSE)
-                CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+    private void TakeDamageFromSelf()
+    {
+        if(!ShieldsActivated)
+        {
+            CurrentHealth -= PlayerData.ActiveWeapon.BaseDamage;
+            UpdateHealthBar();
+            CurrentCombatState = CombatState.ATTACKED;
         }
     }
 
@@ -631,24 +653,105 @@ public class CharacterCombatController : MonoBehaviour
 
     public void CharacterCombatStateToIndex(int state)
     {
-        switch (state)
+        if(!StatusEffectActivated)
         {
-            case (int)CombatState.IDLE:
-                CurrentCombatState = CombatState.IDLE;
-                break;
-            case (int)CombatState.ATTACKING:
-                CurrentCombatState = CombatState.ATTACKING;
-                break;
-            case (int)CombatState.ATTACKED:
-                CurrentCombatState = CombatState.ATTACKED;
-                break;
-            case (int)CombatState.WALKING:
-                CurrentCombatState = CombatState.WALKING;
-                break;
-            case (int)CombatState.DYING:
-                CurrentCombatState = CombatState.DYING;
-                break;
+            switch (state)
+            {
+                case (int)CombatState.IDLE:
+                    CurrentCombatState = CombatState.IDLE;
+                    break;
+                case (int)CombatState.ATTACKING:
+                    CurrentCombatState = CombatState.ATTACKING;
+                    break;
+                case (int)CombatState.ATTACKED:
+                    CurrentCombatState = CombatState.ATTACKED;
+                    break;
+                case (int)CombatState.WALKING:
+                    CurrentCombatState = CombatState.WALKING;
+                    break;
+                case (int)CombatState.DYING:
+                    CurrentCombatState = CombatState.DYING;
+                    break;
+            }
         }
+        else if (CurrentSideEffect == EnemyCombatController.SideEffect.PARALYZE || CurrentSideEffect == EnemyCombatController.SideEffect.CONFUSE)
+            CurrentCombatState = CombatState.ATTACKED;
+        else if (CurrentSideEffect == EnemyCombatController.SideEffect.FREEZE)
+        {
+            CurrentCombatState = CombatState.IDLE;
+            ProcessStatusEffectInstances();
+            CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+        }
+
+        if (CurrentSideEffect == EnemyCombatController.SideEffect.BURN)
+        {
+            //StatusEffectActivated = true;
+            Debug.Log("intaking burn damage");
+            CurrentHealth -= SideEffectDamage;
+            UpdateHealthBar();
+            StatusEffectTextAnimator.SetTrigger("ShowStatus");
+            if (CurrentHealth <= 0)
+                CurrentCombatState = CombatState.DYING;
+        }
+    }
+    #endregion
+
+    #region UTILITY
+    private void AttackSequence()
+    {
+        CannonBlast.SetActive(false);
+        Projectile.SetActive(true);
+        Projectile.transform.position = ProjectileStartingPoint.position;
+        ProjectileSpawned = true;
+        CombatCore.AmmoCount--;
+        CombatCore.AmmoTMP.text = "Ammo: " + CombatCore.AmmoCount.ToString();
+    }
+
+    private bool WillCrit()
+    {
+        if (!PlayerData.ActiveWeapon.HasCrit)
+            return false;
+        if (UnityEngine.Random.Range(0, 100) > PlayerData.ActiveWeapon.CritRate)
+            return false;
+        if (CombatCore.RoundCounter % PlayerData.ActiveWeapon.CritFrequency != 0)
+            return false;
+        if (CombatCore.RoundCounter < PlayerData.ActiveWeapon.CritFrequency)
+            return false;
+
+        return true;
+    }
+
+    private void WillInflictStatusEffect()
+    {
+
+    }
+
+    private void ProcessDoubleDamage()
+    {
+        if (DoubleDamageTurnsCooldown > 0)
+        {
+            DoubleDamageTurnsCooldown--;
+            if (DoubleDamageTurnsCooldown == 0)
+                CombatCore.DoubleDamageBtn.interactable = true;
+        }
+    }
+
+    public void ProcessStatusEffectInstances()
+    {
+        StatusEffectActivated = false;
+        SideEffectInstancesRemaining--; 
+        if (SideEffectInstancesRemaining == 0)
+        {
+            CurrentSideEffect = EnemyCombatController.SideEffect.NONE;
+            StatusEffectImage.gameObject.SetActive(false);
+            EffectNewlyRemoved = true;
+        }
+    }
+
+    private void UpdateHealthBar()
+    {
+        HealthSlider.transform.localScale = new Vector3(CurrentHealth / MaxHealth, 1f, 0f);
+        HealthSlider.transform.localPosition = new Vector3(HealthSlider.transform.localScale.x - 1, HealthSlider.transform.localPosition.y, HealthSlider.transform.localPosition.z);
     }
     #endregion
 }

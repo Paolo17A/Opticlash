@@ -104,10 +104,9 @@ public class BoardCore : MonoBehaviour
                 DestroyMatchedGemAt(MatchFinder.CurrentMatches[i].PositionIndex, MatchFinder.CurrentMatches[i].BoardPosition);
             }
         }
-        if(CombatCore.CurrentEnemy.transform.GetChild(0).GetComponent<EnemyCombatController>().CurrentHealth > 0 && CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING && CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState != CharacterCombatController.CombatState.WALKING)
+        if(CombatCore.CurrentEnemy.CurrentHealth > 0 && CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING && CombatCore.SpawnedPlayer.CurrentCombatState != CharacterCombatController.CombatState.WALKING)
         {
             ShotsEarned++;
-            Debug.Log("Shots Earned:" + ShotsEarned);
             //CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
         }
         StartCoroutine(DecreaseRowCoroutine());
@@ -168,14 +167,11 @@ public class BoardCore : MonoBehaviour
             ShuffleBtn.interactable = true;
             if(CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING)
             {
-                Debug.Log("Opti should shoot at least " + ShotsEarned + " times");
                 if (PlayerData.ActiveWeapon.HasBonusBullets && CombatCore.RoundCounter % PlayerData.ActiveWeapon.BonusFrequency == 0 && Random.Range(0, 100) < PlayerData.ActiveWeapon.BonusRate)
                 {
                     Debug.Log("Will shoot extra bullets");
                     ShotsEarned += PlayerData.ActiveWeapon.BonusBullets;
                 }
-                else
-                    Debug.Log("no extra bullets");
 
                 if(shuffling)
                 {
@@ -183,7 +179,7 @@ public class BoardCore : MonoBehaviour
                     shuffling = false;
                 }
                 else
-                    CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
+                    CombatCore.SpawnedPlayer.CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
 
             }
             CurrentBoardState = BoardState.MOVING;
@@ -214,7 +210,7 @@ public class BoardCore : MonoBehaviour
                 {
                     randomGemIndex = Random.Range(0, gemsFromBoard.Count);
                     int iterations = 0;
-                    while (MatchesAt(new Vector2Int(x, y), gemsFromBoard[randomGemIndex]) && iterations < 100 && gemsFromBoard.Count > 1)
+                    while (MatchesAt(new Vector2Int(x, y), gemsFromBoard[randomGemIndex]) && iterations < 200 && gemsFromBoard.Count > 1)
                     {
                         randomGemIndex = Random.Range(0, Gems.Length);
                         iterations++;

@@ -25,10 +25,12 @@ public class PlayerData : ScriptableObject
     [field: Header("WEAPONS")]
     [field: SerializeField] public string ActiveWeaponID { get; set; }
     [field: SerializeField] public WeaponData ActiveWeapon { get; set; }
-    [field: SerializeField] public Dictionary<string, WeaponData> OwnedWeapons { get; set; }
+    [field: SerializeField] public List<CustomWeaponData> OwnedWeapons { get; set; }
 
     [field: Header("COSTUMES")]
+    [field: SerializeField] public string ActiveConstumeInstanceID { get; set; }
     [field: SerializeField] public CostumeData ActiveCostume { get; set; }
+    [field: SerializeField] public List<CustomCostumeData> OwnedCostumes { get; set; }
 
     [field: Header("ITEMS")]
     [field: SerializeField] public string HealInstanceID { get; set; }
@@ -45,11 +47,16 @@ public class PlayerData : ScriptableObject
     [field: SerializeField] public int ConfuseRemovalCharges { get; set; }
     [field: SerializeField] public string BurnRemovalInstanceID { get; set; }
     [field: SerializeField] public int BurnRemovalCharges { get; set; }
+
+    [field: Header("FRAGMENTS")]
+    [field: SerializeField] public int NormalFragments { get; set; }
+    [field: SerializeField] public int RareFragments { get; set; }
+    [field: SerializeField] public int EpicFragments { get; set; }
+    [field: SerializeField] public int LegendFragments { get; set; }
     //============================================================================
 
     private void OnEnable()
     {
-        OwnedWeapons = new Dictionary<string, WeaponData>();
         if(!GameManager.Instance.DebugMode)
             ResetPlayerData();
     }

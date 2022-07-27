@@ -64,9 +64,11 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\001 - Entry\EntryController.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\003 - Weapon\WeaponData.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralUISpace.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\StatusController.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\002 - Settings\SettingsController.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSimpleUI.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineEndless.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\003 - Weapon\CustomWeaponData.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\AudioManager.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\CombatCore.cs" />
@@ -116,7 +118,9 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\GameManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
-    <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\StatusController.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\005 - Costume\CustomCostumeData.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\RouteController.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\ProjectileController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\003 - TextMesh Pro\Shaders\TMPro.cginc" />

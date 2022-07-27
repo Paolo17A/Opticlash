@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c24c8b45a352b1b428aea847b22784f8, type: 3}
+  m_Name: Rare B3
+  m_EditorClassIdentifier: 
+  <ThisWeaponCode>k__BackingField: 8
+  <WeaponName>k__BackingField: Opti Arc Cannon B3 Caliver
+  <BaseDamage>k__BackingField: 6.8
+  <Accuracy>k__BackingField: 88
+  <StartingAmmo>k__BackingField: 200
+  <SideEffects>k__BackingField: 06000000
+  <SideEffectsRate>k__BackingField: 0f000000
+  <SideEffectsFrequency>k__BackingField: 01000000
+  <SideEffectsDuration>k__BackingField: 02000000
+  <HasCrit>k__BackingField: 0
+  <CritMultiplier>k__BackingField: 0
+  <CritRate>k__BackingField: 0
+  <CritFrequency>k__BackingField: 0
+  <HasBonusBullets>k__BackingField: 0
+  <BonusBullets>k__BackingField: 0
+  <BonusRate>k__BackingField: 0
+  <BonusFrequency>k__BackingField: 0
+  <BackSprite>k__BackingField: {fileID: 21300000, guid: 7c0dc849992cbfc49a2ab4ab6a689001, type: 3}
+  <MiddleSprite>k__BackingField: {fileID: 21300000, guid: a81fa7f27c199ec4b90114c6616208d0, type: 3}
+  <FrontSprite>k__BackingField: {fileID: 21300000, guid: 6b118491795c1714fa682142e7e83472, type: 3}
+  <EquippedSprite>k__BackingField: {fileID: 21300000, guid: 0ceec5a9a9b57284a9ce260d1d4e457a, type: 3}
+  <InfoSprite>k__BackingField: {fileID: 21300000, guid: d915ce4babadedc429a479215cc948d6, type: 3}
+  <Ammo>k__BackingField: {fileID: 21300000, guid: 642478bcb03c6ad4b9cc88c3ba9b8bc9, type: 3}
