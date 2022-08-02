@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LobbyController : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class LobbyController : MonoBehaviour
         LobbyCore.DisplayOptibits();
 
         //testing purposes
+        LobbyCore.StageTMP.text = PlayerData.CurrentStage.ToString();
         LobbyCore.GetActiveCannon();
         LobbyCore.GetActiveCostume();
     }
@@ -48,14 +50,26 @@ public class LobbyController : MonoBehaviour
             LobbyCore.InitializeInventory();
         else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.CRAFT)
             LobbyCore.InitializeCrafting();
-        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.EQUIP)
+        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.QUEST)
+            QuestCore.InitializeQuest();
+        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.EQUIP || LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.CANNON)
+        {
+            LobbyCore.WeaponBtn.GetComponent<Image>().sprite = LobbyCore.ActiveWeaponSprite;
+            LobbyCore.CostumeBtn.GetComponent<Image>().sprite = LobbyCore.InactiveCostumeSprite;
             LobbyCore.InitializeWeapons();
+        }
+            
         else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.COSTUME)
+        {
+            LobbyCore.WeaponBtn.GetComponent<Image>().sprite = LobbyCore.InactiveWeaponSprite;
+            LobbyCore.CostumeBtn.GetComponent<Image>().sprite = LobbyCore.ActiveCostumeSprite;
             LobbyCore.InitializeCostumes();
+        }
     }
 
     [field: SerializeField] private PlayerData PlayerData { get; set; }
     [field: SerializeField] private LobbyCore LobbyCore { get; set; }
+    [field: SerializeField] private QuestCore QuestCore { get; set; }
 
     public void LobbyStateToIndex(int state)
     {

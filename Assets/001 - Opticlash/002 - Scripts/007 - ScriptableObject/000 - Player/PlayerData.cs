@@ -53,6 +53,22 @@ public class PlayerData : ScriptableObject
     [field: SerializeField] public int RareFragments { get; set; }
     [field: SerializeField] public int EpicFragments { get; set; }
     [field: SerializeField] public int LegendFragments { get; set; }
+
+    [field: Header("DAILY QUEST CLAIMED")]
+    [field: SerializeField] public bool Quest1Claimed { get; set; }
+    [field: SerializeField] public bool Quest2Claimed { get; set; }
+    [field: SerializeField] public bool Quest3Claimed { get; set; }
+    [field: SerializeField] public bool Quest4Claimed { get; set; }
+    [field: SerializeField] public bool Quest5Claimed { get; set; }
+
+    [field: Header("DAILY QUEST DATA")]
+    [field: SerializeField] public int DailyCheckIn { get; set; }
+    [field: SerializeField] public int SocMedShared { get; set; }
+    [field: SerializeField] public int ItemsUsed { get; set; }
+    [field: SerializeField] public int MonstersKilled { get; set; }
+    [field: SerializeField] public int BossesKilled { get; set; }
+    [field: SerializeField] public int DailyQuestClaimed { get; set; }
+
     //============================================================================
 
     private void OnEnable()

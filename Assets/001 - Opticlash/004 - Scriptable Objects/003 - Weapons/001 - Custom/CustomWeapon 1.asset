@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CustomWeapon 1
   m_EditorClassIdentifier: 
   <WeaponInstanceID>k__BackingField: defaultWeapon
-  <BaseWeaponData>k__BackingField: {fileID: 11400000, guid: eb3ffbcca3abf4f498c615ef18356fd0, type: 2}
+  <BaseWeaponData>k__BackingField: {fileID: 11400000, guid: 5ba923bcf15b6894e83b30206c31e907, type: 2}
   <BonusDamage>k__BackingField: 0

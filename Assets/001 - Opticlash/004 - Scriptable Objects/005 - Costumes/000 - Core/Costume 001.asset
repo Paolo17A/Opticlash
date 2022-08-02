@@ -15,4 +15,6 @@ MonoBehaviour:
   <CostumeID>k__BackingField: Costume001
   <CostumeName>k__BackingField: Green Metal
   <CostumeSprite>k__BackingField: {fileID: 21300000, guid: 667f7f85e413b9b47a5c7590e767056c, type: 3}
+  <LobbyCostumeSprite>k__BackingField: {fileID: 21300000, guid: 3a2985b4a276e41408e818459b7750e9, type: 3}
   <InfoSprite>k__BackingField: {fileID: 21300000, guid: b2a05ec940460364aaee7b5b8280c184, type: 3}
+  <DroppedSprite>k__BackingField: {fileID: 21300000, guid: 983477c10d3b62a40adf3b2177b84177, type: 3}

@@ -51,7 +51,7 @@ public class CombatCore : MonoBehaviour
     #endregion
     //=================================================================================
     [SerializeField][ReadOnly] private CombatState currentCombatState;
-    [field: SerializeField] private PlayerData PlayerData { get; set; }
+    [field: SerializeField] public PlayerData PlayerData { get; set; }
     [field: SerializeField] public Animator UIAnimator { get; set; }
 
     [Header("LOADING")]
@@ -69,10 +69,15 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField][field: ReadOnly] public int StageCounter { get; set; }
     [field: SerializeField] public TextMeshProUGUI StageTMP { get; set; }
     [field: SerializeField] [field: ReadOnly] public int MonstersKilled { get; set; }
+    [field: SerializeField] public SpriteRenderer MissedSprite { get; set; }
 
     [field: Header("POWER UPS")]
     [field: SerializeField] public Button DoubleDamageBtn { get; set; }
+    [field: SerializeField] public GameObject DoubleDamageImage { get; set; }
+    [field: SerializeField] public TextMeshProUGUI DoubleDamageTMP { get; set; }
     [field: SerializeField] public Button ShieldBtn { get; set; }
+    [field: SerializeField] public GameObject ShieldImage { get; set; }
+    [field: SerializeField] public TextMeshProUGUI ShieldTMP { get; set; }
     [field: SerializeField] public Button WarpBtn { get; set; }
     [field: SerializeField] public GameObject Portal { get; set; }
     [field: SerializeField] public Transform PortalEndPoint { get; set; }
@@ -130,6 +135,8 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI ConfuseGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int BurnRemoveDropped { get; set; }
     [field: SerializeField] private TextMeshProUGUI BurnGainedTMP { get; set; }
+    [field: SerializeField] private List<CustomCostumeData> CostumeRoster { get; set; }
+    [field: SerializeField] private Image DroppedCostume { get; set; }
 
     [Header("DEBUGGER")]
     public Coroutine timerCoroutine;
@@ -141,7 +148,7 @@ public class CombatCore : MonoBehaviour
         StageCounter = 0;
         StageTMP.text = StageCounter.ToString();
         RoundCounter = 0;
-        RoundTMP.text = RoundCounter.ToString();
+        RoundTMP.text = "Round 1";
         float startingPos = 15f;
         EnemyQueue.Clear();
         foreach (GameObject enemy in Enemies)
@@ -195,7 +202,7 @@ public class CombatCore : MonoBehaviour
     #region WARPING
     public void SetCorrectStage()
     {
-        for (int i = 0; i < PlayerData.CurrentStage; i++)
+        /*for (int i = 0; i < PlayerData.CurrentStage; i++)
         {
             StageCounter++;
             StageTMP.text = StageCounter.ToString();
@@ -209,11 +216,18 @@ public class CombatCore : MonoBehaviour
         for (int i = 0; i < Enemies.Count; i++)
         {
             Enemies[i].transform.position = new Vector3(Enemies[i].transform.position.x - (10 * (PlayerData.CurrentStage - 1)), Enemies[i].transform.position.y, Enemies[i].transform.position.z);
-        }
+        }*/
+
+        StageCounter++;
+        StageTMP.text = StageCounter.ToString();
+        CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
+        SpawnedPlayer.ShotAccuracy = PlayerData.ActiveWeapon.Accuracy - CurrentEnemy.EvasionValue;
+        CurrentEnemy.InitializeEnemy();
     }
     public void WarpToNextEnemy()
     {
         FlashAnimator.SetTrigger("Flash");
+        SpawnedPlayer.MonstersToSkip = PlayerData.CurrentStage - StageCounter;
         if(EnemyQueue.Count > SpawnedPlayer.MonstersToSkip)
         {
             CurrentEnemy.IsCurrentEnemy = false;
@@ -591,13 +605,14 @@ public class CombatCore : MonoBehaviour
         else
             BurnGainedTMP.gameObject.SetActive(false);
         #endregion
+        DropRandomCostume();
     }
 
     private void DropRandomSkillItem(int maxSkillDrop)
     {
         for (int i = 0; i < UnityEngine.Random.Range(1, maxSkillDrop); i++)
         {
-            switch(UnityEngine.Random.Range(0, 6))
+            switch (UnityEngine.Random.Range(0, 6))
             {
                 case 0:
                     HealSkillDropped++;
@@ -622,7 +637,36 @@ public class CombatCore : MonoBehaviour
                     break;
             }
         }
-        
+    }
+
+    private void DropRandomCostume()
+    {
+        if(StageCounter < Enemies.Count / 2)
+        {
+            bool mayGrantCostume = false;
+            foreach (CustomCostumeData costume in CostumeRoster)
+                if (!costume.CostumeIsOwned)
+                {
+                    mayGrantCostume = true;
+                    break;
+                }
+
+            if(mayGrantCostume)
+            {
+                int randomNum = UnityEngine.Random.Range(0, CostumeRoster.Count);
+                while (CostumeRoster[randomNum].CostumeIsOwned)
+                    randomNum = UnityEngine.Random.Range(0, CostumeRoster.Count);
+
+                if (UnityEngine.Random.Range(0, 100) >= 1)
+                {
+                    DroppedCostume.gameObject.SetActive(true);
+                    CostumeRoster[randomNum].CostumeIsOwned = true;
+                    DroppedCostume.sprite = CostumeRoster[randomNum].BaseCostumeData.DroppedSprite;
+                }
+                else
+                    DroppedCostume.gameObject.SetActive(false);
+            }    
+        }
     }
     #endregion
 

@@ -15,4 +15,6 @@ MonoBehaviour:
   <CostumeID>k__BackingField: Costume007
   <CostumeName>k__BackingField: Maracca Opti
   <CostumeSprite>k__BackingField: {fileID: 21300000, guid: 6de7dc554e484aa4db1cc4385edef33c, type: 3}
+  <LobbyCostumeSprite>k__BackingField: {fileID: 21300000, guid: d1f0532f4dddf344ba18d602703aecd3, type: 3}
   <InfoSprite>k__BackingField: {fileID: 21300000, guid: 7e94e66c2c3ccce4fa90e0866b0967a9, type: 3}
+  <DroppedSprite>k__BackingField: {fileID: 21300000, guid: 9b839add0acbb134493403668a45d20e, type: 3}

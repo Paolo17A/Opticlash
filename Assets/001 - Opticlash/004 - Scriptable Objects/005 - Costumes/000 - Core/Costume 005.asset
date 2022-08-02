@@ -15,4 +15,6 @@ MonoBehaviour:
   <CostumeID>k__BackingField: Costume005
   <CostumeName>k__BackingField: Helicopti
   <CostumeSprite>k__BackingField: {fileID: 21300000, guid: 3e337dc9d1cb7ef4b854cd7579ba5d3a, type: 3}
+  <LobbyCostumeSprite>k__BackingField: {fileID: 21300000, guid: 99ee54ceb5b343c4e89b40837b1da31b, type: 3}
   <InfoSprite>k__BackingField: {fileID: 21300000, guid: 27225dd690b49b5458d9e6b91207da82, type: 3}
+  <DroppedSprite>k__BackingField: {fileID: 21300000, guid: d544a819adb0a3c42ab343d2c35b4100, type: 3}

@@ -18,7 +18,7 @@ MonoBehaviour:
   <Accuracy>k__BackingField: 90
   <StartingAmmo>k__BackingField: 250
   <SideEffects>k__BackingField: 06000000
-  <SideEffectsRate>k__BackingField: 14000000
+  <SideEffectsRate>k__BackingField: 32000000
   <SideEffectsFrequency>k__BackingField: 01000000
   <SideEffectsDuration>k__BackingField: 03000000
   <HasCrit>k__BackingField: 1

@@ -192,7 +192,7 @@ public class BoardCore : MonoBehaviour
         {
             ShuffleBtn.interactable = false;
             CurrentBoardState = BoardState.WAITING;
-            List<GemController> gemsFromBoard = new List<GemController>();
+            /*List<GemController> gemsFromBoard = new List<GemController>();
 
             //  Get all the already instantiated gems, place them in a list, then empty the 2D array
             for (int x = 0; x < Width; x++)
@@ -219,9 +219,15 @@ public class BoardCore : MonoBehaviour
                     AllGems[x, y] = gemsFromBoard[randomGemIndex];
                     gemsFromBoard.RemoveAt(randomGemIndex);
                 }
+            }*/
+            foreach (Transform child in transform)
+            {
+                Instantiate(child.gameObject.GetComponent<GemController>().BurstEffect, child.gameObject.GetComponent<GemController>().BoardPosition, Quaternion.identity);
+                Destroy(child.gameObject);
             }
+            InitializeBoard();
             CombatCore.AmmoCount -= 10;
-            CombatCore.RoundTMP.text = CombatCore.AmmoCount.ToString();
+            CombatCore.AmmoTMP.text = CombatCore.AmmoCount.ToString();
             shuffling = true;
             StartCoroutine(FillBoardCoroutine());
         }

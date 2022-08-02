@@ -89,34 +89,6 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: LobbyBackground/ShopContainer/ShopPanel/PricePanel/BuyBtn
-    classID: 114
-    script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.16666667
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_Enabled
     path: LobbyBackground/ShopContainer/ShopPanel/CloseBtn
     classID: 114
     script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
@@ -145,7 +117,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: LobbyBackground/ShopContainer/ShopPanel/BigItemPanel/NextItemBtn
+    path: LobbyBackground/ShopContainer/ShopPanel/SquarePanel/BigItemPanel/NextItemBtn
     classID: 114
     script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   - curve:
@@ -173,7 +145,35 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: LobbyBackground/ShopContainer/ShopPanel/BigItemPanel/PreviousItemBtn
+    path: LobbyBackground/ShopContainer/ShopPanel/SquarePanel/BigItemPanel/PreviousItemBtn
+    classID: 114
+    script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.16666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: LobbyBackground/ShopContainer/ShopPanel/RectanglePanel/BuyBtn
     classID: 114
     script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_PPtrCurves: []
@@ -199,13 +199,6 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 686745169
-      attribute: 3305885265
-      script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-      typeID: 114
-      customType: 24
-      isPPtrCurve: 0
-    - serializedVersion: 2
       path: 1100917643
       attribute: 3305885265
       script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
@@ -213,14 +206,21 @@ AnimationClip:
       customType: 24
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 281731951
+      path: 3111341313
       attribute: 3305885265
       script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
       typeID: 114
       customType: 24
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3263579947
+      path: 1351924172
+      attribute: 3305885265
+      script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+      typeID: 114
+      customType: 24
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3488568917
       attribute: 3305885265
       script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
       typeID: 114
@@ -320,34 +320,6 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: LobbyBackground/ShopContainer/ShopPanel/PricePanel/BuyBtn
-    classID: 114
-    script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.16666667
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_Enabled
     path: LobbyBackground/ShopContainer/ShopPanel/CloseBtn
     classID: 114
     script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
@@ -376,7 +348,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: LobbyBackground/ShopContainer/ShopPanel/BigItemPanel/NextItemBtn
+    path: LobbyBackground/ShopContainer/ShopPanel/SquarePanel/BigItemPanel/NextItemBtn
     classID: 114
     script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   - curve:
@@ -404,7 +376,35 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: LobbyBackground/ShopContainer/ShopPanel/BigItemPanel/PreviousItemBtn
+    path: LobbyBackground/ShopContainer/ShopPanel/SquarePanel/BigItemPanel/PreviousItemBtn
+    classID: 114
+    script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.16666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: LobbyBackground/ShopContainer/ShopPanel/RectanglePanel/BuyBtn
     classID: 114
     script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_EulerEditorCurves: []

@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //Advertisements.Instance.Initialize();
         if (DebugMode)
             SceneController.CurrentScene = SceneToLoad;
         else

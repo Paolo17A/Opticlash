@@ -63,12 +63,52 @@ public class CombatController : MonoBehaviour
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.ENEMYTURN)
         {
-            if (CombatCore.CurrentEnemy.EnemyAttackType == EnemyCombatController.AttackType.MELEE)
-                CombatCore.CurrentEnemy.DoneAttacking = false;
+            if (CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.NONE)
+            {
+                Debug.Log("enemy has no afflicted side effect");
+                CombatCore.CurrentEnemy.MayAttack = true;
+                CombatCore.CurrentEnemy.ProcessAttackType();
+            }
+            else
+            {
+                if (CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.BREAK || CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.WEAK)
+                    CombatCore.CurrentEnemy.StatusEffectTextAnimator.SetTrigger("ShowStatus");
 
-            else if (CombatCore.CurrentEnemy.EnemyAttackType == EnemyCombatController.AttackType.RANGED)
-                CombatCore.CurrentEnemy.CurrentCombatState = EnemyCombatController.CombatState.ATTACKING;
-
+                else if (CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.PARALYZE)
+                {
+                    if(UnityEngine.Random.Range(0,5) == 1)
+                    {
+                        CombatCore.CurrentEnemy.StatusEffectTextAnimator.SetTrigger("ShowStatus");
+                        CombatCore.CurrentEnemy.MayAttack = true;
+                        CombatCore.CurrentEnemy.DoneAttacking = true;
+                    }
+                    else
+                    {
+                        CombatCore.CurrentEnemy.MayAttack = true;
+                        CombatCore.CurrentEnemy.ProcessAttackType();
+                    }
+                    
+                }
+                else if (CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.FREEZE)
+                {
+                    CombatCore.CurrentEnemy.StatusEffectTextAnimator.SetTrigger("ShowStatus");
+                    CombatCore.CurrentEnemy.MayAttack = true;
+                    CombatCore.CurrentEnemy.DoneAttacking = true;
+                }
+                else if (CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.CONFUSE)
+                {
+                    if(UnityEngine.Random.Range(0,5) >= 1)
+                    {
+                        CombatCore.CurrentEnemy.StatusEffectTextAnimator.SetTrigger("ShowStatus");
+                        CombatCore.CurrentEnemy.TakeDamageFromSelf();
+                    }
+                    else
+                    {
+                        CombatCore.CurrentEnemy.MayAttack = true;
+                        CombatCore.CurrentEnemy.ProcessAttackType();
+                    }
+                }
+            }
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.GAMEOVER)
         {
