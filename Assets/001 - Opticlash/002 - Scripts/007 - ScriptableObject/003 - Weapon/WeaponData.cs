@@ -14,6 +14,7 @@ public class WeaponData : ScriptableObject
     [field: SerializeField] public float BaseDamage { get; set; }
     [field: SerializeField] public int Accuracy { get; set; }
     [field: SerializeField] public int StartingAmmo { get; set; }
+    [field: SerializeField][field: TextArea(15, 10)] public string Abilities { get; set; }
 
     [field: Header("SIDE EFFECTS")]
     [field: SerializeField] public List<SideEffect> SideEffects { get; set; }
@@ -39,5 +40,7 @@ public class WeaponData : ScriptableObject
     [field: SerializeField] public Sprite FrontSprite { get; set; }
     [field: SerializeField] public Sprite EquippedSprite {get; set;}
     [field: SerializeField] public Sprite InfoSprite { get; set; }
+    [field: SerializeField] public Sprite CurrentSprite { get; set; }
+    [field: SerializeField] public Sprite CurrentBigSprite { get; set; }
     [field: SerializeField] public Sprite Ammo { get; set; }
 }

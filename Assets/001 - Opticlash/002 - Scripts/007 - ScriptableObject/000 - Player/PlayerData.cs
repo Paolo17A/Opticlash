@@ -24,7 +24,8 @@ public class PlayerData : ScriptableObject
 
     [field: Header("WEAPONS")]
     [field: SerializeField] public string ActiveWeaponID { get; set; }
-    [field: SerializeField] public WeaponData ActiveWeapon { get; set; }
+    //[field: SerializeField] public WeaponData ActiveWeapon { get; set; }
+    [field: SerializeField] public CustomWeaponData ActiveCustomWeapon { get; set; }
     [field: SerializeField] public List<CustomWeaponData> OwnedWeapons { get; set; }
 
     [field: Header("COSTUMES")]
@@ -92,6 +93,12 @@ public class PlayerData : ScriptableObject
         Optibit = 0;
         EnergyCount = 0;
 
+        ActiveWeaponID = "";
+        ActiveCustomWeapon = null;
+
+        ActiveConstumeInstanceID = "";
+        ActiveCostume = null;
+
         HealInstanceID = "";
         HealCharges = 0;
         BreakRemovalInstanceID = "";
@@ -106,5 +113,18 @@ public class PlayerData : ScriptableObject
         ConfuseRemovalCharges = 0;
         BurnRemovalInstanceID = "";
         BurnRemovalCharges = 0;
+
+        foreach(CustomCostumeData customCostume in OwnedCostumes)
+        {
+            customCostume.CostumeInstanceID = "";
+            customCostume.CostumeIsOwned = false;
+        }
+
+        foreach(CustomWeaponData customWeapon in OwnedWeapons)
+        {
+            customWeapon.WeaponInstanceID = "";
+            customWeapon.BaseWeaponData = null;
+            customWeapon.BonusDamage = 0;
+        }
     }
 }

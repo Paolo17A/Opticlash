@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     [field: Header("MISCELLANEOUS SCRIPTS")]
     [field: SerializeField] public AudioManager AudioManager { get; set; }
-    //[field: SerializeField] public InventoryManager InventoryManager { get; set; }
+    [field: SerializeField] public InventoryManager InventoryManager { get; set; }
     [field: SerializeField] public SceneController SceneController { get; set; }
     //===========================================================
 

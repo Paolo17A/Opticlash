@@ -7,6 +7,6 @@ public class CustomWeaponData : ScriptableObject
 {
     [field: SerializeField] public string WeaponInstanceID { get; set; }
     [field: SerializeField] public WeaponData BaseWeaponData { get; set; }
-    [field: SerializeField] public float BonusDamage { get; set; }
+    [field: SerializeField] public int BonusDamage { get; set; }
 
 }

@@ -782,9 +782,21 @@
       <Project>{B9CE0F5B-39A4-1B1E-861C-90DBE924BA62}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
+    <ProjectReference Include="PlayFabSDKEditor.csproj">
+      <Project>{CE1F3717-682F-BB1D-F4E3-672A9D3C0117}</Project>
+      <Name>PlayFabSDKEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayFabEditorExtensions.csproj">
+      <Project>{95DE0647-B5CC-3E24-BE43-25C6339535CA}</Project>
+      <Name>PlayFabEditorExtensions</Name>
+    </ProjectReference>
     <ProjectReference Include="NativeShare.Runtime.csproj">
       <Project>{7F1AA562-15B8-7E1F-B950-91A1B2227E9D}</Project>
       <Name>NativeShare.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayFab.csproj">
+      <Project>{9A5977E4-1FA1-2C5A-AC2F-9B7B38A4CE8E}</Project>
+      <Name>PlayFab</Name>
     </ProjectReference>
     <ProjectReference Include="NativeShare.Editor.csproj">
       <Project>{86CC21AC-4098-62B4-3605-9D83F7B37768}</Project>

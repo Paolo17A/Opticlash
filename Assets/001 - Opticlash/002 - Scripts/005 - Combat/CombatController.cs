@@ -28,7 +28,7 @@ public class CombatController : MonoBehaviour
         foreach (CustomWeaponData weapon in PlayerData.OwnedWeapons)
             if (weapon.WeaponInstanceID == PlayerData.ActiveWeaponID)
             {
-                PlayerData.ActiveWeapon = weapon.BaseWeaponData;
+                PlayerData.ActiveCustomWeapon.BaseWeaponData = weapon.BaseWeaponData;
                 break;
             }
         CombatCore.CurrentCombatState = CombatCore.CombatState.SPAWNING;
@@ -41,7 +41,7 @@ public class CombatController : MonoBehaviour
         {
             CombatCore.MonstersKilled = 0;
             PlayerData.CurrentHealth = PlayerData.MaxHealth;
-            CombatCore.AmmoCount = PlayerData.ActiveWeapon.StartingAmmo;
+            CombatCore.AmmoCount = PlayerData.ActiveCustomWeapon.BaseWeaponData.StartingAmmo;
             CombatCore.UIAnimator.SetBool("GameOver", false);
             CombatCore.AmmoTMP.text = "Ammo: " + CombatCore.AmmoCount.ToString();
             CombatCore.SpawnEnemies();
@@ -72,7 +72,11 @@ public class CombatController : MonoBehaviour
             else
             {
                 if (CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.BREAK || CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.WEAK)
+                {
                     CombatCore.CurrentEnemy.StatusEffectTextAnimator.SetTrigger("ShowStatus");
+                    CombatCore.CurrentEnemy.MayAttack = true;
+                    CombatCore.CurrentEnemy.ProcessAttackType();
+                }
 
                 else if (CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.PARALYZE)
                 {
@@ -97,16 +101,23 @@ public class CombatController : MonoBehaviour
                 }
                 else if (CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.CONFUSE)
                 {
-                    if(UnityEngine.Random.Range(0,5) >= 1)
+                    if(UnityEngine.Random.Range(0,5) == 1)
                     {
                         CombatCore.CurrentEnemy.StatusEffectTextAnimator.SetTrigger("ShowStatus");
                         CombatCore.CurrentEnemy.TakeDamageFromSelf();
+                        CombatCore.CurrentEnemy.MayAttack = true;
+                        CombatCore.CurrentEnemy.DoneAttacking = true;
                     }
                     else
                     {
                         CombatCore.CurrentEnemy.MayAttack = true;
                         CombatCore.CurrentEnemy.ProcessAttackType();
                     }
+                }
+                else if (CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.BURN)
+                {
+                    CombatCore.CurrentEnemy.MayAttack = true;
+                    CombatCore.CurrentEnemy.ProcessAttackType();
                 }
             }
         }

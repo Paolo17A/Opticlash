@@ -46,12 +46,11 @@ public class EntryCore : MonoBehaviour
 
     //======================================================================
     [field: SerializeField] public Animator EntryAnimator { get; set; }
-    /*[field: SerializeField] private LoginCore LoginCore { get; set; }
-    [field: SerializeField] private PlayerData PlayerData { get; set; }*/
+    [field: SerializeField] private LoginCore LoginCore { get; set; }
+    //[field: SerializeField] private PlayerData PlayerData { get; set; }*/
 
     [field: Header("LOADING")]
     [field: SerializeField] private GameObject LoadingPanel { get; set; }
-    [field: SerializeField] private TextMeshProUGUI LoadingTMP { get; set; }
 
     [field: Header("LOGIN")]
     [field: SerializeField] public TMP_InputField UsernameLoginTMP { get; set; }
@@ -80,9 +79,6 @@ public class EntryCore : MonoBehaviour
         {
             PlayerPrefs.SetString("Username", UsernameLoginTMP.text);
             PlayerPrefs.SetString("Password", PasswordLoginTMP.text);
-            /*PlayerData.DisplayName = UsernameLoginTMP.text;
-            PlayerData.SubscriptionLevel = "PEARL";
-            PlayerData.TotalGameTimeSpan = new TimeSpan(0, 0, 0, 0);*/
 
             ResetLoginPanel();
             CurrentEntryState = EntryStates.NONE;
@@ -90,21 +86,19 @@ public class EntryCore : MonoBehaviour
         }
         else
         {
-            //LoginCore.LoginWithPlayfab(UsernameLoginTMP.text, PasswordLoginTMP.text);
+            LoginCore.LoginUserPlayfab(UsernameLoginTMP.text, PasswordLoginTMP.text);
         }
     }
 
-    public void DisplayLoadingPanel(string message)
+    public void DisplayLoadingPanel()
     {
         LoadingPanel.SetActive(true);
-        LoadingTMP.text = message;
         GameManager.Instance.PanelActivated = true;
     }
 
     public void HideLoadingPanel()
     {
         LoadingPanel.SetActive(false);
-        LoadingTMP.text = "";
         GameManager.Instance.PanelActivated = false;
     }
 

@@ -81,7 +81,6 @@ public class EnemyCombatController : MonoBehaviour
     [field: SerializeField][field: ReadOnly] public WeaponData.SideEffect AfflictedSideEffect { get; set; }
     [field: SerializeField][field: ReadOnly] public float AfflictedSideEffectDamage { get; set; }
     [field: SerializeField][field: ReadOnly] public int AfflictedSideEffectInstancesLeft { get; set; }
-    [field: SerializeField][field: ReadOnly] private bool BurnInstanceAccepted { get; set; }
 
     [field: Header("PASSIVE SIDE EFFECT")]
     [field: SerializeField] public SideEffect ThisSideEffect { get; set; }
@@ -172,8 +171,21 @@ public class EnemyCombatController : MonoBehaviour
                 transform.parent.position = Vector2.MoveTowards(transform.parent.position, OriginalEnemyPosition, 11 * Time.deltaTime);
             else
             {
-                MayAttack = false;
-                CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+                MayAttack = false; 
+                if (AfflictedSideEffect == WeaponData.SideEffect.BURN)
+                {
+                    //StatusEffectActivated = true;
+                    Debug.Log("intaking burn damage");
+                    CurrentHealth -= SideEffectDamage;
+                    UpdateHealthBar();
+                    StatusEffectTextAnimator.SetTrigger("ShowStatus");
+                    if (CurrentHealth <= 0)
+                        CurrentCombatState = CombatState.DYING;
+                    else
+                        CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+                }
+                else
+                    CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
             }
         }
         else
@@ -189,8 +201,21 @@ public class EnemyCombatController : MonoBehaviour
     {
         if (DoneAttacking)
         {
-            MayAttack = false;
-            CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+            MayAttack = false; 
+            if (AfflictedSideEffect == WeaponData.SideEffect.BURN)
+            {
+                //StatusEffectActivated = true;
+                Debug.Log("intaking burn damage");
+                CurrentHealth -= SideEffectDamage;
+                UpdateHealthBar();
+                StatusEffectTextAnimator.SetTrigger("ShowStatus");
+                if (CurrentHealth <= 0)
+                    CurrentCombatState = CombatState.DYING;
+                else
+                    CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+            }
+            else
+                CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
         }
         else
         {
@@ -233,6 +258,7 @@ public class EnemyCombatController : MonoBehaviour
         StatusEffectImage.gameObject.SetActive(true);
         StatusEffectImage.sprite = BurnLogoSprite;
         StatusEffectText.sprite = BurnTextSprite;
+        SideEffectDamage = CombatCore.PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage / 3;
     }
     public void SetConfuseEffect()
     {
@@ -354,7 +380,16 @@ public class EnemyCombatController : MonoBehaviour
     {
         CurrentHealth -= DamageDeal;
         UpdateHealthBar();
-        CurrentCombatState = CombatState.ATTACKED;
+        if (CurrentHealth > 0)
+        {
+            CurrentCombatState = CombatState.IDLE;
+        }
+        else
+        {
+            CurrentCombatState = CombatState.DYING;
+            HealthBar.SetActive(false);
+        }
+        //CurrentCombatState = CombatState.ATTACKED;
     }
 
     private void ResetHealthBar()
@@ -391,10 +426,12 @@ public class EnemyCombatController : MonoBehaviour
     {
         if(AfflictedSideEffect != WeaponData.SideEffect.NONE && AfflictedSideEffectInstancesLeft > 0)
         {
+            
             AfflictedSideEffectInstancesLeft--;
             if (AfflictedSideEffectInstancesLeft == 0)
             {
                 AfflictedSideEffect = WeaponData.SideEffect.NONE;
+                SideEffectDamage = 0;
                 StatusEffectImage.gameObject.SetActive(false);
             }
         }

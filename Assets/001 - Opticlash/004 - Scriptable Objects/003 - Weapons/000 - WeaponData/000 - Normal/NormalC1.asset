@@ -17,6 +17,7 @@ MonoBehaviour:
   <BaseDamage>k__BackingField: 5
   <Accuracy>k__BackingField: 81
   <StartingAmmo>k__BackingField: 150
+  <Abilities>k__BackingField: 
   <SideEffects>k__BackingField: 
   <SideEffectsRate>k__BackingField: 
   <SideEffectsFrequency>k__BackingField: 
@@ -34,4 +35,6 @@ MonoBehaviour:
   <FrontSprite>k__BackingField: {fileID: 21300000, guid: 43aee3be2ad186e45b9445086684b4b7, type: 3}
   <EquippedSprite>k__BackingField: {fileID: 21300000, guid: 66b591f6803986645920e3ba6ec2c485, type: 3}
   <InfoSprite>k__BackingField: {fileID: 21300000, guid: a4448ada40abcf04d9eff6da79a5e421, type: 3}
+  <CurrentSprite>k__BackingField: {fileID: 21300000, guid: 4d8f1597f3d10bd46a70ffd4986bee79, type: 3}
+  <CurrentBigSprite>k__BackingField: {fileID: 21300000, guid: 60a9761b04d8b4d4bb7a02f417842e57, type: 3}
   <Ammo>k__BackingField: {fileID: 21300000, guid: 61d8617ae8be83044b727811c70e5a9e, type: 3}

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 477d6f3cee79d664cbe3038ba8cf4238, type: 3}
   m_Name: Costume 2
   m_EditorClassIdentifier: 
-  <CostumeInstanceID>k__BackingField: currentlyEquippedCostume
+  <CostumeInstanceID>k__BackingField: 
   <BaseCostumeData>k__BackingField: {fileID: 11400000, guid: 92b1f494f9ca37a42bd808416a6c6252, type: 2}
-  <CostumeIsOwned>k__BackingField: 1
+  <CostumeIsOwned>k__BackingField: 0

@@ -66,6 +66,8 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField] private SpriteRenderer CannonBackSprite { get; set; }
     [field: SerializeField] private SpriteRenderer CannonMiddleSprite { get; set; }
     [field: SerializeField] private SpriteRenderer CannonFrontSprite { get; set; }
+    [field: SerializeField] private bool Lifestealing { get; set; }
+    [field: SerializeField] private float LifestealHP { get; set; }
 
     [field: Header("POWER UP DATA")]
     [field: SerializeField] public bool DoubleDamageActivated { get; set; }
@@ -106,6 +108,7 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField] private Transform ProjectileStartingPoint { get; set; }
     [field: SerializeField] private Transform ProjectileEndPoint { get; set; }
     [field: SerializeField][field: ReadOnly] public bool ProjectileSpawned { get; set; }
+    [field: SerializeField] private TrailRenderer ProjectileTrail { get; set; }
 
     [field: Header("DEBUGGER")]
     [field: SerializeField][field: ReadOnly] public float ShotAccuracy { get; set; }
@@ -162,16 +165,16 @@ public class CharacterCombatController : MonoBehaviour
                 if (CurrentSideEffect == EnemyCombatController.SideEffect.WEAK)
                 {
                     if (WillCrit())
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * PlayerData.ActiveWeapon.CritMultiplier);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer((PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage) * PlayerData.ActiveCustomWeapon.BaseWeaponData.CritMultiplier);
                     else
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage);
                 }
                 else
                 {
                     if (WillCrit())
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * PlayerData.ActiveWeapon.CritMultiplier * 2);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer((PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage) * PlayerData.ActiveCustomWeapon.BaseWeaponData.CritMultiplier * 2);
                     else
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * 2);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer((PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage) * 2);
                 }
                 DoubleDamageActivated = false;
             }
@@ -180,18 +183,20 @@ public class CharacterCombatController : MonoBehaviour
                 if (CurrentSideEffect == EnemyCombatController.SideEffect.WEAK)
                 {
                     if (WillCrit())
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * PlayerData.ActiveWeapon.CritMultiplier / 2);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer((PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage) * PlayerData.ActiveCustomWeapon.BaseWeaponData.CritMultiplier / 2);
                     else
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage / 2);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer((PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage) / 2);
                 }
                 else
                 {
                     if (WillCrit())
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage * PlayerData.ActiveWeapon.CritMultiplier);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer((PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage) * PlayerData.ActiveCustomWeapon.BaseWeaponData.CritMultiplier);
                     else
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveWeapon.BaseDamage);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage);
                 }
             }
+            if (Lifestealing)
+                InvokeLifesteal();
             //InflictStatusEffect();
             //ProcessDoubleDamage();
         }
@@ -220,28 +225,29 @@ public class CharacterCombatController : MonoBehaviour
         }
         #endregion
         #region CANNON SPPRITES
-        CannonBackSprite.sprite = PlayerData.ActiveWeapon.BackSprite;
-        CannonMiddleSprite.sprite = PlayerData.ActiveWeapon.MiddleSprite;
-        CannonFrontSprite.sprite = PlayerData.ActiveWeapon.FrontSprite;
+        CannonBackSprite.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.BackSprite;
+        CannonMiddleSprite.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.MiddleSprite;
+        CannonFrontSprite.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.FrontSprite;
         #endregion
         #region PROJECTILE SPRITES
-        Projectile.GetComponent<SpriteRenderer>().sprite = PlayerData.ActiveWeapon.Ammo;
-        if (PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.C1 || PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.C2 || PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.C3 || PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.C4 || PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.C5)
+        Projectile.GetComponent<SpriteRenderer>().sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.Ammo;
+        //ProjectileTrail.colorGradient = new Gradient();
+        if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C2 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C3 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C4 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C5)
         {
             Projectile.transform.GetChild(0).gameObject.SetActive(true);
             MonstersToSkip = 5;
         }
-        else if (PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.B1 || PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.B2 || PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.B3 || PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.B4)
+        else if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.B1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.B2 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.B3 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.B4)
         {
             Projectile.transform.GetChild(1).gameObject.SetActive(true);
             MonstersToSkip = 10;
         }
-        else if (PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.A1 || PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.A2 || PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.A3)
+        else if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.A1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.A2 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.A3)
         {
             Projectile.transform.GetChild(2).gameObject.SetActive(true);
             MonstersToSkip = 15;
         }
-        else if (PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.S1 || PlayerData.ActiveWeapon.ThisWeaponCode == WeaponData.WeaponCode.S2)
+        else if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.S1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.S2)
         {
             Projectile.transform.GetChild(3).gameObject.SetActive(true);
             MonstersToSkip = 20;
@@ -636,7 +642,7 @@ public class CharacterCombatController : MonoBehaviour
     {
         if(!ShieldsActivated)
         {
-            CurrentHealth -= PlayerData.ActiveWeapon.BaseDamage;
+            CurrentHealth -= PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage;
             UpdateHealthBar();
             CurrentCombatState = CombatState.ATTACKED;
         }
@@ -705,13 +711,13 @@ public class CharacterCombatController : MonoBehaviour
 
     private bool WillCrit()
     {
-        if (!PlayerData.ActiveWeapon.HasCrit)
+        if (!PlayerData.ActiveCustomWeapon.BaseWeaponData.HasCrit)
             return false;
-        if (UnityEngine.Random.Range(0, 100) > PlayerData.ActiveWeapon.CritRate)
+        if (UnityEngine.Random.Range(0, 100) > PlayerData.ActiveCustomWeapon.BaseWeaponData.CritRate)
             return false;
-        if (CombatCore.RoundCounter % PlayerData.ActiveWeapon.CritFrequency != 0)
+        if (CombatCore.RoundCounter % PlayerData.ActiveCustomWeapon.BaseWeaponData.CritFrequency != 0)
             return false;
-        if (CombatCore.RoundCounter < PlayerData.ActiveWeapon.CritFrequency)
+        if (CombatCore.RoundCounter < PlayerData.ActiveCustomWeapon.BaseWeaponData.CritFrequency)
             return false;
 
         return true;
@@ -719,16 +725,16 @@ public class CharacterCombatController : MonoBehaviour
 
     public void InflictStatusEffect()
     {
-        for (int i = 0; i < PlayerData.ActiveWeapon.SideEffects.Count; i++)
+        for (int i = 0; i < PlayerData.ActiveCustomWeapon.BaseWeaponData.SideEffects.Count; i++)
         {
             //  Only inflict a weapon side effect if Opti is not under Break side effect and if the current enemy currently does not have a status effect
             if (CurrentSideEffect != EnemyCombatController.SideEffect.BREAK && CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.NONE)
             {
-                if (CombatCore.RoundCounter % PlayerData.ActiveWeapon.SideEffectsFrequency[i] == 0 && UnityEngine.Random.Range(0, 100) <= PlayerData.ActiveWeapon.SideEffectsRate[i])
+                if (CombatCore.RoundCounter % PlayerData.ActiveCustomWeapon.BaseWeaponData.SideEffectsFrequency[i] == 0 && UnityEngine.Random.Range(0, 100) <= PlayerData.ActiveCustomWeapon.BaseWeaponData.SideEffectsRate[i])
                 {
                     Debug.Log("Afflicting new side effect");
-                    CombatCore.CurrentEnemy.AfflictedSideEffect = PlayerData.ActiveWeapon.SideEffects[i];
-                    CombatCore.CurrentEnemy.AfflictedSideEffectInstancesLeft = PlayerData.ActiveWeapon.SideEffectsDuration[i];
+                    CombatCore.CurrentEnemy.AfflictedSideEffect = PlayerData.ActiveCustomWeapon.BaseWeaponData.SideEffects[i];
+                    CombatCore.CurrentEnemy.AfflictedSideEffectInstancesLeft = PlayerData.ActiveCustomWeapon.BaseWeaponData.SideEffectsDuration[i];
 
                     switch (CombatCore.CurrentEnemy.AfflictedSideEffect)
                     {
@@ -784,6 +790,23 @@ public class CharacterCombatController : MonoBehaviour
     {
         HealthSlider.transform.localScale = new Vector3(CurrentHealth / MaxHealth, 1f, 0f);
         HealthSlider.transform.localPosition = new Vector3(HealthSlider.transform.localScale.x - 1, HealthSlider.transform.localPosition.y, HealthSlider.transform.localPosition.z);
+    }
+
+    public void ActivateLifesteal(float _value)
+    {
+        Lifestealing = true;
+        LifestealHP = _value;
+    }
+
+    private void InvokeLifesteal()
+    {
+        Debug.Log("Opti will lifesteal");
+        CurrentHealth += LifestealHP;
+        if (CurrentHealth > MaxHealth)
+            CurrentHealth = MaxHealth;
+        UpdateHealthBar();
+        Lifestealing = false;
+        LifestealHP = 0;
     }
     #endregion
 }

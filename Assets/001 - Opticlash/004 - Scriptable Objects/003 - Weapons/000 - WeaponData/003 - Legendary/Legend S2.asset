@@ -17,6 +17,9 @@ MonoBehaviour:
   <BaseDamage>k__BackingField: 10
   <Accuracy>k__BackingField: 95
   <StartingAmmo>k__BackingField: 300
+  <Abilities>k__BackingField: 30 % chance to shoot 180% stronger bullet in every
+    2 turns with 25% chance to confuse enemy for 3 turns and apply weak status to
+    enemy for 3 turns
   <SideEffects>k__BackingField: 0600000003000000
   <SideEffectsRate>k__BackingField: 1900000064000000
   <SideEffectsFrequency>k__BackingField: 0100000001000000
@@ -34,4 +37,6 @@ MonoBehaviour:
   <FrontSprite>k__BackingField: {fileID: 21300000, guid: 7d357169bdbe3a342b11da9a769340fc, type: 3}
   <EquippedSprite>k__BackingField: {fileID: 21300000, guid: fa8ccedecbbb06741b7a44c38b1788d1, type: 3}
   <InfoSprite>k__BackingField: {fileID: 21300000, guid: 9598bec9fb9b03c49b815a4ccde3bae2, type: 3}
+  <CurrentSprite>k__BackingField: {fileID: 21300000, guid: 672638b0442451d4dad4278259a9065e, type: 3}
+  <CurrentBigSprite>k__BackingField: {fileID: 21300000, guid: 128bd615c60ad6b41bee37f625f8b394, type: 3}
   <Ammo>k__BackingField: {fileID: 21300000, guid: c6c35f7c95cebdf4885daa178d962dc8, type: 3}

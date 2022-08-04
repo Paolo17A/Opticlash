@@ -138,6 +138,10 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] private List<CustomCostumeData> CostumeRoster { get; set; }
     [field: SerializeField] private Image DroppedCostume { get; set; }
 
+    [field: Header("SETTINGS")]
+    [field: SerializeField] private GameObject SettingsPanel { get; set; }
+
+
     [Header("DEBUGGER")]
     public Coroutine timerCoroutine;
     //=================================================================================
@@ -168,7 +172,7 @@ public class CombatCore : MonoBehaviour
             StageCounter++;
             StageTMP.text = StageCounter.ToString();
             CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
-            SpawnedPlayer.ShotAccuracy = PlayerData.ActiveWeapon.Accuracy - CurrentEnemy.EvasionValue;
+            SpawnedPlayer.ShotAccuracy = PlayerData.ActiveCustomWeapon.BaseWeaponData.Accuracy - CurrentEnemy.EvasionValue;
             CurrentEnemy.InitializeEnemy();
         }
         else
@@ -184,10 +188,12 @@ public class CombatCore : MonoBehaviour
         TimerTMP.text = QuestionTimerLeft.ToString();
         while (QuestionTimerLeft > 0f && CurrentCombatState == CombatState.TIMER)
         {
-            CurrentCountdownNumber -= Time.deltaTime;
-            QuestionTimerLeft = (int)CurrentCountdownNumber;
-            TimerTMP.text = QuestionTimerLeft.ToString();
-
+            if(!GameManager.Instance.PanelActivated)
+            {
+                CurrentCountdownNumber -= Time.deltaTime;
+                QuestionTimerLeft = (int)CurrentCountdownNumber;
+                TimerTMP.text = QuestionTimerLeft.ToString();
+            }
             yield return null;
         }
 
@@ -221,7 +227,7 @@ public class CombatCore : MonoBehaviour
         StageCounter++;
         StageTMP.text = StageCounter.ToString();
         CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
-        SpawnedPlayer.ShotAccuracy = PlayerData.ActiveWeapon.Accuracy - CurrentEnemy.EvasionValue;
+        SpawnedPlayer.ShotAccuracy = PlayerData.ActiveCustomWeapon.BaseWeaponData.Accuracy - CurrentEnemy.EvasionValue;
         CurrentEnemy.InitializeEnemy();
     }
     public void WarpToNextEnemy()
@@ -671,13 +677,23 @@ public class CombatCore : MonoBehaviour
     #endregion
 
     #region UTILITY
-    /*public void OpenSettings()
+    public void DisplaySettings()
     {
-        GameManager.Instance.SettingsPanel.SetActive(true);
+        SettingsPanel.SetActive(true);
         GameManager.Instance.PanelActivated = true;
     }
 
-    public void OpenLoadingPanel(string _message)
+    public void HideSettings()
+    {
+        SettingsPanel.SetActive(false);
+        GameManager.Instance.PanelActivated = false;
+    }
+
+    public void OpenLobbyScene()
+    {
+        GameManager.Instance.SceneController.CurrentScene = "LobbyScene";
+    }
+    /*public void OpenLoadingPanel(string _message)
     {
         LoadingPanel.SetActive(true);
         GameManager.Instance.PanelActivated = true;

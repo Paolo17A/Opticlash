@@ -31,14 +31,15 @@ public class EntryController : MonoBehaviour
                 EntryCore.CurrentEntryState = EntryCore.EntryStates.NONE;
                 GameManager.Instance.SceneController.CurrentScene = "CombatScene";
             }
-            //LoginCore.LoginWithPlayfab(PlayerPrefs.GetString("Username"), PlayerPrefs.GetString("Password"));
+            else
+                LoginCore.LoginUserPlayfab(PlayerPrefs.GetString("Username"), PlayerPrefs.GetString("Password"));
         }
 
     }
     //========================================================================================
 
     [field: SerializeField] private EntryCore EntryCore { get; set; }
-    //[field: SerializeField] private LoginCore LoginCore { get; set; }
+    [field: SerializeField] private LoginCore LoginCore { get; set; }
 
     public void EntryStateToIndex(int state)
     {

@@ -32,12 +32,16 @@ public class LobbyController : MonoBehaviour
     }
     private void Start()
     {
-        LobbyCore.DisplayOptibits();
-
         //testing purposes
-        LobbyCore.StageTMP.text = PlayerData.CurrentStage.ToString();
-        LobbyCore.GetActiveCannon();
-        LobbyCore.GetActiveCostume();
+        if (GameManager.Instance.DebugMode)
+        {
+            LobbyCore.StageTMP.text = PlayerData.CurrentStage.ToString();
+            LobbyCore.GetActiveCannon();
+            LobbyCore.GetActiveCostume();
+            LobbyCore.DisplayOptibits();
+        }
+        else
+            LobbyCore.InitializeLobby();
     }
 
     private IEnumerator DelayForPanel()
@@ -65,6 +69,8 @@ public class LobbyController : MonoBehaviour
             LobbyCore.CostumeBtn.GetComponent<Image>().sprite = LobbyCore.ActiveCostumeSprite;
             LobbyCore.InitializeCostumes();
         }
+        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.CURRENTCANNON)
+            LobbyCore.DisplayOptibits();
     }
 
     [field: SerializeField] private PlayerData PlayerData { get; set; }
@@ -104,6 +110,9 @@ public class LobbyController : MonoBehaviour
                 break;
             case (int)LobbyCore.LobbyStates.CANNON:
                 LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.CANNON;
+                break;
+            case (int)LobbyCore.LobbyStates.CURRENTCANNON:
+                LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.CURRENTCANNON;
                 break;
         }
     }

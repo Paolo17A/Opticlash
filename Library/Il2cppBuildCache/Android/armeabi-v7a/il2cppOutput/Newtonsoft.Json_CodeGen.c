@@ -2873,1214 +2873,1290 @@ extern void JConstructor_CloneToken_m61189BAE59DD8C6818AF9105E25E2A506DD5D6B2 (v
 extern void JConstructor_WriteTo_mE4397932E720472C8BE4012261FE192D74DEA5BF (void);
 // 0x000005DB Newtonsoft.Json.Linq.JConstructor Newtonsoft.Json.Linq.JConstructor::Load(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Linq.JsonLoadSettings)
 extern void JConstructor_Load_mCFF1BAB0B6124760EC02ED64C77AA80E56231A50 (void);
-// 0x000005DC System.Collections.Generic.IList`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JContainer::get_ChildrenTokens()
-// 0x000005DD System.Void Newtonsoft.Json.Linq.JContainer::.ctor()
+// 0x000005DC System.Void Newtonsoft.Json.Linq.JContainer::add_ListChanged(System.ComponentModel.ListChangedEventHandler)
+extern void JContainer_add_ListChanged_mAB1B53581AB9A3AF672BB13C4A2B25B0F5869FE4 (void);
+// 0x000005DD System.Void Newtonsoft.Json.Linq.JContainer::remove_ListChanged(System.ComponentModel.ListChangedEventHandler)
+extern void JContainer_remove_ListChanged_m400587D04765B4809FE3A654CEE372553CDE33A9 (void);
+// 0x000005DE System.Collections.Generic.IList`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JContainer::get_ChildrenTokens()
+// 0x000005DF System.Void Newtonsoft.Json.Linq.JContainer::.ctor()
 extern void JContainer__ctor_mFD6935D668B82D82016ABAFD45BA794A882EA9FC (void);
-// 0x000005DE System.Void Newtonsoft.Json.Linq.JContainer::.ctor(Newtonsoft.Json.Linq.JContainer)
+// 0x000005E0 System.Void Newtonsoft.Json.Linq.JContainer::.ctor(Newtonsoft.Json.Linq.JContainer)
 extern void JContainer__ctor_m1319811FF9DB0BD93A6658A269654E36DB3DAE9E (void);
-// 0x000005DF System.Void Newtonsoft.Json.Linq.JContainer::CheckReentrancy()
+// 0x000005E1 System.Void Newtonsoft.Json.Linq.JContainer::CheckReentrancy()
 extern void JContainer_CheckReentrancy_m22D8B65464CEFECC237E237C6890EE97816A4322 (void);
-// 0x000005E0 System.Void Newtonsoft.Json.Linq.JContainer::OnListChanged(System.ComponentModel.ListChangedEventArgs)
+// 0x000005E2 System.Void Newtonsoft.Json.Linq.JContainer::OnAddingNew(System.ComponentModel.AddingNewEventArgs)
+extern void JContainer_OnAddingNew_m5DAE50864D7BAA40307A152083F409671DBB3B76 (void);
+// 0x000005E3 System.Void Newtonsoft.Json.Linq.JContainer::OnListChanged(System.ComponentModel.ListChangedEventArgs)
 extern void JContainer_OnListChanged_m1BC9868E2ECE7FAB61B5736C4A61ADB58F8025DD (void);
-// 0x000005E1 System.Void Newtonsoft.Json.Linq.JContainer::OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
+// 0x000005E4 System.Void Newtonsoft.Json.Linq.JContainer::OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
 extern void JContainer_OnCollectionChanged_m17AC0D94FBDF9C1D53B017634559445CD4F9EFF4 (void);
-// 0x000005E2 System.Boolean Newtonsoft.Json.Linq.JContainer::get_HasValues()
+// 0x000005E5 System.Boolean Newtonsoft.Json.Linq.JContainer::get_HasValues()
 extern void JContainer_get_HasValues_m58E54EC5285D22D5E57426534608F8332E83DB1C (void);
-// 0x000005E3 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::get_First()
+// 0x000005E6 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::get_First()
 extern void JContainer_get_First_m47595049440E0DF63E30B582A71B4DB11702B19D (void);
-// 0x000005E4 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::get_Last()
+// 0x000005E7 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::get_Last()
 extern void JContainer_get_Last_m1D7316B10B7AD2B30BA9111563FA4F29EC2CD1B1 (void);
-// 0x000005E5 Newtonsoft.Json.Linq.JEnumerable`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JContainer::Children()
+// 0x000005E8 Newtonsoft.Json.Linq.JEnumerable`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JContainer::Children()
 extern void JContainer_Children_m3D951BFF09EF555B6064C18E7DAFB552E60BBE80 (void);
-// 0x000005E6 System.Boolean Newtonsoft.Json.Linq.JContainer::IsMultiContent(System.Object)
+// 0x000005E9 System.Boolean Newtonsoft.Json.Linq.JContainer::IsMultiContent(System.Object)
 extern void JContainer_IsMultiContent_m5FFE95A998F0FC74F04F948C38D86F2A9A7F7288 (void);
-// 0x000005E7 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::EnsureParentToken(Newtonsoft.Json.Linq.JToken,System.Boolean)
+// 0x000005EA Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::EnsureParentToken(Newtonsoft.Json.Linq.JToken,System.Boolean)
 extern void JContainer_EnsureParentToken_mE3930B6D2EA4F7ADC606B368D2EA87B93BDF62CF (void);
-// 0x000005E8 System.Int32 Newtonsoft.Json.Linq.JContainer::IndexOfItem(Newtonsoft.Json.Linq.JToken)
-// 0x000005E9 System.Void Newtonsoft.Json.Linq.JContainer::InsertItem(System.Int32,Newtonsoft.Json.Linq.JToken,System.Boolean)
+// 0x000005EB System.Int32 Newtonsoft.Json.Linq.JContainer::IndexOfItem(Newtonsoft.Json.Linq.JToken)
+// 0x000005EC System.Void Newtonsoft.Json.Linq.JContainer::InsertItem(System.Int32,Newtonsoft.Json.Linq.JToken,System.Boolean)
 extern void JContainer_InsertItem_mBDD07EF905759BB8CB4EF0DE181E204B199D62F3 (void);
-// 0x000005EA System.Void Newtonsoft.Json.Linq.JContainer::RemoveItemAt(System.Int32)
+// 0x000005ED System.Void Newtonsoft.Json.Linq.JContainer::RemoveItemAt(System.Int32)
 extern void JContainer_RemoveItemAt_m26508D52347F2D1613DED41C27264F0D72953483 (void);
-// 0x000005EB System.Boolean Newtonsoft.Json.Linq.JContainer::RemoveItem(Newtonsoft.Json.Linq.JToken)
+// 0x000005EE System.Boolean Newtonsoft.Json.Linq.JContainer::RemoveItem(Newtonsoft.Json.Linq.JToken)
 extern void JContainer_RemoveItem_m590CF6988C1974C68492145632D247DB53E43A6D (void);
-// 0x000005EC Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::GetItem(System.Int32)
+// 0x000005EF Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::GetItem(System.Int32)
 extern void JContainer_GetItem_m052565FC752D307FD504FFEBAB6B5FED71C309F2 (void);
-// 0x000005ED System.Void Newtonsoft.Json.Linq.JContainer::SetItem(System.Int32,Newtonsoft.Json.Linq.JToken)
+// 0x000005F0 System.Void Newtonsoft.Json.Linq.JContainer::SetItem(System.Int32,Newtonsoft.Json.Linq.JToken)
 extern void JContainer_SetItem_m141ADCF74234B1262354F3D8BACF2163A9B5CCD7 (void);
-// 0x000005EE System.Void Newtonsoft.Json.Linq.JContainer::ClearItems()
+// 0x000005F1 System.Void Newtonsoft.Json.Linq.JContainer::ClearItems()
 extern void JContainer_ClearItems_mB31AE963846452D8300D64C5B07428A203C87910 (void);
-// 0x000005EF System.Void Newtonsoft.Json.Linq.JContainer::ReplaceItem(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)
+// 0x000005F2 System.Void Newtonsoft.Json.Linq.JContainer::ReplaceItem(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)
 extern void JContainer_ReplaceItem_m7CD6C184EDF91AB42EC76A03239004A0753CFCA7 (void);
-// 0x000005F0 System.Boolean Newtonsoft.Json.Linq.JContainer::ContainsItem(Newtonsoft.Json.Linq.JToken)
+// 0x000005F3 System.Boolean Newtonsoft.Json.Linq.JContainer::ContainsItem(Newtonsoft.Json.Linq.JToken)
 extern void JContainer_ContainsItem_mF9DAE51A1EC1A8815FBB8322E7CA86B17C11D2C4 (void);
-// 0x000005F1 System.Void Newtonsoft.Json.Linq.JContainer::CopyItemsTo(System.Array,System.Int32)
+// 0x000005F4 System.Void Newtonsoft.Json.Linq.JContainer::CopyItemsTo(System.Array,System.Int32)
 extern void JContainer_CopyItemsTo_mFADCBFEF6E38A330D775CEA790D9C5857A31B0FE (void);
-// 0x000005F2 System.Boolean Newtonsoft.Json.Linq.JContainer::IsTokenUnchanged(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)
+// 0x000005F5 System.Boolean Newtonsoft.Json.Linq.JContainer::IsTokenUnchanged(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)
 extern void JContainer_IsTokenUnchanged_m40D92237C0D62BBD9AFCB974E8E62EC8E304815A (void);
-// 0x000005F3 System.Void Newtonsoft.Json.Linq.JContainer::ValidateToken(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)
+// 0x000005F6 System.Void Newtonsoft.Json.Linq.JContainer::ValidateToken(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)
 extern void JContainer_ValidateToken_m4908785558BC92272485A2F9D80175C78DAAFF34 (void);
-// 0x000005F4 System.Void Newtonsoft.Json.Linq.JContainer::Add(System.Object)
+// 0x000005F7 System.Void Newtonsoft.Json.Linq.JContainer::Add(System.Object)
 extern void JContainer_Add_m4D18A4F3DEB2B71464CEC9D22B4C1434091F116D (void);
-// 0x000005F5 System.Void Newtonsoft.Json.Linq.JContainer::AddAndSkipParentCheck(Newtonsoft.Json.Linq.JToken)
+// 0x000005F8 System.Void Newtonsoft.Json.Linq.JContainer::AddAndSkipParentCheck(Newtonsoft.Json.Linq.JToken)
 extern void JContainer_AddAndSkipParentCheck_m6BA56CCEEA327905B72B737AA1C6CC05019CBDE6 (void);
-// 0x000005F6 System.Void Newtonsoft.Json.Linq.JContainer::AddInternal(System.Int32,System.Object,System.Boolean)
+// 0x000005F9 System.Void Newtonsoft.Json.Linq.JContainer::AddInternal(System.Int32,System.Object,System.Boolean)
 extern void JContainer_AddInternal_mDB14A4158F60D4F836FEE2590D37E2814C590638 (void);
-// 0x000005F7 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::CreateFromContent(System.Object)
+// 0x000005FA Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::CreateFromContent(System.Object)
 extern void JContainer_CreateFromContent_mBD37262EF2CDD53E59EA661A86632261B2F02D00 (void);
-// 0x000005F8 System.Void Newtonsoft.Json.Linq.JContainer::RemoveAll()
+// 0x000005FB System.Void Newtonsoft.Json.Linq.JContainer::RemoveAll()
 extern void JContainer_RemoveAll_mB22C5E02463FC589FB9459BFBD638A2A9EA8C64E (void);
-// 0x000005F9 System.Void Newtonsoft.Json.Linq.JContainer::ReadTokenFrom(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Linq.JsonLoadSettings)
+// 0x000005FC System.Void Newtonsoft.Json.Linq.JContainer::ReadTokenFrom(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Linq.JsonLoadSettings)
 extern void JContainer_ReadTokenFrom_m68B5F72B887253C5BACCE399AA58518CC8530847 (void);
-// 0x000005FA System.Void Newtonsoft.Json.Linq.JContainer::ReadContentFrom(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Linq.JsonLoadSettings)
+// 0x000005FD System.Void Newtonsoft.Json.Linq.JContainer::ReadContentFrom(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Linq.JsonLoadSettings)
 extern void JContainer_ReadContentFrom_m346072BEF297389B5A98251D04FB2906181D5D30 (void);
-// 0x000005FB Newtonsoft.Json.Linq.JProperty Newtonsoft.Json.Linq.JContainer::ReadProperty(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Linq.JsonLoadSettings,Newtonsoft.Json.IJsonLineInfo,Newtonsoft.Json.Linq.JContainer)
+// 0x000005FE Newtonsoft.Json.Linq.JProperty Newtonsoft.Json.Linq.JContainer::ReadProperty(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Linq.JsonLoadSettings,Newtonsoft.Json.IJsonLineInfo,Newtonsoft.Json.Linq.JContainer)
 extern void JContainer_ReadProperty_m8ED54E676A7B66B12B686177A7227E77931B6DFC (void);
-// 0x000005FC System.Int32 Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.IList<Newtonsoft.Json.Linq.JToken>.IndexOf(Newtonsoft.Json.Linq.JToken)
+// 0x000005FF System.String Newtonsoft.Json.Linq.JContainer::System.ComponentModel.ITypedList.GetListName(System.ComponentModel.PropertyDescriptor[])
+extern void JContainer_System_ComponentModel_ITypedList_GetListName_m9FBC85AFEF4875CD5EBCA3FB6A12E2F7B3495406 (void);
+// 0x00000600 System.ComponentModel.PropertyDescriptorCollection Newtonsoft.Json.Linq.JContainer::System.ComponentModel.ITypedList.GetItemProperties(System.ComponentModel.PropertyDescriptor[])
+extern void JContainer_System_ComponentModel_ITypedList_GetItemProperties_mAA3EF0E9F00420D1E0AF1F265C831D5FBB9296F6 (void);
+// 0x00000601 System.Int32 Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.IList<Newtonsoft.Json.Linq.JToken>.IndexOf(Newtonsoft.Json.Linq.JToken)
 extern void JContainer_System_Collections_Generic_IListU3CNewtonsoft_Json_Linq_JTokenU3E_IndexOf_mEF7933163B9F683FB6B97DE3A3CEED2BCDE5A087 (void);
-// 0x000005FD System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.IList<Newtonsoft.Json.Linq.JToken>.Insert(System.Int32,Newtonsoft.Json.Linq.JToken)
+// 0x00000602 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.IList<Newtonsoft.Json.Linq.JToken>.Insert(System.Int32,Newtonsoft.Json.Linq.JToken)
 extern void JContainer_System_Collections_Generic_IListU3CNewtonsoft_Json_Linq_JTokenU3E_Insert_m187274F6C12FF3BE809364CF332FB2472D0E4920 (void);
-// 0x000005FE System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.IList<Newtonsoft.Json.Linq.JToken>.RemoveAt(System.Int32)
+// 0x00000603 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.IList<Newtonsoft.Json.Linq.JToken>.RemoveAt(System.Int32)
 extern void JContainer_System_Collections_Generic_IListU3CNewtonsoft_Json_Linq_JTokenU3E_RemoveAt_m99594DA55CBEB89E7971C6CFDBD3DB3CA9625FF4 (void);
-// 0x000005FF Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.IList<Newtonsoft.Json.Linq.JToken>.get_Item(System.Int32)
+// 0x00000604 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.IList<Newtonsoft.Json.Linq.JToken>.get_Item(System.Int32)
 extern void JContainer_System_Collections_Generic_IListU3CNewtonsoft_Json_Linq_JTokenU3E_get_Item_mDF4D83DBF7F9D9434F5AD96601952340DA4D072C (void);
-// 0x00000600 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.IList<Newtonsoft.Json.Linq.JToken>.set_Item(System.Int32,Newtonsoft.Json.Linq.JToken)
+// 0x00000605 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.IList<Newtonsoft.Json.Linq.JToken>.set_Item(System.Int32,Newtonsoft.Json.Linq.JToken)
 extern void JContainer_System_Collections_Generic_IListU3CNewtonsoft_Json_Linq_JTokenU3E_set_Item_mA1397900C125808228E2C849ADEDE57A3B970C7F (void);
-// 0x00000601 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.ICollection<Newtonsoft.Json.Linq.JToken>.Add(Newtonsoft.Json.Linq.JToken)
+// 0x00000606 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.ICollection<Newtonsoft.Json.Linq.JToken>.Add(Newtonsoft.Json.Linq.JToken)
 extern void JContainer_System_Collections_Generic_ICollectionU3CNewtonsoft_Json_Linq_JTokenU3E_Add_mDF9CBA5634769000558060C771D89FA12A72647E (void);
-// 0x00000602 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.ICollection<Newtonsoft.Json.Linq.JToken>.Clear()
+// 0x00000607 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.ICollection<Newtonsoft.Json.Linq.JToken>.Clear()
 extern void JContainer_System_Collections_Generic_ICollectionU3CNewtonsoft_Json_Linq_JTokenU3E_Clear_m861D6385EDE5A3BCFA5F624B41B3237811ADEF5D (void);
-// 0x00000603 System.Boolean Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.ICollection<Newtonsoft.Json.Linq.JToken>.Contains(Newtonsoft.Json.Linq.JToken)
+// 0x00000608 System.Boolean Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.ICollection<Newtonsoft.Json.Linq.JToken>.Contains(Newtonsoft.Json.Linq.JToken)
 extern void JContainer_System_Collections_Generic_ICollectionU3CNewtonsoft_Json_Linq_JTokenU3E_Contains_m0CFC99C5A1B0C44D32958891E0241CACC48B9CE9 (void);
-// 0x00000604 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.ICollection<Newtonsoft.Json.Linq.JToken>.CopyTo(Newtonsoft.Json.Linq.JToken[],System.Int32)
+// 0x00000609 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.ICollection<Newtonsoft.Json.Linq.JToken>.CopyTo(Newtonsoft.Json.Linq.JToken[],System.Int32)
 extern void JContainer_System_Collections_Generic_ICollectionU3CNewtonsoft_Json_Linq_JTokenU3E_CopyTo_m7F2A8E26FF8FD9BFCFB823CFDDB9BE837358FDA7 (void);
-// 0x00000605 System.Boolean Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.ICollection<Newtonsoft.Json.Linq.JToken>.get_IsReadOnly()
+// 0x0000060A System.Boolean Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.ICollection<Newtonsoft.Json.Linq.JToken>.get_IsReadOnly()
 extern void JContainer_System_Collections_Generic_ICollectionU3CNewtonsoft_Json_Linq_JTokenU3E_get_IsReadOnly_mBF99268503C08821F73FE727199A76E9A6BD7EEF (void);
-// 0x00000606 System.Boolean Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.ICollection<Newtonsoft.Json.Linq.JToken>.Remove(Newtonsoft.Json.Linq.JToken)
+// 0x0000060B System.Boolean Newtonsoft.Json.Linq.JContainer::System.Collections.Generic.ICollection<Newtonsoft.Json.Linq.JToken>.Remove(Newtonsoft.Json.Linq.JToken)
 extern void JContainer_System_Collections_Generic_ICollectionU3CNewtonsoft_Json_Linq_JTokenU3E_Remove_m4D19EC68A42AE49FAAD00EFCCE7148832CEBB76B (void);
-// 0x00000607 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::EnsureValue(System.Object)
+// 0x0000060C Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JContainer::EnsureValue(System.Object)
 extern void JContainer_EnsureValue_m7B350A4D34E49DEE667097E00EC07DCBA011EAC3 (void);
-// 0x00000608 System.Int32 Newtonsoft.Json.Linq.JContainer::System.Collections.IList.Add(System.Object)
+// 0x0000060D System.Int32 Newtonsoft.Json.Linq.JContainer::System.Collections.IList.Add(System.Object)
 extern void JContainer_System_Collections_IList_Add_mC7B622DE212A58BF445AD2A5B58F2F1DC59CAA85 (void);
-// 0x00000609 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.IList.Clear()
+// 0x0000060E System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.IList.Clear()
 extern void JContainer_System_Collections_IList_Clear_mE6A52C6D6DEF2791FC53D9EBD956A8A11DA1DE7F (void);
-// 0x0000060A System.Boolean Newtonsoft.Json.Linq.JContainer::System.Collections.IList.Contains(System.Object)
+// 0x0000060F System.Boolean Newtonsoft.Json.Linq.JContainer::System.Collections.IList.Contains(System.Object)
 extern void JContainer_System_Collections_IList_Contains_m77E24FF9FE1AA82B6EDD659795D16C1284049DF3 (void);
-// 0x0000060B System.Int32 Newtonsoft.Json.Linq.JContainer::System.Collections.IList.IndexOf(System.Object)
+// 0x00000610 System.Int32 Newtonsoft.Json.Linq.JContainer::System.Collections.IList.IndexOf(System.Object)
 extern void JContainer_System_Collections_IList_IndexOf_m7D23D91B110714D06FCC04474038BC3E398D1D2D (void);
-// 0x0000060C System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.IList.Insert(System.Int32,System.Object)
+// 0x00000611 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.IList.Insert(System.Int32,System.Object)
 extern void JContainer_System_Collections_IList_Insert_mEBE10E711842A8078383F3479C4F0A2B289AD588 (void);
-// 0x0000060D System.Boolean Newtonsoft.Json.Linq.JContainer::System.Collections.IList.get_IsFixedSize()
+// 0x00000612 System.Boolean Newtonsoft.Json.Linq.JContainer::System.Collections.IList.get_IsFixedSize()
 extern void JContainer_System_Collections_IList_get_IsFixedSize_mD524ECBF048358B39F1A786B62B790456CD185B9 (void);
-// 0x0000060E System.Boolean Newtonsoft.Json.Linq.JContainer::System.Collections.IList.get_IsReadOnly()
+// 0x00000613 System.Boolean Newtonsoft.Json.Linq.JContainer::System.Collections.IList.get_IsReadOnly()
 extern void JContainer_System_Collections_IList_get_IsReadOnly_mCE0E5C7D3B921E697A1EB25AE202ADB5BBC2C936 (void);
-// 0x0000060F System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.IList.Remove(System.Object)
+// 0x00000614 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.IList.Remove(System.Object)
 extern void JContainer_System_Collections_IList_Remove_mAEA6E9D39A06FB19898735AB8DBE16BDD31DA9A4 (void);
-// 0x00000610 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.IList.RemoveAt(System.Int32)
+// 0x00000615 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.IList.RemoveAt(System.Int32)
 extern void JContainer_System_Collections_IList_RemoveAt_m54E28AE21F2B7F2999BB1BE052F68BE28030621D (void);
-// 0x00000611 System.Object Newtonsoft.Json.Linq.JContainer::System.Collections.IList.get_Item(System.Int32)
+// 0x00000616 System.Object Newtonsoft.Json.Linq.JContainer::System.Collections.IList.get_Item(System.Int32)
 extern void JContainer_System_Collections_IList_get_Item_m274AD9D0CA0EA8176EA40161614CF95B15A6CD69 (void);
-// 0x00000612 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.IList.set_Item(System.Int32,System.Object)
+// 0x00000617 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.IList.set_Item(System.Int32,System.Object)
 extern void JContainer_System_Collections_IList_set_Item_m791341C24AF052037DFD3AB297E157EF943FF26E (void);
-// 0x00000613 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.ICollection.CopyTo(System.Array,System.Int32)
+// 0x00000618 System.Void Newtonsoft.Json.Linq.JContainer::System.Collections.ICollection.CopyTo(System.Array,System.Int32)
 extern void JContainer_System_Collections_ICollection_CopyTo_m3AC641C8176E4D9AD49469A066E9DE4FED40B49A (void);
-// 0x00000614 System.Int32 Newtonsoft.Json.Linq.JContainer::get_Count()
+// 0x00000619 System.Int32 Newtonsoft.Json.Linq.JContainer::get_Count()
 extern void JContainer_get_Count_m313DBBD55EDD9D91B15A73D708C0C09BA84F1459 (void);
-// 0x00000615 System.Object Newtonsoft.Json.Linq.JContainer::System.Collections.ICollection.get_SyncRoot()
+// 0x0000061A System.Boolean Newtonsoft.Json.Linq.JContainer::System.Collections.ICollection.get_IsSynchronized()
+extern void JContainer_System_Collections_ICollection_get_IsSynchronized_mC1B5324CB463F4B3B1DC4292EA581F9BBD3F94AA (void);
+// 0x0000061B System.Object Newtonsoft.Json.Linq.JContainer::System.Collections.ICollection.get_SyncRoot()
 extern void JContainer_System_Collections_ICollection_get_SyncRoot_m280FAD30F745DD0CFC625D4BBB8BE5D33BD08804 (void);
-// 0x00000616 System.Void Newtonsoft.Json.Linq.JEnumerable`1::.ctor(System.Collections.Generic.IEnumerable`1<T>)
-// 0x00000617 System.Collections.Generic.IEnumerator`1<T> Newtonsoft.Json.Linq.JEnumerable`1::GetEnumerator()
-// 0x00000618 System.Collections.IEnumerator Newtonsoft.Json.Linq.JEnumerable`1::System.Collections.IEnumerable.GetEnumerator()
-// 0x00000619 System.Boolean Newtonsoft.Json.Linq.JEnumerable`1::Equals(Newtonsoft.Json.Linq.JEnumerable`1<T>)
-// 0x0000061A System.Boolean Newtonsoft.Json.Linq.JEnumerable`1::Equals(System.Object)
-// 0x0000061B System.Int32 Newtonsoft.Json.Linq.JEnumerable`1::GetHashCode()
-// 0x0000061C System.Void Newtonsoft.Json.Linq.JEnumerable`1::.cctor()
-// 0x0000061D System.Collections.Generic.IList`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JObject::get_ChildrenTokens()
+// 0x0000061C System.Void Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.AddIndex(System.ComponentModel.PropertyDescriptor)
+extern void JContainer_System_ComponentModel_IBindingList_AddIndex_mEAB9D866065FA2311BED0EB3601D1C7AD5C75104 (void);
+// 0x0000061D System.Object Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.AddNew()
+extern void JContainer_System_ComponentModel_IBindingList_AddNew_m1EBFF2E113204E98FEAE33C1E690964A49B6169D (void);
+// 0x0000061E System.Boolean Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.get_AllowEdit()
+extern void JContainer_System_ComponentModel_IBindingList_get_AllowEdit_mAC13213B33566C15E1DCEDC4B9C0CAE6CDCC7E32 (void);
+// 0x0000061F System.Boolean Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.get_AllowNew()
+extern void JContainer_System_ComponentModel_IBindingList_get_AllowNew_m798C7A851C58C3D2F929C755487BF50251A58CEF (void);
+// 0x00000620 System.Boolean Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.get_AllowRemove()
+extern void JContainer_System_ComponentModel_IBindingList_get_AllowRemove_m2DAEB7D0FC92C86DE575285BE772A431AAD1C55B (void);
+// 0x00000621 System.Void Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.ApplySort(System.ComponentModel.PropertyDescriptor,System.ComponentModel.ListSortDirection)
+extern void JContainer_System_ComponentModel_IBindingList_ApplySort_m17B03DDADE1BA64FADBE5BAA04D1198E97BFB144 (void);
+// 0x00000622 System.Int32 Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.Find(System.ComponentModel.PropertyDescriptor,System.Object)
+extern void JContainer_System_ComponentModel_IBindingList_Find_m8D241C5E85C07088020A5D7A1DB5AE8379D604B8 (void);
+// 0x00000623 System.Boolean Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.get_IsSorted()
+extern void JContainer_System_ComponentModel_IBindingList_get_IsSorted_mB0C891C64242BD3548E47965C3FCC744D884A380 (void);
+// 0x00000624 System.Void Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.RemoveIndex(System.ComponentModel.PropertyDescriptor)
+extern void JContainer_System_ComponentModel_IBindingList_RemoveIndex_m4925CF0396CD149529455468762A767AA5514133 (void);
+// 0x00000625 System.Void Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.RemoveSort()
+extern void JContainer_System_ComponentModel_IBindingList_RemoveSort_m17A0447BE10EDA49028C0FB34DFB20E152BA759A (void);
+// 0x00000626 System.ComponentModel.ListSortDirection Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.get_SortDirection()
+extern void JContainer_System_ComponentModel_IBindingList_get_SortDirection_m6D7FC1EA004217A830DB08EAD09871996E1C48C2 (void);
+// 0x00000627 System.ComponentModel.PropertyDescriptor Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.get_SortProperty()
+extern void JContainer_System_ComponentModel_IBindingList_get_SortProperty_mD23F701C4FA43703438F0AD3DD67D8EEC8FF397A (void);
+// 0x00000628 System.Boolean Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.get_SupportsChangeNotification()
+extern void JContainer_System_ComponentModel_IBindingList_get_SupportsChangeNotification_m7A5DB27427A824285B7156C2032533E7CB5BF2FF (void);
+// 0x00000629 System.Boolean Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.get_SupportsSearching()
+extern void JContainer_System_ComponentModel_IBindingList_get_SupportsSearching_m7E81414B27FAB5105463DB23991743FDBCCDE14E (void);
+// 0x0000062A System.Boolean Newtonsoft.Json.Linq.JContainer::System.ComponentModel.IBindingList.get_SupportsSorting()
+extern void JContainer_System_ComponentModel_IBindingList_get_SupportsSorting_mA25A4884880CD551D947FBA66D73D2DADCABAEAA (void);
+// 0x0000062B System.Void Newtonsoft.Json.Linq.JEnumerable`1::.ctor(System.Collections.Generic.IEnumerable`1<T>)
+// 0x0000062C System.Collections.Generic.IEnumerator`1<T> Newtonsoft.Json.Linq.JEnumerable`1::GetEnumerator()
+// 0x0000062D System.Collections.IEnumerator Newtonsoft.Json.Linq.JEnumerable`1::System.Collections.IEnumerable.GetEnumerator()
+// 0x0000062E System.Boolean Newtonsoft.Json.Linq.JEnumerable`1::Equals(Newtonsoft.Json.Linq.JEnumerable`1<T>)
+// 0x0000062F System.Boolean Newtonsoft.Json.Linq.JEnumerable`1::Equals(System.Object)
+// 0x00000630 System.Int32 Newtonsoft.Json.Linq.JEnumerable`1::GetHashCode()
+// 0x00000631 System.Void Newtonsoft.Json.Linq.JEnumerable`1::.cctor()
+// 0x00000632 System.Collections.Generic.IList`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JObject::get_ChildrenTokens()
 extern void JObject_get_ChildrenTokens_m4A61C37B8D9C5D620293026B989D9B57133BB900 (void);
-// 0x0000061E System.Void Newtonsoft.Json.Linq.JObject::.ctor()
+// 0x00000633 System.Void Newtonsoft.Json.Linq.JObject::add_PropertyChanged(System.ComponentModel.PropertyChangedEventHandler)
+extern void JObject_add_PropertyChanged_mF337991F8D3B5F9BDE3061EB2D258DC42A8525AB (void);
+// 0x00000634 System.Void Newtonsoft.Json.Linq.JObject::remove_PropertyChanged(System.ComponentModel.PropertyChangedEventHandler)
+extern void JObject_remove_PropertyChanged_m66CD8DFBB36F234C0FB7DAC01AD79B9148FB60C1 (void);
+// 0x00000635 System.Void Newtonsoft.Json.Linq.JObject::add_PropertyChanging(System.ComponentModel.PropertyChangingEventHandler)
+extern void JObject_add_PropertyChanging_mDBE66DE440358EBA2F24A98A154D71E77A8B6C97 (void);
+// 0x00000636 System.Void Newtonsoft.Json.Linq.JObject::remove_PropertyChanging(System.ComponentModel.PropertyChangingEventHandler)
+extern void JObject_remove_PropertyChanging_m882A97213787AC6207EC74D807BECA27AA15650E (void);
+// 0x00000637 System.Void Newtonsoft.Json.Linq.JObject::.ctor()
 extern void JObject__ctor_mE7A2D87036C874CD9D47947A6AC8C62528CAD233 (void);
-// 0x0000061F System.Void Newtonsoft.Json.Linq.JObject::.ctor(Newtonsoft.Json.Linq.JObject)
+// 0x00000638 System.Void Newtonsoft.Json.Linq.JObject::.ctor(Newtonsoft.Json.Linq.JObject)
 extern void JObject__ctor_m3B99BE70EE910974DBB0CEEBCF6FCDD4414AECF9 (void);
-// 0x00000620 System.Int32 Newtonsoft.Json.Linq.JObject::IndexOfItem(Newtonsoft.Json.Linq.JToken)
+// 0x00000639 System.Int32 Newtonsoft.Json.Linq.JObject::IndexOfItem(Newtonsoft.Json.Linq.JToken)
 extern void JObject_IndexOfItem_m81605D13D094044432DB6298CF07745E1D6A4741 (void);
-// 0x00000621 System.Void Newtonsoft.Json.Linq.JObject::InsertItem(System.Int32,Newtonsoft.Json.Linq.JToken,System.Boolean)
+// 0x0000063A System.Void Newtonsoft.Json.Linq.JObject::InsertItem(System.Int32,Newtonsoft.Json.Linq.JToken,System.Boolean)
 extern void JObject_InsertItem_m13B83658415513F81FAA70D81C8C6C4FBD841255 (void);
-// 0x00000622 System.Void Newtonsoft.Json.Linq.JObject::ValidateToken(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)
+// 0x0000063B System.Void Newtonsoft.Json.Linq.JObject::ValidateToken(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)
 extern void JObject_ValidateToken_mF350A8329707C5FB28BFC89B812A420FD6ECFC13 (void);
-// 0x00000623 System.Void Newtonsoft.Json.Linq.JObject::InternalPropertyChanged(Newtonsoft.Json.Linq.JProperty)
+// 0x0000063C System.Void Newtonsoft.Json.Linq.JObject::InternalPropertyChanged(Newtonsoft.Json.Linq.JProperty)
 extern void JObject_InternalPropertyChanged_mEBF12CA74F9EB197213664753BF5A99137A53AF7 (void);
-// 0x00000624 System.Void Newtonsoft.Json.Linq.JObject::InternalPropertyChanging(Newtonsoft.Json.Linq.JProperty)
+// 0x0000063D System.Void Newtonsoft.Json.Linq.JObject::InternalPropertyChanging(Newtonsoft.Json.Linq.JProperty)
 extern void JObject_InternalPropertyChanging_m0AC125778D69257F771C07C663A179661F76965B (void);
-// 0x00000625 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JObject::CloneToken()
+// 0x0000063E Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JObject::CloneToken()
 extern void JObject_CloneToken_mFE75C52A6FD77CE83D6425B5C5B108C8B78490A3 (void);
-// 0x00000626 Newtonsoft.Json.Linq.JTokenType Newtonsoft.Json.Linq.JObject::get_Type()
+// 0x0000063F Newtonsoft.Json.Linq.JTokenType Newtonsoft.Json.Linq.JObject::get_Type()
 extern void JObject_get_Type_m286C2933AB1EA150DB17B62894CBB480BA93B3F0 (void);
-// 0x00000627 System.Collections.Generic.IEnumerable`1<Newtonsoft.Json.Linq.JProperty> Newtonsoft.Json.Linq.JObject::Properties()
+// 0x00000640 System.Collections.Generic.IEnumerable`1<Newtonsoft.Json.Linq.JProperty> Newtonsoft.Json.Linq.JObject::Properties()
 extern void JObject_Properties_mA31AEBC48D1DE4EBE7AEDCE2E77E1D4B951DF71B (void);
-// 0x00000628 Newtonsoft.Json.Linq.JProperty Newtonsoft.Json.Linq.JObject::Property(System.String,System.StringComparison)
+// 0x00000641 Newtonsoft.Json.Linq.JProperty Newtonsoft.Json.Linq.JObject::Property(System.String,System.StringComparison)
 extern void JObject_Property_m5124B6A7C33906B9D25A496F4134C5BC65333644 (void);
-// 0x00000629 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JObject::get_Item(System.String)
+// 0x00000642 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JObject::get_Item(System.String)
 extern void JObject_get_Item_mB6C976A283E19DA8DD84C13D8C790239E4FDE545 (void);
-// 0x0000062A System.Void Newtonsoft.Json.Linq.JObject::set_Item(System.String,Newtonsoft.Json.Linq.JToken)
+// 0x00000643 System.Void Newtonsoft.Json.Linq.JObject::set_Item(System.String,Newtonsoft.Json.Linq.JToken)
 extern void JObject_set_Item_m1E9323973BC7087419D4608D1E818E6006D1867F (void);
-// 0x0000062B Newtonsoft.Json.Linq.JObject Newtonsoft.Json.Linq.JObject::Load(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Linq.JsonLoadSettings)
+// 0x00000644 Newtonsoft.Json.Linq.JObject Newtonsoft.Json.Linq.JObject::Load(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Linq.JsonLoadSettings)
 extern void JObject_Load_m77318C1EE64C0E2AA1E6D38FFF747A9BE468BB24 (void);
-// 0x0000062C System.Void Newtonsoft.Json.Linq.JObject::WriteTo(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.JsonConverter[])
+// 0x00000645 System.Void Newtonsoft.Json.Linq.JObject::WriteTo(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.JsonConverter[])
 extern void JObject_WriteTo_m7F75D7BD95C3DC847DA79FFC395873DB47BC72C4 (void);
-// 0x0000062D System.Void Newtonsoft.Json.Linq.JObject::Add(System.String,Newtonsoft.Json.Linq.JToken)
+// 0x00000646 System.Void Newtonsoft.Json.Linq.JObject::Add(System.String,Newtonsoft.Json.Linq.JToken)
 extern void JObject_Add_m474A38563A62F0E8E9070E971E98E380B21AE9A7 (void);
-// 0x0000062E System.Boolean Newtonsoft.Json.Linq.JObject::Remove(System.String)
+// 0x00000647 System.Boolean Newtonsoft.Json.Linq.JObject::ContainsKey(System.String)
+extern void JObject_ContainsKey_mD4BA92B095F1B11DB804732A5F7D9A05CF432420 (void);
+// 0x00000648 System.Collections.Generic.ICollection`1<System.String> Newtonsoft.Json.Linq.JObject::System.Collections.Generic.IDictionary<System.String,Newtonsoft.Json.Linq.JToken>.get_Keys()
+extern void JObject_System_Collections_Generic_IDictionaryU3CSystem_StringU2CNewtonsoft_Json_Linq_JTokenU3E_get_Keys_m31283FDB07BF1302A70D1327A8ECEBDBC70A5162 (void);
+// 0x00000649 System.Boolean Newtonsoft.Json.Linq.JObject::Remove(System.String)
 extern void JObject_Remove_m16DE94E7ABA93DC9A1F7CF978EACC3CA83C14179 (void);
-// 0x0000062F System.Boolean Newtonsoft.Json.Linq.JObject::TryGetValue(System.String,Newtonsoft.Json.Linq.JToken&)
+// 0x0000064A System.Boolean Newtonsoft.Json.Linq.JObject::TryGetValue(System.String,Newtonsoft.Json.Linq.JToken&)
 extern void JObject_TryGetValue_mBBA93BEA584D6979B448F63F42A05000F750CD08 (void);
-// 0x00000630 System.Collections.Generic.ICollection`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JObject::System.Collections.Generic.IDictionary<System.String,Newtonsoft.Json.Linq.JToken>.get_Values()
+// 0x0000064B System.Collections.Generic.ICollection`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JObject::System.Collections.Generic.IDictionary<System.String,Newtonsoft.Json.Linq.JToken>.get_Values()
 extern void JObject_System_Collections_Generic_IDictionaryU3CSystem_StringU2CNewtonsoft_Json_Linq_JTokenU3E_get_Values_mF764622977201413B389937F81642ACB86B7A712 (void);
-// 0x00000631 System.Void Newtonsoft.Json.Linq.JObject::System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.Add(System.Collections.Generic.KeyValuePair`2<System.String,Newtonsoft.Json.Linq.JToken>)
+// 0x0000064C System.Void Newtonsoft.Json.Linq.JObject::System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.Add(System.Collections.Generic.KeyValuePair`2<System.String,Newtonsoft.Json.Linq.JToken>)
 extern void JObject_System_Collections_Generic_ICollectionU3CSystem_Collections_Generic_KeyValuePairU3CSystem_StringU2CNewtonsoft_Json_Linq_JTokenU3EU3E_Add_mEB4D897CB5F24075172787978A7067EB66AC0D0A (void);
-// 0x00000632 System.Void Newtonsoft.Json.Linq.JObject::System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.Clear()
+// 0x0000064D System.Void Newtonsoft.Json.Linq.JObject::System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.Clear()
 extern void JObject_System_Collections_Generic_ICollectionU3CSystem_Collections_Generic_KeyValuePairU3CSystem_StringU2CNewtonsoft_Json_Linq_JTokenU3EU3E_Clear_mA14DDD2040E236C99EE03CA4004A6D5816F6BA37 (void);
-// 0x00000633 System.Boolean Newtonsoft.Json.Linq.JObject::System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.Contains(System.Collections.Generic.KeyValuePair`2<System.String,Newtonsoft.Json.Linq.JToken>)
+// 0x0000064E System.Boolean Newtonsoft.Json.Linq.JObject::System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.Contains(System.Collections.Generic.KeyValuePair`2<System.String,Newtonsoft.Json.Linq.JToken>)
 extern void JObject_System_Collections_Generic_ICollectionU3CSystem_Collections_Generic_KeyValuePairU3CSystem_StringU2CNewtonsoft_Json_Linq_JTokenU3EU3E_Contains_m5393158FD3C8B6B5FAF1B61D996561107F64FC06 (void);
-// 0x00000634 System.Void Newtonsoft.Json.Linq.JObject::System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.CopyTo(System.Collections.Generic.KeyValuePair`2<System.String,Newtonsoft.Json.Linq.JToken>[],System.Int32)
+// 0x0000064F System.Void Newtonsoft.Json.Linq.JObject::System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.CopyTo(System.Collections.Generic.KeyValuePair`2<System.String,Newtonsoft.Json.Linq.JToken>[],System.Int32)
 extern void JObject_System_Collections_Generic_ICollectionU3CSystem_Collections_Generic_KeyValuePairU3CSystem_StringU2CNewtonsoft_Json_Linq_JTokenU3EU3E_CopyTo_m4123FC2C7551CA29CECD3217A9AB252EFEF3B89B (void);
-// 0x00000635 System.Boolean Newtonsoft.Json.Linq.JObject::System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.get_IsReadOnly()
+// 0x00000650 System.Boolean Newtonsoft.Json.Linq.JObject::System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.get_IsReadOnly()
 extern void JObject_System_Collections_Generic_ICollectionU3CSystem_Collections_Generic_KeyValuePairU3CSystem_StringU2CNewtonsoft_Json_Linq_JTokenU3EU3E_get_IsReadOnly_mBB94DD098A4732CD2A6494549498B33EA0F13F18 (void);
-// 0x00000636 System.Boolean Newtonsoft.Json.Linq.JObject::System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.Remove(System.Collections.Generic.KeyValuePair`2<System.String,Newtonsoft.Json.Linq.JToken>)
+// 0x00000651 System.Boolean Newtonsoft.Json.Linq.JObject::System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.Remove(System.Collections.Generic.KeyValuePair`2<System.String,Newtonsoft.Json.Linq.JToken>)
 extern void JObject_System_Collections_Generic_ICollectionU3CSystem_Collections_Generic_KeyValuePairU3CSystem_StringU2CNewtonsoft_Json_Linq_JTokenU3EU3E_Remove_mCBD6D3EF2CD09AF38225C40B379FEB394F7A510D (void);
-// 0x00000637 System.Collections.Generic.IEnumerator`1<System.Collections.Generic.KeyValuePair`2<System.String,Newtonsoft.Json.Linq.JToken>> Newtonsoft.Json.Linq.JObject::GetEnumerator()
+// 0x00000652 System.Collections.Generic.IEnumerator`1<System.Collections.Generic.KeyValuePair`2<System.String,Newtonsoft.Json.Linq.JToken>> Newtonsoft.Json.Linq.JObject::GetEnumerator()
 extern void JObject_GetEnumerator_m001184DBD47830E3817A3220799429C2CB2FAE4F (void);
-// 0x00000638 System.Void Newtonsoft.Json.Linq.JObject::OnPropertyChanged(System.String)
+// 0x00000653 System.Void Newtonsoft.Json.Linq.JObject::OnPropertyChanged(System.String)
 extern void JObject_OnPropertyChanged_mC9F4EEDCA99C493634CE81F3CD407BD220C08EBE (void);
-// 0x00000639 System.Void Newtonsoft.Json.Linq.JObject::OnPropertyChanging(System.String)
+// 0x00000654 System.Void Newtonsoft.Json.Linq.JObject::OnPropertyChanging(System.String)
 extern void JObject_OnPropertyChanging_m76EAEAEBEA0D793BFB7A3C1E472173A2A4E61A5F (void);
-// 0x0000063A System.ComponentModel.PropertyDescriptorCollection Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetProperties()
+// 0x00000655 System.ComponentModel.PropertyDescriptorCollection Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetProperties()
 extern void JObject_System_ComponentModel_ICustomTypeDescriptor_GetProperties_m24075DA52561CAB428CD356DE424D4D5437EC319 (void);
-// 0x0000063B System.ComponentModel.PropertyDescriptorCollection Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetProperties(System.Attribute[])
+// 0x00000656 System.ComponentModel.PropertyDescriptorCollection Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetProperties(System.Attribute[])
 extern void JObject_System_ComponentModel_ICustomTypeDescriptor_GetProperties_m2AC305595CBB62410CA265C2F0A625AA18514151 (void);
-// 0x0000063C System.ComponentModel.AttributeCollection Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetAttributes()
+// 0x00000657 System.ComponentModel.AttributeCollection Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetAttributes()
 extern void JObject_System_ComponentModel_ICustomTypeDescriptor_GetAttributes_mCDF07428F13EB7C3A57FE9C26E001E0C77C5995E (void);
-// 0x0000063D System.ComponentModel.TypeConverter Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetConverter()
+// 0x00000658 System.String Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetClassName()
+extern void JObject_System_ComponentModel_ICustomTypeDescriptor_GetClassName_m691CF65FC6F74E79DA88859C1F5BCEC7D8A4BC2A (void);
+// 0x00000659 System.String Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetComponentName()
+extern void JObject_System_ComponentModel_ICustomTypeDescriptor_GetComponentName_mE096ECFDEA539C1CC81A0BC602A5BC092D7FFFB9 (void);
+// 0x0000065A System.ComponentModel.TypeConverter Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetConverter()
 extern void JObject_System_ComponentModel_ICustomTypeDescriptor_GetConverter_m00670142A457C75B6748227685FF2F4532B88572 (void);
-// 0x0000063E System.Object Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetPropertyOwner(System.ComponentModel.PropertyDescriptor)
+// 0x0000065B System.ComponentModel.EventDescriptor Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetDefaultEvent()
+extern void JObject_System_ComponentModel_ICustomTypeDescriptor_GetDefaultEvent_mC2E0B2483E7909620215382C1E8EE5C0705BEDC7 (void);
+// 0x0000065C System.ComponentModel.PropertyDescriptor Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetDefaultProperty()
+extern void JObject_System_ComponentModel_ICustomTypeDescriptor_GetDefaultProperty_m3B2AF389DB701BE67156BAE23D582D605051A52E (void);
+// 0x0000065D System.Object Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetEditor(System.Type)
+extern void JObject_System_ComponentModel_ICustomTypeDescriptor_GetEditor_mCA1DF7BDC611209573FD8BD305603A23C47DCC00 (void);
+// 0x0000065E System.ComponentModel.EventDescriptorCollection Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetEvents(System.Attribute[])
+extern void JObject_System_ComponentModel_ICustomTypeDescriptor_GetEvents_mB40241E82E2831E4FE02DA49A128041976CACE2C (void);
+// 0x0000065F System.ComponentModel.EventDescriptorCollection Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetEvents()
+extern void JObject_System_ComponentModel_ICustomTypeDescriptor_GetEvents_m7D97D5844B88398A34D98F05A59984C6D3DC543D (void);
+// 0x00000660 System.Object Newtonsoft.Json.Linq.JObject::System.ComponentModel.ICustomTypeDescriptor.GetPropertyOwner(System.ComponentModel.PropertyDescriptor)
 extern void JObject_System_ComponentModel_ICustomTypeDescriptor_GetPropertyOwner_mE081A34A216CD0BACC35D60EB491FCACB5B695AD (void);
-// 0x0000063F System.Dynamic.DynamicMetaObject Newtonsoft.Json.Linq.JObject::GetMetaObject(System.Linq.Expressions.Expression)
+// 0x00000661 System.Dynamic.DynamicMetaObject Newtonsoft.Json.Linq.JObject::GetMetaObject(System.Linq.Expressions.Expression)
 extern void JObject_GetMetaObject_m59C24023FAB5969F87BCB94EC67D200642D80BAE (void);
-// 0x00000640 System.Collections.Generic.IEnumerable`1<System.String> Newtonsoft.Json.Linq.JObject/JObjectDynamicProxy::GetDynamicMemberNames(Newtonsoft.Json.Linq.JObject)
+// 0x00000662 System.Collections.Generic.IEnumerable`1<System.String> Newtonsoft.Json.Linq.JObject/JObjectDynamicProxy::GetDynamicMemberNames(Newtonsoft.Json.Linq.JObject)
 extern void JObjectDynamicProxy_GetDynamicMemberNames_m666572AA62F9673FA8DEBA0DE27772A920037747 (void);
-// 0x00000641 System.Void Newtonsoft.Json.Linq.JObject/JObjectDynamicProxy::.ctor()
+// 0x00000663 System.Void Newtonsoft.Json.Linq.JObject/JObjectDynamicProxy::.ctor()
 extern void JObjectDynamicProxy__ctor_m915592F1E2E440C232E310856F1F41162B16AEA8 (void);
-// 0x00000642 System.Void Newtonsoft.Json.Linq.JObject/JObjectDynamicProxy/<>c::.cctor()
+// 0x00000664 System.Void Newtonsoft.Json.Linq.JObject/JObjectDynamicProxy/<>c::.cctor()
 extern void U3CU3Ec__cctor_m9C50559D58D940EAB157B6FA9168CCA08AA48FFA (void);
-// 0x00000643 System.Void Newtonsoft.Json.Linq.JObject/JObjectDynamicProxy/<>c::.ctor()
+// 0x00000665 System.Void Newtonsoft.Json.Linq.JObject/JObjectDynamicProxy/<>c::.ctor()
 extern void U3CU3Ec__ctor_m18B595894112662D696297AF0F64C95E425DC8BB (void);
-// 0x00000644 System.String Newtonsoft.Json.Linq.JObject/JObjectDynamicProxy/<>c::<GetDynamicMemberNames>b__2_0(Newtonsoft.Json.Linq.JProperty)
+// 0x00000666 System.String Newtonsoft.Json.Linq.JObject/JObjectDynamicProxy/<>c::<GetDynamicMemberNames>b__2_0(Newtonsoft.Json.Linq.JProperty)
 extern void U3CU3Ec_U3CGetDynamicMemberNamesU3Eb__2_0_m4D9B22E5B775EE993733FF0473F84D4357D605B2 (void);
-// 0x00000645 System.Void Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::.ctor(System.Int32)
+// 0x00000667 System.Void Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::.ctor(System.Int32)
 extern void U3CGetEnumeratorU3Ed__63__ctor_m6172615ADF0E4241E8B32E80AFDC030F18162887 (void);
-// 0x00000646 System.Void Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::System.IDisposable.Dispose()
+// 0x00000668 System.Void Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::System.IDisposable.Dispose()
 extern void U3CGetEnumeratorU3Ed__63_System_IDisposable_Dispose_m24578771D6AF119E0E8323551BF92EC5A817F8D0 (void);
-// 0x00000647 System.Boolean Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::MoveNext()
+// 0x00000669 System.Boolean Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::MoveNext()
 extern void U3CGetEnumeratorU3Ed__63_MoveNext_mD2501BB3E5B2FF11E5847CA630CA94D831EB6C2E (void);
-// 0x00000648 System.Void Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::<>m__Finally1()
+// 0x0000066A System.Void Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::<>m__Finally1()
 extern void U3CGetEnumeratorU3Ed__63_U3CU3Em__Finally1_mF41FF47695E42A1A81DED6C25A4F71731F6F9B81 (void);
-// 0x00000649 System.Collections.Generic.KeyValuePair`2<System.String,Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.get_Current()
+// 0x0000066B System.Collections.Generic.KeyValuePair`2<System.String,Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<System.String,Newtonsoft.Json.Linq.JToken>>.get_Current()
 extern void U3CGetEnumeratorU3Ed__63_System_Collections_Generic_IEnumeratorU3CSystem_Collections_Generic_KeyValuePairU3CSystem_StringU2CNewtonsoft_Json_Linq_JTokenU3EU3E_get_Current_m7AA5447F9AED3E5364440F4826C43E97C224DD4D (void);
-// 0x0000064A System.Void Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::System.Collections.IEnumerator.Reset()
+// 0x0000066C System.Void Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::System.Collections.IEnumerator.Reset()
 extern void U3CGetEnumeratorU3Ed__63_System_Collections_IEnumerator_Reset_m9BCF9AD8C922476BB3431A72484B2426A1FDA91D (void);
-// 0x0000064B System.Object Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::System.Collections.IEnumerator.get_Current()
+// 0x0000066D System.Object Newtonsoft.Json.Linq.JObject/<GetEnumerator>d__63::System.Collections.IEnumerator.get_Current()
 extern void U3CGetEnumeratorU3Ed__63_System_Collections_IEnumerator_get_Current_mF352A0EBBBCA1A05D412F95AB2AB696C4C08032F (void);
-// 0x0000064C System.Collections.Generic.IList`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JProperty::get_ChildrenTokens()
+// 0x0000066E System.Collections.Generic.IList`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JProperty::get_ChildrenTokens()
 extern void JProperty_get_ChildrenTokens_m7BF93FE6B4D859E709E0791750735BEAB2CB58E7 (void);
-// 0x0000064D System.String Newtonsoft.Json.Linq.JProperty::get_Name()
+// 0x0000066F System.String Newtonsoft.Json.Linq.JProperty::get_Name()
 extern void JProperty_get_Name_mBCAD9B4CCB7370261E0F38A6C46A343BB7E7E347 (void);
-// 0x0000064E Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JProperty::get_Value()
+// 0x00000670 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JProperty::get_Value()
 extern void JProperty_get_Value_m837D80AB718EDA875E9B862CEE8FEF6A06E01CD3 (void);
-// 0x0000064F System.Void Newtonsoft.Json.Linq.JProperty::set_Value(Newtonsoft.Json.Linq.JToken)
+// 0x00000671 System.Void Newtonsoft.Json.Linq.JProperty::set_Value(Newtonsoft.Json.Linq.JToken)
 extern void JProperty_set_Value_m7B275486E358CDA2CA23E838738C554AB06FB3AF (void);
-// 0x00000650 System.Void Newtonsoft.Json.Linq.JProperty::.ctor(Newtonsoft.Json.Linq.JProperty)
+// 0x00000672 System.Void Newtonsoft.Json.Linq.JProperty::.ctor(Newtonsoft.Json.Linq.JProperty)
 extern void JProperty__ctor_mC4607A682CE050063C21BB7280FF3850AFCEF669 (void);
-// 0x00000651 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JProperty::GetItem(System.Int32)
+// 0x00000673 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JProperty::GetItem(System.Int32)
 extern void JProperty_GetItem_mC2F16E58504A92EB4DB14E741790A306FA0B6617 (void);
-// 0x00000652 System.Void Newtonsoft.Json.Linq.JProperty::SetItem(System.Int32,Newtonsoft.Json.Linq.JToken)
+// 0x00000674 System.Void Newtonsoft.Json.Linq.JProperty::SetItem(System.Int32,Newtonsoft.Json.Linq.JToken)
 extern void JProperty_SetItem_m20A34D18D825534886C9FA84FAFA8DCB501A3D0C (void);
-// 0x00000653 System.Boolean Newtonsoft.Json.Linq.JProperty::RemoveItem(Newtonsoft.Json.Linq.JToken)
+// 0x00000675 System.Boolean Newtonsoft.Json.Linq.JProperty::RemoveItem(Newtonsoft.Json.Linq.JToken)
 extern void JProperty_RemoveItem_mD9D43B7ED7AB3E5378442E27531610BE77335E05 (void);
-// 0x00000654 System.Void Newtonsoft.Json.Linq.JProperty::RemoveItemAt(System.Int32)
+// 0x00000676 System.Void Newtonsoft.Json.Linq.JProperty::RemoveItemAt(System.Int32)
 extern void JProperty_RemoveItemAt_m9DF551D8C99DE0B31E872B70AE1190181A7A5D33 (void);
-// 0x00000655 System.Int32 Newtonsoft.Json.Linq.JProperty::IndexOfItem(Newtonsoft.Json.Linq.JToken)
+// 0x00000677 System.Int32 Newtonsoft.Json.Linq.JProperty::IndexOfItem(Newtonsoft.Json.Linq.JToken)
 extern void JProperty_IndexOfItem_mD92D07D0CCC1C6145DC458B09ADC9C099321684D (void);
-// 0x00000656 System.Void Newtonsoft.Json.Linq.JProperty::InsertItem(System.Int32,Newtonsoft.Json.Linq.JToken,System.Boolean)
+// 0x00000678 System.Void Newtonsoft.Json.Linq.JProperty::InsertItem(System.Int32,Newtonsoft.Json.Linq.JToken,System.Boolean)
 extern void JProperty_InsertItem_m0DFEE6B417C40A657FD0B173C5B277914DFEEE1D (void);
-// 0x00000657 System.Boolean Newtonsoft.Json.Linq.JProperty::ContainsItem(Newtonsoft.Json.Linq.JToken)
+// 0x00000679 System.Boolean Newtonsoft.Json.Linq.JProperty::ContainsItem(Newtonsoft.Json.Linq.JToken)
 extern void JProperty_ContainsItem_m9FD179C3A2E5551DA705F3E931305AE7D5D256BA (void);
-// 0x00000658 System.Void Newtonsoft.Json.Linq.JProperty::ClearItems()
+// 0x0000067A System.Void Newtonsoft.Json.Linq.JProperty::ClearItems()
 extern void JProperty_ClearItems_mDBC478467A8BEB6F4C34BE9D953428F2E37D42EB (void);
-// 0x00000659 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JProperty::CloneToken()
+// 0x0000067B Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JProperty::CloneToken()
 extern void JProperty_CloneToken_m8403CCA2A7E4AC6C03EDD322719DEAF935756F51 (void);
-// 0x0000065A Newtonsoft.Json.Linq.JTokenType Newtonsoft.Json.Linq.JProperty::get_Type()
+// 0x0000067C Newtonsoft.Json.Linq.JTokenType Newtonsoft.Json.Linq.JProperty::get_Type()
 extern void JProperty_get_Type_mE635EEC7EAD028C0203524EC7DEF7A5A8C0EFCC2 (void);
-// 0x0000065B System.Void Newtonsoft.Json.Linq.JProperty::.ctor(System.String)
+// 0x0000067D System.Void Newtonsoft.Json.Linq.JProperty::.ctor(System.String)
 extern void JProperty__ctor_m523FE87AC9E24EF3FEC57B35756311B9478BF3D5 (void);
-// 0x0000065C System.Void Newtonsoft.Json.Linq.JProperty::.ctor(System.String,System.Object)
+// 0x0000067E System.Void Newtonsoft.Json.Linq.JProperty::.ctor(System.String,System.Object)
 extern void JProperty__ctor_m4B7F5DF6081A6B28246940769F999DA810D8D979 (void);
-// 0x0000065D System.Void Newtonsoft.Json.Linq.JProperty::WriteTo(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.JsonConverter[])
+// 0x0000067F System.Void Newtonsoft.Json.Linq.JProperty::WriteTo(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.JsonConverter[])
 extern void JProperty_WriteTo_mF9C7D4001A395FD7CF632E0A965BF7290868E07F (void);
-// 0x0000065E Newtonsoft.Json.Linq.JProperty Newtonsoft.Json.Linq.JProperty::Load(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Linq.JsonLoadSettings)
+// 0x00000680 Newtonsoft.Json.Linq.JProperty Newtonsoft.Json.Linq.JProperty::Load(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Linq.JsonLoadSettings)
 extern void JProperty_Load_m8798ED34208BC2A074D773934135EA807B2EBA88 (void);
-// 0x0000065F System.Collections.Generic.IEnumerator`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JProperty/JPropertyList::GetEnumerator()
+// 0x00000681 System.Collections.Generic.IEnumerator`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JProperty/JPropertyList::GetEnumerator()
 extern void JPropertyList_GetEnumerator_m40917A70FFB4B5DC1E450BF3C3F06F9960707E28 (void);
-// 0x00000660 System.Collections.IEnumerator Newtonsoft.Json.Linq.JProperty/JPropertyList::System.Collections.IEnumerable.GetEnumerator()
+// 0x00000682 System.Collections.IEnumerator Newtonsoft.Json.Linq.JProperty/JPropertyList::System.Collections.IEnumerable.GetEnumerator()
 extern void JPropertyList_System_Collections_IEnumerable_GetEnumerator_mAFA4DF86A37BEFF2A46DE82799839DD2D541EFE7 (void);
-// 0x00000661 System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::Add(Newtonsoft.Json.Linq.JToken)
+// 0x00000683 System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::Add(Newtonsoft.Json.Linq.JToken)
 extern void JPropertyList_Add_mD635E1657E6E56DD8BAD729F161DD66040E6CD1C (void);
-// 0x00000662 System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::Clear()
+// 0x00000684 System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::Clear()
 extern void JPropertyList_Clear_mFB6EB6E43F13B3763541ED663867F1E73BA69705 (void);
-// 0x00000663 System.Boolean Newtonsoft.Json.Linq.JProperty/JPropertyList::Contains(Newtonsoft.Json.Linq.JToken)
+// 0x00000685 System.Boolean Newtonsoft.Json.Linq.JProperty/JPropertyList::Contains(Newtonsoft.Json.Linq.JToken)
 extern void JPropertyList_Contains_m6D9F6252CF6B3D36033CB0AE1D8030813ECC94A2 (void);
-// 0x00000664 System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::CopyTo(Newtonsoft.Json.Linq.JToken[],System.Int32)
+// 0x00000686 System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::CopyTo(Newtonsoft.Json.Linq.JToken[],System.Int32)
 extern void JPropertyList_CopyTo_m4F89E4D4C6586BF6243986A7580E61E7358CB631 (void);
-// 0x00000665 System.Boolean Newtonsoft.Json.Linq.JProperty/JPropertyList::Remove(Newtonsoft.Json.Linq.JToken)
+// 0x00000687 System.Boolean Newtonsoft.Json.Linq.JProperty/JPropertyList::Remove(Newtonsoft.Json.Linq.JToken)
 extern void JPropertyList_Remove_m0D8ED3972CE946D39E50381B15414F6DEB8D4B88 (void);
-// 0x00000666 System.Int32 Newtonsoft.Json.Linq.JProperty/JPropertyList::get_Count()
+// 0x00000688 System.Int32 Newtonsoft.Json.Linq.JProperty/JPropertyList::get_Count()
 extern void JPropertyList_get_Count_m26BDFBAC98A5869642FA0611E766532CBAA488B6 (void);
-// 0x00000667 System.Boolean Newtonsoft.Json.Linq.JProperty/JPropertyList::get_IsReadOnly()
+// 0x00000689 System.Boolean Newtonsoft.Json.Linq.JProperty/JPropertyList::get_IsReadOnly()
 extern void JPropertyList_get_IsReadOnly_mC36C60F75784EB250400B37AEA79D570932AFEBD (void);
-// 0x00000668 System.Int32 Newtonsoft.Json.Linq.JProperty/JPropertyList::IndexOf(Newtonsoft.Json.Linq.JToken)
+// 0x0000068A System.Int32 Newtonsoft.Json.Linq.JProperty/JPropertyList::IndexOf(Newtonsoft.Json.Linq.JToken)
 extern void JPropertyList_IndexOf_mC73978CA083B44EF060462B972E17C2073529710 (void);
-// 0x00000669 System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::Insert(System.Int32,Newtonsoft.Json.Linq.JToken)
+// 0x0000068B System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::Insert(System.Int32,Newtonsoft.Json.Linq.JToken)
 extern void JPropertyList_Insert_mC5B7FF4275F71A8774CB91CC5C01CC9D52A2778D (void);
-// 0x0000066A System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::RemoveAt(System.Int32)
+// 0x0000068C System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::RemoveAt(System.Int32)
 extern void JPropertyList_RemoveAt_m046A3E01424656FFB680B833831A9AFB340FD1DF (void);
-// 0x0000066B Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JProperty/JPropertyList::get_Item(System.Int32)
+// 0x0000068D Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JProperty/JPropertyList::get_Item(System.Int32)
 extern void JPropertyList_get_Item_m3DF5AFD5AB0D549ACF77D23D376E50C3E6BFFC4F (void);
-// 0x0000066C System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::set_Item(System.Int32,Newtonsoft.Json.Linq.JToken)
+// 0x0000068E System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::set_Item(System.Int32,Newtonsoft.Json.Linq.JToken)
 extern void JPropertyList_set_Item_m8FC16BF84FD565113B7B17349A48EBD110614BD5 (void);
-// 0x0000066D System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::.ctor()
+// 0x0000068F System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList::.ctor()
 extern void JPropertyList__ctor_mABBEC21C4BE2A1D5825FBF7DA04D28596DEDDAD9 (void);
-// 0x0000066E System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList/<GetEnumerator>d__1::.ctor(System.Int32)
+// 0x00000690 System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList/<GetEnumerator>d__1::.ctor(System.Int32)
 extern void U3CGetEnumeratorU3Ed__1__ctor_m6878D9872CAC3BC3D4E2B516B03C1D48A9C93C3D (void);
-// 0x0000066F System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList/<GetEnumerator>d__1::System.IDisposable.Dispose()
+// 0x00000691 System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList/<GetEnumerator>d__1::System.IDisposable.Dispose()
 extern void U3CGetEnumeratorU3Ed__1_System_IDisposable_Dispose_m48763A65D2E7FBBE9AF4D43FFEA67758185F1511 (void);
-// 0x00000670 System.Boolean Newtonsoft.Json.Linq.JProperty/JPropertyList/<GetEnumerator>d__1::MoveNext()
+// 0x00000692 System.Boolean Newtonsoft.Json.Linq.JProperty/JPropertyList/<GetEnumerator>d__1::MoveNext()
 extern void U3CGetEnumeratorU3Ed__1_MoveNext_mF4E30EFFCA18D5EAD384865409848D6FD44CFE4D (void);
-// 0x00000671 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JProperty/JPropertyList/<GetEnumerator>d__1::System.Collections.Generic.IEnumerator<Newtonsoft.Json.Linq.JToken>.get_Current()
+// 0x00000693 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JProperty/JPropertyList/<GetEnumerator>d__1::System.Collections.Generic.IEnumerator<Newtonsoft.Json.Linq.JToken>.get_Current()
 extern void U3CGetEnumeratorU3Ed__1_System_Collections_Generic_IEnumeratorU3CNewtonsoft_Json_Linq_JTokenU3E_get_Current_m8D31B434B9C509869398163CEB8106A2AEB4AB2D (void);
-// 0x00000672 System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList/<GetEnumerator>d__1::System.Collections.IEnumerator.Reset()
+// 0x00000694 System.Void Newtonsoft.Json.Linq.JProperty/JPropertyList/<GetEnumerator>d__1::System.Collections.IEnumerator.Reset()
 extern void U3CGetEnumeratorU3Ed__1_System_Collections_IEnumerator_Reset_mF64E2431FF8070581094B22E0F3AD67611974787 (void);
-// 0x00000673 System.Object Newtonsoft.Json.Linq.JProperty/JPropertyList/<GetEnumerator>d__1::System.Collections.IEnumerator.get_Current()
+// 0x00000695 System.Object Newtonsoft.Json.Linq.JProperty/JPropertyList/<GetEnumerator>d__1::System.Collections.IEnumerator.get_Current()
 extern void U3CGetEnumeratorU3Ed__1_System_Collections_IEnumerator_get_Current_m88890955FFD57146B46EB35BF6C5D6E27C28C3D6 (void);
-// 0x00000674 System.Void Newtonsoft.Json.Linq.JPropertyDescriptor::.ctor(System.String)
+// 0x00000696 System.Void Newtonsoft.Json.Linq.JPropertyDescriptor::.ctor(System.String)
 extern void JPropertyDescriptor__ctor_m8F55DFB15DA896807A5093BE1B6C54C0C7741585 (void);
-// 0x00000675 System.Object Newtonsoft.Json.Linq.JPropertyDescriptor::GetValue(System.Object)
+// 0x00000697 System.Boolean Newtonsoft.Json.Linq.JPropertyDescriptor::CanResetValue(System.Object)
+extern void JPropertyDescriptor_CanResetValue_m7368EAEA287D7553CFBE04A97D3F80446A05270D (void);
+// 0x00000698 System.Object Newtonsoft.Json.Linq.JPropertyDescriptor::GetValue(System.Object)
 extern void JPropertyDescriptor_GetValue_mDD0EF94B9E1AA4DA0052F4AD42E6D8FF45886CBF (void);
-// 0x00000676 System.Void Newtonsoft.Json.Linq.JPropertyDescriptor::SetValue(System.Object,System.Object)
+// 0x00000699 System.Void Newtonsoft.Json.Linq.JPropertyDescriptor::ResetValue(System.Object)
+extern void JPropertyDescriptor_ResetValue_m7A7819C759E93ABD6B893C3269AD44280A8BE5CB (void);
+// 0x0000069A System.Void Newtonsoft.Json.Linq.JPropertyDescriptor::SetValue(System.Object,System.Object)
 extern void JPropertyDescriptor_SetValue_mE803F24083C17FF0A6E30035FC5BB2E0736B15A6 (void);
-// 0x00000677 System.Boolean Newtonsoft.Json.Linq.JPropertyDescriptor::ShouldSerializeValue(System.Object)
+// 0x0000069B System.Boolean Newtonsoft.Json.Linq.JPropertyDescriptor::ShouldSerializeValue(System.Object)
 extern void JPropertyDescriptor_ShouldSerializeValue_m742F8C64EB5DC6803E62BD82C04BED42008C8411 (void);
-// 0x00000678 System.Type Newtonsoft.Json.Linq.JPropertyDescriptor::get_ComponentType()
+// 0x0000069C System.Type Newtonsoft.Json.Linq.JPropertyDescriptor::get_ComponentType()
 extern void JPropertyDescriptor_get_ComponentType_mB8E52E9269D8E14CDD6D2D25D970E4130EB1B362 (void);
-// 0x00000679 System.Boolean Newtonsoft.Json.Linq.JPropertyDescriptor::get_IsReadOnly()
+// 0x0000069D System.Boolean Newtonsoft.Json.Linq.JPropertyDescriptor::get_IsReadOnly()
 extern void JPropertyDescriptor_get_IsReadOnly_m76884E31A55062C435FCBC53694306D9D6993ACD (void);
-// 0x0000067A System.Type Newtonsoft.Json.Linq.JPropertyDescriptor::get_PropertyType()
+// 0x0000069E System.Type Newtonsoft.Json.Linq.JPropertyDescriptor::get_PropertyType()
 extern void JPropertyDescriptor_get_PropertyType_m7A024C5CB97C4C8A992953A8FABBDB21741B7D31 (void);
-// 0x0000067B System.Int32 Newtonsoft.Json.Linq.JPropertyDescriptor::get_NameHashCode()
+// 0x0000069F System.Int32 Newtonsoft.Json.Linq.JPropertyDescriptor::get_NameHashCode()
 extern void JPropertyDescriptor_get_NameHashCode_mA547250934FDFF4B4C7922263319173EAA5EA1B8 (void);
-// 0x0000067C System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::.ctor()
+// 0x000006A0 System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::.ctor()
 extern void JPropertyKeyedCollection__ctor_m505BB55461C9581E514D22225583615B85683E22 (void);
-// 0x0000067D System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::AddKey(System.String,Newtonsoft.Json.Linq.JToken)
+// 0x000006A1 System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::AddKey(System.String,Newtonsoft.Json.Linq.JToken)
 extern void JPropertyKeyedCollection_AddKey_mB6ECE88213669FE55E00AADBAD1EA52F9EAFDB28 (void);
-// 0x0000067E System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::ClearItems()
+// 0x000006A2 System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::ClearItems()
 extern void JPropertyKeyedCollection_ClearItems_mD8C4A08E722FFB23541B9D911FF7B72B23CDDA1E (void);
-// 0x0000067F System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::EnsureDictionary()
+// 0x000006A3 System.Boolean Newtonsoft.Json.Linq.JPropertyKeyedCollection::Contains(System.String)
+extern void JPropertyKeyedCollection_Contains_m8FB99D0FD453B620CD39F2CC07534208AE209AB0 (void);
+// 0x000006A4 System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::EnsureDictionary()
 extern void JPropertyKeyedCollection_EnsureDictionary_mEDA030D11FA05055A5BD1891651CD3EED9EEBF42 (void);
-// 0x00000680 System.String Newtonsoft.Json.Linq.JPropertyKeyedCollection::GetKeyForItem(Newtonsoft.Json.Linq.JToken)
+// 0x000006A5 System.String Newtonsoft.Json.Linq.JPropertyKeyedCollection::GetKeyForItem(Newtonsoft.Json.Linq.JToken)
 extern void JPropertyKeyedCollection_GetKeyForItem_mC501BBFE7F2E9B967765EE5901B7FA97B514AECB (void);
-// 0x00000681 System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::InsertItem(System.Int32,Newtonsoft.Json.Linq.JToken)
+// 0x000006A6 System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::InsertItem(System.Int32,Newtonsoft.Json.Linq.JToken)
 extern void JPropertyKeyedCollection_InsertItem_m566397B3AF3FB24C896E826D7710EF40C62FF609 (void);
-// 0x00000682 System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::RemoveItem(System.Int32)
+// 0x000006A7 System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::RemoveItem(System.Int32)
 extern void JPropertyKeyedCollection_RemoveItem_mC0290A191794BD2B1C978C8A00B4D7D8EB6A8B6E (void);
-// 0x00000683 System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::RemoveKey(System.String)
+// 0x000006A8 System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::RemoveKey(System.String)
 extern void JPropertyKeyedCollection_RemoveKey_m5BB69983B6F995F4C731A3D9CA667BCC36804C16 (void);
-// 0x00000684 System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::SetItem(System.Int32,Newtonsoft.Json.Linq.JToken)
+// 0x000006A9 System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::SetItem(System.Int32,Newtonsoft.Json.Linq.JToken)
 extern void JPropertyKeyedCollection_SetItem_mAC5968C9E2F4FB2D99CA7C65B37C641A7778255E (void);
-// 0x00000685 System.Boolean Newtonsoft.Json.Linq.JPropertyKeyedCollection::TryGetValue(System.String,Newtonsoft.Json.Linq.JToken&)
+// 0x000006AA System.Boolean Newtonsoft.Json.Linq.JPropertyKeyedCollection::TryGetValue(System.String,Newtonsoft.Json.Linq.JToken&)
 extern void JPropertyKeyedCollection_TryGetValue_mF1E18DB4BE9FA28198762C95730160D2B199F6B0 (void);
-// 0x00000686 System.Int32 Newtonsoft.Json.Linq.JPropertyKeyedCollection::IndexOfReference(Newtonsoft.Json.Linq.JToken)
+// 0x000006AB System.Collections.Generic.ICollection`1<System.String> Newtonsoft.Json.Linq.JPropertyKeyedCollection::get_Keys()
+extern void JPropertyKeyedCollection_get_Keys_m3EC4762921B44AFAD63BD259B28EECD42E5BFE57 (void);
+// 0x000006AC System.Int32 Newtonsoft.Json.Linq.JPropertyKeyedCollection::IndexOfReference(Newtonsoft.Json.Linq.JToken)
 extern void JPropertyKeyedCollection_IndexOfReference_m2D493FA9539D7DA2E6983A37D16DA97B3221DF8C (void);
-// 0x00000687 System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::.cctor()
+// 0x000006AD System.Void Newtonsoft.Json.Linq.JPropertyKeyedCollection::.cctor()
 extern void JPropertyKeyedCollection__cctor_m117949603680EE4DCEA4F2C948D8EDA6E6BA94C5 (void);
-// 0x00000688 System.Void Newtonsoft.Json.Linq.JRaw::.ctor(Newtonsoft.Json.Linq.JRaw)
+// 0x000006AE System.Void Newtonsoft.Json.Linq.JRaw::.ctor(Newtonsoft.Json.Linq.JRaw)
 extern void JRaw__ctor_m9A0F3378697B5A7C80A43358660F1E7DB2311898 (void);
-// 0x00000689 System.Void Newtonsoft.Json.Linq.JRaw::.ctor(System.Object)
+// 0x000006AF System.Void Newtonsoft.Json.Linq.JRaw::.ctor(System.Object)
 extern void JRaw__ctor_mC611A91DC0A2BF35632A4300A9848D84215E830C (void);
-// 0x0000068A Newtonsoft.Json.Linq.JRaw Newtonsoft.Json.Linq.JRaw::Create(Newtonsoft.Json.JsonReader)
+// 0x000006B0 Newtonsoft.Json.Linq.JRaw Newtonsoft.Json.Linq.JRaw::Create(Newtonsoft.Json.JsonReader)
 extern void JRaw_Create_m2ADEA904966ABB6C5CA3EA5B3169AAD499094525 (void);
-// 0x0000068B Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JRaw::CloneToken()
+// 0x000006B1 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JRaw::CloneToken()
 extern void JRaw_CloneToken_m27237972D934F78F991263D6FAF751F9DF69E6B8 (void);
-// 0x0000068C Newtonsoft.Json.Linq.CommentHandling Newtonsoft.Json.Linq.JsonLoadSettings::get_CommentHandling()
+// 0x000006B2 Newtonsoft.Json.Linq.CommentHandling Newtonsoft.Json.Linq.JsonLoadSettings::get_CommentHandling()
 extern void JsonLoadSettings_get_CommentHandling_m99D503F5F9E991CA902D09C0D719D5660C57D365 (void);
-// 0x0000068D Newtonsoft.Json.Linq.LineInfoHandling Newtonsoft.Json.Linq.JsonLoadSettings::get_LineInfoHandling()
+// 0x000006B3 Newtonsoft.Json.Linq.LineInfoHandling Newtonsoft.Json.Linq.JsonLoadSettings::get_LineInfoHandling()
 extern void JsonLoadSettings_get_LineInfoHandling_m3D74BD954D6DE4EBBDC26F6696462BAE9845CFB7 (void);
-// 0x0000068E Newtonsoft.Json.Linq.DuplicatePropertyNameHandling Newtonsoft.Json.Linq.JsonLoadSettings::get_DuplicatePropertyNameHandling()
+// 0x000006B4 Newtonsoft.Json.Linq.DuplicatePropertyNameHandling Newtonsoft.Json.Linq.JsonLoadSettings::get_DuplicatePropertyNameHandling()
 extern void JsonLoadSettings_get_DuplicatePropertyNameHandling_m3B44679C4CC8319C3FB8831D2A5BC1F84608EC00 (void);
-// 0x0000068F Newtonsoft.Json.Linq.JContainer Newtonsoft.Json.Linq.JToken::get_Parent()
+// 0x000006B5 Newtonsoft.Json.Linq.JContainer Newtonsoft.Json.Linq.JToken::get_Parent()
 extern void JToken_get_Parent_m69CD7FDEDA5E1CB4DD7006BA7A8D9F0125D7AE1C (void);
-// 0x00000690 System.Void Newtonsoft.Json.Linq.JToken::set_Parent(Newtonsoft.Json.Linq.JContainer)
+// 0x000006B6 System.Void Newtonsoft.Json.Linq.JToken::set_Parent(Newtonsoft.Json.Linq.JContainer)
 extern void JToken_set_Parent_m4DBA30C7DB6F232436A956675D9BC7436A7BEF96 (void);
-// 0x00000691 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::get_Root()
+// 0x000006B7 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::get_Root()
 extern void JToken_get_Root_m8C6FD14BE2F256D817F2F9121D3D0520E12CF5C7 (void);
-// 0x00000692 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::CloneToken()
-// 0x00000693 Newtonsoft.Json.Linq.JTokenType Newtonsoft.Json.Linq.JToken::get_Type()
-// 0x00000694 System.Boolean Newtonsoft.Json.Linq.JToken::get_HasValues()
-// 0x00000695 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::get_Next()
+// 0x000006B8 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::CloneToken()
+// 0x000006B9 Newtonsoft.Json.Linq.JTokenType Newtonsoft.Json.Linq.JToken::get_Type()
+// 0x000006BA System.Boolean Newtonsoft.Json.Linq.JToken::get_HasValues()
+// 0x000006BB Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::get_Next()
 extern void JToken_get_Next_mDA100BBF2860B6B172CA9977D70DF637CC2D8F0E (void);
-// 0x00000696 System.Void Newtonsoft.Json.Linq.JToken::set_Next(Newtonsoft.Json.Linq.JToken)
+// 0x000006BC System.Void Newtonsoft.Json.Linq.JToken::set_Next(Newtonsoft.Json.Linq.JToken)
 extern void JToken_set_Next_mEA120E91F02E2B6AC5DC055051A086847A098002 (void);
-// 0x00000697 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::get_Previous()
+// 0x000006BD Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::get_Previous()
 extern void JToken_get_Previous_mE368218BD71E48F7AF418BCE8C34569600D607DF (void);
-// 0x00000698 System.Void Newtonsoft.Json.Linq.JToken::set_Previous(Newtonsoft.Json.Linq.JToken)
+// 0x000006BE System.Void Newtonsoft.Json.Linq.JToken::set_Previous(Newtonsoft.Json.Linq.JToken)
 extern void JToken_set_Previous_m08B8207F0A8E3412ABCFAF80EAB22713E634A552 (void);
-// 0x00000699 System.String Newtonsoft.Json.Linq.JToken::get_Path()
+// 0x000006BF System.String Newtonsoft.Json.Linq.JToken::get_Path()
 extern void JToken_get_Path_m89C33BA6D3290725525600E88758D5ABE2A1DEBB (void);
-// 0x0000069A System.Void Newtonsoft.Json.Linq.JToken::.ctor()
+// 0x000006C0 System.Void Newtonsoft.Json.Linq.JToken::.ctor()
 extern void JToken__ctor_m4A942831109FAC1FE1C68611D178392482911A50 (void);
-// 0x0000069B Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::get_First()
+// 0x000006C1 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::get_First()
 extern void JToken_get_First_mADC0BAD5C60A09CB09890B96FF1EE86D611E8E4C (void);
-// 0x0000069C Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::get_Last()
+// 0x000006C2 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::get_Last()
 extern void JToken_get_Last_mF859E536CB128D9B6D10DAAF883FDFBE7C442B6D (void);
-// 0x0000069D Newtonsoft.Json.Linq.JEnumerable`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JToken::Children()
+// 0x000006C3 Newtonsoft.Json.Linq.JEnumerable`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JToken::Children()
 extern void JToken_Children_mA385E1AF39125074643FA9F37A7D76637E9C3B63 (void);
-// 0x0000069E System.Void Newtonsoft.Json.Linq.JToken::Remove()
+// 0x000006C4 System.Void Newtonsoft.Json.Linq.JToken::Remove()
 extern void JToken_Remove_m5157537B5D761667E88E7FA2E567F36E860D44B3 (void);
-// 0x0000069F System.Void Newtonsoft.Json.Linq.JToken::Replace(Newtonsoft.Json.Linq.JToken)
+// 0x000006C5 System.Void Newtonsoft.Json.Linq.JToken::Replace(Newtonsoft.Json.Linq.JToken)
 extern void JToken_Replace_mC8ADA5CDF8DCEF8134D13460B1A0485DACC70E72 (void);
-// 0x000006A0 System.Void Newtonsoft.Json.Linq.JToken::WriteTo(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.JsonConverter[])
-// 0x000006A1 System.String Newtonsoft.Json.Linq.JToken::ToString()
+// 0x000006C6 System.Void Newtonsoft.Json.Linq.JToken::WriteTo(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.JsonConverter[])
+// 0x000006C7 System.String Newtonsoft.Json.Linq.JToken::ToString()
 extern void JToken_ToString_m0A4EBE11F0A2056825C616FB6AEEBF200DD69F7B (void);
-// 0x000006A2 System.String Newtonsoft.Json.Linq.JToken::ToString(Newtonsoft.Json.Formatting,Newtonsoft.Json.JsonConverter[])
+// 0x000006C8 System.String Newtonsoft.Json.Linq.JToken::ToString(Newtonsoft.Json.Formatting,Newtonsoft.Json.JsonConverter[])
 extern void JToken_ToString_mCA8EC58947985F48F85E8547EBEE732642BC8F9D (void);
-// 0x000006A3 Newtonsoft.Json.Linq.JValue Newtonsoft.Json.Linq.JToken::EnsureValue(Newtonsoft.Json.Linq.JToken)
+// 0x000006C9 Newtonsoft.Json.Linq.JValue Newtonsoft.Json.Linq.JToken::EnsureValue(Newtonsoft.Json.Linq.JToken)
 extern void JToken_EnsureValue_mCE86C1A8C72909D1AAAB785D57B9B5C725DAB26E (void);
-// 0x000006A4 System.String Newtonsoft.Json.Linq.JToken::GetType(Newtonsoft.Json.Linq.JToken)
+// 0x000006CA System.String Newtonsoft.Json.Linq.JToken::GetType(Newtonsoft.Json.Linq.JToken)
 extern void JToken_GetType_m324E5AC1F91A83CAB8C3FC0CE2CF196A7D7C9A82 (void);
-// 0x000006A5 System.Boolean Newtonsoft.Json.Linq.JToken::ValidateToken(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JTokenType[],System.Boolean)
+// 0x000006CB System.Boolean Newtonsoft.Json.Linq.JToken::ValidateToken(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JTokenType[],System.Boolean)
 extern void JToken_ValidateToken_mF115F54B9B762677B2E9B2ACA5F05E428335BB48 (void);
-// 0x000006A6 System.Boolean Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006CC System.Boolean Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m1D78A17358458BF284901CCD6278F17FBB154954 (void);
-// 0x000006A7 System.DateTimeOffset Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006CD System.DateTimeOffset Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mC82F575EDEC26497A6A1BEA082D9C54959C7827A (void);
-// 0x000006A8 System.Nullable`1<System.Boolean> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006CE System.Nullable`1<System.Boolean> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mDC1D3AFE30B42417F45087B395BDC7B0B07BEF63 (void);
-// 0x000006A9 System.Int64 Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006CF System.Int64 Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m7DD0FEF3CC186AE2B06ECCC93E2DFCCF7924C01D (void);
-// 0x000006AA System.Nullable`1<System.DateTime> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006D0 System.Nullable`1<System.DateTime> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m44DAB9D303D66883109718694F0F8D05A04BFA24 (void);
-// 0x000006AB System.Nullable`1<System.DateTimeOffset> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006D1 System.Nullable`1<System.DateTimeOffset> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mB29037D5C8BB0625593F8FF3E9137B23F0B3904C (void);
-// 0x000006AC System.Nullable`1<System.Decimal> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006D2 System.Nullable`1<System.Decimal> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mF16EAAEB31739DA09A7DC4992F458AA32164E4B4 (void);
-// 0x000006AD System.Nullable`1<System.Double> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006D3 System.Nullable`1<System.Double> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mAD9E59A16FC138942E60439451583B40A6622B84 (void);
-// 0x000006AE System.Nullable`1<System.Char> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006D4 System.Nullable`1<System.Char> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m9266A41F56952FAB83ECE2F80F0D391D7CB49DAD (void);
-// 0x000006AF System.Int32 Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006D5 System.Int32 Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m675F9DF6B2B881BFEF268C2EA2281BD747DA53FF (void);
-// 0x000006B0 System.Int16 Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006D6 System.Int16 Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m6C5BFA16AC75444CB9C19DD59159A758110639C3 (void);
-// 0x000006B1 System.UInt16 Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006D7 System.UInt16 Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mD8C8C97F46C18AB14F6BA3FD426E3C70AAAE61CA (void);
-// 0x000006B2 System.Char Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006D8 System.Char Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mDB7131A4C0E125FDCBD38FD1D44E7329EA73BCEA (void);
-// 0x000006B3 System.Byte Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006D9 System.Byte Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m0ABF1DBB815299D25D47455462EAB5D59BB9495B (void);
-// 0x000006B4 System.SByte Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006DA System.SByte Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mFEB094EED6392AA5DE67E99BE307E97A6E0515C5 (void);
-// 0x000006B5 System.Nullable`1<System.Int32> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006DB System.Nullable`1<System.Int32> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mD79616B66CE5A03BE829645E9748EC5CD753193F (void);
-// 0x000006B6 System.Nullable`1<System.Int16> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006DC System.Nullable`1<System.Int16> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m668891361151B76ACC7ADEB6B99FB00951678697 (void);
-// 0x000006B7 System.Nullable`1<System.UInt16> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006DD System.Nullable`1<System.UInt16> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mC2B94178D4F9C8357C9360381350F1FAD226C002 (void);
-// 0x000006B8 System.Nullable`1<System.Byte> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006DE System.Nullable`1<System.Byte> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mF49D5BC1CC63B6FEF02C511BBB93B846B5EDC3DE (void);
-// 0x000006B9 System.Nullable`1<System.SByte> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006DF System.Nullable`1<System.SByte> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m80F75B52D87CB0732352D0AF8F103E225967583C (void);
-// 0x000006BA System.DateTime Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006E0 System.DateTime Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m737519C62BBBAA3E5F9CF34109D0FF7C5CA12D85 (void);
-// 0x000006BB System.Nullable`1<System.Int64> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006E1 System.Nullable`1<System.Int64> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m1182C27ED52B7D53E11B06ECDA03D7791B12A7E8 (void);
-// 0x000006BC System.Nullable`1<System.Single> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006E2 System.Nullable`1<System.Single> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mB392DC8AA472870BD3EBF7134BFC0122FE5D3F52 (void);
-// 0x000006BD System.Decimal Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006E3 System.Decimal Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mD204C1909CB15093F42123E7FCFDEB28A3FAA06C (void);
-// 0x000006BE System.Nullable`1<System.UInt32> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006E4 System.Nullable`1<System.UInt32> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m608D9905DAFC697A9F211A76FCE462113B2A9DE1 (void);
-// 0x000006BF System.Nullable`1<System.UInt64> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006E5 System.Nullable`1<System.UInt64> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m7CCADCB07D6792C398362A10B7BC6751D0A478B3 (void);
-// 0x000006C0 System.Double Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006E6 System.Double Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m16D975627A13435285F64AC55881E59191094639 (void);
-// 0x000006C1 System.Single Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006E7 System.Single Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mB7988FA691242F62FDADAF5288297E2E440D212C (void);
-// 0x000006C2 System.String Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006E8 System.String Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m5BA5368F8609802CD0E909FC68953CD30F12120A (void);
-// 0x000006C3 System.UInt32 Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006E9 System.UInt32 Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m886988AD4CE4AB50D296AD1EE14A704D86BEE80C (void);
-// 0x000006C4 System.UInt64 Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006EA System.UInt64 Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mD503E89834FDC9D245B114EBD426B18A838C89E9 (void);
-// 0x000006C5 System.Guid Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006EB System.Guid Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mDFE188F412FC29FA2E4753360B1A8924A113F028 (void);
-// 0x000006C6 System.Nullable`1<System.Guid> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006EC System.Nullable`1<System.Guid> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mEE67B8A865EBCB69A87CC214F089701D04AC525C (void);
-// 0x000006C7 System.TimeSpan Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006ED System.TimeSpan Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_mD7518543A330838D99AAB04769DA9356BCF877D1 (void);
-// 0x000006C8 System.Nullable`1<System.TimeSpan> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006EE System.Nullable`1<System.TimeSpan> Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m0FA96B6BB4C31346D2863F1F8A7B37B30ED4927A (void);
-// 0x000006C9 System.Uri Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
+// 0x000006EF System.Uri Newtonsoft.Json.Linq.JToken::op_Explicit(Newtonsoft.Json.Linq.JToken)
 extern void JToken_op_Explicit_m7BA530798892BBEBD0D306DE9447ACFA2A4EEAA1 (void);
-// 0x000006CA System.Numerics.BigInteger Newtonsoft.Json.Linq.JToken::ToBigInteger(Newtonsoft.Json.Linq.JToken)
+// 0x000006F0 System.Numerics.BigInteger Newtonsoft.Json.Linq.JToken::ToBigInteger(Newtonsoft.Json.Linq.JToken)
 extern void JToken_ToBigInteger_m3F0850691F24292363D206AB26D25354EFDCA733 (void);
-// 0x000006CB System.Nullable`1<System.Numerics.BigInteger> Newtonsoft.Json.Linq.JToken::ToBigIntegerNullable(Newtonsoft.Json.Linq.JToken)
+// 0x000006F1 System.Nullable`1<System.Numerics.BigInteger> Newtonsoft.Json.Linq.JToken::ToBigIntegerNullable(Newtonsoft.Json.Linq.JToken)
 extern void JToken_ToBigIntegerNullable_m60484421DC29323B07B44E1E258014228BD9913C (void);
-// 0x000006CC System.Collections.IEnumerator Newtonsoft.Json.Linq.JToken::System.Collections.IEnumerable.GetEnumerator()
+// 0x000006F2 System.Collections.IEnumerator Newtonsoft.Json.Linq.JToken::System.Collections.IEnumerable.GetEnumerator()
 extern void JToken_System_Collections_IEnumerable_GetEnumerator_mD993ADA8AD9D234B6BC2CFA88ABCCE0F26D7BF14 (void);
-// 0x000006CD System.Collections.Generic.IEnumerator`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JToken::System.Collections.Generic.IEnumerable<Newtonsoft.Json.Linq.JToken>.GetEnumerator()
+// 0x000006F3 System.Collections.Generic.IEnumerator`1<Newtonsoft.Json.Linq.JToken> Newtonsoft.Json.Linq.JToken::System.Collections.Generic.IEnumerable<Newtonsoft.Json.Linq.JToken>.GetEnumerator()
 extern void JToken_System_Collections_Generic_IEnumerableU3CNewtonsoft_Json_Linq_JTokenU3E_GetEnumerator_m3FA527283782FF975F24EC47530EFE0F9B124C36 (void);
-// 0x000006CE Newtonsoft.Json.JsonReader Newtonsoft.Json.Linq.JToken::CreateReader()
+// 0x000006F4 Newtonsoft.Json.JsonReader Newtonsoft.Json.Linq.JToken::CreateReader()
 extern void JToken_CreateReader_m6CAEBFF02AD5FB84B749F5255635EF6015DA5506 (void);
-// 0x000006CF System.Object Newtonsoft.Json.Linq.JToken::ToObject(System.Type)
+// 0x000006F5 System.Object Newtonsoft.Json.Linq.JToken::ToObject(System.Type)
 extern void JToken_ToObject_mC444D67B5707B621E5DF7553A9359138970EA82E (void);
-// 0x000006D0 System.Object Newtonsoft.Json.Linq.JToken::ToObject(System.Type,Newtonsoft.Json.JsonSerializer)
+// 0x000006F6 System.Object Newtonsoft.Json.Linq.JToken::ToObject(System.Type,Newtonsoft.Json.JsonSerializer)
 extern void JToken_ToObject_m8976BE4E3ADA454F5064ED49F45B426D8AA57961 (void);
-// 0x000006D1 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::ReadFrom(Newtonsoft.Json.JsonReader)
+// 0x000006F7 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::ReadFrom(Newtonsoft.Json.JsonReader)
 extern void JToken_ReadFrom_m248B81C75110D2966113C778943C7161084639BA (void);
-// 0x000006D2 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::ReadFrom(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Linq.JsonLoadSettings)
+// 0x000006F8 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::ReadFrom(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Linq.JsonLoadSettings)
 extern void JToken_ReadFrom_mA26796D3F0A666B2326F7F8EC2AD980F6C76C47F (void);
-// 0x000006D3 System.Void Newtonsoft.Json.Linq.JToken::SetLineInfo(Newtonsoft.Json.IJsonLineInfo,Newtonsoft.Json.Linq.JsonLoadSettings)
+// 0x000006F9 System.Void Newtonsoft.Json.Linq.JToken::SetLineInfo(Newtonsoft.Json.IJsonLineInfo,Newtonsoft.Json.Linq.JsonLoadSettings)
 extern void JToken_SetLineInfo_mBEF660AD05B435D7446AAFDEF304AC8399E9E80D (void);
-// 0x000006D4 System.Void Newtonsoft.Json.Linq.JToken::SetLineInfo(System.Int32,System.Int32)
+// 0x000006FA System.Void Newtonsoft.Json.Linq.JToken::SetLineInfo(System.Int32,System.Int32)
 extern void JToken_SetLineInfo_m0933F257843FF57DE04696F12C313985ED4F0EC8 (void);
-// 0x000006D5 System.Boolean Newtonsoft.Json.Linq.JToken::Newtonsoft.Json.IJsonLineInfo.HasLineInfo()
+// 0x000006FB System.Boolean Newtonsoft.Json.Linq.JToken::Newtonsoft.Json.IJsonLineInfo.HasLineInfo()
 extern void JToken_Newtonsoft_Json_IJsonLineInfo_HasLineInfo_m556577974E56DD174B61C8D5F1C7ADCD5EFD6E86 (void);
-// 0x000006D6 System.Int32 Newtonsoft.Json.Linq.JToken::Newtonsoft.Json.IJsonLineInfo.get_LineNumber()
+// 0x000006FC System.Int32 Newtonsoft.Json.Linq.JToken::Newtonsoft.Json.IJsonLineInfo.get_LineNumber()
 extern void JToken_Newtonsoft_Json_IJsonLineInfo_get_LineNumber_m44B49108E1E0A7EE7C3263B3289B4F927184B06B (void);
-// 0x000006D7 System.Int32 Newtonsoft.Json.Linq.JToken::Newtonsoft.Json.IJsonLineInfo.get_LinePosition()
+// 0x000006FD System.Int32 Newtonsoft.Json.Linq.JToken::Newtonsoft.Json.IJsonLineInfo.get_LinePosition()
 extern void JToken_Newtonsoft_Json_IJsonLineInfo_get_LinePosition_mF5E3EE0DBF1FB826A256633E623C75C2BE6439A6 (void);
-// 0x000006D8 System.Dynamic.DynamicMetaObject Newtonsoft.Json.Linq.JToken::GetMetaObject(System.Linq.Expressions.Expression)
+// 0x000006FE System.Dynamic.DynamicMetaObject Newtonsoft.Json.Linq.JToken::GetMetaObject(System.Linq.Expressions.Expression)
 extern void JToken_GetMetaObject_mB7DA5A7AD92F64F41EA48ED6393465CD34B5E839 (void);
-// 0x000006D9 System.Dynamic.DynamicMetaObject Newtonsoft.Json.Linq.JToken::System.Dynamic.IDynamicMetaObjectProvider.GetMetaObject(System.Linq.Expressions.Expression)
+// 0x000006FF System.Dynamic.DynamicMetaObject Newtonsoft.Json.Linq.JToken::System.Dynamic.IDynamicMetaObjectProvider.GetMetaObject(System.Linq.Expressions.Expression)
 extern void JToken_System_Dynamic_IDynamicMetaObjectProvider_GetMetaObject_mAC2BEB359FF5D3506B8ED67868ED92F5773FAAA7 (void);
-// 0x000006DA System.Object Newtonsoft.Json.Linq.JToken::System.ICloneable.Clone()
+// 0x00000700 System.Object Newtonsoft.Json.Linq.JToken::System.ICloneable.Clone()
 extern void JToken_System_ICloneable_Clone_mB7511E41F80D4CD074B7EBC6AC8A517B4958FDD6 (void);
-// 0x000006DB Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::DeepClone()
+// 0x00000701 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JToken::DeepClone()
 extern void JToken_DeepClone_m739086BE6B507A8DB42EF7CA781DE073DE958769 (void);
-// 0x000006DC System.Void Newtonsoft.Json.Linq.JToken::AddAnnotation(System.Object)
+// 0x00000702 System.Void Newtonsoft.Json.Linq.JToken::AddAnnotation(System.Object)
 extern void JToken_AddAnnotation_mDD2E3199044DCD2A87F38CF1309456729565518A (void);
-// 0x000006DD T Newtonsoft.Json.Linq.JToken::Annotation()
-// 0x000006DE System.Void Newtonsoft.Json.Linq.JToken::.cctor()
+// 0x00000703 T Newtonsoft.Json.Linq.JToken::Annotation()
+// 0x00000704 System.Void Newtonsoft.Json.Linq.JToken::.cctor()
 extern void JToken__cctor_m4BB223152B87772EC631A145EAD8E9508738EDE4 (void);
-// 0x000006DF System.Void Newtonsoft.Json.Linq.JToken/LineInfoAnnotation::.ctor(System.Int32,System.Int32)
+// 0x00000705 System.Void Newtonsoft.Json.Linq.JToken/LineInfoAnnotation::.ctor(System.Int32,System.Int32)
 extern void LineInfoAnnotation__ctor_m0C583DE99EC7536A76614C21A77968F90541DBE2 (void);
-// 0x000006E0 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JTokenReader::get_CurrentToken()
+// 0x00000706 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JTokenReader::get_CurrentToken()
 extern void JTokenReader_get_CurrentToken_m024A2FC188619BAAAB5244025B37FC8E11385682 (void);
-// 0x000006E1 System.Void Newtonsoft.Json.Linq.JTokenReader::.ctor(Newtonsoft.Json.Linq.JToken)
+// 0x00000707 System.Void Newtonsoft.Json.Linq.JTokenReader::.ctor(Newtonsoft.Json.Linq.JToken)
 extern void JTokenReader__ctor_m65E0AE7A7E0B4C1F32BEA94718030B3F10CAE22F (void);
-// 0x000006E2 System.Boolean Newtonsoft.Json.Linq.JTokenReader::Read()
+// 0x00000708 System.Boolean Newtonsoft.Json.Linq.JTokenReader::Read()
 extern void JTokenReader_Read_mC1303C39C34446B52820F368E22DE4C0C1B71152 (void);
-// 0x000006E3 System.Boolean Newtonsoft.Json.Linq.JTokenReader::ReadOver(Newtonsoft.Json.Linq.JToken)
+// 0x00000709 System.Boolean Newtonsoft.Json.Linq.JTokenReader::ReadOver(Newtonsoft.Json.Linq.JToken)
 extern void JTokenReader_ReadOver_m71E0F922F441B54E55D8C6EB2BEF9A64A8B57024 (void);
-// 0x000006E4 System.Boolean Newtonsoft.Json.Linq.JTokenReader::ReadToEnd()
+// 0x0000070A System.Boolean Newtonsoft.Json.Linq.JTokenReader::ReadToEnd()
 extern void JTokenReader_ReadToEnd_m72989B031FBD3D1AD3C6D1728791C71A1F8C3A7C (void);
-// 0x000006E5 System.Nullable`1<Newtonsoft.Json.JsonToken> Newtonsoft.Json.Linq.JTokenReader::GetEndToken(Newtonsoft.Json.Linq.JContainer)
+// 0x0000070B System.Nullable`1<Newtonsoft.Json.JsonToken> Newtonsoft.Json.Linq.JTokenReader::GetEndToken(Newtonsoft.Json.Linq.JContainer)
 extern void JTokenReader_GetEndToken_mE027457091AFA815634CEB3924FECBCE8544F348 (void);
-// 0x000006E6 System.Boolean Newtonsoft.Json.Linq.JTokenReader::ReadInto(Newtonsoft.Json.Linq.JContainer)
+// 0x0000070C System.Boolean Newtonsoft.Json.Linq.JTokenReader::ReadInto(Newtonsoft.Json.Linq.JContainer)
 extern void JTokenReader_ReadInto_m20904B1AC7E95405B9E9DB6B8CA7552E9934B558 (void);
-// 0x000006E7 System.Boolean Newtonsoft.Json.Linq.JTokenReader::SetEnd(Newtonsoft.Json.Linq.JContainer)
+// 0x0000070D System.Boolean Newtonsoft.Json.Linq.JTokenReader::SetEnd(Newtonsoft.Json.Linq.JContainer)
 extern void JTokenReader_SetEnd_m04CDF21BEA7FDA17F0F8437893CA6A1614091630 (void);
-// 0x000006E8 System.Void Newtonsoft.Json.Linq.JTokenReader::SetToken(Newtonsoft.Json.Linq.JToken)
+// 0x0000070E System.Void Newtonsoft.Json.Linq.JTokenReader::SetToken(Newtonsoft.Json.Linq.JToken)
 extern void JTokenReader_SetToken_m18EAF07A2407BD3D7100FB5E1D59EC3F7C3C6E54 (void);
-// 0x000006E9 System.String Newtonsoft.Json.Linq.JTokenReader::SafeToString(System.Object)
+// 0x0000070F System.String Newtonsoft.Json.Linq.JTokenReader::SafeToString(System.Object)
 extern void JTokenReader_SafeToString_mB24203F1104C1B9ED71B06BBDB3E128072074309 (void);
-// 0x000006EA System.Boolean Newtonsoft.Json.Linq.JTokenReader::Newtonsoft.Json.IJsonLineInfo.HasLineInfo()
+// 0x00000710 System.Boolean Newtonsoft.Json.Linq.JTokenReader::Newtonsoft.Json.IJsonLineInfo.HasLineInfo()
 extern void JTokenReader_Newtonsoft_Json_IJsonLineInfo_HasLineInfo_m36275D6027B773B1F536D51DAA24A6D0A50F3AC9 (void);
-// 0x000006EB System.Int32 Newtonsoft.Json.Linq.JTokenReader::Newtonsoft.Json.IJsonLineInfo.get_LineNumber()
+// 0x00000711 System.Int32 Newtonsoft.Json.Linq.JTokenReader::Newtonsoft.Json.IJsonLineInfo.get_LineNumber()
 extern void JTokenReader_Newtonsoft_Json_IJsonLineInfo_get_LineNumber_mBAF4D2BB9AFBE6B1DF5271C5879AEAC5B77454D4 (void);
-// 0x000006EC System.Int32 Newtonsoft.Json.Linq.JTokenReader::Newtonsoft.Json.IJsonLineInfo.get_LinePosition()
+// 0x00000712 System.Int32 Newtonsoft.Json.Linq.JTokenReader::Newtonsoft.Json.IJsonLineInfo.get_LinePosition()
 extern void JTokenReader_Newtonsoft_Json_IJsonLineInfo_get_LinePosition_m5D72994D2A16FA912A094D1F63B61436E6AA703E (void);
-// 0x000006ED System.String Newtonsoft.Json.Linq.JTokenReader::get_Path()
+// 0x00000713 System.String Newtonsoft.Json.Linq.JTokenReader::get_Path()
 extern void JTokenReader_get_Path_m1021EB22AF2B427989C3CC75EACF6744F24142E1 (void);
-// 0x000006EE Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JTokenWriter::get_Token()
+// 0x00000714 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JTokenWriter::get_Token()
 extern void JTokenWriter_get_Token_mD66E7FE97D4A9B60BDAA3113DD417730922C8259 (void);
-// 0x000006EF System.Void Newtonsoft.Json.Linq.JTokenWriter::.ctor()
+// 0x00000715 System.Void Newtonsoft.Json.Linq.JTokenWriter::.ctor()
 extern void JTokenWriter__ctor_m392B1DC212BE59E2BEDC01995775505318CC8D2B (void);
-// 0x000006F0 System.Void Newtonsoft.Json.Linq.JTokenWriter::Close()
+// 0x00000716 System.Void Newtonsoft.Json.Linq.JTokenWriter::Close()
 extern void JTokenWriter_Close_mA47CE40618FD4256DB206AFF2966C46C86E9CF47 (void);
-// 0x000006F1 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteStartObject()
+// 0x00000717 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteStartObject()
 extern void JTokenWriter_WriteStartObject_mE2A86385EB18FFD2285B687405023E0AE647A396 (void);
-// 0x000006F2 System.Void Newtonsoft.Json.Linq.JTokenWriter::AddParent(Newtonsoft.Json.Linq.JContainer)
+// 0x00000718 System.Void Newtonsoft.Json.Linq.JTokenWriter::AddParent(Newtonsoft.Json.Linq.JContainer)
 extern void JTokenWriter_AddParent_mB3931C5A443ACF56257236CF7B640CD0AF2FAB67 (void);
-// 0x000006F3 System.Void Newtonsoft.Json.Linq.JTokenWriter::RemoveParent()
+// 0x00000719 System.Void Newtonsoft.Json.Linq.JTokenWriter::RemoveParent()
 extern void JTokenWriter_RemoveParent_mD609589439ACFE5F6AE544CEED2B312335D0F9E2 (void);
-// 0x000006F4 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteStartArray()
+// 0x0000071A System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteStartArray()
 extern void JTokenWriter_WriteStartArray_m3B110DA55FEE024A6863BA0B73AB31FD733E2F6D (void);
-// 0x000006F5 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteStartConstructor(System.String)
+// 0x0000071B System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteStartConstructor(System.String)
 extern void JTokenWriter_WriteStartConstructor_m39B82EEE3ED975CF8C9B58CFA0C7AD91F1A9FE90 (void);
-// 0x000006F6 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteEnd(Newtonsoft.Json.JsonToken)
+// 0x0000071C System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteEnd(Newtonsoft.Json.JsonToken)
 extern void JTokenWriter_WriteEnd_mDA40400EC5CC6C91D992770DA480B7E142F0DA2C (void);
-// 0x000006F7 System.Void Newtonsoft.Json.Linq.JTokenWriter::WritePropertyName(System.String)
+// 0x0000071D System.Void Newtonsoft.Json.Linq.JTokenWriter::WritePropertyName(System.String)
 extern void JTokenWriter_WritePropertyName_m9165A3D25E5603D0A535E59548B69E35D2F28E8C (void);
-// 0x000006F8 System.Void Newtonsoft.Json.Linq.JTokenWriter::AddValue(System.Object,Newtonsoft.Json.JsonToken)
+// 0x0000071E System.Void Newtonsoft.Json.Linq.JTokenWriter::AddValue(System.Object,Newtonsoft.Json.JsonToken)
 extern void JTokenWriter_AddValue_m3986B25841DF398E0E5C1551033073A0E9C38858 (void);
-// 0x000006F9 System.Void Newtonsoft.Json.Linq.JTokenWriter::AddValue(Newtonsoft.Json.Linq.JValue,Newtonsoft.Json.JsonToken)
+// 0x0000071F System.Void Newtonsoft.Json.Linq.JTokenWriter::AddValue(Newtonsoft.Json.Linq.JValue,Newtonsoft.Json.JsonToken)
 extern void JTokenWriter_AddValue_mD55B423AF00463025A6F97A55A2C8208FE675F7C (void);
-// 0x000006FA System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Object)
+// 0x00000720 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Object)
 extern void JTokenWriter_WriteValue_m67943BC66B9CC821BA561DB6934820671F933BBD (void);
-// 0x000006FB System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteNull()
+// 0x00000721 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteNull()
 extern void JTokenWriter_WriteNull_m68C45C59E329A174BABBB21AD48F6D59E9E852BE (void);
-// 0x000006FC System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteUndefined()
+// 0x00000722 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteUndefined()
 extern void JTokenWriter_WriteUndefined_m1DE06F4ACE50E4933FCFFA107E24B72668734C0C (void);
-// 0x000006FD System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteRaw(System.String)
+// 0x00000723 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteRaw(System.String)
 extern void JTokenWriter_WriteRaw_m5D7F8650CE7A6943A35333C2959326A51CEA5B2F (void);
-// 0x000006FE System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteComment(System.String)
+// 0x00000724 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteComment(System.String)
 extern void JTokenWriter_WriteComment_m00FD3E9EFB6506EAEDD1561AC3515130C45939C9 (void);
-// 0x000006FF System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.String)
+// 0x00000725 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.String)
 extern void JTokenWriter_WriteValue_m9C5386C068A4F425E2440F9CBB0F131A52331857 (void);
-// 0x00000700 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Int32)
+// 0x00000726 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Int32)
 extern void JTokenWriter_WriteValue_m7CC54F5ACDFA8871080BF870CC17D4036169F66D (void);
-// 0x00000701 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.UInt32)
+// 0x00000727 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.UInt32)
 extern void JTokenWriter_WriteValue_mB9C4CDE084BACF3FC87578BCD7FF242B8D15C6F9 (void);
-// 0x00000702 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Int64)
+// 0x00000728 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Int64)
 extern void JTokenWriter_WriteValue_m3427B97E0ABCD8031FCFD4CCF31D28A80A36B02C (void);
-// 0x00000703 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.UInt64)
+// 0x00000729 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.UInt64)
 extern void JTokenWriter_WriteValue_m5F9558FAFA867449B0ED9E149E9EAEA54796505E (void);
-// 0x00000704 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Single)
+// 0x0000072A System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Single)
 extern void JTokenWriter_WriteValue_m07BB12F20AD229C786D829DA64FEC23218BA1C75 (void);
-// 0x00000705 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Double)
+// 0x0000072B System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Double)
 extern void JTokenWriter_WriteValue_m4A2CA3B7877CE6FF09E81DD6E84195FAE08C7321 (void);
-// 0x00000706 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Boolean)
+// 0x0000072C System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Boolean)
 extern void JTokenWriter_WriteValue_m4463EB96A971DA2F6B8CCB510BF6E60657ADF75E (void);
-// 0x00000707 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Int16)
+// 0x0000072D System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Int16)
 extern void JTokenWriter_WriteValue_mF5F91DF16DC8777D50EF027906DB72D5BF97A99F (void);
-// 0x00000708 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.UInt16)
+// 0x0000072E System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.UInt16)
 extern void JTokenWriter_WriteValue_m0F1D27DBA35AF5275370020052E14DC2CF3B0DC3 (void);
-// 0x00000709 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Char)
+// 0x0000072F System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Char)
 extern void JTokenWriter_WriteValue_mA683A8E1137A340C004158D8E413CCB4BFFD8DB0 (void);
-// 0x0000070A System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Byte)
+// 0x00000730 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Byte)
 extern void JTokenWriter_WriteValue_m3837E12DD05FC9269754ABD6027EF19876065B45 (void);
-// 0x0000070B System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.SByte)
+// 0x00000731 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.SByte)
 extern void JTokenWriter_WriteValue_mF452FCAD3EF36FCBC731D9A079D0DF34C3EA0E28 (void);
-// 0x0000070C System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Decimal)
+// 0x00000732 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Decimal)
 extern void JTokenWriter_WriteValue_mCF5461C037D0F8B382614D40724B1960EF3EEE07 (void);
-// 0x0000070D System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.DateTime)
+// 0x00000733 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.DateTime)
 extern void JTokenWriter_WriteValue_mAB9C44736D2C179DAC4C27859945B5445570F906 (void);
-// 0x0000070E System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.DateTimeOffset)
+// 0x00000734 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.DateTimeOffset)
 extern void JTokenWriter_WriteValue_mD3B06644AC26658391CD607BA9C1233A9E87D4C4 (void);
-// 0x0000070F System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Byte[])
+// 0x00000735 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Byte[])
 extern void JTokenWriter_WriteValue_mA121C60399591E5C875050EBC3B406F19186E93C (void);
-// 0x00000710 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.TimeSpan)
+// 0x00000736 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.TimeSpan)
 extern void JTokenWriter_WriteValue_mA91B2741A0F352900C953F0728EA964835CEA7DD (void);
-// 0x00000711 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Guid)
+// 0x00000737 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Guid)
 extern void JTokenWriter_WriteValue_mA36799BAE35239AD168CE4B6FAF44F242ACDC843 (void);
-// 0x00000712 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Uri)
+// 0x00000738 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteValue(System.Uri)
 extern void JTokenWriter_WriteValue_mEF586754160835B651B593790ADDBCE78564B687 (void);
-// 0x00000713 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteToken(Newtonsoft.Json.JsonReader,System.Boolean,System.Boolean,System.Boolean)
+// 0x00000739 System.Void Newtonsoft.Json.Linq.JTokenWriter::WriteToken(Newtonsoft.Json.JsonReader,System.Boolean,System.Boolean,System.Boolean)
 extern void JTokenWriter_WriteToken_mDA58FA31B4B63DA0C4EAAFAD26082D859A60F41E (void);
-// 0x00000714 System.Void Newtonsoft.Json.Linq.JValue::.ctor(System.Object,Newtonsoft.Json.Linq.JTokenType)
+// 0x0000073A System.Void Newtonsoft.Json.Linq.JValue::.ctor(System.Object,Newtonsoft.Json.Linq.JTokenType)
 extern void JValue__ctor_m237A4134C62DB40991E9D7B05B8E56E9B43EFD3C (void);
-// 0x00000715 System.Void Newtonsoft.Json.Linq.JValue::.ctor(Newtonsoft.Json.Linq.JValue)
+// 0x0000073B System.Void Newtonsoft.Json.Linq.JValue::.ctor(Newtonsoft.Json.Linq.JValue)
 extern void JValue__ctor_mDDF482EC2A5ADDA6B5AC98BD0062CF7B44A00D8D (void);
-// 0x00000716 System.Void Newtonsoft.Json.Linq.JValue::.ctor(System.Object)
+// 0x0000073C System.Void Newtonsoft.Json.Linq.JValue::.ctor(System.Object)
 extern void JValue__ctor_mF2A2D21CEE16FA5A12C4554CEEB53FC02E4A221B (void);
-// 0x00000717 System.Boolean Newtonsoft.Json.Linq.JValue::get_HasValues()
+// 0x0000073D System.Boolean Newtonsoft.Json.Linq.JValue::get_HasValues()
 extern void JValue_get_HasValues_m8C74B1B784B71584BE94C451E9C57023CD382241 (void);
-// 0x00000718 System.Int32 Newtonsoft.Json.Linq.JValue::CompareBigInteger(System.Numerics.BigInteger,System.Object)
+// 0x0000073E System.Int32 Newtonsoft.Json.Linq.JValue::CompareBigInteger(System.Numerics.BigInteger,System.Object)
 extern void JValue_CompareBigInteger_m2541E3C4B98D85C34E9F9D32349CFD122E2AF678 (void);
-// 0x00000719 System.Int32 Newtonsoft.Json.Linq.JValue::Compare(Newtonsoft.Json.Linq.JTokenType,System.Object,System.Object)
+// 0x0000073F System.Int32 Newtonsoft.Json.Linq.JValue::Compare(Newtonsoft.Json.Linq.JTokenType,System.Object,System.Object)
 extern void JValue_Compare_m9966DE7DD1403D62AD309E1B2127A463A972EFEA (void);
-// 0x0000071A System.Int32 Newtonsoft.Json.Linq.JValue::CompareFloat(System.Object,System.Object)
+// 0x00000740 System.Int32 Newtonsoft.Json.Linq.JValue::CompareFloat(System.Object,System.Object)
 extern void JValue_CompareFloat_m34C0C26505983FA2D779ACD4D65149A80488803D (void);
-// 0x0000071B Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JValue::CloneToken()
+// 0x00000741 Newtonsoft.Json.Linq.JToken Newtonsoft.Json.Linq.JValue::CloneToken()
 extern void JValue_CloneToken_m92798B7BB61678320E7628242C726BD1943266DC (void);
-// 0x0000071C Newtonsoft.Json.Linq.JValue Newtonsoft.Json.Linq.JValue::CreateComment(System.String)
+// 0x00000742 Newtonsoft.Json.Linq.JValue Newtonsoft.Json.Linq.JValue::CreateComment(System.String)
 extern void JValue_CreateComment_mA47D885CEF88511AC29E240A89AE03802A98143F (void);
-// 0x0000071D Newtonsoft.Json.Linq.JValue Newtonsoft.Json.Linq.JValue::CreateNull()
+// 0x00000743 Newtonsoft.Json.Linq.JValue Newtonsoft.Json.Linq.JValue::CreateNull()
 extern void JValue_CreateNull_m1DB38E2080809C0BF92C5200D6BD2D6E00909484 (void);
-// 0x0000071E Newtonsoft.Json.Linq.JValue Newtonsoft.Json.Linq.JValue::CreateUndefined()
+// 0x00000744 Newtonsoft.Json.Linq.JValue Newtonsoft.Json.Linq.JValue::CreateUndefined()
 extern void JValue_CreateUndefined_mC4ACBC800C4E11030514154882B34378CCF6FB55 (void);
-// 0x0000071F Newtonsoft.Json.Linq.JTokenType Newtonsoft.Json.Linq.JValue::GetValueType(System.Nullable`1<Newtonsoft.Json.Linq.JTokenType>,System.Object)
+// 0x00000745 Newtonsoft.Json.Linq.JTokenType Newtonsoft.Json.Linq.JValue::GetValueType(System.Nullable`1<Newtonsoft.Json.Linq.JTokenType>,System.Object)
 extern void JValue_GetValueType_m796D0466239AA06F1DB3D6E8EDB68D1B3CABE72A (void);
-// 0x00000720 Newtonsoft.Json.Linq.JTokenType Newtonsoft.Json.Linq.JValue::GetStringValueType(System.Nullable`1<Newtonsoft.Json.Linq.JTokenType>)
+// 0x00000746 Newtonsoft.Json.Linq.JTokenType Newtonsoft.Json.Linq.JValue::GetStringValueType(System.Nullable`1<Newtonsoft.Json.Linq.JTokenType>)
 extern void JValue_GetStringValueType_m8CE8DA84EE84A03ACE0748EAC7E0D3406A4E9BF2 (void);
-// 0x00000721 Newtonsoft.Json.Linq.JTokenType Newtonsoft.Json.Linq.JValue::get_Type()
+// 0x00000747 Newtonsoft.Json.Linq.JTokenType Newtonsoft.Json.Linq.JValue::get_Type()
 extern void JValue_get_Type_mDBE90AA41E348E8E8227B545CEB91C9AC839581D (void);
-// 0x00000722 System.Object Newtonsoft.Json.Linq.JValue::get_Value()
+// 0x00000748 System.Object Newtonsoft.Json.Linq.JValue::get_Value()
 extern void JValue_get_Value_mE11CB8C6BE12F2DE85E4DD1BF9BBC5FF2F3040C9 (void);
-// 0x00000723 System.Void Newtonsoft.Json.Linq.JValue::WriteTo(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.JsonConverter[])
+// 0x00000749 System.Void Newtonsoft.Json.Linq.JValue::WriteTo(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.JsonConverter[])
 extern void JValue_WriteTo_m0C801544E7868DD113AD033E16816047415A5676 (void);
-// 0x00000724 System.Boolean Newtonsoft.Json.Linq.JValue::ValuesEquals(Newtonsoft.Json.Linq.JValue,Newtonsoft.Json.Linq.JValue)
+// 0x0000074A System.Boolean Newtonsoft.Json.Linq.JValue::ValuesEquals(Newtonsoft.Json.Linq.JValue,Newtonsoft.Json.Linq.JValue)
 extern void JValue_ValuesEquals_m1928403031F4A0C48ADFA934DC1E915893E46F64 (void);
-// 0x00000725 System.Boolean Newtonsoft.Json.Linq.JValue::Equals(Newtonsoft.Json.Linq.JValue)
+// 0x0000074B System.Boolean Newtonsoft.Json.Linq.JValue::Equals(Newtonsoft.Json.Linq.JValue)
 extern void JValue_Equals_m615A9B8692A3CF0351A1A311637BB470DCFD08D2 (void);
-// 0x00000726 System.Boolean Newtonsoft.Json.Linq.JValue::Equals(System.Object)
+// 0x0000074C System.Boolean Newtonsoft.Json.Linq.JValue::Equals(System.Object)
 extern void JValue_Equals_m1FAA2E25F466587E7655605BD7381D5A6621FB37 (void);
-// 0x00000727 System.Int32 Newtonsoft.Json.Linq.JValue::GetHashCode()
+// 0x0000074D System.Int32 Newtonsoft.Json.Linq.JValue::GetHashCode()
 extern void JValue_GetHashCode_mF6EC26257E778A368BA8E7A14F07351B261199FD (void);
-// 0x00000728 System.String Newtonsoft.Json.Linq.JValue::ToString()
+// 0x0000074E System.String Newtonsoft.Json.Linq.JValue::ToString()
 extern void JValue_ToString_m8D09F68A2655A30201137073C984EB7A63C2B048 (void);
-// 0x00000729 System.String Newtonsoft.Json.Linq.JValue::ToString(System.IFormatProvider)
+// 0x0000074F System.String Newtonsoft.Json.Linq.JValue::ToString(System.IFormatProvider)
 extern void JValue_ToString_mFB0FF966FC42D43C558E3581F6F2E463D89D7FF9 (void);
-// 0x0000072A System.String Newtonsoft.Json.Linq.JValue::ToString(System.String,System.IFormatProvider)
+// 0x00000750 System.String Newtonsoft.Json.Linq.JValue::ToString(System.String,System.IFormatProvider)
 extern void JValue_ToString_mEBE5C2CBD5F8176EA5C5A62235489860C295AF13 (void);
-// 0x0000072B System.Dynamic.DynamicMetaObject Newtonsoft.Json.Linq.JValue::GetMetaObject(System.Linq.Expressions.Expression)
+// 0x00000751 System.Dynamic.DynamicMetaObject Newtonsoft.Json.Linq.JValue::GetMetaObject(System.Linq.Expressions.Expression)
 extern void JValue_GetMetaObject_m13B2657A3C7B202D301F641B8EF693B7A079B610 (void);
-// 0x0000072C System.Int32 Newtonsoft.Json.Linq.JValue::System.IComparable.CompareTo(System.Object)
+// 0x00000752 System.Int32 Newtonsoft.Json.Linq.JValue::System.IComparable.CompareTo(System.Object)
 extern void JValue_System_IComparable_CompareTo_m32F8E46FAA5630070D0DE62D23C7C203F4DE0D19 (void);
-// 0x0000072D System.Int32 Newtonsoft.Json.Linq.JValue::CompareTo(Newtonsoft.Json.Linq.JValue)
+// 0x00000753 System.Int32 Newtonsoft.Json.Linq.JValue::CompareTo(Newtonsoft.Json.Linq.JValue)
 extern void JValue_CompareTo_mAFE55EB2862C2F317EA81D87BFFEE09EE04C7E8C (void);
-// 0x0000072E System.TypeCode Newtonsoft.Json.Linq.JValue::System.IConvertible.GetTypeCode()
+// 0x00000754 System.TypeCode Newtonsoft.Json.Linq.JValue::System.IConvertible.GetTypeCode()
 extern void JValue_System_IConvertible_GetTypeCode_m9EF17B4B5B0C620FC38319C5488B66E170A726E2 (void);
-// 0x0000072F System.Boolean Newtonsoft.Json.Linq.JValue::System.IConvertible.ToBoolean(System.IFormatProvider)
+// 0x00000755 System.Boolean Newtonsoft.Json.Linq.JValue::System.IConvertible.ToBoolean(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToBoolean_m36A7AD3778E99606772175FA3027BB503853FC44 (void);
-// 0x00000730 System.Char Newtonsoft.Json.Linq.JValue::System.IConvertible.ToChar(System.IFormatProvider)
+// 0x00000756 System.Char Newtonsoft.Json.Linq.JValue::System.IConvertible.ToChar(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToChar_m8CDBCD0A3518F98FA70E8548980EDACB629969C9 (void);
-// 0x00000731 System.SByte Newtonsoft.Json.Linq.JValue::System.IConvertible.ToSByte(System.IFormatProvider)
+// 0x00000757 System.SByte Newtonsoft.Json.Linq.JValue::System.IConvertible.ToSByte(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToSByte_m26E0818802CB6334376B41A8DD2A71FA341B435E (void);
-// 0x00000732 System.Byte Newtonsoft.Json.Linq.JValue::System.IConvertible.ToByte(System.IFormatProvider)
+// 0x00000758 System.Byte Newtonsoft.Json.Linq.JValue::System.IConvertible.ToByte(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToByte_mD6A3C9FF2F46EB8945234922DBC193C85C79F6A6 (void);
-// 0x00000733 System.Int16 Newtonsoft.Json.Linq.JValue::System.IConvertible.ToInt16(System.IFormatProvider)
+// 0x00000759 System.Int16 Newtonsoft.Json.Linq.JValue::System.IConvertible.ToInt16(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToInt16_m4993A1F5989794B1F5AE9B14D80B5C6A798C7179 (void);
-// 0x00000734 System.UInt16 Newtonsoft.Json.Linq.JValue::System.IConvertible.ToUInt16(System.IFormatProvider)
+// 0x0000075A System.UInt16 Newtonsoft.Json.Linq.JValue::System.IConvertible.ToUInt16(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToUInt16_m8019F4607FDCBD13C3A0BA479D01301E2514E7F1 (void);
-// 0x00000735 System.Int32 Newtonsoft.Json.Linq.JValue::System.IConvertible.ToInt32(System.IFormatProvider)
+// 0x0000075B System.Int32 Newtonsoft.Json.Linq.JValue::System.IConvertible.ToInt32(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToInt32_m92518B61115690867ED6144DF883D7F7BAFEDF48 (void);
-// 0x00000736 System.UInt32 Newtonsoft.Json.Linq.JValue::System.IConvertible.ToUInt32(System.IFormatProvider)
+// 0x0000075C System.UInt32 Newtonsoft.Json.Linq.JValue::System.IConvertible.ToUInt32(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToUInt32_mE5046CA3F7967A1837A25546039DC28554CF9B49 (void);
-// 0x00000737 System.Int64 Newtonsoft.Json.Linq.JValue::System.IConvertible.ToInt64(System.IFormatProvider)
+// 0x0000075D System.Int64 Newtonsoft.Json.Linq.JValue::System.IConvertible.ToInt64(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToInt64_m78236916D9BFBA168F6529DA6C0E5F168360C43C (void);
-// 0x00000738 System.UInt64 Newtonsoft.Json.Linq.JValue::System.IConvertible.ToUInt64(System.IFormatProvider)
+// 0x0000075E System.UInt64 Newtonsoft.Json.Linq.JValue::System.IConvertible.ToUInt64(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToUInt64_m36F2DAB639C6AFFB9BC5246F07537398A530BCDD (void);
-// 0x00000739 System.Single Newtonsoft.Json.Linq.JValue::System.IConvertible.ToSingle(System.IFormatProvider)
+// 0x0000075F System.Single Newtonsoft.Json.Linq.JValue::System.IConvertible.ToSingle(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToSingle_mC4767880EE2D4FD9F9B44B758F9D007458E4A76C (void);
-// 0x0000073A System.Double Newtonsoft.Json.Linq.JValue::System.IConvertible.ToDouble(System.IFormatProvider)
+// 0x00000760 System.Double Newtonsoft.Json.Linq.JValue::System.IConvertible.ToDouble(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToDouble_mD2A7398D43A8F05EE9DBECFD62073B7F7A85BFEA (void);
-// 0x0000073B System.Decimal Newtonsoft.Json.Linq.JValue::System.IConvertible.ToDecimal(System.IFormatProvider)
+// 0x00000761 System.Decimal Newtonsoft.Json.Linq.JValue::System.IConvertible.ToDecimal(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToDecimal_m2FE58350CF83779D805909D23CA41A97A87DA2CB (void);
-// 0x0000073C System.DateTime Newtonsoft.Json.Linq.JValue::System.IConvertible.ToDateTime(System.IFormatProvider)
+// 0x00000762 System.DateTime Newtonsoft.Json.Linq.JValue::System.IConvertible.ToDateTime(System.IFormatProvider)
 extern void JValue_System_IConvertible_ToDateTime_mBBA3D012F6BC3DCA0B769E407069ACC1189F3006 (void);
-// 0x0000073D System.Object Newtonsoft.Json.Linq.JValue::System.IConvertible.ToType(System.Type,System.IFormatProvider)
+// 0x00000763 System.Object Newtonsoft.Json.Linq.JValue::System.IConvertible.ToType(System.Type,System.IFormatProvider)
 extern void JValue_System_IConvertible_ToType_m1B9932B4935F67F85F542516E08EC472FD6E2D85 (void);
-// 0x0000073E System.Void Newtonsoft.Json.Linq.JValue/JValueDynamicProxy::.ctor()
+// 0x00000764 System.Void Newtonsoft.Json.Linq.JValue/JValueDynamicProxy::.ctor()
 extern void JValueDynamicProxy__ctor_m537D83F2237E4BF762054707A3E23A87D5454ECD (void);
-// 0x0000073F System.Void Newtonsoft.Json.Converters.BinaryConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x00000765 System.Void Newtonsoft.Json.Converters.BinaryConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void BinaryConverter_WriteJson_m69F994404EE82368E7728C4234AF0CC90E0EC026 (void);
-// 0x00000740 System.Byte[] Newtonsoft.Json.Converters.BinaryConverter::GetByteArray(System.Object)
+// 0x00000766 System.Byte[] Newtonsoft.Json.Converters.BinaryConverter::GetByteArray(System.Object)
 extern void BinaryConverter_GetByteArray_mCD6FC7C5303AF768B4CF13C4802851C56D9355DB (void);
-// 0x00000741 System.Void Newtonsoft.Json.Converters.BinaryConverter::EnsureReflectionObject(System.Type)
+// 0x00000767 System.Void Newtonsoft.Json.Converters.BinaryConverter::EnsureReflectionObject(System.Type)
 extern void BinaryConverter_EnsureReflectionObject_m1035D407E4A72B5632188DBF8BDD8CA7BC199B23 (void);
-// 0x00000742 System.Object Newtonsoft.Json.Converters.BinaryConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x00000768 System.Object Newtonsoft.Json.Converters.BinaryConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void BinaryConverter_ReadJson_m4A01111BC3DE54C0908616BA02970CBB0ACED500 (void);
-// 0x00000743 System.Byte[] Newtonsoft.Json.Converters.BinaryConverter::ReadByteArray(Newtonsoft.Json.JsonReader)
+// 0x00000769 System.Byte[] Newtonsoft.Json.Converters.BinaryConverter::ReadByteArray(Newtonsoft.Json.JsonReader)
 extern void BinaryConverter_ReadByteArray_m407ED9AAE47771A281AE70F4118EC65615693DB0 (void);
-// 0x00000744 System.Boolean Newtonsoft.Json.Converters.BinaryConverter::CanConvert(System.Type)
+// 0x0000076A System.Boolean Newtonsoft.Json.Converters.BinaryConverter::CanConvert(System.Type)
 extern void BinaryConverter_CanConvert_mCF0611157361D7CDCA5BEDBE9E193FA8C71BDAC6 (void);
-// 0x00000745 System.Void Newtonsoft.Json.Converters.BinaryConverter::.ctor()
+// 0x0000076B System.Void Newtonsoft.Json.Converters.BinaryConverter::.ctor()
 extern void BinaryConverter__ctor_m607E05AC65DC6C9CA87D387611CF4746819EB64A (void);
-// 0x00000746 System.Void Newtonsoft.Json.Converters.BsonObjectIdConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x0000076C System.Void Newtonsoft.Json.Converters.BsonObjectIdConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void BsonObjectIdConverter_WriteJson_m9E836700D7EA6292148351CFC52748A771D534A9 (void);
-// 0x00000747 System.Object Newtonsoft.Json.Converters.BsonObjectIdConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x0000076D System.Object Newtonsoft.Json.Converters.BsonObjectIdConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void BsonObjectIdConverter_ReadJson_mCF5F85A8066C7E145943E02C21DB39C61BCBD7E9 (void);
-// 0x00000748 System.Boolean Newtonsoft.Json.Converters.BsonObjectIdConverter::CanConvert(System.Type)
+// 0x0000076E System.Boolean Newtonsoft.Json.Converters.BsonObjectIdConverter::CanConvert(System.Type)
 extern void BsonObjectIdConverter_CanConvert_mE640F6A67DA5709B890E179D8D011AFC9253F4E3 (void);
-// 0x00000749 System.Void Newtonsoft.Json.Converters.BsonObjectIdConverter::.ctor()
+// 0x0000076F System.Void Newtonsoft.Json.Converters.BsonObjectIdConverter::.ctor()
 extern void BsonObjectIdConverter__ctor_m95C1A3C7125E1479D2856BDD9927BE935674941A (void);
-// 0x0000074A System.Void Newtonsoft.Json.Converters.DataSetConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x00000770 System.Void Newtonsoft.Json.Converters.DataSetConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void DataSetConverter_WriteJson_mBF3241B1A6066FAA59E8E75DBC6C43BAE2D095B3 (void);
-// 0x0000074B System.Object Newtonsoft.Json.Converters.DataSetConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x00000771 System.Object Newtonsoft.Json.Converters.DataSetConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void DataSetConverter_ReadJson_m77FA9CA38252E7B1F68BE8D0B5E02B4957DB6D43 (void);
-// 0x0000074C System.Boolean Newtonsoft.Json.Converters.DataSetConverter::CanConvert(System.Type)
+// 0x00000772 System.Boolean Newtonsoft.Json.Converters.DataSetConverter::CanConvert(System.Type)
 extern void DataSetConverter_CanConvert_m91745B40156AEDAF6B1DB269BA30F829F3454150 (void);
-// 0x0000074D System.Void Newtonsoft.Json.Converters.DataSetConverter::.ctor()
+// 0x00000773 System.Void Newtonsoft.Json.Converters.DataSetConverter::.ctor()
 extern void DataSetConverter__ctor_m1D7B5DD8ABAD89140B261B39BD71386286F3176E (void);
-// 0x0000074E System.Void Newtonsoft.Json.Converters.DataTableConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x00000774 System.Void Newtonsoft.Json.Converters.DataTableConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void DataTableConverter_WriteJson_m14F00F4FEE93C3DCADC35BFC9930CB9305ADC188 (void);
-// 0x0000074F System.Object Newtonsoft.Json.Converters.DataTableConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x00000775 System.Object Newtonsoft.Json.Converters.DataTableConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void DataTableConverter_ReadJson_mBF7D197ECDF420B2521D42E2C65159AAD5DD8692 (void);
-// 0x00000750 System.Void Newtonsoft.Json.Converters.DataTableConverter::CreateRow(Newtonsoft.Json.JsonReader,System.Data.DataTable,Newtonsoft.Json.JsonSerializer)
+// 0x00000776 System.Void Newtonsoft.Json.Converters.DataTableConverter::CreateRow(Newtonsoft.Json.JsonReader,System.Data.DataTable,Newtonsoft.Json.JsonSerializer)
 extern void DataTableConverter_CreateRow_m175253E19FDB4691AA06022B72F3A311E4CCFD32 (void);
-// 0x00000751 System.Type Newtonsoft.Json.Converters.DataTableConverter::GetColumnDataType(Newtonsoft.Json.JsonReader)
+// 0x00000777 System.Type Newtonsoft.Json.Converters.DataTableConverter::GetColumnDataType(Newtonsoft.Json.JsonReader)
 extern void DataTableConverter_GetColumnDataType_m5C601D4E146F82E0A6D22DB2934F109A96A29505 (void);
-// 0x00000752 System.Boolean Newtonsoft.Json.Converters.DataTableConverter::CanConvert(System.Type)
+// 0x00000778 System.Boolean Newtonsoft.Json.Converters.DataTableConverter::CanConvert(System.Type)
 extern void DataTableConverter_CanConvert_m65C8730799F930E5480158867DBC7C6BFEE644B9 (void);
-// 0x00000753 System.Void Newtonsoft.Json.Converters.DataTableConverter::.ctor()
+// 0x00000779 System.Void Newtonsoft.Json.Converters.DataTableConverter::.ctor()
 extern void DataTableConverter__ctor_mF22F4B12D7FCB99DF911D00212D025919B53C7EC (void);
-// 0x00000754 System.Type Newtonsoft.Json.Converters.DiscriminatedUnionConverter::CreateUnionTypeLookup(System.Type)
+// 0x0000077A System.Type Newtonsoft.Json.Converters.DiscriminatedUnionConverter::CreateUnionTypeLookup(System.Type)
 extern void DiscriminatedUnionConverter_CreateUnionTypeLookup_mF8BE36C071D57A737ABF39566BEA6B5A50E1112F (void);
-// 0x00000755 Newtonsoft.Json.Converters.DiscriminatedUnionConverter/Union Newtonsoft.Json.Converters.DiscriminatedUnionConverter::CreateUnion(System.Type)
+// 0x0000077B Newtonsoft.Json.Converters.DiscriminatedUnionConverter/Union Newtonsoft.Json.Converters.DiscriminatedUnionConverter::CreateUnion(System.Type)
 extern void DiscriminatedUnionConverter_CreateUnion_m5A1C311D47F063DEA6A4F967239E11C527231D45 (void);
-// 0x00000756 System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x0000077C System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void DiscriminatedUnionConverter_WriteJson_mFEF8B6A2E929A051C91EBD36BE912DA5534EC4D3 (void);
-// 0x00000757 System.Object Newtonsoft.Json.Converters.DiscriminatedUnionConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x0000077D System.Object Newtonsoft.Json.Converters.DiscriminatedUnionConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void DiscriminatedUnionConverter_ReadJson_m5B3736053ACDA9EED407185E3C43957C5A6BF351 (void);
-// 0x00000758 System.Boolean Newtonsoft.Json.Converters.DiscriminatedUnionConverter::CanConvert(System.Type)
+// 0x0000077E System.Boolean Newtonsoft.Json.Converters.DiscriminatedUnionConverter::CanConvert(System.Type)
 extern void DiscriminatedUnionConverter_CanConvert_mCB531BF4178E3115178AA3C6F18E4D687B747192 (void);
-// 0x00000759 System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter::.ctor()
+// 0x0000077F System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter::.ctor()
 extern void DiscriminatedUnionConverter__ctor_mC6CDC66855C4FED165C520F4F37C19C5C9536C2F (void);
-// 0x0000075A System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter::.cctor()
+// 0x00000780 System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter::.cctor()
 extern void DiscriminatedUnionConverter__cctor_m021F18D68F59A0050763C71D04ECE606056319D5 (void);
-// 0x0000075B System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter/Union::.ctor(Newtonsoft.Json.Utilities.FSharpFunction,System.Collections.Generic.List`1<Newtonsoft.Json.Converters.DiscriminatedUnionConverter/UnionCase>)
+// 0x00000781 System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter/Union::.ctor(Newtonsoft.Json.Utilities.FSharpFunction,System.Collections.Generic.List`1<Newtonsoft.Json.Converters.DiscriminatedUnionConverter/UnionCase>)
 extern void Union__ctor_mF563699BE27BFAFB7E0D4525988EE6C5F2E4770A (void);
-// 0x0000075C System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter/UnionCase::.ctor(System.Int32,System.String,System.Reflection.PropertyInfo[],Newtonsoft.Json.Utilities.FSharpFunction,Newtonsoft.Json.Utilities.FSharpFunction)
+// 0x00000782 System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter/UnionCase::.ctor(System.Int32,System.String,System.Reflection.PropertyInfo[],Newtonsoft.Json.Utilities.FSharpFunction,Newtonsoft.Json.Utilities.FSharpFunction)
 extern void UnionCase__ctor_m1E91FD2328350A0A87728BFF8CCCD96D3772C511 (void);
-// 0x0000075D System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter/<>c__DisplayClass8_0::.ctor()
+// 0x00000783 System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter/<>c__DisplayClass8_0::.ctor()
 extern void U3CU3Ec__DisplayClass8_0__ctor_m10DCEFFB9835151ECFAF0D02720A95DB72F26C63 (void);
-// 0x0000075E System.Boolean Newtonsoft.Json.Converters.DiscriminatedUnionConverter/<>c__DisplayClass8_0::<WriteJson>b__0(Newtonsoft.Json.Converters.DiscriminatedUnionConverter/UnionCase)
+// 0x00000784 System.Boolean Newtonsoft.Json.Converters.DiscriminatedUnionConverter/<>c__DisplayClass8_0::<WriteJson>b__0(Newtonsoft.Json.Converters.DiscriminatedUnionConverter/UnionCase)
 extern void U3CU3Ec__DisplayClass8_0_U3CWriteJsonU3Eb__0_m8FA87BE0FCC092C65BBF6A9EB509BBC213DF2A89 (void);
-// 0x0000075F System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter/<>c__DisplayClass9_0::.ctor()
+// 0x00000785 System.Void Newtonsoft.Json.Converters.DiscriminatedUnionConverter/<>c__DisplayClass9_0::.ctor()
 extern void U3CU3Ec__DisplayClass9_0__ctor_m2A31C75EB5C5D32D98F2EE82DCE0E0C10BF465C9 (void);
-// 0x00000760 System.Boolean Newtonsoft.Json.Converters.DiscriminatedUnionConverter/<>c__DisplayClass9_0::<ReadJson>b__0(Newtonsoft.Json.Converters.DiscriminatedUnionConverter/UnionCase)
+// 0x00000786 System.Boolean Newtonsoft.Json.Converters.DiscriminatedUnionConverter/<>c__DisplayClass9_0::<ReadJson>b__0(Newtonsoft.Json.Converters.DiscriminatedUnionConverter/UnionCase)
 extern void U3CU3Ec__DisplayClass9_0_U3CReadJsonU3Eb__0_m737443F677CC1A467DA6FB1DE5E96BE037CCF22F (void);
-// 0x00000761 System.Void Newtonsoft.Json.Converters.EntityKeyMemberConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x00000787 System.Void Newtonsoft.Json.Converters.EntityKeyMemberConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void EntityKeyMemberConverter_WriteJson_mBC84C101F154EC1B6867F747E310BBAFE4E702A0 (void);
-// 0x00000762 System.Void Newtonsoft.Json.Converters.EntityKeyMemberConverter::ReadAndAssertProperty(Newtonsoft.Json.JsonReader,System.String)
+// 0x00000788 System.Void Newtonsoft.Json.Converters.EntityKeyMemberConverter::ReadAndAssertProperty(Newtonsoft.Json.JsonReader,System.String)
 extern void EntityKeyMemberConverter_ReadAndAssertProperty_mA8B710D9699DDF929F67937F76FAFC5443531736 (void);
-// 0x00000763 System.Object Newtonsoft.Json.Converters.EntityKeyMemberConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x00000789 System.Object Newtonsoft.Json.Converters.EntityKeyMemberConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void EntityKeyMemberConverter_ReadJson_m4BEC61E217CA2E1E4E18B3004D0195117D722746 (void);
-// 0x00000764 System.Void Newtonsoft.Json.Converters.EntityKeyMemberConverter::EnsureReflectionObject(System.Type)
+// 0x0000078A System.Void Newtonsoft.Json.Converters.EntityKeyMemberConverter::EnsureReflectionObject(System.Type)
 extern void EntityKeyMemberConverter_EnsureReflectionObject_m74FEBF6C2A5B01C3BF1552F000871A847A62866E (void);
-// 0x00000765 System.Boolean Newtonsoft.Json.Converters.EntityKeyMemberConverter::CanConvert(System.Type)
+// 0x0000078B System.Boolean Newtonsoft.Json.Converters.EntityKeyMemberConverter::CanConvert(System.Type)
 extern void EntityKeyMemberConverter_CanConvert_m8653BF69EFDDEFFCD9AD533BD692FDD487A4CF55 (void);
-// 0x00000766 System.Void Newtonsoft.Json.Converters.EntityKeyMemberConverter::.ctor()
+// 0x0000078C System.Void Newtonsoft.Json.Converters.EntityKeyMemberConverter::.ctor()
 extern void EntityKeyMemberConverter__ctor_m64A3434E7914643BFFA6CF43B200B3079F15DD7C (void);
-// 0x00000767 System.Void Newtonsoft.Json.Converters.ExpandoObjectConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x0000078D System.Void Newtonsoft.Json.Converters.ExpandoObjectConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void ExpandoObjectConverter_WriteJson_m5D477A519AAD71CFFA3A2430348BFB3954D0FD7C (void);
-// 0x00000768 System.Object Newtonsoft.Json.Converters.ExpandoObjectConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x0000078E System.Object Newtonsoft.Json.Converters.ExpandoObjectConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void ExpandoObjectConverter_ReadJson_m74243EC8EBDEE57A4A7A305D1EA7115C3780898F (void);
-// 0x00000769 System.Object Newtonsoft.Json.Converters.ExpandoObjectConverter::ReadValue(Newtonsoft.Json.JsonReader)
+// 0x0000078F System.Object Newtonsoft.Json.Converters.ExpandoObjectConverter::ReadValue(Newtonsoft.Json.JsonReader)
 extern void ExpandoObjectConverter_ReadValue_mCCFD9ED623E26997C08607F643751DB5BC34E12F (void);
-// 0x0000076A System.Object Newtonsoft.Json.Converters.ExpandoObjectConverter::ReadList(Newtonsoft.Json.JsonReader)
+// 0x00000790 System.Object Newtonsoft.Json.Converters.ExpandoObjectConverter::ReadList(Newtonsoft.Json.JsonReader)
 extern void ExpandoObjectConverter_ReadList_mBF5EFEAAD78E620CCA0B1D837A33491DC380E831 (void);
-// 0x0000076B System.Object Newtonsoft.Json.Converters.ExpandoObjectConverter::ReadObject(Newtonsoft.Json.JsonReader)
+// 0x00000791 System.Object Newtonsoft.Json.Converters.ExpandoObjectConverter::ReadObject(Newtonsoft.Json.JsonReader)
 extern void ExpandoObjectConverter_ReadObject_m8B4814CE0D2E3ACA2337258AE58B2A50CBDD95E6 (void);
-// 0x0000076C System.Boolean Newtonsoft.Json.Converters.ExpandoObjectConverter::CanConvert(System.Type)
+// 0x00000792 System.Boolean Newtonsoft.Json.Converters.ExpandoObjectConverter::CanConvert(System.Type)
 extern void ExpandoObjectConverter_CanConvert_m8F7FA65F73435E337AE45E3965A7FFDB4BF6BA29 (void);
-// 0x0000076D System.Boolean Newtonsoft.Json.Converters.ExpandoObjectConverter::get_CanWrite()
+// 0x00000793 System.Boolean Newtonsoft.Json.Converters.ExpandoObjectConverter::get_CanWrite()
 extern void ExpandoObjectConverter_get_CanWrite_m8F89595F415E9B35363D826BA22631A56A065A18 (void);
-// 0x0000076E System.Void Newtonsoft.Json.Converters.ExpandoObjectConverter::.ctor()
+// 0x00000794 System.Void Newtonsoft.Json.Converters.ExpandoObjectConverter::.ctor()
 extern void ExpandoObjectConverter__ctor_m8A649912C60F14100536FBA3A5A0451194C50378 (void);
-// 0x0000076F Newtonsoft.Json.Utilities.ReflectionObject Newtonsoft.Json.Converters.KeyValuePairConverter::InitializeReflectionObject(System.Type)
+// 0x00000795 Newtonsoft.Json.Utilities.ReflectionObject Newtonsoft.Json.Converters.KeyValuePairConverter::InitializeReflectionObject(System.Type)
 extern void KeyValuePairConverter_InitializeReflectionObject_m5915CAC4DBE703B4FAD68FDE10858DF59F6B68B4 (void);
-// 0x00000770 System.Void Newtonsoft.Json.Converters.KeyValuePairConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x00000796 System.Void Newtonsoft.Json.Converters.KeyValuePairConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void KeyValuePairConverter_WriteJson_m0A92301EABA8C375631E711D8DA0C28A8E47903E (void);
-// 0x00000771 System.Object Newtonsoft.Json.Converters.KeyValuePairConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x00000797 System.Object Newtonsoft.Json.Converters.KeyValuePairConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void KeyValuePairConverter_ReadJson_m311EFBA1354BF54A2A32132284E0C8CD49D2B685 (void);
-// 0x00000772 System.Boolean Newtonsoft.Json.Converters.KeyValuePairConverter::CanConvert(System.Type)
+// 0x00000798 System.Boolean Newtonsoft.Json.Converters.KeyValuePairConverter::CanConvert(System.Type)
 extern void KeyValuePairConverter_CanConvert_mAD6A2583F3A16B0C9E3DD80B23EA621D33B2EB31 (void);
-// 0x00000773 System.Void Newtonsoft.Json.Converters.KeyValuePairConverter::.ctor()
+// 0x00000799 System.Void Newtonsoft.Json.Converters.KeyValuePairConverter::.ctor()
 extern void KeyValuePairConverter__ctor_mC96CE47C6C634E36F3588A2D748739E0EB6E5422 (void);
-// 0x00000774 System.Void Newtonsoft.Json.Converters.KeyValuePairConverter::.cctor()
+// 0x0000079A System.Void Newtonsoft.Json.Converters.KeyValuePairConverter::.cctor()
 extern void KeyValuePairConverter__cctor_m8C586B22422E12D50396C0A3CCEDD68897F5E548 (void);
-// 0x00000775 System.Void Newtonsoft.Json.Converters.RegexConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x0000079B System.Void Newtonsoft.Json.Converters.RegexConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void RegexConverter_WriteJson_mBBBAC8DBD007FBC2EA3A70C261B0C0EA54E77223 (void);
-// 0x00000776 System.Boolean Newtonsoft.Json.Converters.RegexConverter::HasFlag(System.Text.RegularExpressions.RegexOptions,System.Text.RegularExpressions.RegexOptions)
+// 0x0000079C System.Boolean Newtonsoft.Json.Converters.RegexConverter::HasFlag(System.Text.RegularExpressions.RegexOptions,System.Text.RegularExpressions.RegexOptions)
 extern void RegexConverter_HasFlag_m646CC744FB95721C9BDDAF80595B52A8A50A59ED (void);
-// 0x00000777 System.Void Newtonsoft.Json.Converters.RegexConverter::WriteBson(Newtonsoft.Json.Bson.BsonWriter,System.Text.RegularExpressions.Regex)
+// 0x0000079D System.Void Newtonsoft.Json.Converters.RegexConverter::WriteBson(Newtonsoft.Json.Bson.BsonWriter,System.Text.RegularExpressions.Regex)
 extern void RegexConverter_WriteBson_m4110C926AAD902956AB2A6CF92903966736F3A05 (void);
-// 0x00000778 System.Void Newtonsoft.Json.Converters.RegexConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Text.RegularExpressions.Regex,Newtonsoft.Json.JsonSerializer)
+// 0x0000079E System.Void Newtonsoft.Json.Converters.RegexConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Text.RegularExpressions.Regex,Newtonsoft.Json.JsonSerializer)
 extern void RegexConverter_WriteJson_m9F8C379B2958B87D38106743B2ADDB26CE703FF3 (void);
-// 0x00000779 System.Object Newtonsoft.Json.Converters.RegexConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x0000079F System.Object Newtonsoft.Json.Converters.RegexConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void RegexConverter_ReadJson_mCD6D92A6A22EB1AFB985BE104C31AA960FE7FC55 (void);
-// 0x0000077A System.Object Newtonsoft.Json.Converters.RegexConverter::ReadRegexString(Newtonsoft.Json.JsonReader)
+// 0x000007A0 System.Object Newtonsoft.Json.Converters.RegexConverter::ReadRegexString(Newtonsoft.Json.JsonReader)
 extern void RegexConverter_ReadRegexString_m0652FE51E950A86924044E6FB837C85C6CAB08DC (void);
-// 0x0000077B System.Text.RegularExpressions.Regex Newtonsoft.Json.Converters.RegexConverter::ReadRegexObject(Newtonsoft.Json.JsonReader,Newtonsoft.Json.JsonSerializer)
+// 0x000007A1 System.Text.RegularExpressions.Regex Newtonsoft.Json.Converters.RegexConverter::ReadRegexObject(Newtonsoft.Json.JsonReader,Newtonsoft.Json.JsonSerializer)
 extern void RegexConverter_ReadRegexObject_mA31BC0119A382CF38CB0300AB505A86EDFA0A197 (void);
-// 0x0000077C System.Boolean Newtonsoft.Json.Converters.RegexConverter::CanConvert(System.Type)
+// 0x000007A2 System.Boolean Newtonsoft.Json.Converters.RegexConverter::CanConvert(System.Type)
 extern void RegexConverter_CanConvert_m054F8CD517FB434567FA34EBF4044D61A9150176 (void);
-// 0x0000077D System.Boolean Newtonsoft.Json.Converters.RegexConverter::IsRegex(System.Type)
+// 0x000007A3 System.Boolean Newtonsoft.Json.Converters.RegexConverter::IsRegex(System.Type)
 extern void RegexConverter_IsRegex_mD2CFAF286D63D85F4C67F39E5677191614D80626 (void);
-// 0x0000077E System.Void Newtonsoft.Json.Converters.RegexConverter::.ctor()
+// 0x000007A4 System.Void Newtonsoft.Json.Converters.RegexConverter::.ctor()
 extern void RegexConverter__ctor_m90CF474142BD9D52E968EFF474758F00D0D708A1 (void);
-// 0x0000077F System.Void Newtonsoft.Json.Converters.XmlDocumentWrapper::.ctor(System.Xml.XmlDocument)
+// 0x000007A5 System.Void Newtonsoft.Json.Converters.XmlDocumentWrapper::.ctor(System.Xml.XmlDocument)
 extern void XmlDocumentWrapper__ctor_m49AF8DACBF82B66D437592DC0B2B18BA25F7E0FA (void);
-// 0x00000780 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateComment(System.String)
+// 0x000007A6 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateComment(System.String)
 extern void XmlDocumentWrapper_CreateComment_m05C1CAC4910C0E6D609226F6C1D04AABE36022CB (void);
-// 0x00000781 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateTextNode(System.String)
+// 0x000007A7 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateTextNode(System.String)
 extern void XmlDocumentWrapper_CreateTextNode_mA50F3A2FF131861627B7A744CA4DA0CDE3C887A9 (void);
-// 0x00000782 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateCDataSection(System.String)
+// 0x000007A8 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateCDataSection(System.String)
 extern void XmlDocumentWrapper_CreateCDataSection_m98F06EC30B2ACD77E22E3F785A8A6627A4711892 (void);
-// 0x00000783 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateWhitespace(System.String)
+// 0x000007A9 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateWhitespace(System.String)
 extern void XmlDocumentWrapper_CreateWhitespace_m80E2763F5187741EEA28B7C2B5CF850FA974875D (void);
-// 0x00000784 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateSignificantWhitespace(System.String)
+// 0x000007AA Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateSignificantWhitespace(System.String)
 extern void XmlDocumentWrapper_CreateSignificantWhitespace_m1BDC84B6EE18062490E644EB52EC98B76555BC31 (void);
-// 0x00000785 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateXmlDeclaration(System.String,System.String,System.String)
+// 0x000007AB Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateXmlDeclaration(System.String,System.String,System.String)
 extern void XmlDocumentWrapper_CreateXmlDeclaration_mE70B740B59E7EA1A02371348D212DDD582DFA1EB (void);
-// 0x00000786 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateXmlDocumentType(System.String,System.String,System.String,System.String)
+// 0x000007AC Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateXmlDocumentType(System.String,System.String,System.String,System.String)
 extern void XmlDocumentWrapper_CreateXmlDocumentType_m0DA7FA711C4655874DAFC744C632CEB5FD911954 (void);
-// 0x00000787 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateProcessingInstruction(System.String,System.String)
+// 0x000007AD Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateProcessingInstruction(System.String,System.String)
 extern void XmlDocumentWrapper_CreateProcessingInstruction_m6385E1893EB8FF02D4D89FF6D90FFA249FEBF22A (void);
-// 0x00000788 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateElement(System.String)
+// 0x000007AE Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateElement(System.String)
 extern void XmlDocumentWrapper_CreateElement_m3A9611F8761FBD49BA18F9F14468323CB784BBE8 (void);
-// 0x00000789 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateElement(System.String,System.String)
+// 0x000007AF Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateElement(System.String,System.String)
 extern void XmlDocumentWrapper_CreateElement_mF7A1B96B04F36DB0D1955DDFC526EA624A40FA54 (void);
-// 0x0000078A Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateAttribute(System.String,System.String)
+// 0x000007B0 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateAttribute(System.String,System.String)
 extern void XmlDocumentWrapper_CreateAttribute_mD109B81B48371A5390903D53B191C0AECA575420 (void);
-// 0x0000078B Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateAttribute(System.String,System.String,System.String)
+// 0x000007B1 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlDocumentWrapper::CreateAttribute(System.String,System.String,System.String)
 extern void XmlDocumentWrapper_CreateAttribute_m61297C81906FBD2C817A4FC7CCA4871529A28D86 (void);
-// 0x0000078C Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XmlDocumentWrapper::get_DocumentElement()
+// 0x000007B2 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XmlDocumentWrapper::get_DocumentElement()
 extern void XmlDocumentWrapper_get_DocumentElement_m3B65A7C98F173FB7A3EEAE61144B2146EDBB9526 (void);
-// 0x0000078D System.Void Newtonsoft.Json.Converters.XmlElementWrapper::.ctor(System.Xml.XmlElement)
+// 0x000007B3 System.Void Newtonsoft.Json.Converters.XmlElementWrapper::.ctor(System.Xml.XmlElement)
 extern void XmlElementWrapper__ctor_m41BC7F21455441BAE99EC3993FA7F5A37657B70B (void);
-// 0x0000078E System.Void Newtonsoft.Json.Converters.XmlElementWrapper::SetAttributeNode(Newtonsoft.Json.Converters.IXmlNode)
+// 0x000007B4 System.Void Newtonsoft.Json.Converters.XmlElementWrapper::SetAttributeNode(Newtonsoft.Json.Converters.IXmlNode)
 extern void XmlElementWrapper_SetAttributeNode_m1A268F396624266ACD5C95F0FE525476D2444CB6 (void);
-// 0x0000078F System.String Newtonsoft.Json.Converters.XmlElementWrapper::GetPrefixOfNamespace(System.String)
+// 0x000007B5 System.String Newtonsoft.Json.Converters.XmlElementWrapper::GetPrefixOfNamespace(System.String)
 extern void XmlElementWrapper_GetPrefixOfNamespace_m6A1DB738A91FDFCFA5BCFEF5358A836919D169CC (void);
-// 0x00000790 System.Boolean Newtonsoft.Json.Converters.XmlElementWrapper::get_IsEmpty()
+// 0x000007B6 System.Boolean Newtonsoft.Json.Converters.XmlElementWrapper::get_IsEmpty()
 extern void XmlElementWrapper_get_IsEmpty_m069A399E8C8D03D0AF5A49249D50E36AB7CDDD02 (void);
-// 0x00000791 System.Void Newtonsoft.Json.Converters.XmlDeclarationWrapper::.ctor(System.Xml.XmlDeclaration)
+// 0x000007B7 System.Void Newtonsoft.Json.Converters.XmlDeclarationWrapper::.ctor(System.Xml.XmlDeclaration)
 extern void XmlDeclarationWrapper__ctor_m3486A2D0C6FB07F0F34CF26E3BD7F02F0F4C13EB (void);
-// 0x00000792 System.String Newtonsoft.Json.Converters.XmlDeclarationWrapper::get_Version()
+// 0x000007B8 System.String Newtonsoft.Json.Converters.XmlDeclarationWrapper::get_Version()
 extern void XmlDeclarationWrapper_get_Version_mCA18EF4B979EA997024583E3C4676C0A716AAC00 (void);
-// 0x00000793 System.String Newtonsoft.Json.Converters.XmlDeclarationWrapper::get_Encoding()
+// 0x000007B9 System.String Newtonsoft.Json.Converters.XmlDeclarationWrapper::get_Encoding()
 extern void XmlDeclarationWrapper_get_Encoding_m6AC2AD64CC47483FA821D9B87FEA459768D264B7 (void);
-// 0x00000794 System.String Newtonsoft.Json.Converters.XmlDeclarationWrapper::get_Standalone()
+// 0x000007BA System.String Newtonsoft.Json.Converters.XmlDeclarationWrapper::get_Standalone()
 extern void XmlDeclarationWrapper_get_Standalone_m300713C25166CEFB28DDA1A58911A92F416D6A14 (void);
-// 0x00000795 System.Void Newtonsoft.Json.Converters.XmlDocumentTypeWrapper::.ctor(System.Xml.XmlDocumentType)
+// 0x000007BB System.Void Newtonsoft.Json.Converters.XmlDocumentTypeWrapper::.ctor(System.Xml.XmlDocumentType)
 extern void XmlDocumentTypeWrapper__ctor_m1DB87081C6FC70480B4399663EF71C662E075088 (void);
-// 0x00000796 System.String Newtonsoft.Json.Converters.XmlDocumentTypeWrapper::get_Name()
+// 0x000007BC System.String Newtonsoft.Json.Converters.XmlDocumentTypeWrapper::get_Name()
 extern void XmlDocumentTypeWrapper_get_Name_m0AD859BB718AE667DA95225D2907357968E55FE8 (void);
-// 0x00000797 System.String Newtonsoft.Json.Converters.XmlDocumentTypeWrapper::get_System()
+// 0x000007BD System.String Newtonsoft.Json.Converters.XmlDocumentTypeWrapper::get_System()
 extern void XmlDocumentTypeWrapper_get_System_m32FC2333A6556D69579E763FCBA0A5B80354CE34 (void);
-// 0x00000798 System.String Newtonsoft.Json.Converters.XmlDocumentTypeWrapper::get_Public()
+// 0x000007BE System.String Newtonsoft.Json.Converters.XmlDocumentTypeWrapper::get_Public()
 extern void XmlDocumentTypeWrapper_get_Public_m09626F9CC16F7EC79CD369CC2804696A61EAE4FA (void);
-// 0x00000799 System.String Newtonsoft.Json.Converters.XmlDocumentTypeWrapper::get_InternalSubset()
+// 0x000007BF System.String Newtonsoft.Json.Converters.XmlDocumentTypeWrapper::get_InternalSubset()
 extern void XmlDocumentTypeWrapper_get_InternalSubset_mE5C4E9776278EFC0B32CF89AB022270896C578EE (void);
-// 0x0000079A System.String Newtonsoft.Json.Converters.XmlDocumentTypeWrapper::get_LocalName()
+// 0x000007C0 System.String Newtonsoft.Json.Converters.XmlDocumentTypeWrapper::get_LocalName()
 extern void XmlDocumentTypeWrapper_get_LocalName_mD6A20F2201D019C63B79CEB02B6DBCC16C7F5176 (void);
-// 0x0000079B System.Void Newtonsoft.Json.Converters.XmlNodeWrapper::.ctor(System.Xml.XmlNode)
+// 0x000007C1 System.Void Newtonsoft.Json.Converters.XmlNodeWrapper::.ctor(System.Xml.XmlNode)
 extern void XmlNodeWrapper__ctor_m45997BD8746ACCE23E143FDF8B4162F435DF4D10 (void);
-// 0x0000079C System.Object Newtonsoft.Json.Converters.XmlNodeWrapper::get_WrappedNode()
+// 0x000007C2 System.Object Newtonsoft.Json.Converters.XmlNodeWrapper::get_WrappedNode()
 extern void XmlNodeWrapper_get_WrappedNode_m6DFB6791EF1F074C3427FA3B2A3B3D02861DBDEC (void);
-// 0x0000079D System.Xml.XmlNodeType Newtonsoft.Json.Converters.XmlNodeWrapper::get_NodeType()
+// 0x000007C3 System.Xml.XmlNodeType Newtonsoft.Json.Converters.XmlNodeWrapper::get_NodeType()
 extern void XmlNodeWrapper_get_NodeType_m10A490BBCDF66F78678E817B51E61DA4C283221F (void);
-// 0x0000079E System.String Newtonsoft.Json.Converters.XmlNodeWrapper::get_LocalName()
+// 0x000007C4 System.String Newtonsoft.Json.Converters.XmlNodeWrapper::get_LocalName()
 extern void XmlNodeWrapper_get_LocalName_m3ACEF73E85F9CA91C26C74BB4CC5E78EA8FE0D12 (void);
-// 0x0000079F System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XmlNodeWrapper::get_ChildNodes()
+// 0x000007C5 System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XmlNodeWrapper::get_ChildNodes()
 extern void XmlNodeWrapper_get_ChildNodes_mB8C7EDC13EE2B38F473B4F13C3900099724F39AF (void);
-// 0x000007A0 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlNodeWrapper::WrapNode(System.Xml.XmlNode)
+// 0x000007C6 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlNodeWrapper::WrapNode(System.Xml.XmlNode)
 extern void XmlNodeWrapper_WrapNode_mFEE89327954E31DCAF3CE471A08947BD3A676C1F (void);
-// 0x000007A1 System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XmlNodeWrapper::get_Attributes()
+// 0x000007C7 System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XmlNodeWrapper::get_Attributes()
 extern void XmlNodeWrapper_get_Attributes_m32A2864F125B5D9B01CF9DCF59850E6ADE0D65DB (void);
-// 0x000007A2 System.Boolean Newtonsoft.Json.Converters.XmlNodeWrapper::get_HasAttributes()
+// 0x000007C8 System.Boolean Newtonsoft.Json.Converters.XmlNodeWrapper::get_HasAttributes()
 extern void XmlNodeWrapper_get_HasAttributes_m2895959FC693559B06741D57D58FD0FD92B74101 (void);
-// 0x000007A3 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlNodeWrapper::get_ParentNode()
+// 0x000007C9 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlNodeWrapper::get_ParentNode()
 extern void XmlNodeWrapper_get_ParentNode_mF8FC78F0CDB7A2425B518DE0186D90FBD45D7D85 (void);
-// 0x000007A4 System.String Newtonsoft.Json.Converters.XmlNodeWrapper::get_Value()
+// 0x000007CA System.String Newtonsoft.Json.Converters.XmlNodeWrapper::get_Value()
 extern void XmlNodeWrapper_get_Value_mEEA32677C47B2950CE5DA9D762653C642A92297E (void);
-// 0x000007A5 System.Void Newtonsoft.Json.Converters.XmlNodeWrapper::set_Value(System.String)
+// 0x000007CB System.Void Newtonsoft.Json.Converters.XmlNodeWrapper::set_Value(System.String)
 extern void XmlNodeWrapper_set_Value_m1553AD8FB70DBE3B39A2217561963F465AE00DA9 (void);
-// 0x000007A6 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlNodeWrapper::AppendChild(Newtonsoft.Json.Converters.IXmlNode)
+// 0x000007CC Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlNodeWrapper::AppendChild(Newtonsoft.Json.Converters.IXmlNode)
 extern void XmlNodeWrapper_AppendChild_m876EFB621A20494312588422E12C981E24ED84FD (void);
-// 0x000007A7 System.String Newtonsoft.Json.Converters.XmlNodeWrapper::get_NamespaceUri()
+// 0x000007CD System.String Newtonsoft.Json.Converters.XmlNodeWrapper::get_NamespaceUri()
 extern void XmlNodeWrapper_get_NamespaceUri_mCF0700040A18DEABEFAC2C4CEC2FE1EFA70605FA (void);
-// 0x000007A8 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateComment(System.String)
-// 0x000007A9 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateTextNode(System.String)
-// 0x000007AA Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateCDataSection(System.String)
-// 0x000007AB Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateWhitespace(System.String)
-// 0x000007AC Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateSignificantWhitespace(System.String)
-// 0x000007AD Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateXmlDeclaration(System.String,System.String,System.String)
-// 0x000007AE Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateXmlDocumentType(System.String,System.String,System.String,System.String)
-// 0x000007AF Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateProcessingInstruction(System.String,System.String)
-// 0x000007B0 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.IXmlDocument::CreateElement(System.String)
-// 0x000007B1 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.IXmlDocument::CreateElement(System.String,System.String)
-// 0x000007B2 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateAttribute(System.String,System.String)
-// 0x000007B3 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateAttribute(System.String,System.String,System.String)
-// 0x000007B4 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.IXmlDocument::get_DocumentElement()
-// 0x000007B5 System.String Newtonsoft.Json.Converters.IXmlDeclaration::get_Version()
-// 0x000007B6 System.String Newtonsoft.Json.Converters.IXmlDeclaration::get_Encoding()
-// 0x000007B7 System.String Newtonsoft.Json.Converters.IXmlDeclaration::get_Standalone()
-// 0x000007B8 System.String Newtonsoft.Json.Converters.IXmlDocumentType::get_Name()
-// 0x000007B9 System.String Newtonsoft.Json.Converters.IXmlDocumentType::get_System()
-// 0x000007BA System.String Newtonsoft.Json.Converters.IXmlDocumentType::get_Public()
-// 0x000007BB System.String Newtonsoft.Json.Converters.IXmlDocumentType::get_InternalSubset()
-// 0x000007BC System.Void Newtonsoft.Json.Converters.IXmlElement::SetAttributeNode(Newtonsoft.Json.Converters.IXmlNode)
-// 0x000007BD System.String Newtonsoft.Json.Converters.IXmlElement::GetPrefixOfNamespace(System.String)
-// 0x000007BE System.Boolean Newtonsoft.Json.Converters.IXmlElement::get_IsEmpty()
-// 0x000007BF System.Xml.XmlNodeType Newtonsoft.Json.Converters.IXmlNode::get_NodeType()
-// 0x000007C0 System.String Newtonsoft.Json.Converters.IXmlNode::get_LocalName()
-// 0x000007C1 System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.IXmlNode::get_ChildNodes()
-// 0x000007C2 System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.IXmlNode::get_Attributes()
-// 0x000007C3 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlNode::get_ParentNode()
-// 0x000007C4 System.String Newtonsoft.Json.Converters.IXmlNode::get_Value()
-// 0x000007C5 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlNode::AppendChild(Newtonsoft.Json.Converters.IXmlNode)
-// 0x000007C6 System.String Newtonsoft.Json.Converters.IXmlNode::get_NamespaceUri()
-// 0x000007C7 System.Object Newtonsoft.Json.Converters.IXmlNode::get_WrappedNode()
-// 0x000007C8 System.Xml.Linq.XDeclaration Newtonsoft.Json.Converters.XDeclarationWrapper::get_Declaration()
+// 0x000007CE Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateComment(System.String)
+// 0x000007CF Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateTextNode(System.String)
+// 0x000007D0 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateCDataSection(System.String)
+// 0x000007D1 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateWhitespace(System.String)
+// 0x000007D2 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateSignificantWhitespace(System.String)
+// 0x000007D3 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateXmlDeclaration(System.String,System.String,System.String)
+// 0x000007D4 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateXmlDocumentType(System.String,System.String,System.String,System.String)
+// 0x000007D5 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateProcessingInstruction(System.String,System.String)
+// 0x000007D6 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.IXmlDocument::CreateElement(System.String)
+// 0x000007D7 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.IXmlDocument::CreateElement(System.String,System.String)
+// 0x000007D8 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateAttribute(System.String,System.String)
+// 0x000007D9 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlDocument::CreateAttribute(System.String,System.String,System.String)
+// 0x000007DA Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.IXmlDocument::get_DocumentElement()
+// 0x000007DB System.String Newtonsoft.Json.Converters.IXmlDeclaration::get_Version()
+// 0x000007DC System.String Newtonsoft.Json.Converters.IXmlDeclaration::get_Encoding()
+// 0x000007DD System.String Newtonsoft.Json.Converters.IXmlDeclaration::get_Standalone()
+// 0x000007DE System.String Newtonsoft.Json.Converters.IXmlDocumentType::get_Name()
+// 0x000007DF System.String Newtonsoft.Json.Converters.IXmlDocumentType::get_System()
+// 0x000007E0 System.String Newtonsoft.Json.Converters.IXmlDocumentType::get_Public()
+// 0x000007E1 System.String Newtonsoft.Json.Converters.IXmlDocumentType::get_InternalSubset()
+// 0x000007E2 System.Void Newtonsoft.Json.Converters.IXmlElement::SetAttributeNode(Newtonsoft.Json.Converters.IXmlNode)
+// 0x000007E3 System.String Newtonsoft.Json.Converters.IXmlElement::GetPrefixOfNamespace(System.String)
+// 0x000007E4 System.Boolean Newtonsoft.Json.Converters.IXmlElement::get_IsEmpty()
+// 0x000007E5 System.Xml.XmlNodeType Newtonsoft.Json.Converters.IXmlNode::get_NodeType()
+// 0x000007E6 System.String Newtonsoft.Json.Converters.IXmlNode::get_LocalName()
+// 0x000007E7 System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.IXmlNode::get_ChildNodes()
+// 0x000007E8 System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.IXmlNode::get_Attributes()
+// 0x000007E9 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlNode::get_ParentNode()
+// 0x000007EA System.String Newtonsoft.Json.Converters.IXmlNode::get_Value()
+// 0x000007EB Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.IXmlNode::AppendChild(Newtonsoft.Json.Converters.IXmlNode)
+// 0x000007EC System.String Newtonsoft.Json.Converters.IXmlNode::get_NamespaceUri()
+// 0x000007ED System.Object Newtonsoft.Json.Converters.IXmlNode::get_WrappedNode()
+// 0x000007EE System.Xml.Linq.XDeclaration Newtonsoft.Json.Converters.XDeclarationWrapper::get_Declaration()
 extern void XDeclarationWrapper_get_Declaration_mC206FC2CA53011BD3B1403B4D65280CFD72F3D20 (void);
-// 0x000007C9 System.Void Newtonsoft.Json.Converters.XDeclarationWrapper::.ctor(System.Xml.Linq.XDeclaration)
+// 0x000007EF System.Void Newtonsoft.Json.Converters.XDeclarationWrapper::.ctor(System.Xml.Linq.XDeclaration)
 extern void XDeclarationWrapper__ctor_mF6C240A1B99EFB2A43B16EE016CD475B2AD25BA3 (void);
-// 0x000007CA System.Xml.XmlNodeType Newtonsoft.Json.Converters.XDeclarationWrapper::get_NodeType()
+// 0x000007F0 System.Xml.XmlNodeType Newtonsoft.Json.Converters.XDeclarationWrapper::get_NodeType()
 extern void XDeclarationWrapper_get_NodeType_m51F9BC8B3E4BE0748D6DBEEFBED3E3963AFF40B7 (void);
-// 0x000007CB System.String Newtonsoft.Json.Converters.XDeclarationWrapper::get_Version()
+// 0x000007F1 System.String Newtonsoft.Json.Converters.XDeclarationWrapper::get_Version()
 extern void XDeclarationWrapper_get_Version_m85A437D5006FC53EBC0F5006FA0077E4D7C9E3EC (void);
-// 0x000007CC System.String Newtonsoft.Json.Converters.XDeclarationWrapper::get_Encoding()
+// 0x000007F2 System.String Newtonsoft.Json.Converters.XDeclarationWrapper::get_Encoding()
 extern void XDeclarationWrapper_get_Encoding_m440A1E364FFA2403529CD07DA238F83A85F31F29 (void);
-// 0x000007CD System.String Newtonsoft.Json.Converters.XDeclarationWrapper::get_Standalone()
+// 0x000007F3 System.String Newtonsoft.Json.Converters.XDeclarationWrapper::get_Standalone()
 extern void XDeclarationWrapper_get_Standalone_m0D9D41F69D322ABC9CEA2F1170441DAB11797300 (void);
-// 0x000007CE System.Void Newtonsoft.Json.Converters.XDocumentTypeWrapper::.ctor(System.Xml.Linq.XDocumentType)
+// 0x000007F4 System.Void Newtonsoft.Json.Converters.XDocumentTypeWrapper::.ctor(System.Xml.Linq.XDocumentType)
 extern void XDocumentTypeWrapper__ctor_m33FC9838AC2304CDB01B914FB38C23F7C97C97C5 (void);
-// 0x000007CF System.String Newtonsoft.Json.Converters.XDocumentTypeWrapper::get_Name()
+// 0x000007F5 System.String Newtonsoft.Json.Converters.XDocumentTypeWrapper::get_Name()
 extern void XDocumentTypeWrapper_get_Name_mD85CDBCF38F0D3A2486616F9D62665560DCE5D9E (void);
-// 0x000007D0 System.String Newtonsoft.Json.Converters.XDocumentTypeWrapper::get_System()
+// 0x000007F6 System.String Newtonsoft.Json.Converters.XDocumentTypeWrapper::get_System()
 extern void XDocumentTypeWrapper_get_System_mDD4AA3ADF1BEDA8FD128EC4C898EE4698D58F401 (void);
-// 0x000007D1 System.String Newtonsoft.Json.Converters.XDocumentTypeWrapper::get_Public()
+// 0x000007F7 System.String Newtonsoft.Json.Converters.XDocumentTypeWrapper::get_Public()
 extern void XDocumentTypeWrapper_get_Public_mE6039AD76E0B2E92AC2B1095D0CA4778203F6688 (void);
-// 0x000007D2 System.String Newtonsoft.Json.Converters.XDocumentTypeWrapper::get_InternalSubset()
+// 0x000007F8 System.String Newtonsoft.Json.Converters.XDocumentTypeWrapper::get_InternalSubset()
 extern void XDocumentTypeWrapper_get_InternalSubset_m709A6F4870ED587BFA5C116433AA59067325AE14 (void);
-// 0x000007D3 System.String Newtonsoft.Json.Converters.XDocumentTypeWrapper::get_LocalName()
+// 0x000007F9 System.String Newtonsoft.Json.Converters.XDocumentTypeWrapper::get_LocalName()
 extern void XDocumentTypeWrapper_get_LocalName_m9ACC5546CC86F55D54023F5AB035EF847A643447 (void);
-// 0x000007D4 System.Xml.Linq.XDocument Newtonsoft.Json.Converters.XDocumentWrapper::get_Document()
+// 0x000007FA System.Xml.Linq.XDocument Newtonsoft.Json.Converters.XDocumentWrapper::get_Document()
 extern void XDocumentWrapper_get_Document_mDE8FE19A88F6AE413EB246C25894B1D97232B65E (void);
-// 0x000007D5 System.Void Newtonsoft.Json.Converters.XDocumentWrapper::.ctor(System.Xml.Linq.XDocument)
+// 0x000007FB System.Void Newtonsoft.Json.Converters.XDocumentWrapper::.ctor(System.Xml.Linq.XDocument)
 extern void XDocumentWrapper__ctor_m6B3C786D57B1D5CFB1471B20CE49F4A473E0BC0F (void);
-// 0x000007D6 System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XDocumentWrapper::get_ChildNodes()
+// 0x000007FC System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XDocumentWrapper::get_ChildNodes()
 extern void XDocumentWrapper_get_ChildNodes_m24A34E83F07F4D86E3A61DA1239D35F78D7BA473 (void);
-// 0x000007D7 System.Boolean Newtonsoft.Json.Converters.XDocumentWrapper::get_HasChildNodes()
+// 0x000007FD System.Boolean Newtonsoft.Json.Converters.XDocumentWrapper::get_HasChildNodes()
 extern void XDocumentWrapper_get_HasChildNodes_m3E67B8C240095D808F86754B05821434737A0FC5 (void);
-// 0x000007D8 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateComment(System.String)
+// 0x000007FE Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateComment(System.String)
 extern void XDocumentWrapper_CreateComment_m08339FE3D9AED66BB0D9E8FA01B421804AC43365 (void);
-// 0x000007D9 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateTextNode(System.String)
+// 0x000007FF Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateTextNode(System.String)
 extern void XDocumentWrapper_CreateTextNode_m5C8426EB7FAA89D14B72BD02DAF48E817573259A (void);
-// 0x000007DA Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateCDataSection(System.String)
+// 0x00000800 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateCDataSection(System.String)
 extern void XDocumentWrapper_CreateCDataSection_mBF0C81D13CD33B7F66AF28D58C54BDD0DA5A0723 (void);
-// 0x000007DB Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateWhitespace(System.String)
+// 0x00000801 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateWhitespace(System.String)
 extern void XDocumentWrapper_CreateWhitespace_m2A085A4484BCF660508B23F623E3D778A278EBA2 (void);
-// 0x000007DC Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateSignificantWhitespace(System.String)
+// 0x00000802 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateSignificantWhitespace(System.String)
 extern void XDocumentWrapper_CreateSignificantWhitespace_mE94434CB7CE178805E85882C2E449A201B5D02ED (void);
-// 0x000007DD Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateXmlDeclaration(System.String,System.String,System.String)
+// 0x00000803 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateXmlDeclaration(System.String,System.String,System.String)
 extern void XDocumentWrapper_CreateXmlDeclaration_m98C8779A4358B7761DB55818504C29B9C47BE218 (void);
-// 0x000007DE Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateXmlDocumentType(System.String,System.String,System.String,System.String)
+// 0x00000804 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateXmlDocumentType(System.String,System.String,System.String,System.String)
 extern void XDocumentWrapper_CreateXmlDocumentType_mA131CA82EDB72B7D391667DD6F94D24215959897 (void);
-// 0x000007DF Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateProcessingInstruction(System.String,System.String)
+// 0x00000805 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateProcessingInstruction(System.String,System.String)
 extern void XDocumentWrapper_CreateProcessingInstruction_mAF5EC688FFCC894008428ACE92B8AD5292B99A59 (void);
-// 0x000007E0 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XDocumentWrapper::CreateElement(System.String)
+// 0x00000806 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XDocumentWrapper::CreateElement(System.String)
 extern void XDocumentWrapper_CreateElement_m03FE6B93B1D6A5E6FF3B5F0E422F3F0B2E8CABE6 (void);
-// 0x000007E1 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XDocumentWrapper::CreateElement(System.String,System.String)
+// 0x00000807 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XDocumentWrapper::CreateElement(System.String,System.String)
 extern void XDocumentWrapper_CreateElement_mA7339ACBBCA1D0C51E97A7EFD753EA01C051D434 (void);
-// 0x000007E2 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateAttribute(System.String,System.String)
+// 0x00000808 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateAttribute(System.String,System.String)
 extern void XDocumentWrapper_CreateAttribute_mDE53E5088E98087DDAC46FB437F5B8C9D03DC325 (void);
-// 0x000007E3 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateAttribute(System.String,System.String,System.String)
+// 0x00000809 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::CreateAttribute(System.String,System.String,System.String)
 extern void XDocumentWrapper_CreateAttribute_mCF72ACD78BE01C534C71E49BAEBAD1912267D8A7 (void);
-// 0x000007E4 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XDocumentWrapper::get_DocumentElement()
+// 0x0000080A Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XDocumentWrapper::get_DocumentElement()
 extern void XDocumentWrapper_get_DocumentElement_m4AF53D14F1F5A8CB4CD427CF170EA87EBB1345D2 (void);
-// 0x000007E5 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::AppendChild(Newtonsoft.Json.Converters.IXmlNode)
+// 0x0000080B Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XDocumentWrapper::AppendChild(Newtonsoft.Json.Converters.IXmlNode)
 extern void XDocumentWrapper_AppendChild_m1F6B2B6D6FA9A2240A4B2EAD43B7076209780D56 (void);
-// 0x000007E6 System.Xml.Linq.XText Newtonsoft.Json.Converters.XTextWrapper::get_Text()
+// 0x0000080C System.Xml.Linq.XText Newtonsoft.Json.Converters.XTextWrapper::get_Text()
 extern void XTextWrapper_get_Text_mFF5FE52AB9BABC589FD832D9D7597AEEDA280E75 (void);
-// 0x000007E7 System.Void Newtonsoft.Json.Converters.XTextWrapper::.ctor(System.Xml.Linq.XText)
+// 0x0000080D System.Void Newtonsoft.Json.Converters.XTextWrapper::.ctor(System.Xml.Linq.XText)
 extern void XTextWrapper__ctor_m6E43E8A1C9432BA50F9F8E96952F921C0416AEB7 (void);
-// 0x000007E8 System.String Newtonsoft.Json.Converters.XTextWrapper::get_Value()
+// 0x0000080E System.String Newtonsoft.Json.Converters.XTextWrapper::get_Value()
 extern void XTextWrapper_get_Value_mDF48020C1CC4C3EFA6C35C3E32FCB721BCE5CED2 (void);
-// 0x000007E9 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XTextWrapper::get_ParentNode()
+// 0x0000080F Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XTextWrapper::get_ParentNode()
 extern void XTextWrapper_get_ParentNode_m88E9105DE09C2CD4DF8D32335490F9F87432307F (void);
-// 0x000007EA System.Xml.Linq.XComment Newtonsoft.Json.Converters.XCommentWrapper::get_Text()
+// 0x00000810 System.Xml.Linq.XComment Newtonsoft.Json.Converters.XCommentWrapper::get_Text()
 extern void XCommentWrapper_get_Text_m76A344ED49910931A2AB31525E71EC45CBB2FE18 (void);
-// 0x000007EB System.Void Newtonsoft.Json.Converters.XCommentWrapper::.ctor(System.Xml.Linq.XComment)
+// 0x00000811 System.Void Newtonsoft.Json.Converters.XCommentWrapper::.ctor(System.Xml.Linq.XComment)
 extern void XCommentWrapper__ctor_m738D42979B4D3F6924C2B7D430291ADB12527F5D (void);
-// 0x000007EC System.String Newtonsoft.Json.Converters.XCommentWrapper::get_Value()
+// 0x00000812 System.String Newtonsoft.Json.Converters.XCommentWrapper::get_Value()
 extern void XCommentWrapper_get_Value_m6929DAEC785EFF62D6B547F27688B3632EFB2BAA (void);
-// 0x000007ED Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XCommentWrapper::get_ParentNode()
+// 0x00000813 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XCommentWrapper::get_ParentNode()
 extern void XCommentWrapper_get_ParentNode_m3BA52D94E23CEB330AF4AA02B41EBDACF9E18181 (void);
-// 0x000007EE System.Xml.Linq.XProcessingInstruction Newtonsoft.Json.Converters.XProcessingInstructionWrapper::get_ProcessingInstruction()
+// 0x00000814 System.Xml.Linq.XProcessingInstruction Newtonsoft.Json.Converters.XProcessingInstructionWrapper::get_ProcessingInstruction()
 extern void XProcessingInstructionWrapper_get_ProcessingInstruction_m519BE13713D4C31CDE691B7564BC3F661B66014B (void);
-// 0x000007EF System.Void Newtonsoft.Json.Converters.XProcessingInstructionWrapper::.ctor(System.Xml.Linq.XProcessingInstruction)
+// 0x00000815 System.Void Newtonsoft.Json.Converters.XProcessingInstructionWrapper::.ctor(System.Xml.Linq.XProcessingInstruction)
 extern void XProcessingInstructionWrapper__ctor_m38CE3DA1DD66FEA143337BF5D6226020AE732D32 (void);
-// 0x000007F0 System.String Newtonsoft.Json.Converters.XProcessingInstructionWrapper::get_LocalName()
+// 0x00000816 System.String Newtonsoft.Json.Converters.XProcessingInstructionWrapper::get_LocalName()
 extern void XProcessingInstructionWrapper_get_LocalName_m4B1B57944CFF98EB42A49061A4DB538EDF735C8D (void);
-// 0x000007F1 System.String Newtonsoft.Json.Converters.XProcessingInstructionWrapper::get_Value()
+// 0x00000817 System.String Newtonsoft.Json.Converters.XProcessingInstructionWrapper::get_Value()
 extern void XProcessingInstructionWrapper_get_Value_mD448F9520E133FFB8E16E1EE3929E245500A0507 (void);
-// 0x000007F2 System.Xml.Linq.XContainer Newtonsoft.Json.Converters.XContainerWrapper::get_Container()
+// 0x00000818 System.Xml.Linq.XContainer Newtonsoft.Json.Converters.XContainerWrapper::get_Container()
 extern void XContainerWrapper_get_Container_mB5689285C35A28FA5BB61A18330DE8A1482466EC (void);
-// 0x000007F3 System.Void Newtonsoft.Json.Converters.XContainerWrapper::.ctor(System.Xml.Linq.XContainer)
+// 0x00000819 System.Void Newtonsoft.Json.Converters.XContainerWrapper::.ctor(System.Xml.Linq.XContainer)
 extern void XContainerWrapper__ctor_m348846EF50C4A5C044F1476C5F9DEF3BE6ADD457 (void);
-// 0x000007F4 System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XContainerWrapper::get_ChildNodes()
+// 0x0000081A System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XContainerWrapper::get_ChildNodes()
 extern void XContainerWrapper_get_ChildNodes_mD718E6E3F84D94D6BC2F083A0F49168578067E7F (void);
-// 0x000007F5 System.Boolean Newtonsoft.Json.Converters.XContainerWrapper::get_HasChildNodes()
+// 0x0000081B System.Boolean Newtonsoft.Json.Converters.XContainerWrapper::get_HasChildNodes()
 extern void XContainerWrapper_get_HasChildNodes_mB6CCA2EA063375775151673A7391EB1A4523E246 (void);
-// 0x000007F6 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XContainerWrapper::get_ParentNode()
+// 0x0000081C Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XContainerWrapper::get_ParentNode()
 extern void XContainerWrapper_get_ParentNode_m94D2D4E0E732662092827EA044DE47DAA86AE1ED (void);
-// 0x000007F7 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XContainerWrapper::WrapNode(System.Xml.Linq.XObject)
+// 0x0000081D Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XContainerWrapper::WrapNode(System.Xml.Linq.XObject)
 extern void XContainerWrapper_WrapNode_mB82760B22DCC9BB913C887F49CDDF7ECD2DF4036 (void);
-// 0x000007F8 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XContainerWrapper::AppendChild(Newtonsoft.Json.Converters.IXmlNode)
+// 0x0000081E Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XContainerWrapper::AppendChild(Newtonsoft.Json.Converters.IXmlNode)
 extern void XContainerWrapper_AppendChild_m2C49400C28F3980F6C9ADE7991E8D13ED18988D9 (void);
-// 0x000007F9 System.Void Newtonsoft.Json.Converters.XObjectWrapper::.ctor(System.Xml.Linq.XObject)
+// 0x0000081F System.Void Newtonsoft.Json.Converters.XObjectWrapper::.ctor(System.Xml.Linq.XObject)
 extern void XObjectWrapper__ctor_mAC7704D14F46C46A63F24DE35F91034639B09BE5 (void);
-// 0x000007FA System.Object Newtonsoft.Json.Converters.XObjectWrapper::get_WrappedNode()
+// 0x00000820 System.Object Newtonsoft.Json.Converters.XObjectWrapper::get_WrappedNode()
 extern void XObjectWrapper_get_WrappedNode_m6B5F82EBB42FF6531F3543C7656AB977EF3BCDDD (void);
-// 0x000007FB System.Xml.XmlNodeType Newtonsoft.Json.Converters.XObjectWrapper::get_NodeType()
+// 0x00000821 System.Xml.XmlNodeType Newtonsoft.Json.Converters.XObjectWrapper::get_NodeType()
 extern void XObjectWrapper_get_NodeType_m3245F0134E6EDC4A855880920589E64540D38D18 (void);
-// 0x000007FC System.String Newtonsoft.Json.Converters.XObjectWrapper::get_LocalName()
+// 0x00000822 System.String Newtonsoft.Json.Converters.XObjectWrapper::get_LocalName()
 extern void XObjectWrapper_get_LocalName_m6342E5C3BB308DBA26C0134CA64A58064FE2FC33 (void);
-// 0x000007FD System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XObjectWrapper::get_ChildNodes()
+// 0x00000823 System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XObjectWrapper::get_ChildNodes()
 extern void XObjectWrapper_get_ChildNodes_m626C980F69AA241588DD27144B7131863A6C49FA (void);
-// 0x000007FE System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XObjectWrapper::get_Attributes()
+// 0x00000824 System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XObjectWrapper::get_Attributes()
 extern void XObjectWrapper_get_Attributes_mFFA51188347D9C14F40388C82B6A7A5F0AE3BBEB (void);
-// 0x000007FF Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XObjectWrapper::get_ParentNode()
+// 0x00000825 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XObjectWrapper::get_ParentNode()
 extern void XObjectWrapper_get_ParentNode_mA51216067D08961C54E2DD6518466BE53056CF73 (void);
-// 0x00000800 System.String Newtonsoft.Json.Converters.XObjectWrapper::get_Value()
+// 0x00000826 System.String Newtonsoft.Json.Converters.XObjectWrapper::get_Value()
 extern void XObjectWrapper_get_Value_m7AB606552672994B3A2D984DAD7A3CDCDAC834B8 (void);
-// 0x00000801 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XObjectWrapper::AppendChild(Newtonsoft.Json.Converters.IXmlNode)
+// 0x00000827 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XObjectWrapper::AppendChild(Newtonsoft.Json.Converters.IXmlNode)
 extern void XObjectWrapper_AppendChild_mEE259D525D57329A1E185C7890948B1D60825EBF (void);
-// 0x00000802 System.String Newtonsoft.Json.Converters.XObjectWrapper::get_NamespaceUri()
+// 0x00000828 System.String Newtonsoft.Json.Converters.XObjectWrapper::get_NamespaceUri()
 extern void XObjectWrapper_get_NamespaceUri_m529B8ED90C908C445BB59D8A6B8EBFBE71EF59A0 (void);
-// 0x00000803 System.Xml.Linq.XAttribute Newtonsoft.Json.Converters.XAttributeWrapper::get_Attribute()
+// 0x00000829 System.Xml.Linq.XAttribute Newtonsoft.Json.Converters.XAttributeWrapper::get_Attribute()
 extern void XAttributeWrapper_get_Attribute_m16AF0B1BB1C35424CFD02C70ABF650404E29E652 (void);
-// 0x00000804 System.Void Newtonsoft.Json.Converters.XAttributeWrapper::.ctor(System.Xml.Linq.XAttribute)
+// 0x0000082A System.Void Newtonsoft.Json.Converters.XAttributeWrapper::.ctor(System.Xml.Linq.XAttribute)
 extern void XAttributeWrapper__ctor_m422A79FFCEC59497779B9FD062338ADF357DD0B9 (void);
-// 0x00000805 System.String Newtonsoft.Json.Converters.XAttributeWrapper::get_Value()
+// 0x0000082B System.String Newtonsoft.Json.Converters.XAttributeWrapper::get_Value()
 extern void XAttributeWrapper_get_Value_mA6C0775EDFFE4CCAB8F058F284CC408B2CC9AED5 (void);
-// 0x00000806 System.String Newtonsoft.Json.Converters.XAttributeWrapper::get_LocalName()
+// 0x0000082C System.String Newtonsoft.Json.Converters.XAttributeWrapper::get_LocalName()
 extern void XAttributeWrapper_get_LocalName_m3A2F6F59CA2B97EB136ABEA352B4F873390A785A (void);
-// 0x00000807 System.String Newtonsoft.Json.Converters.XAttributeWrapper::get_NamespaceUri()
+// 0x0000082D System.String Newtonsoft.Json.Converters.XAttributeWrapper::get_NamespaceUri()
 extern void XAttributeWrapper_get_NamespaceUri_m6F38C473D015275CD37FD6424EC4CAB26F651435 (void);
-// 0x00000808 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XAttributeWrapper::get_ParentNode()
+// 0x0000082E Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XAttributeWrapper::get_ParentNode()
 extern void XAttributeWrapper_get_ParentNode_mA9601810FE7A8F9C5B25F2903A2EADCF9414FFB9 (void);
-// 0x00000809 System.Xml.Linq.XElement Newtonsoft.Json.Converters.XElementWrapper::get_Element()
+// 0x0000082F System.Xml.Linq.XElement Newtonsoft.Json.Converters.XElementWrapper::get_Element()
 extern void XElementWrapper_get_Element_m3919B73F533FF93A52C306903AC089C2596309CA (void);
-// 0x0000080A System.Void Newtonsoft.Json.Converters.XElementWrapper::.ctor(System.Xml.Linq.XElement)
+// 0x00000830 System.Void Newtonsoft.Json.Converters.XElementWrapper::.ctor(System.Xml.Linq.XElement)
 extern void XElementWrapper__ctor_m55BE0BF08B7BE9821F325712356762F154BBC14C (void);
-// 0x0000080B System.Void Newtonsoft.Json.Converters.XElementWrapper::SetAttributeNode(Newtonsoft.Json.Converters.IXmlNode)
+// 0x00000831 System.Void Newtonsoft.Json.Converters.XElementWrapper::SetAttributeNode(Newtonsoft.Json.Converters.IXmlNode)
 extern void XElementWrapper_SetAttributeNode_m569CA317578AC9B9A6D0F7928B899C0EDF551AB3 (void);
-// 0x0000080C System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XElementWrapper::get_Attributes()
+// 0x00000832 System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode> Newtonsoft.Json.Converters.XElementWrapper::get_Attributes()
 extern void XElementWrapper_get_Attributes_m48A51E7C8E75780D86865F22B61EC8AA9E4C4A1F (void);
-// 0x0000080D System.Boolean Newtonsoft.Json.Converters.XElementWrapper::HasImplicitNamespaceAttribute(System.String)
+// 0x00000833 System.Boolean Newtonsoft.Json.Converters.XElementWrapper::HasImplicitNamespaceAttribute(System.String)
 extern void XElementWrapper_HasImplicitNamespaceAttribute_m548BD97674FCDEE67BA7452DCE6BB457FAA5FA5D (void);
-// 0x0000080E Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XElementWrapper::AppendChild(Newtonsoft.Json.Converters.IXmlNode)
+// 0x00000834 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XElementWrapper::AppendChild(Newtonsoft.Json.Converters.IXmlNode)
 extern void XElementWrapper_AppendChild_mA09EC68B1A89C8B2B3684BC8CCD38423D8136AEA (void);
-// 0x0000080F System.String Newtonsoft.Json.Converters.XElementWrapper::get_Value()
+// 0x00000835 System.String Newtonsoft.Json.Converters.XElementWrapper::get_Value()
 extern void XElementWrapper_get_Value_m82F5FFF4058E1C38BBBE3E9C0623DFBE44E9626A (void);
-// 0x00000810 System.String Newtonsoft.Json.Converters.XElementWrapper::get_LocalName()
+// 0x00000836 System.String Newtonsoft.Json.Converters.XElementWrapper::get_LocalName()
 extern void XElementWrapper_get_LocalName_m37A1DA0801B6DAB89D0A1FC5C33F3B2F717541D2 (void);
-// 0x00000811 System.String Newtonsoft.Json.Converters.XElementWrapper::get_NamespaceUri()
+// 0x00000837 System.String Newtonsoft.Json.Converters.XElementWrapper::get_NamespaceUri()
 extern void XElementWrapper_get_NamespaceUri_mEEAAC64CD7A70630393E3D19CC3CC2F49AD70C06 (void);
-// 0x00000812 System.String Newtonsoft.Json.Converters.XElementWrapper::GetPrefixOfNamespace(System.String)
+// 0x00000838 System.String Newtonsoft.Json.Converters.XElementWrapper::GetPrefixOfNamespace(System.String)
 extern void XElementWrapper_GetPrefixOfNamespace_m6F492154275D9C68730F870264C1AD3FEE3B6FE1 (void);
-// 0x00000813 System.Boolean Newtonsoft.Json.Converters.XElementWrapper::get_IsEmpty()
+// 0x00000839 System.Boolean Newtonsoft.Json.Converters.XElementWrapper::get_IsEmpty()
 extern void XElementWrapper_get_IsEmpty_m80450C49F14C9AF7999BC5A1F5C98602B037CC51 (void);
-// 0x00000814 System.String Newtonsoft.Json.Converters.XmlNodeConverter::get_DeserializeRootElementName()
+// 0x0000083A System.String Newtonsoft.Json.Converters.XmlNodeConverter::get_DeserializeRootElementName()
 extern void XmlNodeConverter_get_DeserializeRootElementName_m5342003D15044FAC12008A80B2C279653BE4999E (void);
-// 0x00000815 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::get_WriteArrayAttribute()
+// 0x0000083B System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::get_WriteArrayAttribute()
 extern void XmlNodeConverter_get_WriteArrayAttribute_m3E5F511871F164DB7156B1C2A56D8E6070077896 (void);
-// 0x00000816 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::get_OmitRootObject()
+// 0x0000083C System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::get_OmitRootObject()
 extern void XmlNodeConverter_get_OmitRootObject_m1DC645F1146FB029CE6711877E4A9D6126F6D5E7 (void);
-// 0x00000817 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::get_EncodeSpecialCharacters()
+// 0x0000083D System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::get_EncodeSpecialCharacters()
 extern void XmlNodeConverter_get_EncodeSpecialCharacters_m24FFF53264823E9F8380EE1E8E3ECF61303FFEC1 (void);
-// 0x00000818 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x0000083E System.Void Newtonsoft.Json.Converters.XmlNodeConverter::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void XmlNodeConverter_WriteJson_mD46FCF3FD30A71D73292E6CFE4DA03E999FD5286 (void);
-// 0x00000819 Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlNodeConverter::WrapXml(System.Object)
+// 0x0000083F Newtonsoft.Json.Converters.IXmlNode Newtonsoft.Json.Converters.XmlNodeConverter::WrapXml(System.Object)
 extern void XmlNodeConverter_WrapXml_m6B7FD98BA7EA38A905A3183A24007E325618B785 (void);
-// 0x0000081A System.Void Newtonsoft.Json.Converters.XmlNodeConverter::PushParentNamespaces(Newtonsoft.Json.Converters.IXmlNode,System.Xml.XmlNamespaceManager)
+// 0x00000840 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::PushParentNamespaces(Newtonsoft.Json.Converters.IXmlNode,System.Xml.XmlNamespaceManager)
 extern void XmlNodeConverter_PushParentNamespaces_m45190C8161D5A379BD61CD391F6A29F808BBF541 (void);
-// 0x0000081B System.String Newtonsoft.Json.Converters.XmlNodeConverter::ResolveFullName(Newtonsoft.Json.Converters.IXmlNode,System.Xml.XmlNamespaceManager)
+// 0x00000841 System.String Newtonsoft.Json.Converters.XmlNodeConverter::ResolveFullName(Newtonsoft.Json.Converters.IXmlNode,System.Xml.XmlNamespaceManager)
 extern void XmlNodeConverter_ResolveFullName_m070DD0A95E2D01761A5D571331F9E55C494FDDEB (void);
-// 0x0000081C System.String Newtonsoft.Json.Converters.XmlNodeConverter::GetPropertyName(Newtonsoft.Json.Converters.IXmlNode,System.Xml.XmlNamespaceManager)
+// 0x00000842 System.String Newtonsoft.Json.Converters.XmlNodeConverter::GetPropertyName(Newtonsoft.Json.Converters.IXmlNode,System.Xml.XmlNamespaceManager)
 extern void XmlNodeConverter_GetPropertyName_m80592648BD3E04986425A07775CF3E2C40342DEE (void);
-// 0x0000081D System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::IsArray(Newtonsoft.Json.Converters.IXmlNode)
+// 0x00000843 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::IsArray(Newtonsoft.Json.Converters.IXmlNode)
 extern void XmlNodeConverter_IsArray_mD5800140447C8F80BB2BF899D0D6E66B9BDAC8C3 (void);
-// 0x0000081E System.Void Newtonsoft.Json.Converters.XmlNodeConverter::SerializeGroupedNodes(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.Converters.IXmlNode,System.Xml.XmlNamespaceManager,System.Boolean)
+// 0x00000844 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::SerializeGroupedNodes(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.Converters.IXmlNode,System.Xml.XmlNamespaceManager,System.Boolean)
 extern void XmlNodeConverter_SerializeGroupedNodes_mE1F600E4A813939DB28DD249B01EFB7DF5454841 (void);
-// 0x0000081F System.Void Newtonsoft.Json.Converters.XmlNodeConverter::WriteGroupedNodes(Newtonsoft.Json.JsonWriter,System.Xml.XmlNamespaceManager,System.Boolean,System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode>,System.String)
+// 0x00000845 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::WriteGroupedNodes(Newtonsoft.Json.JsonWriter,System.Xml.XmlNamespaceManager,System.Boolean,System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode>,System.String)
 extern void XmlNodeConverter_WriteGroupedNodes_mD935621BFC5676C3282ACFFC7748ABDFDBD0D59B (void);
-// 0x00000820 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::WriteGroupedNodes(Newtonsoft.Json.JsonWriter,System.Xml.XmlNamespaceManager,System.Boolean,Newtonsoft.Json.Converters.IXmlNode,System.String)
+// 0x00000846 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::WriteGroupedNodes(Newtonsoft.Json.JsonWriter,System.Xml.XmlNamespaceManager,System.Boolean,Newtonsoft.Json.Converters.IXmlNode,System.String)
 extern void XmlNodeConverter_WriteGroupedNodes_mA805AFFD4199E3FDC71D7BAC5AA2C810FE2DAFD9 (void);
-// 0x00000821 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::SerializeNode(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.Converters.IXmlNode,System.Xml.XmlNamespaceManager,System.Boolean)
+// 0x00000847 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::SerializeNode(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.Converters.IXmlNode,System.Xml.XmlNamespaceManager,System.Boolean)
 extern void XmlNodeConverter_SerializeNode_m98B14AC11CB6B238E3CE8A685E869AC2FFBFC616 (void);
-// 0x00000822 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::AllSameName(Newtonsoft.Json.Converters.IXmlNode)
+// 0x00000848 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::AllSameName(Newtonsoft.Json.Converters.IXmlNode)
 extern void XmlNodeConverter_AllSameName_m696EC9FCB88226B66F3D2DCB791DB58899ABC1EA (void);
-// 0x00000823 System.Object Newtonsoft.Json.Converters.XmlNodeConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+// 0x00000849 System.Object Newtonsoft.Json.Converters.XmlNodeConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 extern void XmlNodeConverter_ReadJson_mAF7F5BF59456FFA72DC420771892401D29479377 (void);
-// 0x00000824 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::DeserializeValue(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,System.Xml.XmlNamespaceManager,System.String,Newtonsoft.Json.Converters.IXmlNode)
+// 0x0000084A System.Void Newtonsoft.Json.Converters.XmlNodeConverter::DeserializeValue(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,System.Xml.XmlNamespaceManager,System.String,Newtonsoft.Json.Converters.IXmlNode)
 extern void XmlNodeConverter_DeserializeValue_mCC989128DE1ECCD780898FEF6436C6BE8DCBB3C9 (void);
-// 0x00000825 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::ReadElement(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,Newtonsoft.Json.Converters.IXmlNode,System.String,System.Xml.XmlNamespaceManager)
+// 0x0000084B System.Void Newtonsoft.Json.Converters.XmlNodeConverter::ReadElement(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,Newtonsoft.Json.Converters.IXmlNode,System.String,System.Xml.XmlNamespaceManager)
 extern void XmlNodeConverter_ReadElement_m1875B4E253E4E7B1D6B4A1E66B37C3BC342F589B (void);
-// 0x00000826 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::CreateElement(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,Newtonsoft.Json.Converters.IXmlNode,System.String,System.Xml.XmlNamespaceManager,System.String,System.Collections.Generic.Dictionary`2<System.String,System.String>)
+// 0x0000084C System.Void Newtonsoft.Json.Converters.XmlNodeConverter::CreateElement(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,Newtonsoft.Json.Converters.IXmlNode,System.String,System.Xml.XmlNamespaceManager,System.String,System.Collections.Generic.Dictionary`2<System.String,System.String>)
 extern void XmlNodeConverter_CreateElement_m685163F131087AB52EC6C92A4D12AD6D8FCB47B2 (void);
-// 0x00000827 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::AddAttribute(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,Newtonsoft.Json.Converters.IXmlNode,System.String,System.String,System.Xml.XmlNamespaceManager,System.String)
+// 0x0000084D System.Void Newtonsoft.Json.Converters.XmlNodeConverter::AddAttribute(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,Newtonsoft.Json.Converters.IXmlNode,System.String,System.String,System.Xml.XmlNamespaceManager,System.String)
 extern void XmlNodeConverter_AddAttribute_m12D2CF886CDF3A6D727E84D54DC5F28C40E0F921 (void);
-// 0x00000828 System.String Newtonsoft.Json.Converters.XmlNodeConverter::ConvertTokenToXmlValue(Newtonsoft.Json.JsonReader)
+// 0x0000084E System.String Newtonsoft.Json.Converters.XmlNodeConverter::ConvertTokenToXmlValue(Newtonsoft.Json.JsonReader)
 extern void XmlNodeConverter_ConvertTokenToXmlValue_mEDA982C9188CA1CD79406134421EA0EE02FEE7C5 (void);
-// 0x00000829 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::ReadArrayElements(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,System.String,Newtonsoft.Json.Converters.IXmlNode,System.Xml.XmlNamespaceManager)
+// 0x0000084F System.Void Newtonsoft.Json.Converters.XmlNodeConverter::ReadArrayElements(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,System.String,Newtonsoft.Json.Converters.IXmlNode,System.Xml.XmlNamespaceManager)
 extern void XmlNodeConverter_ReadArrayElements_m181019A888B3412C9A989567C11F10EE79EEC196 (void);
-// 0x0000082A System.Void Newtonsoft.Json.Converters.XmlNodeConverter::AddJsonArrayAttribute(Newtonsoft.Json.Converters.IXmlElement,Newtonsoft.Json.Converters.IXmlDocument)
+// 0x00000850 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::AddJsonArrayAttribute(Newtonsoft.Json.Converters.IXmlElement,Newtonsoft.Json.Converters.IXmlDocument)
 extern void XmlNodeConverter_AddJsonArrayAttribute_m32DA27F7006ADEEB870BEB1309E1F0A4C0EA92C6 (void);
-// 0x0000082B System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::ShouldReadInto(Newtonsoft.Json.JsonReader)
+// 0x00000851 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::ShouldReadInto(Newtonsoft.Json.JsonReader)
 extern void XmlNodeConverter_ShouldReadInto_m8CA7024345F84430FDF117E7B26B9B23393C3682 (void);
-// 0x0000082C System.Collections.Generic.Dictionary`2<System.String,System.String> Newtonsoft.Json.Converters.XmlNodeConverter::ReadAttributeElements(Newtonsoft.Json.JsonReader,System.Xml.XmlNamespaceManager)
+// 0x00000852 System.Collections.Generic.Dictionary`2<System.String,System.String> Newtonsoft.Json.Converters.XmlNodeConverter::ReadAttributeElements(Newtonsoft.Json.JsonReader,System.Xml.XmlNamespaceManager)
 extern void XmlNodeConverter_ReadAttributeElements_mAB122B5FEE9EAF92A253745923B0E29327DD9BD6 (void);
-// 0x0000082D System.Void Newtonsoft.Json.Converters.XmlNodeConverter::CreateInstruction(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,Newtonsoft.Json.Converters.IXmlNode,System.String)
+// 0x00000853 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::CreateInstruction(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,Newtonsoft.Json.Converters.IXmlNode,System.String)
 extern void XmlNodeConverter_CreateInstruction_m2311DBC155347A95165E812C80A914E079451D64 (void);
-// 0x0000082E System.Void Newtonsoft.Json.Converters.XmlNodeConverter::CreateDocumentType(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,Newtonsoft.Json.Converters.IXmlNode)
+// 0x00000854 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::CreateDocumentType(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,Newtonsoft.Json.Converters.IXmlNode)
 extern void XmlNodeConverter_CreateDocumentType_mE64F3F0A197C9147A9FF4A1542CE032597B1FF1C (void);
-// 0x0000082F Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XmlNodeConverter::CreateElement(System.String,Newtonsoft.Json.Converters.IXmlDocument,System.String,System.Xml.XmlNamespaceManager)
+// 0x00000855 Newtonsoft.Json.Converters.IXmlElement Newtonsoft.Json.Converters.XmlNodeConverter::CreateElement(System.String,Newtonsoft.Json.Converters.IXmlDocument,System.String,System.Xml.XmlNamespaceManager)
 extern void XmlNodeConverter_CreateElement_mED4D4CE324EE5870EC2C9631907D33D1E24D16D0 (void);
-// 0x00000830 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::DeserializeNode(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,System.Xml.XmlNamespaceManager,Newtonsoft.Json.Converters.IXmlNode)
+// 0x00000856 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::DeserializeNode(Newtonsoft.Json.JsonReader,Newtonsoft.Json.Converters.IXmlDocument,System.Xml.XmlNamespaceManager,Newtonsoft.Json.Converters.IXmlNode)
 extern void XmlNodeConverter_DeserializeNode_m6FC0EC6A542676B752815398C7D39CE5E8F51183 (void);
-// 0x00000831 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::IsNamespaceAttribute(System.String,System.String&)
+// 0x00000857 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::IsNamespaceAttribute(System.String,System.String&)
 extern void XmlNodeConverter_IsNamespaceAttribute_m828CA7174449BB2343D0630CD362A17FFE551509 (void);
-// 0x00000832 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::ValueAttributes(System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode>)
+// 0x00000858 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::ValueAttributes(System.Collections.Generic.List`1<Newtonsoft.Json.Converters.IXmlNode>)
 extern void XmlNodeConverter_ValueAttributes_mD2D0A9A0D29DE85F63B44A269684CF65DACC33EB (void);
-// 0x00000833 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::CanConvert(System.Type)
+// 0x00000859 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::CanConvert(System.Type)
 extern void XmlNodeConverter_CanConvert_m50172458741554A4A78B31FB94BB965ADC199E32 (void);
-// 0x00000834 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::IsXObject(System.Type)
+// 0x0000085A System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::IsXObject(System.Type)
 extern void XmlNodeConverter_IsXObject_m8F6138E73E8740AB3F28F044B7DAB8C87123AC46 (void);
-// 0x00000835 System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::IsXmlNode(System.Type)
+// 0x0000085B System.Boolean Newtonsoft.Json.Converters.XmlNodeConverter::IsXmlNode(System.Type)
 extern void XmlNodeConverter_IsXmlNode_mAED89EA3CB87FBA84D0C233E95F2E97C36792F66 (void);
-// 0x00000836 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::.ctor()
+// 0x0000085C System.Void Newtonsoft.Json.Converters.XmlNodeConverter::.ctor()
 extern void XmlNodeConverter__ctor_m97EC881EA9D55FBD406FA726E369E7A435A73256 (void);
-// 0x00000837 System.Void Newtonsoft.Json.Converters.XmlNodeConverter::.cctor()
+// 0x0000085D System.Void Newtonsoft.Json.Converters.XmlNodeConverter::.cctor()
 extern void XmlNodeConverter__cctor_m75D2B59EB492194F562C9E0A49C50294A1CC1686 (void);
-// 0x00000838 System.Byte[] Newtonsoft.Json.Bson.BsonObjectId::get_Value()
+// 0x0000085E System.Byte[] Newtonsoft.Json.Bson.BsonObjectId::get_Value()
 extern void BsonObjectId_get_Value_m31F2585B695921FC2352909BDEA11549BE3681AB (void);
-// 0x00000839 System.Void Newtonsoft.Json.Bson.BsonObjectId::.ctor(System.Byte[])
+// 0x0000085F System.Void Newtonsoft.Json.Bson.BsonObjectId::.ctor(System.Byte[])
 extern void BsonObjectId__ctor_m75FD056009E97CFF074018B9AEFD247984B75F4E (void);
-// 0x0000083A Newtonsoft.Json.Bson.BsonType Newtonsoft.Json.Bson.BsonToken::get_Type()
-// 0x0000083B System.Void Newtonsoft.Json.Bson.BsonToken::set_Parent(Newtonsoft.Json.Bson.BsonToken)
+// 0x00000860 Newtonsoft.Json.Bson.BsonType Newtonsoft.Json.Bson.BsonToken::get_Type()
+// 0x00000861 System.Void Newtonsoft.Json.Bson.BsonToken::set_Parent(Newtonsoft.Json.Bson.BsonToken)
 extern void BsonToken_set_Parent_m8E4DC5D9DFD4A770F5640E11F462642010FF597F (void);
-// 0x0000083C System.Void Newtonsoft.Json.Bson.BsonToken::.ctor()
+// 0x00000862 System.Void Newtonsoft.Json.Bson.BsonToken::.ctor()
 extern void BsonToken__ctor_m7EC93D3AB78587AE013DF26DB9A0A54DE698D468 (void);
-// 0x0000083D System.Void Newtonsoft.Json.Bson.BsonObject::Add(System.String,Newtonsoft.Json.Bson.BsonToken)
+// 0x00000863 System.Void Newtonsoft.Json.Bson.BsonObject::Add(System.String,Newtonsoft.Json.Bson.BsonToken)
 extern void BsonObject_Add_mA5AA56D65FBC3526511A81C3FA0FEE96C45081EF (void);
-// 0x0000083E Newtonsoft.Json.Bson.BsonType Newtonsoft.Json.Bson.BsonObject::get_Type()
+// 0x00000864 Newtonsoft.Json.Bson.BsonType Newtonsoft.Json.Bson.BsonObject::get_Type()
 extern void BsonObject_get_Type_m6E3341CD6D4CEE1ADA448818FF42DB7AF1F8C5D0 (void);
-// 0x0000083F System.Void Newtonsoft.Json.Bson.BsonArray::Add(Newtonsoft.Json.Bson.BsonToken)
+// 0x00000865 System.Void Newtonsoft.Json.Bson.BsonArray::Add(Newtonsoft.Json.Bson.BsonToken)
 extern void BsonArray_Add_mE97127058EF6452A8B6E3313479AF089750A56C9 (void);
-// 0x00000840 Newtonsoft.Json.Bson.BsonType Newtonsoft.Json.Bson.BsonArray::get_Type()
+// 0x00000866 Newtonsoft.Json.Bson.BsonType Newtonsoft.Json.Bson.BsonArray::get_Type()
 extern void BsonArray_get_Type_mAC8DD31C7832815AA8BF3941E0F6D29333E9DFC7 (void);
-// 0x00000841 System.Void Newtonsoft.Json.Bson.BsonValue::.ctor(System.Object,Newtonsoft.Json.Bson.BsonType)
+// 0x00000867 System.Void Newtonsoft.Json.Bson.BsonValue::.ctor(System.Object,Newtonsoft.Json.Bson.BsonType)
 extern void BsonValue__ctor_m03C219CB3A92C0F26BED0F4453D27105C5B56CA2 (void);
-// 0x00000842 Newtonsoft.Json.Bson.BsonType Newtonsoft.Json.Bson.BsonValue::get_Type()
+// 0x00000868 Newtonsoft.Json.Bson.BsonType Newtonsoft.Json.Bson.BsonValue::get_Type()
 extern void BsonValue_get_Type_mB1440A8431F7D5D832C9A66229DF7F157475043C (void);
-// 0x00000843 System.Void Newtonsoft.Json.Bson.BsonString::.ctor(System.Object,System.Boolean)
+// 0x00000869 System.Void Newtonsoft.Json.Bson.BsonString::.ctor(System.Object,System.Boolean)
 extern void BsonString__ctor_m2711C9F2EBE8695F13D0C3066A2130BC3C4535C2 (void);
-// 0x00000844 System.Void Newtonsoft.Json.Bson.BsonRegex::set_Pattern(Newtonsoft.Json.Bson.BsonString)
+// 0x0000086A System.Void Newtonsoft.Json.Bson.BsonRegex::set_Pattern(Newtonsoft.Json.Bson.BsonString)
 extern void BsonRegex_set_Pattern_m24327CDFB8DEDE4CFA1D68AFA7466BAE524ABC20 (void);
-// 0x00000845 System.Void Newtonsoft.Json.Bson.BsonRegex::set_Options(Newtonsoft.Json.Bson.BsonString)
+// 0x0000086B System.Void Newtonsoft.Json.Bson.BsonRegex::set_Options(Newtonsoft.Json.Bson.BsonString)
 extern void BsonRegex_set_Options_m07E67630900426FA589EAB60BB4A6C27D9CC3DB1 (void);
-// 0x00000846 System.Void Newtonsoft.Json.Bson.BsonRegex::.ctor(System.String,System.String)
+// 0x0000086C System.Void Newtonsoft.Json.Bson.BsonRegex::.ctor(System.String,System.String)
 extern void BsonRegex__ctor_m9917922FA47BFB09EBAD8ABED30AE0F42221657E (void);
-// 0x00000847 Newtonsoft.Json.Bson.BsonType Newtonsoft.Json.Bson.BsonRegex::get_Type()
+// 0x0000086D Newtonsoft.Json.Bson.BsonType Newtonsoft.Json.Bson.BsonRegex::get_Type()
 extern void BsonRegex_get_Type_m2841C0F075DD834AA95E7C05581D2799008762F1 (void);
-// 0x00000848 System.Void Newtonsoft.Json.Bson.BsonProperty::set_Name(Newtonsoft.Json.Bson.BsonString)
+// 0x0000086E System.Void Newtonsoft.Json.Bson.BsonProperty::set_Name(Newtonsoft.Json.Bson.BsonString)
 extern void BsonProperty_set_Name_m1F69C8C4CD4280E6F415B54505527AA4F89E8108 (void);
-// 0x00000849 System.Void Newtonsoft.Json.Bson.BsonProperty::set_Value(Newtonsoft.Json.Bson.BsonToken)
+// 0x0000086F System.Void Newtonsoft.Json.Bson.BsonProperty::set_Value(Newtonsoft.Json.Bson.BsonToken)
 extern void BsonProperty_set_Value_m5D464E6937763A2F5EF4627649B8617F95245B0E (void);
-// 0x0000084A System.Void Newtonsoft.Json.Bson.BsonProperty::.ctor()
+// 0x00000870 System.Void Newtonsoft.Json.Bson.BsonProperty::.ctor()
 extern void BsonProperty__ctor_mFA9F7F508277849400B51D3A42EE240D910023D3 (void);
-// 0x0000084B System.Void Newtonsoft.Json.Bson.BsonWriter::AddValue(System.Object,Newtonsoft.Json.Bson.BsonType)
+// 0x00000871 System.Void Newtonsoft.Json.Bson.BsonWriter::AddValue(System.Object,Newtonsoft.Json.Bson.BsonType)
 extern void BsonWriter_AddValue_m01A7D786CE33C4C7EFE6A8C72621DB5AEB493AC9 (void);
-// 0x0000084C System.Void Newtonsoft.Json.Bson.BsonWriter::AddToken(Newtonsoft.Json.Bson.BsonToken)
+// 0x00000872 System.Void Newtonsoft.Json.Bson.BsonWriter::AddToken(Newtonsoft.Json.Bson.BsonToken)
 extern void BsonWriter_AddToken_m1B5997BE0306C993444412407983AB271DBA51A1 (void);
-// 0x0000084D System.Void Newtonsoft.Json.Bson.BsonWriter::WriteObjectId(System.Byte[])
+// 0x00000873 System.Void Newtonsoft.Json.Bson.BsonWriter::WriteObjectId(System.Byte[])
 extern void BsonWriter_WriteObjectId_mF300FF913DD6E3FC6D8BAC41A4CDE2DB99D3D150 (void);
-// 0x0000084E System.Void Newtonsoft.Json.Bson.BsonWriter::WriteRegex(System.String,System.String)
+// 0x00000874 System.Void Newtonsoft.Json.Bson.BsonWriter::WriteRegex(System.String,System.String)
 extern void BsonWriter_WriteRegex_m0E4DFC4B2E71791B8289C9EB91998E44597F71BC (void);
-static Il2CppMethodPointer s_methodPointers[2126] = 
+static Il2CppMethodPointer s_methodPointers[2164] = 
 {
 	EmbeddedAttribute__ctor_mFD42DDA77F3D5D45DB40B31097F4D2B8AAF5EC85,
 	IsReadOnlyAttribute__ctor_m66AFBBA7994D7E6EB88661C203CCE164EF0952AC,
@@ -5581,10 +5657,13 @@ static Il2CppMethodPointer s_methodPointers[2126] =
 	JConstructor_CloneToken_m61189BAE59DD8C6818AF9105E25E2A506DD5D6B2,
 	JConstructor_WriteTo_mE4397932E720472C8BE4012261FE192D74DEA5BF,
 	JConstructor_Load_mCFF1BAB0B6124760EC02ED64C77AA80E56231A50,
+	JContainer_add_ListChanged_mAB1B53581AB9A3AF672BB13C4A2B25B0F5869FE4,
+	JContainer_remove_ListChanged_m400587D04765B4809FE3A654CEE372553CDE33A9,
 	NULL,
 	JContainer__ctor_mFD6935D668B82D82016ABAFD45BA794A882EA9FC,
 	JContainer__ctor_m1319811FF9DB0BD93A6658A269654E36DB3DAE9E,
 	JContainer_CheckReentrancy_m22D8B65464CEFECC237E237C6890EE97816A4322,
+	JContainer_OnAddingNew_m5DAE50864D7BAA40307A152083F409671DBB3B76,
 	JContainer_OnListChanged_m1BC9868E2ECE7FAB61B5736C4A61ADB58F8025DD,
 	JContainer_OnCollectionChanged_m17AC0D94FBDF9C1D53B017634559445CD4F9EFF4,
 	JContainer_get_HasValues_m58E54EC5285D22D5E57426534608F8332E83DB1C,
@@ -5613,6 +5692,8 @@ static Il2CppMethodPointer s_methodPointers[2126] =
 	JContainer_ReadTokenFrom_m68B5F72B887253C5BACCE399AA58518CC8530847,
 	JContainer_ReadContentFrom_m346072BEF297389B5A98251D04FB2906181D5D30,
 	JContainer_ReadProperty_m8ED54E676A7B66B12B686177A7227E77931B6DFC,
+	JContainer_System_ComponentModel_ITypedList_GetListName_m9FBC85AFEF4875CD5EBCA3FB6A12E2F7B3495406,
+	JContainer_System_ComponentModel_ITypedList_GetItemProperties_mAA3EF0E9F00420D1E0AF1F265C831D5FBB9296F6,
 	JContainer_System_Collections_Generic_IListU3CNewtonsoft_Json_Linq_JTokenU3E_IndexOf_mEF7933163B9F683FB6B97DE3A3CEED2BCDE5A087,
 	JContainer_System_Collections_Generic_IListU3CNewtonsoft_Json_Linq_JTokenU3E_Insert_m187274F6C12FF3BE809364CF332FB2472D0E4920,
 	JContainer_System_Collections_Generic_IListU3CNewtonsoft_Json_Linq_JTokenU3E_RemoveAt_m99594DA55CBEB89E7971C6CFDBD3DB3CA9625FF4,
@@ -5638,7 +5719,23 @@ static Il2CppMethodPointer s_methodPointers[2126] =
 	JContainer_System_Collections_IList_set_Item_m791341C24AF052037DFD3AB297E157EF943FF26E,
 	JContainer_System_Collections_ICollection_CopyTo_m3AC641C8176E4D9AD49469A066E9DE4FED40B49A,
 	JContainer_get_Count_m313DBBD55EDD9D91B15A73D708C0C09BA84F1459,
+	JContainer_System_Collections_ICollection_get_IsSynchronized_mC1B5324CB463F4B3B1DC4292EA581F9BBD3F94AA,
 	JContainer_System_Collections_ICollection_get_SyncRoot_m280FAD30F745DD0CFC625D4BBB8BE5D33BD08804,
+	JContainer_System_ComponentModel_IBindingList_AddIndex_mEAB9D866065FA2311BED0EB3601D1C7AD5C75104,
+	JContainer_System_ComponentModel_IBindingList_AddNew_m1EBFF2E113204E98FEAE33C1E690964A49B6169D,
+	JContainer_System_ComponentModel_IBindingList_get_AllowEdit_mAC13213B33566C15E1DCEDC4B9C0CAE6CDCC7E32,
+	JContainer_System_ComponentModel_IBindingList_get_AllowNew_m798C7A851C58C3D2F929C755487BF50251A58CEF,
+	JContainer_System_ComponentModel_IBindingList_get_AllowRemove_m2DAEB7D0FC92C86DE575285BE772A431AAD1C55B,
+	JContainer_System_ComponentModel_IBindingList_ApplySort_m17B03DDADE1BA64FADBE5BAA04D1198E97BFB144,
+	JContainer_System_ComponentModel_IBindingList_Find_m8D241C5E85C07088020A5D7A1DB5AE8379D604B8,
+	JContainer_System_ComponentModel_IBindingList_get_IsSorted_mB0C891C64242BD3548E47965C3FCC744D884A380,
+	JContainer_System_ComponentModel_IBindingList_RemoveIndex_m4925CF0396CD149529455468762A767AA5514133,
+	JContainer_System_ComponentModel_IBindingList_RemoveSort_m17A0447BE10EDA49028C0FB34DFB20E152BA759A,
+	JContainer_System_ComponentModel_IBindingList_get_SortDirection_m6D7FC1EA004217A830DB08EAD09871996E1C48C2,
+	JContainer_System_ComponentModel_IBindingList_get_SortProperty_mD23F701C4FA43703438F0AD3DD67D8EEC8FF397A,
+	JContainer_System_ComponentModel_IBindingList_get_SupportsChangeNotification_m7A5DB27427A824285B7156C2032533E7CB5BF2FF,
+	JContainer_System_ComponentModel_IBindingList_get_SupportsSearching_m7E81414B27FAB5105463DB23991743FDBCCDE14E,
+	JContainer_System_ComponentModel_IBindingList_get_SupportsSorting_mA25A4884880CD551D947FBA66D73D2DADCABAEAA,
 	NULL,
 	NULL,
 	NULL,
@@ -5647,6 +5744,10 @@ static Il2CppMethodPointer s_methodPointers[2126] =
 	NULL,
 	NULL,
 	JObject_get_ChildrenTokens_m4A61C37B8D9C5D620293026B989D9B57133BB900,
+	JObject_add_PropertyChanged_mF337991F8D3B5F9BDE3061EB2D258DC42A8525AB,
+	JObject_remove_PropertyChanged_m66CD8DFBB36F234C0FB7DAC01AD79B9148FB60C1,
+	JObject_add_PropertyChanging_mDBE66DE440358EBA2F24A98A154D71E77A8B6C97,
+	JObject_remove_PropertyChanging_m882A97213787AC6207EC74D807BECA27AA15650E,
 	JObject__ctor_mE7A2D87036C874CD9D47947A6AC8C62528CAD233,
 	JObject__ctor_m3B99BE70EE910974DBB0CEEBCF6FCDD4414AECF9,
 	JObject_IndexOfItem_m81605D13D094044432DB6298CF07745E1D6A4741,
@@ -5663,6 +5764,8 @@ static Il2CppMethodPointer s_methodPointers[2126] =
 	JObject_Load_m77318C1EE64C0E2AA1E6D38FFF747A9BE468BB24,
 	JObject_WriteTo_m7F75D7BD95C3DC847DA79FFC395873DB47BC72C4,
 	JObject_Add_m474A38563A62F0E8E9070E971E98E380B21AE9A7,
+	JObject_ContainsKey_mD4BA92B095F1B11DB804732A5F7D9A05CF432420,
+	JObject_System_Collections_Generic_IDictionaryU3CSystem_StringU2CNewtonsoft_Json_Linq_JTokenU3E_get_Keys_m31283FDB07BF1302A70D1327A8ECEBDBC70A5162,
 	JObject_Remove_m16DE94E7ABA93DC9A1F7CF978EACC3CA83C14179,
 	JObject_TryGetValue_mBBA93BEA584D6979B448F63F42A05000F750CD08,
 	JObject_System_Collections_Generic_IDictionaryU3CSystem_StringU2CNewtonsoft_Json_Linq_JTokenU3E_get_Values_mF764622977201413B389937F81642ACB86B7A712,
@@ -5678,7 +5781,14 @@ static Il2CppMethodPointer s_methodPointers[2126] =
 	JObject_System_ComponentModel_ICustomTypeDescriptor_GetProperties_m24075DA52561CAB428CD356DE424D4D5437EC319,
 	JObject_System_ComponentModel_ICustomTypeDescriptor_GetProperties_m2AC305595CBB62410CA265C2F0A625AA18514151,
 	JObject_System_ComponentModel_ICustomTypeDescriptor_GetAttributes_mCDF07428F13EB7C3A57FE9C26E001E0C77C5995E,
+	JObject_System_ComponentModel_ICustomTypeDescriptor_GetClassName_m691CF65FC6F74E79DA88859C1F5BCEC7D8A4BC2A,
+	JObject_System_ComponentModel_ICustomTypeDescriptor_GetComponentName_mE096ECFDEA539C1CC81A0BC602A5BC092D7FFFB9,
 	JObject_System_ComponentModel_ICustomTypeDescriptor_GetConverter_m00670142A457C75B6748227685FF2F4532B88572,
+	JObject_System_ComponentModel_ICustomTypeDescriptor_GetDefaultEvent_mC2E0B2483E7909620215382C1E8EE5C0705BEDC7,
+	JObject_System_ComponentModel_ICustomTypeDescriptor_GetDefaultProperty_m3B2AF389DB701BE67156BAE23D582D605051A52E,
+	JObject_System_ComponentModel_ICustomTypeDescriptor_GetEditor_mCA1DF7BDC611209573FD8BD305603A23C47DCC00,
+	JObject_System_ComponentModel_ICustomTypeDescriptor_GetEvents_mB40241E82E2831E4FE02DA49A128041976CACE2C,
+	JObject_System_ComponentModel_ICustomTypeDescriptor_GetEvents_m7D97D5844B88398A34D98F05A59984C6D3DC543D,
 	JObject_System_ComponentModel_ICustomTypeDescriptor_GetPropertyOwner_mE081A34A216CD0BACC35D60EB491FCACB5B695AD,
 	JObject_GetMetaObject_m59C24023FAB5969F87BCB94EC67D200642D80BAE,
 	JObjectDynamicProxy_GetDynamicMemberNames_m666572AA62F9673FA8DEBA0DE27772A920037747,
@@ -5734,7 +5844,9 @@ static Il2CppMethodPointer s_methodPointers[2126] =
 	U3CGetEnumeratorU3Ed__1_System_Collections_IEnumerator_Reset_mF64E2431FF8070581094B22E0F3AD67611974787,
 	U3CGetEnumeratorU3Ed__1_System_Collections_IEnumerator_get_Current_m88890955FFD57146B46EB35BF6C5D6E27C28C3D6,
 	JPropertyDescriptor__ctor_m8F55DFB15DA896807A5093BE1B6C54C0C7741585,
+	JPropertyDescriptor_CanResetValue_m7368EAEA287D7553CFBE04A97D3F80446A05270D,
 	JPropertyDescriptor_GetValue_mDD0EF94B9E1AA4DA0052F4AD42E6D8FF45886CBF,
+	JPropertyDescriptor_ResetValue_m7A7819C759E93ABD6B893C3269AD44280A8BE5CB,
 	JPropertyDescriptor_SetValue_mE803F24083C17FF0A6E30035FC5BB2E0736B15A6,
 	JPropertyDescriptor_ShouldSerializeValue_m742F8C64EB5DC6803E62BD82C04BED42008C8411,
 	JPropertyDescriptor_get_ComponentType_mB8E52E9269D8E14CDD6D2D25D970E4130EB1B362,
@@ -5744,6 +5856,7 @@ static Il2CppMethodPointer s_methodPointers[2126] =
 	JPropertyKeyedCollection__ctor_m505BB55461C9581E514D22225583615B85683E22,
 	JPropertyKeyedCollection_AddKey_mB6ECE88213669FE55E00AADBAD1EA52F9EAFDB28,
 	JPropertyKeyedCollection_ClearItems_mD8C4A08E722FFB23541B9D911FF7B72B23CDDA1E,
+	JPropertyKeyedCollection_Contains_m8FB99D0FD453B620CD39F2CC07534208AE209AB0,
 	JPropertyKeyedCollection_EnsureDictionary_mEDA030D11FA05055A5BD1891651CD3EED9EEBF42,
 	JPropertyKeyedCollection_GetKeyForItem_mC501BBFE7F2E9B967765EE5901B7FA97B514AECB,
 	JPropertyKeyedCollection_InsertItem_m566397B3AF3FB24C896E826D7710EF40C62FF609,
@@ -5751,6 +5864,7 @@ static Il2CppMethodPointer s_methodPointers[2126] =
 	JPropertyKeyedCollection_RemoveKey_m5BB69983B6F995F4C731A3D9CA667BCC36804C16,
 	JPropertyKeyedCollection_SetItem_mAC5968C9E2F4FB2D99CA7C65B37C641A7778255E,
 	JPropertyKeyedCollection_TryGetValue_mF1E18DB4BE9FA28198762C95730160D2B199F6B0,
+	JPropertyKeyedCollection_get_Keys_m3EC4762921B44AFAD63BD259B28EECD42E5BFE57,
 	JPropertyKeyedCollection_IndexOfReference_m2D493FA9539D7DA2E6983A37D16DA97B3221DF8C,
 	JPropertyKeyedCollection__cctor_m117949603680EE4DCEA4F2C948D8EDA6E6BA94C5,
 	JRaw__ctor_m9A0F3378697B5A7C80A43358660F1E7DB2311898,
@@ -6270,2134 +6384,2172 @@ static Il2CppTokenAdjustorThunkPair s_adjustorThunks[29] =
 	{ 0x06000345, StringReference__ctor_m9F70EE605B8D4E3E8F2D88F884927AF13FB76545_AdjustorThunk },
 	{ 0x06000346, StringReference_ToString_m0BF2C5C93A184EC1C83653F56287FE3E1CAC1EE2_AdjustorThunk },
 };
-static const int32_t s_InvokerIndices[2126] = 
+static const int32_t s_InvokerIndices[2164] = 
 {
-	3828,
-	3828,
-	3174,
-	3145,
-	3174,
-	3828,
-	3174,
-	3828,
-	3828,
-	6017,
-	3828,
-	963,
-	2444,
-	1374,
-	3828,
-	4569,
-	1163,
-	-1,
-	-1,
-	3777,
-	3725,
-	3725,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3145,
-	5990,
-	5763,
-	5752,
-	4529,
-	4214,
-	4481,
-	5178,
-	5756,
-	5746,
-	5756,
-	5194,
-	4791,
-	5756,
-	4799,
-	4799,
-	-1,
-	-1,
-	4799,
-	6017,
-	1174,
-	596,
-	2723,
-	3777,
-	3777,
-	3828,
-	3745,
-	3745,
-	3828,
-	3828,
-	3145,
-	1860,
-	1867,
-	3777,
-	3777,
-	963,
-	3828,
-	3725,
-	3126,
-	3725,
-	1148,
-	5803,
-	5190,
-	4799,
-	6017,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3725,
-	3777,
-	3174,
-	3777,
-	3174,
-	3725,
-	3126,
-	3725,
-	3126,
-	3725,
-	3126,
-	3745,
-	3145,
-	3635,
-	3031,
-	3725,
-	3745,
-	3745,
-	3725,
-	3745,
-	3745,
-	3145,
-	2405,
-	3828,
-	3126,
-	3725,
-	3725,
-	3777,
-	3635,
-	1997,
-	3745,
-	3745,
-	3745,
-	2723,
-	3634,
-	1996,
-	3629,
-	1992,
-	3632,
-	1995,
-	3630,
-	1993,
-	3631,
-	1994,
-	3828,
-	3745,
-	3828,
-	3828,
-	3126,
-	1695,
-	1128,
-	3174,
-	3828,
-	3126,
-	3828,
-	3828,
-	2239,
-	3828,
-	3174,
-	3828,
-	3828,
-	1865,
-	1463,
-	3777,
-	3777,
-	3725,
-	3828,
-	1867,
-	404,
-	5200,
-	4799,
-	4511,
-	3828,
-	3145,
-	1860,
-	1867,
-	404,
-	5200,
-	4799,
-	4511,
-	3145,
-	3145,
-	3145,
-	3145,
-	3745,
-	3145,
-	3145,
-	3126,
-	3126,
-	3126,
-	3126,
-	3126,
-	3725,
-	3126,
-	3126,
-	3126,
-	3126,
-	3725,
-	3126,
-	3745,
-	3745,
-	3145,
-	3803,
-	3201,
-	3725,
-	3777,
-	3174,
-	3777,
-	3828,
-	5990,
-	5756,
-	5990,
-	5756,
-	5464,
-	-1,
-	1375,
-	1375,
-	139,
-	145,
-	1174,
-	1860,
-	2444,
-	1174,
-	3745,
-	2444,
-	5200,
-	3145,
-	3725,
-	3725,
-	3725,
-	3725,
-	3725,
-	3745,
-	3725,
-	3725,
-	3725,
-	3725,
-	3725,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3803,
-	6017,
-	3145,
-	3745,
-	3145,
-	3828,
-	3174,
-	3126,
-	1572,
-	1572,
-	4346,
-	3828,
-	2277,
-	1880,
-	1307,
-	1445,
-	1445,
-	3777,
-	3635,
-	3630,
-	3745,
-	3745,
-	2440,
-	2440,
-	2439,
-	3629,
-	3828,
-	2440,
-	2440,
-	3631,
-	3632,
-	3634,
-	3828,
-	3828,
-	3777,
-	3828,
-	3125,
-	1120,
-	1110,
-	2120,
-	3724,
-	3828,
-	1436,
-	3828,
-	2754,
-	3777,
-	3777,
-	2701,
-	3828,
-	1436,
-	3777,
-	3828,
-	3174,
-	3828,
-	3828,
-	3126,
-	1115,
-	1375,
-	5200,
-	3174,
-	1208,
-	2723,
-	1478,
-	2723,
-	2701,
-	3828,
-	3828,
-	3828,
-	3828,
-	2440,
-	1367,
-	2440,
-	1367,
-	2440,
-	1367,
-	3828,
-	3777,
-	3725,
-	3725,
-	3745,
-	3724,
-	3145,
-	3828,
-	3828,
-	3828,
-	3828,
-	3145,
-	3126,
-	3145,
-	1865,
-	3828,
-	3828,
-	3828,
-	3725,
-	3828,
-	3828,
-	1855,
-	3145,
-	3828,
-	3828,
-	3145,
-	3145,
-	1865,
-	3126,
-	3126,
-	3127,
-	3127,
-	3181,
-	3039,
-	3103,
-	3028,
-	3174,
-	3125,
-	3125,
-	3125,
-	3174,
-	3174,
-	3099,
-	3097,
-	2221,
-	3145,
-	3098,
-	2222,
-	3119,
-	3213,
-	3145,
-	3145,
-	3828,
-	3127,
-	1832,
-	1289,
-	3126,
-	1717,
-	1286,
-	5990,
-	6017,
-	3777,
-	3174,
-	3777,
-	3174,
-	3725,
-	3725,
-	3745,
-	3745,
-	3725,
-	3126,
-	3725,
-	3126,
-	3725,
-	3126,
-	3725,
-	3126,
-	3828,
-	3725,
-	3126,
-	3745,
-	3145,
-	3745,
-	3145,
-	3828,
-	3828,
-	3126,
-	3725,
-	3725,
-	3828,
-	3828,
-	3828,
-	3828,
-	3828,
-	3145,
-	3828,
-	3145,
-	1865,
-	3828,
-	3145,
-	1865,
-	1695,
-	825,
-	1072,
-	2256,
-	2256,
-	3145,
-	3126,
-	3828,
-	2239,
-	3126,
-	2239,
-	3828,
-	3126,
-	3828,
-	3828,
-	3828,
-	3126,
-	3828,
-	3828,
-	3145,
-	3145,
-	3145,
-	3126,
-	3126,
-	3127,
-	3127,
-	3181,
-	3103,
-	3174,
-	3125,
-	3125,
-	3125,
-	3174,
-	3174,
-	3099,
-	3097,
-	3098,
-	3119,
-	3213,
-	3031,
-	3044,
-	3032,
-	3045,
-	3039,
-	3028,
-	3021,
-	3030,
-	3043,
-	3023,
-	3022,
-	3038,
-	3026,
-	3024,
-	3025,
-	3029,
-	3040,
-	3145,
-	3145,
-	3145,
-	3145,
-	3828,
-	3174,
-	4992,
-	4982,
-	5200,
-	1695,
-	3126,
-	3145,
-	3828,
-	1678,
-	3126,
-	3828,
-	3828,
-	1867,
-	1174,
-	4799,
-	4799,
-	3145,
-	1161,
-	1161,
-	1159,
-	1061,
-	3828,
-	1161,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	5806,
-	5200,
-	4799,
-	-1,
-	-1,
-	-1,
-	-1,
-	5195,
-	5001,
-	5200,
-	4798,
-	-1,
-	-1,
-	3745,
-	3745,
-	3725,
-	1855,
-	5665,
-	5130,
-	5756,
-	5806,
-	5905,
-	5734,
-	5585,
-	5174,
-	4571,
-	4416,
-	4799,
-	4799,
-	5290,
-	5806,
-	4403,
-	4403,
-	4403,
-	5290,
-	4560,
-	6017,
-	3828,
-	2444,
-	6017,
-	1062,
-	2702,
-	2702,
-	2637,
-	2702,
-	1438,
-	1438,
-	1440,
-	6017,
-	5902,
-	5661,
-	5076,
-	5601,
-	5601,
-	5143,
-	5143,
-	5684,
-	5604,
-	4869,
-	5320,
-	5603,
-	4279,
-	4266,
-	4585,
-	4571,
-	4584,
-	4869,
-	4266,
-	5320,
-	4571,
-	4869,
-	4318,
-	4051,
-	4725,
-	4630,
-	4409,
-	4319,
-	4609,
-	3745,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	5756,
-	6017,
-	5756,
-	6017,
-	5200,
-	5200,
-	3145,
-	1375,
-	3145,
-	968,
-	2444,
-	3828,
-	6017,
-	845,
-	5733,
-	4571,
-	5196,
-	5756,
-	5686,
-	4512,
-	4039,
-	4129,
-	6017,
-	6017,
-	3828,
-	2444,
-	1860,
-	2444,
-	3145,
-	5990,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	5932,
-	4798,
-	5200,
-	2444,
-	1375,
-	-1,
-	6017,
-	3828,
-	1375,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	4566,
-	4271,
-	6017,
-	1174,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	3828,
-	2723,
-	6017,
-	3828,
-	2723,
-	2723,
-	3828,
-	2723,
-	5195,
-	5464,
-	4794,
-	6017,
-	5183,
-	5295,
-	3978,
-	4495,
-	4732,
-	4847,
-	4847,
-	5803,
-	5803,
-	5803,
-	5990,
-	2444,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	3828,
-	6017,
-	3828,
-	2444,
-	2444,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	5662,
-	5644,
-	5267,
-	-1,
-	-1,
-	-1,
-	-1,
-	5295,
-	4799,
-	5756,
-	5133,
-	5756,
-	5756,
-	4982,
-	5665,
-	-1,
-	-1,
-	-1,
-	2444,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	3828,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	3828,
-	3745,
-	3745,
-	3145,
-	1375,
-	1174,
-	2444,
-	5200,
-	4799,
-	3828,
-	2444,
-	3828,
-	2444,
-	3828,
-	1860,
-	6017,
-	5806,
-	5756,
-	5806,
-	5756,
-	4794,
-	5200,
-	5756,
-	5297,
-	5756,
-	5201,
-	5806,
-	5806,
-	5756,
-	5756,
-	5295,
-	5295,
-	4853,
-	5295,
-	4853,
-	4853,
-	5756,
-	4982,
-	5756,
-	5806,
-	5806,
-	5200,
-	5001,
-	5297,
-	4857,
-	5195,
-	5293,
-	-1,
-	-1,
-	-1,
-	4801,
-	5563,
-	5540,
-	5200,
-	5195,
-	4999,
-	5195,
-	5122,
-	4999,
-	4855,
-	5756,
-	6017,
-	3828,
-	2723,
-	2444,
-	2444,
-	2723,
-	3828,
-	2723,
-	3828,
-	2723,
-	2723,
-	3828,
-	2723,
-	3828,
-	2723,
-	3725,
-	3126,
-	3777,
-	1855,
-	3145,
-	1854,
-	802,
-	3145,
-	1855,
-	3745,
-	1365,
-	3745,
-	2118,
-	3745,
-	3725,
-	3725,
-	1161,
-	3745,
-	4456,
-	5321,
-	5321,
-	5806,
-	4799,
-	4511,
-	4234,
-	4072,
-	4799,
-	5753,
-	5423,
-	-1,
-	5756,
-	5643,
-	5802,
-	5802,
-	5292,
-	5292,
-	4793,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	5665,
-	5806,
-	5806,
-	5806,
-	5806,
-	5756,
-	5756,
-	5806,
-	5806,
-	5806,
-	5806,
-	5806,
-	5806,
-	4575,
-	4856,
-	5295,
-	5464,
-	-1,
-	-1,
-	3828,
-	2444,
-	5990,
-	3725,
-	3126,
-	3777,
-	3777,
-	3777,
-	3174,
-	3777,
-	3777,
-	3745,
-	3828,
-	2444,
-	5806,
-	2444,
-	2723,
-	2444,
-	5470,
-	2444,
-	5464,
-	2444,
-	1375,
-	2444,
-	1375,
-	968,
-	1375,
-	2444,
-	2444,
-	3145,
-	1860,
-	237,
-	5806,
-	5806,
-	5806,
-	2444,
-	2444,
-	2444,
-	2444,
-	2444,
-	2444,
-	2444,
-	2444,
-	2444,
-	5806,
-	5806,
-	5806,
-	4273,
-	5756,
-	1374,
-	3745,
-	2444,
-	1374,
-	265,
-	2444,
-	1176,
-	2444,
-	2444,
-	2444,
-	2444,
-	6017,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	6017,
-	3828,
-	2723,
-	2723,
-	2444,
-	2723,
-	2723,
-	2256,
-	3828,
-	2444,
-	3828,
-	3828,
-	1174,
-	3828,
-	2444,
-	3828,
-	2444,
-	3828,
-	2444,
-	3828,
-	2723,
-	3828,
-	2723,
-	2444,
-	1375,
-	1375,
-	1174,
-	1460,
-	3828,
-	3828,
-	2421,
-	1375,
-	2421,
-	1375,
-	1148,
-	6017,
-	808,
-	3777,
-	3174,
-	3745,
-	3777,
-	1860,
-	2444,
-	1375,
-	1375,
-	1460,
-	1174,
-	1375,
-	1148,
-	3725,
-	1127,
-	1860,
-	2444,
-	3745,
-	3777,
-	3777,
-	3777,
-	3777,
-	3174,
-	3745,
-	3745,
-	3145,
-	3777,
-	3174,
-	3777,
-	3145,
-	2444,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3745,
-	3145,
-	3629,
-	3021,
-	3639,
-	3036,
-	3642,
-	3042,
-	3145,
-	1857,
-	1867,
-	607,
-	3145,
-	1857,
-	1193,
-	335,
-	3145,
-	1857,
-	1174,
-	328,
-	3145,
-	1857,
-	2444,
-	968,
-	2444,
-	3745,
-	3745,
-	3145,
-	3629,
-	3021,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3145,
-	3777,
-	3174,
-	3145,
-	1867,
-	1867,
-	1867,
-	1867,
-	1193,
-	5756,
-	5756,
-	3828,
-	1867,
-	3828,
-	1193,
-	3745,
-	3145,
-	3745,
-	3745,
-	3745,
-	3145,
-	3777,
-	3745,
-	3745,
-	3145,
-	3777,
-	3174,
-	3777,
-	3145,
-	2444,
-	3745,
-	3745,
-	3745,
-	3145,
-	5756,
-	5756,
-	3145,
-	1065,
-	1067,
-	1174,
-	-1,
-	1375,
-	2723,
-	2256,
-	2392,
-	2892,
-	2444,
-	3745,
-	3145,
-	3145,
-	3145,
-	3725,
-	3126,
-	3636,
-	3033,
-	3640,
-	3037,
-	3637,
-	3034,
-	3745,
-	3745,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	3145,
-	3745,
-	3145,
-	3777,
-	3145,
-	3745,
-	3725,
-	3126,
-	3145,
-	6017,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	3635,
-	3031,
-	3745,
-	3145,
-	3745,
-	3145,
-	3145,
-	3745,
-	3145,
-	3745,
-	3145,
-	3777,
-	3174,
-	3777,
-	3174,
-	3777,
-	3174,
-	3777,
-	3174,
-	3745,
-	3145,
-	3745,
-	3725,
-	3629,
-	3021,
-	3637,
-	3034,
-	3633,
-	3027,
-	3639,
-	3036,
-	3638,
-	3035,
-	3642,
-	3042,
-	3745,
-	3145,
-	3745,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3745,
-	3145,
-	3629,
-	3021,
-	3642,
-	3042,
-	3639,
-	3036,
-	3145,
-	3828,
-	3145,
-	2444,
-	3145,
-	2444,
-	1456,
-	1374,
-	3145,
-	3745,
-	1296,
-	596,
-	3828,
-	211,
-	1460,
-	2256,
-	3828,
-	3145,
-	2444,
-	2444,
-	970,
-	3745,
-	1375,
-	2444,
-	114,
-	4855,
-	2444,
-	596,
-	114,
-	43,
-	43,
-	140,
-	968,
-	193,
-	2723,
-	328,
-	211,
-	24,
-	1174,
-	1441,
-	1067,
-	966,
-	966,
-	1174,
-	1174,
-	328,
-	328,
-	808,
-	328,
-	596,
-	596,
-	596,
-	328,
-	596,
-	596,
-	191,
-	328,
-	1067,
-	1460,
-	413,
-	968,
-	150,
-	1174,
-	1184,
-	3145,
-	3828,
-	2723,
-	6017,
-	3828,
-	2444,
-	2444,
-	2444,
-	2256,
-	3145,
-	1174,
-	3745,
-	2444,
-	2444,
-	270,
-	270,
-	446,
-	351,
-	1067,
-	211,
-	1860,
-	1375,
-	4853,
-	1174,
-	1174,
-	1174,
-	270,
-	121,
-	270,
-	1460,
-	1174,
-	1860,
-	1441,
-	1441,
-	1441,
-	270,
-	270,
-	270,
-	267,
-	211,
-	270,
-	270,
-	2723,
-	345,
-	270,
-	594,
-	1855,
-	1067,
-	1067,
-	3145,
-	3145,
-	3145,
-	3745,
-	3145,
-	3145,
-	3745,
-	3126,
-	3745,
-	3145,
-	3126,
-	3725,
-	3126,
-	3126,
-	3126,
-	3126,
-	3126,
-	3725,
-	3126,
-	3126,
-	3126,
-	3145,
-	3803,
-	3201,
-	3725,
-	3777,
-	3174,
-	3745,
-	3145,
-	3145,
-	1375,
-	1174,
-	3145,
-	-1,
-	5290,
-	5756,
-	5756,
-	5135,
-	5756,
-	5200,
-	5200,
-	5756,
-	5756,
-	5756,
-	5756,
-	-1,
-	-1,
-	5806,
-	5806,
-	-1,
-	6003,
-	5990,
-	6017,
-	3828,
-	2444,
-	6017,
-	3828,
-	2444,
-	3777,
-	3777,
-	3777,
-	1376,
-	2444,
-	2444,
-	2444,
-	3725,
-	2723,
-	2723,
-	3828,
-	-1,
-	-1,
-	-1,
-	-1,
-	3145,
-	3145,
-	1860,
-	2444,
-	3145,
-	3745,
-	3777,
-	3635,
-	3745,
-	3745,
-	3632,
-	3634,
-	3629,
-	3630,
-	3631,
-	3828,
-	3725,
-	3745,
-	3725,
-	3745,
-	3745,
-	3828,
-	3777,
-	3725,
-	3725,
-	3145,
-	3745,
-	3099,
-	3026,
-	3174,
-	3021,
-	3174,
-	3022,
-	3125,
-	3023,
-	3145,
-	3097,
-	3024,
-	3098,
-	3025,
-	3103,
-	3028,
-	3828,
-	3828,
-	3181,
-	3039,
-	3119,
-	3029,
-	3126,
-	3031,
-	3127,
-	3032,
-	3145,
-	3174,
-	3038,
-	3125,
-	3030,
-	3145,
-	3213,
-	3040,
-	3126,
-	3044,
-	3127,
-	3045,
-	3145,
-	3125,
-	3043,
-	3145,
-	3828,
-	3828,
-	3145,
-	3828,
-	3145,
-	1865,
-	3828,
-	3828,
-	3145,
-	3145,
-	3828,
-	3745,
-	3725,
-	3828,
-	3145,
-	3145,
-	3745,
-	5200,
-	1860,
-	2440,
-	1695,
-	2256,
-	2256,
-	1695,
-	3126,
-	3745,
-	3145,
-	3828,
-	2723,
-	1855,
-	3777,
-	2723,
-	3745,
-	2256,
-	3745,
-	3725,
-	3145,
-	3145,
-	3745,
-	1860,
-	5200,
-	3745,
-	3828,
-	3145,
-	3828,
-	3145,
-	3145,
-	3777,
-	3745,
-	3745,
-	3596,
-	2723,
-	1376,
-	2256,
-	1128,
-	3126,
-	2723,
-	2440,
-	1695,
-	3828,
-	1860,
-	2723,
-	1855,
-	5295,
-	1860,
-	3145,
-	3145,
-	1128,
-	5756,
-	3828,
-	1860,
-	1860,
-	4511,
-	2256,
-	1695,
-	3126,
-	2440,
-	1695,
-	3145,
-	3828,
-	2723,
-	1855,
-	3777,
-	2723,
-	2444,
-	2256,
-	3828,
-	2723,
-	2256,
-	1695,
-	3777,
-	3777,
-	3145,
-	3126,
-	2440,
-	1695,
-	1855,
-	3725,
-	3745,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	-1,
-	3745,
-	3828,
-	3145,
-	2256,
-	1128,
-	1860,
-	3145,
-	3145,
-	3745,
-	3725,
-	3745,
-	1374,
-	2444,
-	1860,
-	5200,
-	1860,
-	1860,
-	2723,
-	1456,
-	3745,
-	3009,
-	3828,
-	2548,
-	1855,
-	3777,
-	2548,
-	3745,
-	3145,
-	3145,
-	3745,
-	2444,
-	3745,
-	3745,
-	2444,
-	2444,
-	2444,
-	3828,
-	6017,
-	3828,
-	2444,
-	3126,
-	3828,
-	3777,
-	3828,
-	3618,
-	3828,
-	3745,
-	3745,
-	3745,
-	3745,
-	3145,
-	3145,
-	2440,
-	1695,
-	2723,
-	3126,
-	2256,
-	1128,
-	2723,
-	3828,
-	3745,
-	3725,
-	3145,
-	1860,
-	1860,
-	5200,
-	3745,
-	3745,
-	3145,
-	3828,
-	2723,
-	1855,
-	2723,
-	3725,
-	3777,
-	2256,
-	1695,
-	3126,
-	2440,
-	1695,
-	3828,
-	3126,
-	3828,
-	3777,
-	3745,
-	3828,
-	3745,
-	3145,
-	2444,
-	1860,
-	2723,
-	3745,
-	3777,
-	3745,
-	3725,
-	3828,
-	1860,
-	3828,
-	3828,
-	2444,
-	1695,
-	3126,
-	3145,
-	1695,
-	1456,
-	2256,
-	6017,
-	3145,
-	3145,
-	5756,
-	3745,
-	3725,
-	3725,
-	3725,
-	3745,
-	3145,
-	3745,
-	3745,
-	3725,
-	3777,
-	3745,
-	3145,
-	3745,
-	3145,
-	3745,
-	3828,
-	3745,
-	3745,
-	3596,
-	3828,
-	3145,
-	1860,
-	3745,
-	1366,
-	5756,
-	5756,
-	4856,
-	5806,
-	5609,
-	5529,
-	5686,
-	5533,
-	5534,
-	5535,
-	5536,
-	5531,
-	5665,
-	5647,
-	5647,
-	5647,
-	5806,
-	5806,
-	5540,
-	5539,
-	5552,
-	5530,
-	5547,
-	5605,
-	5542,
-	5548,
-	5617,
-	5553,
-	5554,
-	5633,
-	5825,
-	5756,
-	5665,
-	5686,
-	5639,
-	5538,
-	5905,
-	5551,
-	5756,
-	5585,
-	5528,
-	3745,
-	3745,
-	3745,
-	2444,
-	1375,
-	5756,
-	5200,
-	1860,
-	1678,
-	3777,
-	3725,
-	3725,
-	2444,
-	2444,
-	3745,
-	3745,
-	3145,
-	-1,
-	6017,
-	1678,
-	3745,
-	3145,
-	3777,
-	2723,
-	3777,
-	1999,
-	2723,
-	2723,
-	3145,
-	2444,
-	3777,
-	3725,
-	3725,
-	3745,
-	3745,
-	3828,
-	3828,
-	3828,
-	3145,
-	3828,
-	3828,
-	3145,
-	3126,
-	3145,
-	1855,
-	1855,
-	3145,
-	3828,
-	3828,
-	3145,
-	3145,
-	3145,
-	3126,
-	3126,
-	3127,
-	3127,
-	3181,
-	3103,
-	3174,
-	3125,
-	3125,
-	3125,
-	3174,
-	3174,
-	3099,
-	3097,
-	3098,
-	3145,
-	3213,
-	3119,
-	3145,
-	825,
-	1855,
-	3145,
-	3145,
-	3777,
-	5114,
-	4719,
-	5133,
-	3745,
-	5756,
-	5990,
-	5990,
-	5111,
-	5651,
-	3725,
-	3745,
-	1860,
-	5295,
-	2723,
-	2723,
-	3725,
-	3745,
-	2444,
-	1375,
-	2444,
-	2256,
-	2256,
-	3725,
-	2723,
-	2119,
-	2723,
-	2723,
-	2119,
-	2119,
-	2256,
-	2256,
-	2392,
-	2392,
-	2892,
-	2102,
-	2095,
-	2086,
-	1375,
-	3828,
-	1174,
-	2444,
-	5932,
-	596,
-	2444,
-	2723,
-	3828,
-	1174,
-	596,
-	2723,
-	3828,
-	1174,
-	596,
-	2723,
-	3828,
-	1174,
-	596,
-	5001,
-	5756,
-	2723,
-	3828,
-	5756,
-	5756,
-	1174,
-	596,
-	2723,
-	3828,
-	6017,
-	1860,
-	384,
-	3828,
-	2723,
-	3828,
-	2723,
-	1174,
-	5464,
-	596,
-	5932,
-	2723,
-	3828,
-	1174,
-	596,
-	2444,
-	2444,
-	2444,
-	2723,
-	3777,
-	3828,
-	5756,
-	1174,
-	596,
-	2723,
-	3828,
-	6017,
-	1174,
-	1441,
-	1860,
-	1174,
-	596,
-	2444,
-	1375,
-	2723,
-	2723,
-	3828,
-	3145,
-	2444,
-	2444,
-	2444,
-	2444,
-	2444,
-	968,
-	596,
-	1375,
-	2444,
-	1375,
-	1375,
-	968,
-	3745,
-	3145,
-	3145,
-	2444,
-	3777,
-	3145,
-	3745,
-	3745,
-	3745,
-	3145,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3145,
-	3745,
-	3725,
-	3745,
-	3745,
-	5756,
-	3745,
-	3777,
-	3745,
-	3745,
-	3145,
-	2444,
-	3745,
-	2444,
-	2444,
-	2444,
-	2444,
-	2444,
-	968,
-	596,
-	1375,
-	2444,
-	1375,
-	1375,
-	968,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3145,
-	2444,
-	3777,
-	3725,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	2444,
-	3745,
-	3745,
-	3745,
-	3145,
-	3725,
-	3745,
-	3745,
-	3745,
-	3145,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3145,
-	3745,
-	3777,
-	2444,
-	2444,
-	2444,
-	2444,
-	2444,
-	968,
-	596,
-	1375,
-	2444,
-	1375,
-	1375,
-	968,
-	3745,
-	2444,
-	3745,
-	3145,
-	3745,
-	3745,
-	3745,
-	3145,
-	3745,
-	3745,
-	3745,
-	3145,
-	3745,
-	3745,
-	3745,
-	3145,
-	3745,
-	3777,
-	3745,
-	5756,
-	2444,
-	3145,
-	3745,
-	3725,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	2444,
-	3745,
-	3745,
-	3145,
-	3745,
-	3745,
-	3745,
-	3745,
-	3745,
-	3145,
-	3145,
-	3745,
-	2723,
-	2444,
-	3745,
-	3745,
-	3745,
-	2444,
-	3777,
-	3745,
-	3777,
-	3777,
-	3777,
-	1174,
-	2444,
-	1860,
-	1375,
-	1375,
-	2723,
-	810,
-	420,
-	420,
-	810,
-	5806,
-	596,
-	413,
-	413,
+	3984,
+	3984,
+	3315,
+	3285,
+	3315,
+	3984,
+	3315,
+	3984,
+	3984,
+	6212,
+	3984,
+	1038,
+	2567,
+	1469,
+	3984,
+	4745,
+	1254,
+	-1,
+	-1,
+	3933,
+	3879,
+	3879,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3285,
+	6185,
+	5954,
+	5943,
+	4705,
+	4382,
+	4655,
+	5363,
+	5947,
+	5936,
+	5947,
+	5379,
+	4969,
+	5947,
+	4977,
+	4977,
+	-1,
+	-1,
+	4977,
+	6212,
+	1265,
+	646,
+	2856,
+	3933,
+	3933,
+	3984,
+	3899,
+	3899,
+	3984,
+	3984,
+	3285,
+	1971,
+	1978,
+	3933,
+	3933,
+	1038,
+	3984,
+	3879,
+	3266,
+	3879,
+	1236,
+	5994,
+	5375,
+	4977,
+	6212,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3879,
+	3933,
+	3315,
+	3933,
+	3315,
+	3879,
+	3266,
+	3879,
+	3266,
+	3879,
+	3266,
+	3899,
+	3285,
+	3788,
+	3171,
+	3879,
+	3899,
+	3899,
+	3879,
+	3899,
+	3899,
+	3285,
+	2528,
+	3984,
+	3266,
+	3879,
+	3879,
+	3933,
+	3788,
+	2114,
+	3899,
+	3899,
+	3899,
+	2856,
+	3787,
+	2113,
+	3782,
+	2109,
+	3785,
+	2112,
+	3783,
+	2110,
+	3784,
+	2111,
+	3984,
+	3899,
+	3984,
+	3984,
+	3266,
+	1804,
+	1215,
+	3315,
+	3984,
+	3266,
+	3984,
+	3984,
+	2361,
+	3984,
+	3315,
+	3984,
+	3984,
+	1976,
+	1562,
+	3933,
+	3933,
+	3879,
+	3984,
+	1978,
+	441,
+	5385,
+	4977,
+	4687,
+	3984,
+	3285,
+	1971,
+	1978,
+	441,
+	5385,
+	4977,
+	4687,
+	3285,
+	3285,
+	3285,
+	3285,
+	3899,
+	3285,
+	3285,
+	3266,
+	3266,
+	3266,
+	3266,
+	3266,
+	3879,
+	3266,
+	3266,
+	3266,
+	3266,
+	3879,
+	3266,
+	3899,
+	3899,
+	3285,
+	3959,
+	3342,
+	3879,
+	3933,
+	3315,
+	3933,
+	3984,
+	6185,
+	5947,
+	6185,
+	5947,
+	5652,
+	-1,
+	1470,
+	1470,
+	151,
 	158,
-	4033,
-	5756,
-	413,
-	1860,
-	2723,
-	1375,
-	808,
-	1174,
-	596,
-	808,
-	1456,
-	2723,
-	2723,
-	2723,
-	2723,
-	3828,
-	6017,
-	3745,
-	3145,
-	3777,
-	3145,
-	3828,
-	1860,
-	3777,
-	3145,
-	3777,
-	1865,
-	3777,
-	1865,
-	3145,
-	3145,
-	1860,
-	3777,
-	3145,
-	3145,
-	3828,
-	1865,
-	3145,
-	3145,
-	1860,
+	1265,
+	1971,
+	2567,
+	1265,
+	3899,
+	2567,
+	5385,
+	3285,
+	3879,
+	3879,
+	3879,
+	3879,
+	3879,
+	3899,
+	3879,
+	3879,
+	3879,
+	3879,
+	3879,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3959,
+	6212,
+	3285,
+	3899,
+	3285,
+	3984,
+	3315,
+	3266,
+	1675,
+	1675,
+	4517,
+	3984,
+	2400,
+	1992,
+	1401,
+	1543,
+	1543,
+	3933,
+	3788,
+	3783,
+	3899,
+	3899,
+	2563,
+	2563,
+	2562,
+	3782,
+	3984,
+	2563,
+	2563,
+	3784,
+	3785,
+	3787,
+	3984,
+	3984,
+	3933,
+	3984,
+	3265,
+	1207,
+	1196,
+	2237,
+	3878,
+	3984,
+	1534,
+	3984,
+	2888,
+	3933,
+	3933,
+	2834,
+	3984,
+	1534,
+	3933,
+	3984,
+	3315,
+	3984,
+	3984,
+	3266,
+	1202,
+	1470,
+	5385,
+	3315,
+	1301,
+	2856,
+	1580,
+	2856,
+	2834,
+	3984,
+	3984,
+	3984,
+	3984,
+	2563,
+	1461,
+	2563,
+	1461,
+	2563,
+	1461,
+	3984,
+	3933,
+	3879,
+	3879,
+	3899,
+	3878,
+	3285,
+	3984,
+	3984,
+	3984,
+	3984,
+	3285,
+	3266,
+	3285,
+	1976,
+	3984,
+	3984,
+	3984,
+	3879,
+	3984,
+	3984,
+	1966,
+	3285,
+	3984,
+	3984,
+	3285,
+	3285,
+	1976,
+	3266,
+	3266,
+	3267,
+	3267,
+	3322,
+	3179,
+	3243,
+	3168,
+	3315,
+	3265,
+	3265,
+	3265,
+	3315,
+	3315,
+	3239,
+	3237,
+	2343,
+	3285,
+	3238,
+	2344,
+	3259,
+	3354,
+	3285,
+	3285,
+	3984,
+	3267,
+	1942,
+	1382,
+	3266,
+	1827,
+	1379,
+	6185,
+	6212,
+	3933,
+	3315,
+	3933,
+	3315,
+	3879,
+	3879,
+	3899,
+	3899,
+	3879,
+	3266,
+	3879,
+	3266,
+	3879,
+	3266,
+	3879,
+	3266,
+	3984,
+	3879,
+	3266,
+	3899,
+	3285,
+	3899,
+	3285,
+	3984,
+	3984,
+	3266,
+	3879,
+	3879,
+	3984,
+	3984,
+	3984,
+	3984,
+	3984,
+	3285,
+	3984,
+	3285,
+	1976,
+	3984,
+	3285,
+	1976,
+	1804,
+	889,
+	1154,
+	2378,
+	2378,
+	3285,
+	3266,
+	3984,
+	2361,
+	3266,
+	2361,
+	3984,
+	3266,
+	3984,
+	3984,
+	3984,
+	3266,
+	3984,
+	3984,
+	3285,
+	3285,
+	3285,
+	3266,
+	3266,
+	3267,
+	3267,
+	3322,
+	3243,
+	3315,
+	3265,
+	3265,
+	3265,
+	3315,
+	3315,
+	3239,
+	3237,
+	3238,
+	3259,
+	3354,
+	3171,
+	3184,
+	3172,
+	3185,
+	3179,
+	3168,
+	3161,
+	3170,
+	3183,
+	3163,
+	3162,
+	3178,
+	3166,
+	3164,
+	3165,
+	3169,
+	3180,
+	3285,
+	3285,
+	3285,
+	3285,
+	3984,
+	3315,
+	5175,
+	5165,
+	5385,
+	1804,
+	3266,
+	3285,
+	3984,
+	1787,
+	3266,
+	3984,
+	3984,
+	1978,
+	1265,
+	4977,
+	4977,
+	3285,
+	1252,
+	1252,
+	1249,
+	1142,
+	3984,
+	1252,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	5997,
+	5385,
+	4977,
+	-1,
+	-1,
+	-1,
+	-1,
+	5380,
+	5184,
+	5385,
+	4976,
+	-1,
+	-1,
+	3899,
+	3899,
+	3879,
+	1966,
+	5855,
+	5314,
+	5947,
+	5997,
+	6096,
+	5924,
+	5773,
+	5359,
+	4747,
+	4588,
+	4977,
+	4977,
+	5478,
+	5997,
+	4575,
+	4575,
+	4575,
+	5478,
+	4736,
+	6212,
+	3984,
+	2567,
+	6212,
+	1143,
+	2835,
+	2835,
+	2769,
+	2835,
+	1536,
+	1536,
+	1538,
+	6212,
+	6093,
+	5851,
+	5259,
+	5789,
+	5789,
+	5328,
+	5328,
+	5874,
+	5792,
+	5051,
+	5508,
+	5791,
+	4449,
+	4435,
+	4761,
+	4747,
+	4760,
+	5051,
+	4435,
+	5508,
+	4747,
+	5051,
+	4488,
+	4214,
+	4903,
+	4807,
+	4581,
+	4489,
+	4786,
+	3899,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	5947,
+	6212,
+	5947,
+	6212,
+	5385,
+	5385,
+	3285,
+	1470,
+	3285,
+	1044,
+	2567,
+	3984,
+	6212,
+	912,
+	5923,
+	4747,
+	5381,
+	5947,
+	5876,
+	4688,
+	4202,
+	4295,
+	6212,
+	6212,
+	3984,
+	2567,
+	1971,
+	2567,
+	3285,
+	6185,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	6125,
+	4976,
+	5385,
+	2567,
+	1470,
+	-1,
+	6212,
+	3984,
+	1470,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	4742,
+	4440,
+	6212,
+	1265,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	3984,
+	2856,
+	6212,
+	3984,
+	2856,
+	2856,
+	3984,
+	2856,
+	5380,
+	5652,
+	4972,
+	6212,
+	5368,
+	5483,
+	4137,
+	4669,
+	4910,
+	5028,
+	5028,
+	5994,
+	5994,
+	5994,
+	6185,
+	2567,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	3984,
+	6212,
+	3984,
+	2567,
+	2567,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	5852,
+	5833,
+	5454,
+	-1,
+	-1,
+	-1,
+	-1,
+	5483,
+	4977,
+	5947,
+	5317,
+	5947,
+	5947,
+	5165,
+	5855,
+	-1,
+	-1,
+	-1,
+	2567,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	3984,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	3984,
+	3899,
+	3899,
+	3285,
+	1470,
+	1265,
+	2567,
+	5385,
+	4977,
+	3984,
+	2567,
+	3984,
+	2567,
+	3984,
+	1971,
+	6212,
+	5997,
+	5947,
+	5997,
+	5947,
+	4972,
+	5385,
+	5947,
+	5485,
+	5947,
+	5386,
+	5997,
+	5997,
+	5947,
+	5947,
+	5483,
+	5483,
+	5035,
+	5483,
+	5035,
+	5035,
+	5947,
+	5165,
+	5947,
+	5997,
+	5997,
+	5385,
+	5184,
+	5485,
+	5039,
+	5380,
+	5481,
+	-1,
+	-1,
+	-1,
+	4979,
+	5751,
+	5728,
+	5385,
+	5380,
+	5182,
+	5380,
+	5305,
+	5182,
+	5037,
+	5947,
+	6212,
+	3984,
+	2856,
+	2567,
+	2567,
+	2856,
+	3984,
+	2856,
+	3984,
+	2856,
+	2856,
+	3984,
+	2856,
+	3984,
+	2856,
+	3879,
+	3266,
+	3933,
+	1966,
+	3285,
+	1965,
+	865,
+	3285,
+	1966,
+	3899,
+	1459,
+	3899,
+	2235,
+	3899,
+	3879,
+	3879,
+	1252,
+	3899,
+	4629,
+	5509,
+	5509,
+	5997,
+	4977,
+	4687,
+	4403,
+	4235,
+	4977,
+	5944,
+	5611,
+	-1,
+	5947,
+	5832,
+	5993,
+	5993,
+	5480,
+	5480,
+	4971,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	5855,
+	5997,
+	5997,
+	5997,
+	5997,
+	5947,
+	5947,
+	5997,
+	5997,
+	5997,
+	5997,
+	5997,
+	5997,
+	4751,
+	5038,
+	5483,
+	5652,
+	-1,
+	-1,
+	3984,
+	2567,
+	6185,
+	3879,
+	3266,
+	3933,
+	3933,
+	3933,
+	3315,
+	3933,
+	3933,
+	3899,
+	3984,
+	2567,
+	5997,
+	2567,
+	2856,
+	2567,
+	5658,
+	2567,
+	5652,
+	2567,
+	1470,
+	2567,
+	1470,
+	1044,
+	1470,
+	2567,
+	2567,
+	3285,
+	1971,
+	255,
+	5997,
+	5997,
+	5997,
+	2567,
+	2567,
+	2567,
+	2567,
+	2567,
+	2567,
+	2567,
+	2567,
+	2567,
+	5997,
+	5997,
+	5997,
+	4442,
+	5947,
+	1469,
+	3899,
+	2567,
+	1469,
+	284,
+	2567,
+	1267,
+	2567,
+	2567,
+	2567,
+	2567,
+	6212,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	6212,
+	3984,
+	2856,
+	2856,
+	2567,
+	2856,
+	2856,
+	2378,
+	3984,
+	2567,
+	3984,
+	3984,
+	1265,
+	3984,
+	2567,
+	3984,
+	2567,
+	3984,
+	2567,
+	3984,
+	2856,
+	3984,
+	2856,
+	2567,
+	1470,
+	1470,
+	1265,
+	1559,
+	3984,
+	3984,
+	2544,
+	1470,
+	2544,
+	1470,
+	1236,
+	6212,
+	871,
+	3933,
+	3315,
+	3899,
+	3933,
+	1971,
+	2567,
+	1470,
+	1470,
+	1559,
+	1265,
+	1470,
+	1236,
+	3879,
+	1214,
+	1971,
+	2567,
+	3899,
+	3933,
+	3933,
+	3933,
+	3933,
+	3315,
+	3899,
+	3899,
+	3285,
+	3933,
+	3315,
+	3933,
+	3285,
+	2567,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3899,
+	3285,
+	3782,
+	3161,
+	3792,
+	3176,
+	3795,
+	3182,
+	3285,
+	1968,
+	1978,
+	658,
+	3285,
+	1968,
+	1284,
+	363,
+	3285,
+	1968,
+	1265,
+	354,
+	3285,
+	1968,
+	2567,
+	1044,
+	2567,
+	3899,
+	3899,
+	3285,
+	3782,
+	3161,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3285,
+	3933,
+	3315,
+	3285,
+	1978,
+	1978,
+	1978,
+	1978,
+	1284,
+	5947,
+	5947,
+	3984,
+	1978,
+	3984,
+	1284,
+	3899,
+	3285,
+	3899,
+	3899,
+	3899,
+	3285,
+	3933,
+	3899,
+	3899,
+	3285,
+	3933,
+	3315,
+	3933,
+	3285,
+	2567,
+	3899,
+	3899,
+	3899,
+	3285,
+	5947,
+	5947,
+	3285,
+	1146,
+	1149,
+	1265,
+	-1,
+	1470,
+	2856,
+	2378,
+	2515,
+	3026,
+	2567,
+	3899,
+	3285,
+	3285,
+	3285,
+	3879,
+	3266,
+	3789,
+	3173,
+	3793,
+	3177,
+	3790,
+	3174,
+	3899,
+	3899,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	3285,
+	3899,
+	3285,
+	3933,
+	3285,
+	3899,
+	3879,
+	3266,
+	3285,
+	6212,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	3788,
+	3171,
+	3899,
+	3285,
+	3899,
+	3285,
+	3285,
+	3899,
+	3285,
+	3899,
+	3285,
+	3933,
+	3315,
+	3933,
+	3315,
+	3933,
+	3315,
+	3933,
+	3315,
+	3899,
+	3285,
+	3899,
+	3879,
+	3782,
+	3161,
+	3790,
+	3174,
+	3786,
+	3167,
+	3792,
+	3176,
+	3791,
+	3175,
+	3795,
+	3182,
+	3899,
+	3285,
+	3899,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3899,
+	3285,
+	3782,
+	3161,
+	3795,
+	3182,
+	3792,
+	3176,
+	3285,
+	3984,
+	3285,
+	2567,
+	3285,
+	2567,
+	1555,
+	1469,
+	3285,
+	3899,
+	1389,
+	646,
+	3984,
+	227,
+	1559,
+	2378,
+	3984,
+	3285,
+	2567,
+	2567,
+	1046,
+	3899,
+	1470,
+	2567,
+	125,
+	5037,
+	2567,
+	646,
+	125,
+	47,
+	47,
+	152,
+	1044,
+	207,
+	2856,
+	354,
+	227,
+	25,
+	1265,
+	1539,
+	1149,
+	1042,
+	1042,
+	1265,
+	1265,
+	354,
+	354,
+	871,
+	354,
+	646,
+	646,
+	646,
+	354,
+	646,
+	646,
+	205,
+	354,
+	1149,
+	1559,
+	450,
+	1044,
+	164,
+	1265,
+	1275,
+	3285,
+	3984,
+	2856,
+	6212,
+	3984,
+	2567,
+	2567,
+	2567,
+	2378,
+	3285,
+	1265,
+	3899,
+	2567,
+	2567,
+	289,
+	289,
+	488,
+	384,
+	1149,
+	227,
+	1971,
+	1470,
+	5035,
+	1265,
+	1265,
+	1265,
+	289,
+	132,
+	289,
+	1559,
+	1265,
+	1971,
+	1539,
+	1539,
+	1539,
+	289,
+	289,
+	289,
+	286,
+	227,
+	289,
+	289,
+	2856,
+	375,
+	289,
+	644,
+	1966,
+	1149,
+	1149,
+	3285,
+	3285,
+	3285,
+	3899,
+	3285,
+	3285,
+	3899,
+	3266,
+	3899,
+	3285,
+	3266,
+	3879,
+	3266,
+	3266,
+	3266,
+	3266,
+	3266,
+	3879,
+	3266,
+	3266,
+	3266,
+	3285,
+	3959,
+	3342,
+	3879,
+	3933,
+	3315,
+	3899,
+	3285,
+	3285,
+	1470,
+	1265,
+	3285,
+	-1,
+	5478,
+	5947,
+	5947,
+	5319,
+	5947,
+	5385,
+	5385,
+	5947,
+	5947,
+	5947,
+	5947,
+	-1,
+	-1,
+	5997,
+	5997,
+	-1,
+	6198,
+	6185,
+	6212,
+	3984,
+	2567,
+	6212,
+	3984,
+	2567,
+	3933,
+	3933,
+	3933,
+	1471,
+	2567,
+	2567,
+	2567,
+	3879,
+	2856,
+	2856,
+	3984,
+	-1,
+	-1,
+	-1,
+	-1,
+	3285,
+	3285,
+	1971,
+	2567,
+	3285,
+	3899,
+	3933,
+	3788,
+	3899,
+	3899,
+	3785,
+	3787,
+	3782,
+	3783,
+	3784,
+	3984,
+	3879,
+	3899,
+	3879,
+	3899,
+	3899,
+	3984,
+	3933,
+	3879,
+	3879,
+	3285,
+	3899,
+	3239,
+	3166,
+	3315,
+	3161,
+	3315,
+	3162,
+	3265,
+	3163,
+	3285,
+	3237,
+	3164,
+	3238,
+	3165,
+	3243,
+	3168,
+	3984,
+	3984,
+	3322,
+	3179,
+	3259,
+	3169,
+	3266,
+	3171,
+	3267,
+	3172,
+	3285,
+	3315,
+	3178,
+	3265,
+	3170,
+	3285,
+	3354,
+	3180,
+	3266,
+	3184,
+	3267,
+	3185,
+	3285,
+	3265,
+	3183,
+	3285,
+	3984,
+	3984,
+	3285,
+	3984,
+	3285,
+	1976,
+	3984,
+	3984,
+	3285,
+	3285,
+	3984,
+	3899,
+	3879,
+	3984,
+	3285,
+	3285,
+	3899,
+	5385,
+	1971,
+	2563,
+	1804,
+	2378,
+	2378,
+	1804,
+	3266,
+	3899,
+	3285,
+	3984,
+	2856,
+	1966,
+	3933,
+	2856,
+	3899,
+	2378,
+	3899,
+	3879,
+	3285,
+	3285,
+	3899,
+	1971,
+	5385,
+	3285,
+	3285,
+	3899,
+	3984,
+	3285,
+	3984,
+	3285,
+	3285,
+	3285,
+	3933,
+	3899,
+	3899,
+	3746,
+	2856,
+	1471,
+	2378,
+	1215,
+	3266,
+	2856,
+	2563,
+	1804,
+	3984,
+	1971,
+	2856,
+	1966,
+	5483,
+	1971,
+	3285,
+	3285,
+	1215,
+	5947,
+	3984,
+	1971,
+	1971,
+	4687,
+	2567,
+	2567,
+	2378,
+	1804,
+	3266,
+	2563,
+	1804,
+	3285,
+	3984,
+	2856,
+	1966,
+	3933,
+	2856,
+	2567,
+	2378,
+	3984,
+	2856,
+	2378,
+	1804,
+	3933,
+	3933,
+	3285,
+	3266,
+	2563,
+	1804,
+	1966,
+	3879,
+	3933,
+	3899,
+	3285,
+	3899,
+	3933,
+	3933,
+	3933,
+	1966,
+	1389,
+	3933,
+	3285,
+	3984,
+	3879,
+	3899,
+	3933,
+	3933,
+	3933,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	-1,
+	3899,
+	3285,
+	3285,
+	3285,
+	3285,
+	3984,
+	3285,
+	2378,
+	1215,
+	1971,
+	3285,
+	3285,
+	3899,
+	3879,
+	3899,
+	1469,
+	2567,
+	1971,
+	5385,
+	1971,
+	1971,
+	2856,
+	3899,
+	2856,
+	1555,
+	3899,
+	3149,
+	3984,
+	2680,
+	1966,
+	3933,
+	2680,
+	3899,
+	3285,
+	3285,
+	3899,
+	2567,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	2567,
+	2567,
+	3899,
+	2567,
+	2567,
+	2567,
+	3984,
+	6212,
+	3984,
+	2567,
+	3266,
+	3984,
+	3933,
+	3984,
+	3771,
+	3984,
+	3899,
+	3899,
+	3899,
+	3899,
+	3285,
+	3285,
+	2563,
+	1804,
+	2856,
+	3266,
+	2378,
+	1215,
+	2856,
+	3984,
+	3899,
+	3879,
+	3285,
+	1971,
+	1971,
+	5385,
+	3899,
+	3899,
+	3285,
+	3984,
+	2856,
+	1966,
+	2856,
+	3879,
+	3933,
+	2378,
+	1804,
+	3266,
+	2563,
+	1804,
+	3984,
+	3266,
+	3984,
+	3933,
+	3899,
+	3984,
+	3899,
+	3285,
+	2856,
+	2567,
+	3285,
+	1971,
+	2856,
+	3899,
+	3933,
+	3899,
+	3879,
+	3984,
+	1971,
+	3984,
+	2856,
+	3984,
+	2567,
+	1804,
+	3266,
+	3285,
+	1804,
+	1555,
+	3899,
+	2378,
+	6212,
+	3285,
+	3285,
+	5947,
+	3899,
+	3879,
+	3879,
+	3879,
+	3899,
+	3285,
+	3899,
+	3899,
+	3879,
+	3933,
+	3899,
+	3285,
+	3899,
+	3285,
+	3899,
+	3984,
+	3899,
+	3899,
+	3746,
+	3984,
+	3285,
+	1971,
+	3899,
+	1460,
+	5947,
+	5947,
+	5038,
+	5997,
+	5797,
+	5717,
+	5876,
+	5721,
+	5722,
+	5723,
+	5724,
+	5719,
+	5855,
+	5836,
+	5836,
+	5836,
+	5997,
+	5997,
+	5728,
+	5727,
+	5740,
+	5718,
+	5735,
+	5793,
+	5730,
+	5736,
+	5805,
+	5741,
+	5742,
+	5821,
+	6016,
+	5947,
+	5855,
+	5876,
+	5827,
+	5726,
+	6096,
+	5739,
+	5947,
+	5773,
+	5716,
+	3899,
+	3899,
+	3899,
+	2567,
+	1470,
+	5947,
+	5385,
+	1971,
+	1787,
+	3933,
+	3879,
+	3879,
+	2567,
+	2567,
+	3899,
+	3899,
+	3285,
+	-1,
+	6212,
+	1787,
+	3899,
+	3285,
+	3933,
+	2856,
+	3933,
+	2116,
+	2856,
+	2856,
+	3285,
+	2567,
+	3933,
+	3879,
+	3879,
+	3899,
+	3899,
+	3984,
+	3984,
+	3984,
+	3285,
+	3984,
+	3984,
+	3285,
+	3266,
+	3285,
+	1966,
+	1966,
+	3285,
+	3984,
+	3984,
+	3285,
+	3285,
+	3285,
+	3266,
+	3266,
+	3267,
+	3267,
+	3322,
+	3243,
+	3315,
+	3265,
+	3265,
+	3265,
+	3315,
+	3315,
+	3239,
+	3237,
+	3238,
+	3285,
+	3354,
+	3259,
+	3285,
+	889,
+	1966,
+	3285,
+	3285,
+	3933,
+	5297,
+	4897,
+	5317,
+	3899,
+	5947,
+	6185,
+	6185,
+	5294,
+	5840,
+	3879,
+	3899,
+	1971,
+	5483,
+	2856,
+	2856,
+	3879,
+	3899,
+	2567,
+	1470,
+	2567,
+	2378,
+	2378,
+	3879,
+	2856,
+	2236,
+	2856,
+	2856,
+	2236,
+	2236,
+	2378,
+	2378,
+	2515,
+	2515,
+	3026,
+	2219,
+	2212,
+	2203,
+	1470,
+	3984,
+	1265,
+	2567,
+	6125,
+	646,
+	2567,
+	2856,
+	3984,
+	1265,
+	646,
+	2856,
+	3984,
+	1265,
+	646,
+	2856,
+	3984,
+	1265,
+	646,
+	5184,
+	5947,
+	2856,
+	3984,
+	5947,
+	5947,
+	1265,
+	646,
+	2856,
+	3984,
+	6212,
+	1971,
+	418,
+	3984,
+	2856,
+	3984,
+	2856,
+	1265,
+	5652,
+	646,
+	6125,
+	2856,
+	3984,
+	1265,
+	646,
+	2567,
+	2567,
+	2567,
+	2856,
+	3933,
+	3984,
+	5947,
+	1265,
+	646,
+	2856,
+	3984,
+	6212,
+	1265,
+	1539,
+	1971,
+	1265,
+	646,
+	2567,
+	1470,
+	2856,
+	2856,
+	3984,
+	3285,
+	2567,
+	2567,
+	2567,
+	2567,
+	2567,
+	1044,
+	646,
+	1470,
+	2567,
+	1470,
+	1470,
+	1044,
+	3899,
+	3285,
+	3285,
+	2567,
+	3933,
+	3285,
+	3899,
+	3899,
+	3899,
+	3285,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3285,
+	3899,
+	3879,
+	3899,
+	3899,
+	5947,
+	3899,
+	3933,
+	3899,
+	3899,
+	3285,
+	2567,
+	3899,
+	2567,
+	2567,
+	2567,
+	2567,
+	2567,
+	1044,
+	646,
+	1470,
+	2567,
+	1470,
+	1470,
+	1044,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3285,
+	2567,
+	3933,
+	3879,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	2567,
+	3899,
+	3899,
+	3899,
+	3285,
+	3879,
+	3899,
+	3899,
+	3899,
+	3285,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3285,
+	3899,
+	3933,
+	2567,
+	2567,
+	2567,
+	2567,
+	2567,
+	1044,
+	646,
+	1470,
+	2567,
+	1470,
+	1470,
+	1044,
+	3899,
+	2567,
+	3899,
+	3285,
+	3899,
+	3899,
+	3899,
+	3285,
+	3899,
+	3899,
+	3899,
+	3285,
+	3899,
+	3899,
+	3899,
+	3285,
+	3899,
+	3933,
+	3899,
+	5947,
+	2567,
+	3285,
+	3899,
+	3879,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	2567,
+	3899,
+	3899,
+	3285,
+	3899,
+	3899,
+	3899,
+	3899,
+	3899,
+	3285,
+	3285,
+	3899,
+	2856,
+	2567,
+	3899,
+	3899,
+	3899,
+	2567,
+	3933,
+	3899,
+	3933,
+	3933,
+	3933,
+	1265,
+	2567,
+	1971,
+	1470,
+	1470,
+	2856,
+	873,
+	459,
+	459,
+	873,
+	5997,
+	646,
+	450,
+	450,
+	172,
+	4195,
+	5947,
+	450,
+	1971,
+	2856,
+	1470,
+	871,
+	1265,
+	646,
+	871,
+	1555,
+	2856,
+	2856,
+	2856,
+	2856,
+	3984,
+	6212,
+	3899,
+	3285,
+	3933,
+	3285,
+	3984,
+	1971,
+	3933,
+	3285,
+	3933,
+	1976,
+	3933,
+	1976,
+	3285,
+	3285,
+	1971,
+	3933,
+	3285,
+	3285,
+	3984,
+	1976,
+	3285,
+	3285,
+	1971,
 };
 static const Il2CppTokenRangePair s_rgctxIndices[48] = 
 {
@@ -8448,198 +8600,198 @@ static const Il2CppTokenRangePair s_rgctxIndices[48] =
 	{ 0x06000553, { 166, 2 } },
 	{ 0x06000554, { 168, 2 } },
 	{ 0x06000557, { 170, 3 } },
-	{ 0x060006DD, { 180, 1 } },
+	{ 0x06000703, { 180, 1 } },
 };
 static const Il2CppRGCTXDefinition s_rgctxValues[181] = 
 {
-	{ (Il2CppRGCTXDataType)3, 28026 },
-	{ (Il2CppRGCTXDataType)1, 232 },
-	{ (Il2CppRGCTXDataType)2, 232 },
+	{ (Il2CppRGCTXDataType)3, 30252 },
 	{ (Il2CppRGCTXDataType)1, 234 },
 	{ (Il2CppRGCTXDataType)2, 234 },
-	{ (Il2CppRGCTXDataType)2, 1775 },
-	{ (Il2CppRGCTXDataType)3, 3254 },
-	{ (Il2CppRGCTXDataType)2, 1802 },
-	{ (Il2CppRGCTXDataType)3, 3327 },
-	{ (Il2CppRGCTXDataType)2, 2757 },
-	{ (Il2CppRGCTXDataType)2, 910 },
-	{ (Il2CppRGCTXDataType)2, 493 },
-	{ (Il2CppRGCTXDataType)2, 2763 },
-	{ (Il2CppRGCTXDataType)2, 2625 },
-	{ (Il2CppRGCTXDataType)2, 2774 },
-	{ (Il2CppRGCTXDataType)2, 2944 },
-	{ (Il2CppRGCTXDataType)2, 2626 },
-	{ (Il2CppRGCTXDataType)2, 2773 },
-	{ (Il2CppRGCTXDataType)2, 2943 },
-	{ (Il2CppRGCTXDataType)3, 9111 },
-	{ (Il2CppRGCTXDataType)2, 100 },
-	{ (Il2CppRGCTXDataType)3, 12734 },
-	{ (Il2CppRGCTXDataType)3, 12733 },
-	{ (Il2CppRGCTXDataType)2, 103 },
-	{ (Il2CppRGCTXDataType)3, 12736 },
-	{ (Il2CppRGCTXDataType)3, 12735 },
-	{ (Il2CppRGCTXDataType)3, 12737 },
-	{ (Il2CppRGCTXDataType)3, 12738 },
-	{ (Il2CppRGCTXDataType)3, 12739 },
-	{ (Il2CppRGCTXDataType)2, 2025 },
-	{ (Il2CppRGCTXDataType)2, 5503 },
-	{ (Il2CppRGCTXDataType)2, 2026 },
-	{ (Il2CppRGCTXDataType)2, 519 },
-	{ (Il2CppRGCTXDataType)1, 2020 },
-	{ (Il2CppRGCTXDataType)2, 1355 },
-	{ (Il2CppRGCTXDataType)3, 171 },
-	{ (Il2CppRGCTXDataType)3, 4728 },
-	{ (Il2CppRGCTXDataType)3, 4729 },
-	{ (Il2CppRGCTXDataType)2, 2014 },
-	{ (Il2CppRGCTXDataType)3, 172 },
-	{ (Il2CppRGCTXDataType)2, 2227 },
-	{ (Il2CppRGCTXDataType)3, 8799 },
-	{ (Il2CppRGCTXDataType)3, 4724 },
-	{ (Il2CppRGCTXDataType)2, 1356 },
-	{ (Il2CppRGCTXDataType)3, 175 },
-	{ (Il2CppRGCTXDataType)3, 4726 },
-	{ (Il2CppRGCTXDataType)3, 176 },
-	{ (Il2CppRGCTXDataType)3, 4723 },
-	{ (Il2CppRGCTXDataType)2, 1301 },
-	{ (Il2CppRGCTXDataType)3, 3 },
-	{ (Il2CppRGCTXDataType)3, 8800 },
-	{ (Il2CppRGCTXDataType)3, 4722 },
-	{ (Il2CppRGCTXDataType)1, 519 },
-	{ (Il2CppRGCTXDataType)3, 4725 },
-	{ (Il2CppRGCTXDataType)3, 4727 },
-	{ (Il2CppRGCTXDataType)3, 4745 },
-	{ (Il2CppRGCTXDataType)2, 1313 },
-	{ (Il2CppRGCTXDataType)3, 15 },
-	{ (Il2CppRGCTXDataType)2, 1313 },
-	{ (Il2CppRGCTXDataType)2, 1358 },
+	{ (Il2CppRGCTXDataType)1, 236 },
+	{ (Il2CppRGCTXDataType)2, 236 },
+	{ (Il2CppRGCTXDataType)2, 2141 },
+	{ (Il2CppRGCTXDataType)3, 3557 },
+	{ (Il2CppRGCTXDataType)2, 2170 },
+	{ (Il2CppRGCTXDataType)3, 3647 },
+	{ (Il2CppRGCTXDataType)2, 3222 },
+	{ (Il2CppRGCTXDataType)2, 954 },
+	{ (Il2CppRGCTXDataType)2, 516 },
+	{ (Il2CppRGCTXDataType)2, 3230 },
+	{ (Il2CppRGCTXDataType)2, 3075 },
+	{ (Il2CppRGCTXDataType)2, 3251 },
+	{ (Il2CppRGCTXDataType)2, 3435 },
+	{ (Il2CppRGCTXDataType)2, 3076 },
+	{ (Il2CppRGCTXDataType)2, 3250 },
+	{ (Il2CppRGCTXDataType)2, 3434 },
+	{ (Il2CppRGCTXDataType)3, 9891 },
+	{ (Il2CppRGCTXDataType)2, 101 },
+	{ (Il2CppRGCTXDataType)3, 13686 },
+	{ (Il2CppRGCTXDataType)3, 13685 },
+	{ (Il2CppRGCTXDataType)2, 104 },
+	{ (Il2CppRGCTXDataType)3, 13688 },
+	{ (Il2CppRGCTXDataType)3, 13687 },
+	{ (Il2CppRGCTXDataType)3, 13689 },
+	{ (Il2CppRGCTXDataType)3, 13690 },
+	{ (Il2CppRGCTXDataType)3, 13691 },
+	{ (Il2CppRGCTXDataType)2, 2426 },
+	{ (Il2CppRGCTXDataType)2, 7507 },
+	{ (Il2CppRGCTXDataType)2, 2427 },
+	{ (Il2CppRGCTXDataType)2, 543 },
+	{ (Il2CppRGCTXDataType)1, 2421 },
+	{ (Il2CppRGCTXDataType)2, 1413 },
 	{ (Il2CppRGCTXDataType)3, 185 },
-	{ (Il2CppRGCTXDataType)1, 446 },
-	{ (Il2CppRGCTXDataType)1, 868 },
-	{ (Il2CppRGCTXDataType)1, 2902 },
+	{ (Il2CppRGCTXDataType)3, 5362 },
+	{ (Il2CppRGCTXDataType)3, 5363 },
+	{ (Il2CppRGCTXDataType)2, 2415 },
 	{ (Il2CppRGCTXDataType)3, 186 },
-	{ (Il2CppRGCTXDataType)2, 2896 },
-	{ (Il2CppRGCTXDataType)2, 1344 },
-	{ (Il2CppRGCTXDataType)3, 104 },
-	{ (Il2CppRGCTXDataType)2, 2391 },
-	{ (Il2CppRGCTXDataType)3, 9147 },
-	{ (Il2CppRGCTXDataType)3, 27706 },
-	{ (Il2CppRGCTXDataType)2, 1342 },
-	{ (Il2CppRGCTXDataType)3, 103 },
-	{ (Il2CppRGCTXDataType)2, 1342 },
-	{ (Il2CppRGCTXDataType)3, 12230 },
-	{ (Il2CppRGCTXDataType)3, 12231 },
-	{ (Il2CppRGCTXDataType)2, 4657 },
-	{ (Il2CppRGCTXDataType)3, 22735 },
-	{ (Il2CppRGCTXDataType)2, 1357 },
-	{ (Il2CppRGCTXDataType)3, 179 },
-	{ (Il2CppRGCTXDataType)3, 180 },
-	{ (Il2CppRGCTXDataType)2, 4039 },
-	{ (Il2CppRGCTXDataType)3, 17209 },
-	{ (Il2CppRGCTXDataType)3, 181 },
-	{ (Il2CppRGCTXDataType)2, 1359 },
+	{ (Il2CppRGCTXDataType)2, 2641 },
+	{ (Il2CppRGCTXDataType)3, 9575 },
+	{ (Il2CppRGCTXDataType)3, 5358 },
+	{ (Il2CppRGCTXDataType)2, 1414 },
 	{ (Il2CppRGCTXDataType)3, 189 },
+	{ (Il2CppRGCTXDataType)3, 5360 },
 	{ (Il2CppRGCTXDataType)3, 190 },
-	{ (Il2CppRGCTXDataType)2, 2256 },
-	{ (Il2CppRGCTXDataType)3, 8990 },
-	{ (Il2CppRGCTXDataType)3, 191 },
-	{ (Il2CppRGCTXDataType)2, 1361 },
-	{ (Il2CppRGCTXDataType)3, 197 },
-	{ (Il2CppRGCTXDataType)3, 198 },
-	{ (Il2CppRGCTXDataType)2, 2319 },
-	{ (Il2CppRGCTXDataType)3, 9123 },
-	{ (Il2CppRGCTXDataType)2, 1362 },
+	{ (Il2CppRGCTXDataType)3, 5357 },
+	{ (Il2CppRGCTXDataType)2, 1356 },
+	{ (Il2CppRGCTXDataType)3, 3 },
+	{ (Il2CppRGCTXDataType)3, 9576 },
+	{ (Il2CppRGCTXDataType)3, 5356 },
+	{ (Il2CppRGCTXDataType)1, 543 },
+	{ (Il2CppRGCTXDataType)3, 5359 },
+	{ (Il2CppRGCTXDataType)3, 5361 },
+	{ (Il2CppRGCTXDataType)3, 5379 },
+	{ (Il2CppRGCTXDataType)2, 1368 },
+	{ (Il2CppRGCTXDataType)3, 15 },
+	{ (Il2CppRGCTXDataType)2, 1368 },
+	{ (Il2CppRGCTXDataType)2, 1416 },
+	{ (Il2CppRGCTXDataType)3, 199 },
+	{ (Il2CppRGCTXDataType)1, 463 },
+	{ (Il2CppRGCTXDataType)1, 911 },
+	{ (Il2CppRGCTXDataType)1, 3386 },
+	{ (Il2CppRGCTXDataType)3, 200 },
+	{ (Il2CppRGCTXDataType)2, 3377 },
+	{ (Il2CppRGCTXDataType)2, 1399 },
+	{ (Il2CppRGCTXDataType)3, 104 },
+	{ (Il2CppRGCTXDataType)2, 2814 },
+	{ (Il2CppRGCTXDataType)3, 9929 },
+	{ (Il2CppRGCTXDataType)3, 29925 },
+	{ (Il2CppRGCTXDataType)2, 1397 },
+	{ (Il2CppRGCTXDataType)3, 103 },
+	{ (Il2CppRGCTXDataType)2, 1397 },
+	{ (Il2CppRGCTXDataType)3, 13143 },
+	{ (Il2CppRGCTXDataType)3, 13144 },
+	{ (Il2CppRGCTXDataType)2, 6639 },
+	{ (Il2CppRGCTXDataType)3, 24778 },
+	{ (Il2CppRGCTXDataType)2, 1415 },
+	{ (Il2CppRGCTXDataType)3, 193 },
+	{ (Il2CppRGCTXDataType)3, 194 },
+	{ (Il2CppRGCTXDataType)2, 4726 },
+	{ (Il2CppRGCTXDataType)3, 18344 },
+	{ (Il2CppRGCTXDataType)3, 195 },
+	{ (Il2CppRGCTXDataType)2, 1417 },
+	{ (Il2CppRGCTXDataType)3, 203 },
+	{ (Il2CppRGCTXDataType)3, 204 },
+	{ (Il2CppRGCTXDataType)2, 2670 },
+	{ (Il2CppRGCTXDataType)3, 9766 },
+	{ (Il2CppRGCTXDataType)3, 205 },
+	{ (Il2CppRGCTXDataType)2, 1419 },
 	{ (Il2CppRGCTXDataType)3, 211 },
 	{ (Il2CppRGCTXDataType)3, 212 },
-	{ (Il2CppRGCTXDataType)2, 2318 },
-	{ (Il2CppRGCTXDataType)3, 9122 },
-	{ (Il2CppRGCTXDataType)2, 1364 },
-	{ (Il2CppRGCTXDataType)3, 223 },
-	{ (Il2CppRGCTXDataType)3, 224 },
-	{ (Il2CppRGCTXDataType)2, 1453 },
-	{ (Il2CppRGCTXDataType)3, 718 },
-	{ (Il2CppRGCTXDataType)2, 1365 },
-	{ (Il2CppRGCTXDataType)3, 227 },
-	{ (Il2CppRGCTXDataType)3, 228 },
-	{ (Il2CppRGCTXDataType)2, 1454 },
-	{ (Il2CppRGCTXDataType)3, 719 },
-	{ (Il2CppRGCTXDataType)2, 769 },
-	{ (Il2CppRGCTXDataType)2, 770 },
-	{ (Il2CppRGCTXDataType)2, 771 },
-	{ (Il2CppRGCTXDataType)2, 772 },
-	{ (Il2CppRGCTXDataType)2, 773 },
-	{ (Il2CppRGCTXDataType)2, 774 },
-	{ (Il2CppRGCTXDataType)3, 28294 },
-	{ (Il2CppRGCTXDataType)3, 28293 },
-	{ (Il2CppRGCTXDataType)3, 28300 },
-	{ (Il2CppRGCTXDataType)3, 28299 },
-	{ (Il2CppRGCTXDataType)3, 28309 },
-	{ (Il2CppRGCTXDataType)3, 28313 },
-	{ (Il2CppRGCTXDataType)3, 27681 },
-	{ (Il2CppRGCTXDataType)1, 326 },
-	{ (Il2CppRGCTXDataType)2, 5432 },
-	{ (Il2CppRGCTXDataType)3, 27630 },
-	{ (Il2CppRGCTXDataType)3, 27743 },
-	{ (Il2CppRGCTXDataType)2, 1348 },
+	{ (Il2CppRGCTXDataType)2, 2739 },
+	{ (Il2CppRGCTXDataType)3, 9903 },
+	{ (Il2CppRGCTXDataType)2, 1420 },
+	{ (Il2CppRGCTXDataType)3, 225 },
+	{ (Il2CppRGCTXDataType)3, 226 },
+	{ (Il2CppRGCTXDataType)2, 2738 },
+	{ (Il2CppRGCTXDataType)3, 9902 },
+	{ (Il2CppRGCTXDataType)2, 1422 },
+	{ (Il2CppRGCTXDataType)3, 237 },
+	{ (Il2CppRGCTXDataType)3, 238 },
+	{ (Il2CppRGCTXDataType)2, 1791 },
+	{ (Il2CppRGCTXDataType)3, 764 },
+	{ (Il2CppRGCTXDataType)2, 1423 },
+	{ (Il2CppRGCTXDataType)3, 241 },
+	{ (Il2CppRGCTXDataType)3, 242 },
+	{ (Il2CppRGCTXDataType)2, 1792 },
+	{ (Il2CppRGCTXDataType)3, 765 },
+	{ (Il2CppRGCTXDataType)2, 797 },
+	{ (Il2CppRGCTXDataType)2, 798 },
+	{ (Il2CppRGCTXDataType)2, 799 },
+	{ (Il2CppRGCTXDataType)2, 800 },
+	{ (Il2CppRGCTXDataType)2, 801 },
+	{ (Il2CppRGCTXDataType)2, 802 },
+	{ (Il2CppRGCTXDataType)3, 30802 },
+	{ (Il2CppRGCTXDataType)3, 30801 },
+	{ (Il2CppRGCTXDataType)3, 30808 },
+	{ (Il2CppRGCTXDataType)3, 30807 },
+	{ (Il2CppRGCTXDataType)3, 30817 },
+	{ (Il2CppRGCTXDataType)3, 30821 },
+	{ (Il2CppRGCTXDataType)3, 29900 },
+	{ (Il2CppRGCTXDataType)1, 337 },
+	{ (Il2CppRGCTXDataType)2, 7432 },
+	{ (Il2CppRGCTXDataType)3, 29849 },
+	{ (Il2CppRGCTXDataType)3, 29962 },
+	{ (Il2CppRGCTXDataType)2, 1403 },
 	{ (Il2CppRGCTXDataType)3, 113 },
 	{ (Il2CppRGCTXDataType)3, 114 },
-	{ (Il2CppRGCTXDataType)2, 2325 },
-	{ (Il2CppRGCTXDataType)3, 9126 },
-	{ (Il2CppRGCTXDataType)3, 27778 },
-	{ (Il2CppRGCTXDataType)3, 27657 },
-	{ (Il2CppRGCTXDataType)3, 27731 },
+	{ (Il2CppRGCTXDataType)2, 2745 },
+	{ (Il2CppRGCTXDataType)3, 9906 },
+	{ (Il2CppRGCTXDataType)3, 29997 },
+	{ (Il2CppRGCTXDataType)3, 29876 },
+	{ (Il2CppRGCTXDataType)3, 29950 },
 	{ (Il2CppRGCTXDataType)3, 115 },
-	{ (Il2CppRGCTXDataType)3, 9145 },
-	{ (Il2CppRGCTXDataType)2, 659 },
-	{ (Il2CppRGCTXDataType)2, 952 },
-	{ (Il2CppRGCTXDataType)2, 4491 },
-	{ (Il2CppRGCTXDataType)3, 22030 },
-	{ (Il2CppRGCTXDataType)2, 1681 },
-	{ (Il2CppRGCTXDataType)3, 2945 },
-	{ (Il2CppRGCTXDataType)3, 2946 },
-	{ (Il2CppRGCTXDataType)2, 1582 },
-	{ (Il2CppRGCTXDataType)3, 22688 },
-	{ (Il2CppRGCTXDataType)3, 28039 },
-	{ (Il2CppRGCTXDataType)2, 2475 },
-	{ (Il2CppRGCTXDataType)3, 9246 },
-	{ (Il2CppRGCTXDataType)2, 4628 },
-	{ (Il2CppRGCTXDataType)3, 22687 },
-	{ (Il2CppRGCTXDataType)2, 1374 },
-	{ (Il2CppRGCTXDataType)3, 284 },
-	{ (Il2CppRGCTXDataType)3, 6609 },
-	{ (Il2CppRGCTXDataType)3, 285 },
-	{ (Il2CppRGCTXDataType)2, 2897 },
-	{ (Il2CppRGCTXDataType)2, 3039 },
-	{ (Il2CppRGCTXDataType)3, 12233 },
-	{ (Il2CppRGCTXDataType)2, 837 },
-	{ (Il2CppRGCTXDataType)3, 12234 },
-	{ (Il2CppRGCTXDataType)2, 1011 },
-	{ (Il2CppRGCTXDataType)3, 286 },
-	{ (Il2CppRGCTXDataType)1, 233 },
-	{ (Il2CppRGCTXDataType)2, 233 },
-	{ (Il2CppRGCTXDataType)3, 2085 },
-	{ (Il2CppRGCTXDataType)2, 1581 },
-	{ (Il2CppRGCTXDataType)3, 28308 },
-	{ (Il2CppRGCTXDataType)2, 237 },
-	{ (Il2CppRGCTXDataType)3, 28307 },
-	{ (Il2CppRGCTXDataType)2, 236 },
-	{ (Il2CppRGCTXDataType)3, 28038 },
-	{ (Il2CppRGCTXDataType)3, 28037 },
-	{ (Il2CppRGCTXDataType)3, 28306 },
-	{ (Il2CppRGCTXDataType)2, 3420 },
-	{ (Il2CppRGCTXDataType)2, 3420 },
-	{ (Il2CppRGCTXDataType)2, 2838 },
-	{ (Il2CppRGCTXDataType)3, 11905 },
-	{ (Il2CppRGCTXDataType)3, 11904 },
-	{ (Il2CppRGCTXDataType)3, 27676 },
-	{ (Il2CppRGCTXDataType)3, 11903 },
-	{ (Il2CppRGCTXDataType)2, 227 },
+	{ (Il2CppRGCTXDataType)3, 9926 },
+	{ (Il2CppRGCTXDataType)2, 687 },
+	{ (Il2CppRGCTXDataType)2, 997 },
+	{ (Il2CppRGCTXDataType)2, 6449 },
+	{ (Il2CppRGCTXDataType)3, 24007 },
+	{ (Il2CppRGCTXDataType)2, 2045 },
+	{ (Il2CppRGCTXDataType)3, 3168 },
+	{ (Il2CppRGCTXDataType)3, 3169 },
+	{ (Il2CppRGCTXDataType)2, 1944 },
+	{ (Il2CppRGCTXDataType)3, 24731 },
+	{ (Il2CppRGCTXDataType)3, 30265 },
+	{ (Il2CppRGCTXDataType)2, 2910 },
+	{ (Il2CppRGCTXDataType)3, 10037 },
+	{ (Il2CppRGCTXDataType)2, 6610 },
+	{ (Il2CppRGCTXDataType)3, 24730 },
+	{ (Il2CppRGCTXDataType)2, 1434 },
+	{ (Il2CppRGCTXDataType)3, 304 },
+	{ (Il2CppRGCTXDataType)3, 7285 },
+	{ (Il2CppRGCTXDataType)3, 305 },
+	{ (Il2CppRGCTXDataType)2, 3379 },
+	{ (Il2CppRGCTXDataType)2, 3538 },
+	{ (Il2CppRGCTXDataType)3, 13147 },
+	{ (Il2CppRGCTXDataType)2, 880 },
+	{ (Il2CppRGCTXDataType)3, 13148 },
+	{ (Il2CppRGCTXDataType)2, 1065 },
+	{ (Il2CppRGCTXDataType)3, 306 },
+	{ (Il2CppRGCTXDataType)1, 235 },
+	{ (Il2CppRGCTXDataType)2, 235 },
+	{ (Il2CppRGCTXDataType)3, 2261 },
+	{ (Il2CppRGCTXDataType)2, 1943 },
+	{ (Il2CppRGCTXDataType)3, 30816 },
+	{ (Il2CppRGCTXDataType)2, 239 },
+	{ (Il2CppRGCTXDataType)3, 30815 },
+	{ (Il2CppRGCTXDataType)2, 238 },
+	{ (Il2CppRGCTXDataType)3, 30264 },
+	{ (Il2CppRGCTXDataType)3, 30263 },
+	{ (Il2CppRGCTXDataType)3, 30814 },
+	{ (Il2CppRGCTXDataType)2, 3944 },
+	{ (Il2CppRGCTXDataType)2, 3944 },
+	{ (Il2CppRGCTXDataType)2, 3316 },
+	{ (Il2CppRGCTXDataType)3, 12746 },
+	{ (Il2CppRGCTXDataType)3, 12745 },
+	{ (Il2CppRGCTXDataType)3, 29895 },
+	{ (Il2CppRGCTXDataType)3, 12744 },
+	{ (Il2CppRGCTXDataType)2, 229 },
 };
 extern const CustomAttributesCacheGenerator g_Newtonsoft_Json_AttributeGenerators[];
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_Newtonsoft_Json_CodeGenModule;
 const Il2CppCodeGenModule g_Newtonsoft_Json_CodeGenModule = 
 {
 	"Newtonsoft.Json.dll",
-	2126,
+	2164,
 	s_methodPointers,
 	29,
 	s_adjustorThunks,

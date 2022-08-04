@@ -159,6 +159,18 @@ public class BoardCore : MonoBehaviour
         if(MatchFinder.CurrentMatches.Count > 0)
         {
             yield return new WaitForSeconds(0.3f);
+            if(ShotsEarned > 1)
+            {
+                Debug.Log("Might be allowed to lifesteal");
+                if (MatchFinder.CurrentMatches.Count == 3)
+                    CombatCore.SpawnedPlayer.ActivateLifesteal(3);
+                else if (MatchFinder.CurrentMatches.Count == 4)
+                    CombatCore.SpawnedPlayer.ActivateLifesteal(5);
+                else if (MatchFinder.CurrentMatches.Count == 5)
+                    CombatCore.SpawnedPlayer.ActivateLifesteal(7);
+                else if (MatchFinder.CurrentMatches.Count >= 6)
+                    CombatCore.SpawnedPlayer.ActivateLifesteal(9);
+            }
             DestroyMatches();
         }    
         else
@@ -167,10 +179,10 @@ public class BoardCore : MonoBehaviour
             ShuffleBtn.interactable = true;
             if(CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING)
             {
-                if (PlayerData.ActiveWeapon.HasBonusBullets && CombatCore.RoundCounter % PlayerData.ActiveWeapon.BonusFrequency == 0 && Random.Range(0, 100) < PlayerData.ActiveWeapon.BonusRate)
+                if (PlayerData.ActiveCustomWeapon.BaseWeaponData.HasBonusBullets && CombatCore.RoundCounter % PlayerData.ActiveCustomWeapon.BaseWeaponData.BonusFrequency == 0 && Random.Range(0, 100) < PlayerData.ActiveCustomWeapon.BaseWeaponData.BonusRate)
                 {
                     Debug.Log("Will shoot extra bullets");
-                    ShotsEarned += PlayerData.ActiveWeapon.BonusBullets;
+                    ShotsEarned += PlayerData.ActiveCustomWeapon.BaseWeaponData.BonusBullets;
                 }
 
                 if(shuffling)

@@ -17,6 +17,7 @@ MonoBehaviour:
   <BaseDamage>k__BackingField: 8
   <Accuracy>k__BackingField: 92
   <StartingAmmo>k__BackingField: 250
+  <Abilities>k__BackingField: 25 % chance to shoot 3 bullets in every 3 turns
   <SideEffects>k__BackingField: 
   <SideEffectsRate>k__BackingField: 
   <SideEffectsFrequency>k__BackingField: 
@@ -34,4 +35,6 @@ MonoBehaviour:
   <FrontSprite>k__BackingField: {fileID: 21300000, guid: 4ee739bbbdec76e44b45eaa85063ddb9, type: 3}
   <EquippedSprite>k__BackingField: {fileID: 21300000, guid: 60f173a1dbfb17f4fbe96710352c409d, type: 3}
   <InfoSprite>k__BackingField: {fileID: 21300000, guid: e03e6e1af3449594f9f9401f0145adf6, type: 3}
+  <CurrentSprite>k__BackingField: {fileID: 21300000, guid: 7022b9b99fc46074d8b384a12924aa85, type: 3}
+  <CurrentBigSprite>k__BackingField: {fileID: 21300000, guid: e5fe43604c6cd7c43b5e46c051c865ed, type: 3}
   <Ammo>k__BackingField: {fileID: 21300000, guid: 380c68d355dfaa54490f34cb276255b3, type: 3}

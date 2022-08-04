@@ -2022,16 +2022,16 @@ struct ArrayList_t6C1A49839DC1F0D568E8E11FA1626FCF0EC06575_StaticFields
 {
 public:
 	// System.Object[] System.Collections.ArrayList::emptyArray
-	ObjectU5BU5D_tC1F4EE0DB0B7300255F5FD4AF64FE4C585CF5ADE* ___emptyArray_4;
+	ObjectU5BU5D_tC1F4EE0DB0B7300255F5FD4AF64FE4C585CF5ADE* ___emptyArray_5;
 
 public:
-	inline static int32_t get_offset_of_emptyArray_4() { return static_cast<int32_t>(offsetof(ArrayList_t6C1A49839DC1F0D568E8E11FA1626FCF0EC06575_StaticFields, ___emptyArray_4)); }
-	inline ObjectU5BU5D_tC1F4EE0DB0B7300255F5FD4AF64FE4C585CF5ADE* get_emptyArray_4() const { return ___emptyArray_4; }
-	inline ObjectU5BU5D_tC1F4EE0DB0B7300255F5FD4AF64FE4C585CF5ADE** get_address_of_emptyArray_4() { return &___emptyArray_4; }
-	inline void set_emptyArray_4(ObjectU5BU5D_tC1F4EE0DB0B7300255F5FD4AF64FE4C585CF5ADE* value)
+	inline static int32_t get_offset_of_emptyArray_5() { return static_cast<int32_t>(offsetof(ArrayList_t6C1A49839DC1F0D568E8E11FA1626FCF0EC06575_StaticFields, ___emptyArray_5)); }
+	inline ObjectU5BU5D_tC1F4EE0DB0B7300255F5FD4AF64FE4C585CF5ADE* get_emptyArray_5() const { return ___emptyArray_5; }
+	inline ObjectU5BU5D_tC1F4EE0DB0B7300255F5FD4AF64FE4C585CF5ADE** get_address_of_emptyArray_5() { return &___emptyArray_5; }
+	inline void set_emptyArray_5(ObjectU5BU5D_tC1F4EE0DB0B7300255F5FD4AF64FE4C585CF5ADE* value)
 	{
-		___emptyArray_4 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___emptyArray_4), (void*)value);
+		___emptyArray_5 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___emptyArray_5), (void*)value);
 	}
 };
 
@@ -6195,27 +6195,27 @@ struct Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB  : public MarshalByRefOb
 {
 public:
 	// System.IO.Stream/ReadWriteTask System.IO.Stream::_activeReadWriteTask
-	ReadWriteTask_t32CD2C230786712954C1DB518DBE420A1F4C7974 * ____activeReadWriteTask_2;
+	ReadWriteTask_t32CD2C230786712954C1DB518DBE420A1F4C7974 * ____activeReadWriteTask_3;
 	// System.Threading.SemaphoreSlim System.IO.Stream::_asyncActiveSemaphore
-	SemaphoreSlim_t3EF85FC980AE57957BEBB6B78E81DE2E3233D385 * ____asyncActiveSemaphore_3;
+	SemaphoreSlim_t3EF85FC980AE57957BEBB6B78E81DE2E3233D385 * ____asyncActiveSemaphore_4;
 
 public:
-	inline static int32_t get_offset_of__activeReadWriteTask_2() { return static_cast<int32_t>(offsetof(Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB, ____activeReadWriteTask_2)); }
-	inline ReadWriteTask_t32CD2C230786712954C1DB518DBE420A1F4C7974 * get__activeReadWriteTask_2() const { return ____activeReadWriteTask_2; }
-	inline ReadWriteTask_t32CD2C230786712954C1DB518DBE420A1F4C7974 ** get_address_of__activeReadWriteTask_2() { return &____activeReadWriteTask_2; }
-	inline void set__activeReadWriteTask_2(ReadWriteTask_t32CD2C230786712954C1DB518DBE420A1F4C7974 * value)
+	inline static int32_t get_offset_of__activeReadWriteTask_3() { return static_cast<int32_t>(offsetof(Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB, ____activeReadWriteTask_3)); }
+	inline ReadWriteTask_t32CD2C230786712954C1DB518DBE420A1F4C7974 * get__activeReadWriteTask_3() const { return ____activeReadWriteTask_3; }
+	inline ReadWriteTask_t32CD2C230786712954C1DB518DBE420A1F4C7974 ** get_address_of__activeReadWriteTask_3() { return &____activeReadWriteTask_3; }
+	inline void set__activeReadWriteTask_3(ReadWriteTask_t32CD2C230786712954C1DB518DBE420A1F4C7974 * value)
 	{
-		____activeReadWriteTask_2 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____activeReadWriteTask_2), (void*)value);
+		____activeReadWriteTask_3 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&____activeReadWriteTask_3), (void*)value);
 	}
 
-	inline static int32_t get_offset_of__asyncActiveSemaphore_3() { return static_cast<int32_t>(offsetof(Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB, ____asyncActiveSemaphore_3)); }
-	inline SemaphoreSlim_t3EF85FC980AE57957BEBB6B78E81DE2E3233D385 * get__asyncActiveSemaphore_3() const { return ____asyncActiveSemaphore_3; }
-	inline SemaphoreSlim_t3EF85FC980AE57957BEBB6B78E81DE2E3233D385 ** get_address_of__asyncActiveSemaphore_3() { return &____asyncActiveSemaphore_3; }
-	inline void set__asyncActiveSemaphore_3(SemaphoreSlim_t3EF85FC980AE57957BEBB6B78E81DE2E3233D385 * value)
+	inline static int32_t get_offset_of__asyncActiveSemaphore_4() { return static_cast<int32_t>(offsetof(Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB, ____asyncActiveSemaphore_4)); }
+	inline SemaphoreSlim_t3EF85FC980AE57957BEBB6B78E81DE2E3233D385 * get__asyncActiveSemaphore_4() const { return ____asyncActiveSemaphore_4; }
+	inline SemaphoreSlim_t3EF85FC980AE57957BEBB6B78E81DE2E3233D385 ** get_address_of__asyncActiveSemaphore_4() { return &____asyncActiveSemaphore_4; }
+	inline void set__asyncActiveSemaphore_4(SemaphoreSlim_t3EF85FC980AE57957BEBB6B78E81DE2E3233D385 * value)
 	{
-		____asyncActiveSemaphore_3 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____asyncActiveSemaphore_3), (void*)value);
+		____asyncActiveSemaphore_4 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&____asyncActiveSemaphore_4), (void*)value);
 	}
 };
 
@@ -6964,120 +6964,120 @@ struct Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC  : public RuntimeObje
 {
 public:
 	// System.Collections.Hashtable/bucket[] System.Collections.Hashtable::buckets
-	bucketU5BU5D_tFE956DAEFB1D1C86A13EF247D7367BF60B55E190* ___buckets_0;
+	bucketU5BU5D_tFE956DAEFB1D1C86A13EF247D7367BF60B55E190* ___buckets_10;
 	// System.Int32 System.Collections.Hashtable::count
-	int32_t ___count_1;
+	int32_t ___count_11;
 	// System.Int32 System.Collections.Hashtable::occupancy
-	int32_t ___occupancy_2;
+	int32_t ___occupancy_12;
 	// System.Int32 System.Collections.Hashtable::loadsize
-	int32_t ___loadsize_3;
+	int32_t ___loadsize_13;
 	// System.Single System.Collections.Hashtable::loadFactor
-	float ___loadFactor_4;
+	float ___loadFactor_14;
 	// System.Int32 modreq(System.Runtime.CompilerServices.IsVolatile) System.Collections.Hashtable::version
-	int32_t ___version_5;
+	int32_t ___version_15;
 	// System.Boolean modreq(System.Runtime.CompilerServices.IsVolatile) System.Collections.Hashtable::isWriterInProgress
-	bool ___isWriterInProgress_6;
+	bool ___isWriterInProgress_16;
 	// System.Collections.ICollection System.Collections.Hashtable::keys
-	RuntimeObject* ___keys_7;
+	RuntimeObject* ___keys_17;
 	// System.Collections.ICollection System.Collections.Hashtable::values
-	RuntimeObject* ___values_8;
+	RuntimeObject* ___values_18;
 	// System.Collections.IEqualityComparer System.Collections.Hashtable::_keycomparer
-	RuntimeObject* ____keycomparer_9;
+	RuntimeObject* ____keycomparer_19;
 	// System.Object System.Collections.Hashtable::_syncRoot
-	RuntimeObject * ____syncRoot_10;
+	RuntimeObject * ____syncRoot_20;
 
 public:
-	inline static int32_t get_offset_of_buckets_0() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___buckets_0)); }
-	inline bucketU5BU5D_tFE956DAEFB1D1C86A13EF247D7367BF60B55E190* get_buckets_0() const { return ___buckets_0; }
-	inline bucketU5BU5D_tFE956DAEFB1D1C86A13EF247D7367BF60B55E190** get_address_of_buckets_0() { return &___buckets_0; }
-	inline void set_buckets_0(bucketU5BU5D_tFE956DAEFB1D1C86A13EF247D7367BF60B55E190* value)
+	inline static int32_t get_offset_of_buckets_10() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___buckets_10)); }
+	inline bucketU5BU5D_tFE956DAEFB1D1C86A13EF247D7367BF60B55E190* get_buckets_10() const { return ___buckets_10; }
+	inline bucketU5BU5D_tFE956DAEFB1D1C86A13EF247D7367BF60B55E190** get_address_of_buckets_10() { return &___buckets_10; }
+	inline void set_buckets_10(bucketU5BU5D_tFE956DAEFB1D1C86A13EF247D7367BF60B55E190* value)
 	{
-		___buckets_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___buckets_0), (void*)value);
+		___buckets_10 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___buckets_10), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_count_1() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___count_1)); }
-	inline int32_t get_count_1() const { return ___count_1; }
-	inline int32_t* get_address_of_count_1() { return &___count_1; }
-	inline void set_count_1(int32_t value)
+	inline static int32_t get_offset_of_count_11() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___count_11)); }
+	inline int32_t get_count_11() const { return ___count_11; }
+	inline int32_t* get_address_of_count_11() { return &___count_11; }
+	inline void set_count_11(int32_t value)
 	{
-		___count_1 = value;
+		___count_11 = value;
 	}
 
-	inline static int32_t get_offset_of_occupancy_2() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___occupancy_2)); }
-	inline int32_t get_occupancy_2() const { return ___occupancy_2; }
-	inline int32_t* get_address_of_occupancy_2() { return &___occupancy_2; }
-	inline void set_occupancy_2(int32_t value)
+	inline static int32_t get_offset_of_occupancy_12() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___occupancy_12)); }
+	inline int32_t get_occupancy_12() const { return ___occupancy_12; }
+	inline int32_t* get_address_of_occupancy_12() { return &___occupancy_12; }
+	inline void set_occupancy_12(int32_t value)
 	{
-		___occupancy_2 = value;
+		___occupancy_12 = value;
 	}
 
-	inline static int32_t get_offset_of_loadsize_3() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___loadsize_3)); }
-	inline int32_t get_loadsize_3() const { return ___loadsize_3; }
-	inline int32_t* get_address_of_loadsize_3() { return &___loadsize_3; }
-	inline void set_loadsize_3(int32_t value)
+	inline static int32_t get_offset_of_loadsize_13() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___loadsize_13)); }
+	inline int32_t get_loadsize_13() const { return ___loadsize_13; }
+	inline int32_t* get_address_of_loadsize_13() { return &___loadsize_13; }
+	inline void set_loadsize_13(int32_t value)
 	{
-		___loadsize_3 = value;
+		___loadsize_13 = value;
 	}
 
-	inline static int32_t get_offset_of_loadFactor_4() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___loadFactor_4)); }
-	inline float get_loadFactor_4() const { return ___loadFactor_4; }
-	inline float* get_address_of_loadFactor_4() { return &___loadFactor_4; }
-	inline void set_loadFactor_4(float value)
+	inline static int32_t get_offset_of_loadFactor_14() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___loadFactor_14)); }
+	inline float get_loadFactor_14() const { return ___loadFactor_14; }
+	inline float* get_address_of_loadFactor_14() { return &___loadFactor_14; }
+	inline void set_loadFactor_14(float value)
 	{
-		___loadFactor_4 = value;
+		___loadFactor_14 = value;
 	}
 
-	inline static int32_t get_offset_of_version_5() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___version_5)); }
-	inline int32_t get_version_5() const { return ___version_5; }
-	inline int32_t* get_address_of_version_5() { return &___version_5; }
-	inline void set_version_5(int32_t value)
+	inline static int32_t get_offset_of_version_15() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___version_15)); }
+	inline int32_t get_version_15() const { return ___version_15; }
+	inline int32_t* get_address_of_version_15() { return &___version_15; }
+	inline void set_version_15(int32_t value)
 	{
-		___version_5 = value;
+		___version_15 = value;
 	}
 
-	inline static int32_t get_offset_of_isWriterInProgress_6() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___isWriterInProgress_6)); }
-	inline bool get_isWriterInProgress_6() const { return ___isWriterInProgress_6; }
-	inline bool* get_address_of_isWriterInProgress_6() { return &___isWriterInProgress_6; }
-	inline void set_isWriterInProgress_6(bool value)
+	inline static int32_t get_offset_of_isWriterInProgress_16() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___isWriterInProgress_16)); }
+	inline bool get_isWriterInProgress_16() const { return ___isWriterInProgress_16; }
+	inline bool* get_address_of_isWriterInProgress_16() { return &___isWriterInProgress_16; }
+	inline void set_isWriterInProgress_16(bool value)
 	{
-		___isWriterInProgress_6 = value;
+		___isWriterInProgress_16 = value;
 	}
 
-	inline static int32_t get_offset_of_keys_7() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___keys_7)); }
-	inline RuntimeObject* get_keys_7() const { return ___keys_7; }
-	inline RuntimeObject** get_address_of_keys_7() { return &___keys_7; }
-	inline void set_keys_7(RuntimeObject* value)
+	inline static int32_t get_offset_of_keys_17() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___keys_17)); }
+	inline RuntimeObject* get_keys_17() const { return ___keys_17; }
+	inline RuntimeObject** get_address_of_keys_17() { return &___keys_17; }
+	inline void set_keys_17(RuntimeObject* value)
 	{
-		___keys_7 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___keys_7), (void*)value);
+		___keys_17 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___keys_17), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_values_8() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___values_8)); }
-	inline RuntimeObject* get_values_8() const { return ___values_8; }
-	inline RuntimeObject** get_address_of_values_8() { return &___values_8; }
-	inline void set_values_8(RuntimeObject* value)
+	inline static int32_t get_offset_of_values_18() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ___values_18)); }
+	inline RuntimeObject* get_values_18() const { return ___values_18; }
+	inline RuntimeObject** get_address_of_values_18() { return &___values_18; }
+	inline void set_values_18(RuntimeObject* value)
 	{
-		___values_8 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___values_8), (void*)value);
+		___values_18 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___values_18), (void*)value);
 	}
 
-	inline static int32_t get_offset_of__keycomparer_9() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ____keycomparer_9)); }
-	inline RuntimeObject* get__keycomparer_9() const { return ____keycomparer_9; }
-	inline RuntimeObject** get_address_of__keycomparer_9() { return &____keycomparer_9; }
-	inline void set__keycomparer_9(RuntimeObject* value)
+	inline static int32_t get_offset_of__keycomparer_19() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ____keycomparer_19)); }
+	inline RuntimeObject* get__keycomparer_19() const { return ____keycomparer_19; }
+	inline RuntimeObject** get_address_of__keycomparer_19() { return &____keycomparer_19; }
+	inline void set__keycomparer_19(RuntimeObject* value)
 	{
-		____keycomparer_9 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____keycomparer_9), (void*)value);
+		____keycomparer_19 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&____keycomparer_19), (void*)value);
 	}
 
-	inline static int32_t get_offset_of__syncRoot_10() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ____syncRoot_10)); }
-	inline RuntimeObject * get__syncRoot_10() const { return ____syncRoot_10; }
-	inline RuntimeObject ** get_address_of__syncRoot_10() { return &____syncRoot_10; }
-	inline void set__syncRoot_10(RuntimeObject * value)
+	inline static int32_t get_offset_of__syncRoot_20() { return static_cast<int32_t>(offsetof(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC, ____syncRoot_20)); }
+	inline RuntimeObject * get__syncRoot_20() const { return ____syncRoot_20; }
+	inline RuntimeObject ** get_address_of__syncRoot_20() { return &____syncRoot_20; }
+	inline void set__syncRoot_20(RuntimeObject * value)
 	{
-		____syncRoot_10 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____syncRoot_10), (void*)value);
+		____syncRoot_20 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&____syncRoot_20), (void*)value);
 	}
 };
 
@@ -7426,6 +7426,24 @@ public:
 };
 
 
+// System.UriFormat
+struct UriFormat_t25C936463BDE737B16A8EC3DA05091FC31F1A71F 
+{
+public:
+	// System.Int32 System.UriFormat::value__
+	int32_t ___value___2;
+
+public:
+	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(UriFormat_t25C936463BDE737B16A8EC3DA05091FC31F1A71F, ___value___2)); }
+	inline int32_t get_value___2() const { return ___value___2; }
+	inline int32_t* get_address_of_value___2() { return &___value___2; }
+	inline void set_value___2(int32_t value)
+	{
+		___value___2 = value;
+	}
+};
+
+
 // System.UriIdnScope
 struct UriIdnScope_tBA22B992BA582F68F2B98CDEBCB24299F249DE4D 
 {
@@ -7435,6 +7453,24 @@ public:
 
 public:
 	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(UriIdnScope_tBA22B992BA582F68F2B98CDEBCB24299F249DE4D, ___value___2)); }
+	inline int32_t get_value___2() const { return ___value___2; }
+	inline int32_t* get_address_of_value___2() { return &___value___2; }
+	inline void set_value___2(int32_t value)
+	{
+		___value___2 = value;
+	}
+};
+
+
+// System.UriKind
+struct UriKind_tFC16ACC1842283AAE2C7F50C9C70EFBF6550B3FC 
+{
+public:
+	// System.Int32 System.UriKind::value__
+	int32_t ___value___2;
+
+public:
+	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(UriKind_tFC16ACC1842283AAE2C7F50C9C70EFBF6550B3FC, ___value___2)); }
 	inline int32_t get_value___2() const { return ___value___2; }
 	inline int32_t* get_address_of_value___2() { return &___value___2; }
 	inline void set_value___2(int32_t value)
@@ -10624,80 +10660,80 @@ struct Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612  : public RuntimeObject
 {
 public:
 	// System.String System.Uri::m_String
-	String_t* ___m_String_13;
+	String_t* ___m_String_16;
 	// System.String System.Uri::m_originalUnicodeString
-	String_t* ___m_originalUnicodeString_14;
+	String_t* ___m_originalUnicodeString_17;
 	// System.UriParser System.Uri::m_Syntax
-	UriParser_t6DEBE5C6CDC3C29C9019CD951C7ECEBD6A5D3E3A * ___m_Syntax_15;
+	UriParser_t6DEBE5C6CDC3C29C9019CD951C7ECEBD6A5D3E3A * ___m_Syntax_18;
 	// System.String System.Uri::m_DnsSafeHost
-	String_t* ___m_DnsSafeHost_16;
+	String_t* ___m_DnsSafeHost_19;
 	// System.Uri/Flags System.Uri::m_Flags
-	uint64_t ___m_Flags_17;
+	uint64_t ___m_Flags_20;
 	// System.Uri/UriInfo System.Uri::m_Info
-	UriInfo_tCB2302A896132D1F70E47C3895FAB9A0F2A6EE45 * ___m_Info_18;
+	UriInfo_tCB2302A896132D1F70E47C3895FAB9A0F2A6EE45 * ___m_Info_21;
 	// System.Boolean System.Uri::m_iriParsing
-	bool ___m_iriParsing_19;
+	bool ___m_iriParsing_22;
 
 public:
-	inline static int32_t get_offset_of_m_String_13() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_String_13)); }
-	inline String_t* get_m_String_13() const { return ___m_String_13; }
-	inline String_t** get_address_of_m_String_13() { return &___m_String_13; }
-	inline void set_m_String_13(String_t* value)
+	inline static int32_t get_offset_of_m_String_16() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_String_16)); }
+	inline String_t* get_m_String_16() const { return ___m_String_16; }
+	inline String_t** get_address_of_m_String_16() { return &___m_String_16; }
+	inline void set_m_String_16(String_t* value)
 	{
-		___m_String_13 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___m_String_13), (void*)value);
+		___m_String_16 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___m_String_16), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_m_originalUnicodeString_14() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_originalUnicodeString_14)); }
-	inline String_t* get_m_originalUnicodeString_14() const { return ___m_originalUnicodeString_14; }
-	inline String_t** get_address_of_m_originalUnicodeString_14() { return &___m_originalUnicodeString_14; }
-	inline void set_m_originalUnicodeString_14(String_t* value)
+	inline static int32_t get_offset_of_m_originalUnicodeString_17() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_originalUnicodeString_17)); }
+	inline String_t* get_m_originalUnicodeString_17() const { return ___m_originalUnicodeString_17; }
+	inline String_t** get_address_of_m_originalUnicodeString_17() { return &___m_originalUnicodeString_17; }
+	inline void set_m_originalUnicodeString_17(String_t* value)
 	{
-		___m_originalUnicodeString_14 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___m_originalUnicodeString_14), (void*)value);
+		___m_originalUnicodeString_17 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___m_originalUnicodeString_17), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_m_Syntax_15() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_Syntax_15)); }
-	inline UriParser_t6DEBE5C6CDC3C29C9019CD951C7ECEBD6A5D3E3A * get_m_Syntax_15() const { return ___m_Syntax_15; }
-	inline UriParser_t6DEBE5C6CDC3C29C9019CD951C7ECEBD6A5D3E3A ** get_address_of_m_Syntax_15() { return &___m_Syntax_15; }
-	inline void set_m_Syntax_15(UriParser_t6DEBE5C6CDC3C29C9019CD951C7ECEBD6A5D3E3A * value)
+	inline static int32_t get_offset_of_m_Syntax_18() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_Syntax_18)); }
+	inline UriParser_t6DEBE5C6CDC3C29C9019CD951C7ECEBD6A5D3E3A * get_m_Syntax_18() const { return ___m_Syntax_18; }
+	inline UriParser_t6DEBE5C6CDC3C29C9019CD951C7ECEBD6A5D3E3A ** get_address_of_m_Syntax_18() { return &___m_Syntax_18; }
+	inline void set_m_Syntax_18(UriParser_t6DEBE5C6CDC3C29C9019CD951C7ECEBD6A5D3E3A * value)
 	{
-		___m_Syntax_15 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___m_Syntax_15), (void*)value);
+		___m_Syntax_18 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___m_Syntax_18), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_m_DnsSafeHost_16() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_DnsSafeHost_16)); }
-	inline String_t* get_m_DnsSafeHost_16() const { return ___m_DnsSafeHost_16; }
-	inline String_t** get_address_of_m_DnsSafeHost_16() { return &___m_DnsSafeHost_16; }
-	inline void set_m_DnsSafeHost_16(String_t* value)
+	inline static int32_t get_offset_of_m_DnsSafeHost_19() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_DnsSafeHost_19)); }
+	inline String_t* get_m_DnsSafeHost_19() const { return ___m_DnsSafeHost_19; }
+	inline String_t** get_address_of_m_DnsSafeHost_19() { return &___m_DnsSafeHost_19; }
+	inline void set_m_DnsSafeHost_19(String_t* value)
 	{
-		___m_DnsSafeHost_16 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___m_DnsSafeHost_16), (void*)value);
+		___m_DnsSafeHost_19 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___m_DnsSafeHost_19), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_m_Flags_17() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_Flags_17)); }
-	inline uint64_t get_m_Flags_17() const { return ___m_Flags_17; }
-	inline uint64_t* get_address_of_m_Flags_17() { return &___m_Flags_17; }
-	inline void set_m_Flags_17(uint64_t value)
+	inline static int32_t get_offset_of_m_Flags_20() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_Flags_20)); }
+	inline uint64_t get_m_Flags_20() const { return ___m_Flags_20; }
+	inline uint64_t* get_address_of_m_Flags_20() { return &___m_Flags_20; }
+	inline void set_m_Flags_20(uint64_t value)
 	{
-		___m_Flags_17 = value;
+		___m_Flags_20 = value;
 	}
 
-	inline static int32_t get_offset_of_m_Info_18() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_Info_18)); }
-	inline UriInfo_tCB2302A896132D1F70E47C3895FAB9A0F2A6EE45 * get_m_Info_18() const { return ___m_Info_18; }
-	inline UriInfo_tCB2302A896132D1F70E47C3895FAB9A0F2A6EE45 ** get_address_of_m_Info_18() { return &___m_Info_18; }
-	inline void set_m_Info_18(UriInfo_tCB2302A896132D1F70E47C3895FAB9A0F2A6EE45 * value)
+	inline static int32_t get_offset_of_m_Info_21() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_Info_21)); }
+	inline UriInfo_tCB2302A896132D1F70E47C3895FAB9A0F2A6EE45 * get_m_Info_21() const { return ___m_Info_21; }
+	inline UriInfo_tCB2302A896132D1F70E47C3895FAB9A0F2A6EE45 ** get_address_of_m_Info_21() { return &___m_Info_21; }
+	inline void set_m_Info_21(UriInfo_tCB2302A896132D1F70E47C3895FAB9A0F2A6EE45 * value)
 	{
-		___m_Info_18 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___m_Info_18), (void*)value);
+		___m_Info_21 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___m_Info_21), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_m_iriParsing_19() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_iriParsing_19)); }
-	inline bool get_m_iriParsing_19() const { return ___m_iriParsing_19; }
-	inline bool* get_address_of_m_iriParsing_19() { return &___m_iriParsing_19; }
-	inline void set_m_iriParsing_19(bool value)
+	inline static int32_t get_offset_of_m_iriParsing_22() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612, ___m_iriParsing_22)); }
+	inline bool get_m_iriParsing_22() const { return ___m_iriParsing_22; }
+	inline bool* get_address_of_m_iriParsing_22() { return &___m_iriParsing_22; }
+	inline void set_m_iriParsing_22(bool value)
 	{
-		___m_iriParsing_19 = value;
+		___m_iriParsing_22 = value;
 	}
 };
 
@@ -10731,23 +10767,23 @@ public:
 	// System.String System.Uri::SchemeDelimiter
 	String_t* ___SchemeDelimiter_12;
 	// System.Boolean modreq(System.Runtime.CompilerServices.IsVolatile) System.Uri::s_ConfigInitialized
-	bool ___s_ConfigInitialized_20;
+	bool ___s_ConfigInitialized_23;
 	// System.Boolean modreq(System.Runtime.CompilerServices.IsVolatile) System.Uri::s_ConfigInitializing
-	bool ___s_ConfigInitializing_21;
+	bool ___s_ConfigInitializing_24;
 	// System.UriIdnScope modreq(System.Runtime.CompilerServices.IsVolatile) System.Uri::s_IdnScope
-	int32_t ___s_IdnScope_22;
+	int32_t ___s_IdnScope_25;
 	// System.Boolean modreq(System.Runtime.CompilerServices.IsVolatile) System.Uri::s_IriParsing
-	bool ___s_IriParsing_23;
+	bool ___s_IriParsing_26;
 	// System.Boolean System.Uri::useDotNetRelativeOrAbsolute
-	bool ___useDotNetRelativeOrAbsolute_24;
+	bool ___useDotNetRelativeOrAbsolute_27;
 	// System.Boolean System.Uri::IsWindowsFileSystem
-	bool ___IsWindowsFileSystem_25;
+	bool ___IsWindowsFileSystem_29;
 	// System.Object System.Uri::s_initLock
-	RuntimeObject * ___s_initLock_26;
+	RuntimeObject * ___s_initLock_30;
 	// System.Char[] System.Uri::HexLowerChars
-	CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34* ___HexLowerChars_27;
+	CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34* ___HexLowerChars_34;
 	// System.Char[] System.Uri::_WSchars
-	CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34* ____WSchars_28;
+	CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34* ____WSchars_35;
 
 public:
 	inline static int32_t get_offset_of_UriSchemeFile_0() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___UriSchemeFile_0)); }
@@ -10867,79 +10903,79 @@ public:
 		Il2CppCodeGenWriteBarrier((void**)(&___SchemeDelimiter_12), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_s_ConfigInitialized_20() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___s_ConfigInitialized_20)); }
-	inline bool get_s_ConfigInitialized_20() const { return ___s_ConfigInitialized_20; }
-	inline bool* get_address_of_s_ConfigInitialized_20() { return &___s_ConfigInitialized_20; }
-	inline void set_s_ConfigInitialized_20(bool value)
+	inline static int32_t get_offset_of_s_ConfigInitialized_23() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___s_ConfigInitialized_23)); }
+	inline bool get_s_ConfigInitialized_23() const { return ___s_ConfigInitialized_23; }
+	inline bool* get_address_of_s_ConfigInitialized_23() { return &___s_ConfigInitialized_23; }
+	inline void set_s_ConfigInitialized_23(bool value)
 	{
-		___s_ConfigInitialized_20 = value;
+		___s_ConfigInitialized_23 = value;
 	}
 
-	inline static int32_t get_offset_of_s_ConfigInitializing_21() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___s_ConfigInitializing_21)); }
-	inline bool get_s_ConfigInitializing_21() const { return ___s_ConfigInitializing_21; }
-	inline bool* get_address_of_s_ConfigInitializing_21() { return &___s_ConfigInitializing_21; }
-	inline void set_s_ConfigInitializing_21(bool value)
+	inline static int32_t get_offset_of_s_ConfigInitializing_24() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___s_ConfigInitializing_24)); }
+	inline bool get_s_ConfigInitializing_24() const { return ___s_ConfigInitializing_24; }
+	inline bool* get_address_of_s_ConfigInitializing_24() { return &___s_ConfigInitializing_24; }
+	inline void set_s_ConfigInitializing_24(bool value)
 	{
-		___s_ConfigInitializing_21 = value;
+		___s_ConfigInitializing_24 = value;
 	}
 
-	inline static int32_t get_offset_of_s_IdnScope_22() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___s_IdnScope_22)); }
-	inline int32_t get_s_IdnScope_22() const { return ___s_IdnScope_22; }
-	inline int32_t* get_address_of_s_IdnScope_22() { return &___s_IdnScope_22; }
-	inline void set_s_IdnScope_22(int32_t value)
+	inline static int32_t get_offset_of_s_IdnScope_25() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___s_IdnScope_25)); }
+	inline int32_t get_s_IdnScope_25() const { return ___s_IdnScope_25; }
+	inline int32_t* get_address_of_s_IdnScope_25() { return &___s_IdnScope_25; }
+	inline void set_s_IdnScope_25(int32_t value)
 	{
-		___s_IdnScope_22 = value;
+		___s_IdnScope_25 = value;
 	}
 
-	inline static int32_t get_offset_of_s_IriParsing_23() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___s_IriParsing_23)); }
-	inline bool get_s_IriParsing_23() const { return ___s_IriParsing_23; }
-	inline bool* get_address_of_s_IriParsing_23() { return &___s_IriParsing_23; }
-	inline void set_s_IriParsing_23(bool value)
+	inline static int32_t get_offset_of_s_IriParsing_26() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___s_IriParsing_26)); }
+	inline bool get_s_IriParsing_26() const { return ___s_IriParsing_26; }
+	inline bool* get_address_of_s_IriParsing_26() { return &___s_IriParsing_26; }
+	inline void set_s_IriParsing_26(bool value)
 	{
-		___s_IriParsing_23 = value;
+		___s_IriParsing_26 = value;
 	}
 
-	inline static int32_t get_offset_of_useDotNetRelativeOrAbsolute_24() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___useDotNetRelativeOrAbsolute_24)); }
-	inline bool get_useDotNetRelativeOrAbsolute_24() const { return ___useDotNetRelativeOrAbsolute_24; }
-	inline bool* get_address_of_useDotNetRelativeOrAbsolute_24() { return &___useDotNetRelativeOrAbsolute_24; }
-	inline void set_useDotNetRelativeOrAbsolute_24(bool value)
+	inline static int32_t get_offset_of_useDotNetRelativeOrAbsolute_27() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___useDotNetRelativeOrAbsolute_27)); }
+	inline bool get_useDotNetRelativeOrAbsolute_27() const { return ___useDotNetRelativeOrAbsolute_27; }
+	inline bool* get_address_of_useDotNetRelativeOrAbsolute_27() { return &___useDotNetRelativeOrAbsolute_27; }
+	inline void set_useDotNetRelativeOrAbsolute_27(bool value)
 	{
-		___useDotNetRelativeOrAbsolute_24 = value;
+		___useDotNetRelativeOrAbsolute_27 = value;
 	}
 
-	inline static int32_t get_offset_of_IsWindowsFileSystem_25() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___IsWindowsFileSystem_25)); }
-	inline bool get_IsWindowsFileSystem_25() const { return ___IsWindowsFileSystem_25; }
-	inline bool* get_address_of_IsWindowsFileSystem_25() { return &___IsWindowsFileSystem_25; }
-	inline void set_IsWindowsFileSystem_25(bool value)
+	inline static int32_t get_offset_of_IsWindowsFileSystem_29() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___IsWindowsFileSystem_29)); }
+	inline bool get_IsWindowsFileSystem_29() const { return ___IsWindowsFileSystem_29; }
+	inline bool* get_address_of_IsWindowsFileSystem_29() { return &___IsWindowsFileSystem_29; }
+	inline void set_IsWindowsFileSystem_29(bool value)
 	{
-		___IsWindowsFileSystem_25 = value;
+		___IsWindowsFileSystem_29 = value;
 	}
 
-	inline static int32_t get_offset_of_s_initLock_26() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___s_initLock_26)); }
-	inline RuntimeObject * get_s_initLock_26() const { return ___s_initLock_26; }
-	inline RuntimeObject ** get_address_of_s_initLock_26() { return &___s_initLock_26; }
-	inline void set_s_initLock_26(RuntimeObject * value)
+	inline static int32_t get_offset_of_s_initLock_30() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___s_initLock_30)); }
+	inline RuntimeObject * get_s_initLock_30() const { return ___s_initLock_30; }
+	inline RuntimeObject ** get_address_of_s_initLock_30() { return &___s_initLock_30; }
+	inline void set_s_initLock_30(RuntimeObject * value)
 	{
-		___s_initLock_26 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___s_initLock_26), (void*)value);
+		___s_initLock_30 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___s_initLock_30), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_HexLowerChars_27() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___HexLowerChars_27)); }
-	inline CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34* get_HexLowerChars_27() const { return ___HexLowerChars_27; }
-	inline CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34** get_address_of_HexLowerChars_27() { return &___HexLowerChars_27; }
-	inline void set_HexLowerChars_27(CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34* value)
+	inline static int32_t get_offset_of_HexLowerChars_34() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ___HexLowerChars_34)); }
+	inline CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34* get_HexLowerChars_34() const { return ___HexLowerChars_34; }
+	inline CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34** get_address_of_HexLowerChars_34() { return &___HexLowerChars_34; }
+	inline void set_HexLowerChars_34(CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34* value)
 	{
-		___HexLowerChars_27 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___HexLowerChars_27), (void*)value);
+		___HexLowerChars_34 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___HexLowerChars_34), (void*)value);
 	}
 
-	inline static int32_t get_offset_of__WSchars_28() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ____WSchars_28)); }
-	inline CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34* get__WSchars_28() const { return ____WSchars_28; }
-	inline CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34** get_address_of__WSchars_28() { return &____WSchars_28; }
-	inline void set__WSchars_28(CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34* value)
+	inline static int32_t get_offset_of__WSchars_35() { return static_cast<int32_t>(offsetof(Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612_StaticFields, ____WSchars_35)); }
+	inline CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34* get__WSchars_35() const { return ____WSchars_35; }
+	inline CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34** get_address_of__WSchars_35() { return &____WSchars_35; }
+	inline void set__WSchars_35(CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34* value)
 	{
-		____WSchars_28 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____WSchars_28), (void*)value);
+		____WSchars_35 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&____WSchars_35), (void*)value);
 	}
 };
 
@@ -16096,7 +16132,7 @@ IL_0004:
 		int32_t L_2 = V_0;
 		NullCheck(L_1);
 		RuntimeObject * L_3;
-		L_3 = VirtFuncInvoker1< RuntimeObject *, int32_t >::Invoke(25 /* System.Object System.Collections.ArrayList::get_Item(System.Int32) */, L_1, L_2);
+		L_3 = VirtFuncInvoker1< RuntimeObject *, int32_t >::Invoke(27 /* System.Object System.Collections.ArrayList::get_Item(System.Int32) */, L_1, L_2);
 		NullCheck(L_0);
 		bool L_4;
 		L_4 = VirtFuncInvoker1< bool, RuntimeObject * >::Invoke(0 /* System.Boolean System.Object::Equals(System.Object) */, L_0, ((XmlQualifiedName_t7A0154DCFCA5749B28B5B0CAE578FDF65EE17905 *)CastclassClass((RuntimeObject*)L_3, XmlQualifiedName_t7A0154DCFCA5749B28B5B0CAE578FDF65EE17905_il2cpp_TypeInfo_var)));
@@ -16121,7 +16157,7 @@ IL_001e:
 		ArrayList_t6C1A49839DC1F0D568E8E11FA1626FCF0EC06575 * L_7 = ___enumeration1;
 		NullCheck(L_7);
 		int32_t L_8;
-		L_8 = VirtFuncInvoker0< int32_t >::Invoke(21 /* System.Int32 System.Collections.ArrayList::get_Count() */, L_7);
+		L_8 = VirtFuncInvoker0< int32_t >::Invoke(22 /* System.Int32 System.Collections.ArrayList::get_Count() */, L_7);
 		if ((((int32_t)L_6) < ((int32_t)L_8)))
 		{
 			goto IL_0004;
@@ -18142,7 +18178,7 @@ IL_0066:
 		String_t* L_39 = V_6;
 		NullCheck(L_38);
 		int32_t L_40;
-		L_40 = VirtFuncInvoker1< int32_t, RuntimeObject * >::Invoke(27 /* System.Int32 System.Collections.ArrayList::Add(System.Object) */, L_38, L_39);
+		L_40 = VirtFuncInvoker1< int32_t, RuntimeObject * >::Invoke(29 /* System.Int32 System.Collections.ArrayList::Add(System.Object) */, L_38, L_39);
 		goto IL_00e7;
 	}
 
@@ -18157,7 +18193,7 @@ IL_00cb:
 		String_t* L_44 = V_7;
 		NullCheck(L_43);
 		bool L_45;
-		L_45 = VirtFuncInvoker1< bool, RuntimeObject * >::Invoke(31 /* System.Boolean System.Collections.ArrayList::Contains(System.Object) */, L_43, L_44);
+		L_45 = VirtFuncInvoker1< bool, RuntimeObject * >::Invoke(33 /* System.Boolean System.Collections.ArrayList::Contains(System.Object) */, L_43, L_44);
 		if (L_45)
 		{
 			goto IL_00e7;
@@ -18168,7 +18204,7 @@ IL_00cb:
 		String_t* L_47 = V_7;
 		NullCheck(L_46);
 		int32_t L_48;
-		L_48 = VirtFuncInvoker1< int32_t, RuntimeObject * >::Invoke(27 /* System.Int32 System.Collections.ArrayList::Add(System.Object) */, L_46, L_47);
+		L_48 = VirtFuncInvoker1< int32_t, RuntimeObject * >::Invoke(29 /* System.Int32 System.Collections.ArrayList::Add(System.Object) */, L_46, L_47);
 	}
 
 IL_00e7:
@@ -18744,7 +18780,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ReflectionHelper_RegisterSchemaType_mD63
 		String_t* L_4 = V_0;
 		NullCheck(L_3);
 		bool L_5;
-		L_5 = VirtFuncInvoker1< bool, RuntimeObject * >::Invoke(21 /* System.Boolean System.Collections.Hashtable::ContainsKey(System.Object) */, L_3, L_4);
+		L_5 = VirtFuncInvoker1< bool, RuntimeObject * >::Invoke(27 /* System.Boolean System.Collections.Hashtable::ContainsKey(System.Object) */, L_3, L_4);
 		if (L_5)
 		{
 			goto IL_0028;
@@ -18755,7 +18791,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ReflectionHelper_RegisterSchemaType_mD63
 		String_t* L_7 = V_0;
 		XmlTypeMapping_t9036F7EC275C8DEDD6387832CE5C4F83AA6DC581 * L_8 = ___map0;
 		NullCheck(L_6);
-		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(17 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_6, L_7, L_8);
+		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_6, L_7, L_8);
 	}
 
 IL_0028:
@@ -18784,7 +18820,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR XmlTypeMapping_t9036F7EC275C8DEDD6387832CE5C4
 		String_t* L_4 = V_0;
 		NullCheck(L_3);
 		RuntimeObject * L_5;
-		L_5 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_3, L_4);
+		L_5 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(29 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_3, L_4);
 		return ((XmlTypeMapping_t9036F7EC275C8DEDD6387832CE5C4F83AA6DC581 *)IsInstClass((RuntimeObject*)L_5, XmlTypeMapping_t9036F7EC275C8DEDD6387832CE5C4F83AA6DC581_il2cpp_TypeInfo_var));
 	}
 }
@@ -18832,7 +18868,7 @@ IL_0019:
 		String_t* L_9 = V_0;
 		NullCheck(L_8);
 		bool L_10;
-		L_10 = VirtFuncInvoker1< bool, RuntimeObject * >::Invoke(21 /* System.Boolean System.Collections.Hashtable::ContainsKey(System.Object) */, L_8, L_9);
+		L_10 = VirtFuncInvoker1< bool, RuntimeObject * >::Invoke(27 /* System.Boolean System.Collections.Hashtable::ContainsKey(System.Object) */, L_8, L_9);
 		if (L_10)
 		{
 			goto IL_0046;
@@ -18843,7 +18879,7 @@ IL_0019:
 		String_t* L_12 = V_0;
 		XmlTypeMapping_t9036F7EC275C8DEDD6387832CE5C4F83AA6DC581 * L_13 = ___map0;
 		NullCheck(L_11);
-		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(17 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_11, L_12, L_13);
+		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_11, L_12, L_13);
 	}
 
 IL_0046:
@@ -18896,7 +18932,7 @@ IL_0019:
 		String_t* L_9 = V_0;
 		NullCheck(L_8);
 		RuntimeObject * L_10;
-		L_10 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_8, L_9);
+		L_10 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(29 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_8, L_9);
 		return ((XmlTypeMapping_t9036F7EC275C8DEDD6387832CE5C4F83AA6DC581 *)IsInstClass((RuntimeObject*)L_10, XmlTypeMapping_t9036F7EC275C8DEDD6387832CE5C4F83AA6DC581_il2cpp_TypeInfo_var));
 	}
 }
@@ -20086,7 +20122,7 @@ IL_006f:
 			XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_24 = V_1;
 			NullCheck(L_23);
 			int32_t L_25;
-			L_25 = VirtFuncInvoker1< int32_t, RuntimeObject * >::Invoke(27 /* System.Int32 System.Collections.ArrayList::Add(System.Object) */, L_23, L_24);
+			L_25 = VirtFuncInvoker1< int32_t, RuntimeObject * >::Invoke(29 /* System.Int32 System.Collections.ArrayList::Add(System.Object) */, L_23, L_24);
 		}
 
 IL_007c:
@@ -20660,7 +20696,7 @@ IL_0007:
 		int32_t L_2 = V_0;
 		NullCheck(L_1);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_3;
-		L_3 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_1, L_2);
+		L_3 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_1, L_2);
 		V_1 = ((XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 *)CastclassClass((RuntimeObject*)L_3, XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3_il2cpp_TypeInfo_var));
 		XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 * L_4 = V_1;
 		NullCheck(L_4);
@@ -20721,7 +20757,7 @@ IL_0061:
 		int32_t L_18 = V_3;
 		NullCheck(L_17);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_19;
-		L_19 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_17, L_18);
+		L_19 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_17, L_18);
 		V_4 = L_19;
 		RuntimeObject * L_20 = V_4;
 		XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 * L_21 = ((XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 *)IsInstClass((RuntimeObject*)L_20, XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7_il2cpp_TypeInfo_var));
@@ -20873,7 +20909,7 @@ IL_011d:
 		int32_t L_50 = V_11;
 		NullCheck(L_49);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_51;
-		L_51 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_49, L_50);
+		L_51 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_49, L_50);
 		XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 * L_52 = ((XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 *)IsInstClass((RuntimeObject*)L_51, XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7_il2cpp_TypeInfo_var));
 		V_12 = L_52;
 		if (!L_52)
@@ -20896,7 +20932,7 @@ IL_0140:
 		int32_t L_56 = V_11;
 		NullCheck(L_55);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_57;
-		L_57 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_55, L_56);
+		L_57 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_55, L_56);
 		XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676 * L_58 = ((XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676 *)IsInstClass((RuntimeObject*)L_57, XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676_il2cpp_TypeInfo_var));
 		V_13 = L_58;
 		if (!L_58)
@@ -20919,7 +20955,7 @@ IL_0160:
 		int32_t L_62 = V_11;
 		NullCheck(L_61);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_63;
-		L_63 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_61, L_62);
+		L_63 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_61, L_62);
 		XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062 * L_64 = ((XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062 *)IsInstClass((RuntimeObject*)L_63, XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062_il2cpp_TypeInfo_var));
 		V_14 = L_64;
 		if (!L_64)
@@ -20942,7 +20978,7 @@ IL_0180:
 		int32_t L_68 = V_11;
 		NullCheck(L_67);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_69;
-		L_69 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_67, L_68);
+		L_69 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_67, L_68);
 		XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C * L_70 = ((XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C *)IsInstClass((RuntimeObject*)L_69, XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C_il2cpp_TypeInfo_var));
 		V_15 = L_70;
 		if (!L_70)
@@ -20965,7 +21001,7 @@ IL_01a0:
 		int32_t L_74 = V_11;
 		NullCheck(L_73);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_75;
-		L_75 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_73, L_74);
+		L_75 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_73, L_74);
 		XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_76 = ((XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A *)IsInstClass((RuntimeObject*)L_75, XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A_il2cpp_TypeInfo_var));
 		V_16 = L_76;
 		if (!L_76)
@@ -20988,7 +21024,7 @@ IL_01c0:
 		int32_t L_80 = V_11;
 		NullCheck(L_79);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_81;
-		L_81 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_79, L_80);
+		L_81 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_79, L_80);
 		XmlSchemaGroup_t6CFE833B0BAA713568D8983568F1431E6748C023 * L_82 = ((XmlSchemaGroup_t6CFE833B0BAA713568D8983568F1431E6748C023 *)IsInstClass((RuntimeObject*)L_81, XmlSchemaGroup_t6CFE833B0BAA713568D8983568F1431E6748C023_il2cpp_TypeInfo_var));
 		V_17 = L_82;
 		if (!L_82)
@@ -21064,7 +21100,7 @@ IL_01e4:
 		Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC * L_102;
 		L_102 = XmlSchema_get_Ids_m43D579C6C416BD304224ABE1A3B31BB0BD5D7F35_inline(L_101, /*hidden argument*/NULL);
 		NullCheck(L_102);
-		VirtActionInvoker0::Invoke(18 /* System.Void System.Collections.Hashtable::Clear() */, L_102);
+		VirtActionInvoker0::Invoke(24 /* System.Void System.Collections.Hashtable::Clear() */, L_102);
 		XmlSchema_tD7A55716109AE793DA16441CC1A949F04E573CEA * L_103 = ___schema0;
 		NullCheck(L_103);
 		XmlSchemaObjectTable_tFCEF8D48B790CE4EE4A7E4DCD54747B789A61AAA * L_104;
@@ -21778,7 +21814,7 @@ IL_0241:
 		Stack_tF6DD42A42C129B014D4223010F1E0FFBECBDC3B8 * L_95 = __this->get_complexTypeStack_8();
 		NullCheck(L_95);
 		RuntimeObject * L_96;
-		L_96 = VirtFuncInvoker0< RuntimeObject * >::Invoke(16 /* System.Object System.Collections.Stack::Pop() */, L_95);
+		L_96 = VirtFuncInvoker0< RuntimeObject * >::Invoke(18 /* System.Object System.Collections.Stack::Pop() */, L_95);
 		V_9 = ((XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062 *)CastclassClass((RuntimeObject*)L_96, XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062_il2cpp_TypeInfo_var));
 		XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062 * L_97 = V_9;
 		SchemaCollectionCompiler_CompileCompexTypeElements_m0D12CDA2076D2BCC31844E0FD3DADFE15099B802(__this, L_97, /*hidden argument*/NULL);
@@ -21789,7 +21825,7 @@ IL_025b:
 		Stack_tF6DD42A42C129B014D4223010F1E0FFBECBDC3B8 * L_98 = __this->get_complexTypeStack_8();
 		NullCheck(L_98);
 		int32_t L_99;
-		L_99 = VirtFuncInvoker0< int32_t >::Invoke(9 /* System.Int32 System.Collections.Stack::get_Count() */, L_98);
+		L_99 = VirtFuncInvoker0< int32_t >::Invoke(10 /* System.Int32 System.Collections.Stack::get_Count() */, L_98);
 		if ((((int32_t)L_99) > ((int32_t)0)))
 		{
 			goto IL_0241;
@@ -22955,7 +22991,7 @@ IL_0033:
 		int32_t L_10 = V_1;
 		NullCheck(L_9);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_11;
-		L_11 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_9, L_10);
+		L_11 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_9, L_10);
 		NullCheck(((XmlSchemaIdentityConstraint_t5771BD0BDCD0F95D54EB762D518CCFD4D5C3FE30 *)CastclassClass((RuntimeObject*)L_11, XmlSchemaIdentityConstraint_t5771BD0BDCD0F95D54EB762D518CCFD4D5C3FE30_il2cpp_TypeInfo_var)));
 		XmlSchemaIdentityConstraint_set_CompiledConstraint_m2C487D5532FB9E7ECB56E6F0C274563B2A1D6E02_inline(((XmlSchemaIdentityConstraint_t5771BD0BDCD0F95D54EB762D518CCFD4D5C3FE30 *)CastclassClass((RuntimeObject*)L_11, XmlSchemaIdentityConstraint_t5771BD0BDCD0F95D54EB762D518CCFD4D5C3FE30_il2cpp_TypeInfo_var)), (CompiledIdentityConstraint_t7FDCF0E37998ADDCD9CC39A2D017800881BFA430 *)NULL, /*hidden argument*/NULL);
 		int32_t L_12 = V_1;
@@ -23006,7 +23042,7 @@ IL_0004:
 		int32_t L_1 = V_0;
 		NullCheck(L_0);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_2;
-		L_2 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_0, L_1);
+		L_2 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_0, L_1);
 		V_1 = ((XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 *)IsInstClass((RuntimeObject*)L_2, XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7_il2cpp_TypeInfo_var));
 		XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 * L_3 = V_1;
 		if (!L_3)
@@ -23106,7 +23142,7 @@ IL_002c:
 		int32_t L_6 = V_1;
 		NullCheck(L_5);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_7;
-		L_7 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_5, L_6);
+		L_7 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_5, L_6);
 		SchemaCollectionCompiler_CleanupParticle_m970AD4174B3EA1E4B412C453F30E24504CE98094(((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_7, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), /*hidden argument*/NULL);
 		int32_t L_8 = V_1;
 		V_1 = ((int32_t)il2cpp_codegen_add((int32_t)L_8, (int32_t)1));
@@ -23165,7 +23201,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SchemaCollectionCompiler_CompileSubstitu
 		L_3 = XmlSchemaSubstitutionGroup_get_Members_m31B4289A3D75297D4578F8F43D99293727A0D42B_inline(L_2, /*hidden argument*/NULL);
 		NullCheck(L_3);
 		int32_t L_4;
-		L_4 = VirtFuncInvoker0< int32_t >::Invoke(21 /* System.Int32 System.Collections.ArrayList::get_Count() */, L_3);
+		L_4 = VirtFuncInvoker0< int32_t >::Invoke(22 /* System.Int32 System.Collections.ArrayList::get_Count() */, L_3);
 		if ((((int32_t)L_4) <= ((int32_t)0)))
 		{
 			goto IL_0033;
@@ -23178,7 +23214,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SchemaCollectionCompiler_CompileSubstitu
 		L_6 = XmlSchemaSubstitutionGroup_get_Members_m31B4289A3D75297D4578F8F43D99293727A0D42B_inline(L_5, /*hidden argument*/NULL);
 		NullCheck(L_6);
 		RuntimeObject * L_7;
-		L_7 = VirtFuncInvoker1< RuntimeObject *, int32_t >::Invoke(25 /* System.Object System.Collections.ArrayList::get_Item(System.Int32) */, L_6, 0);
+		L_7 = VirtFuncInvoker1< RuntimeObject *, int32_t >::Invoke(27 /* System.Object System.Collections.ArrayList::get_Item(System.Int32) */, L_6, 0);
 		BaseProcessor_SendValidationEvent_m249A7D45A8EA5B701AFE03FF76AB5CBBB2EE50CB(__this, _stringLiteralD1D34EEE4A476D3BEE2C6287EA53125D2B6B61DE, ((XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A *)CastclassClass((RuntimeObject*)L_7, XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A_il2cpp_TypeInfo_var)), /*hidden argument*/NULL);
 		return;
 	}
@@ -23204,7 +23240,7 @@ IL_0033:
 		XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_15 = V_0;
 		NullCheck(L_14);
 		bool L_16;
-		L_16 = VirtFuncInvoker1< bool, RuntimeObject * >::Invoke(31 /* System.Boolean System.Collections.ArrayList::Contains(System.Object) */, L_14, L_15);
+		L_16 = VirtFuncInvoker1< bool, RuntimeObject * >::Invoke(33 /* System.Boolean System.Collections.ArrayList::Contains(System.Object) */, L_14, L_15);
 		if (!L_16)
 		{
 			goto IL_005e;
@@ -23255,7 +23291,7 @@ IL_008b:
 		int32_t L_24 = V_1;
 		NullCheck(L_23);
 		RuntimeObject * L_25;
-		L_25 = VirtFuncInvoker1< RuntimeObject *, int32_t >::Invoke(25 /* System.Object System.Collections.ArrayList::get_Item(System.Int32) */, L_23, L_24);
+		L_25 = VirtFuncInvoker1< RuntimeObject *, int32_t >::Invoke(27 /* System.Object System.Collections.ArrayList::get_Item(System.Int32) */, L_23, L_24);
 		V_2 = ((XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A *)CastclassClass((RuntimeObject*)L_25, XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A_il2cpp_TypeInfo_var));
 		XmlSchemaObjectTable_tFCEF8D48B790CE4EE4A7E4DCD54747B789A61AAA * L_26 = __this->get_examplars_7();
 		XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_27 = V_2;
@@ -23298,7 +23334,7 @@ IL_00c3:
 		int32_t L_38 = V_4;
 		NullCheck(L_37);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_39;
-		L_39 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_37, L_38);
+		L_39 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_37, L_38);
 		NullCheck(L_34);
 		int32_t L_40;
 		L_40 = XmlSchemaObjectCollection_Add_mCB1EA5137061E02BF60A1AE2C6F40CF282D97270(L_34, L_39, /*hidden argument*/NULL);
@@ -23358,7 +23394,7 @@ IL_0118:
 		L_55 = XmlSchemaSubstitutionGroup_get_Members_m31B4289A3D75297D4578F8F43D99293727A0D42B_inline(L_54, /*hidden argument*/NULL);
 		NullCheck(L_55);
 		int32_t L_56;
-		L_56 = VirtFuncInvoker0< int32_t >::Invoke(21 /* System.Int32 System.Collections.ArrayList::get_Count() */, L_55);
+		L_56 = VirtFuncInvoker0< int32_t >::Invoke(22 /* System.Int32 System.Collections.ArrayList::get_Count() */, L_55);
 		if ((((int32_t)L_53) < ((int32_t)L_56)))
 		{
 			goto IL_008b;
@@ -23383,7 +23419,7 @@ IL_0118:
 		XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_64 = V_0;
 		NullCheck(L_63);
 		int32_t L_65;
-		L_65 = VirtFuncInvoker1< int32_t, RuntimeObject * >::Invoke(27 /* System.Int32 System.Collections.ArrayList::Add(System.Object) */, L_63, L_64);
+		L_65 = VirtFuncInvoker1< int32_t, RuntimeObject * >::Invoke(29 /* System.Int32 System.Collections.ArrayList::Add(System.Object) */, L_63, L_64);
 		goto IL_0174;
 	}
 
@@ -23395,7 +23431,7 @@ IL_014a:
 		L_67 = XmlSchemaSubstitutionGroup_get_Members_m31B4289A3D75297D4578F8F43D99293727A0D42B_inline(L_66, /*hidden argument*/NULL);
 		NullCheck(L_67);
 		int32_t L_68;
-		L_68 = VirtFuncInvoker0< int32_t >::Invoke(21 /* System.Int32 System.Collections.ArrayList::get_Count() */, L_67);
+		L_68 = VirtFuncInvoker0< int32_t >::Invoke(22 /* System.Int32 System.Collections.ArrayList::get_Count() */, L_67);
 		if ((((int32_t)L_68) <= ((int32_t)0)))
 		{
 			goto IL_0174;
@@ -23408,7 +23444,7 @@ IL_014a:
 		L_70 = XmlSchemaSubstitutionGroup_get_Members_m31B4289A3D75297D4578F8F43D99293727A0D42B_inline(L_69, /*hidden argument*/NULL);
 		NullCheck(L_70);
 		RuntimeObject * L_71;
-		L_71 = VirtFuncInvoker1< RuntimeObject *, int32_t >::Invoke(25 /* System.Object System.Collections.ArrayList::get_Item(System.Int32) */, L_70, 0);
+		L_71 = VirtFuncInvoker1< RuntimeObject *, int32_t >::Invoke(27 /* System.Object System.Collections.ArrayList::get_Item(System.Int32) */, L_70, 0);
 		BaseProcessor_SendValidationEvent_m249A7D45A8EA5B701AFE03FF76AB5CBBB2EE50CB(__this, _stringLiteral09E7A5A6B4013DC138A940E64DF06E7F0EE89111, ((XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A *)CastclassClass((RuntimeObject*)L_71, XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A_il2cpp_TypeInfo_var)), /*hidden argument*/NULL);
 	}
 
@@ -23466,7 +23502,7 @@ IL_0023:
 		int32_t L_8 = V_1;
 		NullCheck(L_7);
 		RuntimeObject * L_9;
-		L_9 = VirtFuncInvoker1< RuntimeObject *, int32_t >::Invoke(25 /* System.Object System.Collections.ArrayList::get_Item(System.Int32) */, L_7, L_8);
+		L_9 = VirtFuncInvoker1< RuntimeObject *, int32_t >::Invoke(27 /* System.Object System.Collections.ArrayList::get_Item(System.Int32) */, L_7, L_8);
 		V_2 = ((XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A *)CastclassClass((RuntimeObject*)L_9, XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A_il2cpp_TypeInfo_var));
 		XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_10 = V_2;
 		XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_11 = V_0;
@@ -23529,7 +23565,7 @@ IL_0078:
 		L_29 = XmlSchemaSubstitutionGroup_get_Members_m31B4289A3D75297D4578F8F43D99293727A0D42B_inline(L_28, /*hidden argument*/NULL);
 		NullCheck(L_29);
 		int32_t L_30;
-		L_30 = VirtFuncInvoker0< int32_t >::Invoke(21 /* System.Int32 System.Collections.ArrayList::get_Count() */, L_29);
+		L_30 = VirtFuncInvoker0< int32_t >::Invoke(22 /* System.Int32 System.Collections.ArrayList::get_Count() */, L_29);
 		if ((((int32_t)L_27) < ((int32_t)L_30)))
 		{
 			goto IL_0023;
@@ -24273,7 +24309,7 @@ IL_0048:
 		XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C * L_19 = V_0;
 		NullCheck(L_18);
 		int32_t L_20;
-		L_20 = VirtFuncInvoker1< int32_t, RuntimeObject * >::Invoke(27 /* System.Int32 System.Collections.ArrayList::Add(System.Object) */, L_18, L_19);
+		L_20 = VirtFuncInvoker1< int32_t, RuntimeObject * >::Invoke(29 /* System.Int32 System.Collections.ArrayList::Add(System.Object) */, L_18, L_19);
 	}
 
 IL_0050:
@@ -24350,7 +24386,7 @@ IL_009c:
 		int32_t L_38 = V_6;
 		NullCheck(L_37);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_39;
-		L_39 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_37, L_38);
+		L_39 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_37, L_38);
 		V_7 = ((XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C *)CastclassClass((RuntimeObject*)L_39, XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C_il2cpp_TypeInfo_var));
 		XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C * L_40 = V_7;
 		SchemaCollectionCompiler_CompileSimpleType_m1535521D5E591B8F726AC4F5E3BC57B74AFFC999(__this, L_40, /*hidden argument*/NULL);
@@ -24380,7 +24416,7 @@ IL_00cf:
 		XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C * L_48 = V_7;
 		NullCheck(L_47);
 		int32_t L_49;
-		L_49 = VirtFuncInvoker1< int32_t, RuntimeObject * >::Invoke(27 /* System.Int32 System.Collections.ArrayList::Add(System.Object) */, L_47, L_48);
+		L_49 = VirtFuncInvoker1< int32_t, RuntimeObject * >::Invoke(29 /* System.Int32 System.Collections.ArrayList::Add(System.Object) */, L_47, L_48);
 	}
 
 IL_00d8:
@@ -24412,7 +24448,7 @@ IL_00e9:
 		L_57 = Type_GetTypeFromHandle_m8BB57524FF7F9DB1803BC561D2B3A4DBACEB385E(L_56, /*hidden argument*/NULL);
 		NullCheck(L_55);
 		RuntimeArray * L_58;
-		L_58 = VirtFuncInvoker1< RuntimeArray *, Type_t * >::Invoke(45 /* System.Array System.Collections.ArrayList::ToArray(System.Type) */, L_55, L_57);
+		L_58 = VirtFuncInvoker1< RuntimeArray *, Type_t * >::Invoke(47 /* System.Array System.Collections.ArrayList::ToArray(System.Type) */, L_55, L_57);
 		NullCheck(L_54);
 		XmlSchemaSimpleTypeUnion_SetBaseMemberTypes_m4B0536B51D500248E3CC0255219DBD4E66F3CD1A_inline(L_54, ((XmlSchemaSimpleTypeU5BU5D_t862CBDAFFEF794FFBD20DDF16B3DC2803B848F21*)IsInst((RuntimeObject*)L_58, XmlSchemaSimpleTypeU5BU5D_t862CBDAFFEF794FFBD20DDF16B3DC2803B848F21_il2cpp_TypeInfo_var)), /*hidden argument*/NULL);
 		XmlSchemaSimpleTypeUnion_t691F14B83D42A700B03058B598646CDA7DF545F5 * L_59 = V_2;
@@ -24490,7 +24526,7 @@ IL_002d:
 		XmlSchemaSimpleTypeU5BU5D_t862CBDAFFEF794FFBD20DDF16B3DC2803B848F21* L_13;
 		L_13 = Datatype_union_get_BaseMemberTypes_m086A3AA43C18CE4E07E707ECA9F1296650C6818B_inline(L_12, /*hidden argument*/NULL);
 		NullCheck(L_11);
-		VirtActionInvoker1< RuntimeObject* >::Invoke(28 /* System.Void System.Collections.ArrayList::AddRange(System.Collections.ICollection) */, L_11, (RuntimeObject*)(RuntimeObject*)L_13);
+		VirtActionInvoker1< RuntimeObject* >::Invoke(30 /* System.Void System.Collections.ArrayList::AddRange(System.Collections.ICollection) */, L_11, (RuntimeObject*)(RuntimeObject*)L_13);
 		return;
 	}
 }
@@ -26854,7 +26890,7 @@ IL_014d:
 		int32_t L_63 = V_3;
 		NullCheck(L_62);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_64;
-		L_64 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_62, L_63);
+		L_64 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_62, L_63);
 		NullCheck(L_60);
 		int32_t L_65;
 		L_65 = XmlSchemaObjectCollection_Add_mCB1EA5137061E02BF60A1AE2C6F40CF282D97270(L_60, ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_64, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), /*hidden argument*/NULL);
@@ -26968,7 +27004,7 @@ IL_0057:
 		int32_t L_21 = V_1;
 		NullCheck(L_20);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_22;
-		L_22 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_20, L_21);
+		L_22 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_20, L_21);
 		bool L_23 = ___substitution2;
 		XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 * L_24;
 		L_24 = SchemaCollectionCompiler_CannonicalizeParticle_m832BFC8806680DB345C92497FEF0BFE037C76FD4(__this, ((XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A *)CastclassClass((RuntimeObject*)L_22, XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A_il2cpp_TypeInfo_var)), (bool)0, L_23, /*hidden argument*/NULL);
@@ -27086,7 +27122,7 @@ IL_00ae:
 		L_55 = VirtFuncInvoker0< XmlSchemaObjectCollection_t2E22260F9979EB3890D8CB09473963FE616BF931 * >::Invoke(16 /* System.Xml.Schema.XmlSchemaObjectCollection System.Xml.Schema.XmlSchemaGroupBase::get_Items() */, L_54);
 		NullCheck(L_55);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_56;
-		L_56 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_55, 0);
+		L_56 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_55, 0);
 		NullCheck(L_53);
 		int32_t L_57;
 		L_57 = XmlSchemaObjectCollection_Add_mCB1EA5137061E02BF60A1AE2C6F40CF282D97270(L_53, ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_56, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), /*hidden argument*/NULL);
@@ -27149,7 +27185,7 @@ IL_00fa:
 		L_71 = VirtFuncInvoker0< XmlSchemaObjectCollection_t2E22260F9979EB3890D8CB09473963FE616BF931 * >::Invoke(16 /* System.Xml.Schema.XmlSchemaObjectCollection System.Xml.Schema.XmlSchemaGroupBase::get_Items() */, L_70);
 		NullCheck(L_71);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_72;
-		L_72 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_71, 0);
+		L_72 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_71, 0);
 		return ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_72, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var));
 	}
 
@@ -27239,7 +27275,7 @@ IL_0038:
 		int32_t L_13 = V_2;
 		NullCheck(L_12);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_14;
-		L_14 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_12, L_13);
+		L_14 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_12, L_13);
 		bool L_15 = ___substitution2;
 		XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 * L_16;
 		L_16 = SchemaCollectionCompiler_CannonicalizeParticle_m832BFC8806680DB345C92497FEF0BFE037C76FD4(__this, ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_14, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), (bool)0, L_15, /*hidden argument*/NULL);
@@ -27307,7 +27343,7 @@ IL_0093:
 		int32_t L_33 = V_5;
 		NullCheck(L_32);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_34;
-		L_34 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_32, L_33);
+		L_34 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_32, L_33);
 		NullCheck(L_30);
 		int32_t L_35;
 		L_35 = XmlSchemaObjectCollection_Add_mCB1EA5137061E02BF60A1AE2C6F40CF282D97270(L_30, L_34, /*hidden argument*/NULL);
@@ -27475,7 +27511,7 @@ IL_011f:
 		L_74 = VirtFuncInvoker0< XmlSchemaObjectCollection_t2E22260F9979EB3890D8CB09473963FE616BF931 * >::Invoke(16 /* System.Xml.Schema.XmlSchemaObjectCollection System.Xml.Schema.XmlSchemaGroupBase::get_Items() */, L_73);
 		NullCheck(L_74);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_75;
-		L_75 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_74, 0);
+		L_75 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_74, 0);
 		return ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_75, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var));
 	}
 
@@ -27545,7 +27581,7 @@ IL_0036:
 		int32_t L_12 = V_1;
 		NullCheck(L_11);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_13;
-		L_13 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_11, L_12);
+		L_13 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_11, L_12);
 		bool L_14 = ___substitution2;
 		XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 * L_15;
 		L_15 = SchemaCollectionCompiler_CannonicalizeParticle_m832BFC8806680DB345C92497FEF0BFE037C76FD4(__this, ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_13, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), (bool)0, L_14, /*hidden argument*/NULL);
@@ -27613,7 +27649,7 @@ IL_0090:
 		int32_t L_32 = V_4;
 		NullCheck(L_31);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_33;
-		L_33 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_31, L_32);
+		L_33 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_31, L_32);
 		NullCheck(L_29);
 		int32_t L_34;
 		L_34 = XmlSchemaObjectCollection_Add_mCB1EA5137061E02BF60A1AE2C6F40CF282D97270(L_29, L_33, /*hidden argument*/NULL);
@@ -27754,7 +27790,7 @@ IL_00f8:
 		L_67 = VirtFuncInvoker0< XmlSchemaObjectCollection_t2E22260F9979EB3890D8CB09473963FE616BF931 * >::Invoke(16 /* System.Xml.Schema.XmlSchemaObjectCollection System.Xml.Schema.XmlSchemaGroupBase::get_Items() */, L_66);
 		NullCheck(L_67);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_68;
-		L_68 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_67, 0);
+		L_68 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_67, 0);
 		return ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_68, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var));
 	}
 
@@ -28332,7 +28368,7 @@ IL_0039:
 		int32_t L_14 = V_3;
 		NullCheck(L_13);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_15;
-		L_15 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_13, L_14);
+		L_15 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_13, L_14);
 		XmlSchemaAny_t30CEED9ED80E3CB00EA10233A22CA552F49D7A1C * L_16 = ___baseAny1;
 		bool L_17;
 		L_17 = SchemaCollectionCompiler_IsValidRestriction_m9AD40F606E8172FB69B691C17CBECEA2101EC634(__this, ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_15, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), L_16, /*hidden argument*/NULL);
@@ -28408,7 +28444,7 @@ IL_0009:
 		int32_t L_2 = V_1;
 		NullCheck(L_1);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_3;
-		L_3 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_1, L_2);
+		L_3 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_1, L_2);
 		V_2 = ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_3, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var));
 		bool L_4 = V_0;
 		if (L_4)
@@ -28628,7 +28664,7 @@ IL_002a:
 		int32_t L_11 = V_1;
 		NullCheck(L_10);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_12;
-		L_12 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_10, L_11);
+		L_12 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_10, L_11);
 		V_2 = ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_12, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var));
 		int32_t L_13 = V_0;
 		XmlSchemaGroupBase_tBB7F26134C0D82EA71D1773C84856397919DD5DA * L_14 = ___derivedGroupBase0;
@@ -28651,7 +28687,7 @@ IL_002a:
 		int32_t L_19 = V_0;
 		NullCheck(L_18);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_20;
-		L_20 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_18, L_19);
+		L_20 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_18, L_19);
 		XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 * L_21 = V_2;
 		bool L_22;
 		L_22 = SchemaCollectionCompiler_IsValidRestriction_m9AD40F606E8172FB69B691C17CBECEA2101EC634(__this, ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_20, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), L_21, /*hidden argument*/NULL);
@@ -28806,7 +28842,7 @@ IL_0039:
 		int32_t L_15 = V_1;
 		NullCheck(L_14);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_16;
-		L_16 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_14, L_15);
+		L_16 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_14, L_15);
 		XmlSchemaAll_t159520224B7F0AB592AE686FFB4A53A6043390FF * L_17 = ___baseAll1;
 		NullCheck(L_17);
 		XmlSchemaObjectCollection_t2E22260F9979EB3890D8CB09473963FE616BF931 * L_18;
@@ -28895,7 +28931,7 @@ IL_0087:
 		int32_t L_36 = V_3;
 		NullCheck(L_35);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_37;
-		L_37 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_35, L_36);
+		L_37 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_35, L_36);
 		bool L_38;
 		L_38 = SchemaCollectionCompiler_IsParticleEmptiable_m360D21B86CFC22A064517239187F8BCDD3926A99(__this, ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_37, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), /*hidden argument*/NULL);
 		if (L_38)
@@ -29007,7 +29043,7 @@ IL_003f:
 		int32_t L_16 = V_2;
 		NullCheck(L_15);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_17;
-		L_17 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_15, L_16);
+		L_17 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_15, L_16);
 		XmlSchemaChoice_t8FC6F8DB238E8800F350E4EF88CCECD64B5D3BF0 * L_18 = ___baseChoice1;
 		NullCheck(L_18);
 		XmlSchemaObjectCollection_t2E22260F9979EB3890D8CB09473963FE616BF931 * L_19;
@@ -29078,7 +29114,7 @@ IL_0015:
 		int32_t L_4 = V_0;
 		NullCheck(L_3);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_5;
-		L_5 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_3, L_4);
+		L_5 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_3, L_4);
 		V_1 = ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_5, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var));
 		Decimal_t2978B229CA86D3B7BA66A0AEEE014E0DE4F940D7 * L_6 = ___minOccurs1;
 		Decimal_t2978B229CA86D3B7BA66A0AEEE014E0DE4F940D7 * L_7 = ___minOccurs1;
@@ -29314,7 +29350,7 @@ IL_0004:
 		int32_t L_2 = V_0;
 		NullCheck(L_1);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_3;
-		L_3 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_1, L_2);
+		L_3 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_1, L_2);
 		bool L_4;
 		L_4 = SchemaCollectionCompiler_IsValidRestriction_m9AD40F606E8172FB69B691C17CBECEA2101EC634(__this, L_0, ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_3, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), /*hidden argument*/NULL);
 		if (!L_4)
@@ -29491,7 +29527,7 @@ IL_007d:
 		int32_t L_23 = V_2;
 		NullCheck(L_22);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_24;
-		L_24 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_22, L_23);
+		L_24 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_22, L_23);
 		SchemaCollectionCompiler_CalculateEffectiveTotalRange_m52D71ADBB1F0CEA58927F4D50A7B3ADCD1385C69(__this, ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_24, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), (Decimal_t2978B229CA86D3B7BA66A0AEEE014E0DE4F940D7 *)(&V_3), (Decimal_t2978B229CA86D3B7BA66A0AEEE014E0DE4F940D7 *)(&V_4), /*hidden argument*/NULL);
 		Decimal_t2978B229CA86D3B7BA66A0AEEE014E0DE4F940D7  L_25 = V_3;
 		Decimal_t2978B229CA86D3B7BA66A0AEEE014E0DE4F940D7 * L_26 = ___minOccurs1;
@@ -29660,7 +29696,7 @@ IL_0188:
 		int32_t L_76 = V_6;
 		NullCheck(L_75);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_77;
-		L_77 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_75, L_76);
+		L_77 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_75, L_76);
 		SchemaCollectionCompiler_CalculateEffectiveTotalRange_m52D71ADBB1F0CEA58927F4D50A7B3ADCD1385C69(__this, ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_77, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), (Decimal_t2978B229CA86D3B7BA66A0AEEE014E0DE4F940D7 *)(&V_7), (Decimal_t2978B229CA86D3B7BA66A0AEEE014E0DE4F940D7 *)(&V_8), /*hidden argument*/NULL);
 		Decimal_t2978B229CA86D3B7BA66A0AEEE014E0DE4F940D7 * L_78 = ___minOccurs1;
 		Decimal_t2978B229CA86D3B7BA66A0AEEE014E0DE4F940D7 * L_79 = ___minOccurs1;
@@ -29810,7 +29846,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SchemaCollectionCompiler_PushComplexType
 		Stack_tF6DD42A42C129B014D4223010F1E0FFBECBDC3B8 * L_0 = __this->get_complexTypeStack_8();
 		XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062 * L_1 = ___complexType0;
 		NullCheck(L_0);
-		VirtActionInvoker1< RuntimeObject * >::Invoke(17 /* System.Void System.Collections.Stack::Push(System.Object) */, L_0, L_1);
+		VirtActionInvoker1< RuntimeObject * >::Invoke(19 /* System.Void System.Collections.Stack::Push(System.Object) */, L_0, L_1);
 		return;
 	}
 }
@@ -29971,7 +30007,7 @@ IL_0039:
 		int32_t L_11 = V_1;
 		NullCheck(L_10);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_12;
-		L_12 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_10, L_11);
+		L_12 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_10, L_11);
 		V_2 = ((XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 *)IsInstClass((RuntimeObject*)L_12, XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7_il2cpp_TypeInfo_var));
 		XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 * L_13 = V_2;
 		if (!L_13)
@@ -30050,7 +30086,7 @@ IL_00a4:
 		int32_t L_33 = V_1;
 		NullCheck(L_32);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_34;
-		L_34 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_32, L_33);
+		L_34 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_32, L_33);
 		V_3 = ((XmlSchemaAttributeGroupRef_t4D52AF199F137807C38D44CDD934ABD168F5B848 *)CastclassClass((RuntimeObject*)L_34, XmlSchemaAttributeGroupRef_t4D52AF199F137807C38D44CDD934ABD168F5B848_il2cpp_TypeInfo_var));
 		XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676 * L_35 = ___attributeGroup0;
 		NullCheck(L_35);
@@ -30374,7 +30410,7 @@ IL_0014:
 		int32_t L_4 = V_1;
 		NullCheck(L_3);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_5;
-		L_5 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_3, L_4);
+		L_5 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_3, L_4);
 		V_2 = ((XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 *)IsInstClass((RuntimeObject*)L_5, XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7_il2cpp_TypeInfo_var));
 		XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 * L_6 = V_2;
 		if (!L_6)
@@ -30503,7 +30539,7 @@ IL_00b9:
 		int32_t L_36 = V_1;
 		NullCheck(L_35);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_37;
-		L_37 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_35, L_36);
+		L_37 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_35, L_36);
 		V_3 = ((XmlSchemaAttributeGroupRef_t4D52AF199F137807C38D44CDD934ABD168F5B848 *)CastclassClass((RuntimeObject*)L_37, XmlSchemaAttributeGroupRef_t4D52AF199F137807C38D44CDD934ABD168F5B848_il2cpp_TypeInfo_var));
 		XmlSchema_tD7A55716109AE793DA16441CC1A949F04E573CEA * L_38 = __this->get_schema_9();
 		NullCheck(L_38);
@@ -33312,7 +33348,7 @@ IL_0388:
 				int32_t L_186 = V_9;
 				NullCheck(L_185);
 				XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_187;
-				L_187 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_185, L_186);
+				L_187 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_185, L_186);
 				V_10 = ((XmlSchemaIdentityConstraint_t5771BD0BDCD0F95D54EB762D518CCFD4D5C3FE30 *)CastclassClass((RuntimeObject*)L_187, XmlSchemaIdentityConstraint_t5771BD0BDCD0F95D54EB762D518CCFD4D5C3FE30_il2cpp_TypeInfo_var));
 				XmlSchemaIdentityConstraint_t5771BD0BDCD0F95D54EB762D518CCFD4D5C3FE30 * L_188 = V_10;
 				SchemaCollectionCompiler_CompileIdentityConstraint_m3B46D335A56B5F19A092E58FE835173C116F6AD8(__this, L_188, /*hidden argument*/NULL);
@@ -33589,7 +33625,7 @@ IL_0088:
 		int32_t L_30 = V_3;
 		NullCheck(L_29);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_31;
-		L_31 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_29, L_30);
+		L_31 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_29, L_30);
 		V_4 = ((XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A *)CastclassClass((RuntimeObject*)L_31, XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A_il2cpp_TypeInfo_var));
 		AllElementsContentValidator_t4D78F72114F46ADBA949C34726F91C6BEEEC6499 * L_32 = V_2;
 		XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_33 = V_4;
@@ -33964,7 +34000,7 @@ IL_006b:
 		int32_t L_18 = V_5;
 		NullCheck(L_17);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_19;
-		L_19 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_17, L_18);
+		L_19 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_17, L_18);
 		V_6 = ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_19, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var));
 		bool L_20 = V_4;
 		if (!L_20)
@@ -34302,7 +34338,7 @@ IL_0084:
 		int32_t L_27 = V_2;
 		NullCheck(L_26);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_28;
-		L_28 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_26, L_27);
+		L_28 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_26, L_27);
 		SchemaCollectionCompiler_CompileParticleElements_m42C985D5039B0E91B18823B3825949B40E5DBE8A(__this, L_25, ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_28, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), /*hidden argument*/NULL);
 		int32_t L_29 = V_2;
 		V_2 = ((int32_t)il2cpp_codegen_add((int32_t)L_29, (int32_t)1));
@@ -34657,7 +34693,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SchemaCollectionPreprocessor_Execute_m4D
 		Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612 * L_14;
 		L_14 = XmlSchema_get_BaseUri_m863CF26B41AB166AC05CAF1A0980EDD015671B4A_inline(L_13, /*hidden argument*/NULL);
 		NullCheck(L_10);
-		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(17 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_10, L_12, L_14);
+		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_10, L_12, L_14);
 	}
 
 IL_005f:
@@ -34698,7 +34734,7 @@ IL_008b:
 		int32_t L_24 = V_0;
 		NullCheck(L_23);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_25;
-		L_25 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_23, L_24);
+		L_25 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_23, L_24);
 		V_1 = ((XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 *)CastclassClass((RuntimeObject*)L_25, XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3_il2cpp_TypeInfo_var));
 		XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 * L_26 = V_1;
 		NullCheck(L_26);
@@ -34791,7 +34827,7 @@ IL_0014:
 		int32_t L_5 = V_0;
 		NullCheck(L_4);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_6;
-		L_6 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_4, L_5);
+		L_6 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_4, L_5);
 		V_1 = ((XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 *)CastclassClass((RuntimeObject*)L_6, XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3_il2cpp_TypeInfo_var));
 		XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 * L_7 = V_1;
 		NullCheck(L_7);
@@ -34902,7 +34938,7 @@ IL_006c:
 		Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC * L_36;
 		L_36 = XmlSchema_get_Ids_m43D579C6C416BD304224ABE1A3B31BB0BD5D7F35_inline(L_35, /*hidden argument*/NULL);
 		NullCheck(L_36);
-		VirtActionInvoker0::Invoke(18 /* System.Void System.Collections.Hashtable::Clear() */, L_36);
+		VirtActionInvoker0::Invoke(24 /* System.Void System.Collections.Hashtable::Clear() */, L_36);
 		XmlSchema_tD7A55716109AE793DA16441CC1A949F04E573CEA * L_37 = ___schema0;
 		NullCheck(L_37);
 		XmlSchemaObjectTable_tFCEF8D48B790CE4EE4A7E4DCD54747B789A61AAA * L_38;
@@ -34992,7 +35028,7 @@ IL_0017:
 		int32_t L_5 = V_0;
 		NullCheck(L_4);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_6;
-		L_6 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_4, L_5);
+		L_6 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_4, L_5);
 		V_1 = ((XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 *)CastclassClass((RuntimeObject*)L_6, XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3_il2cpp_TypeInfo_var));
 		V_2 = (Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612 *)NULL;
 		XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 * L_7 = V_1;
@@ -35049,7 +35085,7 @@ IL_005e:
 		Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612 * L_18 = V_2;
 		NullCheck(L_17);
 		RuntimeObject * L_19;
-		L_19 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_17, L_18);
+		L_19 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(29 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_17, L_18);
 		if (L_19)
 		{
 			goto IL_0089;
@@ -35060,7 +35096,7 @@ IL_005e:
 		Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612 * L_21 = V_2;
 		Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612 * L_22 = V_2;
 		NullCheck(L_20);
-		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(17 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_20, L_21, L_22);
+		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_20, L_21, L_22);
 	}
 
 IL_0089:
@@ -35173,7 +35209,7 @@ IL_00cb:
 		L_51 = XmlSchema_get_BaseUri_m863CF26B41AB166AC05CAF1A0980EDD015671B4A_inline(L_50, /*hidden argument*/NULL);
 		NullCheck(L_48);
 		RuntimeObject * L_52;
-		L_52 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_48, L_51);
+		L_52 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(29 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_48, L_51);
 		if (L_52)
 		{
 			goto IL_0143;
@@ -35196,7 +35232,7 @@ IL_00cb:
 		Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612 * L_59;
 		L_59 = XmlSchema_get_BaseUri_m863CF26B41AB166AC05CAF1A0980EDD015671B4A_inline(L_58, /*hidden argument*/NULL);
 		NullCheck(L_53);
-		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(17 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_53, L_56, L_59);
+		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_53, L_56, L_59);
 	}
 
 IL_0143:
@@ -35218,7 +35254,7 @@ IL_014e:
 		int32_t L_63 = V_8;
 		NullCheck(L_62);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_64;
-		L_64 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_62, L_63);
+		L_64 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_62, L_63);
 		V_9 = ((XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 *)CastclassClass((RuntimeObject*)L_64, XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3_il2cpp_TypeInfo_var));
 		XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 * L_65 = V_9;
 		if (!((XmlSchemaImport_t2ED5DD15EB77A6B3A9A224EF9EDE1F19867763D6 *)IsInstClass((RuntimeObject*)L_65, XmlSchemaImport_t2ED5DD15EB77A6B3A9A224EF9EDE1F19867763D6_il2cpp_TypeInfo_var)))
@@ -35313,7 +35349,7 @@ IL_01c0:
 		Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612 * L_84 = V_7;
 		NullCheck(L_83);
 		RuntimeObject * L_85;
-		L_85 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_83, L_84);
+		L_85 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(29 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_83, L_84);
 		if (!L_85)
 		{
 			goto IL_01e5;
@@ -35332,7 +35368,7 @@ IL_01e5:
 		Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612 * L_88 = V_7;
 		Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612 * L_89 = V_7;
 		NullCheck(L_87);
-		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(17 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_87, L_88, L_89);
+		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_87, L_88, L_89);
 	}
 
 IL_01f4:
@@ -35433,7 +35469,7 @@ IL_0257:
 		Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612 * L_112 = V_4;
 		NullCheck(L_111);
 		RuntimeObject * L_113;
-		L_113 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_111, L_112);
+		L_113 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(29 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_111, L_112);
 		if (L_113)
 		{
 			goto IL_0385;
@@ -35459,7 +35495,7 @@ IL_0257:
 		Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612 * L_120 = V_4;
 		Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612 * L_121 = V_4;
 		NullCheck(L_119);
-		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(17 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_119, L_120, L_121);
+		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_119, L_120, L_121);
 		Uri_t4A915E1CC15B2C650F478099AD448E9466CBF612 * L_122 = V_4;
 		NullCheck(L_122);
 		String_t* L_123;
@@ -35661,12 +35697,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SchemaCollectionPreprocessor_BuildRefNam
 		__this->set_referenceNamespaces_14(L_0);
 		Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC * L_1 = __this->get_referenceNamespaces_14();
 		NullCheck(L_1);
-		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(17 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_1, _stringLiteralE249DDFD90EBFAAEE63734F28F6668A2FB5BD5AF, _stringLiteralE249DDFD90EBFAAEE63734F28F6668A2FB5BD5AF);
+		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_1, _stringLiteralE249DDFD90EBFAAEE63734F28F6668A2FB5BD5AF, _stringLiteralE249DDFD90EBFAAEE63734F28F6668A2FB5BD5AF);
 		Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC * L_2 = __this->get_referenceNamespaces_14();
 		String_t* L_3 = ((String_t_StaticFields*)il2cpp_codegen_static_fields_for(String_t_il2cpp_TypeInfo_var))->get_Empty_5();
 		String_t* L_4 = ((String_t_StaticFields*)il2cpp_codegen_static_fields_for(String_t_il2cpp_TypeInfo_var))->get_Empty_5();
 		NullCheck(L_2);
-		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(17 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_2, L_3, L_4);
+		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_2, L_3, L_4);
 		V_2 = 0;
 		goto IL_0077;
 	}
@@ -35680,7 +35716,7 @@ IL_0039:
 		int32_t L_7 = V_2;
 		NullCheck(L_6);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_8;
-		L_8 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_6, L_7);
+		L_8 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_6, L_7);
 		V_0 = ((XmlSchemaImport_t2ED5DD15EB77A6B3A9A224EF9EDE1F19867763D6 *)IsInstClass((RuntimeObject*)L_8, XmlSchemaImport_t2ED5DD15EB77A6B3A9A224EF9EDE1F19867763D6_il2cpp_TypeInfo_var));
 		XmlSchemaImport_t2ED5DD15EB77A6B3A9A224EF9EDE1F19867763D6 * L_9 = V_0;
 		if (!L_9)
@@ -35705,7 +35741,7 @@ IL_0039:
 		String_t* L_14 = V_1;
 		NullCheck(L_13);
 		RuntimeObject * L_15;
-		L_15 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_13, L_14);
+		L_15 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(29 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_13, L_14);
 		if (L_15)
 		{
 			goto IL_0073;
@@ -35716,7 +35752,7 @@ IL_0039:
 		String_t* L_17 = V_1;
 		String_t* L_18 = V_1;
 		NullCheck(L_16);
-		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(17 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_16, L_17, L_18);
+		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_16, L_17, L_18);
 	}
 
 IL_0073:
@@ -35758,7 +35794,7 @@ IL_0077:
 		L_28 = XmlSchema_get_TargetNamespace_mE3A952CBFF0C2D4AEAD6FC4E942F13AB49239D95_inline(L_27, /*hidden argument*/NULL);
 		NullCheck(L_26);
 		RuntimeObject * L_29;
-		L_29 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_26, L_28);
+		L_29 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(29 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_26, L_28);
 		if (L_29)
 		{
 			goto IL_00b7;
@@ -35775,7 +35811,7 @@ IL_0077:
 		String_t* L_34;
 		L_34 = XmlSchema_get_TargetNamespace_mE3A952CBFF0C2D4AEAD6FC4E942F13AB49239D95_inline(L_33, /*hidden argument*/NULL);
 		NullCheck(L_30);
-		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(17 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_30, L_32, L_34);
+		VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_30, L_32, L_34);
 	}
 
 IL_00b7:
@@ -36177,7 +36213,7 @@ IL_0145:
 		int32_t L_64 = V_2;
 		NullCheck(L_63);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_65;
-		L_65 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_63, L_64);
+		L_65 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_63, L_64);
 		V_3 = ((XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 *)CastclassClass((RuntimeObject*)L_65, XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3_il2cpp_TypeInfo_var));
 		XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 * L_66 = V_3;
 		XmlSchema_tD7A55716109AE793DA16441CC1A949F04E573CEA * L_67 = ___schema0;
@@ -36651,7 +36687,7 @@ IL_03c3:
 		int32_t L_155 = V_6;
 		NullCheck(L_154);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_156;
-		L_156 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_154, L_155);
+		L_156 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_154, L_155);
 		V_7 = ((XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 *)CastclassClass((RuntimeObject*)L_156, XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3_il2cpp_TypeInfo_var));
 		XmlSchemaExternal_t563230B1305CB38B7F0A9FCB3B7526A337F44BB3 * L_157 = V_7;
 		if (!((XmlSchemaRedefine_t59C86A32B53BAEA2F1B01E502FF830635094393D *)IsInstClass((RuntimeObject*)L_157, XmlSchemaRedefine_t59C86A32B53BAEA2F1B01E502FF830635094393D_il2cpp_TypeInfo_var)))
@@ -36692,7 +36728,7 @@ IL_0401:
 		int32_t L_164 = V_10;
 		NullCheck(L_163);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_165;
-		L_165 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_163, L_164);
+		L_165 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_163, L_164);
 		if (((XmlSchemaAnnotation_t1B464A4E48B22C4098BE601D7C0EBB44D8492E92 *)IsInstClass((RuntimeObject*)L_165, XmlSchemaAnnotation_t1B464A4E48B22C4098BE601D7C0EBB44D8492E92_il2cpp_TypeInfo_var)))
 		{
 			goto IL_0425;
@@ -37342,7 +37378,7 @@ IL_0689:
 		int32_t L_280 = V_19;
 		NullCheck(L_279);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_281;
-		L_281 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_279, L_280);
+		L_281 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_279, L_280);
 		XmlSchema_tD7A55716109AE793DA16441CC1A949F04E573CEA * L_282 = ___schema0;
 		SchemaCollectionPreprocessor_SetParent_m4DB2ABB39430E0A00304C193972F4517936F365B(__this, L_281, L_282, /*hidden argument*/NULL);
 		XmlSchema_tD7A55716109AE793DA16441CC1A949F04E573CEA * L_283 = ___schema0;
@@ -37352,7 +37388,7 @@ IL_0689:
 		int32_t L_285 = V_19;
 		NullCheck(L_284);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_286;
-		L_286 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_284, L_285);
+		L_286 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_284, L_285);
 		V_20 = ((XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 *)IsInstClass((RuntimeObject*)L_286, XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7_il2cpp_TypeInfo_var));
 		XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 * L_287 = V_20;
 		if (!L_287)
@@ -37385,7 +37421,7 @@ IL_06d7:
 		int32_t L_296 = V_19;
 		NullCheck(L_295);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_297;
-		L_297 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_295, L_296);
+		L_297 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_295, L_296);
 		if (!((XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676 *)IsInstClass((RuntimeObject*)L_297, XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676_il2cpp_TypeInfo_var)))
 		{
 			goto IL_0721;
@@ -37399,7 +37435,7 @@ IL_06d7:
 		int32_t L_300 = V_19;
 		NullCheck(L_299);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_301;
-		L_301 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_299, L_300);
+		L_301 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_299, L_300);
 		V_21 = ((XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676 *)CastclassClass((RuntimeObject*)L_301, XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676_il2cpp_TypeInfo_var));
 		XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676 * L_302 = V_21;
 		SchemaCollectionPreprocessor_PreprocessAttributeGroup_m4E3C683B1FD82B0BC3969D2B6D033E90C6EFF0CD(__this, L_302, /*hidden argument*/NULL);
@@ -37425,7 +37461,7 @@ IL_0721:
 		int32_t L_310 = V_19;
 		NullCheck(L_309);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_311;
-		L_311 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_309, L_310);
+		L_311 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_309, L_310);
 		if (!((XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062 *)IsInstClass((RuntimeObject*)L_311, XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062_il2cpp_TypeInfo_var)))
 		{
 			goto IL_076c;
@@ -37439,7 +37475,7 @@ IL_0721:
 		int32_t L_314 = V_19;
 		NullCheck(L_313);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_315;
-		L_315 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_313, L_314);
+		L_315 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_313, L_314);
 		V_22 = ((XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062 *)CastclassClass((RuntimeObject*)L_315, XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062_il2cpp_TypeInfo_var));
 		XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062 * L_316 = V_22;
 		SchemaCollectionPreprocessor_PreprocessComplexType_m02F23E05FDB41A6A96494D34B67B115AC0742265(__this, L_316, (bool)0, /*hidden argument*/NULL);
@@ -37465,7 +37501,7 @@ IL_076c:
 		int32_t L_324 = V_19;
 		NullCheck(L_323);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_325;
-		L_325 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_323, L_324);
+		L_325 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_323, L_324);
 		if (!((XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C *)IsInstClass((RuntimeObject*)L_325, XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C_il2cpp_TypeInfo_var)))
 		{
 			goto IL_07b7;
@@ -37479,7 +37515,7 @@ IL_076c:
 		int32_t L_328 = V_19;
 		NullCheck(L_327);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_329;
-		L_329 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_327, L_328);
+		L_329 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_327, L_328);
 		V_23 = ((XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C *)CastclassClass((RuntimeObject*)L_329, XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C_il2cpp_TypeInfo_var));
 		XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C * L_330 = V_23;
 		SchemaCollectionPreprocessor_PreprocessSimpleType_mDFC835E01AFB2E13889B9D3C7DED27B3AD9E812C(__this, L_330, (bool)0, /*hidden argument*/NULL);
@@ -37505,7 +37541,7 @@ IL_07b7:
 		int32_t L_338 = V_19;
 		NullCheck(L_337);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_339;
-		L_339 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_337, L_338);
+		L_339 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_337, L_338);
 		if (!((XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A *)IsInstClass((RuntimeObject*)L_339, XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A_il2cpp_TypeInfo_var)))
 		{
 			goto IL_0801;
@@ -37519,7 +37555,7 @@ IL_07b7:
 		int32_t L_342 = V_19;
 		NullCheck(L_341);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_343;
-		L_343 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_341, L_342);
+		L_343 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_341, L_342);
 		V_24 = ((XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A *)CastclassClass((RuntimeObject*)L_343, XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A_il2cpp_TypeInfo_var));
 		XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_344 = V_24;
 		SchemaCollectionPreprocessor_PreprocessElement_mC3E600252D4AE3E3C1F9305370893FB9E9CC8D4C(__this, L_344, /*hidden argument*/NULL);
@@ -37545,7 +37581,7 @@ IL_0801:
 		int32_t L_352 = V_19;
 		NullCheck(L_351);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_353;
-		L_353 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_351, L_352);
+		L_353 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_351, L_352);
 		if (!((XmlSchemaGroup_t6CFE833B0BAA713568D8983568F1431E6748C023 *)IsInstClass((RuntimeObject*)L_353, XmlSchemaGroup_t6CFE833B0BAA713568D8983568F1431E6748C023_il2cpp_TypeInfo_var)))
 		{
 			goto IL_084b;
@@ -37559,7 +37595,7 @@ IL_0801:
 		int32_t L_356 = V_19;
 		NullCheck(L_355);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_357;
-		L_357 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_355, L_356);
+		L_357 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_355, L_356);
 		V_25 = ((XmlSchemaGroup_t6CFE833B0BAA713568D8983568F1431E6748C023 *)CastclassClass((RuntimeObject*)L_357, XmlSchemaGroup_t6CFE833B0BAA713568D8983568F1431E6748C023_il2cpp_TypeInfo_var));
 		XmlSchemaGroup_t6CFE833B0BAA713568D8983568F1431E6748C023 * L_358 = V_25;
 		SchemaCollectionPreprocessor_PreprocessGroup_mAB84AC1541E0E15D622113E4D4C17C06DFF06D94(__this, L_358, /*hidden argument*/NULL);
@@ -37585,7 +37621,7 @@ IL_084b:
 		int32_t L_366 = V_19;
 		NullCheck(L_365);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_367;
-		L_367 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_365, L_366);
+		L_367 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_365, L_366);
 		if (!((XmlSchemaNotation_t374B1FC9CACC42BAB350640EDE4FA859DDC05A79 *)IsInstClass((RuntimeObject*)L_367, XmlSchemaNotation_t374B1FC9CACC42BAB350640EDE4FA859DDC05A79_il2cpp_TypeInfo_var)))
 		{
 			goto IL_0892;
@@ -37599,7 +37635,7 @@ IL_084b:
 		int32_t L_370 = V_19;
 		NullCheck(L_369);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_371;
-		L_371 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_369, L_370);
+		L_371 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_369, L_370);
 		V_26 = ((XmlSchemaNotation_t374B1FC9CACC42BAB350640EDE4FA859DDC05A79 *)CastclassClass((RuntimeObject*)L_371, XmlSchemaNotation_t374B1FC9CACC42BAB350640EDE4FA859DDC05A79_il2cpp_TypeInfo_var));
 		XmlSchemaNotation_t374B1FC9CACC42BAB350640EDE4FA859DDC05A79 * L_372 = V_26;
 		SchemaCollectionPreprocessor_PreprocessNotation_mEA63AEEA1DA82E89A5AA57D10DACAE46E6C6B033(__this, L_372, /*hidden argument*/NULL);
@@ -37625,7 +37661,7 @@ IL_0892:
 		int32_t L_380 = V_19;
 		NullCheck(L_379);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_381;
-		L_381 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_379, L_380);
+		L_381 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_379, L_380);
 		if (((XmlSchemaAnnotation_t1B464A4E48B22C4098BE601D7C0EBB44D8492E92 *)IsInstClass((RuntimeObject*)L_381, XmlSchemaAnnotation_t1B464A4E48B22C4098BE601D7C0EBB44D8492E92_il2cpp_TypeInfo_var)))
 		{
 			goto IL_08d1;
@@ -37639,7 +37675,7 @@ IL_0892:
 		int32_t L_384 = V_19;
 		NullCheck(L_383);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_385;
-		L_385 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_383, L_384);
+		L_385 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_383, L_384);
 		BaseProcessor_SendValidationEvent_m249A7D45A8EA5B701AFE03FF76AB5CBBB2EE50CB(__this, _stringLiteral5B95BC5A7941EF6E6B3173896669C93067B0C585, L_385, /*hidden argument*/NULL);
 		List_1_t39080C6D1CEE59AA74033FB27290B01F31098109 * L_386 = V_1;
 		XmlSchema_tD7A55716109AE793DA16441CC1A949F04E573CEA * L_387 = ___schema0;
@@ -37649,7 +37685,7 @@ IL_0892:
 		int32_t L_389 = V_19;
 		NullCheck(L_388);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_390;
-		L_390 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_388, L_389);
+		L_390 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_388, L_389);
 		NullCheck(L_386);
 		List_1_Add_m0999CC24D176C2A8CEB2A4DEF752BBF9EE0FD545(L_386, L_390, /*hidden argument*/List_1_Add_m0999CC24D176C2A8CEB2A4DEF752BBF9EE0FD545_RuntimeMethod_var);
 	}
@@ -37775,7 +37811,7 @@ IL_0007:
 		int32_t L_2 = V_0;
 		NullCheck(L_1);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_3;
-		L_3 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_1, L_2);
+		L_3 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_1, L_2);
 		XmlSchemaRedefine_t59C86A32B53BAEA2F1B01E502FF830635094393D * L_4 = ___redefine0;
 		SchemaCollectionPreprocessor_SetParent_m4DB2ABB39430E0A00304C193972F4517936F365B(__this, L_3, L_4, /*hidden argument*/NULL);
 		XmlSchemaRedefine_t59C86A32B53BAEA2F1B01E502FF830635094393D * L_5 = ___redefine0;
@@ -37785,7 +37821,7 @@ IL_0007:
 		int32_t L_7 = V_0;
 		NullCheck(L_6);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_8;
-		L_8 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_6, L_7);
+		L_8 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_6, L_7);
 		V_1 = ((XmlSchemaGroup_t6CFE833B0BAA713568D8983568F1431E6748C023 *)IsInstClass((RuntimeObject*)L_8, XmlSchemaGroup_t6CFE833B0BAA713568D8983568F1431E6748C023_il2cpp_TypeInfo_var));
 		XmlSchemaGroup_t6CFE833B0BAA713568D8983568F1431E6748C023 * L_9 = V_1;
 		if (!L_9)
@@ -37878,7 +37914,7 @@ IL_00b6:
 		int32_t L_35 = V_0;
 		NullCheck(L_34);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_36;
-		L_36 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_34, L_35);
+		L_36 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_34, L_35);
 		if (!((XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676 *)IsInstClass((RuntimeObject*)L_36, XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676_il2cpp_TypeInfo_var)))
 		{
 			goto IL_0162;
@@ -37892,7 +37928,7 @@ IL_00b6:
 		int32_t L_39 = V_0;
 		NullCheck(L_38);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_40;
-		L_40 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_38, L_39);
+		L_40 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_38, L_39);
 		V_2 = ((XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676 *)CastclassClass((RuntimeObject*)L_40, XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676_il2cpp_TypeInfo_var));
 		XmlSchemaAttributeGroup_tB9215D09AD1DC537A59AE60158B03293E2769676 * L_41 = V_2;
 		SchemaCollectionPreprocessor_PreprocessAttributeGroup_m4E3C683B1FD82B0BC3969D2B6D033E90C6EFF0CD(__this, L_41, /*hidden argument*/NULL);
@@ -37978,7 +38014,7 @@ IL_0162:
 		int32_t L_66 = V_0;
 		NullCheck(L_65);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_67;
-		L_67 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_65, L_66);
+		L_67 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_65, L_66);
 		if (!((XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062 *)IsInstClass((RuntimeObject*)L_67, XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062_il2cpp_TypeInfo_var)))
 		{
 			goto IL_0229;
@@ -37992,7 +38028,7 @@ IL_0162:
 		int32_t L_70 = V_0;
 		NullCheck(L_69);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_71;
-		L_71 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_69, L_70);
+		L_71 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_69, L_70);
 		V_3 = ((XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062 *)CastclassClass((RuntimeObject*)L_71, XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062_il2cpp_TypeInfo_var));
 		XmlSchemaComplexType_tE6F9E57AB3C89D88DAB166F1F0A3EC2276C2F062 * L_72 = V_3;
 		SchemaCollectionPreprocessor_PreprocessComplexType_m02F23E05FDB41A6A96494D34B67B115AC0742265(__this, L_72, (bool)0, /*hidden argument*/NULL);
@@ -38091,7 +38127,7 @@ IL_0229:
 		int32_t L_99 = V_0;
 		NullCheck(L_98);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_100;
-		L_100 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_98, L_99);
+		L_100 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_98, L_99);
 		if (!((XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C *)IsInstClass((RuntimeObject*)L_100, XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C_il2cpp_TypeInfo_var)))
 		{
 			goto IL_02ed;
@@ -38105,7 +38141,7 @@ IL_0229:
 		int32_t L_103 = V_0;
 		NullCheck(L_102);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_104;
-		L_104 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_102, L_103);
+		L_104 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_102, L_103);
 		V_5 = ((XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C *)CastclassClass((RuntimeObject*)L_104, XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C_il2cpp_TypeInfo_var));
 		XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C * L_105 = V_5;
 		SchemaCollectionPreprocessor_PreprocessSimpleType_mDFC835E01AFB2E13889B9D3C7DED27B3AD9E812C(__this, L_105, (bool)0, /*hidden argument*/NULL);
@@ -38529,7 +38565,7 @@ IL_0009:
 		int32_t L_1 = V_1;
 		NullCheck(L_0);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_2;
-		L_2 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_0, L_1);
+		L_2 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_0, L_1);
 		V_2 = ((XmlSchemaGroupRef_t959C68547997BA04BD811BE970E18AD9C42A68DA *)IsInstClass((RuntimeObject*)L_2, XmlSchemaGroupRef_t959C68547997BA04BD811BE970E18AD9C42A68DA_il2cpp_TypeInfo_var));
 		XmlSchemaGroupRef_t959C68547997BA04BD811BE970E18AD9C42A68DA * L_3 = V_2;
 		if (!L_3)
@@ -38599,7 +38635,7 @@ IL_005d:
 		int32_t L_19 = V_1;
 		NullCheck(L_18);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_20;
-		L_20 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_18, L_19);
+		L_20 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_18, L_19);
 		if (!((XmlSchemaGroupBase_tBB7F26134C0D82EA71D1773C84856397919DD5DA *)IsInstClass((RuntimeObject*)L_20, XmlSchemaGroupBase_tBB7F26134C0D82EA71D1773C84856397919DD5DA_il2cpp_TypeInfo_var)))
 		{
 			goto IL_0086;
@@ -38611,7 +38647,7 @@ IL_005d:
 		int32_t L_23 = V_1;
 		NullCheck(L_22);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_24;
-		L_24 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_22, L_23);
+		L_24 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_22, L_23);
 		NullCheck(((XmlSchemaGroupBase_tBB7F26134C0D82EA71D1773C84856397919DD5DA *)CastclassClass((RuntimeObject*)L_24, XmlSchemaGroupBase_tBB7F26134C0D82EA71D1773C84856397919DD5DA_il2cpp_TypeInfo_var)));
 		XmlSchemaObjectCollection_t2E22260F9979EB3890D8CB09473963FE616BF931 * L_25;
 		L_25 = VirtFuncInvoker0< XmlSchemaObjectCollection_t2E22260F9979EB3890D8CB09473963FE616BF931 * >::Invoke(16 /* System.Xml.Schema.XmlSchemaObjectCollection System.Xml.Schema.XmlSchemaGroupBase::get_Items() */, ((XmlSchemaGroupBase_tBB7F26134C0D82EA71D1773C84856397919DD5DA *)CastclassClass((RuntimeObject*)L_24, XmlSchemaGroupBase_tBB7F26134C0D82EA71D1773C84856397919DD5DA_il2cpp_TypeInfo_var)));
@@ -38738,7 +38774,7 @@ IL_0006:
 		int32_t L_2 = V_1;
 		NullCheck(L_1);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_3;
-		L_3 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_1, L_2);
+		L_3 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_1, L_2);
 		V_2 = ((XmlSchemaAttributeGroupRef_t4D52AF199F137807C38D44CDD934ABD168F5B848 *)IsInstClass((RuntimeObject*)L_3, XmlSchemaAttributeGroupRef_t4D52AF199F137807C38D44CDD934ABD168F5B848_il2cpp_TypeInfo_var));
 		XmlSchemaAttributeGroupRef_t4D52AF199F137807C38D44CDD934ABD168F5B848 * L_4 = V_2;
 		if (!L_4)
@@ -40392,7 +40428,7 @@ IL_013b:
 		int32_t L_48 = V_0;
 		NullCheck(L_47);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_49;
-		L_49 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_47, L_48);
+		L_49 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_47, L_48);
 		XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_50 = ___element0;
 		SchemaCollectionPreprocessor_SetParent_m4DB2ABB39430E0A00304C193972F4517936F365B(__this, L_49, L_50, /*hidden argument*/NULL);
 		XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_51 = ___element0;
@@ -40402,7 +40438,7 @@ IL_013b:
 		int32_t L_53 = V_0;
 		NullCheck(L_52);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_54;
-		L_54 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_52, L_53);
+		L_54 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_52, L_53);
 		SchemaCollectionPreprocessor_PreprocessIdentityConstraint_m10A1C949387A96AEA92272FE7B03C426C879C9A0(__this, ((XmlSchemaIdentityConstraint_t5771BD0BDCD0F95D54EB762D518CCFD4D5C3FE30 *)CastclassClass((RuntimeObject*)L_54, XmlSchemaIdentityConstraint_t5771BD0BDCD0F95D54EB762D518CCFD4D5C3FE30_il2cpp_TypeInfo_var)), /*hidden argument*/NULL);
 		int32_t L_55 = V_0;
 		V_0 = ((int32_t)il2cpp_codegen_add((int32_t)L_55, (int32_t)1));
@@ -40642,7 +40678,7 @@ IL_0124:
 		int32_t L_49 = V_2;
 		NullCheck(L_48);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_50;
-		L_50 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_48, L_49);
+		L_50 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_48, L_49);
 		XmlSchemaIdentityConstraint_t5771BD0BDCD0F95D54EB762D518CCFD4D5C3FE30 * L_51 = ___constraint0;
 		SchemaCollectionPreprocessor_SetParent_m4DB2ABB39430E0A00304C193972F4517936F365B(__this, L_50, L_51, /*hidden argument*/NULL);
 		XmlSchemaIdentityConstraint_t5771BD0BDCD0F95D54EB762D518CCFD4D5C3FE30 * L_52 = ___constraint0;
@@ -40652,7 +40688,7 @@ IL_0124:
 		int32_t L_54 = V_2;
 		NullCheck(L_53);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_55;
-		L_55 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_53, L_54);
+		L_55 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_53, L_54);
 		SchemaCollectionPreprocessor_ValidateIdAttribute_mE0BD01FF502C7D736E8F99C8F1DAA50E71DC7713(__this, L_55, /*hidden argument*/NULL);
 		int32_t L_56 = V_2;
 		V_2 = ((int32_t)il2cpp_codegen_add((int32_t)L_56, (int32_t)1));
@@ -40897,7 +40933,7 @@ IL_0116:
 		int32_t L_39 = V_1;
 		NullCheck(L_38);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_40;
-		L_40 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_38, L_39);
+		L_40 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_38, L_39);
 		XmlSchemaSimpleTypeRestriction_tA312855944C42464DF7E0C6F02214331C853945C * L_41 = V_0;
 		SchemaCollectionPreprocessor_SetParent_m4DB2ABB39430E0A00304C193972F4517936F365B(__this, L_40, L_41, /*hidden argument*/NULL);
 		int32_t L_42 = V_1;
@@ -41195,7 +41231,7 @@ IL_02c3:
 		int32_t L_116 = V_6;
 		NullCheck(L_115);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_117;
-		L_117 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_115, L_116);
+		L_117 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_115, L_116);
 		XmlSchemaSimpleTypeUnion_t691F14B83D42A700B03058B598646CDA7DF545F5 * L_118 = V_3;
 		SchemaCollectionPreprocessor_SetParent_m4DB2ABB39430E0A00304C193972F4517936F365B(__this, L_117, L_118, /*hidden argument*/NULL);
 		XmlSchemaSimpleTypeUnion_t691F14B83D42A700B03058B598646CDA7DF545F5 * L_119 = V_3;
@@ -41205,7 +41241,7 @@ IL_02c3:
 		int32_t L_121 = V_6;
 		NullCheck(L_120);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_122;
-		L_122 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_120, L_121);
+		L_122 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_120, L_121);
 		SchemaCollectionPreprocessor_PreprocessSimpleType_mDFC835E01AFB2E13889B9D3C7DED27B3AD9E812C(__this, ((XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C *)CastclassClass((RuntimeObject*)L_122, XmlSchemaSimpleType_tC0ABB2E0CDA541FB1D3AAF14180DF86A4C25697C_il2cpp_TypeInfo_var)), (bool)1, /*hidden argument*/NULL);
 		int32_t L_123 = V_6;
 		V_6 = ((int32_t)il2cpp_codegen_add((int32_t)L_123, (int32_t)1));
@@ -42440,7 +42476,7 @@ IL_0075:
 		int32_t L_22 = V_1;
 		NullCheck(L_21);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_23;
-		L_23 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_21, L_22);
+		L_23 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_21, L_22);
 		V_2 = ((XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A *)CastclassClass((RuntimeObject*)L_23, XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A_il2cpp_TypeInfo_var));
 		XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_24 = V_2;
 		NullCheck(L_24);
@@ -42565,14 +42601,14 @@ IL_012a:
 		int32_t L_57 = V_5;
 		NullCheck(L_56);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_58;
-		L_58 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_56, L_57);
+		L_58 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_56, L_57);
 		XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 * L_59 = ___particle0;
 		SchemaCollectionPreprocessor_SetParent_m4DB2ABB39430E0A00304C193972F4517936F365B(__this, L_58, L_59, /*hidden argument*/NULL);
 		XmlSchemaObjectCollection_t2E22260F9979EB3890D8CB09473963FE616BF931 * L_60 = V_4;
 		int32_t L_61 = V_5;
 		NullCheck(L_60);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_62;
-		L_62 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_60, L_61);
+		L_62 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_60, L_61);
 		V_6 = ((XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A *)IsInstClass((RuntimeObject*)L_62, XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A_il2cpp_TypeInfo_var));
 		XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_63 = V_6;
 		if (!L_63)
@@ -42592,7 +42628,7 @@ IL_0158:
 		int32_t L_66 = V_5;
 		NullCheck(L_65);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_67;
-		L_67 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_65, L_66);
+		L_67 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_65, L_66);
 		SchemaCollectionPreprocessor_PreprocessParticle_m584E3431A682668B6B6B895CF9E0232AC218C276(__this, ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_67, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), /*hidden argument*/NULL);
 	}
 
@@ -42642,14 +42678,14 @@ IL_019c:
 		int32_t L_76 = V_8;
 		NullCheck(L_75);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_77;
-		L_77 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_75, L_76);
+		L_77 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_75, L_76);
 		XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 * L_78 = ___particle0;
 		SchemaCollectionPreprocessor_SetParent_m4DB2ABB39430E0A00304C193972F4517936F365B(__this, L_77, L_78, /*hidden argument*/NULL);
 		XmlSchemaObjectCollection_t2E22260F9979EB3890D8CB09473963FE616BF931 * L_79 = V_7;
 		int32_t L_80 = V_8;
 		NullCheck(L_79);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_81;
-		L_81 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_79, L_80);
+		L_81 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_79, L_80);
 		V_9 = ((XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A *)IsInstClass((RuntimeObject*)L_81, XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A_il2cpp_TypeInfo_var));
 		XmlSchemaElement_tB61A00A97A12A9B2620D005D0643B11EA1CA764A * L_82 = V_9;
 		if (!L_82)
@@ -42669,7 +42705,7 @@ IL_01ca:
 		int32_t L_85 = V_8;
 		NullCheck(L_84);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_86;
-		L_86 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_84, L_85);
+		L_86 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_84, L_85);
 		SchemaCollectionPreprocessor_PreprocessParticle_m584E3431A682668B6B6B895CF9E0232AC218C276(__this, ((XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789 *)CastclassClass((RuntimeObject*)L_86, XmlSchemaParticle_tD1A5391DA6279C1028974DFA37BC68C91EFEE789_il2cpp_TypeInfo_var)), /*hidden argument*/NULL);
 	}
 
@@ -42808,14 +42844,14 @@ IL_0007:
 		int32_t L_1 = V_0;
 		NullCheck(L_0);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_2;
-		L_2 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_0, L_1);
+		L_2 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_0, L_1);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_3 = ___parent2;
 		SchemaCollectionPreprocessor_SetParent_m4DB2ABB39430E0A00304C193972F4517936F365B(__this, L_2, L_3, /*hidden argument*/NULL);
 		XmlSchemaObjectCollection_t2E22260F9979EB3890D8CB09473963FE616BF931 * L_4 = ___attributes0;
 		int32_t L_5 = V_0;
 		NullCheck(L_4);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_6;
-		L_6 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_4, L_5);
+		L_6 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_4, L_5);
 		V_1 = ((XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 *)IsInstClass((RuntimeObject*)L_6, XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7_il2cpp_TypeInfo_var));
 		XmlSchemaAttribute_t2EB9DF55F6A28F15681A8E56140568B049AFD7F7 * L_7 = V_1;
 		if (!L_7)
@@ -42835,7 +42871,7 @@ IL_002e:
 		int32_t L_10 = V_0;
 		NullCheck(L_9);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_11;
-		L_11 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_9, L_10);
+		L_11 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_9, L_10);
 		V_2 = ((XmlSchemaAttributeGroupRef_t4D52AF199F137807C38D44CDD934ABD168F5B848 *)CastclassClass((RuntimeObject*)L_11, XmlSchemaAttributeGroupRef_t4D52AF199F137807C38D44CDD934ABD168F5B848_il2cpp_TypeInfo_var));
 		XmlSchemaAttributeGroupRef_t4D52AF199F137807C38D44CDD934ABD168F5B848 * L_12 = V_2;
 		NullCheck(L_12);
@@ -42871,13 +42907,13 @@ IL_006d:
 		int32_t L_20 = V_0;
 		NullCheck(L_19);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_21;
-		L_21 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_19, L_20);
+		L_21 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_19, L_20);
 		SchemaCollectionPreprocessor_PreprocessAnnotation_mF1038164BF060138FABA3E7F6B2D85D8C3FF6640(__this, L_21, /*hidden argument*/NULL);
 		XmlSchemaObjectCollection_t2E22260F9979EB3890D8CB09473963FE616BF931 * L_22 = ___attributes0;
 		int32_t L_23 = V_0;
 		NullCheck(L_22);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_24;
-		L_24 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_22, L_23);
+		L_24 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_22, L_23);
 		SchemaCollectionPreprocessor_ValidateIdAttribute_mE0BD01FF502C7D736E8F99C8F1DAA50E71DC7713(__this, L_24, /*hidden argument*/NULL);
 	}
 
@@ -43003,7 +43039,7 @@ IL_0008:
 			L_11 = VirtFuncInvoker0< String_t* >::Invoke(7 /* System.String System.Xml.Schema.XmlSchemaObject::get_IdAttribute() */, L_10);
 			NullCheck(L_9);
 			RuntimeObject * L_12;
-			L_12 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_9, L_11);
+			L_12 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(29 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_9, L_11);
 			if (!L_12)
 			{
 				goto IL_004a;
@@ -43029,7 +43065,7 @@ IL_004a:
 			L_17 = VirtFuncInvoker0< String_t* >::Invoke(7 /* System.String System.Xml.Schema.XmlSchemaObject::get_IdAttribute() */, L_16);
 			XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_18 = ___xso0;
 			NullCheck(L_15);
-			VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(17 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_15, L_17, L_18);
+			VirtActionInvoker2< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, L_15, L_17, L_18);
 		}
 
 IL_0061:
@@ -43221,7 +43257,7 @@ IL_0000:
 			L_5 = XmlQualifiedName_get_Namespace_m2693E9023068C90F95C47FDB5685F1563ECE0025_inline(L_4, /*hidden argument*/NULL);
 			NullCheck(L_3);
 			RuntimeObject * L_6;
-			L_6 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(23 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_3, L_5);
+			L_6 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(29 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_3, L_5);
 			if (L_6)
 			{
 				goto IL_0038;
@@ -43337,7 +43373,7 @@ IL_0022:
 		int32_t L_10 = V_1;
 		NullCheck(L_9);
 		XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 * L_11;
-		L_11 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(28 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_9, L_10);
+		L_11 = VirtFuncInvoker1< XmlSchemaObject_tD14BD548E370305745B6E1CAAF2572F1DBC7F3D3 *, int32_t >::Invoke(29 /* System.Xml.Schema.XmlSchemaObject System.Xml.Schema.XmlSchemaObjectCollection::get_Item(System.Int32) */, L_9, L_10);
 		XmlSchemaAnnotated_t68F13E739330186883290FF723E752BD26F2E3A7 * L_12 = V_0;
 		NullCheck(L_12);
 		XmlSchemaAnnotation_t1B464A4E48B22C4098BE601D7C0EBB44D8492E92 * L_13;

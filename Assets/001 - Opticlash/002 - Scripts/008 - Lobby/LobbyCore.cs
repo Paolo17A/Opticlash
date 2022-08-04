@@ -6,6 +6,9 @@ using MyBox;
 using System.Linq;
 using TMPro;
 using UnityEngine.UI;
+using PlayFab;
+using PlayFab.ClientModels;
+using Newtonsoft.Json;
 
 public class LobbyCore : MonoBehaviour
 {
@@ -23,7 +26,8 @@ public class LobbyCore : MonoBehaviour
         SETTINGS,
         EQUIP,
         COSTUME,
-        CANNON
+        CANNON,
+        CURRENTCANNON
     }
 
     private event EventHandler lobbyStateChange;
@@ -57,6 +61,7 @@ public class LobbyCore : MonoBehaviour
     [field: Header("ANIMATORS")]
     [field: SerializeField] public Animator LobbyAnimator { get; set; }
     [field: SerializeField] public Animator DropdownAnimator { get; set; }
+    [field: SerializeField] public GameObject LoadingPanel { get; set; }
 
     [field: Header("OPTI")]
     [field: SerializeField] private Image OptiLobbyCannon { get; set; }
@@ -163,9 +168,20 @@ public class LobbyCore : MonoBehaviour
     [field: SerializeField] private Button NextWeaponPageBtn { get; set; }
     [field: SerializeField] private TextMeshProUGUI WeaponPageTMP { get; set; }
 
+    [field: Header("CURRENT CANNON")]
+    [field: SerializeField] private Image CurrentCannonImage { get; set; }
+    [field: SerializeField] private Image CurrentCannonBigImage { get; set; }
+    [field: SerializeField] private TextMeshProUGUI CurrentCannonNameTMP { get; set; }
+    [field: SerializeField] private TextMeshProUGUI CurrentCannonDamageTMP { get; set; }
+    [field: SerializeField] private TextMeshProUGUI CurrentCannonAmmoTMP { get; set; }
+    [field: SerializeField] private TextMeshProUGUI CurrentCannonAccuracyTMP { get; set; }
+    [field: SerializeField] private TextMeshProUGUI CurrentCannonAbilitiesTMP { get; set; }
+    [field: SerializeField] private Button UpgradeCannonBtn { get; set; }
+
     [Header("DEBUGGER")]
     [ReadOnly] public List<CustomCostumeData> ActualCostumesOwned;
     [ReadOnly] public List<CustomWeaponData> ActualOwnedWeapons;
+    [ReadOnly] private int failedCallbackCounter;
     //==============================================================
     #endregion
 
@@ -175,19 +191,107 @@ public class LobbyCore : MonoBehaviour
     }
 
     #region CORE
+    public void InitializeLobby()
+    {
+        PlayFabClientAPI.GetUserInventory(new GetUserInventoryRequest(),
+            resultCallback =>
+            {
+                failedCallbackCounter = 0;
+                int currentDetectedCannon = 0;
+                foreach (var item in resultCallback.Inventory)
+                {
+                    if (item.ItemClass == "CANNON")
+                    {
+                        PlayerData.OwnedWeapons[currentDetectedCannon].WeaponInstanceID = item.ItemInstanceId;
+                        PlayerData.OwnedWeapons[currentDetectedCannon].BaseWeaponData = GameManager.Instance.InventoryManager.GetProperWeaponData(item.ItemId);
+                        PlayerData.OwnedWeapons[currentDetectedCannon].BonusDamage = int.Parse(item.CustomData["Bonus"]);
+                        currentDetectedCannon++;
+                    }
+                    else if (item.ItemClass == "COSTUME")
+                    {
+                        foreach (CustomCostumeData customCostume in PlayerData.OwnedCostumes)
+                            if (item.ItemId == customCostume.BaseCostumeData.CostumeID)
+                            {
+                                customCostume.CostumeIsOwned = true;
+                                customCostume.CostumeInstanceID = item.ItemInstanceId;
+                                break;
+                            }
+                    }
+                    else if (item.ItemClass == "CONSUMABLE")
+                    {
+                        switch(item.ItemId)
+                        {
+                            case "BreakRemoval":
+                                PlayerData.BreakRemovalCharges = (int)item.RemainingUses;
+                                PlayerData.BreakRemovalInstanceID = item.ItemInstanceId;
+                                break;
+                            case "BurnRemoval":
+                                PlayerData.BurnRemovalCharges = (int)item.RemainingUses;
+                                PlayerData.BurnRemovalInstanceID = item.ItemInstanceId;
+                                break;
+                            case "ConfuseRemoval":
+                                PlayerData.ConfuseRemovalCharges = (int)item.RemainingUses;
+                                PlayerData.ConfuseRemovalInstanceID = item.ItemInstanceId;
+                                break;
+                            case "FreezeRemoval":
+                                PlayerData.FreezeRemovalCharges = (int)item.RemainingUses;
+                                PlayerData.FreezeRemovalInstanceID = item.ItemInstanceId;
+                                break;
+                            case "HealCharge":
+                                PlayerData.HealCharges = (int)item.RemainingUses;
+                                PlayerData.HealInstanceID = item.ItemInstanceId;
+                                break;
+                            case "ParalyzeRemoval":
+                                PlayerData.ParalyzeRemovalCharges = (int)item.RemainingUses;
+                                PlayerData.ParalyzeRemovalInstanceID = item.ItemInstanceId;
+                                break;
+                            case "WeakRemoval":
+                                PlayerData.WeakRemovalCharges = (int)item.RemainingUses;
+                                PlayerData.WeakRemovalInstanceID = item.ItemInstanceId;
+                                break;
+                        }
+                    }
+                }
+                    
+                GetActiveCannon();
+                GetActiveCostume();
+                StageTMP.text = PlayerData.CurrentStage.ToString();
+                PlayerData.Optibit = resultCallback.VirtualCurrency["OP"];
+                PlayerData.EnergyCount = resultCallback.VirtualCurrency["EN"];
+                PlayerData.NormalFragments = resultCallback.VirtualCurrency["NF"];
+                PlayerData.RareFragments = resultCallback.VirtualCurrency["RF"];
+                PlayerData.EpicFragments = resultCallback.VirtualCurrency["EF"];
+                PlayerData.LegendFragments = resultCallback.VirtualCurrency["LF"];
+                DisplayOptibits();
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error,
+                    InitializeLobby,
+                    () => ProcessError(errorCallback.ErrorMessage));
+            });
+    }    
     public void GetActiveCannon()
     {
         foreach (CustomWeaponData weapon in PlayerData.OwnedWeapons)
             if (weapon.WeaponInstanceID == PlayerData.ActiveWeaponID)
             {
-                PlayerData.ActiveWeapon = weapon.BaseWeaponData;
+                PlayerData.ActiveCustomWeapon = weapon;
+                CurrentCannonImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentSprite;
+                CurrentCannonBigImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentBigSprite;
+                CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName;
+                CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage).ToString();
+                CurrentCannonAbilitiesTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage.ToString();
+                CurrentCannonAmmoTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.StartingAmmo.ToString();
+                CurrentCannonAccuracyTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.Accuracy.ToString();
+                CurrentCannonAbilitiesTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.Abilities;
                 break;
             }
-        SetOptiCannon(PlayerData.ActiveWeapon.EquippedSprite);
+        SetOptiCannon(PlayerData.ActiveCustomWeapon.BaseWeaponData.EquippedSprite);
     }
     public void GetActiveCostume()
     {
-        if(PlayerData.ActiveConstumeInstanceID != "")
+        if(PlayerData.ActiveConstumeInstanceID != "NONE")
         {
             foreach (CustomCostumeData costume in PlayerData.OwnedCostumes)
                 if (costume.CostumeInstanceID == PlayerData.ActiveConstumeInstanceID)
@@ -202,7 +306,16 @@ public class LobbyCore : MonoBehaviour
             OptiLobbyCostume.gameObject.SetActive(false);
             OptiEquipCostume.gameObject.SetActive(false);
         }
+    }
 
+    public void DisplayOptibits()
+    {
+        CoreOptibitTMP.text = PlayerData.Optibit.ToString();
+        ShopOptibitTMP.text = PlayerData.Optibit.ToString();
+        if (PlayerData.Optibit >= 100 + (PlayerData.ActiveCustomWeapon.BonusDamage * 50))
+            UpgradeCannonBtn.interactable = true;
+        else
+            UpgradeCannonBtn.interactable = false;
     }
     #endregion
 
@@ -307,18 +420,65 @@ public class LobbyCore : MonoBehaviour
             ProcessBuyButton();
             DisplayOptibits();
         }
+        else
+        {
+            DisplayLoadingPanel();
+
+            PurchaseItemRequest purchaseItem = new PurchaseItemRequest();
+            purchaseItem.CatalogVersion = "Consumables";
+            purchaseItem.ItemId = GetConsumableId(ShopIndex);
+            purchaseItem.Price = CurrentItemCost;
+            purchaseItem.VirtualCurrency = "OP";
+
+            PlayFabClientAPI.PurchaseItem(purchaseItem,
+                resultCallback =>
+                {
+                    failedCallbackCounter = 0;
+                    switch (ShopIndex)
+                    {
+                        case 0:
+                            PlayerData.BreakRemovalCharges++;
+                            break;
+                        case 1:
+                            PlayerData.BurnRemovalCharges++;
+                            break;
+                        case 2:
+                            PlayerData.ConfuseRemovalCharges++;
+                            break;
+                        case 3:
+                            PlayerData.FreezeRemovalCharges++;
+                            break;
+                        case 4:
+                            PlayerData.HealCharges++;
+                            break;
+                        case 5:
+                            PlayerData.ParalyzeRemovalCharges++;
+                            break;
+                        case 6:
+                            PlayerData.WeakRemovalCharges++;
+                            break;
+                    }
+                    PlayerData.Optibit -= CurrentItemCost;
+                    ProcessBuyButton();
+                    DisplayOptibits();
+                    HideLoadingPanel();
+                },
+                errorCallback =>
+                {
+                    ErrorCallback(errorCallback.Error,
+                    PurchaseCurrentItem,
+                    () => ProcessError(errorCallback.ErrorMessage));
+                });
+        }
     }
     #endregion
 
     #region INVENTORY
     public void InitializeInventory()
     {
-        if (GameManager.Instance.DebugMode)
-        {
-            DisplayedInventoryImage.gameObject.SetActive(false);
-            InventoryItemNameTMP.gameObject.SetActive(false);
-            RectanglePanel.SetActive(false);
-        }
+        DisplayedInventoryImage.gameObject.SetActive(false);
+        InventoryItemNameTMP.gameObject.SetActive(false);
+        RectanglePanelInventory.SetActive(false);
     }
 
     public void SelectBreakRemove()
@@ -407,36 +567,30 @@ public class LobbyCore : MonoBehaviour
         RectanglePanel.SetActive(false);
         CraftBtn.interactable = false;
         FragmentIndex = 0;
-        if (GameManager.Instance.DebugMode)
-        {
-            NormalFragmentCountTMP.text = PlayerData.NormalFragments.ToString();
-            if (PlayerData.NormalFragments > 0)
-                NormalFragmentBtn.interactable = true;
-            else
-                NormalFragmentBtn.interactable = false;
 
-            RareFragmentCountTMP.text = PlayerData.RareFragments.ToString();
-            if (PlayerData.RareFragments > 0)
-                RareFragmentBtn.interactable = true;
-            else
-                RareFragmentBtn.interactable = false;
-
-            EpicFragmentCountTMP.text = PlayerData.EpicFragments.ToString();
-            if (PlayerData.EpicFragments > 0)
-                EpicFragmentBtn.interactable = true;
-            else
-                EpicFragmentBtn.interactable = false;
-
-            LegendFragmentCountTMP.text = PlayerData.LegendFragments.ToString();
-            if (PlayerData.LegendFragments > 0)
-                LegendFragmentBtn.interactable = true;
-            else
-                LegendFragmentBtn.interactable = false;
-        }
+        NormalFragmentCountTMP.text = PlayerData.NormalFragments.ToString();
+        if (PlayerData.NormalFragments > 0)
+            NormalFragmentBtn.interactable = true;
         else
-        {
+            NormalFragmentBtn.interactable = false;
 
-        }
+        RareFragmentCountTMP.text = PlayerData.RareFragments.ToString();
+        if (PlayerData.RareFragments > 0)
+            RareFragmentBtn.interactable = true;
+        else
+            RareFragmentBtn.interactable = false;
+
+        EpicFragmentCountTMP.text = PlayerData.EpicFragments.ToString();
+        if (PlayerData.EpicFragments > 0)
+            EpicFragmentBtn.interactable = true;
+        else
+            EpicFragmentBtn.interactable = false;
+
+        LegendFragmentCountTMP.text = PlayerData.LegendFragments.ToString();
+        if (PlayerData.LegendFragments > 0)
+            LegendFragmentBtn.interactable = true;
+        else
+            LegendFragmentBtn.interactable = false;
     }
     public void SelectNormalFragment()
     {
@@ -448,7 +602,7 @@ public class LobbyCore : MonoBehaviour
         SelectedFragmentTMP.text = PlayerData.NormalFragments + "/100";
         RectanglePanelFragmentsOwnedTMP.text = PlayerData.NormalFragments + "/100";
         RectanglePanelDescriptionTMP.text = "Used to create a Random Normal grade cannon (C Rank)";
-        ProcessCraftBtn(PlayerData.NormalFragments, 100);
+        ProcessCraftBtn(PlayerData.NormalFragments, GetFragmentPrice(FragmentIndex));
     }
     public void SelectRareFragment()
     {
@@ -460,7 +614,7 @@ public class LobbyCore : MonoBehaviour
         SelectedFragmentTMP.text = PlayerData.RareFragments + "/125";
         RectanglePanelFragmentsOwnedTMP.text = PlayerData.RareFragments + "/125";
         RectanglePanelDescriptionTMP.text = "Used to create a Rare grade cannon (B Rank)";
-        ProcessCraftBtn(PlayerData.RareFragments, 125);
+        ProcessCraftBtn(PlayerData.RareFragments, GetFragmentPrice(FragmentIndex));
     }
     public void SelectEpicFragment()
     {
@@ -472,7 +626,7 @@ public class LobbyCore : MonoBehaviour
         SelectedFragmentTMP.text = PlayerData.EpicFragments + "/150";
         RectanglePanelFragmentsOwnedTMP.text = PlayerData.EpicFragments + "/150";
         RectanglePanelDescriptionTMP.text = "Used to create an Epi grade cannon (A Rank)";
-        ProcessCraftBtn(PlayerData.NormalFragments, 150);
+        ProcessCraftBtn(PlayerData.NormalFragments, GetFragmentPrice(FragmentIndex));
     }
     public void SelectLegendFragment()
     {
@@ -484,7 +638,7 @@ public class LobbyCore : MonoBehaviour
         SelectedFragmentTMP.text = PlayerData.LegendFragments + "/200";
         RectanglePanelFragmentsOwnedTMP.text = PlayerData.LegendFragments + "/200";
         RectanglePanelDescriptionTMP.text = "Used to create a Legend grade cannon (S Rank)";
-        ProcessCraftBtn(PlayerData.LegendFragments, 200);
+        ProcessCraftBtn(PlayerData.LegendFragments, GetFragmentPrice(FragmentIndex));
     }
 
     public void CraftNewWeapon()
@@ -494,10 +648,10 @@ public class LobbyCore : MonoBehaviour
             switch (FragmentIndex)
             {
                 case 1:
-                    PlayerData.NormalFragments -= 100;
+                    PlayerData.NormalFragments -= GetFragmentPrice(FragmentIndex);
                     SelectedFragmentTMP.text = PlayerData.NormalFragments + "/100";
                     RectanglePanelFragmentsOwnedTMP.text = PlayerData.NormalFragments + "/100";
-                    ProcessCraftBtn(PlayerData.NormalFragments, 100);
+                    ProcessCraftBtn(PlayerData.NormalFragments, GetFragmentPrice(FragmentIndex));
                     for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
                     {
                         if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
@@ -510,10 +664,10 @@ public class LobbyCore : MonoBehaviour
                     }
                     break;
                 case 2:
-                    PlayerData.RareFragments -= 125;
+                    PlayerData.RareFragments -= GetFragmentPrice(FragmentIndex);
                     SelectedFragmentTMP.text = PlayerData.RareFragments + "/125";
                     RectanglePanelFragmentsOwnedTMP.text = PlayerData.RareFragments + "/125";
-                    ProcessCraftBtn(PlayerData.RareFragments, 125);
+                    ProcessCraftBtn(PlayerData.RareFragments, GetFragmentPrice(FragmentIndex));
                     for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
                     {
                         if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
@@ -526,10 +680,10 @@ public class LobbyCore : MonoBehaviour
                     }
                     break;
                 case 3:
-                    PlayerData.EpicFragments -= 150;
+                    PlayerData.EpicFragments -= GetFragmentPrice(FragmentIndex);
                     SelectedFragmentTMP.text = PlayerData.EpicFragments + "/150";
                     RectanglePanelFragmentsOwnedTMP.text = PlayerData.EpicFragments + "/150";
-                    ProcessCraftBtn(PlayerData.EpicFragments, 150);
+                    ProcessCraftBtn(PlayerData.EpicFragments, GetFragmentPrice(FragmentIndex));
                     for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
                     {
                         if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
@@ -542,10 +696,10 @@ public class LobbyCore : MonoBehaviour
                     }
                     break;
                 case 4:
-                    PlayerData.LegendFragments -= 200;
+                    PlayerData.LegendFragments -= GetFragmentPrice(FragmentIndex);
                     SelectedFragmentTMP.text = PlayerData.LegendFragments + "/200";
                     RectanglePanelFragmentsOwnedTMP.text = PlayerData.LegendFragments + "/200";
-                    ProcessCraftBtn(PlayerData.LegendFragments, 200);
+                    ProcessCraftBtn(PlayerData.LegendFragments, GetFragmentPrice(FragmentIndex));
                     for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
                     {
                         if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
@@ -559,6 +713,62 @@ public class LobbyCore : MonoBehaviour
                     break;
             }
         }
+        else
+        {
+            DisplayLoadingPanel();
+            PurchaseItemRequest purchaseItem = new PurchaseItemRequest();
+            purchaseItem.CatalogVersion = "Cannons";
+            purchaseItem.ItemId = GetFragmentOutcome(FragmentIndex).ThisWeaponCode.ToString();
+            purchaseItem.Price = GetFragmentPrice(FragmentIndex);
+            purchaseItem.VirtualCurrency = GetFragmentId(FragmentIndex);
+
+            PlayFabClientAPI.PurchaseItem(purchaseItem,
+                resultCallback =>
+                {
+                    failedCallbackCounter = 0;
+                    UpdateFragmentsDisplay();
+                    for(int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
+                    {
+                        if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
+                        {
+                            PlayerData.OwnedWeapons[i].WeaponInstanceID = resultCallback.Items[0].ItemInstanceId;
+                            PlayerData.OwnedWeapons[i].BaseWeaponData = GameManager.Instance.InventoryManager.GetProperWeaponData(resultCallback.Items[0].ItemId);
+                            break;
+                        }
+                    }
+                    CraftNewWeaponCloudscript(resultCallback.Items[0].ItemInstanceId);
+                },
+                errorCallback =>
+                {
+                    ErrorCallback(errorCallback.Error,
+                        CraftNewWeapon,
+                        () => ProcessError(errorCallback.ErrorMessage));
+                });
+        }    
+    }
+
+    private void CraftNewWeaponCloudscript(string newCannonId)
+    {
+        PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest() 
+        {
+            FunctionName = "CraftNewWeapon",
+            FunctionParameter = new { localLUID = PlayerData.LUID, newCannonId = newCannonId},
+            GeneratePlayStreamEvent = true
+        },
+        resultCallback =>
+        {
+            if (GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "messageValue") == "Success")
+            {
+                HideLoadingPanel();
+
+            }
+        },
+        errorCallback =>
+        {
+            ErrorCallback(errorCallback.Error,
+                        () => CraftNewWeaponCloudscript(newCannonId),
+                        () => ProcessError(errorCallback.ErrorMessage));
+        });
     }
     #endregion
 
@@ -718,6 +928,8 @@ public class LobbyCore : MonoBehaviour
         // LEFT
         WeaponLeftImage.sprite = ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].BaseWeaponData.InfoSprite;
         LeftWeaponNameTMP.text = ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].BaseWeaponData.WeaponName;
+        if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].BonusDamage > 0)
+            LeftWeaponNameTMP.text += " + " + ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].BonusDamage;
         if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].WeaponInstanceID == PlayerData.ActiveWeaponID)
             EquipLeftWeaponBtn.interactable = false;
         else
@@ -729,6 +941,8 @@ public class LobbyCore : MonoBehaviour
             WeaponRightImage.gameObject.SetActive(true);
             WeaponRightImage.sprite = ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].BaseWeaponData.InfoSprite;
             RightWeaponNameTMP.text = ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].BaseWeaponData.WeaponName;
+            if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].BonusDamage > 0)
+                RightWeaponNameTMP.text += " + " + ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].BonusDamage;
             if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].WeaponInstanceID == PlayerData.ActiveWeaponID)
                 EquipRightWeaponBtn.interactable = false;
             else
@@ -743,10 +957,9 @@ public class LobbyCore : MonoBehaviour
         if (GameManager.Instance.DebugMode)
         {
             PlayerData.ActiveWeaponID = ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].WeaponInstanceID;
-            PlayerData.ActiveWeapon = ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].BaseWeaponData;
+            GetActiveCannon();
             EquipLeftWeaponBtn.interactable = false;
             EquipRightWeaponBtn.interactable = true;
-            SetOptiCannon(PlayerData.ActiveWeapon.EquippedSprite);
         }
         else
         {
@@ -759,10 +972,9 @@ public class LobbyCore : MonoBehaviour
         if (GameManager.Instance.DebugMode)
         {
             PlayerData.ActiveWeaponID = ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].WeaponInstanceID;
-            PlayerData.ActiveWeapon = ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].BaseWeaponData;
+            GetActiveCannon();
             EquipLeftWeaponBtn.interactable = true;
             EquipRightWeaponBtn.interactable = false;
-            SetOptiCannon(PlayerData.ActiveWeapon.EquippedSprite);
         }
         else
         {
@@ -772,19 +984,56 @@ public class LobbyCore : MonoBehaviour
     #endregion
     #endregion
 
+    #region CURRENT CANNON
+    public void UpgradeCannon()
+    {
+        if(GameManager.Instance.DebugMode)
+        {
+            PlayerData.Optibit -= 100 + (PlayerData.ActiveCustomWeapon.BonusDamage * 50);
+            PlayerData.ActiveCustomWeapon.BonusDamage++;
+            CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName + " + " + PlayerData.ActiveCustomWeapon.BonusDamage;
+            CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage).ToString();
+        }
+        DisplayOptibits();
+    }
+    #endregion 
+
     #region UTILITY
     public void OpenCombatScene()
     {
         GameManager.Instance.SceneController.CurrentScene = "CombatScene";
     }
 
-    public void DisplayOptibits()
+    public void DisplayLoadingPanel()
     {
-        if (GameManager.Instance.DebugMode)
+        LoadingPanel.SetActive(true);
+        GameManager.Instance.PanelActivated = true;
+    }
+
+    public void HideLoadingPanel()
+    {
+        LoadingPanel.SetActive(false);
+        GameManager.Instance.PanelActivated = false;
+    }
+
+    private void ErrorCallback(PlayFabErrorCode errorCode, Action restartAction, Action errorAction)
+    {
+        if (errorCode == PlayFabErrorCode.ConnectionError)
         {
-            CoreOptibitTMP.text = PlayerData.Optibit.ToString();
-            ShopOptibitTMP.text = PlayerData.Optibit.ToString();
+            failedCallbackCounter++;
+            if (failedCallbackCounter >= 5)
+                ProcessError("Connectivity error. Please connect to strong internet");
+            else
+                restartAction();
         }
+        else
+            errorAction();
+    }
+
+    private void ProcessError(string errorMessage)
+    {
+        HideLoadingPanel();
+        GameManager.Instance.DisplayErrorPanel(errorMessage);
     }
 
     private void ProcessBuyButton()
@@ -826,6 +1075,110 @@ public class LobbyCore : MonoBehaviour
         EquipRightCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
         OptiLobbyCostume.gameObject.SetActive(false);
         OptiEquipCostume.gameObject.SetActive(false);
+    }
+
+    private string GetConsumableId(int _value)
+    {
+        switch(_value)
+        {
+            case 0:
+                return "BreakRemoval";
+            case 1:
+                return "BurnRemoval";
+            case 2:
+                return "ConfuseRemoval";
+            case 3:
+                return "FreezeRemoval";
+            case 4:
+                return "HealCharge";
+            case 5:
+                return "ParalyzeRemoval";
+            case 6:
+                return "WeakRemoval";
+            default:
+                return null;
+        }
+    }
+    
+    private string GetFragmentId(int _value)
+    {
+        switch(_value)
+        {
+            case 1:
+                return "NF";
+            case 2:
+                return "RF";
+            case 3:
+                return "EF";
+            case 4:
+                return "LF";
+            default:
+                return null;
+        }
+    }
+    private int GetFragmentPrice(int _value)
+    {
+        switch (_value)
+        {
+            case 1:
+                return 100;
+            case 2:
+                return 125;
+            case 3:
+                return 150;
+            case 4:
+                return 200;
+            default:
+                return 0;
+        }
+    }
+    private WeaponData GetFragmentOutcome(int _value)
+    {
+        switch(_value)
+        {
+            case 1:
+                return NormalWeapons[UnityEngine.Random.Range(0, NormalWeapons.Count)];
+            case 2:
+                return RareWeapons[UnityEngine.Random.Range(0, RareWeapons.Count)];
+            case 3:
+                return EpicWeapons[UnityEngine.Random.Range(0, EpicWeapons.Count)];
+            case 4:
+                return LegendWeapons[UnityEngine.Random.Range(0, LegendWeapons.Count)];
+            default:
+                return null;
+        }
+    }
+
+    private void UpdateFragmentsDisplay()
+    {
+        switch (FragmentIndex)
+        {
+            case 1:
+                PlayerData.NormalFragments -= GetFragmentPrice(FragmentIndex);
+                SelectedFragmentTMP.text = PlayerData.NormalFragments + "/100";
+                RectanglePanelFragmentsOwnedTMP.text = PlayerData.NormalFragments + "/100";
+                ProcessCraftBtn(PlayerData.NormalFragments, GetFragmentPrice(FragmentIndex));
+
+                break;
+            case 2:
+                PlayerData.RareFragments -= GetFragmentPrice(FragmentIndex);
+                SelectedFragmentTMP.text = PlayerData.RareFragments + "/125";
+                RectanglePanelFragmentsOwnedTMP.text = PlayerData.RareFragments + "/125";
+                ProcessCraftBtn(PlayerData.RareFragments, GetFragmentPrice(FragmentIndex));
+                break;
+            case 3:
+                PlayerData.EpicFragments -= GetFragmentPrice(FragmentIndex);
+                SelectedFragmentTMP.text = PlayerData.EpicFragments + "/150";
+                RectanglePanelFragmentsOwnedTMP.text = PlayerData.EpicFragments + "/150";
+                ProcessCraftBtn(PlayerData.EpicFragments, GetFragmentPrice(FragmentIndex));
+                break;
+            case 4:
+                PlayerData.LegendFragments -= GetFragmentPrice(FragmentIndex);
+                SelectedFragmentTMP.text = PlayerData.LegendFragments + "/200";
+                RectanglePanelFragmentsOwnedTMP.text = PlayerData.LegendFragments + "/200";
+                ProcessCraftBtn(PlayerData.LegendFragments, GetFragmentPrice(FragmentIndex));
+                break;
+        }
     }
     #endregion
 }

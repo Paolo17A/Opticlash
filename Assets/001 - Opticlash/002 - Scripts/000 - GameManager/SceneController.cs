@@ -60,6 +60,9 @@ public class SceneController : MonoBehaviour
     [SerializeField] private Slider loadingSlider;
     [SerializeField] private CanvasGroup loadingCG;
 
+    [Header("SPLASH")]
+    [SerializeField] private GameObject splashScreen;
+
     [Header("BACKGROUND SPRITES")]
     [SerializeField] private Image backgroundImage;
     [SerializeField] private List<Sprite> backgroundSprites;
@@ -74,6 +77,7 @@ public class SceneController : MonoBehaviour
     [ReadOnly][SerializeField] private string previousScene;
     [ReadOnly] [SerializeField] private bool actionPass;
     [ReadOnly] [SerializeField] private float totalSceneProgress;
+    [ReadOnly][SerializeField] private bool splashOver;
 
     //  ============================================
 
@@ -84,6 +88,7 @@ public class SceneController : MonoBehaviour
 
     private void Awake()
     {
+        StartCoroutine(DisplaySplash());
         onSceneChange += SceneChange;
     }
 
@@ -97,8 +102,18 @@ public class SceneController : MonoBehaviour
         StartCoroutine(Loading());
     }
 
+    public IEnumerator DisplaySplash()
+    {
+        splashScreen.SetActive(true);
+        LeanTween.alphaCanvas(splashScreen.GetComponent<CanvasGroup>(), 0f, 5).setEase(easeType);
+        yield return new WaitWhile(() => splashScreen.GetComponent<CanvasGroup>().alpha != 0f);
+        splashScreen.SetActive(false);
+        splashOver = true;
+    }
+
     public IEnumerator Loading()
     {
+        yield return new WaitUntil(() => splashOver);
         int randomIndex = UnityEngine.Random.Range(0, backgroundSprites.Count);
         backgroundImage.sprite = backgroundSprites[randomIndex];
         Time.timeScale = 0f;

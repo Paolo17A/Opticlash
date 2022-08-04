@@ -123,6 +123,9 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\GameManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\001 - Entry\LoginCore.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\ConsoleDebugger.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\InventoryManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\003 - TextMesh Pro\Shaders\TMPro.cginc" />
@@ -813,9 +816,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="PlayFabSDKEditor.csproj">
+      <Project>{CE1F3717-682F-BB1D-F4E3-672A9D3C0117}</Project>
+      <Name>PlayFabSDKEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayFabEditorExtensions.csproj">
+      <Project>{95DE0647-B5CC-3E24-BE43-25C6339535CA}</Project>
+      <Name>PlayFabEditorExtensions</Name>
+    </ProjectReference>
     <ProjectReference Include="NativeShare.Runtime.csproj">
       <Project>{7F1AA562-15B8-7E1F-B950-91A1B2227E9D}</Project>
       <Name>NativeShare.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayFab.csproj">
+      <Project>{9A5977E4-1FA1-2C5A-AC2F-9B7B38A4CE8E}</Project>
+      <Name>PlayFab</Name>
     </ProjectReference>
     <ProjectReference Include="NativeShare.Editor.csproj">
       <Project>{86CC21AC-4098-62B4-3605-9D83F7B37768}</Project>

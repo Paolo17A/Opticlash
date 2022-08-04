@@ -17,10 +17,12 @@ MonoBehaviour:
   <BaseDamage>k__BackingField: 7.5
   <Accuracy>k__BackingField: 91
   <StartingAmmo>k__BackingField: 250
-  <SideEffects>k__BackingField: 07000000
-  <SideEffectsRate>k__BackingField: 14000000
-  <SideEffectsFrequency>k__BackingField: 05000000
-  <SideEffectsDuration>k__BackingField: 01000000
+  <Abilities>k__BackingField: 25 % chance to shoot 170% stronger bullet in every
+    3 turns with 20% chance to Burn enemy for 5 turns
+  <SideEffects>k__BackingField: 06000000
+  <SideEffectsRate>k__BackingField: 5a000000
+  <SideEffectsFrequency>k__BackingField: 01000000
+  <SideEffectsDuration>k__BackingField: 05000000
   <HasCrit>k__BackingField: 1
   <CritMultiplier>k__BackingField: 1.7
   <CritRate>k__BackingField: 25
@@ -34,4 +36,6 @@ MonoBehaviour:
   <FrontSprite>k__BackingField: {fileID: 21300000, guid: c5b7db17d816b0549aae8ff688cad2f2, type: 3}
   <EquippedSprite>k__BackingField: {fileID: 21300000, guid: 0a1d14e1a3bf6214cbff9b99081a42df, type: 3}
   <InfoSprite>k__BackingField: {fileID: 21300000, guid: d23886b55c516e741b76a8d82da6ea6c, type: 3}
+  <CurrentSprite>k__BackingField: {fileID: 21300000, guid: be1d1936e151c7b4da15c4abb5ffd77a, type: 3}
+  <CurrentBigSprite>k__BackingField: {fileID: 21300000, guid: 41bce3294fa164046b106dc0c70e520a, type: 3}
   <Ammo>k__BackingField: {fileID: 21300000, guid: 8f3b04fe7911d9046acfa56de9f1392a, type: 3}
