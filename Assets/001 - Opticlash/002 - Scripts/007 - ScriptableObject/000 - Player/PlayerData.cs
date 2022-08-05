@@ -67,7 +67,7 @@ public class PlayerData : ScriptableObject
     [field: SerializeField] public int SocMedShared { get; set; }
     [field: SerializeField] public int ItemsUsed { get; set; }
     [field: SerializeField] public int MonstersKilled { get; set; }
-    [field: SerializeField] public int BossesKilled { get; set; }
+    [field: SerializeField] public int LevelsWon { get; set; }
     [field: SerializeField] public int DailyQuestClaimed { get; set; }
 
     //============================================================================

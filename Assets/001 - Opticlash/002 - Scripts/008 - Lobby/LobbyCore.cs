@@ -312,6 +312,11 @@ public class LobbyCore : MonoBehaviour
     {
         CoreOptibitTMP.text = PlayerData.Optibit.ToString();
         ShopOptibitTMP.text = PlayerData.Optibit.ToString();
+        CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName;
+        if(PlayerData.ActiveCustomWeapon.BonusDamage != 0)
+            CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName + " + " + PlayerData.ActiveCustomWeapon.BonusDamage;
+
+        CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage).ToString();
         if (PlayerData.Optibit >= 100 + (PlayerData.ActiveCustomWeapon.BonusDamage * 50))
             UpgradeCannonBtn.interactable = true;
         else
@@ -438,24 +443,31 @@ public class LobbyCore : MonoBehaviour
                     {
                         case 0:
                             PlayerData.BreakRemovalCharges++;
+                            PlayerData.BreakRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
                             break;
                         case 1:
                             PlayerData.BurnRemovalCharges++;
+                            PlayerData.BurnRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
                             break;
                         case 2:
                             PlayerData.ConfuseRemovalCharges++;
+                            PlayerData.ConfuseRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
                             break;
                         case 3:
                             PlayerData.FreezeRemovalCharges++;
+                            PlayerData.FreezeRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
                             break;
                         case 4:
                             PlayerData.HealCharges++;
+                            PlayerData.HealInstanceID = resultCallback.Items[0].ItemInstanceId;
                             break;
                         case 5:
                             PlayerData.ParalyzeRemovalCharges++;
+                            PlayerData.ParalyzeRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
                             break;
                         case 6:
                             PlayerData.WeakRemovalCharges++;
+                            PlayerData.WeakRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
                             break;
                     }
                     PlayerData.Optibit -= CurrentItemCost;
@@ -805,7 +817,13 @@ public class LobbyCore : MonoBehaviour
             NextCostumePageBtn.interactable = true;
         else
             NextCostumePageBtn.interactable = false;
-        DisplayCurrentPageCostumes();
+        if(ActualCostumesOwned.Count > 0)
+            DisplayCurrentPageCostumes();
+        else
+        {
+            CostumeLeftImage.gameObject.SetActive(false);
+            CostumeRightImage.gameObject.SetActive(false);
+        }
     }
 
     #region COSTUME
@@ -874,7 +892,30 @@ public class LobbyCore : MonoBehaviour
         }
         else
         {
-
+            if (ActualCostumesOwned[(2 * CostumePageIndex) - 2].CostumeInstanceID == PlayerData.ActiveConstumeInstanceID)
+                UnequipCostume();
+            else
+            {
+                UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
+                updateUserData.Data = new Dictionary<string, string>();
+                updateUserData.Data.Add("ActiveCostume", PlayerData.ActiveConstumeInstanceID = ActualCostumesOwned[(2 * CostumePageIndex) - 2].CostumeInstanceID);
+                PlayFabClientAPI.UpdateUserData(updateUserData,
+                    resultCallback =>
+                    {
+                        PlayerData.ActiveConstumeInstanceID = ActualCostumesOwned[(2 * CostumePageIndex) - 2].CostumeInstanceID;
+                        PlayerData.ActiveCostume = ActualCostumesOwned[(2 * CostumePageIndex) - 2].BaseCostumeData;
+                        EquipLeftCostumeBtn.GetComponent<Image>().sprite = UnequipSprite;
+                        EquipRightCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
+                        SetOptiCostume(PlayerData.ActiveCostume.LobbyCostumeSprite);
+                    },
+                    errorCallback =>
+                    {
+                        ErrorCallback(errorCallback.Error,
+                            EquipLeftCostume,
+                            () => ProcessError(errorCallback.ErrorMessage));
+                    });
+                
+            }
         }
     }
 
@@ -895,7 +936,30 @@ public class LobbyCore : MonoBehaviour
         }
         else
         {
+            if (ActualCostumesOwned[(2 * CostumePageIndex) - 1].CostumeInstanceID == PlayerData.ActiveConstumeInstanceID)
+                UnequipCostume();
+            else
+            {
+                UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
+                updateUserData.Data = new Dictionary<string, string>();
+                updateUserData.Data.Add("ActiveCostume", PlayerData.ActiveConstumeInstanceID = ActualCostumesOwned[(2 * CostumePageIndex) - 1].CostumeInstanceID);
+                PlayFabClientAPI.UpdateUserData(updateUserData,
+                    resultCallback =>
+                    {
+                        PlayerData.ActiveConstumeInstanceID = ActualCostumesOwned[(2 * CostumePageIndex) - 1].CostumeInstanceID;
+                        PlayerData.ActiveCostume = ActualCostumesOwned[(2 * CostumePageIndex) - 1].BaseCostumeData;
+                        EquipLeftCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
+                        EquipRightCostumeBtn.GetComponent<Image>().sprite = UnequipSprite;
+                        SetOptiCostume(PlayerData.ActiveCostume.LobbyCostumeSprite);
+                    },
+                    errorCallback =>
+                    {
+                        ErrorCallback(errorCallback.Error,
+                            EquipRightCostume,
+                            () => ProcessError(errorCallback.ErrorMessage));
+                    });
 
+            }
         }
     }
     #endregion
@@ -963,7 +1027,25 @@ public class LobbyCore : MonoBehaviour
         }
         else
         {
+            UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
+            updateUserData.Data = new Dictionary<string, string>();
+            updateUserData.Data.Add("ActiveCannon", PlayerData.ActiveWeaponID = ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].WeaponInstanceID);
 
+            PlayFabClientAPI.UpdateUserData(updateUserData,
+                resultCallback =>
+                {
+                    failedCallbackCounter = 0;
+                    PlayerData.ActiveWeaponID = ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].WeaponInstanceID;
+                    GetActiveCannon();
+                    EquipLeftWeaponBtn.interactable = false;
+                    EquipRightWeaponBtn.interactable = true;
+                },
+                errorCallback =>
+                {
+                    ErrorCallback(errorCallback.Error,
+                        EquipLeftWeapon,
+                        () => ProcessError(errorCallback.ErrorMessage));
+                });
         }
     }
 
@@ -978,7 +1060,25 @@ public class LobbyCore : MonoBehaviour
         }
         else
         {
+            UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
+            updateUserData.Data = new Dictionary<string, string>();
+            updateUserData.Data.Add("ActiveCannon", PlayerData.ActiveWeaponID = ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].WeaponInstanceID);
 
+            PlayFabClientAPI.UpdateUserData(updateUserData,
+                resultCallback =>
+                {
+                    failedCallbackCounter = 0;
+                    PlayerData.ActiveWeaponID = ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].WeaponInstanceID;
+                    GetActiveCannon();
+                    EquipLeftWeaponBtn.interactable = true;
+                    EquipRightWeaponBtn.interactable = false;
+                },
+                errorCallback =>
+                {
+                    ErrorCallback(errorCallback.Error,
+                        EquipRightWeapon,
+                        () => ProcessError(errorCallback.ErrorMessage));
+                });
         }
     }
     #endregion
@@ -993,6 +1093,39 @@ public class LobbyCore : MonoBehaviour
             PlayerData.ActiveCustomWeapon.BonusDamage++;
             CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName + " + " + PlayerData.ActiveCustomWeapon.BonusDamage;
             CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage).ToString();
+        }
+        else
+        {
+            PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
+            {
+                FunctionName = "UpgradeActiveWeapon",
+                FunctionParameter = new 
+                { 
+                    localLUID = PlayerData.LUID, 
+                    cannonId = PlayerData.ActiveWeaponID, 
+                    newBonusValue = (PlayerData.ActiveCustomWeapon.BonusDamage + 1).ToString(),
+                    upgradeCost = 100 + (PlayerData.ActiveCustomWeapon.BonusDamage * 50)
+                },
+                GeneratePlayStreamEvent = true
+            },
+            resultCallback =>
+            {
+                Debug.Log(JsonConvert.SerializeObject(resultCallback.FunctionResult));
+                if(GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "messageValue") == "Success")
+                {
+                    failedCallbackCounter = 0;
+                    PlayerData.Optibit -= 100 + (PlayerData.ActiveCustomWeapon.BonusDamage * 50);
+                    PlayerData.ActiveCustomWeapon.BonusDamage++;
+                    CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName + " + " + PlayerData.ActiveCustomWeapon.BonusDamage;
+                    CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage).ToString();
+                }
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error,
+                    UpgradeCannon,
+                    () => ProcessError(errorCallback.ErrorMessage));
+            }); ;
         }
         DisplayOptibits();
     }
@@ -1069,12 +1202,38 @@ public class LobbyCore : MonoBehaviour
 
     private void UnequipCostume()
     {
-        PlayerData.ActiveConstumeInstanceID = "";
-        PlayerData.ActiveCostume = null;
-        EquipLeftCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
-        EquipRightCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
-        OptiLobbyCostume.gameObject.SetActive(false);
-        OptiEquipCostume.gameObject.SetActive(false);
+        if(GameManager.Instance.DebugMode)
+        {
+            PlayerData.ActiveConstumeInstanceID = "NONE";
+            PlayerData.ActiveCostume = null;
+            EquipLeftCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
+            EquipRightCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
+            OptiLobbyCostume.gameObject.SetActive(false);
+            OptiEquipCostume.gameObject.SetActive(false);
+        }
+        else
+        {
+            UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
+            updateUserData.Data = new Dictionary<string, string>();
+            updateUserData.Data.Add("ActiveCostume", "NONE");
+            PlayFabClientAPI.UpdateUserData(updateUserData,
+                resultCallback =>
+                {
+                    failedCallbackCounter = 0;
+                    PlayerData.ActiveConstumeInstanceID = "NONE";
+                    PlayerData.ActiveCostume = null;
+                    EquipLeftCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
+                    EquipRightCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
+                    OptiLobbyCostume.gameObject.SetActive(false);
+                    OptiEquipCostume.gameObject.SetActive(false);
+                },
+                errorCallback =>
+                {
+                    ErrorCallback(errorCallback.Error,
+                        UnequipCostume,
+                        () => ProcessError(errorCallback.ErrorMessage));   
+                });
+        }
     }
 
     private string GetConsumableId(int _value)

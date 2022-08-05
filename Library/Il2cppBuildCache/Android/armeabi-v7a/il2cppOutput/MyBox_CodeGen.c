@@ -375,10 +375,10 @@ static const Il2CppTokenRangePair s_rgctxIndices[1] =
 };
 static const Il2CppRGCTXDefinition s_rgctxValues[4] = 
 {
-	{ (Il2CppRGCTXDataType)2, 6379 },
-	{ (Il2CppRGCTXDataType)2, 677 },
-	{ (Il2CppRGCTXDataType)3, 30413 },
-	{ (Il2CppRGCTXDataType)1, 677 },
+	{ (Il2CppRGCTXDataType)2, 6409 },
+	{ (Il2CppRGCTXDataType)2, 683 },
+	{ (Il2CppRGCTXDataType)3, 30476 },
+	{ (Il2CppRGCTXDataType)1, 683 },
 };
 extern const CustomAttributesCacheGenerator g_MyBox_AttributeGenerators[];
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_MyBox_CodeGenModule;

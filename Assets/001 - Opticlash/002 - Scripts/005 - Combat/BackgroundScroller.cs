@@ -26,28 +26,44 @@ public class BackgroundScroller : MonoBehaviour
 
     void Update()
     {
-        FrontPanel.transform.Translate(Vector3.left * Time.deltaTime);
-        LastPanel.transform.Translate(Vector3.left * Time.deltaTime);
-        if (LastPanel.transform.position.x <= windowConstant)
+        if(GameManager.Instance.SceneController.CurrentScene == "CombatScene")
         {
-            FrontPanel.transform.position = new Vector3(spawnConstant, FrontPanel.transform.position.y, FrontPanel.transform.position.z);
-            holder = FrontPanel;
-            FrontPanel = LastPanel;
-            LastPanel = holder;
-            holder = null;
-        }
-
-        if(CombatCore.CurrentCombatState == CombatCore.CombatState.WALKING)
-        {
-            FrontStage.transform.Translate(Vector3.left * Time.deltaTime);
-            LastStage.transform.Translate(Vector3.left * Time.deltaTime);
-            if (LastStage.transform.position.x <= windowConstant)
+            FrontPanel.transform.Translate(Vector3.left * Time.deltaTime);
+            LastPanel.transform.Translate(Vector3.left * Time.deltaTime);
+            if (LastPanel.transform.position.x <= windowConstant)
             {
-                FrontStage.transform.position = new Vector3(spawnConstant, FrontStage.transform.position.y, FrontStage.transform.position.z);
-                stageHolder = FrontStage;
-                FrontStage = LastStage;
-                LastStage = stageHolder;
-                stageHolder = null;
+                FrontPanel.transform.position = new Vector3(spawnConstant, FrontPanel.transform.position.y, FrontPanel.transform.position.z);
+                holder = FrontPanel;
+                FrontPanel = LastPanel;
+                LastPanel = holder;
+                holder = null;
+            }
+
+            if (CombatCore.CurrentCombatState == CombatCore.CombatState.WALKING)
+            {
+                FrontStage.transform.Translate(Vector3.left * Time.deltaTime);
+                LastStage.transform.Translate(Vector3.left * Time.deltaTime);
+                if (LastStage.transform.position.x <= windowConstant)
+                {
+                    FrontStage.transform.position = new Vector3(spawnConstant, FrontStage.transform.position.y, FrontStage.transform.position.z);
+                    stageHolder = FrontStage;
+                    FrontStage = LastStage;
+                    LastStage = stageHolder;
+                    stageHolder = null;
+                }
+            }
+        }
+        else if (GameManager.Instance.SceneController.CurrentScene == "EntryScene")
+        {
+            FrontPanel.transform.Translate(Vector3.down * Time.deltaTime);
+            LastPanel.transform.Translate(Vector3.down * Time.deltaTime);
+            if (LastPanel.transform.position.y <= 0)
+            {
+                FrontPanel.transform.position = new Vector3(19, FrontPanel.transform.position.y, FrontPanel.transform.position.z);
+                holder = FrontPanel;
+                FrontPanel = LastPanel;
+                LastPanel = holder;
+                holder = null;
             }
         }
     }

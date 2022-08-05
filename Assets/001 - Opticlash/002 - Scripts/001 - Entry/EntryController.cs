@@ -9,12 +9,18 @@ public class EntryController : MonoBehaviour
         EntryCore.onEntryStateChange += EntryStateChange;
 
         GameManager.Instance.SceneController.ActionPass = true;
-        EntryCore.CurrentEntryState = EntryCore.EntryStates.PLAY;
+        EntryCore.CurrentEntryState = EntryCore.EntryStates.METHODS;
     }
 
     private void OnDisable()
     {
         EntryCore.onEntryStateChange -= EntryStateChange;
+    }
+
+    private void Start()
+    {
+        if (!GameManager.Instance.AudioManager.IsPlaying)
+            GameManager.Instance.AudioManager.SwitchToLoadingMusic();
     }
 
     private void EntryStateChange(object sender, EventArgs e)

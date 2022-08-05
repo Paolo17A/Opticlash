@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using PlayFab;
+using PlayFab.ClientModels;
+using Newtonsoft.Json;
 
 public class EnemyCombatController : MonoBehaviour
 {
@@ -115,6 +118,7 @@ public class EnemyCombatController : MonoBehaviour
     [field: SerializeField][field: ReadOnly] public bool IsCurrentEnemy { get; set; }
     [field:SerializeField][field: ReadOnly] private bool ShootingLaser { get; set; }
     [field: SerializeField][field: ReadOnly] private CharacterCombatController Opti { get; set; }
+    private int failedCallbackCounter;
     //========================================================================================
     #endregion
 
@@ -161,6 +165,41 @@ public class EnemyCombatController : MonoBehaviour
     {
         Debug.Log("Current enemy state: " + CurrentCombatState);
         EnemyAnim.SetInteger("index", (int)CurrentCombatState);
+
+        if(CurrentCombatState == CombatState.DYING)
+        {
+            CombatCore.PlayerData.MonstersKilled++;
+            if (!GameManager.Instance.DebugMode)
+                UpdateQuestData();
+        }
+    }
+
+    private void UpdateQuestData()
+    {
+        Dictionary<string, int> quests = new Dictionary<string, int>();
+        quests.Add("DailyCheckIn", CombatCore.PlayerData.DailyCheckIn);
+        quests.Add("SocMedShared", CombatCore.PlayerData.SocMedShared);
+        quests.Add("ItemsUsed", CombatCore.PlayerData.ItemsUsed);
+        quests.Add("MonstersKilled", CombatCore.PlayerData.MonstersKilled);
+        quests.Add("LevelsWon", CombatCore.PlayerData.LevelsWon);
+        quests.Add("DailyQuestClaimed", CombatCore.PlayerData.DailyQuestClaimed);
+
+        UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
+        updateUserData.Data = new Dictionary<string, string>();
+        updateUserData.Data.Add("Quests", JsonConvert.SerializeObject(quests));
+
+        PlayFabClientAPI.UpdateUserData(updateUserData,
+            resultCallback =>
+            {
+                failedCallbackCounter = 0;
+                Debug.Log("Quest data has been updated");
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error,
+                    UpdateQuestData,
+                    () => ProcessError(errorCallback.ErrorMessage));
+            });
     }
 
     private void ProcessMeleeAttack()
@@ -352,10 +391,6 @@ public class EnemyCombatController : MonoBehaviour
             if(CombatCore.SpawnedPlayer.CurrentSideEffect != SideEffect.NONE)
                 CombatCore.SpawnedPlayer.ProcessStatusEffectInstances();
 
-            if (IsBoss)
-                CombatCore.PlayerData.BossesKilled++;
-            else
-                CombatCore.PlayerData.MonstersKilled++;
             CombatCore.MonstersKilled++;
             IsCurrentEnemy = false;
             CurrentCombatState = CombatState.IDLE;
@@ -443,6 +478,26 @@ public class EnemyCombatController : MonoBehaviour
             DoneAttacking = false;
         else if (EnemyAttackType == AttackType.RANGED)
             CurrentCombatState = CombatState.ATTACKING;
+    }
+
+    private void ErrorCallback(PlayFabErrorCode errorCode, Action restartAction, Action errorAction)
+    {
+        if (errorCode == PlayFabErrorCode.ConnectionError)
+        {
+            failedCallbackCounter++;
+            if (failedCallbackCounter >= 5)
+                ProcessError("Connectivity error. Please connect to strong internet");
+            else
+                restartAction();
+        }
+        else
+            errorAction();
+    }
+
+    private void ProcessError(string errorMessage)
+    {
+        //HideLoadingPanel();
+        GameManager.Instance.DisplayErrorPanel(errorMessage);
     }
     #endregion
 }

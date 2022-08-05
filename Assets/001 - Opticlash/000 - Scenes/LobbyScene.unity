@@ -8928,13 +8928,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PlayerData>k__BackingField: {fileID: 11400000, guid: 3fdc035a0b4dc9945a5aac36fdd39207, type: 2}
+  <LobbyCore>k__BackingField: {fileID: 913910363}
   <QuestProgressSlider>k__BackingField: {fileID: 1061367316}
   <ClaimDailyQuest>k__BackingField: {fileID: 450943324}
   <DailyLogInTMP>k__BackingField: {fileID: 1826995182}
   <SocMedSharedTMP>k__BackingField: {fileID: 489012828}
   <ItemsUsedTMP>k__BackingField: {fileID: 1025661999}
   <MonstersKilledTMP>k__BackingField: {fileID: 1313028331}
-  <BossesKilledTMP>k__BackingField: {fileID: 1300781338}
+  <LevelsWonTMP>k__BackingField: {fileID: 1300781338}
   <ClaimQuestRewardBtn>k__BackingField: {fileID: 1124075593}
 --- !u!4 &682168677
 Transform:
@@ -9528,7 +9529,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bosses Killed
+  m_text: Levels Won
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14950,7 +14951,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14975,11 +14976,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: e6d88237b33b34443a2ba5032162f1c6, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillMethod: 0
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0

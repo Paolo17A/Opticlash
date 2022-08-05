@@ -62,6 +62,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUnitTests.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTSeq.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\001 - Entry\EntryController.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\ConsoleDebugger.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\003 - Weapon\WeaponData.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralUISpace.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\StatusController.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListeners.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\005 - Costume\CostumeData.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\ProjectileController.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\001 - Entry\LoginCore.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\000 - Player\PlayerData.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\006 - Camera\CameraScaler.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinePerformance.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\004 - Enemy\EnemyData.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\InventoryManager.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\009 - Quest\QuestCore.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\RouteController.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\003 - LevelSelect\LevelSelectController.cs" />
@@ -123,9 +126,6 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\GameManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
-    <Compile Include="Assets\001 - Opticlash\002 - Scripts\001 - Entry\LoginCore.cs" />
-    <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\ConsoleDebugger.cs" />
-    <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\InventoryManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\003 - TextMesh Pro\Shaders\TMPro.cginc" />

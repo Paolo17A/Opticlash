@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
+using PlayFab;
+using PlayFab.ClientModels;
 
 public class CombatCore : MonoBehaviour
 {

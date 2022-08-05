@@ -115,6 +115,14 @@ public class LoginCore : MonoBehaviour
                 PlayerData.ActiveConstumeInstanceID = GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "ActiveCostume");
                 PlayerData.CurrentStage = int.Parse(GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "CurrentStage"));
 
+                string quests = GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "Quests");
+                PlayerData.DailyCheckIn = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "DailyCheckIn"));
+                PlayerData.SocMedShared = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "SocMedShared"));
+                PlayerData.ItemsUsed = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "ItemsUsed"));
+                PlayerData.MonstersKilled = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "MonstersKilled"));
+                PlayerData.LevelsWon = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "LevelsWon"));
+                PlayerData.DailyQuestClaimed = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "DailyQuestClaimed"));
+
                 PlayerPrefs.SetString("Username", username);
                 PlayerPrefs.SetString("Password", password);
                 EntryCore.HideLoadingPanel();
