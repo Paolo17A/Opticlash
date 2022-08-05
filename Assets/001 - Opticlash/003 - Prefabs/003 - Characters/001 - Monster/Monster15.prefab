@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 3847854425555793566}
   - component: {fileID: 3847854425555793565}
   - component: {fileID: 3847854425555793564}
+  - component: {fileID: 6647225568398021033}
   m_Layer: 6
   m_Name: Monster15
   m_TagString: Untagged
@@ -218,6 +219,61 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 17
+--- !u!114 &6647225568398021033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3847854425555793567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02404ee1c359ff24a94da9044e6fd552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCombatState: 0
+  <CombatCore>k__BackingField: {fileID: 0}
+  <EnemyAnim>k__BackingField: {fileID: 0}
+  <EnemyAttackType>k__BackingField: 1
+  <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  <DamageDeal>k__BackingField: 0
+  <EvasionValue>k__BackingField: 0
+  <HealthBar>k__BackingField: {fileID: 0}
+  <HealthSlider>k__BackingField: {fileID: 0}
+  <ThisMonsterPlacement>k__BackingField: 0
+  <MayAttack>k__BackingField: 0
+  <IsBoss>k__BackingField: 0
+  <StatusEffectImage>k__BackingField: {fileID: 0}
+  <StatusEffectText>k__BackingField: {fileID: 0}
+  <StatusEffectTextAnimator>k__BackingField: {fileID: 0}
+  <AfflictedSideEffect>k__BackingField: 0
+  <AfflictedSideEffectDamage>k__BackingField: 0
+  <AfflictedSideEffectInstancesLeft>k__BackingField: 0
+  <ThisSideEffect>k__BackingField: 0
+  <SideEffectRate>k__BackingField: 0
+  <SideEffectDuration>k__BackingField: 0
+  <SideEffectDamage>k__BackingField: 0
+  <BreakLogoSprite>k__BackingField: {fileID: 0}
+  <BreakTextSprite>k__BackingField: {fileID: 0}
+  <BurnLogoSprite>k__BackingField: {fileID: 0}
+  <BurnTextSprite>k__BackingField: {fileID: 0}
+  <ConfuseLogoSprite>k__BackingField: {fileID: 0}
+  <ConfuseTextSprite>k__BackingField: {fileID: 0}
+  <FreezeLogoSprite>k__BackingField: {fileID: 0}
+  <FreezeTextSprite>k__BackingField: {fileID: 0}
+  <ParalyzeLogoSprite>k__BackingField: {fileID: 0}
+  <ParalyzeTextSprite>k__BackingField: {fileID: 0}
+  <WeakLogoSprite>k__BackingField: {fileID: 0}
+  <WeakTextSprite>k__BackingField: {fileID: 0}
+  <CanShootLaser>k__BackingField: 0
+  <LaserFrequency>k__BackingField: 0
+  <OriginalEnemyPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <EnemyAttackPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <DoneAttacking>k__BackingField: 0
+  <IsCurrentEnemy>k__BackingField: 0
+  <ShootingLaser>k__BackingField: 0
+  <Opti>k__BackingField: {fileID: 0}
 --- !u!1 &3847854425613121666
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +345,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3847854425628885423}
   - component: {fileID: 3847854425628885422}
-  - component: {fileID: 3847854425628885421}
   m_Layer: 6
   m_Name: 5_0000s_0005_mid-ten
   m_TagString: Untagged
@@ -363,32 +418,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3847854425628885421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3847854425628885416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 3847854425650248559}
-  m_BoneTransforms:
-  - {fileID: 3847854425650248559}
-  - {fileID: 3847854426226535905}
-  - {fileID: 3847854426847099268}
-  - {fileID: 3847854427123565588}
-  - {fileID: 3847854426844416472}
-  - {fileID: 3847854425830294512}
-  - {fileID: 3847854427317815908}
-  m_Bounds:
-    m_Center: {x: -0.47920156, y: -0.68622446, z: 0}
-    m_Extent: {x: 1.3233018, y: 3.7562242, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &3847854425650248552
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,7 +862,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3847854426000678546}
   - component: {fileID: 3847854426000678545}
-  - component: {fileID: 3847854426000678544}
   m_Layer: 6
   m_Name: 5_0000s_0004_ten-4
   m_TagString: Untagged
@@ -907,31 +935,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3847854426000678544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3847854426000678547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 3847854425966519074}
-  m_BoneTransforms:
-  - {fileID: 3847854425966519074}
-  - {fileID: 3847854425349513640}
-  - {fileID: 3847854427006735023}
-  - {fileID: 3847854427037859284}
-  - {fileID: 3847854425914851614}
-  - {fileID: 3847854426072849922}
-  m_Bounds:
-    m_Center: {x: 1.2183156, y: -0.607363, z: 0}
-    m_Extent: {x: 0.69557583, y: 3.3673627, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &3847854426004174307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,7 +1396,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3847854426539184905}
   - component: {fileID: 3847854426539184904}
-  - component: {fileID: 3847854426539184911}
   m_Layer: 6
   m_Name: 5_0000s_0001_ten-1
   m_TagString: Untagged
@@ -1467,31 +1469,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3847854426539184911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3847854426539184906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 3847854426021759457}
-  m_BoneTransforms:
-  - {fileID: 3847854426021759457}
-  - {fileID: 3847854425902096145}
-  - {fileID: 3847854426780143707}
-  - {fileID: 3847854425368112049}
-  - {fileID: 3847854427190567517}
-  - {fileID: 3847854427241207935}
-  m_Bounds:
-    m_Center: {x: -1.2268202, y: -0.3111205, z: 0}
-    m_Extent: {x: 0.85849947, y: 3.3180509, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &3847854426683049554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1633,7 +1610,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3847854426812265668}
   - component: {fileID: 3847854426812265723}
-  - component: {fileID: 3847854426812265722}
   m_Layer: 6
   m_Name: 5_0000s_0006_ten-5
   m_TagString: Untagged
@@ -1707,31 +1683,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3847854426812265722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3847854426812265669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 3847854426033314789}
-  m_BoneTransforms:
-  - {fileID: 3847854426033314789}
-  - {fileID: 3847854425395923037}
-  - {fileID: 3847854426784124239}
-  - {fileID: 3847854425912033394}
-  - {fileID: 3847854425938540967}
-  - {fileID: 3847854426286393963}
-  m_Bounds:
-    m_Center: {x: -2.0084274, y: -0.21613955, z: 0}
-    m_Extent: {x: 0.8939776, y: 3.3019693, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &3847854426831261742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,7 +1816,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3847854426901927607}
   - component: {fileID: 3847854426901927606}
-  - component: {fileID: 3847854426901927605}
   m_Layer: 6
   m_Name: 5_0000s_0003_ten-3
   m_TagString: Untagged
@@ -1939,31 +1889,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3847854426901927605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3847854426901927600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 3847854426087126283}
-  m_BoneTransforms:
-  - {fileID: 3847854426087126283}
-  - {fileID: 3847854425731556912}
-  - {fileID: 3847854427238685296}
-  - {fileID: 3847854425776251232}
-  - {fileID: 3847854425220722516}
-  - {fileID: 3847854426857236584}
-  m_Bounds:
-    m_Center: {x: 2.3996673, y: -0.38555026, z: 0}
-    m_Extent: {x: 0.5854274, y: 3.4005797, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &3847854426970078981
 GameObject:
   m_ObjectHideFlags: 0
@@ -2005,7 +1930,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3847854427000137242}
   - component: {fileID: 3847854427000137241}
-  - component: {fileID: 3847854427000137240}
   m_Layer: 6
   m_Name: 5_0000s_0002_ten-2
   m_TagString: Untagged
@@ -2079,31 +2003,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3847854427000137240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3847854427000137243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 3847854427102709384}
-  m_BoneTransforms:
-  - {fileID: 3847854427102709384}
-  - {fileID: 3847854426123207956}
-  - {fileID: 3847854426831261741}
-  - {fileID: 3847854425843917275}
-  - {fileID: 3847854425363913218}
-  - {fileID: 3847854425613121665}
-  m_Bounds:
-    m_Center: {x: -1.5620997, y: -0.5064151, z: 0}
-    m_Extent: {x: 1.0163596, y: 3.2533445, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &3847854427006735016
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,7 +2168,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3847854427221416503}
   - component: {fileID: 3847854427221416502}
-  - component: {fileID: 3847854427221416501}
   m_Layer: 6
   m_Name: 5_0000s_0007_ten-6
   m_TagString: Untagged
@@ -2343,31 +2241,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3847854427221416501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3847854427221416496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 3847854425995354322}
-  m_BoneTransforms:
-  - {fileID: 3847854425995354322}
-  - {fileID: 3847854426738637276}
-  - {fileID: 3847854427302398301}
-  - {fileID: 3847854425797086883}
-  - {fileID: 3847854426970078980}
-  - {fileID: 3847854426065690333}
-  m_Bounds:
-    m_Center: {x: 1.1631949, y: -0.27073097, z: 0}
-    m_Extent: {x: 0.28257483, y: 3.4307313, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &3847854427238685297
 GameObject:
   m_ObjectHideFlags: 0

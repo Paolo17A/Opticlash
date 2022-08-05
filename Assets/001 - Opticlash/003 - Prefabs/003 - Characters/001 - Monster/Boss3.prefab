@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4415567261265173595}
   - component: {fileID: 4415567261265173592}
-  - component: {fileID: 4415567261265173593}
   m_Layer: 6
   m_Name: Boss_0000s_0005_back-side-fin-1
   m_TagString: Untagged
@@ -207,30 +206,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4415567261265173593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4415567261265173594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 4415567261740786085}
-  m_BoneTransforms:
-  - {fileID: 4415567261740786085}
-  - {fileID: 4415567262838682024}
-  - {fileID: 4415567261169034834}
-  - {fileID: 4415567262699809232}
-  - {fileID: 4415567261215034193}
-  m_Bounds:
-    m_Center: {x: -4.049879, y: -2.55783, z: -0.0000014305115}
-    m_Extent: {x: 2.6469498, y: 1.0478303, z: 1.1368684e-13}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &4415567261292680392
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,6 +558,7 @@ GameObject:
   - component: {fileID: 4415567261814577043}
   - component: {fileID: 4415567261814577041}
   - component: {fileID: 4415567261814577040}
+  - component: {fileID: 4535915533428936198}
   m_Layer: 6
   m_Name: Boss3
   m_TagString: Untagged
@@ -635,6 +611,61 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 18
+--- !u!114 &4535915533428936198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4415567261814577042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02404ee1c359ff24a94da9044e6fd552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCombatState: 0
+  <CombatCore>k__BackingField: {fileID: 0}
+  <EnemyAnim>k__BackingField: {fileID: 0}
+  <EnemyAttackType>k__BackingField: 0
+  <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  <DamageDeal>k__BackingField: 0
+  <EvasionValue>k__BackingField: 0
+  <HealthBar>k__BackingField: {fileID: 0}
+  <HealthSlider>k__BackingField: {fileID: 0}
+  <ThisMonsterPlacement>k__BackingField: 0
+  <MayAttack>k__BackingField: 0
+  <IsBoss>k__BackingField: 0
+  <StatusEffectImage>k__BackingField: {fileID: 0}
+  <StatusEffectText>k__BackingField: {fileID: 0}
+  <StatusEffectTextAnimator>k__BackingField: {fileID: 0}
+  <AfflictedSideEffect>k__BackingField: 0
+  <AfflictedSideEffectDamage>k__BackingField: 0
+  <AfflictedSideEffectInstancesLeft>k__BackingField: 0
+  <ThisSideEffect>k__BackingField: 0
+  <SideEffectRate>k__BackingField: 0
+  <SideEffectDuration>k__BackingField: 0
+  <SideEffectDamage>k__BackingField: 0
+  <BreakLogoSprite>k__BackingField: {fileID: 0}
+  <BreakTextSprite>k__BackingField: {fileID: 0}
+  <BurnLogoSprite>k__BackingField: {fileID: 0}
+  <BurnTextSprite>k__BackingField: {fileID: 0}
+  <ConfuseLogoSprite>k__BackingField: {fileID: 0}
+  <ConfuseTextSprite>k__BackingField: {fileID: 0}
+  <FreezeLogoSprite>k__BackingField: {fileID: 0}
+  <FreezeTextSprite>k__BackingField: {fileID: 0}
+  <ParalyzeLogoSprite>k__BackingField: {fileID: 0}
+  <ParalyzeTextSprite>k__BackingField: {fileID: 0}
+  <WeakLogoSprite>k__BackingField: {fileID: 0}
+  <WeakTextSprite>k__BackingField: {fileID: 0}
+  <CanShootLaser>k__BackingField: 0
+  <LaserFrequency>k__BackingField: 0
+  <OriginalEnemyPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <EnemyAttackPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <DoneAttacking>k__BackingField: 0
+  <IsCurrentEnemy>k__BackingField: 0
+  <ShootingLaser>k__BackingField: 0
+  <Opti>k__BackingField: {fileID: 0}
 --- !u!1 &4415567261818985356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,7 +1230,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4415567262253214997}
   - component: {fileID: 4415567262253215002}
-  - component: {fileID: 4415567262253215003}
   m_Layer: 6
   m_Name: Boss_0000s_0008_head-fins
   m_TagString: Untagged
@@ -1273,31 +1303,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4415567262253215003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4415567262253214996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 4415567262628535139}
-  m_BoneTransforms:
-  - {fileID: 4415567262628535139}
-  - {fileID: 4415567261987958337}
-  - {fileID: 4415567262094515088}
-  - {fileID: 4415567261453908440}
-  - {fileID: 4415567261197546675}
-  - {fileID: 4415567261657322220}
-  m_Bounds:
-    m_Center: {x: 0.73000026, y: 0.62789005, z: -0.0000014305115}
-    m_Extent: {x: 3.4600003, y: 1.0149602, z: 1.1368684e-13}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &4415567262273103245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,7 +1704,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4415567262877982311}
   - component: {fileID: 4415567262877982308}
-  - component: {fileID: 4415567262877982309}
   m_Layer: 6
   m_Name: Boss_0000s_0003_head
   m_TagString: Untagged
@@ -1773,33 +1777,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4415567262877982309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4415567262877982310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 4415567262007511047}
-  m_BoneTransforms:
-  - {fileID: 4415567262007511047}
-  - {fileID: 4415567261663543729}
-  - {fileID: 4415567261711431282}
-  - {fileID: 4415567262857478563}
-  - {fileID: 4415567262273103250}
-  - {fileID: 4415567262581703976}
-  - {fileID: 4415567261474215909}
-  - {fileID: 4415567262971478331}
-  m_Bounds:
-    m_Center: {x: -1.6680894, y: -1.2083001, z: -0.0000014305115}
-    m_Extent: {x: 6.5980906, y: 2.26755, z: 1.1368684e-13}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &4415567262971478330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,7 +1817,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4415567262986984322}
   - component: {fileID: 4415567262986984323}
-  - component: {fileID: 4415567262986984320}
   m_Layer: 6
   m_Name: Boss_0000s_0004_tail
   m_TagString: Untagged
@@ -1914,32 +1890,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4415567262986984320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4415567262986984381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 4415567261227953370}
-  m_BoneTransforms:
-  - {fileID: 4415567261227953370}
-  - {fileID: 4415567261370305720}
-  - {fileID: 4415567261831839604}
-  - {fileID: 4415567262711454176}
-  - {fileID: 4415567261666864767}
-  - {fileID: 4415567262772717455}
-  - {fileID: 4415567261857823325}
-  m_Bounds:
-    m_Center: {x: 6.272531, y: 1.6967698, z: -0.0000014305115}
-    m_Extent: {x: 1.9925313, y: 1.8467699, z: 1.7053026e-13}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &4415567263134405178
 GameObject:
   m_ObjectHideFlags: 0
@@ -2012,7 +1962,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4415567263171690948}
   - component: {fileID: 4415567263171690949}
-  - component: {fileID: 4415567263171690954}
   m_Layer: 6
   m_Name: Boss_0000s_0000_front-side-fin-1
   m_TagString: Untagged
@@ -2086,30 +2035,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4415567263171690954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4415567263171690951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 4415567261744994652}
-  m_BoneTransforms:
-  - {fileID: 4415567261744994652}
-  - {fileID: 4415567263169979792}
-  - {fileID: 4415567261747125601}
-  - {fileID: 4415567261292680393}
-  - {fileID: 4415567261818985357}
-  m_Bounds:
-    m_Center: {x: 0.013595104, y: -2.5679755, z: -0.0000014305115}
-    m_Extent: {x: 2.6524951, y: 1.0379754, z: 1.7053026e-13}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &4415567263180640916
 GameObject:
   m_ObjectHideFlags: 0

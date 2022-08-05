@@ -18,3 +18,4 @@ MonoBehaviour:
   <LobbyCostumeSprite>k__BackingField: {fileID: 21300000, guid: 6dd355ace6305e94ba8d67039d9edd3a, type: 3}
   <InfoSprite>k__BackingField: {fileID: 21300000, guid: 02b4f40f9a5ce2945bdee630fc373be6, type: 3}
   <DroppedSprite>k__BackingField: {fileID: 21300000, guid: 484ca37ea146f254caa49a81939331c6, type: 3}
+  <ProvidedImmunity>k__BackingField: 7

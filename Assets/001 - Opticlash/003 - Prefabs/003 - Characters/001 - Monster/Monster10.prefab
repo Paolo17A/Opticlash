@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 478310774689934999}
   - component: {fileID: 478310774689934998}
   - component: {fileID: 478310774689934953}
+  - component: {fileID: 7062130599425465308}
   m_Layer: 6
   m_Name: Monster10
   m_TagString: Untagged
@@ -403,6 +404,61 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 11
+--- !u!114 &7062130599425465308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478310774689934996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02404ee1c359ff24a94da9044e6fd552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCombatState: 0
+  <CombatCore>k__BackingField: {fileID: 0}
+  <EnemyAnim>k__BackingField: {fileID: 0}
+  <EnemyAttackType>k__BackingField: 2
+  <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  <DamageDeal>k__BackingField: 0
+  <EvasionValue>k__BackingField: 0
+  <HealthBar>k__BackingField: {fileID: 0}
+  <HealthSlider>k__BackingField: {fileID: 0}
+  <ThisMonsterPlacement>k__BackingField: 0
+  <MayAttack>k__BackingField: 0
+  <IsBoss>k__BackingField: 0
+  <StatusEffectImage>k__BackingField: {fileID: 0}
+  <StatusEffectText>k__BackingField: {fileID: 0}
+  <StatusEffectTextAnimator>k__BackingField: {fileID: 0}
+  <AfflictedSideEffect>k__BackingField: 0
+  <AfflictedSideEffectDamage>k__BackingField: 0
+  <AfflictedSideEffectInstancesLeft>k__BackingField: 0
+  <ThisSideEffect>k__BackingField: 0
+  <SideEffectRate>k__BackingField: 0
+  <SideEffectDuration>k__BackingField: 0
+  <SideEffectDamage>k__BackingField: 0
+  <BreakLogoSprite>k__BackingField: {fileID: 0}
+  <BreakTextSprite>k__BackingField: {fileID: 0}
+  <BurnLogoSprite>k__BackingField: {fileID: 0}
+  <BurnTextSprite>k__BackingField: {fileID: 0}
+  <ConfuseLogoSprite>k__BackingField: {fileID: 0}
+  <ConfuseTextSprite>k__BackingField: {fileID: 0}
+  <FreezeLogoSprite>k__BackingField: {fileID: 0}
+  <FreezeTextSprite>k__BackingField: {fileID: 0}
+  <ParalyzeLogoSprite>k__BackingField: {fileID: 0}
+  <ParalyzeTextSprite>k__BackingField: {fileID: 0}
+  <WeakLogoSprite>k__BackingField: {fileID: 0}
+  <WeakTextSprite>k__BackingField: {fileID: 0}
+  <CanShootLaser>k__BackingField: 0
+  <LaserFrequency>k__BackingField: 0
+  <OriginalEnemyPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <EnemyAttackPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <DoneAttacking>k__BackingField: 0
+  <IsCurrentEnemy>k__BackingField: 0
+  <ShootingLaser>k__BackingField: 0
+  <Opti>k__BackingField: {fileID: 0}
 --- !u!1 &478310774763219783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,7 +1546,6 @@ GameObject:
   m_Component:
   - component: {fileID: 478310775494124939}
   - component: {fileID: 478310775494124938}
-  - component: {fileID: 478310775494124941}
   m_Layer: 6
   m_Name: 5_0000s_0014_ten-2
   m_TagString: Untagged
@@ -1564,36 +1619,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &478310775494124941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478310775494124936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 478310776535858835}
-  m_BoneTransforms:
-  - {fileID: 478310776535858835}
-  - {fileID: 478310775369674234}
-  - {fileID: 478310776373552787}
-  - {fileID: 478310774928287239}
-  - {fileID: 478310776105520986}
-  - {fileID: 478310776097796469}
-  - {fileID: 478310774967511766}
-  - {fileID: 478310776579242123}
-  - {fileID: 478310776162659124}
-  - {fileID: 478310776629481636}
-  - {fileID: 478310775215013563}
-  m_Bounds:
-    m_Center: {x: -0.8547498, y: 0.40860426, z: 0}
-    m_Extent: {x: 0.9312998, y: 1.8040744, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &478310775500603545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1782,7 +1807,6 @@ GameObject:
   m_Component:
   - component: {fileID: 478310775599873455}
   - component: {fileID: 478310775599873454}
-  - component: {fileID: 478310775599873441}
   m_Layer: 6
   m_Name: 5_0000s_0015_ten-3
   m_TagString: Untagged
@@ -1856,36 +1880,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &478310775599873441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478310775599873452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 478310774763219782}
-  m_BoneTransforms:
-  - {fileID: 478310774763219782}
-  - {fileID: 478310776150394921}
-  - {fileID: 478310776176646324}
-  - {fileID: 478310774773110931}
-  - {fileID: 478310775923193361}
-  - {fileID: 478310775196016820}
-  - {fileID: 478310775659773910}
-  - {fileID: 478310774671283818}
-  - {fileID: 478310776540155930}
-  - {fileID: 478310776002300871}
-  - {fileID: 478310776418272711}
-  m_Bounds:
-    m_Center: {x: 0.944794, y: 0.29000044, z: 0}
-    m_Extent: {x: 0.91979396, y: 1.8000004, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &478310775631129303
 GameObject:
   m_ObjectHideFlags: 0
@@ -2279,7 +2273,6 @@ GameObject:
   m_Component:
   - component: {fileID: 478310775875812902}
   - component: {fileID: 478310775875812921}
-  - component: {fileID: 478310775875812920}
   m_Layer: 6
   m_Name: 5_0000s_0016_ten-4
   m_TagString: Untagged
@@ -2353,36 +2346,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &478310775875812920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478310775875812903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 478310774929492833}
-  m_BoneTransforms:
-  - {fileID: 478310774929492833}
-  - {fileID: 478310776136770973}
-  - {fileID: 478310776115009435}
-  - {fileID: 478310775199164705}
-  - {fileID: 478310776469633001}
-  - {fileID: 478310774812319810}
-  - {fileID: 478310775079813766}
-  - {fileID: 478310775633062908}
-  - {fileID: 478310776107523625}
-  - {fileID: 478310775310313848}
-  - {fileID: 478310775312060252}
-  m_Bounds:
-    m_Center: {x: 0.39445668, y: 0.6203902, z: 0}
-    m_Extent: {x: 0.720543, y: 2.2365003, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &478310775901683217
 GameObject:
   m_ObjectHideFlags: 0
@@ -2486,7 +2449,6 @@ GameObject:
   m_Component:
   - component: {fileID: 478310776003159807}
   - component: {fileID: 478310776003159806}
-  - component: {fileID: 478310776003159793}
   m_Layer: 6
   m_Name: 5_0000s_0013_ten-1
   m_TagString: Untagged
@@ -2560,36 +2522,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &478310776003159793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478310776003159804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 478310775901683216}
-  m_BoneTransforms:
-  - {fileID: 478310775901683216}
-  - {fileID: 478310775763124112}
-  - {fileID: 478310776555415179}
-  - {fileID: 478310776416900561}
-  - {fileID: 478310774809374497}
-  - {fileID: 478310776367648865}
-  - {fileID: 478310774849235293}
-  - {fileID: 478310776387105966}
-  - {fileID: 478310775631129302}
-  - {fileID: 478310775500603544}
-  - {fileID: 478310775477945073}
-  m_Bounds:
-    m_Center: {x: -0.31197035, y: 0.7703049, z: 0}
-    m_Extent: {x: 0.72015035, y: 2.2496948, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &478310776097796466
 GameObject:
   m_ObjectHideFlags: 0

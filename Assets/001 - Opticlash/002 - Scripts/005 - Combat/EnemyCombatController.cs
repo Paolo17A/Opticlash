@@ -454,6 +454,9 @@ public class EnemyCombatController : MonoBehaviour
         if (AfflictedSideEffect == WeaponData.SideEffect.BREAK)
             return false;
 
+        if (CombatCore.PlayerData.ActiveCostume != null && CombatCore.PlayerData.ActiveCostume.ProvidedImmunity == ThisSideEffect)
+            return false;
+
         return true;
     }
 
