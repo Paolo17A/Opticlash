@@ -178,6 +178,9 @@ public class LobbyCore : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI CurrentCannonAbilitiesTMP { get; set; }
     [field: SerializeField] private Button UpgradeCannonBtn { get; set; }
 
+    [field: Header("PLAY BUTTONS")]
+    [field: SerializeField] private Button AdventureBtn { get; set; }
+
     [Header("DEBUGGER")]
     [ReadOnly] public List<CustomCostumeData> ActualCostumesOwned;
     [ReadOnly] public List<CustomWeaponData> ActualOwnedWeapons;
@@ -273,21 +276,33 @@ public class LobbyCore : MonoBehaviour
     }    
     public void GetActiveCannon()
     {
-        foreach (CustomWeaponData weapon in PlayerData.OwnedWeapons)
-            if (weapon.WeaponInstanceID == PlayerData.ActiveWeaponID)
-            {
-                PlayerData.ActiveCustomWeapon = weapon;
-                CurrentCannonImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentSprite;
-                CurrentCannonBigImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentBigSprite;
-                CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName;
-                CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage).ToString();
-                CurrentCannonAbilitiesTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage.ToString();
-                CurrentCannonAmmoTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.StartingAmmo.ToString();
-                CurrentCannonAccuracyTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.Accuracy.ToString();
-                CurrentCannonAbilitiesTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.Abilities;
-                break;
-            }
-        SetOptiCannon(PlayerData.ActiveCustomWeapon.BaseWeaponData.EquippedSprite);
+        if(PlayerData.ActiveWeaponID == "NONE")
+        {
+            CurrentCannonImage.gameObject.SetActive(false);
+            OptiEquipCannon.gameObject.SetActive(false);
+            OptiLobbyCannon.gameObject.SetActive(false);
+            AdventureBtn.interactable = false;
+        }
+        else
+        {
+            CurrentCannonImage.gameObject.SetActive(true);
+            foreach (CustomWeaponData weapon in PlayerData.OwnedWeapons)
+                if (weapon.WeaponInstanceID == PlayerData.ActiveWeaponID)
+                {
+                    PlayerData.ActiveCustomWeapon = weapon;
+                    CurrentCannonImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentSprite;
+                    CurrentCannonBigImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentBigSprite;
+                    CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName;
+                    CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage).ToString();
+                    CurrentCannonAbilitiesTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage.ToString();
+                    CurrentCannonAmmoTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.StartingAmmo.ToString();
+                    CurrentCannonAccuracyTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.Accuracy.ToString();
+                    CurrentCannonAbilitiesTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.Abilities;
+                    break;
+                }
+            SetOptiCannon(PlayerData.ActiveCustomWeapon.BaseWeaponData.EquippedSprite);
+        }
+        
     }
     public void GetActiveCostume()
     {
@@ -312,15 +327,18 @@ public class LobbyCore : MonoBehaviour
     {
         CoreOptibitTMP.text = PlayerData.Optibit.ToString();
         ShopOptibitTMP.text = PlayerData.Optibit.ToString();
-        CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName;
-        if(PlayerData.ActiveCustomWeapon.BonusDamage != 0)
-            CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName + " + " + PlayerData.ActiveCustomWeapon.BonusDamage;
+        if(PlayerData.ActiveWeaponID != "NONE")
+        {
+            CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName;
+            if (PlayerData.ActiveCustomWeapon.BonusDamage != 0)
+                CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName + " + " + PlayerData.ActiveCustomWeapon.BonusDamage;
 
-        CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage).ToString();
-        if (PlayerData.Optibit >= 100 + (PlayerData.ActiveCustomWeapon.BonusDamage * 50))
-            UpgradeCannonBtn.interactable = true;
-        else
-            UpgradeCannonBtn.interactable = false;
+            CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage).ToString();
+            if (PlayerData.Optibit >= 100 + (PlayerData.ActiveCustomWeapon.BonusDamage * 50))
+                UpgradeCannonBtn.interactable = true;
+            else
+                UpgradeCannonBtn.interactable = false;
+        }
     }
     #endregion
 
@@ -801,7 +819,16 @@ public class LobbyCore : MonoBehaviour
             NextWeaponPageBtn.interactable = true;
         else
             NextWeaponPageBtn.interactable = false;
-        DisplayCurrentPageWeapons();
+
+        Debug.Log("yeet");
+        if(ActualOwnedWeapons.Count > 0)
+            DisplayCurrentPageWeapons();
+        else
+        {
+            Debug.Log("You do not own any weapons");
+            WeaponLeftImage.gameObject.SetActive(false);
+            WeaponRightImage.gameObject.SetActive(false);
+        }
     }
 
     public void InitializeCostumes()
@@ -1132,10 +1159,12 @@ public class LobbyCore : MonoBehaviour
     #endregion 
 
     #region UTILITY
-    public void OpenCombatScene()
+
+    public void OpenAdventureScene()
     {
-        GameManager.Instance.SceneController.CurrentScene = "CombatScene";
+        GameManager.Instance.SceneController.CurrentScene = "AdventureScene";
     }
+    
 
     public void DisplayLoadingPanel()
     {

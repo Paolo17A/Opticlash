@@ -267,8 +267,6 @@ struct DelegateData_t17DD30660E330C49381DAA99F934BE75CB11F288;
 struct DirectoryInfo_t4EF3610F45F0D234800D01ADA8F3F476AE0CF5CD;
 // EnemyCombatController
 struct EnemyCombatController_t587EBC5D73B09E22EAE03103344A65650E2F2C61;
-// EnemyData
-struct EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6;
 // EntryController
 struct EntryController_t38E775120BDDD8058CA4A4292D46B2FFA693DA79;
 // EntryCore
@@ -5837,42 +5835,6 @@ public:
 };
 
 
-// EnemyData/Buff
-struct Buff_t6C54F692EF82EEC1669A44589139550E61EDA761 
-{
-public:
-	// System.Int32 EnemyData/Buff::value__
-	int32_t ___value___2;
-
-public:
-	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(Buff_t6C54F692EF82EEC1669A44589139550E61EDA761, ___value___2)); }
-	inline int32_t get_value___2() const { return ___value___2; }
-	inline int32_t* get_address_of_value___2() { return &___value___2; }
-	inline void set_value___2(int32_t value)
-	{
-		___value___2 = value;
-	}
-};
-
-
-// EnemyData/StatusEffect
-struct StatusEffect_t5EB81757EB229CE171EEF50FF23DB3199C0BCE27 
-{
-public:
-	// System.Int32 EnemyData/StatusEffect::value__
-	int32_t ___value___2;
-
-public:
-	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(StatusEffect_t5EB81757EB229CE171EEF50FF23DB3199C0BCE27, ___value___2)); }
-	inline int32_t get_value___2() const { return ___value___2; }
-	inline int32_t* get_address_of_value___2() { return &___value___2; }
-	inline void set_value___2(int32_t value)
-	{
-		___value___2 = value;
-	}
-};
-
-
 // EntryCore/EntryStates
 struct EntryStates_tD359809A2BB5DF624CB3664C67A82B4D9ABE3A8B 
 {
@@ -7506,6 +7468,8 @@ public:
 	Sprite_t5B10B1178EC2E6F53D33FFD77557F31C08A51ED9 * ___U3CInfoSpriteU3Ek__BackingField_8;
 	// UnityEngine.Sprite CostumeData::<DroppedSprite>k__BackingField
 	Sprite_t5B10B1178EC2E6F53D33FFD77557F31C08A51ED9 * ___U3CDroppedSpriteU3Ek__BackingField_9;
+	// EnemyCombatController/SideEffect CostumeData::<ProvidedImmunity>k__BackingField
+	int32_t ___U3CProvidedImmunityU3Ek__BackingField_10;
 
 public:
 	inline static int32_t get_offset_of_U3CCostumeIDU3Ek__BackingField_4() { return static_cast<int32_t>(offsetof(CostumeData_t6C31302C2054CCA9657A0AC475DE0D03499D4D8E, ___U3CCostumeIDU3Ek__BackingField_4)); }
@@ -7560,6 +7524,14 @@ public:
 	{
 		___U3CDroppedSpriteU3Ek__BackingField_9 = value;
 		Il2CppCodeGenWriteBarrier((void**)(&___U3CDroppedSpriteU3Ek__BackingField_9), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_U3CProvidedImmunityU3Ek__BackingField_10() { return static_cast<int32_t>(offsetof(CostumeData_t6C31302C2054CCA9657A0AC475DE0D03499D4D8E, ___U3CProvidedImmunityU3Ek__BackingField_10)); }
+	inline int32_t get_U3CProvidedImmunityU3Ek__BackingField_10() const { return ___U3CProvidedImmunityU3Ek__BackingField_10; }
+	inline int32_t* get_address_of_U3CProvidedImmunityU3Ek__BackingField_10() { return &___U3CProvidedImmunityU3Ek__BackingField_10; }
+	inline void set_U3CProvidedImmunityU3Ek__BackingField_10(int32_t value)
+	{
+		___U3CProvidedImmunityU3Ek__BackingField_10 = value;
 	}
 };
 
@@ -7640,95 +7612,6 @@ public:
 	inline void set_U3CBonusDamageU3Ek__BackingField_6(int32_t value)
 	{
 		___U3CBonusDamageU3Ek__BackingField_6 = value;
-	}
-};
-
-
-// EnemyData
-struct EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6  : public ScriptableObject_t4361E08CEBF052C650D3666C7CEC37EB31DE116A
-{
-public:
-	// UnityEngine.GameObject EnemyData::<EnemyPrefab>k__BackingField
-	GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * ___U3CEnemyPrefabU3Ek__BackingField_4;
-	// System.Int32 EnemyData::<Health>k__BackingField
-	int32_t ___U3CHealthU3Ek__BackingField_5;
-	// System.Int32 EnemyData::<Damage>k__BackingField
-	int32_t ___U3CDamageU3Ek__BackingField_6;
-	// System.Int32 EnemyData::bonusDamage
-	int32_t ___bonusDamage_7;
-	// System.Int32 EnemyData::bonusDroppedXP
-	int32_t ___bonusDroppedXP_8;
-	// EnemyData/StatusEffect EnemyData::statusEffect
-	int32_t ___statusEffect_9;
-	// System.Int32 EnemyData::statusEffectDamage
-	int32_t ___statusEffectDamage_10;
-	// EnemyData/Buff EnemyData::buff
-	int32_t ___buff_11;
-
-public:
-	inline static int32_t get_offset_of_U3CEnemyPrefabU3Ek__BackingField_4() { return static_cast<int32_t>(offsetof(EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6, ___U3CEnemyPrefabU3Ek__BackingField_4)); }
-	inline GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * get_U3CEnemyPrefabU3Ek__BackingField_4() const { return ___U3CEnemyPrefabU3Ek__BackingField_4; }
-	inline GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 ** get_address_of_U3CEnemyPrefabU3Ek__BackingField_4() { return &___U3CEnemyPrefabU3Ek__BackingField_4; }
-	inline void set_U3CEnemyPrefabU3Ek__BackingField_4(GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * value)
-	{
-		___U3CEnemyPrefabU3Ek__BackingField_4 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___U3CEnemyPrefabU3Ek__BackingField_4), (void*)value);
-	}
-
-	inline static int32_t get_offset_of_U3CHealthU3Ek__BackingField_5() { return static_cast<int32_t>(offsetof(EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6, ___U3CHealthU3Ek__BackingField_5)); }
-	inline int32_t get_U3CHealthU3Ek__BackingField_5() const { return ___U3CHealthU3Ek__BackingField_5; }
-	inline int32_t* get_address_of_U3CHealthU3Ek__BackingField_5() { return &___U3CHealthU3Ek__BackingField_5; }
-	inline void set_U3CHealthU3Ek__BackingField_5(int32_t value)
-	{
-		___U3CHealthU3Ek__BackingField_5 = value;
-	}
-
-	inline static int32_t get_offset_of_U3CDamageU3Ek__BackingField_6() { return static_cast<int32_t>(offsetof(EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6, ___U3CDamageU3Ek__BackingField_6)); }
-	inline int32_t get_U3CDamageU3Ek__BackingField_6() const { return ___U3CDamageU3Ek__BackingField_6; }
-	inline int32_t* get_address_of_U3CDamageU3Ek__BackingField_6() { return &___U3CDamageU3Ek__BackingField_6; }
-	inline void set_U3CDamageU3Ek__BackingField_6(int32_t value)
-	{
-		___U3CDamageU3Ek__BackingField_6 = value;
-	}
-
-	inline static int32_t get_offset_of_bonusDamage_7() { return static_cast<int32_t>(offsetof(EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6, ___bonusDamage_7)); }
-	inline int32_t get_bonusDamage_7() const { return ___bonusDamage_7; }
-	inline int32_t* get_address_of_bonusDamage_7() { return &___bonusDamage_7; }
-	inline void set_bonusDamage_7(int32_t value)
-	{
-		___bonusDamage_7 = value;
-	}
-
-	inline static int32_t get_offset_of_bonusDroppedXP_8() { return static_cast<int32_t>(offsetof(EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6, ___bonusDroppedXP_8)); }
-	inline int32_t get_bonusDroppedXP_8() const { return ___bonusDroppedXP_8; }
-	inline int32_t* get_address_of_bonusDroppedXP_8() { return &___bonusDroppedXP_8; }
-	inline void set_bonusDroppedXP_8(int32_t value)
-	{
-		___bonusDroppedXP_8 = value;
-	}
-
-	inline static int32_t get_offset_of_statusEffect_9() { return static_cast<int32_t>(offsetof(EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6, ___statusEffect_9)); }
-	inline int32_t get_statusEffect_9() const { return ___statusEffect_9; }
-	inline int32_t* get_address_of_statusEffect_9() { return &___statusEffect_9; }
-	inline void set_statusEffect_9(int32_t value)
-	{
-		___statusEffect_9 = value;
-	}
-
-	inline static int32_t get_offset_of_statusEffectDamage_10() { return static_cast<int32_t>(offsetof(EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6, ___statusEffectDamage_10)); }
-	inline int32_t get_statusEffectDamage_10() const { return ___statusEffectDamage_10; }
-	inline int32_t* get_address_of_statusEffectDamage_10() { return &___statusEffectDamage_10; }
-	inline void set_statusEffectDamage_10(int32_t value)
-	{
-		___statusEffectDamage_10 = value;
-	}
-
-	inline static int32_t get_offset_of_buff_11() { return static_cast<int32_t>(offsetof(EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6, ___buff_11)); }
-	inline int32_t get_buff_11() const { return ___buff_11; }
-	inline int32_t* get_address_of_buff_11() { return &___buff_11; }
-	inline void set_buff_11(int32_t value)
-	{
-		___buff_11 = value;
 	}
 };
 
@@ -20044,6 +19927,8 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t65B972D6A585A0A5B63153CF
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CombatCore_SpawnNextEnemy_m648F4EAC7EC7AF6AB9DB01D28CCE212FF1E880F9 (CombatCore_t21021E44A843A3542D7BE967354E5183E88EAF0E * __this, const RuntimeMethod* method);
 // System.Int32 EnemyCombatController::get_SideEffectRate()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t EnemyCombatController_get_SideEffectRate_mDD8C2BCB84026FE1B8CEDA88E0E05EECC7C23F05_inline (EnemyCombatController_t587EBC5D73B09E22EAE03103344A65650E2F2C61 * __this, const RuntimeMethod* method);
+// EnemyCombatController/SideEffect CostumeData::get_ProvidedImmunity()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t CostumeData_get_ProvidedImmunity_mB92403E4A254B6DC7A904A0480C290FC7341F3B0_inline (CostumeData_t6C31302C2054CCA9657A0AC475DE0D03499D4D8E * __this, const RuntimeMethod* method);
 // System.Int32 EnemyCombatController::get_AfflictedSideEffectInstancesLeft()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t EnemyCombatController_get_AfflictedSideEffectInstancesLeft_mAA640F540F70853585CB570617F651EAB17EED92_inline (EnemyCombatController_t587EBC5D73B09E22EAE03103344A65650E2F2C61 * __this, const RuntimeMethod* method);
 // System.Void EnemyCombatController::ProcessError(System.String)
@@ -20802,7 +20687,7 @@ IL_01c9:
 		}
 	}
 	{
-		// FrontPanel.transform.position = new Vector3(19, FrontPanel.transform.position.y, FrontPanel.transform.position.z);
+		// FrontPanel.transform.position = new Vector3(FrontPanel.transform.position.x, 19, FrontPanel.transform.position.z);
 		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_84;
 		L_84 = BackgroundScroller_get_FrontPanel_m360C7AC1B8771F85500ED88E151BC3B79B927803_inline(__this, /*hidden argument*/NULL);
 		NullCheck(L_84);
@@ -20816,7 +20701,7 @@ IL_01c9:
 		NullCheck(L_87);
 		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_88;
 		L_88 = Transform_get_position_m40A8A9895568D56FFC687B57F30E8D53CB5EA341(L_87, /*hidden argument*/NULL);
-		float L_89 = L_88.get_y_3();
+		float L_89 = L_88.get_x_2();
 		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_90;
 		L_90 = BackgroundScroller_get_FrontPanel_m360C7AC1B8771F85500ED88E151BC3B79B927803_inline(__this, /*hidden argument*/NULL);
 		NullCheck(L_90);
@@ -20828,7 +20713,7 @@ IL_01c9:
 		float L_93 = L_92.get_z_4();
 		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_94;
 		memset((&L_94), 0, sizeof(L_94));
-		Vector3__ctor_m57495F692C6CE1CEF278CAD9A98221165D37E636_inline((&L_94), (19.0f), L_89, L_93, /*hidden argument*/NULL);
+		Vector3__ctor_m57495F692C6CE1CEF278CAD9A98221165D37E636_inline((&L_94), L_89, (19.0f), L_93, /*hidden argument*/NULL);
 		NullCheck(L_85);
 		Transform_set_position_mB169E52D57EEAC1E3F22C5395968714E4F00AC91(L_85, L_94, /*hidden argument*/NULL);
 		// holder = FrontPanel;
@@ -35005,6 +34890,25 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CostumeData_set_DroppedSprite_mDBA1B05F9
 		return;
 	}
 }
+// EnemyCombatController/SideEffect CostumeData::get_ProvidedImmunity()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t CostumeData_get_ProvidedImmunity_mB92403E4A254B6DC7A904A0480C290FC7341F3B0 (CostumeData_t6C31302C2054CCA9657A0AC475DE0D03499D4D8E * __this, const RuntimeMethod* method)
+{
+	{
+		// [field: SerializeField] public EnemyCombatController.SideEffect ProvidedImmunity { get; set; }
+		int32_t L_0 = __this->get_U3CProvidedImmunityU3Ek__BackingField_10();
+		return L_0;
+	}
+}
+// System.Void CostumeData::set_ProvidedImmunity(EnemyCombatController/SideEffect)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CostumeData_set_ProvidedImmunity_m4825C34610128E912C1DBE09F02292391D96B3AB (CostumeData_t6C31302C2054CCA9657A0AC475DE0D03499D4D8E * __this, int32_t ___value0, const RuntimeMethod* method)
+{
+	{
+		// [field: SerializeField] public EnemyCombatController.SideEffect ProvidedImmunity { get; set; }
+		int32_t L_0 = ___value0;
+		__this->set_U3CProvidedImmunityU3Ek__BackingField_10(L_0);
+		return;
+	}
+}
 // System.Void CostumeData::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CostumeData__ctor_m25D472077BFC98CE3C4D7103C886465B39076BB8 (CostumeData_t6C31302C2054CCA9657A0AC475DE0D03499D4D8E * __this, const RuntimeMethod* method)
 {
@@ -37996,6 +37900,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EnemyCombatController_UpdateHealthBar_m3
 // System.Boolean EnemyCombatController::WillInflictStatusEffect()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool EnemyCombatController_WillInflictStatusEffect_m9429E5AF823DE6BE84F60B6E549094CB051E295B (EnemyCombatController_t587EBC5D73B09E22EAE03103344A65650E2F2C61 * __this, const RuntimeMethod* method)
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
 	{
 		// if (ThisSideEffect == SideEffect.NONE)
 		int32_t L_0;
@@ -38067,6 +37977,49 @@ IL_0034:
 	}
 
 IL_003f:
+	{
+		// if (CombatCore.PlayerData.ActiveCostume != null && CombatCore.PlayerData.ActiveCostume.ProvidedImmunity == ThisSideEffect)
+		CombatCore_t21021E44A843A3542D7BE967354E5183E88EAF0E * L_8;
+		L_8 = EnemyCombatController_get_CombatCore_mD179BB2ABB41DAE4ED9178624B26175346374617_inline(__this, /*hidden argument*/NULL);
+		NullCheck(L_8);
+		PlayerData_t8CF0E5D9EE572FFF7E0B41DA391376CF0AB8EBB5 * L_9;
+		L_9 = CombatCore_get_PlayerData_mC04F56BA4B5286F90FE4F9899AF53C2AAE14404A_inline(L_8, /*hidden argument*/NULL);
+		NullCheck(L_9);
+		CostumeData_t6C31302C2054CCA9657A0AC475DE0D03499D4D8E * L_10;
+		L_10 = PlayerData_get_ActiveCostume_m210D4E219EC73B9582C2693ACC886FAC0FCADC58_inline(L_9, /*hidden argument*/NULL);
+		IL2CPP_RUNTIME_CLASS_INIT(Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var);
+		bool L_11;
+		L_11 = Object_op_Inequality_mE1F187520BD83FB7D86A6D850710C4D42B864E90(L_10, (Object_tF2F3778131EFF286AF62B7B013A170F95A91571A *)NULL, /*hidden argument*/NULL);
+		if (!L_11)
+		{
+			goto IL_0076;
+		}
+	}
+	{
+		CombatCore_t21021E44A843A3542D7BE967354E5183E88EAF0E * L_12;
+		L_12 = EnemyCombatController_get_CombatCore_mD179BB2ABB41DAE4ED9178624B26175346374617_inline(__this, /*hidden argument*/NULL);
+		NullCheck(L_12);
+		PlayerData_t8CF0E5D9EE572FFF7E0B41DA391376CF0AB8EBB5 * L_13;
+		L_13 = CombatCore_get_PlayerData_mC04F56BA4B5286F90FE4F9899AF53C2AAE14404A_inline(L_12, /*hidden argument*/NULL);
+		NullCheck(L_13);
+		CostumeData_t6C31302C2054CCA9657A0AC475DE0D03499D4D8E * L_14;
+		L_14 = PlayerData_get_ActiveCostume_m210D4E219EC73B9582C2693ACC886FAC0FCADC58_inline(L_13, /*hidden argument*/NULL);
+		NullCheck(L_14);
+		int32_t L_15;
+		L_15 = CostumeData_get_ProvidedImmunity_mB92403E4A254B6DC7A904A0480C290FC7341F3B0_inline(L_14, /*hidden argument*/NULL);
+		int32_t L_16;
+		L_16 = EnemyCombatController_get_ThisSideEffect_mA3547A2B925B7B14EF086C06F825B30289C991EF_inline(__this, /*hidden argument*/NULL);
+		if ((!(((uint32_t)L_15) == ((uint32_t)L_16))))
+		{
+			goto IL_0076;
+		}
+	}
+	{
+		// return false;
+		return (bool)0;
+	}
+
+IL_0076:
 	{
 		// return true;
 		return (bool)1;
@@ -38303,79 +38256,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EnemyCombatController_U3CUpdateQuestData
 		Action__ctor_m07BE5EE8A629FBBA52AE6356D57A0D371BE2574B(L_9, L_8, (intptr_t)((intptr_t)U3CU3Ec__DisplayClass189_0_U3CUpdateQuestDataU3Eb__2_mD2685D7E80EF82022D4292A236583920B1CB2903_RuntimeMethod_var), /*hidden argument*/NULL);
 		EnemyCombatController_ErrorCallback_m3C0AF451530485D85BED629EE4B91F5AAEEA0C13(__this, L_6, L_7, L_9, /*hidden argument*/NULL);
 		// });
-		return;
-	}
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// UnityEngine.GameObject EnemyData::get_EnemyPrefab()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * EnemyData_get_EnemyPrefab_m9F206186D8F9C91F1D4F18595D9F1C07D426ED83 (EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6 * __this, const RuntimeMethod* method)
-{
-	{
-		// [field: SerializeField] public GameObject EnemyPrefab { get; set; }
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_0 = __this->get_U3CEnemyPrefabU3Ek__BackingField_4();
-		return L_0;
-	}
-}
-// System.Void EnemyData::set_EnemyPrefab(UnityEngine.GameObject)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EnemyData_set_EnemyPrefab_m9BE47774F2FD9688F1BF24F3A2D19D500232A35B (EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6 * __this, GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * ___value0, const RuntimeMethod* method)
-{
-	{
-		// [field: SerializeField] public GameObject EnemyPrefab { get; set; }
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_0 = ___value0;
-		__this->set_U3CEnemyPrefabU3Ek__BackingField_4(L_0);
-		return;
-	}
-}
-// System.Int32 EnemyData::get_Health()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t EnemyData_get_Health_mE53376C950C402D1FC763F8BD3893F0E1899CBE9 (EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6 * __this, const RuntimeMethod* method)
-{
-	{
-		// [field: SerializeField] public int Health { get; set; }
-		int32_t L_0 = __this->get_U3CHealthU3Ek__BackingField_5();
-		return L_0;
-	}
-}
-// System.Void EnemyData::set_Health(System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EnemyData_set_Health_m56D0B2CFE8640415356459AEA0E1822750AA8C65 (EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6 * __this, int32_t ___value0, const RuntimeMethod* method)
-{
-	{
-		// [field: SerializeField] public int Health { get; set; }
-		int32_t L_0 = ___value0;
-		__this->set_U3CHealthU3Ek__BackingField_5(L_0);
-		return;
-	}
-}
-// System.Int32 EnemyData::get_Damage()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t EnemyData_get_Damage_m3EF4A6845BC4F58E2D3459271320563EFC4A2B04 (EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6 * __this, const RuntimeMethod* method)
-{
-	{
-		// [field: SerializeField] public int Damage { get; set; }
-		int32_t L_0 = __this->get_U3CDamageU3Ek__BackingField_6();
-		return L_0;
-	}
-}
-// System.Void EnemyData::set_Damage(System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EnemyData_set_Damage_mA4BB58072B4D36F916712F396041E0DF14C2EA43 (EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6 * __this, int32_t ___value0, const RuntimeMethod* method)
-{
-	{
-		// [field: SerializeField] public int Damage { get; set; }
-		int32_t L_0 = ___value0;
-		__this->set_U3CDamageU3Ek__BackingField_6(L_0);
-		return;
-	}
-}
-// System.Void EnemyData::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EnemyData__ctor_m6042F9804FAD9705C9C4272B2298E681B9EC7AC8 (EnemyData_t9BE1C246F19B8C3E49E22B7E67BC129D36A594E6 * __this, const RuntimeMethod* method)
-{
-	{
-		ScriptableObject__ctor_m8DAE6CDCFA34E16F2543B02CC3669669FF203063(__this, /*hidden argument*/NULL);
 		return;
 	}
 }
@@ -42644,6 +42524,14 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t EnemyCombatController_get
 	{
 		// [field: SerializeField] private int SideEffectRate { get; set; }
 		int32_t L_0 = __this->get_U3CSideEffectRateU3Ek__BackingField_25();
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t CostumeData_get_ProvidedImmunity_mB92403E4A254B6DC7A904A0480C290FC7341F3B0_inline (CostumeData_t6C31302C2054CCA9657A0AC475DE0D03499D4D8E * __this, const RuntimeMethod* method)
+{
+	{
+		// [field: SerializeField] public EnemyCombatController.SideEffect ProvidedImmunity { get; set; }
+		int32_t L_0 = __this->get_U3CProvidedImmunityU3Ek__BackingField_10();
 		return L_0;
 	}
 }

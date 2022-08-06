@@ -48,7 +48,9 @@ public class LobbyController : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.5f);
         LobbyCore.LobbyAnimator.SetInteger("index", (int)LobbyCore.CurrentLobbyState);
-        if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.SHOP)
+        if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.RANK)
+            LeaderboardCore.InitializeLeaderboard();
+        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.SHOP)
             LobbyCore.DisplayShopItem();
         else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.INVENTORY)
             LobbyCore.InitializeInventory();
@@ -76,6 +78,7 @@ public class LobbyController : MonoBehaviour
     [field: SerializeField] private PlayerData PlayerData { get; set; }
     [field: SerializeField] private LobbyCore LobbyCore { get; set; }
     [field: SerializeField] private QuestCore QuestCore { get; set; }
+    [field: SerializeField] private LeaderboardCore LeaderboardCore { get; set; }
 
     public void LobbyStateToIndex(int state)
     {

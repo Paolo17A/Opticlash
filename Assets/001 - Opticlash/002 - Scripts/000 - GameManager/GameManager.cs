@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public AudioManager AudioManager { get; set; }
     [field: SerializeField] public InventoryManager InventoryManager { get; set; }
     [field: SerializeField] public SceneController SceneController { get; set; }
+
+    [field: Header("COMBAT")]
+    [field: SerializeField] public LevelData CurrentLevelData { get; set; }
     //===========================================================
 
     private void Awake()

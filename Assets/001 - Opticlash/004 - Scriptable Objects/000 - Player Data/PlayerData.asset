@@ -15,12 +15,13 @@ MonoBehaviour:
   <PlayfabID>k__BackingField: 
   <DisplayName>k__BackingField: 
   <LUID>k__BackingField: 
-  <CurrentStage>k__BackingField: 0
+  <CurrentStage>k__BackingField: 1
+  <TotalKillCount>k__BackingField: 0
   <EnergyCount>k__BackingField: 0
   <Optibit>k__BackingField: 0
   <CurrentHealth>k__BackingField: 100
   <MaxHealth>k__BackingField: 100
-  <ActiveWeaponID>k__BackingField: 
+  <ActiveWeaponID>k__BackingField: default
   <ActiveCustomWeapon>k__BackingField: {fileID: 0}
   <OwnedWeapons>k__BackingField:
   - {fileID: 11400000, guid: e58b2b3803e848140bf807589421281f, type: 2}
@@ -53,7 +54,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5a016bbcbfd85e4fbfa3dc4dc30ec49, type: 2}
   - {fileID: 11400000, guid: 74693d90e5ac64244b43dc7f63caa18a, type: 2}
   - {fileID: 11400000, guid: c8309acfd25c8e84ea96873124a85029, type: 2}
-  <ActiveConstumeInstanceID>k__BackingField: 
+  <ActiveConstumeInstanceID>k__BackingField: NONE
   <ActiveCostume>k__BackingField: {fileID: 0}
   <OwnedCostumes>k__BackingField:
   - {fileID: 11400000, guid: 6c8fa252fbe8f60419277beb70a68c08, type: 2}
@@ -93,5 +94,5 @@ MonoBehaviour:
   <SocMedShared>k__BackingField: 0
   <ItemsUsed>k__BackingField: 0
   <MonstersKilled>k__BackingField: 0
-  <BossesKilled>k__BackingField: 0
+  <LevelsWon>k__BackingField: 0
   <DailyQuestClaimed>k__BackingField: 0

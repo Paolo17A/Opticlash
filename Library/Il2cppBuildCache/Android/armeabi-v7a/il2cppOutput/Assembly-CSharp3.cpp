@@ -11134,6 +11134,8 @@ public:
 	Sprite_t5B10B1178EC2E6F53D33FFD77557F31C08A51ED9 * ___U3CInfoSpriteU3Ek__BackingField_8;
 	// UnityEngine.Sprite CostumeData::<DroppedSprite>k__BackingField
 	Sprite_t5B10B1178EC2E6F53D33FFD77557F31C08A51ED9 * ___U3CDroppedSpriteU3Ek__BackingField_9;
+	// EnemyCombatController/SideEffect CostumeData::<ProvidedImmunity>k__BackingField
+	int32_t ___U3CProvidedImmunityU3Ek__BackingField_10;
 
 public:
 	inline static int32_t get_offset_of_U3CCostumeIDU3Ek__BackingField_4() { return static_cast<int32_t>(offsetof(CostumeData_t6C31302C2054CCA9657A0AC475DE0D03499D4D8E, ___U3CCostumeIDU3Ek__BackingField_4)); }
@@ -11188,6 +11190,14 @@ public:
 	{
 		___U3CDroppedSpriteU3Ek__BackingField_9 = value;
 		Il2CppCodeGenWriteBarrier((void**)(&___U3CDroppedSpriteU3Ek__BackingField_9), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_U3CProvidedImmunityU3Ek__BackingField_10() { return static_cast<int32_t>(offsetof(CostumeData_t6C31302C2054CCA9657A0AC475DE0D03499D4D8E, ___U3CProvidedImmunityU3Ek__BackingField_10)); }
+	inline int32_t get_U3CProvidedImmunityU3Ek__BackingField_10() const { return ___U3CProvidedImmunityU3Ek__BackingField_10; }
+	inline int32_t* get_address_of_U3CProvidedImmunityU3Ek__BackingField_10() { return &___U3CProvidedImmunityU3Ek__BackingField_10; }
+	inline void set_U3CProvidedImmunityU3Ek__BackingField_10(int32_t value)
+	{
+		___U3CProvidedImmunityU3Ek__BackingField_10 = value;
 	}
 };
 
@@ -25018,6 +25028,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LoginCore_LoginCredentials_mAB021E3D22C8
 		// },
 		// errorCallback =>
 		// {
+		//     EntryCore.HideLoadingPanel();
 		//     ErrorCallback(errorCallback.Error,
 		//         FailedAction,
 		//         () => LoginCredentials(username, password),

@@ -7036,6 +7036,24 @@ public:
 };
 
 
+// EnemyCombatController/SideEffect
+struct SideEffect_t4E3012488631CA23BC98184F50279C3D7D544EE0 
+{
+public:
+	// System.Int32 EnemyCombatController/SideEffect::value__
+	int32_t ___value___2;
+
+public:
+	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(SideEffect_t4E3012488631CA23BC98184F50279C3D7D544EE0, ___value___2)); }
+	inline int32_t get_value___2() const { return ___value___2; }
+	inline int32_t* get_address_of_value___2() { return &___value___2; }
+	inline void set_value___2(int32_t value)
+	{
+		___value___2 = value;
+	}
+};
+
+
 // UnityEngine.UI.Image/FillMethod
 struct FillMethod_tC37E5898D113A8FBF25A6AB6FBA451CC51E211E2 
 {
@@ -9649,6 +9667,8 @@ public:
 	Sprite_t5B10B1178EC2E6F53D33FFD77557F31C08A51ED9 * ___U3CInfoSpriteU3Ek__BackingField_8;
 	// UnityEngine.Sprite CostumeData::<DroppedSprite>k__BackingField
 	Sprite_t5B10B1178EC2E6F53D33FFD77557F31C08A51ED9 * ___U3CDroppedSpriteU3Ek__BackingField_9;
+	// EnemyCombatController/SideEffect CostumeData::<ProvidedImmunity>k__BackingField
+	int32_t ___U3CProvidedImmunityU3Ek__BackingField_10;
 
 public:
 	inline static int32_t get_offset_of_U3CCostumeIDU3Ek__BackingField_4() { return static_cast<int32_t>(offsetof(CostumeData_t6C31302C2054CCA9657A0AC475DE0D03499D4D8E, ___U3CCostumeIDU3Ek__BackingField_4)); }
@@ -9703,6 +9723,14 @@ public:
 	{
 		___U3CDroppedSpriteU3Ek__BackingField_9 = value;
 		Il2CppCodeGenWriteBarrier((void**)(&___U3CDroppedSpriteU3Ek__BackingField_9), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_U3CProvidedImmunityU3Ek__BackingField_10() { return static_cast<int32_t>(offsetof(CostumeData_t6C31302C2054CCA9657A0AC475DE0D03499D4D8E, ___U3CProvidedImmunityU3Ek__BackingField_10)); }
+	inline int32_t get_U3CProvidedImmunityU3Ek__BackingField_10() const { return ___U3CProvidedImmunityU3Ek__BackingField_10; }
+	inline int32_t* get_address_of_U3CProvidedImmunityU3Ek__BackingField_10() { return &___U3CProvidedImmunityU3Ek__BackingField_10; }
+	inline void set_U3CProvidedImmunityU3Ek__BackingField_10(int32_t value)
+	{
+		___U3CProvidedImmunityU3Ek__BackingField_10 = value;
 	}
 };
 
@@ -37682,7 +37710,7 @@ IL_0083:
 		NullCheck(L_21);
 		LTDescrOptional_set_axis_m17A070B698AFE6D066C10EEF1A86DDEABC0A13B0_inline(L_21, L_25, /*hidden argument*/NULL);
 		// d.easeInternal = () => {
-		//     d.optional.axis = LeanSmooth.spring(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate);
+		//     d.optional.axis = LeanSmooth.spring(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate);
 		//     d.trans.localPosition = d.optional.axis + d.toInternal;
 		// }; break;
 		U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * L_26 = V_0;
@@ -37714,7 +37742,7 @@ IL_00bf:
 		NullCheck(L_31);
 		L_31->set_diff_29(L_35);
 		// d.easeInternal = () => {
-		//     d.diff = LeanSmooth.spring(d.diff, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate);
+		//     d.diff = LeanSmooth.spring(d.diff, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate);
 		//     d.trans.position = d.diff;// + d.toInternal;
 		// }; break;
 		U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * L_36 = V_0;
@@ -37732,7 +37760,7 @@ IL_00bf:
 IL_00f6:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.LeanSetLocalPosX(LeanSmooth.spring(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
+		//     d.trans.LeanSetLocalPosX(LeanSmooth.spring(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate));
 		// }; break;
 		U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * L_40 = V_0;
 		NullCheck(L_40);
@@ -37749,7 +37777,7 @@ IL_00f6:
 IL_0112:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.LeanSetLocalPosY(LeanSmooth.spring(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
+		//     d.trans.LeanSetLocalPosY(LeanSmooth.spring(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate));
 		// }; break;
 		U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * L_44 = V_0;
 		NullCheck(L_44);
@@ -37766,7 +37794,7 @@ IL_0112:
 IL_012e:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.LeanSetLocalPosZ(LeanSmooth.spring(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
+		//     d.trans.LeanSetLocalPosZ(LeanSmooth.spring(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate));
 		// }; break;
 		U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * L_48 = V_0;
 		NullCheck(L_48);
@@ -37783,7 +37811,7 @@ IL_012e:
 IL_0147:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.LeanSetPosX(LeanSmooth.spring(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
+		//     d.trans.LeanSetPosX(LeanSmooth.spring(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate));
 		// }; break;
 		U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * L_52 = V_0;
 		NullCheck(L_52);
@@ -37800,7 +37828,7 @@ IL_0147:
 IL_0160:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.LeanSetPosY(LeanSmooth.spring(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
+		//     d.trans.LeanSetPosY(LeanSmooth.spring(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate));
 		// }; break;
 		U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * L_56 = V_0;
 		NullCheck(L_56);
@@ -37817,7 +37845,7 @@ IL_0160:
 IL_0179:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.LeanSetPosZ(LeanSmooth.spring(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
+		//     d.trans.LeanSetPosZ(LeanSmooth.spring(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate));
 		// }; break;
 		U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * L_60 = V_0;
 		NullCheck(L_60);
@@ -37834,7 +37862,7 @@ IL_0179:
 IL_0192:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.localScale = LeanSmooth.spring(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate);
+		//     d.trans.localScale = LeanSmooth.spring(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate);
 		// }; break;
 		U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * L_64 = V_0;
 		NullCheck(L_64);
@@ -37851,7 +37879,7 @@ IL_0192:
 IL_01ab:
 	{
 		// d.easeInternal = () => {
-		//     var col = LeanSmooth.spring(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate);
+		//     var col = LeanSmooth.spring(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate);
 		//     d.trans.GetComponent<Renderer>().material.color = col;
 		// }; break;
 		U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * L_68 = V_0;
@@ -38010,7 +38038,7 @@ IL_008b:
 		NullCheck(L_23);
 		LTDescrOptional_set_axis_m17A070B698AFE6D066C10EEF1A86DDEABC0A13B0_inline(L_23, L_27, /*hidden argument*/NULL);
 		// d.easeInternal = () => {
-		//     d.optional.axis = LeanSmooth.bounceOut(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping);
+		//     d.optional.axis = LeanSmooth.bounceOut(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping);
 		//     d.trans.localPosition = d.optional.axis + d.toInternal;
 		// }; break;
 		U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * L_28 = V_0;
@@ -38028,7 +38056,7 @@ IL_008b:
 IL_00c7:
 	{
 		// d.easeInternal = () => {
-		//     d.optional.axis = LeanSmooth.bounceOut(d.optional.axis, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping);
+		//     d.optional.axis = LeanSmooth.bounceOut(d.optional.axis, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping);
 		//     d.trans.position = d.optional.axis + d.toInternal;
 		// }; break;
 		U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * L_32 = V_0;
@@ -38046,7 +38074,7 @@ IL_00c7:
 IL_00e3:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.LeanSetLocalPosX(LeanSmooth.bounceOut(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
+		//     d.trans.LeanSetLocalPosX(LeanSmooth.bounceOut(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping));
 		// }; break;
 		U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * L_36 = V_0;
 		NullCheck(L_36);
@@ -38063,7 +38091,7 @@ IL_00e3:
 IL_00ff:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.LeanSetLocalPosY(LeanSmooth.bounceOut(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
+		//     d.trans.LeanSetLocalPosY(LeanSmooth.bounceOut(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping));
 		// }; break;
 		U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * L_40 = V_0;
 		NullCheck(L_40);
@@ -38080,7 +38108,7 @@ IL_00ff:
 IL_011b:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.LeanSetLocalPosZ(LeanSmooth.bounceOut(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
+		//     d.trans.LeanSetLocalPosZ(LeanSmooth.bounceOut(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping));
 		// }; break;
 		U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * L_44 = V_0;
 		NullCheck(L_44);
@@ -38097,7 +38125,7 @@ IL_011b:
 IL_0134:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.LeanSetPosX(LeanSmooth.bounceOut(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
+		//     d.trans.LeanSetPosX(LeanSmooth.bounceOut(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping));
 		// }; break;
 		U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * L_48 = V_0;
 		NullCheck(L_48);
@@ -38114,7 +38142,7 @@ IL_0134:
 IL_014d:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.LeanSetPosY(LeanSmooth.bounceOut(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
+		//     d.trans.LeanSetPosY(LeanSmooth.bounceOut(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping));
 		// }; break;
 		U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * L_52 = V_0;
 		NullCheck(L_52);
@@ -38131,7 +38159,7 @@ IL_014d:
 IL_0166:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.LeanSetPosZ(LeanSmooth.bounceOut(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
+		//     d.trans.LeanSetPosZ(LeanSmooth.bounceOut(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping));
 		// }; break;
 		U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * L_56 = V_0;
 		NullCheck(L_56);
@@ -38148,7 +38176,7 @@ IL_0166:
 IL_017f:
 	{
 		// d.easeInternal = () => {
-		//     d.trans.localScale = LeanSmooth.bounceOut(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping);
+		//     d.trans.localScale = LeanSmooth.bounceOut(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping);
 		// }; break;
 		U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * L_60 = V_0;
 		NullCheck(L_60);
@@ -38165,7 +38193,7 @@ IL_017f:
 IL_0198:
 	{
 		// d.easeInternal = () => {
-		//     var col = LeanSmooth.bounceOut(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping);
+		//     var col = LeanSmooth.bounceOut(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping);
 		//     d.trans.GetComponent<Renderer>().material.color = col;
 		// }; break;
 		U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * L_64 = V_0;

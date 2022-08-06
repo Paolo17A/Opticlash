@@ -89,7 +89,12 @@ public class LoginCore : MonoBehaviour
                         GameManager.Instance.DisplayErrorPanel("Connectivity error. Please connect to strong internet");
                     },
                     () => LoginUserPlayfab(username, password),
-                    () => GameManager.Instance.DisplayErrorPanel(errorCallback.ErrorMessage));
+                    () =>
+                    {
+                        Debug.Log("error came from h ere");
+                        EntryCore.HideLoadingPanel();
+                        GameManager.Instance.DisplayErrorPanel(errorCallback.ErrorMessage);
+                    } );
             });
     }
 
@@ -128,10 +133,13 @@ public class LoginCore : MonoBehaviour
                 EntryCore.HideLoadingPanel();
                 GameManager.Instance.SceneController.CurrentScene = "LobbyScene";
             }
-            
+            else
+                EntryCore.HideLoadingPanel();
+
         },
         errorCallback =>
         {
+            EntryCore.HideLoadingPanel();
             ErrorCallback(errorCallback.Error,
                 FailedAction,
                 () => LoginCredentials(username, password),

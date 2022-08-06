@@ -59,7 +59,7 @@ public class BackgroundScroller : MonoBehaviour
             LastPanel.transform.Translate(Vector3.down * Time.deltaTime);
             if (LastPanel.transform.position.y <= 0)
             {
-                FrontPanel.transform.position = new Vector3(19, FrontPanel.transform.position.y, FrontPanel.transform.position.z);
+                FrontPanel.transform.position = new Vector3(FrontPanel.transform.position.x, 19, FrontPanel.transform.position.z);
                 holder = FrontPanel;
                 FrontPanel = LastPanel;
                 LastPanel = holder;

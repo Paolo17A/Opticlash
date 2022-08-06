@@ -1264,8 +1264,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CombatCore>k__BackingField: {fileID: 0}
-  <FrontPanel>k__BackingField: {fileID: 2145973795}
-  <LastPanel>k__BackingField: {fileID: 680836704}
+  <FrontPanel>k__BackingField: {fileID: 680836704}
+  <LastPanel>k__BackingField: {fileID: 2145973795}
   <FrontStage>k__BackingField: {fileID: 0}
   <LastStage>k__BackingField: {fileID: 0}
   windowConstant: 3.92

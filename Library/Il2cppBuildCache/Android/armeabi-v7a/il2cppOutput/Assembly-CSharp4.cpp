@@ -7875,42 +7875,6 @@ public:
 };
 
 
-// EnemyData/Buff
-struct Buff_t6C54F692EF82EEC1669A44589139550E61EDA761 
-{
-public:
-	// System.Int32 EnemyData/Buff::value__
-	int32_t ___value___2;
-
-public:
-	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(Buff_t6C54F692EF82EEC1669A44589139550E61EDA761, ___value___2)); }
-	inline int32_t get_value___2() const { return ___value___2; }
-	inline int32_t* get_address_of_value___2() { return &___value___2; }
-	inline void set_value___2(int32_t value)
-	{
-		___value___2 = value;
-	}
-};
-
-
-// EnemyData/StatusEffect
-struct StatusEffect_t5EB81757EB229CE171EEF50FF23DB3199C0BCE27 
-{
-public:
-	// System.Int32 EnemyData/StatusEffect::value__
-	int32_t ___value___2;
-
-public:
-	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(StatusEffect_t5EB81757EB229CE171EEF50FF23DB3199C0BCE27, ___value___2)); }
-	inline int32_t get_value___2() const { return ___value___2; }
-	inline int32_t* get_address_of_value___2() { return &___value___2; }
-	inline void set_value___2(int32_t value)
-	{
-		___value___2 = value;
-	}
-};
-
-
 // EntryCore/EntryStates
 struct EntryStates_tD359809A2BB5DF624CB3664C67A82B4D9ABE3A8B 
 {
@@ -22882,22 +22846,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass189_0_U3CUpdateQues
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
 // System.Void GemController/<CheckMoveCoroutine>d__41::.ctor(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCheckMoveCoroutineU3Ed__41__ctor_mA065831D8D19BDBD672CC5833F1E9966E7EC6CB4 (U3CCheckMoveCoroutineU3Ed__41_tB84C796352F4E311F429DCB9312401FE997F76E1 * __this, int32_t ___U3CU3E1__state0, const RuntimeMethod* method)
 {
@@ -24825,7 +24773,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0__ctor_m7BE723
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpringU3Eb__0_m96E779A4A9A701F3B635CFB3EBCC96458BD3FDC3 (U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.optional.axis = LeanSmooth.spring(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate);
+		// d.optional.axis = LeanSmooth.spring(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate);
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		LTDescrOptional_t588EC8F737F42C3A4113E515F4A80CE334ED5DA2 * L_1;
@@ -24850,7 +24798,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 		float L_10 = __this->get_smoothTime_1();
 		float L_11 = __this->get_maxSpeed_2();
 		float L_12;
-		L_12 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_12 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_13 = __this->get_friction_3();
 		float L_14 = __this->get_accelRate_4();
 		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_15;
@@ -24883,7 +24831,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpringU3Eb__1_mACD73E450FC2E3CE551EDDAC93A2F52A45C5054C (U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.diff = LeanSmooth.spring(d.diff, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate);
+		// d.diff = LeanSmooth.spring(d.diff, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate);
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_1 = __this->get_d_0();
 		NullCheck(L_1);
@@ -24901,7 +24849,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 		float L_8 = __this->get_smoothTime_1();
 		float L_9 = __this->get_maxSpeed_2();
 		float L_10;
-		L_10 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_10 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_11 = __this->get_friction_3();
 		float L_12 = __this->get_accelRate_4();
 		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_13;
@@ -24925,7 +24873,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpringU3Eb__2_m56BDFF78D7668526967A93EA96C4F427DC600683 (U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.LeanSetLocalPosX(LeanSmooth.spring(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
+		// d.trans.LeanSetLocalPosX(LeanSmooth.spring(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate));
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -24951,7 +24899,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 		float L_13 = __this->get_smoothTime_1();
 		float L_14 = __this->get_maxSpeed_2();
 		float L_15;
-		L_15 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_15 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_16 = __this->get_friction_3();
 		float L_17 = __this->get_accelRate_4();
 		float L_18;
@@ -24965,7 +24913,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpringU3Eb__3_m8F19785EA57FC703DDADF403EE7321F94343C995 (U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.LeanSetLocalPosY(LeanSmooth.spring(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
+		// d.trans.LeanSetLocalPosY(LeanSmooth.spring(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate));
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -24991,7 +24939,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 		float L_13 = __this->get_smoothTime_1();
 		float L_14 = __this->get_maxSpeed_2();
 		float L_15;
-		L_15 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_15 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_16 = __this->get_friction_3();
 		float L_17 = __this->get_accelRate_4();
 		float L_18;
@@ -25005,7 +24953,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpringU3Eb__4_mD7590F09F10CE901B14B9E7C2D59281C17BF6D45 (U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.LeanSetLocalPosZ(LeanSmooth.spring(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
+		// d.trans.LeanSetLocalPosZ(LeanSmooth.spring(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate));
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25031,7 +24979,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 		float L_13 = __this->get_smoothTime_1();
 		float L_14 = __this->get_maxSpeed_2();
 		float L_15;
-		L_15 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_15 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_16 = __this->get_friction_3();
 		float L_17 = __this->get_accelRate_4();
 		float L_18;
@@ -25045,7 +24993,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpringU3Eb__5_m0173F460A2260824B38994CCB06B17F86A43BC00 (U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.LeanSetPosX(LeanSmooth.spring(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
+		// d.trans.LeanSetPosX(LeanSmooth.spring(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate));
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25071,7 +25019,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 		float L_13 = __this->get_smoothTime_1();
 		float L_14 = __this->get_maxSpeed_2();
 		float L_15;
-		L_15 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_15 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_16 = __this->get_friction_3();
 		float L_17 = __this->get_accelRate_4();
 		float L_18;
@@ -25085,7 +25033,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpringU3Eb__6_mDF693219BF56597185AC7A86A83B41CCAE50995D (U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.LeanSetPosY(LeanSmooth.spring(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
+		// d.trans.LeanSetPosY(LeanSmooth.spring(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate));
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25111,7 +25059,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 		float L_13 = __this->get_smoothTime_1();
 		float L_14 = __this->get_maxSpeed_2();
 		float L_15;
-		L_15 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_15 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_16 = __this->get_friction_3();
 		float L_17 = __this->get_accelRate_4();
 		float L_18;
@@ -25125,7 +25073,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpringU3Eb__7_m02E8CAD9D7320D317F1291024AEC66A7BA1DF8BC (U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.LeanSetPosZ(LeanSmooth.spring(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
+		// d.trans.LeanSetPosZ(LeanSmooth.spring(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate));
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25151,7 +25099,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 		float L_13 = __this->get_smoothTime_1();
 		float L_14 = __this->get_maxSpeed_2();
 		float L_15;
-		L_15 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_15 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_16 = __this->get_friction_3();
 		float L_17 = __this->get_accelRate_4();
 		float L_18;
@@ -25165,7 +25113,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpringU3Eb__8_m2815FB0A57623C0A7694BEE29292D36748AF2FEF (U3CU3Ec__DisplayClass194_0_t6FE45F50B4F93FED778E7D54F0EF582EA8252814 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.localScale = LeanSmooth.spring(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate);
+		// d.trans.localScale = LeanSmooth.spring(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate);
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25188,7 +25136,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 		float L_10 = __this->get_smoothTime_1();
 		float L_11 = __this->get_maxSpeed_2();
 		float L_12;
-		L_12 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_12 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_13 = __this->get_friction_3();
 		float L_14 = __this->get_accelRate_4();
 		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_15;
@@ -25211,7 +25159,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 	Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  V_0;
 	memset((&V_0), 0, sizeof(V_0));
 	{
-		// var col = LeanSmooth.spring(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate);
+		// var col = LeanSmooth.spring(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate);
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25232,7 +25180,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass194_0_U3CfollowSpri
 		float L_9 = __this->get_smoothTime_1();
 		float L_10 = __this->get_maxSpeed_2();
 		float L_11;
-		L_11 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_11 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_12 = __this->get_friction_3();
 		float L_13 = __this->get_accelRate_4();
 		Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  L_14;
@@ -25275,7 +25223,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0__ctor_mBBB552
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBounceOutU3Eb__0_m85BF6FBF1E6DDC848ED2747320A820E6A16F69A9 (U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.optional.axis = LeanSmooth.bounceOut(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping);
+		// d.optional.axis = LeanSmooth.bounceOut(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping);
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		LTDescrOptional_t588EC8F737F42C3A4113E515F4A80CE334ED5DA2 * L_1;
@@ -25300,7 +25248,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 		float L_10 = __this->get_smoothTime_1();
 		float L_11 = __this->get_maxSpeed_2();
 		float L_12;
-		L_12 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_12 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_13 = __this->get_friction_3();
 		float L_14 = __this->get_accelRate_4();
 		float L_15 = __this->get_hitDamping_5();
@@ -25334,7 +25282,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBounceOutU3Eb__1_m8C32BD1F9A6489144955B3C032D8EFB4884F2ED6 (U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.optional.axis = LeanSmooth.bounceOut(d.optional.axis, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping);
+		// d.optional.axis = LeanSmooth.bounceOut(d.optional.axis, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping);
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		LTDescrOptional_t588EC8F737F42C3A4113E515F4A80CE334ED5DA2 * L_1;
@@ -25359,7 +25307,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 		float L_10 = __this->get_smoothTime_1();
 		float L_11 = __this->get_maxSpeed_2();
 		float L_12;
-		L_12 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_12 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_13 = __this->get_friction_3();
 		float L_14 = __this->get_accelRate_4();
 		float L_15 = __this->get_hitDamping_5();
@@ -25393,7 +25341,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBounceOutU3Eb__2_m3ADBC5765839ADC33E591B0E3F86D3BCEDD966D3 (U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.LeanSetLocalPosX(LeanSmooth.bounceOut(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
+		// d.trans.LeanSetLocalPosX(LeanSmooth.bounceOut(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping));
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25419,7 +25367,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 		float L_13 = __this->get_smoothTime_1();
 		float L_14 = __this->get_maxSpeed_2();
 		float L_15;
-		L_15 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_15 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_16 = __this->get_friction_3();
 		float L_17 = __this->get_accelRate_4();
 		float L_18 = __this->get_hitDamping_5();
@@ -25434,7 +25382,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBounceOutU3Eb__3_m7F6DABA8926F943AB02A6C527D916B95331FD3C9 (U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.LeanSetLocalPosY(LeanSmooth.bounceOut(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
+		// d.trans.LeanSetLocalPosY(LeanSmooth.bounceOut(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping));
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25460,7 +25408,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 		float L_13 = __this->get_smoothTime_1();
 		float L_14 = __this->get_maxSpeed_2();
 		float L_15;
-		L_15 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_15 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_16 = __this->get_friction_3();
 		float L_17 = __this->get_accelRate_4();
 		float L_18 = __this->get_hitDamping_5();
@@ -25475,7 +25423,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBounceOutU3Eb__4_mB8C14DF64A83794EB497687CD62EB8246F2F3039 (U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.LeanSetLocalPosZ(LeanSmooth.bounceOut(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
+		// d.trans.LeanSetLocalPosZ(LeanSmooth.bounceOut(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping));
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25501,7 +25449,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 		float L_13 = __this->get_smoothTime_1();
 		float L_14 = __this->get_maxSpeed_2();
 		float L_15;
-		L_15 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_15 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_16 = __this->get_friction_3();
 		float L_17 = __this->get_accelRate_4();
 		float L_18 = __this->get_hitDamping_5();
@@ -25516,7 +25464,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBounceOutU3Eb__5_mA48C1D48F29E8F11F15E727577E658F0CAC0DD46 (U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.LeanSetPosX(LeanSmooth.bounceOut(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
+		// d.trans.LeanSetPosX(LeanSmooth.bounceOut(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping));
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25542,7 +25490,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 		float L_13 = __this->get_smoothTime_1();
 		float L_14 = __this->get_maxSpeed_2();
 		float L_15;
-		L_15 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_15 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_16 = __this->get_friction_3();
 		float L_17 = __this->get_accelRate_4();
 		float L_18 = __this->get_hitDamping_5();
@@ -25557,7 +25505,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBounceOutU3Eb__6_m6915716A4F822A502028FEABC63C125E057402CD (U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.LeanSetPosY(LeanSmooth.bounceOut(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
+		// d.trans.LeanSetPosY(LeanSmooth.bounceOut(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping));
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25583,7 +25531,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 		float L_13 = __this->get_smoothTime_1();
 		float L_14 = __this->get_maxSpeed_2();
 		float L_15;
-		L_15 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_15 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_16 = __this->get_friction_3();
 		float L_17 = __this->get_accelRate_4();
 		float L_18 = __this->get_hitDamping_5();
@@ -25598,7 +25546,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBounceOutU3Eb__7_mDDD6AF7E2634F4081FD3849FF6C18B87A3235250 (U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.LeanSetPosZ(LeanSmooth.bounceOut(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
+		// d.trans.LeanSetPosZ(LeanSmooth.bounceOut(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping));
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25624,7 +25572,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 		float L_13 = __this->get_smoothTime_1();
 		float L_14 = __this->get_maxSpeed_2();
 		float L_15;
-		L_15 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_15 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_16 = __this->get_friction_3();
 		float L_17 = __this->get_accelRate_4();
 		float L_18 = __this->get_hitDamping_5();
@@ -25639,7 +25587,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBounceOutU3Eb__8_m90947880CD99C1E7247F57A1AC77692D6FFBFE69 (U3CU3Ec__DisplayClass195_0_tF0E800EBCA190980873A4098BBEEFCFBD61950B4 * __this, const RuntimeMethod* method)
 {
 	{
-		// d.trans.localScale = LeanSmooth.bounceOut(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping);
+		// d.trans.localScale = LeanSmooth.bounceOut(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping);
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25662,7 +25610,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 		float L_10 = __this->get_smoothTime_1();
 		float L_11 = __this->get_maxSpeed_2();
 		float L_12;
-		L_12 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_12 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_13 = __this->get_friction_3();
 		float L_14 = __this->get_accelRate_4();
 		float L_15 = __this->get_hitDamping_5();
@@ -25686,7 +25634,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 	Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  V_0;
 	memset((&V_0), 0, sizeof(V_0));
 	{
-		// var col = LeanSmooth.bounceOut(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping);
+		// var col = LeanSmooth.bounceOut(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, Time.unscaledDeltaTime, friction, accelRate, hitDamping);
 		LTDescr_t9A3CDAF54A7C42CE3B0D73AAE3087D8C910F602F * L_0 = __this->get_d_0();
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1 = L_0->get_trans_26();
@@ -25707,7 +25655,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass195_0_U3CfollowBoun
 		float L_9 = __this->get_smoothTime_1();
 		float L_10 = __this->get_maxSpeed_2();
 		float L_11;
-		L_11 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		L_11 = Time_get_unscaledDeltaTime_m2C153F1E5C77C6AF655054BC6C76D0C334C0DC84(/*hidden argument*/NULL);
 		float L_12 = __this->get_friction_3();
 		float L_13 = __this->get_accelRate_4();
 		float L_14 = __this->get_hitDamping_5();
@@ -27552,54 +27500,61 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass13_0_U3CLoginCreden
 		PlayFabError_t30D17E43C1943090E6D2882BEC4558B458FF3586 * L_2 = ___errorCallback0;
 		NullCheck(L_1);
 		L_1->set_errorCallback_0(L_2);
+		// EntryCore.HideLoadingPanel();
+		LoginCore_tF352BEA62B4E25DF6B636107241E91029E2198EC * L_3 = __this->get_U3CU3E4__this_0();
+		NullCheck(L_3);
+		EntryCore_t14D254CDB54CBEC1B5A65318263EE76403B1B36E * L_4;
+		L_4 = LoginCore_get_EntryCore_m99C13E9C26113E11E1A59535D6745C3C6FF771D7_inline(L_3, /*hidden argument*/NULL);
+		NullCheck(L_4);
+		EntryCore_HideLoadingPanel_mDCB6054E910DF28E1137F43133C28899EF93235F(L_4, /*hidden argument*/NULL);
 		// ErrorCallback(errorCallback.Error,
 		//     FailedAction,
 		//     () => LoginCredentials(username, password),
 		//     () => GameManager.Instance.DisplayErrorPanel(errorCallback.ErrorMessage));
-		LoginCore_tF352BEA62B4E25DF6B636107241E91029E2198EC * L_3 = __this->get_U3CU3E4__this_0();
-		U3CU3Ec__DisplayClass13_1_t60E0316EA787BE3D11146833AE2BB2E3A2786840 * L_4 = V_0;
-		NullCheck(L_4);
-		PlayFabError_t30D17E43C1943090E6D2882BEC4558B458FF3586 * L_5 = L_4->get_errorCallback_0();
-		NullCheck(L_5);
-		int32_t L_6 = L_5->get_Error_3();
-		LoginCore_tF352BEA62B4E25DF6B636107241E91029E2198EC * L_7 = __this->get_U3CU3E4__this_0();
-		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_8 = (Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 *)il2cpp_codegen_object_new(Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6_il2cpp_TypeInfo_var);
-		Action__ctor_m07BE5EE8A629FBBA52AE6356D57A0D371BE2574B(L_8, L_7, (intptr_t)((intptr_t)LoginCore_FailedAction_m21950ED2FC48173D9B673A7D54B7D29BB7D6BA1A_RuntimeMethod_var), /*hidden argument*/NULL);
-		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_9 = __this->get_U3CU3E9__2_3();
-		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_10 = L_9;
-		G_B1_0 = L_10;
-		G_B1_1 = L_8;
-		G_B1_2 = L_6;
-		G_B1_3 = L_3;
-		if (L_10)
+		LoginCore_tF352BEA62B4E25DF6B636107241E91029E2198EC * L_5 = __this->get_U3CU3E4__this_0();
+		U3CU3Ec__DisplayClass13_1_t60E0316EA787BE3D11146833AE2BB2E3A2786840 * L_6 = V_0;
+		NullCheck(L_6);
+		PlayFabError_t30D17E43C1943090E6D2882BEC4558B458FF3586 * L_7 = L_6->get_errorCallback_0();
+		NullCheck(L_7);
+		int32_t L_8 = L_7->get_Error_3();
+		LoginCore_tF352BEA62B4E25DF6B636107241E91029E2198EC * L_9 = __this->get_U3CU3E4__this_0();
+		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_10 = (Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 *)il2cpp_codegen_object_new(Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6_il2cpp_TypeInfo_var);
+		Action__ctor_m07BE5EE8A629FBBA52AE6356D57A0D371BE2574B(L_10, L_9, (intptr_t)((intptr_t)LoginCore_FailedAction_m21950ED2FC48173D9B673A7D54B7D29BB7D6BA1A_RuntimeMethod_var), /*hidden argument*/NULL);
+		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_11 = __this->get_U3CU3E9__2_3();
+		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_12 = L_11;
+		G_B1_0 = L_12;
+		G_B1_1 = L_10;
+		G_B1_2 = L_8;
+		G_B1_3 = L_5;
+		if (L_12)
 		{
-			G_B2_0 = L_10;
-			G_B2_1 = L_8;
-			G_B2_2 = L_6;
-			G_B2_3 = L_3;
-			goto IL_004e;
+			G_B2_0 = L_12;
+			G_B2_1 = L_10;
+			G_B2_2 = L_8;
+			G_B2_3 = L_5;
+			goto IL_005e;
 		}
 	}
 	{
-		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_11 = (Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 *)il2cpp_codegen_object_new(Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6_il2cpp_TypeInfo_var);
-		Action__ctor_m07BE5EE8A629FBBA52AE6356D57A0D371BE2574B(L_11, __this, (intptr_t)((intptr_t)U3CU3Ec__DisplayClass13_0_U3CLoginCredentialsU3Eb__2_m8EAC36C01BBDD5990C40736153E1F59D73D49DD9_RuntimeMethod_var), /*hidden argument*/NULL);
-		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_12 = L_11;
-		V_1 = L_12;
-		__this->set_U3CU3E9__2_3(L_12);
-		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_13 = V_1;
-		G_B2_0 = L_13;
+		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_13 = (Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 *)il2cpp_codegen_object_new(Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6_il2cpp_TypeInfo_var);
+		Action__ctor_m07BE5EE8A629FBBA52AE6356D57A0D371BE2574B(L_13, __this, (intptr_t)((intptr_t)U3CU3Ec__DisplayClass13_0_U3CLoginCredentialsU3Eb__2_m8EAC36C01BBDD5990C40736153E1F59D73D49DD9_RuntimeMethod_var), /*hidden argument*/NULL);
+		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_14 = L_13;
+		V_1 = L_14;
+		__this->set_U3CU3E9__2_3(L_14);
+		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_15 = V_1;
+		G_B2_0 = L_15;
 		G_B2_1 = G_B1_1;
 		G_B2_2 = G_B1_2;
 		G_B2_3 = G_B1_3;
 	}
 
-IL_004e:
+IL_005e:
 	{
-		U3CU3Ec__DisplayClass13_1_t60E0316EA787BE3D11146833AE2BB2E3A2786840 * L_14 = V_0;
-		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_15 = (Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 *)il2cpp_codegen_object_new(Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6_il2cpp_TypeInfo_var);
-		Action__ctor_m07BE5EE8A629FBBA52AE6356D57A0D371BE2574B(L_15, L_14, (intptr_t)((intptr_t)U3CU3Ec__DisplayClass13_1_U3CLoginCredentialsU3Eb__3_mC944EDA4F0AB124521DCAD4D02177F8049645E70_RuntimeMethod_var), /*hidden argument*/NULL);
+		U3CU3Ec__DisplayClass13_1_t60E0316EA787BE3D11146833AE2BB2E3A2786840 * L_16 = V_0;
+		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_17 = (Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 *)il2cpp_codegen_object_new(Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6_il2cpp_TypeInfo_var);
+		Action__ctor_m07BE5EE8A629FBBA52AE6356D57A0D371BE2574B(L_17, L_16, (intptr_t)((intptr_t)U3CU3Ec__DisplayClass13_1_U3CLoginCredentialsU3Eb__3_mC944EDA4F0AB124521DCAD4D02177F8049645E70_RuntimeMethod_var), /*hidden argument*/NULL);
 		NullCheck(G_B2_3);
-		LoginCore_ErrorCallback_mABF8DCF6B56F31771139380672D52F6B29C6AB76(G_B2_3, G_B2_2, G_B2_1, G_B2_0, L_15, /*hidden argument*/NULL);
+		LoginCore_ErrorCallback_mABF8DCF6B56F31771139380672D52F6B29C6AB76(G_B2_3, G_B2_2, G_B2_1, G_B2_0, L_17, /*hidden argument*/NULL);
 		// });
 		return;
 	}
