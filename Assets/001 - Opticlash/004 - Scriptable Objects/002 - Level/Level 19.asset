@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fc687c0e10dc640b70b6d2849a805b, type: 3}
+  m_Name: Level 19
+  m_EditorClassIdentifier: 
+  <LevelIndex>k__BackingField: 19
+  <MonsterList>k__BackingField:
+  - BreakMonster007
+  - ParalyzeMonster008
+  - BreakMonster008
+  - ParalyzeMonster009
+  - BurnMonster010
+  <MonsterLevels>k__BackingField: 0f0000000f000000100000001100000012000000
+  minDroppedOPB: 0
+  maxDroppedOPB: 400

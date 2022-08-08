@@ -125,7 +125,7 @@ public class PlayerData : ScriptableObject
         {
             customWeapon.WeaponInstanceID = "";
             customWeapon.BaseWeaponData = null;
-            customWeapon.BonusDamage = 0;
+            customWeapon.Level = 0;
         }
     }
 }

@@ -9,14 +9,12 @@ public class LevelData : ScriptableObject
     //===============================================================================
     [field: SerializeField] public int LevelIndex { get; set; }
 
-    [field: Header("BOSS")]
-    [field: SerializeField] public bool IsBossLevel { get; set; }
-
-    //[Header("ENEMIES")]
-    /*[SerializeField] private List<EnemyData> enemyDataInLevel;*/
+    [field: Header("ENEMIES")]
+    [field: SerializeField] private List<string> MonsterList { get; set; }
+    [field: SerializeField] private List<int> MonsterLevels { get; set; }
 
     [field: Header("OPTIBIT")]
-    [SerializeField] public int minDroppedOPB;
-    [SerializeField] public int maxDroppedOPB;
+    [field: SerializeField] public int minDroppedOPB;
+    [field: SerializeField] public int maxDroppedOPB;
     //===============================================================================
 }

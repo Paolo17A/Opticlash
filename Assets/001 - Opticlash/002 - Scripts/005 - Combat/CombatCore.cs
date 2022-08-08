@@ -229,7 +229,7 @@ public class CombatCore : MonoBehaviour
         StageCounter++;
         StageTMP.text = StageCounter.ToString();
         CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
-        SpawnedPlayer.ShotAccuracy = PlayerData.ActiveCustomWeapon.BaseWeaponData.Accuracy - CurrentEnemy.EvasionValue;
+        //SpawnedPlayer.ShotAccuracy = PlayerData.ActiveCustomWeapon.BaseWeaponData.Accuracy - CurrentEnemy.EvasionValue;
         CurrentEnemy.InitializeEnemy();
     }
     public void WarpToNextEnemy()

@@ -55,15 +55,21 @@ public class CharacterCombatController : MonoBehaviour
     [field: Header("PLAYER DATA")]
     [field: SerializeField] private Animator PlayerAnimator { get; set; }
     [field: SerializeField] private float CurrentHealth { get; set; }
-    [field: SerializeField] private int MaxHealth;
+    [field: SerializeField] private float MaxHealth { get; set; }
     [field: SerializeField] private GameObject HealthBar { get; set; }
     [field: SerializeField] private GameObject HealthSlider { get; set; }
+
+    [field: Header("OPTI STATS")]
+    [field: SerializeField] [field: ReadOnly] public float Attack { get; set; }
+    [field: SerializeField] [field: ReadOnly] public float ShotAccuracy { get; set; }
+    [field: SerializeField] [field: ReadOnly] public float Evasion { get; set; }
+    [field: SerializeField] [field: ReadOnly] public float Defense { get; set; }
+    [field: SerializeField] [field: ReadOnly] public float DamageDeal { get; set; }
 
     [field: Header("COSTUME DATA")]
     [field: SerializeField] private GameObject Costume { get; set; }
 
     [field: Header("WEAPON DATA")]
-    [field: SerializeField] private GameObject Cannon { get; set; }
     [field: SerializeField] private GameObject CannonBlast { get; set; }
     [field: SerializeField] public GameObject Kaboom { get; set; }
     [field: SerializeField] private SpriteRenderer CannonBackSprite { get; set; }
@@ -91,7 +97,6 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField][field: ReadOnly] public EnemyCombatController.SideEffect CurrentSideEffect { get; set; }
     [field: SerializeField][field: ReadOnly] public float SideEffectDamage { get; set; }
     [field: SerializeField][field: ReadOnly] public int SideEffectInstancesRemaining { get; set; }
-    [field: SerializeField][field: ReadOnly] private bool BurnInstanceAccepted { get; set; }
     [field: SerializeField][field: ReadOnly] public bool StatusEffectActivated { get; set; }
 
     [field: Header("SIDE EFFECT ROSTER")]
@@ -116,7 +121,6 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField] private TrailRenderer ProjectileTrail { get; set; }
 
     [field: Header("DEBUGGER")]
-    [field: SerializeField][field: ReadOnly] public float ShotAccuracy { get; set; }
     [field: SerializeField][field: ReadOnly] public bool EffectNewlyRemoved { get; set; }
     [field: SerializeField][field: ReadOnly] public bool ProjectileCoroutineAllowed { get; set; }
     [field: SerializeField][field: ReadOnly] private int failedCallbackCounter { get; set; }
@@ -162,7 +166,7 @@ public class CharacterCombatController : MonoBehaviour
     public void ProcessHitOrMiss()
     {
         //  HIT
-        if (ShotAccuracy >= UnityEngine.Random.Range(0,100))
+        if ((ShotAccuracy * 100) / CombatCore.CurrentEnemy.EvasionValue >= UnityEngine.Random.Range(0,100))
         {
             Projectile.SetActive(false);
             ProjectileSpawned = false;
@@ -172,16 +176,16 @@ public class CharacterCombatController : MonoBehaviour
                 if (CurrentSideEffect == EnemyCombatController.SideEffect.WEAK)
                 {
                     if (WillCrit())
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer((PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage) * PlayerData.ActiveCustomWeapon.BaseWeaponData.CritMultiplier);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(DamageDeal * PlayerData.ActiveCustomWeapon.BaseWeaponData.CritMultiplier);
                     else
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(DamageDeal);
                 }
                 else
                 {
                     if (WillCrit())
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer((PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage) * PlayerData.ActiveCustomWeapon.BaseWeaponData.CritMultiplier * 2);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(DamageDeal* PlayerData.ActiveCustomWeapon.BaseWeaponData.CritMultiplier * 2);
                     else
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer((PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage) * 2);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(DamageDeal * 2);
                 }
                 DoubleDamageActivated = false;
                 DoubleDamageEffect.SetActive(false);
@@ -191,16 +195,16 @@ public class CharacterCombatController : MonoBehaviour
                 if (CurrentSideEffect == EnemyCombatController.SideEffect.WEAK)
                 {
                     if (WillCrit())
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer((PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage) * PlayerData.ActiveCustomWeapon.BaseWeaponData.CritMultiplier / 2);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(DamageDeal * PlayerData.ActiveCustomWeapon.BaseWeaponData.CritMultiplier / 2);
                     else
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer((PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage) / 2);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(DamageDeal / 2);
                 }
                 else
                 {
                     if (WillCrit())
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer((PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage) * PlayerData.ActiveCustomWeapon.BaseWeaponData.CritMultiplier);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(DamageDeal * PlayerData.ActiveCustomWeapon.BaseWeaponData.CritMultiplier);
                     else
-                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage);
+                        CombatCore.CurrentEnemy.TakeDamageFromPlayer(DamageDeal);
                 }
             }
             if (Lifestealing)
@@ -268,8 +272,24 @@ public class CharacterCombatController : MonoBehaviour
         #endregion
         RemoveSideEffects();
         ShieldInstancesRemaining = 5;
-        MaxHealth = PlayerData.MaxHealth;
+
+        #region STATS
+        Attack = PlayerData.ActiveCustomWeapon.Attack;
+        ShotAccuracy = PlayerData.ActiveCustomWeapon.Accuracy;
+        if (PlayerData.ActiveConstumeInstanceID == "NONE")
+        {
+            Evasion = 10;
+            Defense = 10;
+        }
+            
+        else
+        {
+            Evasion = (5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10;
+            Defense = (5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10;
+        }
+        MaxHealth = 5 * ((Attack * 0.5f) + (Defense * 0.3f) + (Evasion * 0.1f) + (ShotAccuracy * 0.1f));
         CurrentHealth = MaxHealth;
+        #endregion
         CombatCore.SetCorrectStage();
         CurrentCombatState = CombatState.WALKING;
         CombatCore.CurrentCombatState = CombatCore.CombatState.WALKING;
@@ -278,7 +298,7 @@ public class CharacterCombatController : MonoBehaviour
 
     private void CombatStateChange(object sender, EventArgs e)
     {
-        Debug.Log("Current Opti state: " + CurrentCombatState);
+        //Debug.Log("Current Opti state: " + CurrentCombatState);
         PlayerAnimator.SetInteger("index", (int)CurrentCombatState);
     }
 
@@ -725,7 +745,6 @@ public class CharacterCombatController : MonoBehaviour
         {
             if (CurrentSideEffect == EnemyCombatController.SideEffect.NONE)
             {
-                Debug.Log("had no status effect yet");
                 if (CombatCore.CurrentEnemy.WillInflictStatusEffect())
                 {
                     CurrentSideEffect = CombatCore.CurrentEnemy.ThisSideEffect;

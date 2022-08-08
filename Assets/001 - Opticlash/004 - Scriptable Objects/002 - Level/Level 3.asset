@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fc687c0e10dc640b70b6d2849a805b, type: 3}
   m_Name: Level 3
   m_EditorClassIdentifier: 
-  <LevelIndex>k__BackingField: 003
-  <IsBossLevel>k__BackingField: 0
-  minDroppedOPB: 2
-  maxDroppedOPB: 4
+  <LevelIndex>k__BackingField: 3
+  <MonsterList>k__BackingField:
+  - NormalMonster001
+  - NormalMonster005
+  - NormalMonster005
+  <MonsterLevels>k__BackingField: 010000000100000002000000
+  minDroppedOPB: 0
+  maxDroppedOPB: 100

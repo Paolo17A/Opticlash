@@ -58,24 +58,31 @@ public class EnemyCombatController : MonoBehaviour
     #region VARIABLES
     //========================================================================================
     public enum SideEffect { NONE, BREAK, PIERCE, WEAK, PARALYZE, CONFUSE, BURN, FREEZE }
-    public enum AttackType { NONE, MELEE, RANGED}
-    public enum MonsterPlacement { NONE, HIGH, LOW}
+    public enum AttackType { NONE, MELEE, RANGED }
+    public enum MonsterPlacement { NONE, HIGH, LOW }
 
-    [SerializeField][ReadOnly] private CombatState currentCombatState;
+    [SerializeField] [ReadOnly] private CombatState currentCombatState;
     [field: SerializeField] private CombatCore CombatCore { get; set; }
 
     [field: Header("ENEMY DATA")]
+    [field: SerializeField] private string MonsterID { get; set; }
     [field: SerializeField] private Animator EnemyAnim { get; set; }
     [field: SerializeField] public AttackType EnemyAttackType { get; set; }
-    [field: SerializeField][field: ReadOnly] public float CurrentHealth { get; set; }
-    [field: SerializeField] public int MaxHealth { get; set; }
-    [field: SerializeField] public float DamageDeal { get; set; }
-    [field: SerializeField] public float EvasionValue { get; set; }
     [field: SerializeField] private GameObject HealthBar { get; set; }
     [field: SerializeField] private GameObject HealthSlider { get; set; }
     [field: SerializeField] public MonsterPlacement ThisMonsterPlacement { get; set; }
-    [field: SerializeField][field: ReadOnly] public bool MayAttack { get; set; }
+    [field: SerializeField] [field: ReadOnly] public bool MayAttack { get; set; }
     [field: SerializeField] public bool IsBoss { get; set; }
+
+    [field: Header("STATS")]
+    [field: SerializeField] public int MonsterLevel {get;set;}
+    [field: SerializeField] [field: ReadOnly] public float CurrentHealth { get; set; }
+    [field: SerializeField] public float MaxHealth { get; set; }
+    [field: SerializeField] public float DamageDeal { get; set; }
+    [field: SerializeField] public float EvasionValue { get; set; }
+    [field: SerializeField] [field: ReadOnly] public float Attack { get; set; }
+    [field: SerializeField] [field: ReadOnly] public float Accuracy { get; set; }
+    [field: SerializeField] [field: ReadOnly] public float Defense { get; set; }
 
     [field: Header("AFFLICTED SIDE EFFECT")]
     [field: SerializeField] public SpriteRenderer StatusEffectImage { get; set; }
@@ -130,7 +137,23 @@ public class EnemyCombatController : MonoBehaviour
     public void InitializeEnemy()
     {
         ResetHealthBar();
+        if(IsBoss)
+        {
+            Attack = (5 * (MonsterLevel * 0.5f)) + 10;
+            Accuracy = (5 * (MonsterLevel * 0.5f)) + 10;
+            Defense = (5 * (MonsterLevel * 0.5f)) + 10;
+            EvasionValue = (5 * (MonsterLevel * 0.5f)) + 10;
+        }
+        else
+        {
+            Attack = (5 * (MonsterLevel * 0.3f)) + 10;
+            Accuracy = (5 * (MonsterLevel * 0.3f)) + 10;
+            Defense = (5 * (MonsterLevel * 0.3f)) + 10;
+            EvasionValue = (5 * (MonsterLevel * 0.1f)) + 10;
+        }
+        MaxHealth = 5 * ((Attack * 0.5f) + (Defense * 0.3f) + (EvasionValue * 0.1f) + (Accuracy * 0.1f));
         CurrentHealth = MaxHealth;
+        DamageDeal = ((Attack * Attack) / (CombatCore.SpawnedPlayer.Attack + CombatCore.SpawnedPlayer.Defense)) / 1.2f;
         HealthSlider.transform.localScale = new Vector3((float)CurrentHealth / MaxHealth, 1f, 0f);
         HealthSlider.transform.localPosition = new Vector3(0f, 0f, 10f);
         CurrentCombatState = CombatState.IDLE;
@@ -163,7 +186,7 @@ public class EnemyCombatController : MonoBehaviour
 
     private void CombatStateChange(object sender, EventArgs e)
     {
-        Debug.Log("Current enemy state: " + CurrentCombatState);
+        //Debug.Log("Current enemy state: " + CurrentCombatState);
         EnemyAnim.SetInteger("index", (int)CurrentCombatState);
 
         if(CurrentCombatState == CombatState.DYING)
@@ -371,7 +394,7 @@ public class EnemyCombatController : MonoBehaviour
     // Process health is only called AFTER getting hit
     public void ProcessHealth()
     {
-        Debug.Log("entered here");
+        //Debug.Log("entered here");
         if (CurrentHealth > 0)
         {
             CurrentCombatState = CombatState.IDLE;

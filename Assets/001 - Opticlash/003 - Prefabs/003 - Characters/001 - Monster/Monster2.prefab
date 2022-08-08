@@ -273,6 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4134337568381952009}
   - component: {fileID: 4134337568381952006}
+  - component: {fileID: 8683949893540067598}
   m_Layer: 0
   m_Name: Monster2
   m_TagString: Untagged
@@ -315,6 +316,66 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8683949893540067598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4134337568381952008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02404ee1c359ff24a94da9044e6fd552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCombatState: 0
+  <CombatCore>k__BackingField: {fileID: 0}
+  <MonsterID>k__BackingField: 
+  <EnemyAnim>k__BackingField: {fileID: 0}
+  <EnemyAttackType>k__BackingField: 0
+  <HealthBar>k__BackingField: {fileID: 0}
+  <HealthSlider>k__BackingField: {fileID: 0}
+  <ThisMonsterPlacement>k__BackingField: 0
+  <MayAttack>k__BackingField: 0
+  <IsBoss>k__BackingField: 0
+  <MonsterLevel>k__BackingField: 0
+  <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  <DamageDeal>k__BackingField: 0
+  <EvasionValue>k__BackingField: 0
+  <Attack>k__BackingField: 0
+  <Accuracy>k__BackingField: 0
+  <Defense>k__BackingField: 0
+  <StatusEffectImage>k__BackingField: {fileID: 0}
+  <StatusEffectText>k__BackingField: {fileID: 0}
+  <StatusEffectTextAnimator>k__BackingField: {fileID: 0}
+  <AfflictedSideEffect>k__BackingField: 0
+  <AfflictedSideEffectDamage>k__BackingField: 0
+  <AfflictedSideEffectInstancesLeft>k__BackingField: 0
+  <ThisSideEffect>k__BackingField: 0
+  <SideEffectRate>k__BackingField: 0
+  <SideEffectDuration>k__BackingField: 0
+  <SideEffectDamage>k__BackingField: 0
+  <BreakLogoSprite>k__BackingField: {fileID: 0}
+  <BreakTextSprite>k__BackingField: {fileID: 0}
+  <BurnLogoSprite>k__BackingField: {fileID: 0}
+  <BurnTextSprite>k__BackingField: {fileID: 0}
+  <ConfuseLogoSprite>k__BackingField: {fileID: 0}
+  <ConfuseTextSprite>k__BackingField: {fileID: 0}
+  <FreezeLogoSprite>k__BackingField: {fileID: 0}
+  <FreezeTextSprite>k__BackingField: {fileID: 0}
+  <ParalyzeLogoSprite>k__BackingField: {fileID: 0}
+  <ParalyzeTextSprite>k__BackingField: {fileID: 0}
+  <WeakLogoSprite>k__BackingField: {fileID: 0}
+  <WeakTextSprite>k__BackingField: {fileID: 0}
+  <CanShootLaser>k__BackingField: 0
+  <LaserFrequency>k__BackingField: 0
+  <OriginalEnemyPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <EnemyAttackPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <DoneAttacking>k__BackingField: 0
+  <IsCurrentEnemy>k__BackingField: 0
+  <ShootingLaser>k__BackingField: 0
+  <Opti>k__BackingField: {fileID: 0}
 --- !u!1 &4134337568418757142
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +646,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4134337568961319363}
   - component: {fileID: 4134337568961319360}
-  - component: {fileID: 4134337568961319361}
   m_Layer: 0
   m_Name: LAS
   m_TagString: Untagged
@@ -659,30 +719,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4134337568961319361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4134337568961319362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 4134337569591131869}
-  m_BoneTransforms:
-  - {fileID: 4134337569591131869}
-  - {fileID: 4134337567908865953}
-  - {fileID: 4134337569480134835}
-  - {fileID: 4134337568655830357}
-  - {fileID: 4134337568040260820}
-  m_Bounds:
-    m_Center: {x: -2.5532448, y: -3.0191655, z: 0}
-    m_Extent: {x: 1.4932449, y: 1.1391648, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &4134337569191376426
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,7 +978,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4134337569890598884}
   - component: {fileID: 4134337569890598885}
-  - component: {fileID: 4134337569890598882}
   m_Layer: 0
   m_Name: RAS
   m_TagString: Untagged
@@ -1016,27 +1051,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4134337569890598882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4134337569890598887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 4134337568641953415}
-  m_BoneTransforms:
-  - {fileID: 4134337568641953415}
-  - {fileID: 4134337567980302410}
-  - {fileID: 4134337569265103275}
-  - {fileID: 4134337569865749558}
-  - {fileID: 4134337568451921031}
-  m_Bounds:
-    m_Center: {x: 1.8469193, y: -2.9726896, z: 0}
-    m_Extent: {x: 1.5030805, y: 1.1426901, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1

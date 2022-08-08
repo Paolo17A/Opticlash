@@ -36,7 +36,7 @@ public class CombatController : MonoBehaviour
 
     private void CombatStateChange(object sender, EventArgs e)
     {
-        Debug.Log(CombatCore.CurrentCombatState);
+        //Debug.Log(CombatCore.CurrentCombatState);
         if (CombatCore.CurrentCombatState == CombatCore.CombatState.SPAWNING)
         {
             CombatCore.MonstersKilled = 0;
@@ -65,7 +65,6 @@ public class CombatController : MonoBehaviour
         {
             if (CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.NONE)
             {
-                Debug.Log("enemy has no afflicted side effect");
                 CombatCore.CurrentEnemy.MayAttack = true;
                 CombatCore.CurrentEnemy.ProcessAttackType();
             }

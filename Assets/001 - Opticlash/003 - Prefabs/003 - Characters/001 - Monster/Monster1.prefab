@@ -590,7 +590,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8202119305247988428}
   - component: {fileID: 8202119305247988429}
-  - component: {fileID: 8202119305247988430}
   m_Layer: 0
   m_Name: TS
   m_TagString: Untagged
@@ -664,36 +663,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8202119305247988430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8202119305247988403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 8202119306231693358}
-  m_BoneTransforms:
-  - {fileID: 8202119306231693358}
-  - {fileID: 8202119306413473483}
-  - {fileID: 8202119305431644282}
-  - {fileID: 8202119305703491506}
-  - {fileID: 8202119305495592949}
-  - {fileID: 8202119305271790910}
-  - {fileID: 8202119306584463407}
-  - {fileID: 8202119304979193350}
-  - {fileID: 8202119304872613518}
-  - {fileID: 8202119304947472621}
-  - {fileID: 8202119305160025098}
-  m_Bounds:
-    m_Center: {x: -0.24914211, y: -1.2829964, z: 0}
-    m_Extent: {x: 0.9291391, y: 2.3429961, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &8202119305271790909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,6 +1084,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8202119305791347479}
   - component: {fileID: 8202119305791347472}
+  - component: {fileID: 4533224755000445922}
   m_Layer: 0
   m_Name: Monster1
   m_TagString: Untagged
@@ -1157,6 +1127,66 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4533224755000445922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8202119305791347478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02404ee1c359ff24a94da9044e6fd552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCombatState: 0
+  <CombatCore>k__BackingField: {fileID: 0}
+  <MonsterID>k__BackingField: 
+  <EnemyAnim>k__BackingField: {fileID: 8202119305791347472}
+  <EnemyAttackType>k__BackingField: 1
+  <HealthBar>k__BackingField: {fileID: 0}
+  <HealthSlider>k__BackingField: {fileID: 0}
+  <ThisMonsterPlacement>k__BackingField: 0
+  <MayAttack>k__BackingField: 0
+  <IsBoss>k__BackingField: 0
+  <MonsterLevel>k__BackingField: 0
+  <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  <DamageDeal>k__BackingField: 0
+  <EvasionValue>k__BackingField: 0
+  <Attack>k__BackingField: 0
+  <Accuracy>k__BackingField: 0
+  <Defense>k__BackingField: 0
+  <StatusEffectImage>k__BackingField: {fileID: 0}
+  <StatusEffectText>k__BackingField: {fileID: 0}
+  <StatusEffectTextAnimator>k__BackingField: {fileID: 0}
+  <AfflictedSideEffect>k__BackingField: 0
+  <AfflictedSideEffectDamage>k__BackingField: 0
+  <AfflictedSideEffectInstancesLeft>k__BackingField: 0
+  <ThisSideEffect>k__BackingField: 0
+  <SideEffectRate>k__BackingField: 0
+  <SideEffectDuration>k__BackingField: 0
+  <SideEffectDamage>k__BackingField: 0
+  <BreakLogoSprite>k__BackingField: {fileID: 0}
+  <BreakTextSprite>k__BackingField: {fileID: 0}
+  <BurnLogoSprite>k__BackingField: {fileID: 0}
+  <BurnTextSprite>k__BackingField: {fileID: 0}
+  <ConfuseLogoSprite>k__BackingField: {fileID: 0}
+  <ConfuseTextSprite>k__BackingField: {fileID: 0}
+  <FreezeLogoSprite>k__BackingField: {fileID: 0}
+  <FreezeTextSprite>k__BackingField: {fileID: 0}
+  <ParalyzeLogoSprite>k__BackingField: {fileID: 0}
+  <ParalyzeTextSprite>k__BackingField: {fileID: 0}
+  <WeakLogoSprite>k__BackingField: {fileID: 0}
+  <WeakTextSprite>k__BackingField: {fileID: 0}
+  <CanShootLaser>k__BackingField: 0
+  <LaserFrequency>k__BackingField: 0
+  <OriginalEnemyPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <EnemyAttackPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <DoneAttacking>k__BackingField: 0
+  <IsCurrentEnemy>k__BackingField: 0
+  <ShootingLaser>k__BackingField: 0
+  <Opti>k__BackingField: {fileID: 0}
 --- !u!1 &8202119305853563444
 GameObject:
   m_ObjectHideFlags: 0

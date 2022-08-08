@@ -112,7 +112,7 @@ public class LoginCore : MonoBehaviour
             failedCallbackCounter = 0;
             PlayerPrefs.SetString("Username", username);
             PlayerPrefs.SetString("Password", password);
-            Debug.Log(JsonConvert.SerializeObject(resultCallback.FunctionResult));
+            //Debug.Log(JsonConvert.SerializeObject(resultCallback.FunctionResult));
             if (GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "messageValue") == "Success")
             {
                 PlayerData.LUID = myGUID.ToString();

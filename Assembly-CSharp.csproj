@@ -85,6 +85,7 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\002 - Levels\LevelData.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier2d.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\EnemyCombatController.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\003 - LevelSelect\AdventureCore.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\CharacterCombatController.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescrOptional.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEasingTypes.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\009 - Quest\QuestCore.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\RouteController.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\003 - LevelSelect\LevelSelectController.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\010 - Leaderboard\PlacementCore.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\005 - Costume\CustomCostumeData.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\KaboomController.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\002 - Settings\SettingsCore.cs" />
@@ -123,11 +125,9 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasic.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\SceneController.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\GameManager.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\003 - LevelSelect\AdventureController.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
-    <Compile Include="Assets\001 - Opticlash\002 - Scripts\010 - Leaderboard\PlacementCore.cs" />
-    <Compile Include="Assets\001 - Opticlash\002 - Scripts\003 - LevelSelect\AdventureController.cs" />
-    <Compile Include="Assets\001 - Opticlash\002 - Scripts\003 - LevelSelect\AdventureCore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\003 - TextMesh Pro\Shaders\TMPro.cginc" />

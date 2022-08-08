@@ -207,7 +207,8 @@ public class LobbyCore : MonoBehaviour
                     {
                         PlayerData.OwnedWeapons[currentDetectedCannon].WeaponInstanceID = item.ItemInstanceId;
                         PlayerData.OwnedWeapons[currentDetectedCannon].BaseWeaponData = GameManager.Instance.InventoryManager.GetProperWeaponData(item.ItemId);
-                        PlayerData.OwnedWeapons[currentDetectedCannon].BonusDamage = int.Parse(item.CustomData["Bonus"]);
+                        PlayerData.OwnedWeapons[currentDetectedCannon].Level = int.Parse(item.CustomData["Level"]);
+                        PlayerData.OwnedWeapons[currentDetectedCannon].CalculateCannonStats();
                         currentDetectedCannon++;
                     }
                     else if (item.ItemClass == "COSTUME")
@@ -293,10 +294,12 @@ public class LobbyCore : MonoBehaviour
                     CurrentCannonImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentSprite;
                     CurrentCannonBigImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentBigSprite;
                     CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName;
-                    CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage).ToString();
+                    if (PlayerData.ActiveCustomWeapon.Level > 1)
+                        CurrentCannonNameTMP.text += " " + PlayerData.ActiveCustomWeapon.Level;
+                    CurrentCannonDamageTMP.text = PlayerData.ActiveCustomWeapon.Attack.ToString();
                     CurrentCannonAbilitiesTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage.ToString();
                     CurrentCannonAmmoTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.StartingAmmo.ToString();
-                    CurrentCannonAccuracyTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.Accuracy.ToString();
+                    CurrentCannonAccuracyTMP.text = PlayerData.ActiveCustomWeapon.Accuracy.ToString();
                     CurrentCannonAbilitiesTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.Abilities;
                     break;
                 }
@@ -330,11 +333,11 @@ public class LobbyCore : MonoBehaviour
         if(PlayerData.ActiveWeaponID != "NONE")
         {
             CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName;
-            if (PlayerData.ActiveCustomWeapon.BonusDamage != 0)
-                CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName + " + " + PlayerData.ActiveCustomWeapon.BonusDamage;
+            if (PlayerData.ActiveCustomWeapon.Level > 0)
+                CurrentCannonNameTMP.text += " " + PlayerData.ActiveCustomWeapon.Level;
 
-            CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage).ToString();
-            if (PlayerData.Optibit >= 100 + (PlayerData.ActiveCustomWeapon.BonusDamage * 50))
+            CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.Level).ToString();
+            if (PlayerData.Optibit >= 2000)
                 UpgradeCannonBtn.interactable = true;
             else
                 UpgradeCannonBtn.interactable = false;
@@ -820,7 +823,6 @@ public class LobbyCore : MonoBehaviour
         else
             NextWeaponPageBtn.interactable = false;
 
-        Debug.Log("yeet");
         if(ActualOwnedWeapons.Count > 0)
             DisplayCurrentPageWeapons();
         else
@@ -1019,8 +1021,8 @@ public class LobbyCore : MonoBehaviour
         // LEFT
         WeaponLeftImage.sprite = ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].BaseWeaponData.InfoSprite;
         LeftWeaponNameTMP.text = ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].BaseWeaponData.WeaponName;
-        if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].BonusDamage > 0)
-            LeftWeaponNameTMP.text += " + " + ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].BonusDamage;
+        if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].Level > 0)
+            LeftWeaponNameTMP.text += " + " + ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].Level;
         if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].WeaponInstanceID == PlayerData.ActiveWeaponID)
             EquipLeftWeaponBtn.interactable = false;
         else
@@ -1032,8 +1034,8 @@ public class LobbyCore : MonoBehaviour
             WeaponRightImage.gameObject.SetActive(true);
             WeaponRightImage.sprite = ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].BaseWeaponData.InfoSprite;
             RightWeaponNameTMP.text = ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].BaseWeaponData.WeaponName;
-            if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].BonusDamage > 0)
-                RightWeaponNameTMP.text += " + " + ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].BonusDamage;
+            if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].Level > 0)
+                RightWeaponNameTMP.text += " + " + ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].Level;
             if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].WeaponInstanceID == PlayerData.ActiveWeaponID)
                 EquipRightWeaponBtn.interactable = false;
             else
@@ -1116,10 +1118,10 @@ public class LobbyCore : MonoBehaviour
     {
         if(GameManager.Instance.DebugMode)
         {
-            PlayerData.Optibit -= 100 + (PlayerData.ActiveCustomWeapon.BonusDamage * 50);
-            PlayerData.ActiveCustomWeapon.BonusDamage++;
-            CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName + " + " + PlayerData.ActiveCustomWeapon.BonusDamage;
-            CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage).ToString();
+            PlayerData.Optibit -= 2000;
+            PlayerData.ActiveCustomWeapon.Level++;
+            CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName + " + " + PlayerData.ActiveCustomWeapon.Level;
+            CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.Level).ToString();
         }
         else
         {
@@ -1130,8 +1132,8 @@ public class LobbyCore : MonoBehaviour
                 { 
                     localLUID = PlayerData.LUID, 
                     cannonId = PlayerData.ActiveWeaponID, 
-                    newBonusValue = (PlayerData.ActiveCustomWeapon.BonusDamage + 1).ToString(),
-                    upgradeCost = 100 + (PlayerData.ActiveCustomWeapon.BonusDamage * 50)
+                    newBonusValue = (PlayerData.ActiveCustomWeapon.Level + 1).ToString(),
+                    upgradeCost = 2000
                 },
                 GeneratePlayStreamEvent = true
             },
@@ -1141,10 +1143,10 @@ public class LobbyCore : MonoBehaviour
                 if(GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "messageValue") == "Success")
                 {
                     failedCallbackCounter = 0;
-                    PlayerData.Optibit -= 100 + (PlayerData.ActiveCustomWeapon.BonusDamage * 50);
-                    PlayerData.ActiveCustomWeapon.BonusDamage++;
-                    CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName + " + " + PlayerData.ActiveCustomWeapon.BonusDamage;
-                    CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.BonusDamage).ToString();
+                    PlayerData.Optibit -= 2000;
+                    PlayerData.ActiveCustomWeapon.Level++;
+                    CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName + " + " + PlayerData.ActiveCustomWeapon.Level;
+                    CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.Level).ToString();
                 }
             },
             errorCallback =>
