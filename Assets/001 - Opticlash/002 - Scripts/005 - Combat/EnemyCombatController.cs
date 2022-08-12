@@ -65,7 +65,7 @@ public class EnemyCombatController : MonoBehaviour
     [field: SerializeField] private CombatCore CombatCore { get; set; }
 
     [field: Header("ENEMY DATA")]
-    [field: SerializeField] private string MonsterID { get; set; }
+    [field: SerializeField] public string MonsterID { get; set; }
     [field: SerializeField] private Animator EnemyAnim { get; set; }
     [field: SerializeField] public AttackType EnemyAttackType { get; set; }
     [field: SerializeField] private GameObject HealthBar { get; set; }
@@ -77,9 +77,9 @@ public class EnemyCombatController : MonoBehaviour
     [field: Header("STATS")]
     [field: SerializeField] public int MonsterLevel {get;set;}
     [field: SerializeField] [field: ReadOnly] public float CurrentHealth { get; set; }
-    [field: SerializeField] public float MaxHealth { get; set; }
-    [field: SerializeField] public float DamageDeal { get; set; }
-    [field: SerializeField] public float EvasionValue { get; set; }
+    [field: SerializeField] [field: ReadOnly] public float MaxHealth { get; set; }
+    [field: SerializeField] [field: ReadOnly] public float DamageDeal { get; set; }
+    [field: SerializeField] [field: ReadOnly] public float EvasionValue { get; set; }
     [field: SerializeField] [field: ReadOnly] public float Attack { get; set; }
     [field: SerializeField] [field: ReadOnly] public float Accuracy { get; set; }
     [field: SerializeField] [field: ReadOnly] public float Defense { get; set; }
@@ -172,8 +172,9 @@ public class EnemyCombatController : MonoBehaviour
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.WALKING)
         {
-            foreach (GameObject enemy in CombatCore.Enemies)
-                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, enemy.transform.GetChild(0).GetComponent<EnemyCombatController>().OriginalEnemyPosition, 0.2f * Time.deltaTime);
+            CombatCore.MonsterParent.transform.position = Vector3.MoveTowards(CombatCore.MonsterParent.transform.position, CombatCore.CurrentEnemy.OriginalEnemyPosition, 2.5f * Time.deltaTime);
+            /*foreach (GameObject enemy in CombatCore.Enemies)
+                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, enemy.transform.GetChild(0).GetComponent<EnemyCombatController>().OriginalEnemyPosition, 0.2f * Time.deltaTime);*/
 
             if (Vector2.Distance(CombatCore.CurrentEnemy.gameObject.transform.parent.position, CombatCore.CurrentEnemy.OriginalEnemyPosition) < 0.01f)
             {
@@ -189,11 +190,15 @@ public class EnemyCombatController : MonoBehaviour
         //Debug.Log("Current enemy state: " + CurrentCombatState);
         EnemyAnim.SetInteger("index", (int)CurrentCombatState);
 
-        if(CurrentCombatState == CombatState.DYING)
+        if (CurrentCombatState == CombatState.DYING)
         {
             CombatCore.PlayerData.MonstersKilled++;
             if (!GameManager.Instance.DebugMode)
+            {
                 UpdateQuestData();
+                if (IsBoss)
+                    UpdateStatistics();
+            }
         }
     }
 
@@ -223,6 +228,11 @@ public class EnemyCombatController : MonoBehaviour
                     UpdateQuestData,
                     () => ProcessError(errorCallback.ErrorMessage));
             });
+    }
+
+    private void UpdateStatistics()
+    {
+
     }
 
     private void ProcessMeleeAttack()
@@ -416,9 +426,12 @@ public class EnemyCombatController : MonoBehaviour
 
             CombatCore.MonstersKilled++;
             IsCurrentEnemy = false;
-            CurrentCombatState = CombatState.IDLE;
-            transform.parent.position = new Vector3(305f, transform.parent.position.y, transform.parent.position.z);
+            AfflictedSideEffect = WeaponData.SideEffect.NONE;
+            SideEffectDamage = 0;
+            StatusEffectImage.gameObject.SetActive(false);
             ResetHealthBar();
+            gameObject.SetActive(false);
+            CombatCore.MonsterParent.transform.position = new Vector3(15, 21, 0);
             CombatCore.SpawnNextEnemy();
             if(CombatCore.CurrentCombatState != CombatCore.CombatState.GAMEOVER)
                 CombatCore.CurrentCombatState = CombatCore.CombatState.WALKING;

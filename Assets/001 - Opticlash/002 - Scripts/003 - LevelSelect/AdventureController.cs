@@ -22,6 +22,7 @@ public class AdventureController : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.SceneController.ActionPass = true;
+        GameManager.Instance.PanelActivated = false;
         AdventureCore.InitializeLevels();
     }
 
@@ -40,7 +41,7 @@ public class AdventureController : MonoBehaviour
                 draggedEndPoint = previousTouchPoint - nextTouchPoint;
 
                 AdventureCore._virtualCamera.transform.position += new Vector3(0, draggedEndPoint.y, 0) * speed * Time.deltaTime;
-                AdventureCore._virtualCamera.transform.position = new Vector3(0, Mathf.Clamp(AdventureCore._virtualCamera.transform.position.y, 0, 16f), AdventureCore._virtualCamera.transform.position.z);
+                AdventureCore._virtualCamera.transform.position = new Vector3(0, Mathf.Clamp(AdventureCore._virtualCamera.transform.position.y, 0, 19f), AdventureCore._virtualCamera.transform.position.z);
 
                 previousTouchPoint = nextTouchPoint;
             }
@@ -55,7 +56,7 @@ public class AdventureController : MonoBehaviour
             mousePos = GameManager.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
             mousePos2D = new Vector2(mousePos.x, mousePos.y);
             hit = Physics2D.Raycast(mousePos2D, Vector3.forward);
-            if (hit && hit.collider.gameObject.tag == "Level")
+            if (!GameManager.Instance.PanelActivated && hit && hit.collider.gameObject.tag == "Level")
             {
                 hit.collider.gameObject.GetComponent<LevelSelectController>().ProcessLevel();
             }

@@ -22,7 +22,8 @@ public class CombatCore : MonoBehaviour
         ENEMYTURN,
         GAMEOVER,
         WALKING,
-        WARPING
+        WARPING,
+        STAGECLEAR
     }
 
     private event EventHandler combatStateChange;
@@ -55,6 +56,7 @@ public class CombatCore : MonoBehaviour
     [SerializeField][ReadOnly] private CombatState currentCombatState;
     [field: SerializeField] public PlayerData PlayerData { get; set; }
     [field: SerializeField] public Animator UIAnimator { get; set; }
+    [field: SerializeField] private BoardCore BoardCore { get; set; }
 
     [Header("LOADING")]
     [SerializeField] private GameObject loadingPanel;
@@ -104,17 +106,17 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public CharacterCombatController SpawnedPlayer { get; set; }
 
     [field: Header("LOCAL ENEMY DATA")]
+    [field: SerializeField] public GameObject MonsterParent { get; set; }
+    [field: SerializeField][field: ReadOnly] public int EnemyIndex { get; set; }
     [field: SerializeField][field: ReadOnly] public EnemyCombatController CurrentEnemy { get; set; }
-    [field: SerializeField] public List<GameObject> Enemies { get; set; }
-    [field: SerializeField][field: ReadOnly] public Queue<GameObject> EnemyQueue { get; set; }
     [field: SerializeField] public GameObject EnemyProjectile { get; set; }
     [field: SerializeField] public Vector3 EnemyProjectileStartingPoint { get; set; }
     [field: SerializeField] public GameObject EnemyLaser { get; set; }
     [field: SerializeField] public Vector3 EnemyLaserStartingPoint { get; set; }
 
     [field: Header("GAME OVER")]
-    [field: SerializeField] public TextMeshProUGUI MonstersKilledTMP { get; set; }
-    [field: SerializeField] private TextMeshProUGUI RewardTMP { get; set; }
+    [field: SerializeField] private int OptibitDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI OptibitDroppedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int NormalFragmentDropped { get; set; }
     [field: SerializeField] private TextMeshProUGUI NormalFragmentTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int RareFragmentDropped { get; set; }
@@ -123,8 +125,12 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI EpicFragmentTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int LegendFragmentDropped { get; set; }
     [field: SerializeField] private TextMeshProUGUI LegendFragmentTMP { get; set; }
-    [field: SerializeField][field: ReadOnly] private int HealSkillDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI HealGainedTMP { get; set; }
+    [field: SerializeField][field: ReadOnly] private int SmallHealSkillDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI SmallHealGainedTMP { get; set; }
+    [field: SerializeField][field: ReadOnly] private int MediumHealSkillDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI MediumHealGainedTMP { get; set; }
+    [field: SerializeField][field: ReadOnly] private int LargeHealSkillDropped { get; set; }
+    [field: SerializeField] private TextMeshProUGUI LargeHealGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int BreakRemoveDropped { get; set; }
     [field: SerializeField] private TextMeshProUGUI BreakGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int WeakRemoveDropped { get; set; }
@@ -137,8 +143,6 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI ConfuseGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int BurnRemoveDropped { get; set; }
     [field: SerializeField] private TextMeshProUGUI BurnGainedTMP { get; set; }
-    [field: SerializeField] private List<CustomCostumeData> CostumeRoster { get; set; }
-    [field: SerializeField] private Image DroppedCostume { get; set; }
 
     [field: Header("SETTINGS")]
     [field: SerializeField] private GameObject SettingsPanel { get; set; }
@@ -146,6 +150,7 @@ public class CombatCore : MonoBehaviour
 
     [Header("DEBUGGER")]
     public Coroutine timerCoroutine;
+    private int failedCallbackCounter;
     //=================================================================================
 
     #region SPAWNING
@@ -155,30 +160,31 @@ public class CombatCore : MonoBehaviour
         StageTMP.text = StageCounter.ToString();
         RoundCounter = 0;
         RoundTMP.text = "Round 1";
-        float startingPos = 15f;
-        EnemyQueue.Clear();
-        foreach (GameObject enemy in Enemies)
-        {
-            enemy.SetActive(true);
-            enemy.transform.position = new Vector3(startingPos, enemy.transform.position.y, enemy.transform.position.z);
-            startingPos += 10f;
-            EnemyQueue.Enqueue(enemy);
-        }
+        EnemyIndex = 0;
     }
 
     public void SpawnNextEnemy()
     {
-        if(EnemyQueue.Count > 0)
+        EnemyIndex++;
+        if(EnemyIndex == GameManager.Instance.CurrentLevelData.MonsterLevels.Count)
+            CurrentCombatState = CombatState.STAGECLEAR;
+        else
         {
-            PlayerData.CurrentStage++;
             StageCounter++;
             StageTMP.text = StageCounter.ToString();
-            CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
+            foreach (Transform child in MonsterParent.transform)
+            {
+                if (GameManager.Instance.CurrentLevelData.MonsterList[EnemyIndex] == child.GetComponent<EnemyCombatController>().MonsterID)
+                {
+                    child.gameObject.SetActive(true);
+                    CurrentEnemy = child.GetComponent<EnemyCombatController>();
+                    CurrentEnemy.MonsterLevel = GameManager.Instance.CurrentLevelData.MonsterLevels[EnemyIndex];
+                    break;
+                }
+            }
             SpawnedPlayer.ShotAccuracy = PlayerData.ActiveCustomWeapon.BaseWeaponData.Accuracy - CurrentEnemy.EvasionValue;
             CurrentEnemy.InitializeEnemy();
         }
-        else
-            CurrentCombatState = CombatState.GAMEOVER;
     }
     #endregion
 
@@ -195,6 +201,15 @@ public class CombatCore : MonoBehaviour
                 CurrentCountdownNumber -= Time.deltaTime;
                 QuestionTimerLeft = (int)CurrentCountdownNumber;
                 TimerTMP.text = QuestionTimerLeft.ToString();
+                if (GameManager.Instance.CheatsActivated && QuestionTimerLeft == 57)
+                {
+                    StopTimerCoroutine();
+                    SpawnedPlayer.DamageDeal = 15;
+                    BoardCore.ShotsEarned = 3;
+                    CurrentCombatState = CombatState.PLAYERTURN;
+                    SpawnedPlayer.CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
+                }
+                    
             }
             yield return null;
         }
@@ -210,29 +225,23 @@ public class CombatCore : MonoBehaviour
     #region WARPING
     public void SetCorrectStage()
     {
-        /*for (int i = 0; i < PlayerData.CurrentStage; i++)
-        {
-            StageCounter++;
-            StageTMP.text = StageCounter.ToString();
-            CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
-            SpawnedPlayer.ShotAccuracy = PlayerData.ActiveWeapon.Accuracy - CurrentEnemy.EvasionValue;
-            if(i < PlayerData.CurrentStage - 1)
-                CurrentEnemy.gameObject.transform.parent.position = new Vector3(Enemies[Enemies.Count - 1].transform.position.x + 10 + (10 * i), CurrentEnemy.gameObject.transform.parent.position.y, CurrentEnemy.gameObject.transform.parent.position.z);
-        }
-        CurrentEnemy.InitializeEnemy();
-
-        for (int i = 0; i < Enemies.Count; i++)
-        {
-            Enemies[i].transform.position = new Vector3(Enemies[i].transform.position.x - (10 * (PlayerData.CurrentStage - 1)), Enemies[i].transform.position.y, Enemies[i].transform.position.z);
-        }*/
-
         StageCounter++;
         StageTMP.text = StageCounter.ToString();
-        CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
-        //SpawnedPlayer.ShotAccuracy = PlayerData.ActiveCustomWeapon.BaseWeaponData.Accuracy - CurrentEnemy.EvasionValue;
+        foreach (Transform child in MonsterParent.transform)
+        {
+            if (GameManager.Instance.CurrentLevelData.MonsterList[EnemyIndex] == child.GetComponent<EnemyCombatController>().MonsterID)
+            {
+                Debug.Log("Current monster should be" + child.name);
+                child.gameObject.SetActive(true);
+                CurrentEnemy = child.GetComponent<EnemyCombatController>();
+                CurrentEnemy.MonsterLevel = GameManager.Instance.CurrentLevelData.MonsterLevels[EnemyIndex];
+                break;
+            }
+        }
+        //CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
         CurrentEnemy.InitializeEnemy();
     }
-    public void WarpToNextEnemy()
+    /*public void WarpToNextEnemy()
     {
         FlashAnimator.SetTrigger("Flash");
         SpawnedPlayer.MonstersToSkip = PlayerData.CurrentStage - StageCounter;
@@ -264,7 +273,7 @@ public class CombatCore : MonoBehaviour
             CurrentCombatState = CombatState.GAMEOVER;
         }
         
-    }
+    }*/
     #endregion
 
     #region UI
@@ -288,9 +297,9 @@ public class CombatCore : MonoBehaviour
 
     public void ProcessSkillsInteractability()
     {
-        if (PlayerData.HealCharges > 0)
+        if (PlayerData.SmallHealCharges > 0)
         {
-            HealChargesTMP.text = PlayerData.HealCharges.ToString();
+            HealChargesTMP.text = PlayerData.SmallHealCharges.ToString();
             HealBtn.interactable = true;
         }
         else
@@ -369,166 +378,244 @@ public class CombatCore : MonoBehaviour
     #endregion
 
     #region GAME OVER
+    public void UpdateLevelsWon()
+    {
+        if (!GameManager.Instance.DebugMode)
+        {
+            PlayerData.LevelsWon++;
+            Dictionary<string, int> quests = new Dictionary<string, int>();
+            quests.Add("DailyCheckIn", PlayerData.DailyCheckIn);
+            quests.Add("SocMedShared", PlayerData.SocMedShared);
+            quests.Add("ItemsUsed", PlayerData.ItemsUsed);
+            quests.Add("MonstersKilled", PlayerData.MonstersKilled);
+            quests.Add("LevelsWon", PlayerData.LevelsWon);
+            quests.Add("DailyQuestClaimed", PlayerData.DailyQuestClaimed);
+
+            UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
+            updateUserData.Data = new Dictionary<string, string>();
+            updateUserData.Data.Add("Quests", JsonConvert.SerializeObject(quests));
+
+            PlayFabClientAPI.UpdateUserData(updateUserData,
+                resultCallback =>
+                {
+                    failedCallbackCounter = 0;
+                    GetEnergy();
+                },
+                errorCallback =>
+                {
+                    ErrorCallback(errorCallback.Error,
+                        UpdateLevelsWon,
+                        () => ProcessError(errorCallback.ErrorMessage));
+                });
+        }
+    }    
+    public void GetEnergy()
+    {
+        if(GameManager.Instance.DebugMode)
+        {
+            if (PlayerData.EnergyCount > 0)
+                GrantRewardedItems();
+            else
+            {
+                DisplayDroppedRewards();
+                IncreaseCurrentLevel();
+            }
+        }
+        else
+        {
+            PlayFabClientAPI.GetUserInventory(new GetUserInventoryRequest(),
+                resultCallback =>
+                {
+                    failedCallbackCounter = 0;
+                    PlayerData.EnergyCount = resultCallback.VirtualCurrency["EN"];
+                    if (PlayerData.EnergyCount > 0)
+                        GrantRewardedItems();
+                    else
+                    {
+                        DisplayDroppedRewards();
+                        IncreaseCurrentLevel();
+                    }
+                },
+                errorCallback =>
+                {
+                    ErrorCallback(errorCallback.Error,
+                            GetEnergy,
+                            () => ProcessError(errorCallback.ErrorMessage));
+                });
+        }
+    }
+
     public void GrantRewardedItems()
     {
-        #region RESET
-        NormalFragmentDropped = 0;
-        RareFragmentDropped = 0;
-        EpicFragmentDropped = 0;
-        LegendFragmentDropped = 0;
-        HealSkillDropped = 0;
-        BreakRemoveDropped = 0;
-        BurnRemoveDropped = 0;
-        WeakRemoveDropped = 0;
-        ParalyzeRemoveDropped = 0;
-        FreezeRemoveDropped = 0;
-        ConfuseRemoveDropped = 0;
-        #endregion
+        OptibitDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedOPB, GameManager.Instance.CurrentLevelData.MaxDroppedOPB);
+        NormalFragmentDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedNormalFragment, GameManager.Instance.CurrentLevelData.MaxDroppedNormalFragment);
+        RareFragmentDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedRareFragment, GameManager.Instance.CurrentLevelData.MaxDroppedRareFragment);
+        EpicFragmentDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedEpicFragment, GameManager.Instance.CurrentLevelData.MaxDroppedEpicFragment);
+        LegendFragmentDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedLegendFragment, GameManager.Instance.CurrentLevelData.MaxDroppedLegendFragment);
+        SmallHealSkillDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedSmallHeal, GameManager.Instance.CurrentLevelData.MaxDroppedSmallHeal);
+        MediumHealSkillDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedMediumHeal, GameManager.Instance.CurrentLevelData.MaxDroppedMediumHeal);
+        LargeHealSkillDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedLargeHeal, GameManager.Instance.CurrentLevelData.MaxDroppedLargeHeal);
+        BreakRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedBreakRemove, GameManager.Instance.CurrentLevelData.MaxDroppedBreakRemove);
+        BurnRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedBurnRemove, GameManager.Instance.CurrentLevelData.MaxDroppedBurnRemove);
+        ConfuseRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedConfuseRemove, GameManager.Instance.CurrentLevelData.MaxDroppedConfuseRemove);
+        FreezeRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedFreezeRemove, GameManager.Instance.CurrentLevelData.MaxDroppedFreezeRemove);
+        ParalyzeRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedParalyzeRemove, GameManager.Instance.CurrentLevelData.MaxDroppedParalyzeRemove);
+        WeakRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedWeakRemove, GameManager.Instance.CurrentLevelData.MaxDroppedWeakRemove);
 
-        #region DROPPERS
-        if (StageCounter >= 1 && StageCounter <= 9)
+        if (GameManager.Instance.DebugMode)
         {
-            RewardTMP.text = UnityEngine.Random.Range(0, 100).ToString();
-            NormalFragmentDropped = UnityEngine.Random.Range(1,2);
-
-            if (UnityEngine.Random.Range(1, 100) < 5)
-                DropRandomSkillItem(1);
+            DisplayDroppedRewards();
+            IncreaseCurrentLevel();
+            PurchaseEnergyCharge();
         }
-        else if (StageCounter >= 10 && StageCounter <= 19)
+        else
         {
-            RewardTMP.text = UnityEngine.Random.Range(0, 200).ToString();
-            NormalFragmentDropped = UnityEngine.Random.Range(1, 3);
-
-            if (UnityEngine.Random.Range(1, 100) < 5)
-                DropRandomSkillItem(1);
+            PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
+            {
+                FunctionName = "GrantRewardedItems",
+                FunctionParameter = new
+                {
+                    localLUID = PlayerData.LUID,
+                    optibit = OptibitDropped,
+                    normalFragment = NormalFragmentDropped,
+                    rareFragment = RareFragmentDropped,
+                    epicFragment = EpicFragmentDropped,
+                    legendFragment = LegendFragmentDropped,
+                    smallHeal = SmallHealSkillDropped,
+                    mediumHeal = MediumHealSkillDropped,
+                    largeHeal = LargeHealSkillDropped,
+                    breakRemove = BreakRemoveDropped,
+                    burnRemove = BurnRemoveDropped,
+                    confuseRemove = ConfuseRemoveDropped,
+                    freezeRemove = FreezeRemoveDropped,
+                    paralyzeRemove = ParalyzeRemoveDropped,
+                    weakRemove = WeakRemoveDropped
+                },
+                GeneratePlayStreamEvent = true
+            },
+            resultCallback =>
+            {
+                failedCallbackCounter = 0;
+                Debug.Log(resultCallback.FunctionResult);
+                DisplayDroppedRewards();
+                IncreaseCurrentLevel();
+                PurchaseEnergyCharge();
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error,
+                    GrantRewardedItems,
+                    () => ProcessError(errorCallback.ErrorMessage));
+            });
         }
-        else if (StageCounter >= 20 && StageCounter <= 29)
+    }
+
+    public void IncreaseCurrentLevel()
+    {
+        if(PlayerData.CurrentStage == GameManager.Instance.CurrentLevelData.LevelIndex)
         {
-            RewardTMP.text = UnityEngine.Random.Range(0, 300).ToString();
-            NormalFragmentDropped = UnityEngine.Random.Range(1, 4);
+            if (GameManager.Instance.DebugMode)
+                PlayerData.CurrentStage++;
+            else
+            {
+                UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
+                updateUserData.Data = new Dictionary<string, string>();
+                updateUserData.Data.Add("CurrentStage", (PlayerData.CurrentStage + 1).ToString());
 
-            if (UnityEngine.Random.Range(1, 100) < 5)
-                DropRandomSkillItem(2);
+                PlayFabClientAPI.UpdateUserData(updateUserData,
+                    resultCallback =>
+                    {
+                        failedCallbackCounter = 0;
+                        PlayerData.CurrentStage++;
+                    },
+                    errorCallback =>
+                    {
+                        ErrorCallback(errorCallback.Error,
+                            IncreaseCurrentLevel,
+                            () => ProcessError(errorCallback.ErrorMessage));
+                    });
+            }
         }
-        else if (StageCounter >= 30 && StageCounter <= 39)
+    }
+
+    private void PurchaseEnergyCharge()
+    {
+        if (GameManager.Instance.DebugMode)
+            PlayerData.EnergyCount--;
+        else
         {
-            RewardTMP.text = UnityEngine.Random.Range(0, 400).ToString();
-            NormalFragmentDropped = UnityEngine.Random.Range(1, 6);
+            PurchaseItemRequest purchaseItem = new PurchaseItemRequest();
+            purchaseItem.CatalogVersion = "Charges";
+            purchaseItem.ItemId = "EnergyCharge";
+            purchaseItem.VirtualCurrency = "EN";
+            purchaseItem.Price = 1;
 
-            if (UnityEngine.Random.Range(1, 100) < 50)
-                RareFragmentDropped = UnityEngine.Random.Range(1, 2);
-
-            if (UnityEngine.Random.Range(1, 100) < 10)
-                DropRandomSkillItem(2);
+            PlayFabClientAPI.PurchaseItem(purchaseItem,
+                resultCallback =>
+                {
+                    failedCallbackCounter = 0;
+                    ConsumeEnergyCharge(resultCallback.Items[0].ItemInstanceId);
+                },
+                errorCallback =>
+                {
+                    ErrorCallback(errorCallback.Error,
+                        PurchaseEnergyCharge,
+                        () => ProcessError(errorCallback.ErrorMessage));
+                });
         }
-        else if (StageCounter >= 40 && StageCounter <= 49)
+
+    }
+
+    private void ConsumeEnergyCharge(string chargeID)
+    {
+        ConsumeItemRequest consumeItem = new ConsumeItemRequest();
+        consumeItem.ItemInstanceId = chargeID;
+        consumeItem.ConsumeCount = 1;
+
+        PlayFabClientAPI.ConsumeItem(consumeItem,
+            resultCallback =>
+            {
+                failedCallbackCounter = 0;
+                PlayerData.EnergyCount--;
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error,
+                    () => ConsumeEnergyCharge(chargeID),
+                    () => ProcessError(errorCallback.ErrorMessage));
+            });
+    }
+
+    private void UpdateUserInventory()
+    {
+
+    }
+    
+    #endregion
+
+    #region UTILITY
+    public void DisplaySettings()
+    {
+        SettingsPanel.SetActive(true);
+        GameManager.Instance.PanelActivated = true;
+    }
+
+    private void DisplayDroppedRewards()
+    {
+        if (OptibitDropped > 0)
         {
-            RewardTMP.text = UnityEngine.Random.Range(0, 500).ToString();
-            NormalFragmentDropped = UnityEngine.Random.Range(1, 7);
-
-            if (UnityEngine.Random.Range(1, 100) < 50)
-                RareFragmentDropped = UnityEngine.Random.Range(1, 2);
-
-            if (UnityEngine.Random.Range(1, 100) < 10)
-                DropRandomSkillItem(2);
+            OptibitDroppedTMP.gameObject.SetActive(true);
+            OptibitDroppedTMP.text = OptibitDropped.ToString();
+            PlayerData.Optibit += OptibitDropped;
         }
-        else if (StageCounter >= 50 && StageCounter <= 59)
-        {
-            RewardTMP.text = UnityEngine.Random.Range(0, 600).ToString();
-            NormalFragmentDropped = UnityEngine.Random.Range(1, 8);
+        else
+            OptibitDroppedTMP.gameObject.SetActive(false);
 
-            if (UnityEngine.Random.Range(1, 100) < 50)
-                RareFragmentDropped = UnityEngine.Random.Range(1, 3);
-
-            if (UnityEngine.Random.Range(1, 100) < 15)
-                DropRandomSkillItem(3);
-        }
-        else if (StageCounter >= 60 && StageCounter <= 69)
-        {
-            RewardTMP.text = UnityEngine.Random.Range(0, 700).ToString();
-            NormalFragmentDropped = UnityEngine.Random.Range(1, 9);
-
-            if (UnityEngine.Random.Range(1, 100) < 50)
-                RareFragmentDropped = UnityEngine.Random.Range(1, 4);
-
-            if (UnityEngine.Random.Range(1, 100) < 25)
-                EpicFragmentDropped = 1;
-
-            if (UnityEngine.Random.Range(1, 100) < 15)
-                DropRandomSkillItem(3);
-        }
-        else if (StageCounter >= 70 && StageCounter <= 79)
-        {
-            RewardTMP.text = UnityEngine.Random.Range(0, 800).ToString();
-            NormalFragmentDropped = UnityEngine.Random.Range(1, 10);
-
-            if (UnityEngine.Random.Range(1, 100) < 50)
-                RareFragmentDropped = UnityEngine.Random.Range(1, 5);
-
-            if (UnityEngine.Random.Range(1, 100) < 25)
-                EpicFragmentDropped = UnityEngine.Random.Range(1, 2);
-
-            if (UnityEngine.Random.Range(1, 100) < 15)
-                DropRandomSkillItem(4);
-        }
-        else if (StageCounter >= 80 && StageCounter <= 89)
-        {
-            RewardTMP.text = UnityEngine.Random.Range(0, 900).ToString();
-            NormalFragmentDropped = UnityEngine.Random.Range(1, 10);
-
-            if (UnityEngine.Random.Range(1, 100) < 50)
-                RareFragmentDropped = UnityEngine.Random.Range(1, 5);
-
-            if (UnityEngine.Random.Range(1, 100) < 25)
-                EpicFragmentDropped = UnityEngine.Random.Range(1, 2);
-
-            if (UnityEngine.Random.Range(1, 100) < 15)
-                LegendFragmentDropped = 1;
-
-            if (UnityEngine.Random.Range(1, 100) < 15)
-                DropRandomSkillItem(5);
-        }
-        else if (StageCounter >= 90 && StageCounter <= 99)
-        {
-            RewardTMP.text = UnityEngine.Random.Range(0, 900).ToString();
-            NormalFragmentDropped = UnityEngine.Random.Range(1, 10);
-
-            if (UnityEngine.Random.Range(1, 100) < 50)
-                RareFragmentDropped = UnityEngine.Random.Range(1, 5);
-
-            if (UnityEngine.Random.Range(1, 100) < 25)
-                EpicFragmentDropped = UnityEngine.Random.Range(1, 2);
-
-            if (UnityEngine.Random.Range(1, 100) < 15)
-                LegendFragmentDropped = 1;
-
-            if (UnityEngine.Random.Range(1, 100) < 20)
-                DropRandomSkillItem(5);
-        }
-        else if (StageCounter == 100)
-        {
-            RewardTMP.text = "1000";
-            NormalFragmentDropped = UnityEngine.Random.Range(1, 10);
-
-            if (UnityEngine.Random.Range(1, 100) < 50)
-                RareFragmentDropped = UnityEngine.Random.Range(1, 10);
-
-            if (UnityEngine.Random.Range(1, 100) < 25)
-                EpicFragmentDropped = UnityEngine.Random.Range(1, 10);
-
-            if (UnityEngine.Random.Range(1, 100) < 15)
-                LegendFragmentDropped = UnityEngine.Random.Range(1, 10);
-
-            if (UnityEngine.Random.Range(1, 100) < 20)
-                DropRandomSkillItem(10);
-        }
-        #endregion
-
-        #region DISPLAY
         if (NormalFragmentDropped > 0)
         {
             NormalFragmentTMP.gameObject.SetActive(true);
             NormalFragmentTMP.text = NormalFragmentDropped.ToString();
+            PlayerData.NormalFragments += NormalFragmentDropped;
         }
         else
             NormalFragmentTMP.gameObject.SetActive(false);
@@ -537,6 +624,7 @@ public class CombatCore : MonoBehaviour
         {
             RareFragmentTMP.gameObject.SetActive(true);
             RareFragmentTMP.text = RareFragmentDropped.ToString();
+            PlayerData.RareFragments += RareFragmentDropped;
         }
         else
             RareFragmentTMP.gameObject.SetActive(false);
@@ -545,6 +633,7 @@ public class CombatCore : MonoBehaviour
         {
             EpicFragmentTMP.gameObject.SetActive(true);
             EpicFragmentTMP.text = EpicFragmentDropped.ToString();
+            PlayerData.EpicFragments += EpicFragmentDropped;
         }
         else
             EpicFragmentTMP.gameObject.SetActive(false);
@@ -553,22 +642,43 @@ public class CombatCore : MonoBehaviour
         {
             LegendFragmentTMP.gameObject.SetActive(true);
             LegendFragmentTMP.text = LegendFragmentDropped.ToString();
+            PlayerData.LegendFragments += LegendFragmentDropped;
         }
         else
             LegendFragmentTMP.gameObject.SetActive(false);
 
-        if (HealSkillDropped > 0)
+        if (SmallHealSkillDropped > 0)
         {
-            HealGainedTMP.gameObject.SetActive(true);
-            HealGainedTMP.text = HealSkillDropped.ToString();
+            SmallHealGainedTMP.gameObject.SetActive(true);
+            SmallHealGainedTMP.text = SmallHealSkillDropped.ToString();
+            PlayerData.SmallHealCharges += SmallHealSkillDropped;
         }
         else
-            HealGainedTMP.gameObject.SetActive(false);
+            SmallHealGainedTMP.gameObject.SetActive(false);
+
+        if (MediumHealSkillDropped > 0)
+        {
+            MediumHealGainedTMP.gameObject.SetActive(true);
+            MediumHealGainedTMP.text = MediumHealSkillDropped.ToString();
+            PlayerData.MediumHealCharges += MediumHealSkillDropped;
+        }
+        else
+            MediumHealGainedTMP.gameObject.SetActive(false);
+
+        if (LargeHealSkillDropped > 0)
+        {
+            LargeHealGainedTMP.gameObject.SetActive(true);
+            LargeHealGainedTMP.text = LargeHealSkillDropped.ToString();
+            PlayerData.LargeHealCharges += LargeHealSkillDropped;
+        }
+        else
+            LargeHealGainedTMP.gameObject.SetActive(false);
 
         if (BreakRemoveDropped > 0)
         {
             BreakGainedTMP.gameObject.SetActive(true);
             BreakGainedTMP.text = BreakRemoveDropped.ToString();
+            PlayerData.BreakRemovalCharges += BreakRemoveDropped;
         }
         else
             BreakGainedTMP.gameObject.SetActive(false);
@@ -577,6 +687,7 @@ public class CombatCore : MonoBehaviour
         {
             WeakGainedTMP.gameObject.SetActive(true);
             WeakGainedTMP.text = WeakRemoveDropped.ToString();
+            PlayerData.WeakRemovalCharges += WeakRemoveDropped;
         }
         else
             WeakGainedTMP.gameObject.SetActive(false);
@@ -585,6 +696,7 @@ public class CombatCore : MonoBehaviour
         {
             FreezeGainedTMP.gameObject.SetActive(true);
             FreezeGainedTMP.text = FreezeRemoveDropped.ToString();
+            PlayerData.FreezeRemovalCharges += FreezeRemoveDropped;
         }
         else
             FreezeGainedTMP.gameObject.SetActive(false);
@@ -593,6 +705,7 @@ public class CombatCore : MonoBehaviour
         {
             ParalyzeGainedTMP.gameObject.SetActive(true);
             ParalyzeGainedTMP.text = ParalyzeRemoveDropped.ToString();
+            PlayerData.ParalyzeRemovalCharges += ParalyzeRemoveDropped;
         }
         else
             ParalyzeGainedTMP.gameObject.SetActive(false);
@@ -601,6 +714,7 @@ public class CombatCore : MonoBehaviour
         {
             ConfuseGainedTMP.gameObject.SetActive(true);
             ConfuseGainedTMP.text = ConfuseRemoveDropped.ToString();
+            PlayerData.ConfuseRemovalCharges += ConfuseRemoveDropped;
         }
         else
             ConfuseGainedTMP.gameObject.SetActive(false);
@@ -609,80 +723,10 @@ public class CombatCore : MonoBehaviour
         {
             BurnGainedTMP.gameObject.SetActive(true);
             BurnGainedTMP.text = BurnRemoveDropped.ToString();
+            PlayerData.BurnRemovalCharges += BurnRemoveDropped;
         }
         else
             BurnGainedTMP.gameObject.SetActive(false);
-        #endregion
-        DropRandomCostume();
-    }
-
-    private void DropRandomSkillItem(int maxSkillDrop)
-    {
-        for (int i = 0; i < UnityEngine.Random.Range(1, maxSkillDrop); i++)
-        {
-            switch (UnityEngine.Random.Range(0, 6))
-            {
-                case 0:
-                    HealSkillDropped++;
-                    break;
-                case 1:
-                    BreakRemoveDropped++;
-                    break;
-                case 2:
-                    WeakRemoveDropped++;
-                    break;
-                case 3:
-                    FreezeRemoveDropped++;
-                    break;
-                case 4:
-                    ParalyzeRemoveDropped++;
-                    break;
-                case 5:
-                    ConfuseRemoveDropped++;
-                    break;
-                case 6:
-                    BurnRemoveDropped++;
-                    break;
-            }
-        }
-    }
-
-    private void DropRandomCostume()
-    {
-        if(StageCounter < Enemies.Count / 2)
-        {
-            bool mayGrantCostume = false;
-            foreach (CustomCostumeData costume in CostumeRoster)
-                if (!costume.CostumeIsOwned)
-                {
-                    mayGrantCostume = true;
-                    break;
-                }
-
-            if(mayGrantCostume)
-            {
-                int randomNum = UnityEngine.Random.Range(0, CostumeRoster.Count);
-                while (CostumeRoster[randomNum].CostumeIsOwned)
-                    randomNum = UnityEngine.Random.Range(0, CostumeRoster.Count);
-
-                if (UnityEngine.Random.Range(0, 100) >= 1)
-                {
-                    DroppedCostume.gameObject.SetActive(true);
-                    CostumeRoster[randomNum].CostumeIsOwned = true;
-                    DroppedCostume.sprite = CostumeRoster[randomNum].BaseCostumeData.DroppedSprite;
-                }
-                else
-                    DroppedCostume.gameObject.SetActive(false);
-            }    
-        }
-    }
-    #endregion
-
-    #region UTILITY
-    public void DisplaySettings()
-    {
-        SettingsPanel.SetActive(true);
-        GameManager.Instance.PanelActivated = true;
     }
 
     public void HideSettings()
@@ -694,6 +738,31 @@ public class CombatCore : MonoBehaviour
     public void OpenLobbyScene()
     {
         GameManager.Instance.SceneController.CurrentScene = "LobbyScene";
+    }
+
+    public void OpenAdventureScene()
+    {
+        GameManager.Instance.SceneController.CurrentScene = "AdventureScene";
+    }
+
+    private void ErrorCallback(PlayFabErrorCode errorCode, Action restartAction, Action errorAction)
+    {
+        if (errorCode == PlayFabErrorCode.ConnectionError)
+        {
+            failedCallbackCounter++;
+            if (failedCallbackCounter >= 5)
+                ProcessError("Connectivity error. Please connect to strong internet");
+            else
+                restartAction();
+        }
+        else
+            errorAction();
+    }
+
+    private void ProcessError(string errorMessage)
+    {
+        //HideLoadingPanel();
+        GameManager.Instance.DisplayErrorPanel(errorMessage);
     }
     /*public void OpenLoadingPanel(string _message)
     {

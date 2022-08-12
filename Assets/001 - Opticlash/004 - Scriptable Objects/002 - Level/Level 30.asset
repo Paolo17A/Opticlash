@@ -27,5 +27,31 @@ MonoBehaviour:
   - ParalyzeMonster015
   - FreezeBoss003
   <MonsterLevels>k__BackingField: 1a0000001a0000001b0000001c0000001d0000001e0000001f0000002000000020000000210000002200000023000000
-  minDroppedOPB: 500
-  maxDroppedOPB: 1000
+  <MinDroppedOPB>k__BackingField: 500
+  <MaxDroppedOPB>k__BackingField: 1000
+  <MinDroppedNormalFragment>k__BackingField: 1
+  <MaxDroppedNormalFragment>k__BackingField: 5
+  <MinDroppedRareFragment>k__BackingField: 1
+  <MaxDroppedRareFragment>k__BackingField: 4
+  <MinDroppedEpicFragment>k__BackingField: 1
+  <MaxDroppedEpicFragment>k__BackingField: 3
+  <MinDroppedLegendFragment>k__BackingField: 1
+  <MaxDroppedLegendFragment>k__BackingField: 2
+  <MinDroppedBreakRemove>k__BackingField: 1
+  <MaxDroppedBreakRemove>k__BackingField: 10
+  <MinDroppedBurnRemove>k__BackingField: 1
+  <MaxDroppedBurnRemove>k__BackingField: 10
+  <MinDroppedConfuseRemove>k__BackingField: 1
+  <MaxDroppedConfuseRemove>k__BackingField: 10
+  <MinDroppedFreezeRemove>k__BackingField: 1
+  <MaxDroppedFreezeRemove>k__BackingField: 10
+  <MinDroppedParalyzeRemove>k__BackingField: 1
+  <MaxDroppedParalyzeRemove>k__BackingField: 10
+  <MinDroppedWeakRemove>k__BackingField: 0
+  <MaxDroppedWeakRemove>k__BackingField: 0
+  <MinDroppedSmallHeal>k__BackingField: 1
+  <MaxDroppedSmallHeal>k__BackingField: 5
+  <MinDroppedMediumHeal>k__BackingField: 1
+  <MaxDroppedMediumHeal>k__BackingField: 4
+  <MinDroppedLargeHeal>k__BackingField: 1
+  <MaxDroppedLargeHeal>k__BackingField: 3

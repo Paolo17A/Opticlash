@@ -1184,6 +1184,7 @@ GameObject:
   - component: {fileID: 434220739}
   - component: {fileID: 434220742}
   - component: {fileID: 434220743}
+  - component: {fileID: 434220744}
   m_Layer: 0
   m_Name: EntryManager
   m_TagString: Untagged
@@ -1220,6 +1221,7 @@ MonoBehaviour:
   entryStates: 0
   <EntryAnimator>k__BackingField: {fileID: 1266639344}
   <LoginCore>k__BackingField: {fileID: 434220742}
+  <WalletController>k__BackingField: {fileID: 434220744}
   <LoadingPanel>k__BackingField: {fileID: 1374882915}
   <UsernameLoginTMP>k__BackingField: {fileID: 1462925918}
   <PasswordLoginTMP>k__BackingField: {fileID: 965698158}
@@ -1272,6 +1274,21 @@ MonoBehaviour:
   spawnConstant: 14.67
   holder: {fileID: 0}
   stageHolder: {fileID: 0}
+--- !u!114 &434220744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434220738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edd715a8334413046b0d150e20600eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loginCore: {fileID: 434220742}
+  metamaskPackageName: io.metamask
+  walletLoginURL: optibit.herokuapp.com/tester
 --- !u!1 &496001918
 GameObject:
   m_ObjectHideFlags: 0
@@ -3230,7 +3247,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 434220740}
         m_TargetAssemblyTypeName: EntryCore, Assembly-CSharp
-        m_MethodName: OpenWebsite
+        m_MethodName: MetaMaskButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

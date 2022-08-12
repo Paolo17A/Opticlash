@@ -39,9 +39,15 @@ public class WeaponData : ScriptableObject
     [field: SerializeField] public Sprite BackSprite { get; set; }
     [field: SerializeField] public Sprite MiddleSprite { get; set; }
     [field: SerializeField] public Sprite FrontSprite { get; set; }
+
+    [field: Header("TEXTURES")]
+    [field: SerializeField] public Sprite AnimatedSprite { get; set; }
     [field: SerializeField] public Sprite EquippedSprite {get; set;}
     [field: SerializeField] public Sprite InfoSprite { get; set; }
     [field: SerializeField] public Sprite CurrentSprite { get; set; }
     [field: SerializeField] public Sprite CurrentBigSprite { get; set; }
     [field: SerializeField] public Sprite Ammo { get; set; }
+
+    [field: SerializeField] public int FragmentUpgradeCostConstant { get; set; }
+    [field: SerializeField] public int OptibitUpgradeCostConstant { get; set; }
 }

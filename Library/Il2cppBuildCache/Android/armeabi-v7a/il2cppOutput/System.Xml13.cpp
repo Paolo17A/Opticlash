@@ -19911,7 +19911,7 @@ IL_0069:
 			Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_19 = __this->get_encoding_3();
 			NullCheck(L_19);
 			String_t* L_20;
-			L_20 = VirtFuncInvoker0< String_t* >::Invoke(8 /* System.String System.Text.Encoding::get_WebName() */, L_19);
+			L_20 = VirtFuncInvoker0< String_t* >::Invoke(9 /* System.String System.Text.Encoding::get_WebName() */, L_19);
 			NullCheck(L_18);
 			StringBuilder_t * L_21;
 			L_21 = StringBuilder_Append_mD02AB0C74C6F55E3E330818C77EC147E22096FB1(L_18, L_20, /*hidden argument*/NULL);
@@ -30472,7 +30472,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XmlUtf8RawTextWriter_WriteXmlDeclaration
 		Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_3 = __this->get_encoding_6();
 		NullCheck(L_3);
 		String_t* L_4;
-		L_4 = VirtFuncInvoker0< String_t* >::Invoke(8 /* System.String System.Text.Encoding::get_WebName() */, L_3);
+		L_4 = VirtFuncInvoker0< String_t* >::Invoke(9 /* System.String System.Text.Encoding::get_WebName() */, L_3);
 		XmlUtf8RawTextWriter_RawText_m63C790738AF31BC900A135CF14E8E08E77AF2E72(__this, L_4, /*hidden argument*/NULL);
 	}
 

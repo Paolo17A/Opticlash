@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using MyBox;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,8 +27,8 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-    [field: SerializeField]public List<GameObject> GameMangerObj { get; set; }
-
+    [field: SerializeField] public List<GameObject> GameMangerObj { get; set; }
+    [field: SerializeField] public bool CheatsActivated { get; set; }
     [field: SerializeField] public bool DebugMode { get; set; }
     [SerializeField] private string SceneToLoad;
     [field: SerializeField] public bool PanelActivated { get; set; }
@@ -47,12 +48,11 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public SceneController SceneController { get; set; }
 
     [field: Header("COMBAT")]
-    [field: SerializeField] public LevelData CurrentLevelData { get; set; }
+    [field: SerializeField][field: ReadOnly] public LevelData CurrentLevelData { get; set; }
     //===========================================================
 
     private void Awake()
     {
-        //Advertisements.Instance.Initialize();
         if (_instance != null)
         {
             for (int a = 0; a < GameMangerObj.Count; a++)
@@ -65,7 +65,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //Advertisements.Instance.Initialize();
         if (DebugMode)
             SceneController.CurrentScene = SceneToLoad;
         else
@@ -101,6 +100,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    #region UTILIY
     public string DateTimeToJSONString(DateTime dateTime)
     {
         return SerializeIntValue(new List<string>()
@@ -215,4 +215,5 @@ public class GameManager : MonoBehaviour
 
         return JsonConvert.SerializeObject(dict);
     }
+    #endregion
 }

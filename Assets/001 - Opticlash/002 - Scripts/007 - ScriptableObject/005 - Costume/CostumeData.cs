@@ -10,8 +10,10 @@ public class CostumeData : ScriptableObject
     [field: SerializeField] public string CostumeName { get; set; }
     [field: SerializeField] public Sprite CostumeSprite { get; set; }
     [field: SerializeField] public Sprite LobbyCostumeSprite { get; set; }
+
+    [field: Header("TEXTURES")]
+    [field: SerializeField] public Sprite EquippedSprite { get; set; }
     [field: SerializeField] public Sprite InfoSprite { get; set; }
-    [field: SerializeField] public Sprite DroppedSprite { get; set; }
 
     [field: Header("COMBAT")]
     [field: SerializeField] public EnemyCombatController.SideEffect ProvidedImmunity { get; set; }

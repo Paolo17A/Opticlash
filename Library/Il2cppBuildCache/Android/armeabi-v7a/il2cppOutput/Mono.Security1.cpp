@@ -12066,7 +12066,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19
 		String_t* L_1 = ___password1;
 		NullCheck(L_0);
 		ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726* L_2;
-		L_2 = VirtFuncInvoker1< ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726*, String_t* >::Invoke(17 /* System.Byte[] System.Text.Encoding::GetBytes(System.String) */, L_0, L_1);
+		L_2 = VirtFuncInvoker1< ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726*, String_t* >::Invoke(18 /* System.Byte[] System.Text.Encoding::GetBytes(System.String) */, L_0, L_1);
 		V_0 = L_2;
 		SHA1_t15B592B9935E19EC3FD5679B969239AC572E2C0E * L_3;
 		L_3 = SHA1_Create_mC0C045956B56FC33D44AF7146C0E1DF27A3D102A(/*hidden argument*/NULL);
@@ -19086,7 +19086,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19
 		String_t* L_5 = ___label1;
 		NullCheck(L_4);
 		ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726* L_6;
-		L_6 = VirtFuncInvoker1< ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726*, String_t* >::Invoke(17 /* System.Byte[] System.Text.Encoding::GetBytes(System.String) */, L_4, L_5);
+		L_6 = VirtFuncInvoker1< ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726*, String_t* >::Invoke(18 /* System.Byte[] System.Text.Encoding::GetBytes(System.String) */, L_4, L_5);
 		NullCheck(L_3);
 		TlsStream_Write_m7DF933A9519F8D954DD1E150C2F3F08B5192AC9B(L_3, L_6, /*hidden argument*/NULL);
 		TlsStream_t07437F165A8521FD289C64336708CC5AA54A3F7A * L_7 = V_0;
@@ -28934,7 +28934,7 @@ IL_0022:
 		String_t* L_7 = V_0;
 		NullCheck(L_6);
 		ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726* L_8;
-		L_8 = VirtFuncInvoker1< ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726*, String_t* >::Invoke(17 /* System.Byte[] System.Text.Encoding::GetBytes(System.String) */, L_6, L_7);
+		L_8 = VirtFuncInvoker1< ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726*, String_t* >::Invoke(18 /* System.Byte[] System.Text.Encoding::GetBytes(System.String) */, L_6, L_7);
 		V_3 = L_8;
 		TlsStream_t07437F165A8521FD289C64336708CC5AA54A3F7A * L_9 = V_2;
 		NullCheck(L_9);
@@ -31620,7 +31620,7 @@ IL_005c:
 		L_26 = ASN1_get_Value_m95545A82635424B999816713F09A224ED01DF0C2(L_25, /*hidden argument*/NULL);
 		NullCheck(L_23);
 		String_t* L_27;
-		L_27 = VirtFuncInvoker1< String_t*, ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726* >::Invoke(33 /* System.String System.Text.Encoding::GetString(System.Byte[]) */, L_23, L_26);
+		L_27 = VirtFuncInvoker1< String_t*, ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726* >::Invoke(34 /* System.String System.Text.Encoding::GetString(System.Byte[]) */, L_23, L_26);
 		NullCheck(L_21);
 		ArrayElementTypeCheck (L_21, L_27);
 		(L_21)->SetAt(static_cast<il2cpp_array_size_t>(L_22), (String_t*)L_27);

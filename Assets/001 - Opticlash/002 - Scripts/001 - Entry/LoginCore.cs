@@ -101,7 +101,7 @@ public class LoginCore : MonoBehaviour
     public void LoginCredentials(string username, string password)
     {
         myGUID = Guid.NewGuid();
-        PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest() 
+        PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
         {
             FunctionName = "LoginCredentials",
             FunctionParameter = new { LUID = myGUID.ToString() },
@@ -109,33 +109,43 @@ public class LoginCore : MonoBehaviour
         },
         resultCallback =>
         {
+            Debug.Log(resultCallback.FunctionResult);
             failedCallbackCounter = 0;
             PlayerPrefs.SetString("Username", username);
             PlayerPrefs.SetString("Password", password);
-            //Debug.Log(JsonConvert.SerializeObject(resultCallback.FunctionResult));
-            if (GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "messageValue") == "Success")
+            if(resultCallback.FunctionResult == null)
             {
-                PlayerData.LUID = myGUID.ToString();
-                PlayerData.ActiveWeaponID = GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "ActiveCannon");
-                PlayerData.ActiveConstumeInstanceID = GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "ActiveCostume");
-                PlayerData.CurrentStage = int.Parse(GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "CurrentStage"));
-
-                string quests = GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "Quests");
-                PlayerData.DailyCheckIn = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "DailyCheckIn"));
-                PlayerData.SocMedShared = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "SocMedShared"));
-                PlayerData.ItemsUsed = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "ItemsUsed"));
-                PlayerData.MonstersKilled = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "MonstersKilled"));
-                PlayerData.LevelsWon = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "LevelsWon"));
-                PlayerData.DailyQuestClaimed = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "DailyQuestClaimed"));
-
-                PlayerPrefs.SetString("Username", username);
-                PlayerPrefs.SetString("Password", password);
+                Debug.Log("nothing was returned");
                 EntryCore.HideLoadingPanel();
-                GameManager.Instance.SceneController.CurrentScene = "LobbyScene";
+
             }
             else
-                EntryCore.HideLoadingPanel();
+            {
+                if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
+                {
+                    PlayerData.LUID = myGUID.ToString();
+                    PlayerData.ActiveWeaponID = GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "ActiveCannon");
+                    PlayerData.ActiveConstumeInstanceID = GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "ActiveCostume");
+                    PlayerData.CurrentStage = int.Parse(GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "CurrentStage"));
 
+                    string quests = GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "Quests");
+                    PlayerData.DailyCheckIn = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "DailyCheckIn"));
+                    PlayerData.SocMedShared = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "SocMedShared"));
+                    PlayerData.ItemsUsed = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "ItemsUsed"));
+                    PlayerData.MonstersKilled = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "MonstersKilled"));
+                    PlayerData.LevelsWon = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "LevelsWon"));
+                    PlayerData.DailyQuestClaimed = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "DailyQuestClaimed"));
+
+                    PlayerPrefs.SetString("Username", username);
+                    PlayerPrefs.SetString("Password", password);
+                    EntryCore.HideLoadingPanel();
+                    GameManager.Instance.SceneController.CurrentScene = "LobbyScene";
+                }
+                else
+                    EntryCore.HideLoadingPanel();
+            }
+            
+            //GameManager.Instance.SceneController.CurrentScene = "LobbyScene";
         },
         errorCallback =>
         {
@@ -145,6 +155,27 @@ public class LoginCore : MonoBehaviour
                 () => LoginCredentials(username, password),
                 () => GameManager.Instance.DisplayErrorPanel(errorCallback.ErrorMessage));
         });
+    }
+
+    public void LoginWithMetaMask(string wallet)
+    {
+        LoginWithCustomIDRequest loginWithCustomID = new LoginWithCustomIDRequest();
+        loginWithCustomID.TitleId = "BB42A";
+        loginWithCustomID.CustomId = wallet;
+
+        PlayFabClientAPI.LoginWithCustomID(loginWithCustomID,
+            resultCallback =>
+            {
+                failedCallbackCounter = 0;
+                Debug.Log("Player ID: " + resultCallback.PlayFabId);
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error,
+                    FailedAction,
+                    () => LoginWithMetaMask(wallet),
+                    () => ProcessError(errorCallback.ErrorMessage));
+            });
     }
 
     #region UTILITY

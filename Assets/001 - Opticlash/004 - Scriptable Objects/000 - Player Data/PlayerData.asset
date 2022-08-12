@@ -17,12 +17,12 @@ MonoBehaviour:
   <LUID>k__BackingField: 
   <CurrentStage>k__BackingField: 1
   <TotalKillCount>k__BackingField: 0
-  <EnergyCount>k__BackingField: 0
+  <EnergyCount>k__BackingField: 20
   <Optibit>k__BackingField: 0
   <CurrentHealth>k__BackingField: 100
   <MaxHealth>k__BackingField: 100
   <ActiveWeaponID>k__BackingField: default
-  <ActiveCustomWeapon>k__BackingField: {fileID: 0}
+  <ActiveCustomWeapon>k__BackingField: {fileID: 11400000, guid: e58b2b3803e848140bf807589421281f, type: 2}
   <OwnedWeapons>k__BackingField:
   - {fileID: 11400000, guid: e58b2b3803e848140bf807589421281f, type: 2}
   - {fileID: 11400000, guid: 024174ab56a73784d9048a8f4a4a99dd, type: 2}
@@ -67,8 +67,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4ced7ccb8bae5064daeeedf19f245d6d, type: 2}
   - {fileID: 11400000, guid: b518ce250db3adf4abb63703f3d8a563, type: 2}
   - {fileID: 11400000, guid: c2024f9a356e40a4fa918e1fa9fe3571, type: 2}
-  <HealInstanceID>k__BackingField: 
-  <HealCharges>k__BackingField: 0
+  <CommonLootboxInstanceID>k__BackingField: 
+  <CommonLootboxCount>k__BackingField: 1
+  <RareLootboxInstanceID>k__BackingField: 
+  <RareLootboxCount>k__BackingField: 2
+  <EpicLootboxInstanceID>k__BackingField: 
+  <EpicLootboxCount>k__BackingField: 3
+  <LegendaryLootbox1InstanceID>k__BackingField: 
+  <LegendaryLootbox1Count>k__BackingField: 4
+  <LegendaryLootbox2InstanceID>k__BackingField: 
+  <LegendaryLootbox2Count>k__BackingField: 5
+  <SmallHealInstanceID>k__BackingField: 
+  <SmallHealCharges>k__BackingField: 0
+  <MediumHealInstanceID>k__BackingField: 
+  <MediumHealCharges>k__BackingField: 0
+  <LargeHealInstanceID>k__BackingField: 
+  <LargeHealCharges>k__BackingField: 0
   <BreakRemovalInstanceID>k__BackingField: 
   <BreakRemovalCharges>k__BackingField: 0
   <WeakRemovalInstanceID>k__BackingField: 
@@ -93,6 +107,6 @@ MonoBehaviour:
   <DailyCheckIn>k__BackingField: 0
   <SocMedShared>k__BackingField: 0
   <ItemsUsed>k__BackingField: 0
-  <MonstersKilled>k__BackingField: 0
+  <MonstersKilled>k__BackingField: 3
   <LevelsWon>k__BackingField: 0
   <DailyQuestClaimed>k__BackingField: 0

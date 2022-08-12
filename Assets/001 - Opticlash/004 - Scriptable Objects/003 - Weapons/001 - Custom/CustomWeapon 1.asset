@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <WeaponInstanceID>k__BackingField: default
   <BaseWeaponData>k__BackingField: {fileID: 11400000, guid: 926c3d256a33ab340b2c9bfe393783be, type: 2}
-  <BonusDamage>k__BackingField: 0
+  <Level>k__BackingField: 1
+  <Attack>k__BackingField: 0
+  <Accuracy>k__BackingField: 0
+  <FragmentUpgradeCost>k__BackingField: 0
+  <OptibitUpgradeCost>k__BackingField: 0

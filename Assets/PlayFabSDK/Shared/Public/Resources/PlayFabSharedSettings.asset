@@ -15,7 +15,7 @@ MonoBehaviour:
   TitleId: BB42A
   DeveloperSecretKey: 3Q4TQBTTFORF8368MWOGZTPF33OBEIY3IHG1FOT9DFKN7J61QY
   ProductionEnvironmentUrl: 
-  RequestType: 2
+  RequestType: 0
   DisableDeviceInfo: 0
   DisableFocusTimeCollection: 0
   RequestTimeout: 2000

@@ -98,11 +98,11 @@ public class BoardCore : MonoBehaviour
     {
         ShuffleBtn.interactable = false;
         if (MatchFinder.CurrentMatches.Count == 3)
-            CombatCore.SpawnedPlayer.DamageDeal = (CombatCore.SpawnedPlayer.Attack * CombatCore.SpawnedPlayer.Attack) / (CombatCore.CurrentEnemy.Attack * CombatCore.CurrentEnemy.Attack);
+            CombatCore.SpawnedPlayer.DamageDeal = (CombatCore.SpawnedPlayer.Attack * CombatCore.SpawnedPlayer.Attack) / (CombatCore.CurrentEnemy.Attack + CombatCore.CurrentEnemy.Defense);
         else if (MatchFinder.CurrentMatches.Count == 4)
-            CombatCore.SpawnedPlayer.DamageDeal = 1.5f * (CombatCore.SpawnedPlayer.Attack * CombatCore.SpawnedPlayer.Attack) / (CombatCore.CurrentEnemy.Attack * CombatCore.CurrentEnemy.Attack);
+            CombatCore.SpawnedPlayer.DamageDeal = 1.5f * (CombatCore.SpawnedPlayer.Attack * CombatCore.SpawnedPlayer.Attack) / (CombatCore.CurrentEnemy.Attack + CombatCore.CurrentEnemy.Defense);
         else if (MatchFinder.CurrentMatches.Count >= 5)
-            CombatCore.SpawnedPlayer.DamageDeal = 1.8f * (CombatCore.SpawnedPlayer.Attack * CombatCore.SpawnedPlayer.Attack) / (CombatCore.CurrentEnemy.Attack * CombatCore.CurrentEnemy.Attack);
+            CombatCore.SpawnedPlayer.DamageDeal = 1.8f * (CombatCore.SpawnedPlayer.Attack * CombatCore.SpawnedPlayer.Attack) / (CombatCore.CurrentEnemy.Attack + CombatCore.CurrentEnemy.Defense);
 
         //Debug.Log(CombatCore.SpawnedPlayer.DamageDeal);
         for (int i = 0; i < MatchFinder.CurrentMatches.Count; i++)
@@ -167,26 +167,6 @@ public class BoardCore : MonoBehaviour
         if(MatchFinder.CurrentMatches.Count > 0)
         {
             yield return new WaitForSeconds(0.3f);
-            /*if (MatchFinder.CurrentMatches.Count == 3)
-                CombatCore.SpawnedPlayer.DamageDeal = (CombatCore.SpawnedPlayer.Attack * CombatCore.SpawnedPlayer.Attack) / (CombatCore.CurrentEnemy.Attack * CombatCore.CurrentEnemy.Attack);
-            else if (MatchFinder.CurrentMatches.Count == 4)
-                CombatCore.SpawnedPlayer.DamageDeal = 1.5f * (CombatCore.SpawnedPlayer.Attack * CombatCore.SpawnedPlayer.Attack) / (CombatCore.CurrentEnemy.Attack * CombatCore.CurrentEnemy.Attack);
-            else if (MatchFinder.CurrentMatches.Count >= 5)
-                CombatCore.SpawnedPlayer.DamageDeal = 1.8f * (CombatCore.SpawnedPlayer.Attack * CombatCore.SpawnedPlayer.Attack) / (CombatCore.CurrentEnemy.Attack * CombatCore.CurrentEnemy.Attack);
-
-            Debug.Log(CombatCore.SpawnedPlayer.DamageDeal);
-            /*if (ShotsEarned > 1)
-            {
-                Debug.Log("Might be allowed to lifesteal");
-                if (MatchFinder.CurrentMatches.Count == 3)
-                    CombatCore.SpawnedPlayer.ActivateLifesteal(3);
-                else if (MatchFinder.CurrentMatches.Count == 4)
-                    CombatCore.SpawnedPlayer.ActivateLifesteal(5);
-                else if (MatchFinder.CurrentMatches.Count == 5)
-                    CombatCore.SpawnedPlayer.ActivateLifesteal(7);
-                else if (MatchFinder.CurrentMatches.Count >= 6)
-                    CombatCore.SpawnedPlayer.ActivateLifesteal(9);
-            }*/
             DestroyMatches();
         }    
         else

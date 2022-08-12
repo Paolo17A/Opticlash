@@ -16,6 +16,7 @@ MonoBehaviour:
   <CostumeName>k__BackingField: Stony Outfit
   <CostumeSprite>k__BackingField: {fileID: 21300000, guid: 72164445d939d92429108ac2558d1054, type: 3}
   <LobbyCostumeSprite>k__BackingField: {fileID: 21300000, guid: cb87cf58e0c18474c96cc1644aef55d0, type: 3}
-  <InfoSprite>k__BackingField: {fileID: 21300000, guid: 1107da62f9d11ff44a58ae9ede9236f2, type: 3}
-  <DroppedSprite>k__BackingField: {fileID: 21300000, guid: db5e985c3939b6847a6efec52a3adfc2, type: 3}
+  <EquippedSprite>k__BackingField: {fileID: 21300000, guid: c72f40f4cf2f15947a12d0468928700e, type: 3}
+  <InfoSprite>k__BackingField: {fileID: 21300000, guid: e399d322c4166dc4ca234ae982a5563d, type: 3}
   <ProvidedImmunity>k__BackingField: 6
+  <CostumeLevel>k__BackingField: 0

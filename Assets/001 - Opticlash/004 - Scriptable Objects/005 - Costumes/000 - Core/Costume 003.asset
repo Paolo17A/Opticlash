@@ -16,6 +16,7 @@ MonoBehaviour:
   <CostumeName>k__BackingField: Battle Angel
   <CostumeSprite>k__BackingField: {fileID: 21300000, guid: 33a7d2c4326bc0a4e983300a8e5bbb5e, type: 3}
   <LobbyCostumeSprite>k__BackingField: {fileID: 21300000, guid: 4bd2f0f4fc3b7b34c8080b19c76ed71f, type: 3}
-  <InfoSprite>k__BackingField: {fileID: 21300000, guid: 460393f000736f44ea98ebeed8f756b5, type: 3}
-  <DroppedSprite>k__BackingField: {fileID: 21300000, guid: 20b1afa1c9f214d4ea08794747cb3bdc, type: 3}
+  <EquippedSprite>k__BackingField: {fileID: 21300000, guid: f3fe0a06b056da0479fda903586b66d2, type: 3}
+  <InfoSprite>k__BackingField: {fileID: 21300000, guid: 86637daa765688d42aa10524e6547558, type: 3}
   <ProvidedImmunity>k__BackingField: 3
+  <CostumeLevel>k__BackingField: 0

@@ -6,7 +6,6 @@ public class InventoryManager : MonoBehaviour
 {
     [field: SerializeField] private List<WeaponData> WeaponData { get; set; }
 
-
     public WeaponData GetProperWeaponData(string _value)
     {
         foreach (WeaponData weapon in WeaponData)

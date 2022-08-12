@@ -608,8 +608,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4415567261814577042}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1703482097
+  m_SortingLayer: 4
   m_SortingOrder: 18
 --- !u!114 &4535915533428936198
 MonoBehaviour:
@@ -625,17 +625,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCombatState: 0
   <CombatCore>k__BackingField: {fileID: 0}
+  <MonsterID>k__BackingField: 
   <EnemyAnim>k__BackingField: {fileID: 0}
   <EnemyAttackType>k__BackingField: 0
-  <CurrentHealth>k__BackingField: 0
-  <MaxHealth>k__BackingField: 0
-  <DamageDeal>k__BackingField: 0
-  <EvasionValue>k__BackingField: 0
   <HealthBar>k__BackingField: {fileID: 0}
   <HealthSlider>k__BackingField: {fileID: 0}
   <ThisMonsterPlacement>k__BackingField: 0
   <MayAttack>k__BackingField: 0
   <IsBoss>k__BackingField: 0
+  <MonsterLevel>k__BackingField: 0
+  <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  <DamageDeal>k__BackingField: 0
+  <EvasionValue>k__BackingField: 0
+  <Attack>k__BackingField: 0
+  <Accuracy>k__BackingField: 0
+  <Defense>k__BackingField: 0
   <StatusEffectImage>k__BackingField: {fileID: 0}
   <StatusEffectText>k__BackingField: {fileID: 0}
   <StatusEffectTextAnimator>k__BackingField: {fileID: 0}

@@ -505,7 +505,7 @@ static void NativeShare_Runtime_CustomAttributesCacheGenerator(CustomAttributesC
 	}
 	{
 		DebuggableAttribute_tA8054EBD0FC7511695D494B690B5771658E3191B * tmp = (DebuggableAttribute_tA8054EBD0FC7511695D494B690B5771658E3191B *)cache->attributes[2];
-		DebuggableAttribute__ctor_m7FF445C8435494A4847123A668D889E692E55550(tmp, 2LL, NULL);
+		DebuggableAttribute__ctor_m7FF445C8435494A4847123A668D889E692E55550(tmp, 263LL, NULL);
 	}
 }
 static void NSCallbackHelper_t3A97001CCD267A61C4915B30A5A21C55B22D9E5A_CustomAttributesCacheGenerator_NSCallbackHelper_OnApplicationFocus_m71D40A4385E3728509EFF77BBA965EF18AB98229(CustomAttributesCache* cache)

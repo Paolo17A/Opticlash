@@ -18,11 +18,6 @@ public class CombatController : MonoBehaviour
         CombatCore.onCombatStateChange -= CombatStateChange;
     }
 
-    private void Awake()
-    {
-        CombatCore.EnemyQueue = new Queue<GameObject>();
-    }
-
     private void Start()
     {
         foreach (CustomWeaponData weapon in PlayerData.OwnedWeapons)
@@ -43,6 +38,7 @@ public class CombatController : MonoBehaviour
             PlayerData.CurrentHealth = PlayerData.MaxHealth;
             CombatCore.AmmoCount = PlayerData.ActiveCustomWeapon.BaseWeaponData.StartingAmmo;
             CombatCore.UIAnimator.SetBool("GameOver", false);
+            CombatCore.UIAnimator.SetBool("StageClear", false);
             CombatCore.AmmoTMP.text = "Ammo: " + CombatCore.AmmoCount.ToString();
             CombatCore.SpawnEnemies();
             CombatCore.SpawnedPlayer.InitializePlayer();
@@ -122,10 +118,9 @@ public class CombatController : MonoBehaviour
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.GAMEOVER)
         {
+            CombatCore.CurrentEnemy.gameObject.SetActive(false);
+            CombatCore.MonsterParent.transform.position = new Vector3(15, 21, 0);
             CombatCore.UIAnimator.SetBool("GameOver", true);
-            CombatCore.StopTimerCoroutine();
-            CombatCore.MonstersKilledTMP.text = CombatCore.MonstersKilled.ToString();
-            CombatCore.GrantRewardedItems();
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.WALKING)
         {
@@ -134,6 +129,14 @@ public class CombatController : MonoBehaviour
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.WARPING)
         {
             CombatCore.StopTimerCoroutine();
+        }
+        else if (CombatCore.CurrentCombatState == CombatCore.CombatState.STAGECLEAR)
+        {
+            CombatCore.CurrentEnemy.gameObject.SetActive(false);
+            CombatCore.MonsterParent.transform.position = new Vector3(15, 21, 0);
+            CombatCore.UIAnimator.SetBool("StageClear", true);
+            CombatCore.StopTimerCoroutine();
+            CombatCore.UpdateLevelsWon();
         }
     }
 

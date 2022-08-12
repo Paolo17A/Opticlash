@@ -47,6 +47,7 @@ public class EntryCore : MonoBehaviour
     //======================================================================
     [field: SerializeField] public Animator EntryAnimator { get; set; }
     [field: SerializeField] private LoginCore LoginCore { get; set; }
+    [field: SerializeField] private WalletController WalletController { get; set; }
     //[field: SerializeField] private PlayerData PlayerData { get; set; }*/
 
     [field: Header("LOADING")]
@@ -73,6 +74,12 @@ public class EntryCore : MonoBehaviour
         ProcessLogin();
     }
 
+    public void MetaMaskButton()
+    {
+        DisplayLoadingPanel();
+        WalletController.ConnectWallet();
+    }
+
     private void ProcessLogin()
     {
         if(GameManager.Instance.DebugMode)
@@ -86,21 +93,16 @@ public class EntryCore : MonoBehaviour
         }
         else
         {
+            Debug.Log("made it here");
             LoginCore.LoginUserPlayfab(UsernameLoginTMP.text, PasswordLoginTMP.text);
         }
     }
 
-    public void DisplayLoadingPanel()
+    public void MetamaskLoginButton()
     {
-        LoadingPanel.SetActive(true);
-        GameManager.Instance.PanelActivated = true;
-    }
 
-    public void HideLoadingPanel()
-    {
-        LoadingPanel.SetActive(false);
-        GameManager.Instance.PanelActivated = false;
     }
+    
 
     public void LogOutButton()
     {
@@ -138,6 +140,17 @@ public class EntryCore : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+    public void DisplayLoadingPanel()
+    {
+        LoadingPanel.SetActive(true);
+        GameManager.Instance.PanelActivated = true;
+    }
+
+    public void HideLoadingPanel()
+    {
+        LoadingPanel.SetActive(false);
+        GameManager.Instance.PanelActivated = false;
     }
 
     public void OpenMiningScene()

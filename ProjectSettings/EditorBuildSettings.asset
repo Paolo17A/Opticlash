@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/001 - Opticlash/000 - Scenes/CombatScene.unity
     guid: 6d51d09226340794793efae11da68f93
+  - enabled: 1
+    path: Assets/001 - Opticlash/000 - Scenes/AdventureScene.unity
+    guid: 7883126a194932d499c83f0bcf822f3c
   m_configObjects: {}

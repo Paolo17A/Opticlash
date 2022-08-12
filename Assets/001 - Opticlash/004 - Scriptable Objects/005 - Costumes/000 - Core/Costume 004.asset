@@ -16,6 +16,7 @@ MonoBehaviour:
   <CostumeName>k__BackingField: Cypher Costume
   <CostumeSprite>k__BackingField: {fileID: 21300000, guid: ea50f7057910ed748b3929f126f03998, type: 3}
   <LobbyCostumeSprite>k__BackingField: {fileID: 21300000, guid: ea50f7057910ed748b3929f126f03998, type: 3}
-  <InfoSprite>k__BackingField: {fileID: 21300000, guid: a38b8b63c114df34c95e3138d51d6a33, type: 3}
-  <DroppedSprite>k__BackingField: {fileID: 21300000, guid: 3565c82414fe4354886e2fa85785106d, type: 3}
+  <EquippedSprite>k__BackingField: {fileID: 21300000, guid: 4e49db719436fe349b303ca5ce1ae9fb, type: 3}
+  <InfoSprite>k__BackingField: {fileID: 21300000, guid: 38985290fa02d7246954b07e20ae7d3c, type: 3}
   <ProvidedImmunity>k__BackingField: 5
+  <CostumeLevel>k__BackingField: 0

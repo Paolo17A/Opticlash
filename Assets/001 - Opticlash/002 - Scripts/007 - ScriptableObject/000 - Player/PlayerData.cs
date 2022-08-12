@@ -25,7 +25,6 @@ public class PlayerData : ScriptableObject
 
     [field: Header("WEAPONS")]
     [field: SerializeField] public string ActiveWeaponID { get; set; }
-    //[field: SerializeField] public WeaponData ActiveWeapon { get; set; }
     [field: SerializeField] public CustomWeaponData ActiveCustomWeapon { get; set; }
     [field: SerializeField] public List<CustomWeaponData> OwnedWeapons { get; set; }
 
@@ -34,9 +33,25 @@ public class PlayerData : ScriptableObject
     [field: SerializeField] public CostumeData ActiveCostume { get; set; }
     [field: SerializeField] public List<CustomCostumeData> OwnedCostumes { get; set; }
 
+    [field: Header("LOOTBOXES")]
+    [field: SerializeField] public string CommonLootboxInstanceID { get; set; }
+    [field: SerializeField] public int CommonLootboxCount { get; set; }
+    [field: SerializeField] public string RareLootboxInstanceID { get; set; }
+    [field: SerializeField] public int RareLootboxCount { get; set; }
+    [field: SerializeField] public string EpicLootboxInstanceID { get; set; }
+    [field: SerializeField] public int EpicLootboxCount { get; set; }
+    [field: SerializeField] public string LegendaryLootbox1InstanceID { get; set; }
+    [field: SerializeField] public int LegendaryLootbox1Count { get; set; }
+    [field: SerializeField] public string LegendaryLootbox2InstanceID { get; set; }
+    [field: SerializeField] public int LegendaryLootbox2Count { get; set; }
+
     [field: Header("ITEMS")]
-    [field: SerializeField] public string HealInstanceID { get; set; }
-    [field: SerializeField] public int HealCharges { get; set; }
+    [field: SerializeField] public string SmallHealInstanceID { get; set; }
+    [field: SerializeField] public int SmallHealCharges { get; set; }
+    [field: SerializeField] public string MediumHealInstanceID { get; set; }
+    [field: SerializeField] public int MediumHealCharges { get; set; }
+    [field: SerializeField] public string LargeHealInstanceID { get; set; }
+    [field: SerializeField] public int LargeHealCharges { get; set; }
     [field: SerializeField] public string BreakRemovalInstanceID { get; set; }
     [field: SerializeField] public int BreakRemovalCharges { get; set; }
     [field: SerializeField] public string WeakRemovalInstanceID { get; set; }
@@ -100,8 +115,23 @@ public class PlayerData : ScriptableObject
         ActiveConstumeInstanceID = "";
         ActiveCostume = null;
 
-        HealInstanceID = "";
-        HealCharges = 0;
+        CommonLootboxInstanceID = "";
+        CommonLootboxCount = 0;
+        RareLootboxInstanceID = "";
+        RareLootboxCount = 0;
+        EpicLootboxInstanceID = "";
+        EpicLootboxCount = 0;
+        LegendaryLootbox1InstanceID = "";
+        LegendaryLootbox1Count = 0;
+        LegendaryLootbox2InstanceID = "";
+        LegendaryLootbox2Count = 0;
+
+        SmallHealInstanceID = "";
+        SmallHealCharges = 0;
+        MediumHealInstanceID = "";
+        MediumHealCharges = 0;
+        LargeHealInstanceID = "";
+        LargeHealCharges = 0;
         BreakRemovalInstanceID = "";
         BreakRemovalCharges = 0;
         WeakRemovalInstanceID = "";

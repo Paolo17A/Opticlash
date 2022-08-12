@@ -153,7 +153,7 @@ public class CharacterCombatController : MonoBehaviour
             else
             {
                 CombatCore.Portal.SetActive(false);
-                CombatCore.WarpToNextEnemy();
+                //CombatCore.WarpToNextEnemy();
             }
         }
         else if (ProjectileSpawned)
@@ -244,7 +244,7 @@ public class CharacterCombatController : MonoBehaviour
         #region PROJECTILE SPRITES
         Projectile.GetComponent<SpriteRenderer>().sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.Ammo;
         //ProjectileTrail.colorGradient = new Gradient();
-        if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C2 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C3 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C4 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C5)
+        /*if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C2 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C3 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C4 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C5)
         {
             Projectile.transform.GetChild(0).gameObject.SetActive(true);
             MonstersToSkip = 5;
@@ -263,7 +263,7 @@ public class CharacterCombatController : MonoBehaviour
         {
             Projectile.transform.GetChild(3).gameObject.SetActive(true);
             MonstersToSkip = 20;
-        }
+        }*/
         #endregion
         #region HEALTH SPRITES
         HealthBar.SetActive(true);
@@ -352,13 +352,13 @@ public class CharacterCombatController : MonoBehaviour
     {
         if (GameManager.Instance.DebugMode)
         {
-            if (PlayerData.HealCharges > 0 && !SkillButtonPressed)
+            if (PlayerData.SmallHealCharges > 0 && !SkillButtonPressed)
             {
                 SkillButtonPressed = true;
                 PlayerData.ItemsUsed++;
-                PlayerData.HealCharges--;
-                CombatCore.HealChargesTMP.text = PlayerData.HealCharges.ToString();
-                if (PlayerData.HealCharges == 0)
+                PlayerData.SmallHealCharges--;
+                CombatCore.HealChargesTMP.text = PlayerData.SmallHealCharges.ToString();
+                if (PlayerData.SmallHealCharges == 0)
                     CombatCore.HealBtn.interactable = false;
                 CurrentHealth += 15f;
                 UpdateHealthBar();
@@ -368,20 +368,21 @@ public class CharacterCombatController : MonoBehaviour
         }
         else
         {
-            if(PlayerData.HealCharges > 0 && !SkillButtonPressed)
+            if(PlayerData.SmallHealCharges > 0 && !SkillButtonPressed)
             {
                 SkillButtonPressed = true;
                 ConsumeItemRequest consumeItem = new ConsumeItemRequest();
-                consumeItem.ItemInstanceId = PlayerData.HealInstanceID;
+                consumeItem.ItemInstanceId = PlayerData.SmallHealInstanceID;
                 consumeItem.ConsumeCount = 1;
                 PlayFabClientAPI.ConsumeItem(consumeItem,
                     resultCallback =>
                     {
                         failedCallbackCounter = 0;
-                        PlayerData.HealCharges = resultCallback.RemainingUses;
+                        PlayerData.SmallHealCharges = resultCallback.RemainingUses;
+                        CombatCore.HealChargesTMP.text = PlayerData.SmallHealCharges.ToString();
                         if (resultCallback.RemainingUses == 0)
                         {
-                            PlayerData.HealInstanceID = "";
+                            PlayerData.SmallHealInstanceID = "";
                             CombatCore.HealBtn.interactable = false;
                         }
                         CurrentHealth += 15f;
@@ -427,6 +428,7 @@ public class CharacterCombatController : MonoBehaviour
                     {
                         failedCallbackCounter = 0;
                         PlayerData.BreakRemovalCharges = resultCallback.RemainingUses;
+                        CombatCore.BreakChargesTMP.text = PlayerData.BreakRemovalCharges.ToString();
                         if (resultCallback.RemainingUses == 0)
                         {
                             PlayerData.BreakRemovalInstanceID = "";
@@ -474,6 +476,7 @@ public class CharacterCombatController : MonoBehaviour
                     {
                         failedCallbackCounter = 0;
                         PlayerData.WeakRemovalCharges = resultCallback.RemainingUses;
+                        CombatCore.WeakChargesTMP.text = PlayerData.WeakRemovalCharges.ToString();
                         if (resultCallback.RemainingUses == 0)
                         {
                             PlayerData.WeakRemovalInstanceID = "";
@@ -521,6 +524,7 @@ public class CharacterCombatController : MonoBehaviour
                     {
                         failedCallbackCounter = 0;
                         PlayerData.FreezeRemovalCharges = resultCallback.RemainingUses;
+                        CombatCore.FreezeChargesTMP.text = PlayerData.FreezeRemovalCharges.ToString();
                         if (resultCallback.RemainingUses == 0)
                         {
                             PlayerData.FreezeRemovalInstanceID = "";
@@ -567,6 +571,7 @@ public class CharacterCombatController : MonoBehaviour
                     {
                         failedCallbackCounter = 0;
                         PlayerData.ParalyzeRemovalCharges = resultCallback.RemainingUses;
+                        CombatCore.ParalyzeChargesTMP.text = PlayerData.ParalyzeRemovalCharges.ToString();
                         if (resultCallback.RemainingUses == 0)
                         {
                             PlayerData.ParalyzeRemovalInstanceID = "";
@@ -613,6 +618,7 @@ public class CharacterCombatController : MonoBehaviour
                     {
                         failedCallbackCounter = 0;
                         PlayerData.ConfuseRemovalCharges = resultCallback.RemainingUses;
+                        CombatCore.ConfuseChargesTMP.text = PlayerData.ConfuseRemovalCharges.ToString();
                         if (resultCallback.RemainingUses == 0)
                         {
                             PlayerData.ConfuseRemovalInstanceID = "";

@@ -21,13 +21,14 @@ public class LobbyCore : MonoBehaviour
         RANK,
         SHOP,
         INVENTORY,
-        CRAFT,
+        LOOTBOX,
         QUEST,
         SETTINGS,
         EQUIP,
         COSTUME,
         CANNON,
-        CURRENTCANNON
+        CURRENTCANNON,
+        CLAIM
     }
 
     private event EventHandler lobbyStateChange;
@@ -57,6 +58,7 @@ public class LobbyCore : MonoBehaviour
     #region VARIABLES
     //==============================================================
     [field: SerializeField] private PlayerData PlayerData { get; set; }
+    [field: SerializeField] private UpgradeCannonCore UpgradeCannonCore { get; set; }
 
     [field: Header("ANIMATORS")]
     [field: SerializeField] public Animator LobbyAnimator { get; set; }
@@ -68,6 +70,9 @@ public class LobbyCore : MonoBehaviour
     [field: SerializeField] private Image OptiEquipCannon { get; set; }
     [field: SerializeField] private Image OptiLobbyCostume { get; set; }
     [field: SerializeField] private Image OptiEquipCostume { get; set; }
+
+    [field: Header("ENERGY")]
+    [field: SerializeField] private TextMeshProUGUI EnergyTMP { get; set; }
 
     [field: Header("OPTIBIT")]
     [field: SerializeField] private TextMeshProUGUI CoreOptibitTMP { get; set; }
@@ -113,6 +118,10 @@ public class LobbyCore : MonoBehaviour
     [field: SerializeField] public Sprite InactiveWeaponSprite { get; set; }
     [field: SerializeField] public Button CostumeBtn { get; set; }
     [field: SerializeField] public Button WeaponBtn { get; set; }
+    [field: SerializeField] private Image EquippedWeapon { get; set; }
+    [field: SerializeField] private Image EquippedCostume { get; set; }
+    [field: SerializeField] private Sprite NoWeaponSprite { get; set; }
+    [field: SerializeField] private Sprite NoCostumeSprite { get; set; }
 
     [field: Header("CRAFT")]
     [field: SerializeField] private Image SelectedFragmentImage { get; set; }
@@ -141,10 +150,8 @@ public class LobbyCore : MonoBehaviour
     [field: Header("COSTUMES")]
     [field: SerializeField] private Image CostumeLeftImage { get; set; }
     [field: SerializeField] private Button EquipLeftCostumeBtn { get; set; }
-    [field: SerializeField] private TextMeshProUGUI LeftCostumeNameTMP { get; set; }
     [field: SerializeField] private Image CostumeRightImage { get; set; }
     [field: SerializeField] private Button EquipRightCostumeBtn { get; set; }
-    [field: SerializeField] private TextMeshProUGUI RightCostumeNameTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int CostumePageIndex { get; set; }
     [field: SerializeField] private Button PreviousCostumePageBtn { get; set; }
     [field: SerializeField] private Button NextCostumePageBtn { get; set; }
@@ -159,24 +166,12 @@ public class LobbyCore : MonoBehaviour
     [field: SerializeField] private List<WeaponData> LegendWeapons { get; set; }
     [field: SerializeField] private Image WeaponLeftImage { get; set; }
     [field: SerializeField] private Button EquipLeftWeaponBtn { get; set; }
-    [field: SerializeField] private TextMeshProUGUI LeftWeaponNameTMP { get; set; }
     [field: SerializeField] private Image WeaponRightImage { get; set; }
     [field: SerializeField] private Button EquipRightWeaponBtn { get; set; }
-    [field: SerializeField] private TextMeshProUGUI RightWeaponNameTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int WeaponPageIndex { get; set; }
     [field: SerializeField] private Button PreviousWeaponPageBtn { get; set; }
     [field: SerializeField] private Button NextWeaponPageBtn { get; set; }
     [field: SerializeField] private TextMeshProUGUI WeaponPageTMP { get; set; }
-
-    [field: Header("CURRENT CANNON")]
-    [field: SerializeField] private Image CurrentCannonImage { get; set; }
-    [field: SerializeField] private Image CurrentCannonBigImage { get; set; }
-    [field: SerializeField] private TextMeshProUGUI CurrentCannonNameTMP { get; set; }
-    [field: SerializeField] private TextMeshProUGUI CurrentCannonDamageTMP { get; set; }
-    [field: SerializeField] private TextMeshProUGUI CurrentCannonAmmoTMP { get; set; }
-    [field: SerializeField] private TextMeshProUGUI CurrentCannonAccuracyTMP { get; set; }
-    [field: SerializeField] private TextMeshProUGUI CurrentCannonAbilitiesTMP { get; set; }
-    [field: SerializeField] private Button UpgradeCannonBtn { get; set; }
 
     [field: Header("PLAY BUTTONS")]
     [field: SerializeField] private Button AdventureBtn { get; set; }
@@ -207,7 +202,7 @@ public class LobbyCore : MonoBehaviour
                     {
                         PlayerData.OwnedWeapons[currentDetectedCannon].WeaponInstanceID = item.ItemInstanceId;
                         PlayerData.OwnedWeapons[currentDetectedCannon].BaseWeaponData = GameManager.Instance.InventoryManager.GetProperWeaponData(item.ItemId);
-                        PlayerData.OwnedWeapons[currentDetectedCannon].Level = int.Parse(item.CustomData["Level"]);
+                        PlayerData.OwnedWeapons[currentDetectedCannon].Level = float.Parse(item.CustomData["Level"]);
                         PlayerData.OwnedWeapons[currentDetectedCannon].CalculateCannonStats();
                         currentDetectedCannon++;
                     }
@@ -241,9 +236,9 @@ public class LobbyCore : MonoBehaviour
                                 PlayerData.FreezeRemovalCharges = (int)item.RemainingUses;
                                 PlayerData.FreezeRemovalInstanceID = item.ItemInstanceId;
                                 break;
-                            case "HealCharge":
-                                PlayerData.HealCharges = (int)item.RemainingUses;
-                                PlayerData.HealInstanceID = item.ItemInstanceId;
+                            case "SmallHealCharge":
+                                PlayerData.SmallHealCharges = (int)item.RemainingUses;
+                                PlayerData.SmallHealInstanceID = item.ItemInstanceId;
                                 break;
                             case "ParalyzeRemoval":
                                 PlayerData.ParalyzeRemovalCharges = (int)item.RemainingUses;
@@ -262,11 +257,17 @@ public class LobbyCore : MonoBehaviour
                 StageTMP.text = PlayerData.CurrentStage.ToString();
                 PlayerData.Optibit = resultCallback.VirtualCurrency["OP"];
                 PlayerData.EnergyCount = resultCallback.VirtualCurrency["EN"];
+                EnergyTMP.text = "Energy: " + PlayerData.EnergyCount.ToString();
                 PlayerData.NormalFragments = resultCallback.VirtualCurrency["NF"];
+                UpgradeCannonCore.NormalFragmentTMP.text = PlayerData.NormalFragments.ToString();
                 PlayerData.RareFragments = resultCallback.VirtualCurrency["RF"];
+                UpgradeCannonCore.RareFragmentTMP.text = PlayerData.RareFragments.ToString();
                 PlayerData.EpicFragments = resultCallback.VirtualCurrency["EF"];
+                UpgradeCannonCore.EpicFragmentTMP.text = PlayerData.EpicFragments.ToString();
                 PlayerData.LegendFragments = resultCallback.VirtualCurrency["LF"];
+                UpgradeCannonCore.LegendFragmentTMP.text = PlayerData.LegendFragments.ToString();
                 DisplayOptibits();
+                HideLoadingPanel();
             },
             errorCallback =>
             {
@@ -279,31 +280,34 @@ public class LobbyCore : MonoBehaviour
     {
         if(PlayerData.ActiveWeaponID == "NONE")
         {
-            CurrentCannonImage.gameObject.SetActive(false);
+            UpgradeCannonCore.CurrentCannonImage.gameObject.SetActive(false);
             OptiEquipCannon.gameObject.SetActive(false);
             OptiLobbyCannon.gameObject.SetActive(false);
+            EquippedWeapon.sprite = NoWeaponSprite;
             AdventureBtn.interactable = false;
         }
         else
         {
-            CurrentCannonImage.gameObject.SetActive(true);
+            UpgradeCannonCore.CurrentCannonImage.gameObject.SetActive(true);
+            OptiEquipCannon.gameObject.SetActive(true);
+            OptiLobbyCannon.gameObject.SetActive(true);
+            AdventureBtn.interactable = true;
             foreach (CustomWeaponData weapon in PlayerData.OwnedWeapons)
+            {
+                weapon.CalculateCannonStats();
                 if (weapon.WeaponInstanceID == PlayerData.ActiveWeaponID)
                 {
                     PlayerData.ActiveCustomWeapon = weapon;
-                    CurrentCannonImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentSprite;
-                    CurrentCannonBigImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentBigSprite;
-                    CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName;
-                    if (PlayerData.ActiveCustomWeapon.Level > 1)
-                        CurrentCannonNameTMP.text += " " + PlayerData.ActiveCustomWeapon.Level;
-                    CurrentCannonDamageTMP.text = PlayerData.ActiveCustomWeapon.Attack.ToString();
-                    CurrentCannonAbilitiesTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage.ToString();
-                    CurrentCannonAmmoTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.StartingAmmo.ToString();
-                    CurrentCannonAccuracyTMP.text = PlayerData.ActiveCustomWeapon.Accuracy.ToString();
-                    CurrentCannonAbilitiesTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.Abilities;
+                    EquippedWeapon.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.EquippedSprite;
+                    UpgradeCannonCore.CurrentCannonImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentSprite;
+                    UpgradeCannonCore.CurrentCannonBigImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentBigSprite;
+                    UpgradeCannonCore.CurrentCannonDamageTMP.text = PlayerData.ActiveCustomWeapon.Attack.ToString();
+                    UpgradeCannonCore.CurrentCannonAccuracyTMP.text = PlayerData.ActiveCustomWeapon.Accuracy.ToString();
+                    UpgradeCannonCore.CurrentCannonAbilitiesTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.Abilities;
                     break;
                 }
-            SetOptiCannon(PlayerData.ActiveCustomWeapon.BaseWeaponData.EquippedSprite);
+            }
+            SetOptiCannon(PlayerData.ActiveCustomWeapon.BaseWeaponData.AnimatedSprite);
         }
         
     }
@@ -317,12 +321,14 @@ public class LobbyCore : MonoBehaviour
                     PlayerData.ActiveCostume = costume.BaseCostumeData;
                     break;
                 }
+            EquippedCostume.sprite = PlayerData.ActiveCostume.EquippedSprite;
             SetOptiCostume(PlayerData.ActiveCostume.LobbyCostumeSprite);
         }
         else
         {
             OptiLobbyCostume.gameObject.SetActive(false);
             OptiEquipCostume.gameObject.SetActive(false);
+            EquippedCostume.sprite = NoCostumeSprite;
         }
     }
 
@@ -332,15 +338,13 @@ public class LobbyCore : MonoBehaviour
         ShopOptibitTMP.text = PlayerData.Optibit.ToString();
         if(PlayerData.ActiveWeaponID != "NONE")
         {
-            CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName;
-            if (PlayerData.ActiveCustomWeapon.Level > 0)
-                CurrentCannonNameTMP.text += " " + PlayerData.ActiveCustomWeapon.Level;
-
-            CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.Level).ToString();
-            if (PlayerData.Optibit >= 2000)
-                UpgradeCannonBtn.interactable = true;
+            UpgradeCannonCore.CurrentCannonDamageTMP.text = PlayerData.ActiveCustomWeapon.Attack.ToString();
+            UpgradeCannonCore.CurrentCannonRequiredFragments.text = PlayerData.ActiveCustomWeapon.FragmentUpgradeCost.ToString();
+            UpgradeCannonCore.CurrentCannonRequiredOptibit.text = PlayerData.ActiveCustomWeapon.OptibitUpgradeCost.ToString();
+            if (PlayerData.Optibit >= PlayerData.ActiveCustomWeapon.OptibitUpgradeCost && PlayerData.ActiveCustomWeapon.FragmentUpgradeCost <= GetFragmentBasis())
+                UpgradeCannonCore.UpgradeCannonBtn.interactable = true;
             else
-                UpgradeCannonBtn.interactable = false;
+                UpgradeCannonCore.UpgradeCannonBtn.interactable = false;
         }
     }
     #endregion
@@ -393,7 +397,7 @@ public class LobbyCore : MonoBehaviour
                 break;
             case 4:
                 CurrentItemDisplayImage.sprite = HealShopSprite;
-                ItemNameTMP.text = "HEAL";
+                ItemNameTMP.text = "MEDIUM HEAL";
                 ItemDescriptionTMP.text = "HEAL 15 Health Points";
                 CurrentItemCost = 1000;
                 break;
@@ -433,7 +437,7 @@ public class LobbyCore : MonoBehaviour
                     PlayerData.FreezeRemovalCharges++;
                     break;
                 case 4:
-                    PlayerData.HealCharges++;
+                    PlayerData.SmallHealCharges++;
                     break;
                 case 5:
                     PlayerData.ParalyzeRemovalCharges++;
@@ -479,8 +483,8 @@ public class LobbyCore : MonoBehaviour
                             PlayerData.FreezeRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
                             break;
                         case 4:
-                            PlayerData.HealCharges++;
-                            PlayerData.HealInstanceID = resultCallback.Items[0].ItemInstanceId;
+                            PlayerData.SmallHealCharges++;
+                            PlayerData.SmallHealInstanceID = resultCallback.Items[0].ItemInstanceId;
                             break;
                         case 5:
                             PlayerData.ParalyzeRemovalCharges++;
@@ -563,10 +567,10 @@ public class LobbyCore : MonoBehaviour
         DisplayedInventoryImage.gameObject.SetActive(true);
         DisplayedInventoryImage.sprite = HealChargeSprite;
         InventoryItemNameTMP.gameObject.SetActive(true);
-        InventoryItemNameTMP.text = "HEAL REMOVAL";
+        InventoryItemNameTMP.text = "HEAL CHARGE";
         RectanglePanelInventory.SetActive(true);
         InventoryItemDescriptionTMP.text = "Use to recover 15% Health Points";
-        InventoryItemCountTMP.text = PlayerData.HealCharges.ToString();
+        InventoryItemCountTMP.text = PlayerData.SmallHealCharges.ToString();
     }
 
     public void SelectParalyzeRemove()
@@ -593,6 +597,7 @@ public class LobbyCore : MonoBehaviour
     #endregion
 
     #region CRAFT
+
     public void InitializeCrafting()
     {
         SelectedFragmentImage.gameObject.SetActive(false);
@@ -883,7 +888,6 @@ public class LobbyCore : MonoBehaviour
     {
         // LEFT
         CostumeLeftImage.sprite = ActualCostumesOwned[(2 * CostumePageIndex) - 2].BaseCostumeData.InfoSprite;
-        LeftCostumeNameTMP.text = ActualCostumesOwned[(2 * CostumePageIndex) - 2].BaseCostumeData.CostumeName;
         if (ActualCostumesOwned[(2 * CostumePageIndex) - 2].CostumeInstanceID == PlayerData.ActiveConstumeInstanceID)
             EquipLeftCostumeBtn.GetComponent<Image>().sprite = UnequipSprite;
         else
@@ -894,7 +898,6 @@ public class LobbyCore : MonoBehaviour
         {
             CostumeRightImage.gameObject.SetActive(true);
             CostumeRightImage.sprite = ActualCostumesOwned[(2 * CostumePageIndex) - 1].BaseCostumeData.InfoSprite;
-            RightCostumeNameTMP.text = ActualCostumesOwned[(2 * CostumePageIndex) - 1].BaseCostumeData.CostumeName;
             if (ActualCostumesOwned[(2 * CostumePageIndex) - 1].CostumeInstanceID == PlayerData.ActiveConstumeInstanceID)
                 EquipRightCostumeBtn.GetComponent<Image>().sprite = UnequipSprite;
             else
@@ -1020,9 +1023,6 @@ public class LobbyCore : MonoBehaviour
     {
         // LEFT
         WeaponLeftImage.sprite = ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].BaseWeaponData.InfoSprite;
-        LeftWeaponNameTMP.text = ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].BaseWeaponData.WeaponName;
-        if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].Level > 0)
-            LeftWeaponNameTMP.text += " + " + ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].Level;
         if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].WeaponInstanceID == PlayerData.ActiveWeaponID)
             EquipLeftWeaponBtn.interactable = false;
         else
@@ -1033,9 +1033,6 @@ public class LobbyCore : MonoBehaviour
         {
             WeaponRightImage.gameObject.SetActive(true);
             WeaponRightImage.sprite = ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].BaseWeaponData.InfoSprite;
-            RightWeaponNameTMP.text = ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].BaseWeaponData.WeaponName;
-            if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].Level > 0)
-                RightWeaponNameTMP.text += " + " + ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].Level;
             if (ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].WeaponInstanceID == PlayerData.ActiveWeaponID)
                 EquipRightWeaponBtn.interactable = false;
             else
@@ -1113,60 +1110,12 @@ public class LobbyCore : MonoBehaviour
     #endregion
     #endregion
 
-    #region CURRENT CANNON
-    public void UpgradeCannon()
-    {
-        if(GameManager.Instance.DebugMode)
-        {
-            PlayerData.Optibit -= 2000;
-            PlayerData.ActiveCustomWeapon.Level++;
-            CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName + " + " + PlayerData.ActiveCustomWeapon.Level;
-            CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.Level).ToString();
-        }
-        else
-        {
-            PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
-            {
-                FunctionName = "UpgradeActiveWeapon",
-                FunctionParameter = new 
-                { 
-                    localLUID = PlayerData.LUID, 
-                    cannonId = PlayerData.ActiveWeaponID, 
-                    newBonusValue = (PlayerData.ActiveCustomWeapon.Level + 1).ToString(),
-                    upgradeCost = 2000
-                },
-                GeneratePlayStreamEvent = true
-            },
-            resultCallback =>
-            {
-                Debug.Log(JsonConvert.SerializeObject(resultCallback.FunctionResult));
-                if(GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "messageValue") == "Success")
-                {
-                    failedCallbackCounter = 0;
-                    PlayerData.Optibit -= 2000;
-                    PlayerData.ActiveCustomWeapon.Level++;
-                    CurrentCannonNameTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.WeaponName + " + " + PlayerData.ActiveCustomWeapon.Level;
-                    CurrentCannonDamageTMP.text = (PlayerData.ActiveCustomWeapon.BaseWeaponData.BaseDamage + PlayerData.ActiveCustomWeapon.Level).ToString();
-                }
-            },
-            errorCallback =>
-            {
-                ErrorCallback(errorCallback.Error,
-                    UpgradeCannon,
-                    () => ProcessError(errorCallback.ErrorMessage));
-            }); ;
-        }
-        DisplayOptibits();
-    }
-    #endregion 
-
     #region UTILITY
 
     public void OpenAdventureScene()
     {
         GameManager.Instance.SceneController.CurrentScene = "AdventureScene";
     }
-    
 
     public void DisplayLoadingPanel()
     {
@@ -1306,6 +1255,20 @@ public class LobbyCore : MonoBehaviour
                 return null;
         }
     }
+
+    private int GetFragmentBasis()
+    {
+        if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C2 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C3 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C4 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C5)
+            return PlayerData.NormalFragments;
+        else if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.B1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.B2 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.B3 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.B4)
+            return PlayerData.RareFragments;
+        else if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.A1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.A2 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.A3)
+            return PlayerData.EpicFragments;
+        else if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.S1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.S2)
+            return PlayerData.LegendFragments;
+        else
+            return 0;
+    }
     private int GetFragmentPrice(int _value)
     {
         switch (_value)
@@ -1370,5 +1333,7 @@ public class LobbyCore : MonoBehaviour
                 break;
         }
     }
+
+    
     #endregion
 }

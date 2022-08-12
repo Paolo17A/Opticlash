@@ -19765,7 +19765,7 @@ IL_000e:
 		L_2 = XmlWriterSettings_get_Encoding_m6A5CD77CA3A521F56BD27CDFE73DDDFDF588E6B9_inline(__this, /*hidden argument*/NULL);
 		NullCheck(L_2);
 		String_t* L_3;
-		L_3 = VirtFuncInvoker0< String_t* >::Invoke(8 /* System.String System.Text.Encoding::get_WebName() */, L_2);
+		L_3 = VirtFuncInvoker0< String_t* >::Invoke(9 /* System.String System.Text.Encoding::get_WebName() */, L_2);
 		bool L_4;
 		L_4 = String_op_Equality_m2B91EE68355F142F67095973D32EB5828B7B73CB(L_3, _stringLiteralB7FD6B173F8DDB3354F28BB648CED69286F416C9, /*hidden argument*/NULL);
 		if (!L_4)
@@ -20771,7 +20771,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XsdBuilder_StartChildren_m7C5E47E19DED85
 		Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC * L_2 = __this->get_namespaces_110();
 		NullCheck(L_2);
 		int32_t L_3;
-		L_3 = VirtFuncInvoker0< int32_t >::Invoke(41 /* System.Int32 System.Collections.Hashtable::get_Count() */, L_2);
+		L_3 = VirtFuncInvoker0< int32_t >::Invoke(42 /* System.Int32 System.Collections.Hashtable::get_Count() */, L_2);
 		if ((((int32_t)L_3) <= ((int32_t)0)))
 		{
 			goto IL_003b;

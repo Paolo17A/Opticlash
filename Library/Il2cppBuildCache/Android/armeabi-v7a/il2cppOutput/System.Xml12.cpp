@@ -20038,7 +20038,7 @@ IL_0024:
 		Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_8 = L_7->get_encoding_3();
 		NullCheck(L_8);
 		String_t* L_9;
-		L_9 = VirtFuncInvoker0< String_t* >::Invoke(8 /* System.String System.Text.Encoding::get_WebName() */, L_8);
+		L_9 = VirtFuncInvoker0< String_t* >::Invoke(9 /* System.String System.Text.Encoding::get_WebName() */, L_8);
 		V_0 = L_9;
 		String_t* L_10 = V_0;
 		bool L_11;
@@ -20085,7 +20085,7 @@ IL_0081:
 		Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_19 = ___encoding0;
 		NullCheck(L_19);
 		Decoder_t91B2ED8AEC25AA24D23A00265203BE992B12C370 * L_20;
-		L_20 = VirtFuncInvoker0< Decoder_t91B2ED8AEC25AA24D23A00265203BE992B12C370 * >::Invoke(29 /* System.Text.Decoder System.Text.Encoding::GetDecoder() */, L_19);
+		L_20 = VirtFuncInvoker0< Decoder_t91B2ED8AEC25AA24D23A00265203BE992B12C370 * >::Invoke(30 /* System.Text.Decoder System.Text.Encoding::GetDecoder() */, L_19);
 		L_18->set_decoder_6(L_20);
 		return;
 	}
@@ -20103,12 +20103,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XmlTextReaderImpl_SwitchEncoding_m33169A
 		Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_0 = ___newEncoding0;
 		NullCheck(L_0);
 		String_t* L_1;
-		L_1 = VirtFuncInvoker0< String_t* >::Invoke(8 /* System.String System.Text.Encoding::get_WebName() */, L_0);
+		L_1 = VirtFuncInvoker0< String_t* >::Invoke(9 /* System.String System.Text.Encoding::get_WebName() */, L_0);
 		ParsingState_t5C1CDFE140B4F180AE0AB39A21AAA0E361F691EF * L_2 = __this->get_address_of_ps_6();
 		Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_3 = L_2->get_encoding_3();
 		NullCheck(L_3);
 		String_t* L_4;
-		L_4 = VirtFuncInvoker0< String_t* >::Invoke(8 /* System.String System.Text.Encoding::get_WebName() */, L_3);
+		L_4 = VirtFuncInvoker0< String_t* >::Invoke(9 /* System.String System.Text.Encoding::get_WebName() */, L_3);
 		bool L_5;
 		L_5 = String_op_Inequality_mDDA2DDED3E7EF042987EB7180EE3E88105F0AAE2(L_1, L_4, /*hidden argument*/NULL);
 		if (L_5)
@@ -20228,7 +20228,7 @@ IL_0051:
 		Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_13 = L_12->get_encoding_3();
 		NullCheck(L_13);
 		String_t* L_14;
-		L_14 = VirtFuncInvoker0< String_t* >::Invoke(8 /* System.String System.Text.Encoding::get_WebName() */, L_13);
+		L_14 = VirtFuncInvoker0< String_t* >::Invoke(9 /* System.String System.Text.Encoding::get_WebName() */, L_13);
 		bool L_15;
 		L_15 = String_op_Inequality_mDDA2DDED3E7EF042987EB7180EE3E88105F0AAE2(L_14, _stringLiteralC32EB74E6CF2D3CD9BDC7BEEB45FE8C6413C1E6E, /*hidden argument*/NULL);
 		if (!L_15)
@@ -20241,7 +20241,7 @@ IL_0051:
 		Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_17 = L_16->get_encoding_3();
 		NullCheck(L_17);
 		String_t* L_18;
-		L_18 = VirtFuncInvoker0< String_t* >::Invoke(8 /* System.String System.Text.Encoding::get_WebName() */, L_17);
+		L_18 = VirtFuncInvoker0< String_t* >::Invoke(9 /* System.String System.Text.Encoding::get_WebName() */, L_17);
 		bool L_19;
 		L_19 = String_op_Inequality_mDDA2DDED3E7EF042987EB7180EE3E88105F0AAE2(L_18, _stringLiteral3915A096ACD919832A1C4E84ABDC7D6F6B72630D, /*hidden argument*/NULL);
 		if (!L_19)
@@ -20362,11 +20362,11 @@ IL_0108:
 		Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_37 = L_36->get_encoding_3();
 		NullCheck(L_37);
 		String_t* L_38;
-		L_38 = VirtFuncInvoker0< String_t* >::Invoke(8 /* System.String System.Text.Encoding::get_WebName() */, L_37);
+		L_38 = VirtFuncInvoker0< String_t* >::Invoke(9 /* System.String System.Text.Encoding::get_WebName() */, L_37);
 		Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_39 = V_0;
 		NullCheck(L_39);
 		String_t* L_40;
-		L_40 = VirtFuncInvoker0< String_t* >::Invoke(8 /* System.String System.Text.Encoding::get_WebName() */, L_39);
+		L_40 = VirtFuncInvoker0< String_t* >::Invoke(9 /* System.String System.Text.Encoding::get_WebName() */, L_39);
 		bool L_41;
 		L_41 = String_op_Inequality_mDDA2DDED3E7EF042987EB7180EE3E88105F0AAE2(L_38, L_40, /*hidden argument*/NULL);
 		if (!L_41)
@@ -20454,7 +20454,7 @@ IL_0066:
 		int32_t L_26 = L_25->get_charPos_1();
 		NullCheck(L_22);
 		int32_t L_27;
-		L_27 = VirtFuncInvoker3< int32_t, CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34*, int32_t, int32_t >::Invoke(11 /* System.Int32 System.Text.Encoding::GetByteCount(System.Char[],System.Int32,System.Int32) */, L_22, L_24, 0, L_26);
+		L_27 = VirtFuncInvoker3< int32_t, CharU5BU5D_t7B7FC5BC8091AA3B9CB0B29CDD80B5EE9254AA34*, int32_t, int32_t >::Invoke(12 /* System.Int32 System.Text.Encoding::GetByteCount(System.Char[],System.Int32,System.Int32) */, L_22, L_24, 0, L_26);
 		*((int32_t*)L_19) = (int32_t)((int32_t)il2cpp_codegen_add((int32_t)L_20, (int32_t)L_27));
 	}
 
@@ -21605,7 +21605,7 @@ IL_019a:
 		Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_68 = L_67->get_encoding_3();
 		NullCheck(L_68);
 		String_t* L_69;
-		L_69 = VirtFuncInvoker0< String_t* >::Invoke(8 /* System.String System.Text.Encoding::get_WebName() */, L_68);
+		L_69 = VirtFuncInvoker0< String_t* >::Invoke(9 /* System.String System.Text.Encoding::get_WebName() */, L_68);
 		V_10 = L_69;
 		String_t* L_70 = V_10;
 		bool L_71;
@@ -21646,7 +21646,7 @@ IL_019a:
 		Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_79 = L_78->get_encoding_3();
 		NullCheck(L_79);
 		int32_t L_80;
-		L_80 = VirtFuncInvoker1< int32_t, String_t* >::Invoke(10 /* System.Int32 System.Text.Encoding::GetByteCount(System.String) */, L_79, _stringLiteralEF420ABFDDBDA7B9EE665D85EF62E4A437554003);
+		L_80 = VirtFuncInvoker1< int32_t, String_t* >::Invoke(11 /* System.Int32 System.Text.Encoding::GetByteCount(System.String) */, L_79, _stringLiteralEF420ABFDDBDA7B9EE665D85EF62E4A437554003);
 		G_B32_0 = _stringLiteralE1A5710D77750DE15143DC722BD4D7F361D7E8BD;
 		G_B32_1 = __this;
 		if ((((int32_t)L_80) == ((int32_t)1)))
@@ -22490,7 +22490,7 @@ IL_07ef:
 		Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_322 = L_321->get_encoding_3();
 		NullCheck(L_322);
 		String_t* L_323;
-		L_323 = VirtFuncInvoker0< String_t* >::Invoke(8 /* System.String System.Text.Encoding::get_WebName() */, L_322);
+		L_323 = VirtFuncInvoker0< String_t* >::Invoke(9 /* System.String System.Text.Encoding::get_WebName() */, L_322);
 		V_14 = L_323;
 		String_t* L_324 = V_14;
 		bool L_325;
@@ -22531,7 +22531,7 @@ IL_07ef:
 		Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_333 = L_332->get_encoding_3();
 		NullCheck(L_333);
 		int32_t L_334;
-		L_334 = VirtFuncInvoker1< int32_t, String_t* >::Invoke(10 /* System.Int32 System.Text.Encoding::GetByteCount(System.String) */, L_333, _stringLiteralEF420ABFDDBDA7B9EE665D85EF62E4A437554003);
+		L_334 = VirtFuncInvoker1< int32_t, String_t* >::Invoke(11 /* System.Int32 System.Text.Encoding::GetByteCount(System.String) */, L_333, _stringLiteralEF420ABFDDBDA7B9EE665D85EF62E4A437554003);
 		G_B123_0 = _stringLiteralE1A5710D77750DE15143DC722BD4D7F361D7E8BD;
 		G_B123_1 = __this;
 		if ((((int32_t)L_334) == ((int32_t)1)))

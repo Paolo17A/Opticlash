@@ -35,8 +35,11 @@ MonoBehaviour:
   <BackSprite>k__BackingField: {fileID: 21300000, guid: 7c0dc849992cbfc49a2ab4ab6a689001, type: 3}
   <MiddleSprite>k__BackingField: {fileID: 21300000, guid: a81fa7f27c199ec4b90114c6616208d0, type: 3}
   <FrontSprite>k__BackingField: {fileID: 21300000, guid: 6b118491795c1714fa682142e7e83472, type: 3}
-  <EquippedSprite>k__BackingField: {fileID: 21300000, guid: 0ceec5a9a9b57284a9ce260d1d4e457a, type: 3}
-  <InfoSprite>k__BackingField: {fileID: 21300000, guid: d915ce4babadedc429a479215cc948d6, type: 3}
+  <AnimatedSprite>k__BackingField: {fileID: 21300000, guid: 0ceec5a9a9b57284a9ce260d1d4e457a, type: 3}
+  <EquippedSprite>k__BackingField: {fileID: 21300000, guid: 90293fed16e8387468a9d516075d6043, type: 3}
+  <InfoSprite>k__BackingField: {fileID: 21300000, guid: e168dfa0a942c22499e2301280406222, type: 3}
   <CurrentSprite>k__BackingField: {fileID: 21300000, guid: 062717e64f37a5d44a09e0155d497fa0, type: 3}
-  <CurrentBigSprite>k__BackingField: {fileID: 21300000, guid: ddb540818f8d24645b0269dd29111788, type: 3}
+  <CurrentBigSprite>k__BackingField: {fileID: 21300000, guid: 35e1636afb82f4f4c9935131b09a32cc, type: 3}
   <Ammo>k__BackingField: {fileID: 21300000, guid: 642478bcb03c6ad4b9cc88c3ba9b8bc9, type: 3}
+  <FragmentUpgradeCostConstant>k__BackingField: 1600
+  <OptibitUpgradeCostConstant>k__BackingField: 60000

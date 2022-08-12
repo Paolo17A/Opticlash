@@ -15547,7 +15547,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject * PropertyCollection_Clone_mBE8
 		PropertyCollection__ctor_m135085064F4A24DADB6CBDBFC0192493E1E0CBE4(L_0, /*hidden argument*/NULL);
 		V_0 = L_0;
 		RuntimeObject* L_1;
-		L_1 = VirtFuncInvoker0< RuntimeObject* >::Invoke(31 /* System.Collections.IDictionaryEnumerator System.Collections.Hashtable::GetEnumerator() */, __this);
+		L_1 = VirtFuncInvoker0< RuntimeObject* >::Invoke(32 /* System.Collections.IDictionaryEnumerator System.Collections.Hashtable::GetEnumerator() */, __this);
 		V_1 = L_1;
 	}
 
@@ -20197,7 +20197,7 @@ IL_00a3:
 		L_23 = SimpleType_get_Namespace_mAAA9E44494BBC6854B824AA57DAC2D364F88FCA3_inline(L_22, /*hidden argument*/NULL);
 		NullCheck(L_21);
 		RuntimeObject * L_24;
-		L_24 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(29 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_21, L_23);
+		L_24 = VirtFuncInvoker1< RuntimeObject *, RuntimeObject * >::Invoke(30 /* System.Object System.Collections.Hashtable::get_Item(System.Object) */, L_21, L_23);
 		G_B11_0 = ((String_t*)CastclassSealed((RuntimeObject*)L_24, String_t_il2cpp_TypeInfo_var));
 	}
 

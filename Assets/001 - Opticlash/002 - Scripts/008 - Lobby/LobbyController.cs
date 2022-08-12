@@ -46,7 +46,7 @@ public class LobbyController : MonoBehaviour
 
     private IEnumerator DelayForPanel()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.3f);
         LobbyCore.LobbyAnimator.SetInteger("index", (int)LobbyCore.CurrentLobbyState);
         if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.RANK)
             LeaderboardCore.InitializeLeaderboard();
@@ -54,8 +54,8 @@ public class LobbyController : MonoBehaviour
             LobbyCore.DisplayShopItem();
         else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.INVENTORY)
             LobbyCore.InitializeInventory();
-        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.CRAFT)
-            LobbyCore.InitializeCrafting();
+        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.LOOTBOX)
+            LootboxCore.InitializeLootbox();
         else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.QUEST)
             QuestCore.InitializeQuest();
         else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.EQUIP || LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.CANNON)
@@ -79,6 +79,7 @@ public class LobbyController : MonoBehaviour
     [field: SerializeField] private LobbyCore LobbyCore { get; set; }
     [field: SerializeField] private QuestCore QuestCore { get; set; }
     [field: SerializeField] private LeaderboardCore LeaderboardCore { get; set; }
+    [field: SerializeField] private LootboxCore LootboxCore { get; set; }
 
     public void LobbyStateToIndex(int state)
     {
@@ -96,8 +97,8 @@ public class LobbyController : MonoBehaviour
             case (int)LobbyCore.LobbyStates.INVENTORY:
                 LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.INVENTORY;
                 break;
-            case (int)LobbyCore.LobbyStates.CRAFT:
-                LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.CRAFT;
+            case (int)LobbyCore.LobbyStates.LOOTBOX:
+                LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.LOOTBOX;
                 break;
             case (int)LobbyCore.LobbyStates.QUEST:
                 LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.QUEST;
@@ -116,6 +117,9 @@ public class LobbyController : MonoBehaviour
                 break;
             case (int)LobbyCore.LobbyStates.CURRENTCANNON:
                 LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.CURRENTCANNON;
+                break;
+            case (int)LobbyCore.LobbyStates.CLAIM:
+                LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.CLAIM;
                 break;
         }
     }

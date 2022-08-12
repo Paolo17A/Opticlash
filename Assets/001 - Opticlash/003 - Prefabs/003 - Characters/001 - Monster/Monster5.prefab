@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2210675892740706908}
   - component: {fileID: 2210675892740706911}
-  - component: {fileID: 2210675892740706910}
   m_Layer: 0
   m_Name: T3S
   m_TagString: Untagged
@@ -84,30 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2210675892740706910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2210675892740706909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 2210675893104319521}
-  m_BoneTransforms:
-  - {fileID: 2210675893104319521}
-  - {fileID: 2210675892912537286}
-  - {fileID: 2210675893397863255}
-  - {fileID: 2210675894053383929}
-  - {fileID: 2210675892774485431}
-  m_Bounds:
-    m_Center: {x: -1.9696813, y: -1.6376201, z: 0}
-    m_Extent: {x: 1.9896812, y: 1.3776201, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &2210675892774485428
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +223,7 @@ SpriteRenderer:
   m_Size: {x: 16.8, y: 16.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2210675892848192576
@@ -261,7 +236,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2210675892848192579}
   - component: {fileID: 2210675892848192578}
-  - component: {fileID: 2210675892848192581}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -335,30 +309,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2210675892848192581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2210675892848192576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 2210675892979849822}
-  m_BoneTransforms:
-  - {fileID: 2210675892979849822}
-  - {fileID: 2210675892801257022}
-  - {fileID: 2210675893870800710}
-  - {fileID: 2210675893226330967}
-  - {fileID: 2210675893880796229}
-  m_Bounds:
-    m_Center: {x: 0.25637537, y: -2.3482552, z: 0}
-    m_Extent: {x: 0.843625, y: 2.1482553, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &2210675892893623941
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +462,7 @@ SpriteRenderer:
   m_Size: {x: 16.8, y: 16.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2210675892979849823
@@ -625,7 +575,7 @@ SpriteRenderer:
   m_Size: {x: 16.8, y: 16.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2210675893074904934
@@ -920,7 +870,7 @@ SpriteRenderer:
   m_Size: {x: 16.8, y: 16.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2210675893263192189
@@ -1002,7 +952,7 @@ SpriteRenderer:
   m_Size: {x: 16.8, y: 16.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2210675893303697146
@@ -1177,7 +1127,7 @@ SpriteRenderer:
   m_Size: {x: 16.8, y: 16.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2210675893752283256
@@ -1328,7 +1278,7 @@ SpriteRenderer:
   m_Size: {x: 16.8, y: 16.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2210675893808584880
@@ -1384,7 +1334,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2210675893817078804}
   - component: {fileID: 2210675893817078807}
-  - component: {fileID: 2210675893817078806}
   m_Layer: 0
   m_Name: T1S
   m_TagString: Untagged
@@ -1458,30 +1407,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2210675893817078806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2210675893817078805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 2210675893074904937}
-  m_BoneTransforms:
-  - {fileID: 2210675893074904937}
-  - {fileID: 2210675893303697149}
-  - {fileID: 2210675893752283259}
-  - {fileID: 2210675894191221445}
-  - {fileID: 2210675894158295815}
-  m_Bounds:
-    m_Center: {x: -1.92799, y: -2.1576805, z: 0}
-    m_Extent: {x: 1.35799, y: 1.9076806, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &2210675893870800711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,6 +1478,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2210675893986609383}
   - component: {fileID: 2210675893986609382}
+  - component: {fileID: 8027478138841461751}
   m_Layer: 0
   m_Name: Monster5
   m_TagString: Untagged
@@ -1594,6 +1520,66 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8027478138841461751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2210675893986609380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02404ee1c359ff24a94da9044e6fd552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCombatState: 0
+  <CombatCore>k__BackingField: {fileID: 0}
+  <MonsterID>k__BackingField: 
+  <EnemyAnim>k__BackingField: {fileID: 0}
+  <EnemyAttackType>k__BackingField: 0
+  <HealthBar>k__BackingField: {fileID: 0}
+  <HealthSlider>k__BackingField: {fileID: 0}
+  <ThisMonsterPlacement>k__BackingField: 0
+  <MayAttack>k__BackingField: 0
+  <IsBoss>k__BackingField: 0
+  <MonsterLevel>k__BackingField: 0
+  <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  <DamageDeal>k__BackingField: 0
+  <EvasionValue>k__BackingField: 0
+  <Attack>k__BackingField: 0
+  <Accuracy>k__BackingField: 0
+  <Defense>k__BackingField: 0
+  <StatusEffectImage>k__BackingField: {fileID: 0}
+  <StatusEffectText>k__BackingField: {fileID: 0}
+  <StatusEffectTextAnimator>k__BackingField: {fileID: 0}
+  <AfflictedSideEffect>k__BackingField: 0
+  <AfflictedSideEffectDamage>k__BackingField: 0
+  <AfflictedSideEffectInstancesLeft>k__BackingField: 0
+  <ThisSideEffect>k__BackingField: 0
+  <SideEffectRate>k__BackingField: 0
+  <SideEffectDuration>k__BackingField: 0
+  <SideEffectDamage>k__BackingField: 0
+  <BreakLogoSprite>k__BackingField: {fileID: 0}
+  <BreakTextSprite>k__BackingField: {fileID: 0}
+  <BurnLogoSprite>k__BackingField: {fileID: 0}
+  <BurnTextSprite>k__BackingField: {fileID: 0}
+  <ConfuseLogoSprite>k__BackingField: {fileID: 0}
+  <ConfuseTextSprite>k__BackingField: {fileID: 0}
+  <FreezeLogoSprite>k__BackingField: {fileID: 0}
+  <FreezeTextSprite>k__BackingField: {fileID: 0}
+  <ParalyzeLogoSprite>k__BackingField: {fileID: 0}
+  <ParalyzeTextSprite>k__BackingField: {fileID: 0}
+  <WeakLogoSprite>k__BackingField: {fileID: 0}
+  <WeakTextSprite>k__BackingField: {fileID: 0}
+  <CanShootLaser>k__BackingField: 0
+  <LaserFrequency>k__BackingField: 0
+  <OriginalEnemyPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <EnemyAttackPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <DoneAttacking>k__BackingField: 0
+  <IsCurrentEnemy>k__BackingField: 0
+  <ShootingLaser>k__BackingField: 0
+  <Opti>k__BackingField: {fileID: 0}
 --- !u!1 &2210675894036511053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,7 +1659,7 @@ SpriteRenderer:
   m_Size: {x: 16.8, y: 16.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2210675894043296258
@@ -1956,7 +1942,7 @@ SpriteRenderer:
   m_Size: {x: 16.8, y: 16.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2210675894352047481
@@ -2175,7 +2161,7 @@ SpriteRenderer:
   m_Size: {x: 16.8, y: 16.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2210675894539540923
@@ -2490,7 +2476,7 @@ SpriteRenderer:
   m_Size: {x: 16.8, y: 16.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2210675894734175148
@@ -2667,7 +2653,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2210675894753437544}
   - component: {fileID: 2210675894753437547}
-  - component: {fileID: 2210675894753437546}
   m_Layer: 0
   m_Name: T4S
   m_TagString: Untagged
@@ -2741,27 +2726,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2210675894753437546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2210675894753437545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 2210675893431600024}
-  m_BoneTransforms:
-  - {fileID: 2210675893431600024}
-  - {fileID: 2210675894628488118}
-  - {fileID: 2210675894550892977}
-  - {fileID: 2210675894250880811}
-  - {fileID: 2210675893121914356}
-  m_Bounds:
-    m_Center: {x: 1.5113101, y: -2.3153455, z: 0}
-    m_Extent: {x: 0.95716035, y: 2.2346556, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1

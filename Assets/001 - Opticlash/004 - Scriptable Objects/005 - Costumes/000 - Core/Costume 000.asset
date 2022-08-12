@@ -16,6 +16,7 @@ MonoBehaviour:
   <CostumeName>k__BackingField: Snowcloak
   <CostumeSprite>k__BackingField: {fileID: 21300000, guid: d0cbbc8222d7d9f44ae83d1c6cf7e81e, type: 3}
   <LobbyCostumeSprite>k__BackingField: {fileID: 21300000, guid: bf377b25ebc47764abcb99ea76b72ccf, type: 3}
-  <InfoSprite>k__BackingField: {fileID: 21300000, guid: e94cf8bc04dd01e49b38a6504fc8d6f9, type: 3}
-  <DroppedSprite>k__BackingField: {fileID: 21300000, guid: 1e696ae6a9501fe468d0415be9187412, type: 3}
+  <EquippedSprite>k__BackingField: {fileID: 21300000, guid: e3478016e10eb444194035ba44a36961, type: 3}
+  <InfoSprite>k__BackingField: {fileID: 21300000, guid: 7a30b8aef2088cb49a5c66167c5321e5, type: 3}
   <ProvidedImmunity>k__BackingField: 7
+  <CostumeLevel>k__BackingField: 0

@@ -14,6 +14,11 @@ public class LevelSelectController : MonoBehaviour
     [field: SerializeField] public LevelData LevelData { get; set; }
     [field: SerializeField] [field: ReadOnly] public bool Accessible { get; set; }
 
+    [field: Header("VISUALS")]
+    [field: SerializeField] public SpriteRenderer LevelSprite { get; set; }
+    [field: SerializeField] public Sprite LockedSprite { get; set; }
+    [field: SerializeField] public Sprite UnlockedSprite { get; set; }
+
     public void ProcessLevel()
     {
         if(!AdventureCore.LevelWasSelected)
