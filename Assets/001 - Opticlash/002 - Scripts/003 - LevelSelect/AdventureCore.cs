@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using MyBox;
 using Cinemachine;
 using PlayFab;
@@ -19,6 +20,8 @@ public class AdventureCore : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI EnergyTMP { get; set; }
     [field: SerializeField] private TextMeshProUGUI OptibitTMP { get; set; }
     [field: SerializeField] private GameObject SettingsPanel { get; set; }
+    [field: SerializeField] public Animator StageSelectAnimator { get; set; }
+    [field: SerializeField] public Image SelectedStageImage { get; set; }
 
     [field: Header("DEBUGGER")]
     [field: SerializeField][field: ReadOnly] public bool LevelWasSelected { get; set; }
@@ -80,6 +83,17 @@ public class AdventureCore : MonoBehaviour
                         () => ProcessError(errorCallback.ErrorMessage));
                 });
         }
+    }
+
+    public void OpenCombatScene()
+    {
+        GameManager.Instance.SceneController.CurrentScene = "CombatScene";
+    }
+
+    public void CloseStageSelect()
+    {
+        StageSelectAnimator.SetBool("ShowStageSelect", false);
+        GameManager.Instance.CurrentLevelData = null;
     }
 
     private void ErrorCallback(PlayFabErrorCode errorCode, Action restartAction, Action errorAction)

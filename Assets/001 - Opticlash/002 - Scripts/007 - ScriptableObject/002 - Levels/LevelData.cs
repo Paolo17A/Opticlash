@@ -8,6 +8,7 @@ public class LevelData : ScriptableObject
 {
     //===============================================================================
     [field: SerializeField] public int LevelIndex { get; set; }
+    [field: SerializeField] public Sprite SelectedLevelSprite { get; set; }
 
     [field: Header("ENEMIES")]
     [field: SerializeField] public List<string> MonsterList { get; set; }

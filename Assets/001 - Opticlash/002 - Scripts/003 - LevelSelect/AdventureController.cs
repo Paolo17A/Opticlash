@@ -41,7 +41,7 @@ public class AdventureController : MonoBehaviour
                 draggedEndPoint = previousTouchPoint - nextTouchPoint;
 
                 AdventureCore._virtualCamera.transform.position += new Vector3(0, draggedEndPoint.y, 0) * speed * Time.deltaTime;
-                AdventureCore._virtualCamera.transform.position = new Vector3(0, Mathf.Clamp(AdventureCore._virtualCamera.transform.position.y, 0, 19f), AdventureCore._virtualCamera.transform.position.z);
+                AdventureCore._virtualCamera.transform.position = new Vector3(0, Mathf.Clamp(AdventureCore._virtualCamera.transform.position.y, 0, 95f), AdventureCore._virtualCamera.transform.position.z);
 
                 previousTouchPoint = nextTouchPoint;
             }

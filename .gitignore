@@ -3,9 +3,5 @@ Logs
 obj
 *.csproj
 *.sln
-<<<<<<< Updated upstream
 .vs
-=======
-.vs
->>>>>>> Stashed changes
 Library/PlayerDataCache/Android/Data/data.unity3d

@@ -26,17 +26,11 @@ public class LevelSelectController : MonoBehaviour
             AdventureCore.LevelWasSelected = true;
             if (Accessible)
             {
+                GameManager.Instance.PanelActivated = true;
                 GameManager.Instance.CurrentLevelData = LevelData;
-                PlayerData.EnergyCount--;
-                OpenCombatScene();
-                if (GameManager.Instance.DebugMode)
-                {
-                    
-                }
-                else
-                {
-                    
-                }
+                AdventureCore.SelectedStageImage.sprite = GameManager.Instance.CurrentLevelData.SelectedLevelSprite;
+                AdventureCore.StageSelectAnimator.SetBool("ShowStageSelect", true);
+                //OpenCombatScene();
             }
             else
             {
@@ -47,8 +41,5 @@ public class LevelSelectController : MonoBehaviour
     }
 
 
-    public void OpenCombatScene()
-    {
-        GameManager.Instance.SceneController.CurrentScene = "CombatScene";
-    }
+    
 }

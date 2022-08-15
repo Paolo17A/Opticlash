@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Level 8
   m_EditorClassIdentifier: 
   <LevelIndex>k__BackingField: 8
+  <SelectedLevelSprite>k__BackingField: {fileID: 21300000, guid: 39fd50629d03b7e4b955575b5e27d562, type: 3}
   <MonsterList>k__BackingField:
   - NormalMonster002
   - BreakMonster005

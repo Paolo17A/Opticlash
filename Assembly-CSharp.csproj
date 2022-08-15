@@ -94,6 +94,7 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\011 - Lootbox\LootboxCore.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\BlockNumberExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\TxStatus.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\015 - Inventory\InventoryCore.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\000 - GameManager\AudioManager.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomCallExample.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\CombatCore.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\003 - LevelSelect\LevelSelectController.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\010 - Leaderboard\PlacementCore.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\Minter\GetListedNFTWebGL.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\014 - Shop\ShopCore.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\005 - Costume\CustomCostumeData.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\WebGL\Web3GL.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\005 - Combat\KaboomController.cs" />
@@ -216,7 +218,6 @@
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
-    <Compile Include="Assets\001 - Opticlash\002 - Scripts\014 - Shop\ShopCore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\003 - TextMesh Pro\Shaders\TMPro.cginc" />
