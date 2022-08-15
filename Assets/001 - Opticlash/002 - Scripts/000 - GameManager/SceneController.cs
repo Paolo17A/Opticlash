@@ -67,6 +67,10 @@ public class SceneController : MonoBehaviour
     [SerializeField] private Image backgroundImage;
     [SerializeField] private List<Sprite> backgroundSprites;
 
+    [Header("TRIVIA SPRITES")]
+    [SerializeField] private Image triviaImage;
+    [SerializeField] private List<Sprite> triviaSprites;
+
     [Header("LEANTWEEN ANIMATION")]
     [SerializeField] private LeanTweenType easeType;
     [SerializeField] private float speed;
@@ -114,8 +118,8 @@ public class SceneController : MonoBehaviour
     public IEnumerator Loading()
     {
         yield return new WaitUntil(() => splashOver);
-        int randomIndex = UnityEngine.Random.Range(0, backgroundSprites.Count);
-        backgroundImage.sprite = backgroundSprites[randomIndex];
+        backgroundImage.sprite = backgroundSprites[UnityEngine.Random.Range(0, backgroundSprites.Count)];
+        triviaImage.sprite = triviaSprites[UnityEngine.Random.Range(0, triviaSprites.Count)];
         Time.timeScale = 0f;
 
         actionPass = false;

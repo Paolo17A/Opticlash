@@ -1,6 +1,7 @@
 Library
 Logs
 obj
-.vs
 *.csproj
 *.sln
+.vs
+Library/PlayerDataCache/Android/Data/data.unity3d

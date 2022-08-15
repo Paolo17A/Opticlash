@@ -734,6 +734,23 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 65758e0c63445a34abb7731dafffb248, type: 3}
   - {fileID: 21300000, guid: d70c0ab9f7ac08e43ab77760247e8bd4, type: 3}
   - {fileID: 21300000, guid: 2d3b2117f8f72c04c8fee98348953f23, type: 3}
+  triviaImage: {fileID: 677433977}
+  triviaSprites:
+  - {fileID: 21300000, guid: dc069289bcff0b24b85b993e5c9b8214, type: 3}
+  - {fileID: 21300000, guid: 243b8327aa9e6b748b4c45cdf2fcdb0d, type: 3}
+  - {fileID: 21300000, guid: 4116fbba2869bea4a9557c29af8a629b, type: 3}
+  - {fileID: 21300000, guid: 3a8985ac4ce8f924eab95d36bf6ae3fc, type: 3}
+  - {fileID: 21300000, guid: ec288fc5382e1d6489ab704a6a0f8a51, type: 3}
+  - {fileID: 21300000, guid: 5ce330ef6932d114ca7bd827aec83515, type: 3}
+  - {fileID: 21300000, guid: 27a9fd683b46a5a44bdf58bc718437e4, type: 3}
+  - {fileID: 21300000, guid: 994a2cf702e92fb4891ac23510c2fcf9, type: 3}
+  - {fileID: 21300000, guid: 4d700695e63653f47a84342f88de9fff, type: 3}
+  - {fileID: 21300000, guid: 6342e2c9a2680764d872532f0ef4e0a9, type: 3}
+  - {fileID: 21300000, guid: c7cc42deef263304d97ac2c0f21c5524, type: 3}
+  - {fileID: 21300000, guid: 8c8481330a71e3740b7d80c713918e9a, type: 3}
+  - {fileID: 21300000, guid: 4867965c1e242a94c9d9755234f04194, type: 3}
+  - {fileID: 21300000, guid: 222698d10305a21449229547e27dbfb7, type: 3}
+  - {fileID: 21300000, guid: 7c9bbc8a3bde3c64d81c2c94fbc56e7a, type: 3}
   easeType: 14
   speed: 0.25
   loadingBarSpeed: 1
@@ -1196,7 +1213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1960469408
 RectTransform:
   m_ObjectHideFlags: 0

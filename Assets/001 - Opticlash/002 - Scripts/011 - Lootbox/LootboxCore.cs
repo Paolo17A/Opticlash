@@ -13,8 +13,11 @@ public class LootboxCore : MonoBehaviour
 {
     [field: SerializeField] private PlayerData PlayerData {get; set;}
     [field: SerializeField] private LobbyCore LobbyCore { get; set; }
+    [field: SerializeField] private GameObject GrantPanel { get; set; }
 
     [field: Header("LOOTBOX")]
+    [field: SerializeField] private Image TopBoxImage { get; set; }
+    [field: SerializeField] private Image BotBoxImage { get; set; }
     [field: SerializeField] private Button OpenLootboxBtn { get; set; }
     [field: SerializeField] private Button PreviousLootboxBtn { get; set; }
     [field: SerializeField] private Button NextLootboxBtn { get; set; }
@@ -29,6 +32,23 @@ public class LootboxCore : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI LegendLootbox1Owned { get; set; }
     [field: SerializeField] private TextMeshProUGUI LegendLootbox2Owned { get; set; }
     [field: SerializeField][field: ReadOnly] private int LootboxIndex { get; set; }
+
+    [field: Header("LOOTBOX ROSTER")]
+    [field: SerializeField] private Sprite TopCommonBox { get; set; }
+    [field: SerializeField] private Sprite BotCommonBox { get; set; }
+    [field: SerializeField] private GameObject CommonAnimatedBox { get; set; }
+    [field: SerializeField] private Sprite TopRareBox { get; set; }
+    [field: SerializeField] private Sprite BotRareBox { get; set; }
+    [field: SerializeField] private GameObject RareAnimatedBox { get; set; }
+    [field: SerializeField] private Sprite TopEpicBox { get; set; }
+    [field: SerializeField] private Sprite BotEpicBox { get; set; }
+    [field: SerializeField] private GameObject EpicAnimatedBox { get; set; }
+    [field: SerializeField] private Sprite TopLegend1Box { get; set; }
+    [field: SerializeField] private Sprite BotLegend1Box { get; set; }
+    [field: SerializeField] private GameObject Legend1AnimatedBox { get; set; }
+    [field: SerializeField] private Sprite TopLegend2Box { get; set; }
+    [field: SerializeField] private Sprite BotLegend2Box { get; set; }
+    [field: SerializeField] private GameObject Legend2AnimatedBox { get; set; }
 
     [field: Header("WEAPONS")]
     [field: SerializeField] private List<WeaponData> NormalWeapons { get; set; }
@@ -256,6 +276,7 @@ public class LootboxCore : MonoBehaviour
                     {
                         PlayerData.CommonLootboxInstanceID = "";
                         OpenLootboxBtn.interactable = false;
+
                     }
 
                     LobbyCore.InitializeLobby();
@@ -751,6 +772,8 @@ public class LootboxCore : MonoBehaviour
         switch (LootboxIndex)
         {
             case 1:
+                TopBoxImage.sprite = TopCommonBox;
+                BotBoxImage.sprite = BotCommonBox;
                 CommonLootboxPanel.SetActive(true);
                 if (PlayerData.CommonLootboxCount > 0)
                     OpenLootboxBtn.interactable = true;
@@ -758,6 +781,8 @@ public class LootboxCore : MonoBehaviour
                     OpenLootboxBtn.interactable = false;
                 break;
             case 2:
+                TopBoxImage.sprite = TopRareBox;
+                BotBoxImage.sprite = BotRareBox;
                 RareLootboxPanel.SetActive(true);
                 if (PlayerData.RareLootboxCount > 0)
                     OpenLootboxBtn.interactable = true;
@@ -765,6 +790,8 @@ public class LootboxCore : MonoBehaviour
                     OpenLootboxBtn.interactable = false;
                 break;
             case 3:
+                TopBoxImage.sprite = TopEpicBox;
+                BotBoxImage.sprite = BotEpicBox;
                 EpicLootboxPanel.SetActive(true);
                 if (PlayerData.EpicLootboxCount > 0)
                     OpenLootboxBtn.interactable = true;
@@ -772,6 +799,8 @@ public class LootboxCore : MonoBehaviour
                     OpenLootboxBtn.interactable = false;
                 break;
             case 4:
+                TopBoxImage.sprite = TopLegend1Box;
+                BotBoxImage.sprite = BotLegend1Box;
                 LegendLootbox1Panel.SetActive(true);
                 if (PlayerData.LegendaryLootbox1Count > 0)
                     OpenLootboxBtn.interactable = true;
@@ -779,6 +808,8 @@ public class LootboxCore : MonoBehaviour
                     OpenLootboxBtn.interactable = false;
                 break;
             case 5:
+                TopBoxImage.sprite = TopLegend2Box;
+                BotBoxImage.sprite = BotLegend2Box;
                 LegendLootbox2Panel.SetActive(true);
                 if (PlayerData.LegendaryLootbox2Count > 0)
                     OpenLootboxBtn.interactable = true;

@@ -173,9 +173,6 @@ public class EnemyCombatController : MonoBehaviour
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.WALKING)
         {
             CombatCore.MonsterParent.transform.position = Vector3.MoveTowards(CombatCore.MonsterParent.transform.position, CombatCore.CurrentEnemy.OriginalEnemyPosition, 2.5f * Time.deltaTime);
-            /*foreach (GameObject enemy in CombatCore.Enemies)
-                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, enemy.transform.GetChild(0).GetComponent<EnemyCombatController>().OriginalEnemyPosition, 0.2f * Time.deltaTime);*/
-
             if (Vector2.Distance(CombatCore.CurrentEnemy.gameObject.transform.parent.position, CombatCore.CurrentEnemy.OriginalEnemyPosition) < 0.01f)
             {
                 CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
@@ -197,42 +194,9 @@ public class EnemyCombatController : MonoBehaviour
             {
                 UpdateQuestData();
                 if (IsBoss)
-                    UpdateStatistics();
+                    GetStatistics();
             }
         }
-    }
-
-    private void UpdateQuestData()
-    {
-        Dictionary<string, int> quests = new Dictionary<string, int>();
-        quests.Add("DailyCheckIn", CombatCore.PlayerData.DailyCheckIn);
-        quests.Add("SocMedShared", CombatCore.PlayerData.SocMedShared);
-        quests.Add("ItemsUsed", CombatCore.PlayerData.ItemsUsed);
-        quests.Add("MonstersKilled", CombatCore.PlayerData.MonstersKilled);
-        quests.Add("LevelsWon", CombatCore.PlayerData.LevelsWon);
-        quests.Add("DailyQuestClaimed", CombatCore.PlayerData.DailyQuestClaimed);
-
-        UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
-        updateUserData.Data = new Dictionary<string, string>();
-        updateUserData.Data.Add("Quests", JsonConvert.SerializeObject(quests));
-
-        PlayFabClientAPI.UpdateUserData(updateUserData,
-            resultCallback =>
-            {
-                failedCallbackCounter = 0;
-                Debug.Log("Quest data has been updated");
-            },
-            errorCallback =>
-            {
-                ErrorCallback(errorCallback.Error,
-                    UpdateQuestData,
-                    () => ProcessError(errorCallback.ErrorMessage));
-            });
-    }
-
-    private void UpdateStatistics()
-    {
-
     }
 
     private void ProcessMeleeAttack()
@@ -467,6 +431,80 @@ public class EnemyCombatController : MonoBehaviour
     {
         HealthBar.SetActive(true);
         HealthSlider.transform.localScale = new Vector3(1f, 1f, 0f);
+    }
+    #endregion
+
+    #region PLAYFAB API
+    private void UpdateQuestData()
+    {
+        Dictionary<string, int> quests = new Dictionary<string, int>();
+        quests.Add("DailyCheckIn", CombatCore.PlayerData.DailyCheckIn);
+        quests.Add("SocMedShared", CombatCore.PlayerData.SocMedShared);
+        quests.Add("ItemsUsed", CombatCore.PlayerData.ItemsUsed);
+        quests.Add("MonstersKilled", CombatCore.PlayerData.MonstersKilled);
+        quests.Add("LevelsWon", CombatCore.PlayerData.LevelsWon);
+        quests.Add("DailyQuestClaimed", CombatCore.PlayerData.DailyQuestClaimed);
+
+        UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
+        updateUserData.Data = new Dictionary<string, string>();
+        updateUserData.Data.Add("Quests", JsonConvert.SerializeObject(quests));
+
+        PlayFabClientAPI.UpdateUserData(updateUserData,
+            resultCallback =>
+            {
+                failedCallbackCounter = 0;
+                Debug.Log("Quest data has been updated");
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error,
+                    UpdateQuestData,
+                    () => ProcessError(errorCallback.ErrorMessage));
+            });
+    }
+
+    private void GetStatistics()
+    {
+        PlayFabClientAPI.GetPlayerStatistics(new GetPlayerStatisticsRequest(),
+            resultCallback =>
+            {
+                foreach (StatisticValue stat in resultCallback.Statistics)
+                    if (stat.StatisticName == "TotalKillCount")
+                    {
+                        UpdateStatistics(stat.Value);
+                        break;
+                    }
+
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error,
+                    GetStatistics,
+                    () => ProcessError(errorCallback.ErrorMessage));
+            });
+    }
+    private void UpdateStatistics(int _stat)
+    {
+        StatisticUpdate statisticUpdate = new StatisticUpdate();
+        statisticUpdate.StatisticName = "TotalKillCount";
+        statisticUpdate.Value = _stat + 1;
+
+        UpdatePlayerStatisticsRequest updatePlayerStatistics = new UpdatePlayerStatisticsRequest();
+        updatePlayerStatistics.Statistics = new List<StatisticUpdate>();
+        updatePlayerStatistics.Statistics.Add(statisticUpdate);
+
+        PlayFabClientAPI.UpdatePlayerStatistics(updatePlayerStatistics,
+            resultCallback =>
+            {
+                failedCallbackCounter = 0;
+                Debug.Log("boss kill count increased");
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error,
+                    () => UpdateStatistics(_stat),
+                    () => ProcessError(errorCallback.ErrorMessage));
+            });
     }
     #endregion
 

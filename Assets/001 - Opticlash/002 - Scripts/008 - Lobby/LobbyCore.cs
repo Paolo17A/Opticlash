@@ -66,9 +66,9 @@ public class LobbyCore : MonoBehaviour
     [field: SerializeField] public GameObject LoadingPanel { get; set; }
 
     [field: Header("OPTI")]
-    [field: SerializeField] private Image OptiLobbyCannon { get; set; }
+    [field: SerializeField] private SpriteRenderer OptiLobbyCannon { get; set; }
     [field: SerializeField] private Image OptiEquipCannon { get; set; }
-    [field: SerializeField] private Image OptiLobbyCostume { get; set; }
+    [field: SerializeField] private SpriteRenderer OptiLobbyCostume { get; set; }
     [field: SerializeField] private Image OptiEquipCostume { get; set; }
 
     [field: Header("ENERGY")]
@@ -80,36 +80,6 @@ public class LobbyCore : MonoBehaviour
 
     [field: Header("STAGE")]
     [field: SerializeField] public TextMeshProUGUI StageTMP { get; set; }
-
-    [field: Header("SHOP")]
-    [field: SerializeField][field: ReadOnly] private int ShopIndex { get; set; }
-    [field: SerializeField] private Image CurrentItemDisplayImage { get; set; }
-    [field: SerializeField][field: ReadOnly] private int CurrentItemCost { get; set; }
-    [field: SerializeField] private TextMeshProUGUI ItemCostTMP { get; set; }
-    [field: SerializeField] private Sprite BreakShopSprite { get; set; }
-    [field: SerializeField] private Sprite BurnShopSprite { get; set; }
-    [field: SerializeField] private Sprite ConfuseShopSprite { get; set; }
-    [field: SerializeField] private Sprite FreezeShopSprite { get; set; }
-    [field: SerializeField] private Sprite HealShopSprite { get; set; }
-    [field: SerializeField] private Sprite ParalyzeShopSprite { get; set; }
-    [field: SerializeField] private Sprite WeakShopSprite { get; set; }
-    [field: SerializeField] private TextMeshProUGUI ItemNameTMP { get; set; }
-    [field: SerializeField] private TextMeshProUGUI ItemDescriptionTMP { get; set; }
-    [field: SerializeField] private Button BuyBtn { get; set; }
-
-    [field: Header("INVENTORY")]
-    [field: SerializeField] private Sprite BreakRemoveSprite { get; set; }
-    [field: SerializeField] private Sprite BurnRemoveSprite { get; set; }
-    [field: SerializeField] private Sprite ConfuseRemoveSprite { get; set; }
-    [field: SerializeField] private Sprite FreezeRemoveSprite { get; set; }
-    [field: SerializeField] private Sprite HealChargeSprite { get; set; }
-    [field: SerializeField] private Sprite ParalyzeRemoveSprite { get; set; }
-    [field: SerializeField] private Sprite WeakRemoveSprite { get; set; }
-    [field: SerializeField] private Image DisplayedInventoryImage { get; set; }
-    [field: SerializeField] private TextMeshProUGUI InventoryItemNameTMP{ get; set; }
-    [field: SerializeField] private GameObject RectanglePanelInventory { get; set; }
-    [field: SerializeField] private TextMeshProUGUI InventoryItemDescriptionTMP { get; set; }
-    [field: SerializeField] private TextMeshProUGUI InventoryItemCountTMP { get; set; }
 
     [field: Header("EQUIP")]
     [field: SerializeField] public Sprite ActiveCostumeSprite { get; set; }
@@ -240,6 +210,14 @@ public class LobbyCore : MonoBehaviour
                                 PlayerData.SmallHealCharges = (int)item.RemainingUses;
                                 PlayerData.SmallHealInstanceID = item.ItemInstanceId;
                                 break;
+                            case "HealCharge":
+                                PlayerData.MediumHealCharges = (int)item.RemainingUses;
+                                PlayerData.MediumHealInstanceID = item.ItemInstanceId;
+                                break;
+                            case "LargeHealCharge":
+                                PlayerData.LargeHealCharges = (int)item.RemainingUses;
+                                PlayerData.LargeHealInstanceID = item.ItemInstanceId;
+                                break;
                             case "ParalyzeRemoval":
                                 PlayerData.ParalyzeRemovalCharges = (int)item.RemainingUses;
                                 PlayerData.ParalyzeRemovalInstanceID = item.ItemInstanceId;
@@ -347,252 +325,40 @@ public class LobbyCore : MonoBehaviour
                 UpgradeCannonCore.UpgradeCannonBtn.interactable = false;
         }
     }
-    #endregion
 
-    #region SHOP
-    public void PreviousShopItem()
+    public void LogOut()
     {
-        if (ShopIndex == 0)
-            ShopIndex = 6;
-        else
-            ShopIndex--;
-        DisplayShopItem();
-    }
-    public void NextShopItem()
-    {
-        if (ShopIndex == 6)
-            ShopIndex = 0;
-        else
-            ShopIndex++;
-        DisplayShopItem();
-    }
-
-    public void DisplayShopItem()
-    {
-        switch (ShopIndex)
+        if(GameManager.Instance.DebugMode)
         {
-            case 0:
-                CurrentItemDisplayImage.sprite = BreakShopSprite;
-                ItemNameTMP.text = "BREAK REMOVAL";
-                ItemDescriptionTMP.text = "Remove BREAK status";
-                CurrentItemCost = 500;
-                break;
-            case 1:
-                CurrentItemDisplayImage.sprite = BurnShopSprite;
-                ItemNameTMP.text = "BURN REMOVAL";
-                ItemDescriptionTMP.text = "Remove BURN status";
-                CurrentItemCost = 750;
-                break;
-            case 2:
-                CurrentItemDisplayImage.sprite = ConfuseShopSprite;
-                ItemNameTMP.text = "CONFUSE REMOVAL";
-                ItemDescriptionTMP.text = "Remove CONFUSE status";
-                CurrentItemCost = 450;
-                break;
-            case 3:
-                CurrentItemDisplayImage.sprite = FreezeShopSprite;
-                ItemNameTMP.text = "FREEZE REMOVAL";
-                ItemDescriptionTMP.text = "Remove FREEZE status";
-                CurrentItemCost = 500;
-                break;
-            case 4:
-                CurrentItemDisplayImage.sprite = HealShopSprite;
-                ItemNameTMP.text = "MEDIUM HEAL";
-                ItemDescriptionTMP.text = "HEAL 15 Health Points";
-                CurrentItemCost = 1000;
-                break;
-            case 5:
-                CurrentItemDisplayImage.sprite = ParalyzeShopSprite;
-                ItemNameTMP.text = "PARALYZE REMOVAL";
-                ItemDescriptionTMP.text = "Remove PARALYZE status";
-                CurrentItemCost = 450;
-                break;
-            case 6:
-                CurrentItemDisplayImage.sprite = WeakShopSprite;
-                ItemNameTMP.text = "WEAK REMOVAL";
-                ItemDescriptionTMP.text = "Remove WEAK status";
-                CurrentItemCost = 450;
-                break;
-        }
-        ItemCostTMP.text = CurrentItemCost.ToString();
-        ProcessBuyButton();
-    }
-
-    public void PurchaseCurrentItem()
-    {
-        if (GameManager.Instance.DebugMode)
-        {
-            switch (ShopIndex)
-            {
-                case 0:
-                    PlayerData.BurnRemovalCharges++;
-                    break;
-                case 1:
-                    PlayerData.BreakRemovalCharges++;
-                    break;
-                case 2:
-                    PlayerData.ConfuseRemovalCharges++;
-                    break;
-                case 3:
-                    PlayerData.FreezeRemovalCharges++;
-                    break;
-                case 4:
-                    PlayerData.SmallHealCharges++;
-                    break;
-                case 5:
-                    PlayerData.ParalyzeRemovalCharges++;
-                    break;
-                case 6:
-                    PlayerData.WeakRemovalCharges++;
-                    break;
-            }
-            PlayerData.Optibit -= CurrentItemCost;
-            ProcessBuyButton();
-            DisplayOptibits();
+            PlayerPrefs.DeleteAll();
+            PlayerData.ResetPlayerData();
+            GameManager.Instance.SceneController.CurrentScene = "EntryScene";
         }
         else
         {
             DisplayLoadingPanel();
+            UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
+            updateUserData.Data = new Dictionary<string, string>();
+            updateUserData.Data.Add("LUID", "NONE");
 
-            PurchaseItemRequest purchaseItem = new PurchaseItemRequest();
-            purchaseItem.CatalogVersion = "Consumables";
-            purchaseItem.ItemId = GetConsumableId(ShopIndex);
-            purchaseItem.Price = CurrentItemCost;
-            purchaseItem.VirtualCurrency = "OP";
-
-            PlayFabClientAPI.PurchaseItem(purchaseItem,
+            PlayFabClientAPI.UpdateUserData(updateUserData,
                 resultCallback =>
                 {
                     failedCallbackCounter = 0;
-                    switch (ShopIndex)
-                    {
-                        case 0:
-                            PlayerData.BreakRemovalCharges++;
-                            PlayerData.BreakRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 1:
-                            PlayerData.BurnRemovalCharges++;
-                            PlayerData.BurnRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 2:
-                            PlayerData.ConfuseRemovalCharges++;
-                            PlayerData.ConfuseRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 3:
-                            PlayerData.FreezeRemovalCharges++;
-                            PlayerData.FreezeRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 4:
-                            PlayerData.SmallHealCharges++;
-                            PlayerData.SmallHealInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 5:
-                            PlayerData.ParalyzeRemovalCharges++;
-                            PlayerData.ParalyzeRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 6:
-                            PlayerData.WeakRemovalCharges++;
-                            PlayerData.WeakRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                    }
-                    PlayerData.Optibit -= CurrentItemCost;
-                    ProcessBuyButton();
-                    DisplayOptibits();
+                    PlayerPrefs.DeleteAll();
+                    PlayerData.ResetPlayerData();
+                    PlayFabClientAPI.ForgetAllCredentials();
                     HideLoadingPanel();
+                    GameManager.Instance.SceneController.CurrentScene = "EntryScene";
                 },
                 errorCallback =>
                 {
                     ErrorCallback(errorCallback.Error,
-                    PurchaseCurrentItem,
-                    () => ProcessError(errorCallback.ErrorMessage));
+                        LogOut,
+                        () => ProcessError(errorCallback.ErrorMessage));
                 });
         }
-    }
-    #endregion
-
-    #region INVENTORY
-    public void InitializeInventory()
-    {
-        DisplayedInventoryImage.gameObject.SetActive(false);
-        InventoryItemNameTMP.gameObject.SetActive(false);
-        RectanglePanelInventory.SetActive(false);
-    }
-
-    public void SelectBreakRemove()
-    {
-        DisplayedInventoryImage.gameObject.SetActive(true);
-        DisplayedInventoryImage.sprite = BreakRemoveSprite;
-        InventoryItemNameTMP.gameObject.SetActive(true);
-        InventoryItemNameTMP.text = "BREAK REMOVAL";
-        RectanglePanelInventory.SetActive(true);
-        InventoryItemDescriptionTMP.text = "Use to remove negative buff BREAK";
-        InventoryItemCountTMP.text = PlayerData.BreakRemovalCharges.ToString();
-    }
-
-    public void SelectBurnRemove()
-    {
-        DisplayedInventoryImage.gameObject.SetActive(true);
-        DisplayedInventoryImage.sprite = BurnRemoveSprite;
-        InventoryItemNameTMP.gameObject.SetActive(true);
-        InventoryItemNameTMP.text = "BURN REMOVAL";
-        RectanglePanelInventory.SetActive(true);
-        InventoryItemDescriptionTMP.text = "Use to remove negative buff BURN";
-        InventoryItemCountTMP.text = PlayerData.BurnRemovalCharges.ToString();
-    }
-
-    public void SelectConfuseRemove()
-    {
-        DisplayedInventoryImage.gameObject.SetActive(true);
-        DisplayedInventoryImage.sprite = ConfuseRemoveSprite;
-        InventoryItemNameTMP.gameObject.SetActive(true);
-        InventoryItemNameTMP.text = "CONFUSE REMOVAL";
-        RectanglePanelInventory.SetActive(true);
-        InventoryItemDescriptionTMP.text = "Use to remove negative buff CONFUSE";
-        InventoryItemCountTMP.text = PlayerData.ConfuseRemovalCharges.ToString();
-    }
-
-    public void SelectFreezeRemove()
-    {
-        DisplayedInventoryImage.gameObject.SetActive(true);
-        DisplayedInventoryImage.sprite = FreezeRemoveSprite;
-        InventoryItemNameTMP.gameObject.SetActive(true);
-        InventoryItemNameTMP.text = "FREEZE REMOVAL";
-        RectanglePanelInventory.SetActive(true);
-        InventoryItemDescriptionTMP.text = "Use to remove negative buff FREEZE";
-        InventoryItemCountTMP.text = PlayerData.FreezeRemovalCharges.ToString();
-    }
-
-    public void SelectHealRemove()
-    {
-        DisplayedInventoryImage.gameObject.SetActive(true);
-        DisplayedInventoryImage.sprite = HealChargeSprite;
-        InventoryItemNameTMP.gameObject.SetActive(true);
-        InventoryItemNameTMP.text = "HEAL CHARGE";
-        RectanglePanelInventory.SetActive(true);
-        InventoryItemDescriptionTMP.text = "Use to recover 15% Health Points";
-        InventoryItemCountTMP.text = PlayerData.SmallHealCharges.ToString();
-    }
-
-    public void SelectParalyzeRemove()
-    {
-        DisplayedInventoryImage.gameObject.SetActive(true);
-        DisplayedInventoryImage.sprite = ParalyzeRemoveSprite;
-        InventoryItemNameTMP.gameObject.SetActive(true);
-        InventoryItemNameTMP.text = "PARALYZE REMOVAL";
-        RectanglePanelInventory.SetActive(true);
-        InventoryItemDescriptionTMP.text = "Use to remove negative buff PARALYZE";
-        InventoryItemCountTMP.text = PlayerData.ParalyzeRemovalCharges.ToString();
-    }
-
-    public void SelectWeakRemove()
-    {
-        DisplayedInventoryImage.gameObject.SetActive(true);
-        DisplayedInventoryImage.sprite = WeakRemoveSprite;
-        InventoryItemNameTMP.gameObject.SetActive(true);
-        InventoryItemNameTMP.text = "WEAK REMOVAL";
-        RectanglePanelInventory.SetActive(true);
-        InventoryItemDescriptionTMP.text = "Use to remove negative buff WEAK";
-        InventoryItemCountTMP.text = PlayerData.WeakRemovalCharges.ToString();
+        
     }
     #endregion
 
@@ -889,7 +655,10 @@ public class LobbyCore : MonoBehaviour
         // LEFT
         CostumeLeftImage.sprite = ActualCostumesOwned[(2 * CostumePageIndex) - 2].BaseCostumeData.InfoSprite;
         if (ActualCostumesOwned[(2 * CostumePageIndex) - 2].CostumeInstanceID == PlayerData.ActiveConstumeInstanceID)
+        {
+            EquippedCostume.sprite = PlayerData.ActiveCostume.EquippedSprite;
             EquipLeftCostumeBtn.GetComponent<Image>().sprite = UnequipSprite;
+        }
         else
             EquipLeftCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
 
@@ -899,7 +668,10 @@ public class LobbyCore : MonoBehaviour
             CostumeRightImage.gameObject.SetActive(true);
             CostumeRightImage.sprite = ActualCostumesOwned[(2 * CostumePageIndex) - 1].BaseCostumeData.InfoSprite;
             if (ActualCostumesOwned[(2 * CostumePageIndex) - 1].CostumeInstanceID == PlayerData.ActiveConstumeInstanceID)
+            {
+                EquippedCostume.sprite = PlayerData.ActiveCostume.EquippedSprite;
                 EquipRightCostumeBtn.GetComponent<Image>().sprite = UnequipSprite;
+            }
             else
                 EquipRightCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
         }
@@ -919,6 +691,7 @@ public class LobbyCore : MonoBehaviour
                 PlayerData.ActiveCostume = ActualCostumesOwned[(2 * CostumePageIndex) - 2].BaseCostumeData;
                 EquipLeftCostumeBtn.GetComponent<Image>().sprite = UnequipSprite;
                 EquipRightCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
+                EquippedCostume.sprite = PlayerData.ActiveCostume.EquippedSprite;
                 SetOptiCostume(PlayerData.ActiveCostume.LobbyCostumeSprite);
             }
         }
@@ -938,6 +711,7 @@ public class LobbyCore : MonoBehaviour
                         PlayerData.ActiveCostume = ActualCostumesOwned[(2 * CostumePageIndex) - 2].BaseCostumeData;
                         EquipLeftCostumeBtn.GetComponent<Image>().sprite = UnequipSprite;
                         EquipRightCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
+                        EquippedCostume.sprite = PlayerData.ActiveCostume.EquippedSprite;
                         SetOptiCostume(PlayerData.ActiveCostume.LobbyCostumeSprite);
                     },
                     errorCallback =>
@@ -1149,13 +923,7 @@ public class LobbyCore : MonoBehaviour
         GameManager.Instance.DisplayErrorPanel(errorMessage);
     }
 
-    private void ProcessBuyButton()
-    {
-        if (PlayerData.Optibit >= CurrentItemCost)
-            BuyBtn.interactable = true;
-        else
-            BuyBtn.interactable = false;
-    }
+    
     private void ProcessCraftBtn(int fragments, int quota)
     {
         if (fragments >= quota)
@@ -1204,6 +972,7 @@ public class LobbyCore : MonoBehaviour
                     PlayerData.ActiveCostume = null;
                     EquipLeftCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
                     EquipRightCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
+                    EquippedCostume.sprite = NoCostumeSprite;
                     OptiLobbyCostume.gameObject.SetActive(false);
                     OptiEquipCostume.gameObject.SetActive(false);
                 },
@@ -1216,29 +985,6 @@ public class LobbyCore : MonoBehaviour
         }
     }
 
-    private string GetConsumableId(int _value)
-    {
-        switch(_value)
-        {
-            case 0:
-                return "BreakRemoval";
-            case 1:
-                return "BurnRemoval";
-            case 2:
-                return "ConfuseRemoval";
-            case 3:
-                return "FreezeRemoval";
-            case 4:
-                return "HealCharge";
-            case 5:
-                return "ParalyzeRemoval";
-            case 6:
-                return "WeakRemoval";
-            default:
-                return null;
-        }
-    }
-    
     private string GetFragmentId(int _value)
     {
         switch(_value)

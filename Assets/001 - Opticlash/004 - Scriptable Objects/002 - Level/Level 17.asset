@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Level 17
   m_EditorClassIdentifier: 
   <LevelIndex>k__BackingField: 17
+  <SelectedLevelSprite>k__BackingField: {fileID: 21300000, guid: 16b351fadfc8b8848b9c2c4c8ce3df86, type: 3}
   <MonsterList>k__BackingField:
   - BreakMonster007
   - ParalyzeMonster008
