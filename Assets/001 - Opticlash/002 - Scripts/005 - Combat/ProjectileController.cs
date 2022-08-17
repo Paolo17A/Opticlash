@@ -27,6 +27,7 @@ public class ProjectileController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        Debug.Log("projectile controller");
         tParam = 0f;
         coroutineAllowed = true;
     }

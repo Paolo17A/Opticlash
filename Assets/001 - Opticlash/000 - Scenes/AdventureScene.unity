@@ -2932,7 +2932,8 @@ MonoBehaviour:
   previousTouchPoint: {x: 0, y: 0, z: 0}
   nextTouchPoint: {x: 0, y: 0, z: 0}
   draggedEndPoint: {x: 0, y: 0, z: 0}
-  speed: 100
+  dummyVector: {x: 0, y: 0, z: 0}
+  speed: 10
 --- !u!1 &377938150
 GameObject:
   m_ObjectHideFlags: 0

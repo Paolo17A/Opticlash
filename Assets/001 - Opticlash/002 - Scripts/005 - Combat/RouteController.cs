@@ -9,6 +9,7 @@ public class RouteController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Debug.Log("drawing gizos");
         for(float t = 0; t <= 1; t += 0.05f)
         {
             gizmoPosition = Mathf.Pow(1 - t, 3) * ControlPoints[0].position + 

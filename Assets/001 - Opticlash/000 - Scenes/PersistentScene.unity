@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -591,7 +591,7 @@ Camera:
   m_Depth: -2
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -628,6 +628,7 @@ GameObject:
   - component: {fileID: 991978296}
   - component: {fileID: 991978298}
   - component: {fileID: 991978297}
+  - component: {fileID: 991978299}
   m_Layer: 5
   m_Name: LoadingImg
   m_TagString: Untagged
@@ -692,6 +693,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 991978295}
   m_CullTransparentMesh: 1
+--- !u!95 &991978299
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991978295}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5d5f499b6d247c84b8929aaadc36110b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1101604920
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,7 +980,7 @@ MonoBehaviour:
   - {fileID: 251851744}
   <CheatsActivated>k__BackingField: 0
   <DebugMode>k__BackingField: 0
-  SceneToLoad: LobbyScene
+  SceneToLoad: AdventureScene
   <PanelActivated>k__BackingField: 0
   <MyUICamera>k__BackingField: {fileID: 415185209}
   <MainCamera>k__BackingField: {fileID: 1931867518}
@@ -1080,7 +1100,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.5
+  orthographic size: 9.55
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1104,7 +1124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1931867516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4.99}
+  m_LocalPosition: {x: 3.9, y: 14.56, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 415185206}

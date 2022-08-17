@@ -6,7 +6,7 @@ public class KaboomController : MonoBehaviour
 {
     [field: SerializeField] PlayerData PlayerData { get; set; }
 
-    private void Start()
+    /*private void Start()
     {
         if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C2 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C3 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C4 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C5)
             gameObject.GetComponent<SpriteRenderer>().color = Color.green;
@@ -16,7 +16,7 @@ public class KaboomController : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         else if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.S1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.S2)
             gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
-    }
+    }*/
 
     public void HideKaboom()
     {

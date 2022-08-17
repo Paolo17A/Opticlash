@@ -87,11 +87,14 @@ public class AdventureCore : MonoBehaviour
 
     public void OpenCombatScene()
     {
+        GameManager.Instance.PanelActivated = false;
         GameManager.Instance.SceneController.CurrentScene = "CombatScene";
     }
 
     public void CloseStageSelect()
     {
+        GameManager.Instance.PanelActivated = false;
+        LevelWasSelected = false;
         StageSelectAnimator.SetBool("ShowStageSelect", false);
         GameManager.Instance.CurrentLevelData = null;
     }

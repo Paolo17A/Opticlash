@@ -32,6 +32,12 @@ public class ShopCore : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI ItemDescriptionTMP { get; set; }
     [field: SerializeField] private Button BuyBtn { get; set; }
 
+    [field: Header("QUANTITY")]
+    [field: SerializeField] public int PurchaseQuantity { get; set; }
+    [field: SerializeField] private TextMeshProUGUI QuantityTMP { get; set; }
+    [field: SerializeField] private Button IncreaseQuantityBtn { get; set; }
+    [field: SerializeField] private Button DecreaseQuantityBtn { get; set; }
+
     [Header("DEBUGGER")]
     private int failedCallbackCounter;
     //===============================================================================================
@@ -39,6 +45,8 @@ public class ShopCore : MonoBehaviour
     #region SHOP
     public void PreviousShopItem()
     {
+        PurchaseQuantity = 1;
+        QuantityTMP.text = PurchaseQuantity.ToString();
         if (ShopIndex == 0)
             ShopIndex = 6;
         else
@@ -47,6 +55,8 @@ public class ShopCore : MonoBehaviour
     }
     public void NextShopItem()
     {
+        PurchaseQuantity = 1;
+        QuantityTMP.text = PurchaseQuantity.ToString();
         if (ShopIndex == 6)
             ShopIndex = 0;
         else
@@ -54,8 +64,27 @@ public class ShopCore : MonoBehaviour
         DisplayShopItem();
     }
 
+    public void IncreaseQuantity()
+    {
+        PurchaseQuantity++;
+        QuantityTMP.text = PurchaseQuantity.ToString();
+        DecreaseQuantityBtn.interactable = true;
+        DisplayShopItem();
+    }
+
+    public void DecreaseQuantity()
+    {
+        PurchaseQuantity--;
+        QuantityTMP.text = PurchaseQuantity.ToString();
+        IncreaseQuantityBtn.interactable = true;
+        DisplayShopItem();
+    }
+
     public void DisplayShopItem()
     {
+        QuantityTMP.text = PurchaseQuantity.ToString();
+        if(PurchaseQuantity == 1)
+            DecreaseQuantityBtn.interactable = false;
         switch (ShopIndex)
         {
             case 0:
@@ -113,7 +142,7 @@ public class ShopCore : MonoBehaviour
                 CurrentItemCost = 450;
                 break;
         }
-        ItemCostTMP.text = CurrentItemCost.ToString();
+        ItemCostTMP.text = (CurrentItemCost * PurchaseQuantity).ToString();
         ProcessBuyButton();
     }
 
@@ -159,7 +188,25 @@ public class ShopCore : MonoBehaviour
         {
             LobbyCore.DisplayLoadingPanel();
 
-            PurchaseItemRequest purchaseItem = new PurchaseItemRequest();
+            StartPurchaseRequest startPurchase = new StartPurchaseRequest();
+            startPurchase.CatalogVersion = "Consumables";
+            startPurchase.Items = new List<ItemPurchaseRequest>();
+            startPurchase.Items.Add(new ItemPurchaseRequest() { ItemId = GetConsumableId(ShopIndex), Quantity = (uint)PurchaseQuantity });
+
+            PlayFabClientAPI.StartPurchase(startPurchase,
+                resultCallback =>
+                {
+                    failedCallbackCounter = 0;
+                    PayForPurchase(resultCallback.OrderId, resultCallback.PaymentOptions[0].ProviderName);
+                },
+                errorCallback =>
+                {
+                    ErrorCallback(errorCallback.Error,
+                    PurchaseCurrentItem,
+                    () => ProcessError(errorCallback.ErrorMessage));
+                });
+
+            /*PurchaseItemRequest purchaseItem = new PurchaseItemRequest();
             purchaseItem.CatalogVersion = "Consumables";
             purchaseItem.ItemId = GetConsumableId(ShopIndex);
             purchaseItem.Price = CurrentItemCost;
@@ -168,68 +215,117 @@ public class ShopCore : MonoBehaviour
             PlayFabClientAPI.PurchaseItem(purchaseItem,
                 resultCallback =>
                 {
-                    failedCallbackCounter = 0;
-                    switch (ShopIndex)
-                    {
-                        case 0:
-                            PlayerData.BreakRemovalCharges++;
-                            PlayerData.BreakRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 1:
-                            PlayerData.BurnRemovalCharges++;
-                            PlayerData.BurnRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 2:
-                            PlayerData.ConfuseRemovalCharges++;
-                            PlayerData.ConfuseRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 3:
-                            PlayerData.FreezeRemovalCharges++;
-                            PlayerData.FreezeRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 4:
-                            PlayerData.SmallHealCharges++;
-                            PlayerData.SmallHealInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 5:
-                            PlayerData.MediumHealCharges++;
-                            PlayerData.MediumHealInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 6:
-                            PlayerData.LargeHealCharges++;
-                            PlayerData.LargeHealInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 7:
-                            PlayerData.ParalyzeRemovalCharges++;
-                            PlayerData.ParalyzeRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                        case 8:
-                            PlayerData.WeakRemovalCharges++;
-                            PlayerData.WeakRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
-                            break;
-                    }
-                    PlayerData.Optibit -= CurrentItemCost;
-                    ProcessBuyButton();
-                    LobbyCore.DisplayOptibits();
-                    LobbyCore.HideLoadingPanel();
+                    
                 },
                 errorCallback =>
                 {
                     ErrorCallback(errorCallback.Error,
                     PurchaseCurrentItem,
                     () => ProcessError(errorCallback.ErrorMessage));
-                });
+                });*/
         }
+    }
+
+    private void PayForPurchase(string _orderID, string _providerName)
+    {
+        PayForPurchaseRequest payForPurchase = new PayForPurchaseRequest();
+        payForPurchase.Currency = "OP";
+        payForPurchase.OrderId = _orderID;
+        payForPurchase.ProviderName = _providerName;
+
+        PlayFabClientAPI.PayForPurchase(payForPurchase,
+            resultCallback =>
+            {
+                failedCallbackCounter = 0;
+                ConfirmPurchase(_orderID);
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error,
+                    () => PayForPurchase(_orderID, _providerName),
+                    () => ProcessError(errorCallback.ErrorMessage));
+            });
+    }
+
+    private void ConfirmPurchase(string _orderID)
+    {
+        ConfirmPurchaseRequest confirmPurchase = new ConfirmPurchaseRequest();
+        confirmPurchase.OrderId = _orderID;
+
+        PlayFabClientAPI.ConfirmPurchase(confirmPurchase,
+            resultCallback =>
+            {
+                failedCallbackCounter = 0;
+                switch (ShopIndex)
+                {
+                    case 0:
+                        PlayerData.BreakRemovalCharges += PurchaseQuantity;
+                        PlayerData.BreakRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
+                        break;
+                    case 1:
+                        PlayerData.BurnRemovalCharges += PurchaseQuantity;
+                        PlayerData.BurnRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
+                        break;
+                    case 2:
+                        PlayerData.ConfuseRemovalCharges += PurchaseQuantity;
+                        PlayerData.ConfuseRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
+                        break;
+                    case 3:
+                        PlayerData.FreezeRemovalCharges += PurchaseQuantity;
+                        PlayerData.FreezeRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
+                        break;
+                    case 4:
+                        PlayerData.SmallHealCharges += PurchaseQuantity;
+                        PlayerData.SmallHealInstanceID = resultCallback.Items[0].ItemInstanceId;
+                        break;
+                    case 5:
+                        PlayerData.MediumHealCharges += PurchaseQuantity;
+                        PlayerData.MediumHealInstanceID = resultCallback.Items[0].ItemInstanceId;
+                        break;
+                    case 6:
+                        PlayerData.LargeHealCharges += PurchaseQuantity;
+                        PlayerData.LargeHealInstanceID = resultCallback.Items[0].ItemInstanceId;
+                        break;
+                    case 7:
+                        PlayerData.ParalyzeRemovalCharges += PurchaseQuantity;
+                        PlayerData.ParalyzeRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
+                        break;
+                    case 8:
+                        PlayerData.WeakRemovalCharges += PurchaseQuantity;
+                        PlayerData.WeakRemovalInstanceID = resultCallback.Items[0].ItemInstanceId;
+                        break;
+                }
+                PlayerData.Optibit -= (CurrentItemCost * PurchaseQuantity);
+                PurchaseQuantity = 1;
+                DisplayShopItem();
+                LobbyCore.DisplayOptibits();
+                LobbyCore.HideLoadingPanel();
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error,
+                    () => ConfirmPurchase(_orderID),
+                    () => ProcessError(errorCallback.ErrorMessage));
+            });
     }
     #endregion
 
     #region UTILITY
     private void ProcessBuyButton()
     {
-        if (PlayerData.Optibit >= CurrentItemCost)
+        if (PlayerData.Optibit >= CurrentItemCost * PurchaseQuantity)
+        {
             BuyBtn.interactable = true;
+            if (PlayerData.Optibit >= CurrentItemCost * (PurchaseQuantity + 1))
+                IncreaseQuantityBtn.interactable = true;
+            else
+                IncreaseQuantityBtn.interactable = false;
+        }
         else
+        {
             BuyBtn.interactable = false;
+            IncreaseQuantityBtn.interactable = false;
+        }
     }
     private void ErrorCallback(PlayFabErrorCode errorCode, Action restartAction, Action errorAction)
     {

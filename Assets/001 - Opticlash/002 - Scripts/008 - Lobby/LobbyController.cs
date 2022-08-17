@@ -48,10 +48,31 @@ public class LobbyController : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.3f);
         LobbyCore.LobbyAnimator.SetInteger("index", (int)LobbyCore.CurrentLobbyState);
-        if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.RANK)
+        if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.CORE)
+        {
+            if(GameManager.Instance.DebugMode)
+            {
+                LobbyCore.GetActiveCannon();
+                LobbyCore.GetActiveCostume();
+                LobbyCore.DisplayOptibits();
+            }
+            else
+            {
+                LobbyCore.GrantPanel.SetActive(false);
+                LobbyCore.GrantCanvas.SetActive(false);
+                LootboxCore.OptibitReward.SetActive(false);
+                LootboxCore.FragmentReward.SetActive(false);
+                LootboxCore.CannonReward.SetActive(false);
+                LootboxCore.CostumeReward.SetActive(false);
+            }
+        }
+        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.RANK)
             LeaderboardCore.InitializeLeaderboard();
         else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.SHOP)
+        {
+            ShopCore.PurchaseQuantity = 1;
             ShopCore.DisplayShopItem();
+        }
         else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.INVENTORY)
             InventoryCore.InitializeInventory();
         else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.LOOTBOX)
@@ -71,6 +92,8 @@ public class LobbyController : MonoBehaviour
             LobbyCore.CostumeBtn.GetComponent<Image>().sprite = LobbyCore.ActiveCostumeSprite;
             LobbyCore.InitializeCostumes();
         }
+        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.SETTINGS || LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.NEWGRANT)
+            UpgradeCannonCore.CurrentCannonImage.gameObject.SetActive(false);
         else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.CURRENTCANNON)
             LobbyCore.DisplayOptibits();
     }
@@ -82,6 +105,7 @@ public class LobbyController : MonoBehaviour
     [field: SerializeField] private LootboxCore LootboxCore { get; set; }
     [field: SerializeField] private ShopCore ShopCore { get; set; }
     [field: SerializeField] private InventoryCore InventoryCore { get; set; }
+    [field: SerializeField] private UpgradeCannonCore UpgradeCannonCore { get; set; }
 
     public void LobbyStateToIndex(int state)
     {

@@ -28,7 +28,8 @@ public class LobbyCore : MonoBehaviour
         COSTUME,
         CANNON,
         CURRENTCANNON,
-        CLAIM
+        CLAIM,
+        NEWGRANT
     }
 
     private event EventHandler lobbyStateChange;
@@ -89,7 +90,11 @@ public class LobbyCore : MonoBehaviour
     [field: SerializeField] public Button CostumeBtn { get; set; }
     [field: SerializeField] public Button WeaponBtn { get; set; }
     [field: SerializeField] private Image EquippedWeapon { get; set; }
+    [field: SerializeField] private TextMeshProUGUI AttackTMP { get; set; }
+    [field: SerializeField] private TextMeshProUGUI AccuracyTMP { get; set; }
     [field: SerializeField] private Image EquippedCostume { get; set; }
+    [field: SerializeField] private TextMeshProUGUI DefenseTMP { get; set; }
+    [field: SerializeField] private TextMeshProUGUI EvasionTMP { get; set; }
     [field: SerializeField] private Sprite NoWeaponSprite { get; set; }
     [field: SerializeField] private Sprite NoCostumeSprite { get; set; }
 
@@ -142,6 +147,12 @@ public class LobbyCore : MonoBehaviour
     [field: SerializeField] private Button PreviousWeaponPageBtn { get; set; }
     [field: SerializeField] private Button NextWeaponPageBtn { get; set; }
     [field: SerializeField] private TextMeshProUGUI WeaponPageTMP { get; set; }
+
+    [field: Header("GRANT")]
+    [field: SerializeField] public GameObject GrantPanel { get; set; }
+    [field: SerializeField] public GameObject GrantCanvas { get; set; }
+    [field: SerializeField] public TextMeshProUGUI GrantAmountTMP { get; set; }
+    [field: SerializeField] public GameObject OkBtn { get; set; }
 
     [field: Header("PLAY BUTTONS")]
     [field: SerializeField] private Button AdventureBtn { get; set; }
@@ -261,8 +272,11 @@ public class LobbyCore : MonoBehaviour
             UpgradeCannonCore.CurrentCannonImage.gameObject.SetActive(false);
             OptiEquipCannon.gameObject.SetActive(false);
             OptiLobbyCannon.gameObject.SetActive(false);
+            AttackTMP.gameObject.SetActive(false);
+            AccuracyTMP.gameObject.SetActive(false);
             EquippedWeapon.sprite = NoWeaponSprite;
             AdventureBtn.interactable = false;
+            UpgradeCannonCore.UpgradeSuccessRateTMP.text = "NONE";
         }
         else
         {
@@ -277,11 +291,34 @@ public class LobbyCore : MonoBehaviour
                 {
                     PlayerData.ActiveCustomWeapon = weapon;
                     EquippedWeapon.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.EquippedSprite;
+                    AttackTMP.text = "Attack: " + PlayerData.ActiveCustomWeapon.Attack;
+                    AccuracyTMP.text = "Accuracy: " + PlayerData.ActiveCustomWeapon.Accuracy;
                     UpgradeCannonCore.CurrentCannonImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentSprite;
                     UpgradeCannonCore.CurrentCannonBigImage.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.CurrentBigSprite;
                     UpgradeCannonCore.CurrentCannonDamageTMP.text = PlayerData.ActiveCustomWeapon.Attack.ToString();
                     UpgradeCannonCore.CurrentCannonAccuracyTMP.text = PlayerData.ActiveCustomWeapon.Accuracy.ToString();
-                    UpgradeCannonCore.CurrentCannonAbilitiesTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.Abilities;
+                    if (PlayerData.ActiveCustomWeapon.BaseWeaponData.Abilities != "")
+                        UpgradeCannonCore.CurrentCannonAbilitiesTMP.text = PlayerData.ActiveCustomWeapon.BaseWeaponData.Abilities;
+                    else
+                        UpgradeCannonCore.CurrentCannonAbilitiesTMP.text = "NONE";
+
+                    if(PlayerData.ActiveCustomWeapon.Level == PlayerData.ActiveCustomWeapon.BaseWeaponData.StartingLevel)
+                    {
+                        UpgradeCannonCore.SuccessChance = 100;
+                        UpgradeCannonCore.UpgradeSuccessRateTMP.text = UpgradeCannonCore.SuccessChance.ToString();
+                    }
+                    else
+                    {
+                        UpgradeCannonCore.SuccessChance = 100;
+                        float dummyLevel = PlayerData.ActiveCustomWeapon.BaseWeaponData.StartingLevel;
+                        while(dummyLevel <= PlayerData.ActiveCustomWeapon.Level)
+                        {
+                            UpgradeCannonCore.SuccessChance -= 10;
+                            dummyLevel += PlayerData.ActiveCustomWeapon.BaseWeaponData.UpgradeValue;
+                        }
+                        UpgradeCannonCore.UpgradeSuccessRateTMP.text = UpgradeCannonCore.SuccessChance.ToString();
+
+                    }
                     break;
                 }
             }
@@ -300,6 +337,10 @@ public class LobbyCore : MonoBehaviour
                     break;
                 }
             EquippedCostume.sprite = PlayerData.ActiveCostume.EquippedSprite;
+            DefenseTMP.gameObject.SetActive(true);
+            EvasionTMP.gameObject.SetActive(true);
+            DefenseTMP.text = "Defense: " + ((5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10).ToString();
+            EvasionTMP.text = "Evasion" + ((5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10).ToString();
             SetOptiCostume(PlayerData.ActiveCostume.LobbyCostumeSprite);
         }
         else
@@ -307,6 +348,8 @@ public class LobbyCore : MonoBehaviour
             OptiLobbyCostume.gameObject.SetActive(false);
             OptiEquipCostume.gameObject.SetActive(false);
             EquippedCostume.sprite = NoCostumeSprite;
+            DefenseTMP.gameObject.SetActive(false);
+            EvasionTMP.gameObject.SetActive(false);
         }
     }
 
@@ -317,8 +360,8 @@ public class LobbyCore : MonoBehaviour
         if(PlayerData.ActiveWeaponID != "NONE")
         {
             UpgradeCannonCore.CurrentCannonDamageTMP.text = PlayerData.ActiveCustomWeapon.Attack.ToString();
-            UpgradeCannonCore.CurrentCannonRequiredFragments.text = PlayerData.ActiveCustomWeapon.FragmentUpgradeCost.ToString();
-            UpgradeCannonCore.CurrentCannonRequiredOptibit.text = PlayerData.ActiveCustomWeapon.OptibitUpgradeCost.ToString();
+            UpgradeCannonCore.CurrentCannonRequiredFragments.text = GetFragmentBasis() + "/" + PlayerData.ActiveCustomWeapon.FragmentUpgradeCost.ToString();
+            UpgradeCannonCore.CurrentCannonRequiredOptibit.text = PlayerData.Optibit + "/" + PlayerData.ActiveCustomWeapon.OptibitUpgradeCost.ToString();
             if (PlayerData.Optibit >= PlayerData.ActiveCustomWeapon.OptibitUpgradeCost && PlayerData.ActiveCustomWeapon.FragmentUpgradeCost <= GetFragmentBasis())
                 UpgradeCannonCore.UpgradeCannonBtn.interactable = true;
             else
@@ -693,6 +736,10 @@ public class LobbyCore : MonoBehaviour
                 EquipRightCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
                 EquippedCostume.sprite = PlayerData.ActiveCostume.EquippedSprite;
                 SetOptiCostume(PlayerData.ActiveCostume.LobbyCostumeSprite);
+                DefenseTMP.gameObject.SetActive(true);
+                EvasionTMP.gameObject.SetActive(true);
+                DefenseTMP.text = "Defense: " + ((5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10).ToString();
+                EvasionTMP.text = "Evasion" + ((5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10).ToString();
             }
         }
         else
@@ -713,6 +760,10 @@ public class LobbyCore : MonoBehaviour
                         EquipRightCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
                         EquippedCostume.sprite = PlayerData.ActiveCostume.EquippedSprite;
                         SetOptiCostume(PlayerData.ActiveCostume.LobbyCostumeSprite);
+                        DefenseTMP.gameObject.SetActive(true);
+                        EvasionTMP.gameObject.SetActive(true);
+                        DefenseTMP.text = "Defense: " + ((5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10).ToString();
+                        EvasionTMP.text = "Evasion" + ((5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10).ToString();
                     },
                     errorCallback =>
                     {
@@ -738,6 +789,10 @@ public class LobbyCore : MonoBehaviour
                 EquipLeftCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
                 EquipRightCostumeBtn.GetComponent<Image>().sprite = UnequipSprite;
                 SetOptiCostume(PlayerData.ActiveCostume.LobbyCostumeSprite);
+                DefenseTMP.gameObject.SetActive(true);
+                EvasionTMP.gameObject.SetActive(true);
+                DefenseTMP.text = "Defense: " + ((5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10).ToString();
+                EvasionTMP.text = "Evasion" + ((5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10).ToString();
             }
         }
         else
@@ -757,6 +812,10 @@ public class LobbyCore : MonoBehaviour
                         EquipLeftCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
                         EquipRightCostumeBtn.GetComponent<Image>().sprite = UnequipSprite;
                         SetOptiCostume(PlayerData.ActiveCostume.LobbyCostumeSprite);
+                        DefenseTMP.gameObject.SetActive(true);
+                        EvasionTMP.gameObject.SetActive(true);
+                        DefenseTMP.text = "Defense: " + ((5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10).ToString();
+                        EvasionTMP.text = "Evasion" + ((5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10).ToString();
                     },
                     errorCallback =>
                     {
@@ -958,6 +1017,10 @@ public class LobbyCore : MonoBehaviour
             EquipRightCostumeBtn.GetComponent<Image>().sprite = EquipSprite;
             OptiLobbyCostume.gameObject.SetActive(false);
             OptiEquipCostume.gameObject.SetActive(false);
+            DefenseTMP.gameObject.SetActive(true);
+            EvasionTMP.gameObject.SetActive(true);
+            DefenseTMP.text = "Defense: " + ((5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10).ToString();
+            EvasionTMP.text = "Evasion" + ((5 * (PlayerData.ActiveCostume.CostumeLevel * 0.5f)) + 10).ToString();
         }
         else
         {
@@ -975,6 +1038,8 @@ public class LobbyCore : MonoBehaviour
                     EquippedCostume.sprite = NoCostumeSprite;
                     OptiLobbyCostume.gameObject.SetActive(false);
                     OptiEquipCostume.gameObject.SetActive(false);
+                    DefenseTMP.gameObject.SetActive(false);
+                    EvasionTMP.gameObject.SetActive(false);
                 },
                 errorCallback =>
                 {

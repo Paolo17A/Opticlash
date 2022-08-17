@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayFabEditorPrefsSO
   m_EditorClassIdentifier: 
   DevAccountEmail: boombrainstudio@gmail.com
-  DevAccountToken: o4u5sdgktg1xta3sh61jmene1upfaq1faju5kxgguqniu95i3mmn8uj5s5e36677tewe8wk8imz5spu3a6kjnegraxpcspr3j9dufwb3e9h7qenucbtqpzjcnuzdnsemdwbmzkxwbd366w1yasx931u9ozufqffdewzmtpgegyhuamozzthu33et5jmd5ygzu6x1haii
+  DevAccountToken: be6scr31165tnemm9z64xx8qb5gnjni6isa8ykpxbsfxqs7w15s9zx193g4m9jowa9r4ktu1dc1tdhk8icsjg8xe5hd5kufkeo7uwhmcypcbehkobz98kkgc41tuaft8d4ddcep36tgxox5ufqdjzkykedpensift4ry4srfb5o1ntu7311awgsd6eaukfqhqazq96iz
   SelectedStudio: 
   SdkPath: Assets/PlayFabSDK
   EdExPath: 

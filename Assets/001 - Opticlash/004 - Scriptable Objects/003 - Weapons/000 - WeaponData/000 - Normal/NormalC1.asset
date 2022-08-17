@@ -17,6 +17,7 @@ MonoBehaviour:
   <BaseDamage>k__BackingField: 5
   <Accuracy>k__BackingField: 81
   <StartingAmmo>k__BackingField: 200
+  <StartingLevel>k__BackingField: 1
   <UpgradeValue>k__BackingField: 0.2
   <Abilities>k__BackingField: 
   <SideEffects>k__BackingField: 

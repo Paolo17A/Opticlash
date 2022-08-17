@@ -10,7 +10,9 @@ public class CombatController : MonoBehaviour
 
     private void OnEnable()
     {
+        GameManager.Instance.SceneController.ActionPass = true;
         CombatCore.onCombatStateChange += CombatStateChange;
+        Debug.Log("Combat controller");
     }
 
     private void OnDisable()
@@ -20,6 +22,7 @@ public class CombatController : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("combat controller start");
         foreach (CustomWeaponData weapon in PlayerData.OwnedWeapons)
             if (weapon.WeaponInstanceID == PlayerData.ActiveWeaponID)
             {

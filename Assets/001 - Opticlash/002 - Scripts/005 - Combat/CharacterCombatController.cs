@@ -71,7 +71,13 @@ public class CharacterCombatController : MonoBehaviour
 
     [field: Header("WEAPON DATA")]
     [field: SerializeField] private GameObject CannonBlast { get; set; }
-    [field: SerializeField] public GameObject Kaboom { get; set; }
+    [field: SerializeField] public GameObject NormalKaboom { get; set; }
+    [field: SerializeField] public GameObject BurnKaboom { get; set; }
+    [field: SerializeField] public GameObject BreakKaboom { get; set; }
+    [field: SerializeField] public GameObject ConfuseKaboom { get; set; }
+    [field: SerializeField] public GameObject FreezeKaboom { get; set; }
+    [field: SerializeField] public GameObject ParalyzeKaboom { get; set; }
+    [field: SerializeField] public GameObject WeakKaboom { get; set; }
     [field: SerializeField] private SpriteRenderer CannonBackSprite { get; set; }
     [field: SerializeField] private SpriteRenderer CannonMiddleSprite { get; set; }
     [field: SerializeField] private SpriteRenderer CannonFrontSprite { get; set; }
@@ -88,7 +94,9 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField] public int ShieldTurnsCooldown { get; set; }
     [field: SerializeField] public bool WarpActivated { get; set; }
     [field: SerializeField] public int WarpGunInstancesRemaining { get; set; }
-    [field: SerializeField] public int MonstersToSkip { get; set; }
+    [field: SerializeField] public int LifestealInstancesRemaining { get; set; }
+    [field: SerializeField] public bool LifestealActivated { get; set; }
+    [field: SerializeField] public GameObject LifestealEffect { get; set; }
 
     [field: Header("SIDE EFFECTS")]
     [field: SerializeField] public SpriteRenderer StatusEffectImage { get; set; }
@@ -132,6 +140,7 @@ public class CharacterCombatController : MonoBehaviour
     private void OnEnable()
     {
         playerCombatStateChange += CombatStateChange;
+        Debug.Log("ccharacter combat controller enabled");
     }
 
     private void OnDisable()
@@ -142,6 +151,7 @@ public class CharacterCombatController : MonoBehaviour
     private void Start()
     {
         ProjectileCoroutineAllowed = true;
+        Debug.Log("character combat controller start");
     }
 
     private void Update()
@@ -170,7 +180,32 @@ public class CharacterCombatController : MonoBehaviour
         {
             Projectile.SetActive(false);
             ProjectileSpawned = false;
-            Kaboom.SetActive(true);
+
+            switch(CombatCore.CurrentEnemy.AfflictedSideEffect)
+            {
+                case WeaponData.SideEffect.NONE:
+                    NormalKaboom.SetActive(true);
+                    break;
+                case WeaponData.SideEffect.BURN:
+                    BurnKaboom.SetActive(true);
+                    break;
+                case WeaponData.SideEffect.BREAK:
+                    BreakKaboom.SetActive(true);
+                    break;
+                case WeaponData.SideEffect.CONFUSE:
+                    ConfuseKaboom.SetActive(true);
+                    break;
+                case WeaponData.SideEffect.FREEZE:
+                    FreezeKaboom.SetActive(true);
+                    break;
+                case WeaponData.SideEffect.PARALYZE:
+                    ParalyzeKaboom.SetActive(true);
+                    break;
+                case WeaponData.SideEffect.WEAK:
+                    WeakKaboom.SetActive(true);
+                    break;
+            }
+            StartCoroutine(DelayKaboom());
             if (DoubleDamageActivated)
             {
                 if (CurrentSideEffect == EnemyCombatController.SideEffect.WEAK)
@@ -209,8 +244,6 @@ public class CharacterCombatController : MonoBehaviour
             }
             if (Lifestealing)
                 InvokeLifesteal();
-            //InflictStatusEffect();
-            //ProcessDoubleDamage();
         }
         //MISS
         else
@@ -229,17 +262,22 @@ public class CharacterCombatController : MonoBehaviour
     {
         #region COSTUME
         if(PlayerData.ActiveCostume == null)
+        {
             Costume.SetActive(false);
+            CombatCore.OptiCostume.gameObject.SetActive(false);
+        }
         else
         {
             Costume.SetActive(true);
             Costume.GetComponent<SpriteRenderer>().sprite = PlayerData.ActiveCostume.CostumeSprite;
+            CombatCore.OptiCostume.sprite = PlayerData.ActiveCostume.LobbyCostumeSprite;
         }
         #endregion
         #region CANNON SPPRITES
         CannonBackSprite.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.BackSprite;
         CannonMiddleSprite.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.MiddleSprite;
         CannonFrontSprite.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.FrontSprite;
+        CombatCore.OptiCannon.sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.AnimatedSprite;
         #endregion
         #region PROJECTILE SPRITES
         Projectile.GetComponent<SpriteRenderer>().sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.Ammo;
@@ -272,7 +310,7 @@ public class CharacterCombatController : MonoBehaviour
         #endregion
         RemoveSideEffects();
         ShieldInstancesRemaining = 5;
-
+        LifestealInstancesRemaining = 1;
         #region STATS
         Attack = PlayerData.ActiveCustomWeapon.Attack;
         ShotAccuracy = PlayerData.ActiveCustomWeapon.Accuracy;
@@ -300,6 +338,18 @@ public class CharacterCombatController : MonoBehaviour
     {
         //Debug.Log("Current Opti state: " + CurrentCombatState);
         PlayerAnimator.SetInteger("index", (int)CurrentCombatState);
+    }
+
+    private IEnumerator DelayKaboom()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        NormalKaboom.SetActive(false);
+        BurnKaboom.SetActive(false);
+        BreakKaboom.SetActive(false);
+        ConfuseKaboom.SetActive(false);
+        FreezeKaboom.SetActive(false);
+        ParalyzeKaboom.SetActive(false);
+        WeakKaboom.SetActive(false);
     }
 
     #region POWERUPS
@@ -331,6 +381,15 @@ public class CharacterCombatController : MonoBehaviour
         }
         else
             Debug.Log("Shield is already activated");
+    }
+    public void ActivateLifesteal()
+    {
+        if(!Lifestealing && LifestealInstancesRemaining > 0 && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
+        {
+            Lifestealing = true;
+            LifestealHP = DamageDeal / 2;
+            LifestealEffect.SetActive(true);
+        }
     }
 
     public void ActivateWarpGun()
@@ -804,6 +863,7 @@ public class CharacterCombatController : MonoBehaviour
 
     public void ProcessEndAttack()
     {
+        Debug.Log("reducing shots earned");
         BoardCore.ShotsEarned--;
         if (BoardCore.ShotsEarned == 0)
         {
@@ -1042,21 +1102,16 @@ public class CharacterCombatController : MonoBehaviour
         HealthSlider.transform.localPosition = new Vector3(HealthSlider.transform.localScale.x - 1, HealthSlider.transform.localPosition.y, HealthSlider.transform.localPosition.z);
     }
 
-    public void ActivateLifesteal(float _value)
-    {
-        Lifestealing = true;
-        LifestealHP = _value;
-    }
-
     private void InvokeLifesteal()
     {
         Debug.Log("Opti will lifesteal");
-        CurrentHealth += LifestealHP;
+        CurrentHealth += (DamageDeal / 2);
         if (CurrentHealth > MaxHealth)
             CurrentHealth = MaxHealth;
         UpdateHealthBar();
+        LifestealEffect.SetActive(false);
         Lifestealing = false;
-        LifestealHP = 0;
+        LifestealInstancesRemaining--;
     }
 
     private void ErrorCallback(PlayFabErrorCode errorCode, Action restartAction, Action errorAction)

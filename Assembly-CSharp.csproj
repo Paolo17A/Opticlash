@@ -101,6 +101,7 @@
     <Compile Include="Assets\Web3Unity\Scripts\Library\Web3Wallet.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\013 - Claim\ClaimCore.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\004 - Matching\GemController.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\012 - Upgrade\UpgradeAnimationCore.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListeners.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\Minter\Model\GetNftListModel.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\PrivateKey\SignVerifyPK.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\PrivateKey\Web3PrivateKeySendTransactionExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\Minter\MintWeb3Wallet1155.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\011 - Lootbox\LootboxAnimationCore.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\Minter\ListNFTWebGL.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralAdvancedTechniques.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />

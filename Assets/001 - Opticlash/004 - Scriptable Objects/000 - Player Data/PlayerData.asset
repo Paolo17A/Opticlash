@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b2693c71f3c3747bca6ff10209fb2a, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  <PlayfabID>k__BackingField: 
-  <DisplayName>k__BackingField: 
-  <LUID>k__BackingField: 
-  <CurrentStage>k__BackingField: 1
+  <PlayfabID>k__BackingField: 4F21BA08507D8C06
+  <DisplayName>k__BackingField: test123
+  <LUID>k__BackingField: 8014b29f-e208-40a7-8ef5-b7c82212b608
+  <CurrentStage>k__BackingField: 4
   <TotalKillCount>k__BackingField: 0
   <EnergyCount>k__BackingField: 20
-  <Optibit>k__BackingField: 0
+  <Optibit>k__BackingField: 359423
   <CurrentHealth>k__BackingField: 100
   <MaxHealth>k__BackingField: 100
-  <ActiveWeaponID>k__BackingField: default
-  <ActiveCustomWeapon>k__BackingField: {fileID: 11400000, guid: e58b2b3803e848140bf807589421281f, type: 2}
+  <ActiveWeaponID>k__BackingField: 74730C0F8A722188
+  <ActiveCustomWeapon>k__BackingField: {fileID: 11400000, guid: 0181b593f0d019c47886354740f2007e, type: 2}
   <OwnedWeapons>k__BackingField:
   - {fileID: 11400000, guid: e58b2b3803e848140bf807589421281f, type: 2}
   - {fileID: 11400000, guid: 024174ab56a73784d9048a8f4a4a99dd, type: 2}
@@ -54,8 +54,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5a016bbcbfd85e4fbfa3dc4dc30ec49, type: 2}
   - {fileID: 11400000, guid: 74693d90e5ac64244b43dc7f63caa18a, type: 2}
   - {fileID: 11400000, guid: c8309acfd25c8e84ea96873124a85029, type: 2}
-  <ActiveConstumeInstanceID>k__BackingField: NONE
-  <ActiveCostume>k__BackingField: {fileID: 0}
+  <ActiveConstumeInstanceID>k__BackingField: AD09E74795F9595E
+  <ActiveCostume>k__BackingField: {fileID: 11400000, guid: 1503f56390fcd0e4aab722a6d93ef53f, type: 2}
   <OwnedCostumes>k__BackingField:
   - {fileID: 11400000, guid: 6c8fa252fbe8f60419277beb70a68c08, type: 2}
   - {fileID: 11400000, guid: a7bfe0174e0887c44b94c55263cc397e, type: 2}
@@ -67,38 +67,38 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4ced7ccb8bae5064daeeedf19f245d6d, type: 2}
   - {fileID: 11400000, guid: b518ce250db3adf4abb63703f3d8a563, type: 2}
   - {fileID: 11400000, guid: c2024f9a356e40a4fa918e1fa9fe3571, type: 2}
-  <CommonLootboxInstanceID>k__BackingField: 
-  <CommonLootboxCount>k__BackingField: 1
+  <CommonLootboxInstanceID>k__BackingField: 8234EE63218C1B90
+  <CommonLootboxCount>k__BackingField: 3
   <RareLootboxInstanceID>k__BackingField: 
-  <RareLootboxCount>k__BackingField: 2
+  <RareLootboxCount>k__BackingField: 0
   <EpicLootboxInstanceID>k__BackingField: 
-  <EpicLootboxCount>k__BackingField: 3
+  <EpicLootboxCount>k__BackingField: 0
   <LegendaryLootbox1InstanceID>k__BackingField: 
-  <LegendaryLootbox1Count>k__BackingField: 4
+  <LegendaryLootbox1Count>k__BackingField: 0
   <LegendaryLootbox2InstanceID>k__BackingField: 
-  <LegendaryLootbox2Count>k__BackingField: 5
-  <SmallHealInstanceID>k__BackingField: 
-  <SmallHealCharges>k__BackingField: 0
-  <MediumHealInstanceID>k__BackingField: 
-  <MediumHealCharges>k__BackingField: 0
-  <LargeHealInstanceID>k__BackingField: 
-  <LargeHealCharges>k__BackingField: 0
+  <LegendaryLootbox2Count>k__BackingField: 0
+  <SmallHealInstanceID>k__BackingField: 5DE4F3C0C593EF3A
+  <SmallHealCharges>k__BackingField: 20
+  <MediumHealInstanceID>k__BackingField: EC02CB582160620D
+  <MediumHealCharges>k__BackingField: 1
+  <LargeHealInstanceID>k__BackingField: 311378A1374E7991
+  <LargeHealCharges>k__BackingField: 2
   <BreakRemovalInstanceID>k__BackingField: 
   <BreakRemovalCharges>k__BackingField: 0
   <WeakRemovalInstanceID>k__BackingField: 
   <WeakRemovalCharges>k__BackingField: 0
   <FreezeRemovalInstanceID>k__BackingField: 
   <FreezeRemovalCharges>k__BackingField: 0
-  <ParalyzeRemovalInstanceID>k__BackingField: 
-  <ParalyzeRemovalCharges>k__BackingField: 0
-  <ConfuseRemovalInstanceID>k__BackingField: 
-  <ConfuseRemovalCharges>k__BackingField: 0
+  <ParalyzeRemovalInstanceID>k__BackingField: B868E74801F3B39
+  <ParalyzeRemovalCharges>k__BackingField: 2
+  <ConfuseRemovalInstanceID>k__BackingField: B4E0C8702F714041
+  <ConfuseRemovalCharges>k__BackingField: 1
   <BurnRemovalInstanceID>k__BackingField: 
   <BurnRemovalCharges>k__BackingField: 0
-  <NormalFragments>k__BackingField: 0
-  <RareFragments>k__BackingField: 0
-  <EpicFragments>k__BackingField: 0
-  <LegendFragments>k__BackingField: 0
+  <NormalFragments>k__BackingField: 6908
+  <RareFragments>k__BackingField: 17
+  <EpicFragments>k__BackingField: 12
+  <LegendFragments>k__BackingField: 16
   <Quest1Claimed>k__BackingField: 0
   <Quest2Claimed>k__BackingField: 0
   <Quest3Claimed>k__BackingField: 0
@@ -107,6 +107,6 @@ MonoBehaviour:
   <DailyCheckIn>k__BackingField: 0
   <SocMedShared>k__BackingField: 0
   <ItemsUsed>k__BackingField: 0
-  <MonstersKilled>k__BackingField: 3
+  <MonstersKilled>k__BackingField: 0
   <LevelsWon>k__BackingField: 0
   <DailyQuestClaimed>k__BackingField: 0

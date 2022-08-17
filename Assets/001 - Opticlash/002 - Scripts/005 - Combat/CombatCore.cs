@@ -59,8 +59,7 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] private BoardCore BoardCore { get; set; }
 
     [Header("LOADING")]
-    [SerializeField] private GameObject loadingPanel;
-    [SerializeField] private TextMeshProUGUI loadingTextTMP;
+    [SerializeField] private GameObject LoadingPanel;
     
     [field: Header("GAME VARIABLES")]
     [field: SerializeField][field: ReadOnly] public int QuestionTimerLeft { get; set; }
@@ -143,6 +142,8 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI ConfuseGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int BurnRemoveDropped { get; set; }
     [field: SerializeField] private TextMeshProUGUI BurnGainedTMP { get; set; }
+    [field: SerializeField] public Image OptiCostume { get; set; }
+    [field: SerializeField] public Image OptiCannon { get; set; }
 
     [field: Header("SETTINGS")]
     [field: SerializeField] private GameObject SettingsPanel { get; set; }
@@ -179,6 +180,7 @@ public class CombatCore : MonoBehaviour
                     child.gameObject.SetActive(true);
                     CurrentEnemy = child.GetComponent<EnemyCombatController>();
                     CurrentEnemy.MonsterLevel = GameManager.Instance.CurrentLevelData.MonsterLevels[EnemyIndex];
+                    MonsterParent.transform.position = new Vector3(MonsterParent.transform.position.x, CurrentEnemy.OriginalEnemyPosition.y, MonsterParent.transform.position.z);
                     break;
                 }
             }
@@ -235,6 +237,7 @@ public class CombatCore : MonoBehaviour
                 child.gameObject.SetActive(true);
                 CurrentEnemy = child.GetComponent<EnemyCombatController>();
                 CurrentEnemy.MonsterLevel = GameManager.Instance.CurrentLevelData.MonsterLevels[EnemyIndex];
+                MonsterParent.transform.position = new Vector3(MonsterParent.transform.position.x, CurrentEnemy.OriginalEnemyPosition.y, MonsterParent.transform.position.z);
                 break;
             }
         }
@@ -383,6 +386,7 @@ public class CombatCore : MonoBehaviour
         if (!GameManager.Instance.DebugMode)
         {
             PlayerData.LevelsWon++;
+            OpenLoadingPanel();
             Dictionary<string, int> quests = new Dictionary<string, int>();
             quests.Add("DailyCheckIn", PlayerData.DailyCheckIn);
             quests.Add("SocMedShared", PlayerData.SocMedShared);
@@ -498,6 +502,7 @@ public class CombatCore : MonoBehaviour
                 failedCallbackCounter = 0;
                 Debug.Log(resultCallback.FunctionResult);
                 DisplayDroppedRewards();
+                CloseLoadingPanel();
                 IncreaseCurrentLevel();
                 PurchaseEnergyCharge();
             },
@@ -584,11 +589,6 @@ public class CombatCore : MonoBehaviour
                     () => ConsumeEnergyCharge(chargeID),
                     () => ProcessError(errorCallback.ErrorMessage));
             });
-    }
-
-    private void UpdateUserInventory()
-    {
-
     }
     
     #endregion
@@ -764,17 +764,16 @@ public class CombatCore : MonoBehaviour
         //HideLoadingPanel();
         GameManager.Instance.DisplayErrorPanel(errorMessage);
     }
-    /*public void OpenLoadingPanel(string _message)
+    public void OpenLoadingPanel()
     {
         LoadingPanel.SetActive(true);
         GameManager.Instance.PanelActivated = true;
-        LoadingTMP.text = _message;
     }
 
     public void CloseLoadingPanel()
     {
         LoadingPanel.SetActive(false);
         GameManager.Instance.PanelActivated = false;
-    }*/
+    }
     #endregion
 }

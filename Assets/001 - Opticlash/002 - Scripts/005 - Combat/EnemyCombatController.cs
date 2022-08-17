@@ -48,6 +48,7 @@ public class EnemyCombatController : MonoBehaviour
     private void OnEnable()
     {
         onPlayerCombatStateChange += CombatStateChange;
+        Debug.Log("denemy combat controller enabled");
     }
 
     private void OnDisable()
@@ -73,6 +74,8 @@ public class EnemyCombatController : MonoBehaviour
     [field: SerializeField] public MonsterPlacement ThisMonsterPlacement { get; set; }
     [field: SerializeField] [field: ReadOnly] public bool MayAttack { get; set; }
     [field: SerializeField] public bool IsBoss { get; set; }
+    [field: SerializeField] public GameObject SpecificProjectile { get; set; }
+    [field: SerializeField] private Vector3 ProjectileStartingPoint { get; set; }
 
     [field: Header("STATS")]
     [field: SerializeField] public int MonsterLevel {get;set;}
@@ -132,6 +135,7 @@ public class EnemyCombatController : MonoBehaviour
     private void Start()
     {
         Opti = CombatCore.SpawnedPlayer;
+        Debug.Log("Enemy combat core start");
     }
 
     public void InitializeEnemy()
@@ -256,7 +260,7 @@ public class EnemyCombatController : MonoBehaviour
         else
         {
             if (!ShootingLaser && Vector2.Distance(CombatCore.EnemyProjectile.transform.position, CombatCore.SpawnedPlayer.gameObject.transform.position) > 0.01f)
-                CombatCore.EnemyProjectile.transform.position = Vector2.MoveTowards(CombatCore.EnemyProjectile.transform.position, CombatCore.SpawnedPlayer.gameObject.transform.position, 7 * Time.deltaTime);
+                CombatCore.EnemyProjectile.transform.position = Vector2.MoveTowards(CombatCore.EnemyProjectile.transform.position, CombatCore.SpawnedPlayer.gameObject.transform.position, 15 * Time.deltaTime);
             else if (ShootingLaser && Vector2.Distance(CombatCore.EnemyLaser.transform.position, CombatCore.SpawnedPlayer.gameObject.transform.position) > 0.01f)
                 CombatCore.EnemyLaser.transform.position = Vector2.MoveTowards(CombatCore.EnemyLaser.transform.position, CombatCore.SpawnedPlayer.gameObject.transform.position, 7 * Time.deltaTime);
 
@@ -264,6 +268,7 @@ public class EnemyCombatController : MonoBehaviour
             {
                 CombatCore.EnemyProjectile.SetActive(false);
                 CombatCore.EnemyLaser.SetActive(false);
+                SpecificProjectile.SetActive(false);
                 DoneAttacking = true;
                 if (ShootingLaser)
                 {
@@ -351,7 +356,9 @@ public class EnemyCombatController : MonoBehaviour
             {
                 ShootingLaser = false;
                 CombatCore.EnemyProjectile.transform.position = CombatCore.EnemyProjectileStartingPoint;
+                CombatCore.EnemyProjectile.transform.position = ProjectileStartingPoint;
                 CombatCore.EnemyProjectile.SetActive(true);
+                SpecificProjectile.SetActive(true);
             }
             
         }
