@@ -260,6 +260,7 @@ public class CharacterCombatController : MonoBehaviour
 
     public void InitializePlayer()
     {
+        CombatCore.isPlaying = true;
         #region COSTUME
         if(PlayerData.ActiveCostume == null)
         {
@@ -357,6 +358,7 @@ public class CharacterCombatController : MonoBehaviour
     {
         if (!DoubleDamageActivated && DoubleDamageTurnsCooldown == 0 && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
         {
+            GameManager.Instance.SFXAudioManager.PlayDoubleDamageSFX();
             DoubleDamageEffect.SetActive(true);
             CombatCore.DoubleDamageImage.SetActive(true);
             DoubleDamageActivated = true;
@@ -372,6 +374,7 @@ public class CharacterCombatController : MonoBehaviour
     {
         if (!ShieldsActivated && ShieldInstancesRemaining > 0 && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
         {
+            GameManager.Instance.SFXAudioManager.PlayShieldSFX();
             ShieldEffect.SetActive(true);
             CombatCore.ShieldImage.SetActive(true);
             ShieldsActivated = true;
@@ -391,19 +394,6 @@ public class CharacterCombatController : MonoBehaviour
             LifestealEffect.SetActive(true);
         }
     }
-
-    public void ActivateWarpGun()
-    {
-        if(!WarpActivated && WarpGunInstancesRemaining > 0 && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
-        {
-            Debug.Log("Warp has been activated");
-            CombatCore.Portal.SetActive(true);
-            WarpGunInstancesRemaining--;
-            WarpActivated = true;
-            CombatCore.WarpBtn.interactable = false;
-            CombatCore.CurrentCombatState = CombatCore.CombatState.WARPING;
-        }
-    }
     #endregion
 
     #region SKILLS
@@ -419,7 +409,7 @@ public class CharacterCombatController : MonoBehaviour
                 CombatCore.HealChargesTMP.text = PlayerData.SmallHealCharges.ToString();
                 if (PlayerData.SmallHealCharges == 0)
                     CombatCore.HealBtn.interactable = false;
-                CurrentHealth += 15f;
+                CurrentHealth += 10f;
                 UpdateHealthBar();
                 CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
                 SkillButtonPressed = false;
@@ -444,7 +434,7 @@ public class CharacterCombatController : MonoBehaviour
                             PlayerData.SmallHealInstanceID = "";
                             CombatCore.HealBtn.interactable = false;
                         }
-                        CurrentHealth += 15f;
+                        CurrentHealth += 10f;
                         UpdateHealthBar();
                         UpdateQuestData();
                     },
@@ -457,7 +447,106 @@ public class CharacterCombatController : MonoBehaviour
             }
         }
     }
-
+    public void UseMediumHealSkill()
+    {
+        if (GameManager.Instance.DebugMode)
+        {
+            if (PlayerData.MediumHealCharges > 0 && !SkillButtonPressed)
+            {
+                SkillButtonPressed = true;
+                PlayerData.ItemsUsed++;
+                PlayerData.MediumHealCharges--;
+                CombatCore.MediumHealChargesTMP.text = PlayerData.MediumHealCharges.ToString();
+                if (PlayerData.MediumHealCharges == 0)
+                    CombatCore.MediumHealBtn.interactable = false;
+                CurrentHealth += 15f;
+                UpdateHealthBar();
+                CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+                SkillButtonPressed = false;
+            }
+        }
+        else
+        {
+            if (PlayerData.MediumHealCharges > 0 && !SkillButtonPressed)
+            {
+                SkillButtonPressed = true;
+                ConsumeItemRequest consumeItem = new ConsumeItemRequest();
+                consumeItem.ItemInstanceId = PlayerData.MediumHealInstanceID;
+                consumeItem.ConsumeCount = 1;
+                PlayFabClientAPI.ConsumeItem(consumeItem,
+                    resultCallback =>
+                    {
+                        failedCallbackCounter = 0;
+                        PlayerData.MediumHealCharges = resultCallback.RemainingUses;
+                        CombatCore.MediumHealChargesTMP.text = PlayerData.MediumHealCharges.ToString();
+                        if (resultCallback.RemainingUses == 0)
+                        {
+                            PlayerData.MediumHealInstanceID = "";
+                            CombatCore.MediumHealBtn.interactable = false;
+                        }
+                        CurrentHealth += 15f;
+                        UpdateHealthBar();
+                        UpdateQuestData();
+                    },
+                    errorCallback =>
+                    {
+                        ErrorCallback(errorCallback.Error,
+                            UseMediumHealSkill,
+                            () => ProcessError(errorCallback.ErrorMessage));
+                    });
+            }
+        }
+    }
+    public void UseLargeHealSkill()
+    {
+        if (GameManager.Instance.DebugMode)
+        {
+            if (PlayerData.LargeHealCharges > 0 && !SkillButtonPressed)
+            {
+                SkillButtonPressed = true;
+                PlayerData.ItemsUsed++;
+                PlayerData.LargeHealCharges--;
+                CombatCore.LargeHealChargesTMP.text = PlayerData.LargeHealCharges.ToString();
+                if (PlayerData.LargeHealCharges == 0)
+                    CombatCore.LargeHealBtn.interactable = false;
+                CurrentHealth += 25f;
+                UpdateHealthBar();
+                CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+                SkillButtonPressed = false;
+            }
+        }
+        else
+        {
+            if (PlayerData.LargeHealCharges > 0 && !SkillButtonPressed)
+            {
+                SkillButtonPressed = true;
+                ConsumeItemRequest consumeItem = new ConsumeItemRequest();
+                consumeItem.ItemInstanceId = PlayerData.LargeHealInstanceID;
+                consumeItem.ConsumeCount = 1;
+                PlayFabClientAPI.ConsumeItem(consumeItem,
+                    resultCallback =>
+                    {
+                        failedCallbackCounter = 0;
+                        PlayerData.LargeHealCharges = resultCallback.RemainingUses;
+                        CombatCore.LargeHealChargesTMP.text = PlayerData.LargeHealCharges.ToString();
+                        if (resultCallback.RemainingUses == 0)
+                        {
+                            PlayerData.LargeHealInstanceID = "";
+                            CombatCore.LargeHealBtn.interactable = false;
+                        }
+                        CurrentHealth += 25f;
+                        UpdateHealthBar();
+                        UpdateQuestData();
+                    },
+                    errorCallback =>
+                    {
+                        ErrorCallback(errorCallback.Error,
+                            UseLargeHealSkill,
+                            () => ProcessError(errorCallback.ErrorMessage));
+                    });
+            }
+        }
+    }
     public void UseBreakRemove()
     {
         if(GameManager.Instance.DebugMode)
@@ -806,6 +895,7 @@ public class CharacterCombatController : MonoBehaviour
     }
     public void ProcessHealth()
     {
+        GameManager.Instance.SFXAudioManager.PlayHitSFX();
         if (CurrentHealth > 0)
         {
             if (CurrentSideEffect == EnemyCombatController.SideEffect.NONE)
@@ -880,6 +970,7 @@ public class CharacterCombatController : MonoBehaviour
 
     public void ProcessDeath()
     {
+        GameManager.Instance.SFXAudioManager.PlayGameOverSFX();
         CombatCore.CurrentCombatState = CombatCore.CombatState.GAMEOVER;
     }
 
@@ -948,6 +1039,12 @@ public class CharacterCombatController : MonoBehaviour
         }
     }
 
+    public void PlayWalkSFX()
+    {
+        if(CombatCore.isPlaying)
+            GameManager.Instance.SFXAudioManager.PlayWalkSFX();
+    }
+
     private void TakeDamageFromSelf()
     {
         if(!ShieldsActivated)
@@ -960,6 +1057,7 @@ public class CharacterCombatController : MonoBehaviour
 
     public void ShowCannonBlast()
     {
+        GameManager.Instance.SFXAudioManager.PlayCannonSFX();
         CannonBlast.SetActive(true);
     }
 

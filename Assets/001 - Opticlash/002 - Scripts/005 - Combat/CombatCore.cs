@@ -81,7 +81,7 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public Button ShieldBtn { get; set; }
     [field: SerializeField] public GameObject ShieldImage { get; set; }
     [field: SerializeField] public TextMeshProUGUI ShieldTMP { get; set; }
-    [field: SerializeField] public Button WarpBtn { get; set; }
+    [field: SerializeField] public Button LifestealBtn { get; set; }
     [field: SerializeField] public GameObject Portal { get; set; }
     [field: SerializeField] public Transform PortalEndPoint { get; set; }
     [field: SerializeField] public Animator FlashAnimator { get; set; }
@@ -90,6 +90,10 @@ public class CombatCore : MonoBehaviour
     [field: Header("SKILLS")]
     [field: SerializeField] public Button HealBtn { get; set; }
     [field: SerializeField] public TextMeshProUGUI HealChargesTMP { get; set; }
+    [field: SerializeField] public Button MediumHealBtn { get; set; }
+    [field: SerializeField] public TextMeshProUGUI MediumHealChargesTMP { get; set; }
+    [field: SerializeField] public Button LargeHealBtn { get; set; }
+    [field: SerializeField] public TextMeshProUGUI LargeHealChargesTMP { get; set; }
     [field: SerializeField] public Button BreakRemoveBtn { get; set; }
     [field: SerializeField] public TextMeshProUGUI BreakChargesTMP { get; set; }
     [field: SerializeField] public Button WeakRemoveBtn { get; set; }
@@ -152,6 +156,7 @@ public class CombatCore : MonoBehaviour
     [Header("DEBUGGER")]
     public Coroutine timerCoroutine;
     private int failedCallbackCounter;
+    public bool isPlaying;
     //=================================================================================
 
     #region SPAWNING
@@ -292,10 +297,10 @@ public class CombatCore : MonoBehaviour
         else
             ShieldBtn.interactable = false;
 
-        if (SpawnedPlayer.WarpGunInstancesRemaining > 0 && !SpawnedPlayer.WarpActivated)
-            WarpBtn.interactable = true;
+        if (SpawnedPlayer.LifestealInstancesRemaining > 0 && !SpawnedPlayer.LifestealActivated)
+            LifestealBtn.interactable = true;
         else
-            WarpBtn.interactable = false;
+            LifestealBtn.interactable = false;
     }
 
     public void ProcessSkillsInteractability()
@@ -309,6 +314,28 @@ public class CombatCore : MonoBehaviour
         {
             HealChargesTMP.text = "0";
             HealBtn.interactable = false;
+        }
+
+        if (PlayerData.MediumHealCharges > 0)
+        {
+            MediumHealChargesTMP.text = PlayerData.MediumHealCharges.ToString();
+            MediumHealBtn.interactable = true;
+        }
+        else
+        {
+            MediumHealChargesTMP.text = "0";
+            MediumHealBtn.interactable = false;
+        }
+
+        if (PlayerData.LargeHealCharges > 0)
+        {
+            LargeHealChargesTMP.text = PlayerData.LargeHealCharges.ToString();
+            LargeHealBtn.interactable = true;
+        }
+        else
+        {
+            LargeHealChargesTMP.text = "0";
+            LargeHealBtn.interactable = false;
         }
 
         if (PlayerData.BreakRemovalCharges > 0)
@@ -501,10 +528,18 @@ public class CombatCore : MonoBehaviour
             {
                 failedCallbackCounter = 0;
                 Debug.Log(resultCallback.FunctionResult);
-                DisplayDroppedRewards();
-                CloseLoadingPanel();
-                IncreaseCurrentLevel();
-                PurchaseEnergyCharge();
+                if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
+                {
+                    DisplayDroppedRewards();
+                    CloseLoadingPanel();
+                    IncreaseCurrentLevel();
+                    PurchaseEnergyCharge();
+                }
+                else
+                {
+                    CloseLoadingPanel();
+                    GameManager.Instance.DisplayDualLoginErrorPanel();
+                }
             },
             errorCallback =>
             {
@@ -727,6 +762,8 @@ public class CombatCore : MonoBehaviour
         }
         else
             BurnGainedTMP.gameObject.SetActive(false);
+
+        CloseLoadingPanel();
     }
 
     public void HideSettings()

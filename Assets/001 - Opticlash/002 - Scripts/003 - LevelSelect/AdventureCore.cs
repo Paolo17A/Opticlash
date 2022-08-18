@@ -16,6 +16,9 @@ public class AdventureCore : MonoBehaviour
     [field: SerializeField] public CinemachineVirtualCamera _virtualCamera { get; set; }
     [field: SerializeField] public List<LevelSelectController> Levels { get; set; }
 
+    [field: Header("LOADING")]
+    [field: SerializeField] public GameObject LoadingPanel { get; set; }
+
     [field: Header("UI COMPONENTS")]
     [field: SerializeField] private TextMeshProUGUI EnergyTMP { get; set; }
     [field: SerializeField] private TextMeshProUGUI OptibitTMP { get; set; }
@@ -50,6 +53,7 @@ public class AdventureCore : MonoBehaviour
         }
         else
         {
+            DisplayLoadingPanel();
             PlayFabClientAPI.GetUserData(new GetUserDataRequest(),
                 resultCallback =>
                 {
@@ -70,10 +74,12 @@ public class AdventureCore : MonoBehaviour
                                 level.LevelSprite.sprite = level.LockedSprite;
                             }
                         }
+                        HideLoadingPanel();
                     }
                     else
                     {
-                        Debug.Log("Dual log in");
+                        HideLoadingPanel();
+                        GameManager.Instance.DisplayDualLoginErrorPanel();
                     }
                 },
                 errorCallback =>
@@ -115,8 +121,20 @@ public class AdventureCore : MonoBehaviour
 
     private void ProcessError(string errorMessage)
     {
-        //HideLoadingPanel();
+        HideLoadingPanel();
         GameManager.Instance.DisplayErrorPanel(errorMessage);
+    }
+
+    public void DisplayLoadingPanel()
+    {
+        LoadingPanel.SetActive(true);
+        GameManager.Instance.PanelActivated = true;
+    }
+
+    public void HideLoadingPanel()
+    {
+        LoadingPanel.SetActive(false);
+        GameManager.Instance.PanelActivated = false;
     }
 
     public void OpenLobbyScene()

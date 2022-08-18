@@ -58,6 +58,7 @@ public class CombatController : MonoBehaviour
         {
             CombatCore.DoubleDamageBtn.interactable = false;
             CombatCore.ShieldBtn.interactable = false;
+            CombatCore.LifestealBtn.interactable = false;
             CombatCore.SpawnedPlayer.ProjectileSpawned = false;
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.ENEMYTURN)
@@ -121,6 +122,7 @@ public class CombatController : MonoBehaviour
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.GAMEOVER)
         {
+            CombatCore.isPlaying = false;
             CombatCore.CurrentEnemy.gameObject.SetActive(false);
             CombatCore.MonsterParent.transform.position = new Vector3(15, 21, 0);
             CombatCore.UIAnimator.SetBool("GameOver", true);
@@ -135,6 +137,7 @@ public class CombatController : MonoBehaviour
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.STAGECLEAR)
         {
+            CombatCore.isPlaying = false;
             CombatCore.CurrentEnemy.gameObject.SetActive(false);
             CombatCore.MonsterParent.transform.position = new Vector3(15, 21, 0);
             CombatCore.UIAnimator.SetBool("StageClear", true);

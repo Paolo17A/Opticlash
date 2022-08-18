@@ -622,6 +622,7 @@ public class LobbyCore : MonoBehaviour
     #region EQUIP
     public void InitializeWeapons()
     {
+        GameManager.Instance.SFXAudioManager.PlayShowOptiSFX();
         ActualOwnedWeapons.Clear();
         foreach (CustomWeaponData ownedWeapon in PlayerData.OwnedWeapons)
         {
@@ -649,6 +650,7 @@ public class LobbyCore : MonoBehaviour
 
     public void InitializeCostumes()
     {
+        GameManager.Instance.SFXAudioManager.PlayShowOptiSFX();
         ActualCostumesOwned.Clear();
         foreach (CustomCostumeData ownedCostume in PlayerData.OwnedCostumes)
             if (ownedCostume.CostumeIsOwned)

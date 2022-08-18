@@ -130,6 +130,7 @@ public class UpgradeCannonCore : MonoBehaviour
                     LobbyCore.GrantPanel.SetActive(true);
                     LobbyCore.OkBtn.SetActive(false);
                     UpgradeSuccessAnimation.SetActive(true);
+                    GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
                     UpgradeSuccessAnimation.GetComponent<UpgradeAnimationCore>().UpgradeCannonAnimator.SetTrigger("success");
                 }
             },

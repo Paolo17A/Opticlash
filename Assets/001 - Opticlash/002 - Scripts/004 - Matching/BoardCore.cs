@@ -103,7 +103,6 @@ public class BoardCore : MonoBehaviour
             CombatCore.SpawnedPlayer.DamageDeal = 1.5f * (CombatCore.SpawnedPlayer.Attack * CombatCore.SpawnedPlayer.Attack) / (CombatCore.CurrentEnemy.Attack + CombatCore.CurrentEnemy.Defense);
         else if (MatchFinder.CurrentMatches.Count >= 5)
             CombatCore.SpawnedPlayer.DamageDeal = 1.8f * (CombatCore.SpawnedPlayer.Attack * CombatCore.SpawnedPlayer.Attack) / (CombatCore.CurrentEnemy.Attack + CombatCore.CurrentEnemy.Defense);
-
         //Debug.Log(CombatCore.SpawnedPlayer.DamageDeal);
         for (int i = 0; i < MatchFinder.CurrentMatches.Count; i++)
         {
@@ -112,7 +111,9 @@ public class BoardCore : MonoBehaviour
                 DestroyMatchedGemAt(MatchFinder.CurrentMatches[i].PositionIndex, MatchFinder.CurrentMatches[i].BoardPosition);
             }
         }
-        if(CombatCore.CurrentEnemy.CurrentHealth > 0 && CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING && CombatCore.SpawnedPlayer.CurrentCombatState != CharacterCombatController.CombatState.WALKING)
+        GameManager.Instance.SFXAudioManager.PlayMatchSFX();
+
+        if (CombatCore.CurrentEnemy.CurrentHealth > 0 && CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING && CombatCore.SpawnedPlayer.CurrentCombatState != CharacterCombatController.CombatState.WALKING)
         {
             ShotsEarned++;
             //CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
@@ -228,6 +229,7 @@ public class BoardCore : MonoBehaviour
                     gemsFromBoard.RemoveAt(randomGemIndex);
                 }
             }*/
+            GameManager.Instance.SFXAudioManager.PlayShuffleSFX();
             foreach (Transform child in transform)
             {
                 Instantiate(child.gameObject.GetComponent<GemController>().BurstEffect, child.gameObject.GetComponent<GemController>().BoardPosition, Quaternion.identity);

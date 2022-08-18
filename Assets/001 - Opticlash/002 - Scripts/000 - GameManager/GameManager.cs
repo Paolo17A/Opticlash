@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI ErrorTMP { get; set; }
 
     [field: Header("MISCELLANEOUS SCRIPTS")]
-    [field: SerializeField] public AudioManager AudioManager { get; set; }
+    [field: SerializeField] public AudioManager BGMAudioManager { get; set; }
+    [field: SerializeField] public AudioManager SFXAudioManager { get; set; }
     [field: SerializeField] public InventoryManager InventoryManager { get; set; }
     [field: SerializeField] public SceneController SceneController { get; set; }
 
@@ -73,6 +74,11 @@ public class GameManager : MonoBehaviour
             /*if (string.IsNullOrEmpty(PlayFabSettings.TitleId))
                 PlayFabSettings.TitleId = "C1147";*/
         }
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 
     #region ERRORS

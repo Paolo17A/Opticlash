@@ -19,8 +19,8 @@ public class EntryController : MonoBehaviour
 
     private void Start()
     {
-        if (!GameManager.Instance.AudioManager.IsPlaying)
-            GameManager.Instance.AudioManager.SwitchToLoadingMusic();
+        if (!GameManager.Instance.BGMAudioManager.IsPlaying)
+            GameManager.Instance.BGMAudioManager.SwitchToLoadingMusic();
     }
 
     private void EntryStateChange(object sender, EventArgs e)

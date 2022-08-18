@@ -12,6 +12,8 @@ public class ClaimCore : MonoBehaviour
     //=====================================================================
     [field: SerializeField] private PlayerData PlayerData { get; set; }
     [field: SerializeField] private LobbyCore LobbyCore { get; set; }
+    [field: SerializeField] private GameObject RewardedCostume { get; set; }
+    [field: SerializeField] private SpriteRenderer CostumeSprite { get; set; }
 
     [field: Header("INPUT")]
     [field: SerializeField] private TMP_InputField CodeInputField { get; set; }
@@ -76,7 +78,7 @@ public class ClaimCore : MonoBehaviour
                 else
                 {
                     LobbyCore.HideLoadingPanel();
-                    Debug.Log("Dual log in");
+                    GameManager.Instance.DisplayDualLoginErrorPanel();
                 }
             },
             errorCallback =>
@@ -122,6 +124,10 @@ public class ClaimCore : MonoBehaviour
             failedCallbackCounter = 0;
             Debug.Log(resultCallback.FunctionResult);
             CodeInputField.text = "";
+            /*LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.NEWGRANT;
+            LobbyCore.GrantPanel.SetActive(true);
+            RewardedCostume.SetActive(true);*/
+
             LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.CORE;
             LobbyCore.InitializeLobby();
         },

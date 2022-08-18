@@ -59,10 +59,7 @@ public class AdventureController : MonoBehaviour
                 isScrolling = true;
                 draggedEndPoint = previousTouchPoint - nextTouchPoint;
                 dummyVector = AdventureCore._virtualCamera.transform.position + new Vector3(0, draggedEndPoint.y, 0);
-                //AdventureCore._virtualCamera.transform.position += new Vector3(0, draggedEndPoint.y, 0);
                 AdventureCore._virtualCamera.transform.position = new Vector3(0, Mathf.Clamp(dummyVector.y, 0, 95.5f), AdventureCore._virtualCamera.transform.position.z);
-
-                //previousTouchPoint = nextTouchPoint;
             }
         }
         

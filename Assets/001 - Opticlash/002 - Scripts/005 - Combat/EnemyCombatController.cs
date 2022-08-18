@@ -64,6 +64,7 @@ public class EnemyCombatController : MonoBehaviour
 
     [SerializeField] [ReadOnly] private CombatState currentCombatState;
     [field: SerializeField] private CombatCore CombatCore { get; set; }
+    [field: SerializeField] private SettingsData SettingsData { get; set; }
 
     [field: Header("ENEMY DATA")]
     [field: SerializeField] public string MonsterID { get; set; }
@@ -76,6 +77,11 @@ public class EnemyCombatController : MonoBehaviour
     [field: SerializeField] public bool IsBoss { get; set; }
     [field: SerializeField] public GameObject SpecificProjectile { get; set; }
     [field: SerializeField] private Vector3 ProjectileStartingPoint { get; set; }
+    [field: SerializeField] private AudioSource MonsterAudioSource { get; set; }
+
+    [field: Header("SOUND EFFECTS")]
+    [field: SerializeField] private AudioClip HitSFX { get; set; }
+    [field: SerializeField] private List<AudioClip> DeathSFX { get; set; }
 
     [field: Header("STATS")]
     [field: SerializeField] public int MonsterLevel {get;set;}
@@ -259,18 +265,23 @@ public class EnemyCombatController : MonoBehaviour
         }
         else
         {
-            if (!ShootingLaser && Vector2.Distance(CombatCore.EnemyProjectile.transform.position, CombatCore.SpawnedPlayer.gameObject.transform.position) > 0.01f)
+            if (!CanShootLaser && Vector2.Distance(CombatCore.EnemyProjectile.transform.position, CombatCore.SpawnedPlayer.gameObject.transform.position) > 0.01f)
                 CombatCore.EnemyProjectile.transform.position = Vector2.MoveTowards(CombatCore.EnemyProjectile.transform.position, CombatCore.SpawnedPlayer.gameObject.transform.position, 15 * Time.deltaTime);
-            else if (ShootingLaser && Vector2.Distance(CombatCore.EnemyLaser.transform.position, CombatCore.SpawnedPlayer.gameObject.transform.position) > 0.01f)
-                CombatCore.EnemyLaser.transform.position = Vector2.MoveTowards(CombatCore.EnemyLaser.transform.position, CombatCore.SpawnedPlayer.gameObject.transform.position, 7 * Time.deltaTime);
+            else if (CanShootLaser && Vector2.Distance(CombatCore.EnemyProjectile.transform.position, EnemyAttackPosition) > 0.01f)
+                CombatCore.EnemyProjectile.transform.position = Vector2.MoveTowards(CombatCore.EnemyProjectile.transform.position, EnemyAttackPosition, 0.5f * Time.deltaTime);
 
             else
             {
+                Debug.Log("enemy should be done attacking");
                 CombatCore.EnemyProjectile.SetActive(false);
-                CombatCore.EnemyLaser.SetActive(false);
+                //CombatCore.EnemyLaser.SetActive(false);
                 SpecificProjectile.SetActive(false);
                 DoneAttacking = true;
-                if (ShootingLaser)
+                if (AfflictedSideEffect == WeaponData.SideEffect.WEAK)
+                    Opti.TakeDamageFromEnemy(DamageDeal / 2);
+                else
+                    Opti.TakeDamageFromEnemy(DamageDeal);
+                /*if (ShootingLaser)
                 {
                     Opti.TakeDamageFromEnemy(DamageDeal * 3);
                 }
@@ -280,7 +291,7 @@ public class EnemyCombatController : MonoBehaviour
                         Opti.TakeDamageFromEnemy(DamageDeal / 2);
                     else
                         Opti.TakeDamageFromEnemy(DamageDeal);
-                }
+                }*/
 
             }
         }
@@ -346,21 +357,22 @@ public class EnemyCombatController : MonoBehaviour
         {
             DoneAttacking = false;
 
-            if (CanShootLaser && (CombatCore.RoundCounter % LaserFrequency == 0 || CombatCore.RoundCounter == LaserFrequency))
+            /*if (CanShootLaser)
             {
                 ShootingLaser = true;
-                CombatCore.EnemyLaser.transform.position = CombatCore.EnemyLaserStartingPoint;
+                /*CombatCore.EnemyLaser.transform.position = CombatCore.EnemyLaserStartingPoint;
                 CombatCore.EnemyLaser.SetActive(true);
             }
             else
             {
                 ShootingLaser = false;
-                CombatCore.EnemyProjectile.transform.position = CombatCore.EnemyProjectileStartingPoint;
-                CombatCore.EnemyProjectile.transform.position = ProjectileStartingPoint;
-                CombatCore.EnemyProjectile.SetActive(true);
-                SpecificProjectile.SetActive(true);
-            }
-            
+                
+            }*/
+            CombatCore.EnemyProjectile.transform.position = CombatCore.EnemyProjectileStartingPoint;
+            CombatCore.EnemyProjectile.transform.position = ProjectileStartingPoint;
+            CombatCore.EnemyProjectile.SetActive(true);
+            SpecificProjectile.SetActive(true);
+
         }
     }
 
@@ -395,6 +407,9 @@ public class EnemyCombatController : MonoBehaviour
             if(CombatCore.SpawnedPlayer.CurrentSideEffect != SideEffect.NONE)
                 CombatCore.SpawnedPlayer.ProcessStatusEffectInstances();
 
+            MonsterAudioSource.volume = SettingsData.EffectsVolume;
+            MonsterAudioSource.clip = DeathSFX[UnityEngine.Random.Range(0, DeathSFX.Count)];
+            MonsterAudioSource.Play();
             CombatCore.MonstersKilled++;
             IsCurrentEnemy = false;
             AfflictedSideEffect = WeaponData.SideEffect.NONE;
@@ -413,6 +428,9 @@ public class EnemyCombatController : MonoBehaviour
     #region DAMAGE
     public void TakeDamageFromPlayer(float _damageReceived)
     {
+        MonsterAudioSource.volume = SettingsData.EffectsVolume;
+        MonsterAudioSource.clip = HitSFX;
+        MonsterAudioSource.Play();
         CurrentHealth -= _damageReceived;
         UpdateHealthBar();
         CurrentCombatState = CombatState.ATTACKED;
@@ -518,8 +536,13 @@ public class EnemyCombatController : MonoBehaviour
     #region UTILITY
     private void UpdateHealthBar()
     {
-        HealthSlider.transform.localScale = new Vector3((float)CurrentHealth / MaxHealth, 1f, 0f);
-        HealthSlider.transform.localPosition = new Vector3(HealthSlider.transform.localScale.x - 1, HealthSlider.transform.localPosition.y, HealthSlider.transform.localPosition.z);
+        if (CurrentHealth > 0)
+        {
+            HealthSlider.transform.localScale = new Vector3((float)CurrentHealth / MaxHealth, 1f, 0f);
+            HealthSlider.transform.localPosition = new Vector3(HealthSlider.transform.localScale.x - 1, HealthSlider.transform.localPosition.y, HealthSlider.transform.localPosition.z);
+        }
+        else
+            HealthBar.SetActive(false);
     }
     public bool WillInflictStatusEffect()
     {

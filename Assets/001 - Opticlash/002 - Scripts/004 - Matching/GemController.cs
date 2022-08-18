@@ -73,6 +73,7 @@ public class GemController : MonoBehaviour
 
     private void MovePieces()
     {
+        GameManager.Instance.SFXAudioManager.PlayMoveSFX();
         PreviousPosition = PositionIndex;
         PreviousBoardPosition = BoardPosition;
 

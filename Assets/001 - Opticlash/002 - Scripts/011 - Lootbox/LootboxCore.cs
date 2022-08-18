@@ -234,11 +234,13 @@ public class LootboxCore : MonoBehaviour
             LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.NEWGRANT;
             LobbyCore.GrantPanel.SetActive(true);
             CommonAnimatedBox.SetActive(true);
+            GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
             CommonAnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
 
         }
         else
         {
+            LobbyCore.DisplayLoadingPanel();
             ConsumeItemRequest consumeItem = new ConsumeItemRequest();
             consumeItem.ItemInstanceId = PlayerData.CommonLootboxInstanceID;
             consumeItem.ConsumeCount = 1;
@@ -304,6 +306,7 @@ public class LootboxCore : MonoBehaviour
         },
             resultCallback =>
             {
+                LobbyCore.HideLoadingPanel();
                 failedCallbackCounter = 0;
                 if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
                 {
@@ -362,9 +365,12 @@ public class LootboxCore : MonoBehaviour
                         CommonAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
                         LobbyCore.GrantAmountTMP.text = "YOU GAINED C5 CANNON";
                     }
+                    GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
                     CommonAnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
                     LobbyCore.InitializeLobby();
                 }
+                else
+                    GameManager.Instance.DisplayDualLoginErrorPanel();
             },
             errorCallback =>
             {
@@ -415,10 +421,12 @@ public class LootboxCore : MonoBehaviour
             LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.NEWGRANT;
             LobbyCore.GrantPanel.SetActive(true);
             RareAnimatedBox.SetActive(true);
+            GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
             RareAnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
         }
         else
         {
+            LobbyCore.DisplayLoadingPanel();
             ConsumeItemRequest consumeItem = new ConsumeItemRequest();
             consumeItem.ItemInstanceId = PlayerData.RareLootboxInstanceID;
             consumeItem.ConsumeCount = 1;
@@ -480,6 +488,7 @@ public class LootboxCore : MonoBehaviour
         },
             resultCallback =>
             {
+                LobbyCore.HideLoadingPanel();
                 failedCallbackCounter = 0;
                 if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
                 {
@@ -531,9 +540,12 @@ public class LootboxCore : MonoBehaviour
                         RareAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
                         LobbyCore.GrantAmountTMP.text = "YOU GAINED B4 CANNON";
                     }
+                    GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
                     RareAnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
                     LobbyCore.InitializeLobby();
                 }
+                else
+                    GameManager.Instance.DisplayDualLoginErrorPanel();
             },
             errorCallback =>
             {
@@ -571,6 +583,7 @@ public class LootboxCore : MonoBehaviour
         }
         else
         {
+            LobbyCore.DisplayLoadingPanel();
             ConsumeItemRequest consumeItem = new ConsumeItemRequest();
             consumeItem.ItemInstanceId = PlayerData.EpicLootboxInstanceID;
             consumeItem.ConsumeCount = 1;
@@ -629,6 +642,7 @@ public class LootboxCore : MonoBehaviour
         },
             resultCallback =>
             {
+                LobbyCore.HideLoadingPanel();
                 failedCallbackCounter = 0;
                 if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
                 {
@@ -674,9 +688,12 @@ public class LootboxCore : MonoBehaviour
                         EpicAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
                         LobbyCore.GrantAmountTMP.text = "YOU GAINED A3 CANNON";
                     }
+                    GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
                     EpicAnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
                     LobbyCore.InitializeLobby();
                 }
+                else
+                    GameManager.Instance.DisplayDualLoginErrorPanel();
             },
             errorCallback =>
             {
@@ -745,6 +762,7 @@ public class LootboxCore : MonoBehaviour
         }
         else
         {
+            LobbyCore.DisplayLoadingPanel();
             ConsumeItemRequest consumeItem = new ConsumeItemRequest();
             consumeItem.ItemInstanceId = PlayerData.LegendaryLootbox1InstanceID;
             consumeItem.ConsumeCount = 1;
@@ -789,6 +807,7 @@ public class LootboxCore : MonoBehaviour
         },
             resultCallback =>
             {
+                LobbyCore.HideLoadingPanel();
                 failedCallbackCounter = 0;
                 if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
                 {
@@ -822,9 +841,12 @@ public class LootboxCore : MonoBehaviour
                         LobbyCore.GrantAmountTMP.text = "YOU GAINED S1 CANNON";
 
                     }
+                    GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
                     Legend1AnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
                     LobbyCore.InitializeLobby();
                 }
+                else
+                    GameManager.Instance.DisplayDualLoginErrorPanel();
             },
             errorCallback =>
             {
@@ -893,6 +915,7 @@ public class LootboxCore : MonoBehaviour
         }
         else
         {
+            LobbyCore.DisplayLoadingPanel();
             ConsumeItemRequest consumeItem = new ConsumeItemRequest();
             consumeItem.ItemInstanceId = PlayerData.LegendaryLootbox2InstanceID;
             consumeItem.ConsumeCount = 1;
@@ -937,6 +960,7 @@ public class LootboxCore : MonoBehaviour
         },
             resultCallback =>
             {
+                LobbyCore.HideLoadingPanel();
                 failedCallbackCounter = 0;
                 if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
                 {
@@ -968,11 +992,13 @@ public class LootboxCore : MonoBehaviour
                         CannonSprite.sprite = LegendWeapons[1].AnimatedSprite;
                         Legend2AnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
                         LobbyCore.GrantAmountTMP.text = "YOU GAINED S2 CANNON";
-
                     }
+                    GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
                     Legend2AnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
                     LobbyCore.InitializeLobby();
                 }
+                else
+                    GameManager.Instance.DisplayDualLoginErrorPanel();
             },
             errorCallback =>
             {
