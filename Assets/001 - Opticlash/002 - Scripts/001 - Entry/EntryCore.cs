@@ -114,7 +114,7 @@ public class EntryCore : MonoBehaviour
     #region LINKS
     public void OpenWebsite()
     {
-        Application.OpenURL("https://ezmoneyph.com/");
+        Application.OpenURL("https://optibit.herokuapp.com/sessions/login");
     }
     public void OpenFacebook()
     {
