@@ -93,6 +93,15 @@ public class EnemyCombatController : MonoBehaviour
     [field: SerializeField] [field: ReadOnly] public float Accuracy { get; set; }
     [field: SerializeField] [field: ReadOnly] public float Defense { get; set; }
 
+    [field: Header("KABOOM")]
+    [field: SerializeField] public GameObject NormalKaboom { get; set; }
+    [field: SerializeField] public GameObject BurnKaboom { get; set; }
+    [field: SerializeField] public GameObject BreakKaboom { get; set; }
+    [field: SerializeField] public GameObject ConfuseKaboom { get; set; }
+    [field: SerializeField] public GameObject FreezeKaboom { get; set; }
+    [field: SerializeField] public GameObject ParalyzeKaboom { get; set; }
+    [field: SerializeField] public GameObject WeakKaboom { get; set; }
+
     [field: Header("AFFLICTED SIDE EFFECT")]
     [field: SerializeField] public SpriteRenderer StatusEffectImage { get; set; }
     [field: SerializeField] private SpriteRenderer StatusEffectText { get; set; }
@@ -141,7 +150,6 @@ public class EnemyCombatController : MonoBehaviour
     private void Start()
     {
         Opti = CombatCore.SpawnedPlayer;
-        Debug.Log("Enemy combat core start");
     }
 
     public void InitializeEnemy()
@@ -214,7 +222,7 @@ public class EnemyCombatController : MonoBehaviour
         if (DoneAttacking)
         {
             if (Vector2.Distance(transform.parent.position, OriginalEnemyPosition) > 0.01f)
-                transform.parent.position = Vector2.MoveTowards(transform.parent.position, OriginalEnemyPosition, 11 * Time.deltaTime);
+                transform.parent.position = Vector2.MoveTowards(transform.parent.position, OriginalEnemyPosition, 13 * Time.deltaTime);
             else
             {
                 MayAttack = false; 
@@ -237,7 +245,7 @@ public class EnemyCombatController : MonoBehaviour
         else
         {
             if (Vector2.Distance(transform.parent.position, EnemyAttackPosition) > 0.01f)
-                transform.parent.position = Vector2.MoveTowards(transform.parent.position, EnemyAttackPosition, 7 * Time.deltaTime);
+                transform.parent.position = Vector2.MoveTowards(transform.parent.position, EnemyAttackPosition, 13 * Time.deltaTime);
             else
                 CurrentCombatState = CombatState.ATTACKING;
         }
@@ -344,9 +352,57 @@ public class EnemyCombatController : MonoBehaviour
     #endregion
 
     #region ANIMATION EVENTS
+    private IEnumerator ShowDamageSprite(int _damage)
+    {
+        CombatCore.EnemyTakenDamage.text = "-" + _damage.ToString();
+        CombatCore.EnemyTakenDamage.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(0.5f);
+        CombatCore.EnemyTakenDamage.gameObject.SetActive(false);
+    }
+
+    private IEnumerator DelayKaboom()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        NormalKaboom.SetActive(false);
+        BurnKaboom.SetActive(false);
+        BreakKaboom.SetActive(false);
+        ConfuseKaboom.SetActive(false);
+        FreezeKaboom.SetActive(false);
+        ParalyzeKaboom.SetActive(false);
+        WeakKaboom.SetActive(false);
+    }
+
     public void AttackPlayer()
     {
-        if(EnemyAttackType == AttackType.MELEE)
+        if (WillInflictStatusEffect())
+        {
+            switch (ThisSideEffect)
+            {
+                case SideEffect.BREAK:
+                    BreakKaboom.SetActive(true);
+                    break;
+                case SideEffect.BURN:
+                    BurnKaboom.SetActive(true);
+                    break;
+                case SideEffect.FREEZE:
+                    FreezeKaboom.SetActive(true);
+                    break;
+                case SideEffect.PARALYZE:
+                    ParalyzeKaboom.SetActive(true);
+                    break;
+                case SideEffect.WEAK:
+                    WeakKaboom.SetActive(true);
+                    break;
+                case SideEffect.CONFUSE:
+                    ConfuseKaboom.SetActive(true);
+                    break;
+            }
+        }
+        else
+            NormalKaboom.SetActive(true);
+        StartCoroutine(DelayKaboom());
+
+        if (EnemyAttackType == AttackType.MELEE)
         {
             if (AfflictedSideEffect == WeaponData.SideEffect.WEAK)
                 Opti.TakeDamageFromEnemy(DamageDeal / 2);
@@ -356,23 +412,10 @@ public class EnemyCombatController : MonoBehaviour
         else if (EnemyAttackType == AttackType.RANGED)
         {
             DoneAttacking = false;
-
-            /*if (CanShootLaser)
-            {
-                ShootingLaser = true;
-                /*CombatCore.EnemyLaser.transform.position = CombatCore.EnemyLaserStartingPoint;
-                CombatCore.EnemyLaser.SetActive(true);
-            }
-            else
-            {
-                ShootingLaser = false;
-                
-            }*/
             CombatCore.EnemyProjectile.transform.position = CombatCore.EnemyProjectileStartingPoint;
             CombatCore.EnemyProjectile.transform.position = ProjectileStartingPoint;
             CombatCore.EnemyProjectile.SetActive(true);
             SpecificProjectile.SetActive(true);
-
         }
     }
 
@@ -432,6 +475,9 @@ public class EnemyCombatController : MonoBehaviour
         MonsterAudioSource.clip = HitSFX;
         MonsterAudioSource.Play();
         CurrentHealth -= _damageReceived;
+        //StartCoroutine(ShowDamageSprite(Mathf.CeilToInt(_damageReceived)));
+        CombatCore.EnemyTakenDamage.text = "-" + Mathf.CeilToInt(_damageReceived).ToString();
+        CombatCore.EnemyTakenDamageAnimator.SetTrigger("ShowStatus");
         UpdateHealthBar();
         CurrentCombatState = CombatState.ATTACKED;
     }

@@ -92,7 +92,7 @@ public class LobbyController : MonoBehaviour
             LobbyCore.CostumeBtn.GetComponent<Image>().sprite = LobbyCore.ActiveCostumeSprite;
             LobbyCore.InitializeCostumes();
         }
-        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.SETTINGS || LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.NEWGRANT)
+        else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.SETTINGS || LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.NEWGRANT || LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.CLAIM)
             UpgradeCannonCore.CurrentCannonImage.gameObject.SetActive(false);
         else if (LobbyCore.CurrentLobbyState == LobbyCore.LobbyStates.CURRENTCANNON)
             LobbyCore.DisplayOptibits();

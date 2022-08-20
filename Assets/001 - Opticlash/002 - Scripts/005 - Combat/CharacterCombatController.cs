@@ -140,7 +140,6 @@ public class CharacterCombatController : MonoBehaviour
     private void OnEnable()
     {
         playerCombatStateChange += CombatStateChange;
-        Debug.Log("ccharacter combat controller enabled");
     }
 
     private void OnDisable()
@@ -151,7 +150,6 @@ public class CharacterCombatController : MonoBehaviour
     private void Start()
     {
         ProjectileCoroutineAllowed = true;
-        Debug.Log("character combat controller start");
     }
 
     private void Update()
@@ -879,11 +877,6 @@ public class CharacterCombatController : MonoBehaviour
         StatusEffectImage.sprite = WeakLogoSprite;
         StatusEffectText.sprite = WeakTextSprite;
     }
-
-    public void ActivateSideEffect()
-    {
-
-    }
     #endregion
 
     #region ANIMATION EVENTS
@@ -893,6 +886,14 @@ public class CharacterCombatController : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.15f);
         CombatCore.MissedSprite.gameObject.SetActive(false);
     }
+    private IEnumerator ShowDamageSprite(int _damage)
+    {
+        CombatCore.PlayerTakenDamage.text = "-" + _damage.ToString();
+        CombatCore.PlayerTakenDamage.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(0.5f);
+        CombatCore.PlayerTakenDamage.gameObject.SetActive(false);
+    }
+
     public void ProcessHealth()
     {
         GameManager.Instance.SFXAudioManager.PlayHitSFX();
@@ -930,9 +931,7 @@ public class CharacterCombatController : MonoBehaviour
                 }
             }
             else if (StatusEffectActivated)
-            {
-                Debug.Log("has status effect");
-                
+            {                
                 if (CurrentSideEffect == EnemyCombatController.SideEffect.PARALYZE || CurrentSideEffect == EnemyCombatController.SideEffect.CONFUSE)
                     CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
                 ProcessStatusEffectInstances();
@@ -953,7 +952,6 @@ public class CharacterCombatController : MonoBehaviour
 
     public void ProcessEndAttack()
     {
-        Debug.Log("reducing shots earned");
         BoardCore.ShotsEarned--;
         if (BoardCore.ShotsEarned == 0)
         {
@@ -1016,6 +1014,8 @@ public class CharacterCombatController : MonoBehaviour
     {
         if (_damageReceived > 0)
         {
+            CombatCore.PlayerTakenDamage.text = "-" + Mathf.CeilToInt(_damageReceived).ToString();
+            CombatCore.PlayerTakenDamageAnimator.SetTrigger("ShowStatus");
             CurrentCombatState = CombatState.ATTACKED;
             if(ShieldsActivated)
             {
@@ -1034,7 +1034,8 @@ public class CharacterCombatController : MonoBehaviour
             }
             else
                 CurrentHealth -= _damageReceived;
-
+            
+            //StartCoroutine(ShowDamageSprite(Mathf.CeilToInt(_damageReceived)));
             UpdateHealthBar();
         }
     }

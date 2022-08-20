@@ -27,19 +27,24 @@ public class EntryController : MonoBehaviour
     {
         EntryCore.EntryAnimator.SetInteger("index", (int)EntryCore.CurrentEntryState);
 
-        if(EntryCore.CurrentEntryState == EntryCore.EntryStates.LOGIN && !GameManager.Instance.DebugMode && PlayerPrefs.HasKey("Username") && PlayerPrefs.HasKey("Password"))
+        if (EntryCore.CurrentEntryState == EntryCore.EntryStates.LOGIN && !GameManager.Instance.DebugMode && PlayerPrefs.HasKey("Username") && PlayerPrefs.HasKey("Password"))
         {
             EntryCore.UsernameLoginTMP.text = PlayerPrefs.GetString("Username");
             EntryCore.PasswordLoginTMP.text = PlayerPrefs.GetString("Password");
-            if(GameManager.Instance.DebugMode)
+            if (GameManager.Instance.DebugMode)
             {
                 EntryCore.ResetLoginPanel();
                 EntryCore.CurrentEntryState = EntryCore.EntryStates.NONE;
                 GameManager.Instance.SceneController.CurrentScene = "CombatScene";
             }
             else
+            {
+                EntryCore.RememberMeToggle.isOn = true;
                 LoginCore.LoginUserPlayfab(PlayerPrefs.GetString("Username"), PlayerPrefs.GetString("Password"));
+            }
         }
+        else if (EntryCore.CurrentEntryState == EntryCore.EntryStates.METHODS)
+            EntryCore.ResetLoginPanel();
 
     }
     //========================================================================================

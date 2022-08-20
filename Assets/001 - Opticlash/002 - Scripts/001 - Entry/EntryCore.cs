@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using MyBox;
 
@@ -56,6 +57,9 @@ public class EntryCore : MonoBehaviour
     [field: Header("LOGIN")]
     [field: SerializeField] public TMP_InputField UsernameLoginTMP { get; set; }
     [field: SerializeField] public TMP_InputField PasswordLoginTMP { get; set; }
+
+    [field: Header("REMEMBER")]
+    [field: SerializeField] public Toggle RememberMeToggle { get; set; }
     //======================================================================
 
     public void LoginButton()
@@ -102,6 +106,11 @@ public class EntryCore : MonoBehaviour
     {
 
     }
+
+    public void ShowComingSoon()
+    {
+        GameManager.Instance.DisplayErrorPanel("COMING SOON");
+    }
     
 
     public void LogOutButton()
@@ -114,7 +123,7 @@ public class EntryCore : MonoBehaviour
     #region LINKS
     public void OpenWebsite()
     {
-        Application.OpenURL("https://optibit.herokuapp.com/sessions/login");
+        Application.OpenURL("https://optibit.tech/");
     }
     public void OpenFacebook()
     {

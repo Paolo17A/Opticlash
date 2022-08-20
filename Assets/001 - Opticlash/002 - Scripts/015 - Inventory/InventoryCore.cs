@@ -33,6 +33,7 @@ public class InventoryCore : MonoBehaviour
         DisplayedInventoryImage.gameObject.SetActive(false);
         InventoryItemNameTMP.gameObject.SetActive(false);
         RectanglePanelInventory.SetActive(false);
+        SelectBreakRemove();
     }
 
     public void SelectBreakRemove()

@@ -26,15 +26,22 @@ public class AdventureCore : MonoBehaviour
     [field: SerializeField] public Animator StageSelectAnimator { get; set; }
     [field: SerializeField] public Image SelectedStageImage { get; set; }
 
+    [field: Header("STAGE DATA")]
+    [field: SerializeField] public TextMeshProUGUI StageNumberTMP { get; set; }
+    [field: SerializeField] public List<Image> MonsterSlotImages { get; set; }
+    [field: SerializeField] public TextMeshProUGUI WavesCountMP { get; set; }
+    [field: SerializeField] public List<Image> RewardSlotImages { get; set; }
+
     [field: Header("DEBUGGER")]
     [field: SerializeField][field: ReadOnly] public bool LevelWasSelected { get; set; }
+    [field: SerializeField][field: ReadOnly] public float MaxYClamp { get; set; }
     private int failedCallbackCounter;
     //================================================================================
 
     public void InitializeLevels()
     {
         EnergyTMP.text = "Energy: " + PlayerData.EnergyCount.ToString();
-        OptibitTMP.text = PlayerData.Optibit.ToString();
+        OptibitTMP.text = PlayerData.Optibit.ToString("n0");
         if(GameManager.Instance.DebugMode)
         {
             foreach(LevelSelectController level in Levels)
@@ -50,6 +57,12 @@ public class AdventureCore : MonoBehaviour
                     level.LevelSprite.sprite = level.LockedSprite;
                 }
             }
+            if (PlayerData.CurrentStage >= 1 && PlayerData.CurrentStage <= 10)
+                MaxYClamp = 20f;
+            else if (PlayerData.CurrentStage >= 11 && PlayerData.CurrentStage <= 20)
+                MaxYClamp = 57.5f;
+            else if (PlayerData.CurrentStage >= 21 && PlayerData.CurrentStage <= 30)
+                MaxYClamp = 95.7f;
         }
         else
         {
@@ -74,6 +87,12 @@ public class AdventureCore : MonoBehaviour
                                 level.LevelSprite.sprite = level.LockedSprite;
                             }
                         }
+                        if (PlayerData.CurrentStage >= 1 && PlayerData.CurrentStage <= 10)
+                            MaxYClamp = 20f;
+                        else if (PlayerData.CurrentStage >= 11 && PlayerData.CurrentStage <= 20)
+                            MaxYClamp = 57.5f;
+                        else if (PlayerData.CurrentStage >= 21 && PlayerData.CurrentStage <= 30)
+                            MaxYClamp = 95.7f;
                         HideLoadingPanel();
                     }
                     else

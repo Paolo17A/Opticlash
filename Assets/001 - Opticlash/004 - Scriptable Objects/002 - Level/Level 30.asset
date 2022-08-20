@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Level 30
   m_EditorClassIdentifier: 
   <LevelIndex>k__BackingField: 30
-  <SelectedLevelSprite>k__BackingField: {fileID: 21300000, guid: 2a62472e46a9ea54b92ba7841971c697, type: 3}
   <MonsterList>k__BackingField:
   - WeakeMonster001
   - BreakMonster006
@@ -28,6 +27,34 @@ MonoBehaviour:
   - ParalyzeMonster015
   - FreezeBoss003
   <MonsterLevels>k__BackingField: 1a0000001a0000001b0000001c0000001d0000001e0000001f0000002000000020000000210000002200000023000000
+  <MonsterSprites>k__BackingField:
+  - {fileID: 21300000, guid: 7d57afa22c1c8e146abdb3217d359a93, type: 3}
+  - {fileID: 21300000, guid: 38966c997637b7440823d140ad10d36a, type: 3}
+  - {fileID: 21300000, guid: dada861a5a84c4d4eb22472f36c4b032, type: 3}
+  - {fileID: 21300000, guid: d741232174a95534b8be2a80a6aa8e42, type: 3}
+  - {fileID: 21300000, guid: 7607a381749ae2546b9bcacaa29ef646, type: 3}
+  - {fileID: 21300000, guid: 1334389cdf21d7241967cf429a50e0c4, type: 3}
+  - {fileID: 21300000, guid: d32bb44c051813b4f841b7ccc192cd7a, type: 3}
+  - {fileID: 21300000, guid: b40c714d0a6491645a1c7549f514c89c, type: 3}
+  - {fileID: 21300000, guid: f97ba48d45cf1fc418aa10dd835a661c, type: 3}
+  - {fileID: 21300000, guid: 1ec9e8ef977eb3348a5a7211efce6098, type: 3}
+  - {fileID: 21300000, guid: b7c4a3d3dfcd64d42a834ba4a65baef7, type: 3}
+  - {fileID: 21300000, guid: e84f12e8bf28fa14c83621c9f974e275, type: 3}
+  <RewardSprites>k__BackingField:
+  - {fileID: 21300000, guid: 738c0d848c97d7a40a362767bd18bfa8, type: 3}
+  - {fileID: 21300000, guid: 06d42cb809b64274bae1b056781c3620, type: 3}
+  - {fileID: 21300000, guid: 33b05bcad7282e14a90bab5ae158017b, type: 3}
+  - {fileID: 21300000, guid: a191014334a727e41934d4d5b24bc69d, type: 3}
+  - {fileID: 21300000, guid: 31665a52aec66624cb316d49077c7f52, type: 3}
+  - {fileID: 21300000, guid: 75acfa95073af1f489cd4a4385534cd4, type: 3}
+  - {fileID: 21300000, guid: 3bdb8ea3106514e499633ccf199756eb, type: 3}
+  - {fileID: 21300000, guid: daa696d56ea2ba0479dd4d259bfc8a00, type: 3}
+  - {fileID: 21300000, guid: 0ca8db4a602563b4e956b85ccf5fdba1, type: 3}
+  - {fileID: 21300000, guid: 01b8e7973d8b4354fb644c055fc9e8ec, type: 3}
+  - {fileID: 21300000, guid: 25cf73ce8d06f7c4f86a8e338772ecc3, type: 3}
+  - {fileID: 21300000, guid: b0fda6181a2d5164784b56b3e3dd6cbc, type: 3}
+  - {fileID: 21300000, guid: c2fad65d14ac9634e93aa45b4b7fd3b1, type: 3}
+  - {fileID: 21300000, guid: 5ab6d82bb0e71a84c89856286dde6491, type: 3}
   <MinDroppedOPB>k__BackingField: 500
   <MaxDroppedOPB>k__BackingField: 1000
   <MinDroppedNormalFragment>k__BackingField: 1

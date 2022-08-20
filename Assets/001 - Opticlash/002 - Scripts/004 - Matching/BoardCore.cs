@@ -197,7 +197,7 @@ public class BoardCore : MonoBehaviour
 
     public void ShuffleBoard()
     {
-        if(CurrentBoardState != BoardState.WAITING && CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING)
+        if(CurrentBoardState != BoardState.WAITING && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
         {
             ShuffleBtn.interactable = false;
             CurrentBoardState = BoardState.WAITING;

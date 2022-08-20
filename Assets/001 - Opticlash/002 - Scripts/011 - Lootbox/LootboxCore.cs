@@ -71,8 +71,18 @@ public class LootboxCore : MonoBehaviour
     [field: SerializeField] public GameObject CostumeReward { get; set; }
     [field: SerializeField] private SpriteRenderer CostumeRewardSprite { get; set; }
 
+    [field: Header("OPEN")]
+    [field: SerializeField] private Sprite MayOpenSprite { get; set; }
+    [field: SerializeField] private Sprite MayNotOpenSprite { get; set; }
+    [field: SerializeField] private Sprite MayGoLeftSprite { get; set; }
+    [field: SerializeField] private Sprite MayNotGoLeftSprite { get; set; }
+    [field: SerializeField] private Sprite MayGoRightSprite { get; set; }
+    [field: SerializeField] private Sprite MayNotGoRightSprite { get; set; }
+
+
     [field: Header("DEBUGGER")]
     [field: SerializeField] private int failedCallbackCounter { get; set; }
+    [field: SerializeField] private bool HasThisLootbox { get; set; }
 
     private void Start()
     {
@@ -83,8 +93,8 @@ public class LootboxCore : MonoBehaviour
         if (GameManager.Instance.DebugMode)
         {
             LootboxIndex = 1;
-            PreviousLootboxBtn.interactable = false;
-            NextLootboxBtn.interactable = true;
+            PreviousLootboxBtn.GetComponent<Image>().sprite = MayNotGoLeftSprite;
+            NextLootboxBtn.GetComponent<Image>().sprite = MayGoRightSprite;
             CommonLootboxOwned.text = PlayerData.CommonLootboxCount.ToString();
             RareLootboxOwned.text = PlayerData.RareLootboxCount.ToString();
             EpicLootboxOwned.text = PlayerData.EpicLootboxCount.ToString();
@@ -128,8 +138,8 @@ public class LootboxCore : MonoBehaviour
                         }
                     }
                     LootboxIndex = 1;
-                    PreviousLootboxBtn.interactable = false;
-                    NextLootboxBtn.interactable = true;
+                    PreviousLootboxBtn.GetComponent<Image>().sprite = MayNotGoLeftSprite;
+                    NextLootboxBtn.GetComponent<Image>().sprite = MayGoRightSprite;
                     CommonLootboxOwned.text = PlayerData.CommonLootboxCount.ToString();
                     RareLootboxOwned.text = PlayerData.RareLootboxCount.ToString();
                     EpicLootboxOwned.text = PlayerData.EpicLootboxCount.ToString();
@@ -148,45 +158,74 @@ public class LootboxCore : MonoBehaviour
 
     public void PreviousLootbox()
     {
-        LootboxIndex--;
-        if (LootboxIndex == 1)
-            PreviousLootboxBtn.interactable = false;
-        else
-            PreviousLootboxBtn.interactable = true;
-        NextLootboxBtn.interactable = true;
-        DisplayCurrentLootbox();
+        if(LootboxIndex != 1)
+        {
+            LootboxIndex--;
+            if (LootboxIndex == 1)
+                PreviousLootboxBtn.GetComponent<Image>().sprite = MayNotGoLeftSprite;
+            else
+                PreviousLootboxBtn.GetComponent<Image>().sprite = MayGoLeftSprite;
+            NextLootboxBtn.GetComponent<Image>().sprite = MayGoRightSprite;
+            DisplayCurrentLootbox();
+        }
     }
 
     public void NextLootbox()
-    {
-        LootboxIndex++;
-        PreviousLootboxBtn.interactable = true;
-        if (LootboxIndex == 5)
-            NextLootboxBtn.interactable = false;
-        else
-            NextLootboxBtn.interactable = true;
-        DisplayCurrentLootbox();
+    {if(LootboxIndex != 5)
+        {
+            LootboxIndex++;
+            PreviousLootboxBtn.GetComponent<Image>().sprite = MayGoLeftSprite;
+            if (LootboxIndex == 5)
+                NextLootboxBtn.GetComponent<Image>().sprite = MayNotGoRightSprite;
+            else
+                NextLootboxBtn.GetComponent<Image>().sprite = MayGoRightSprite;
+            DisplayCurrentLootbox();
+        }
     }
 
     public void OpenLootboxButton()
     {
-        switch (LootboxIndex)
+        if(HasThisLootbox)
         {
-            case 1:
-                OpenCommonLootbox();
-                break;
-            case 2:
-                OpenRareLootbox();
-                break;
-            case 3:
-                OpenEpicLootbox();
-                break;
-            case 4:
-                OpenLegendaryLootbox1();
-                break;
-            case 5:
-                OpenLegendaryLootbox2();
-                break;
+            switch (LootboxIndex)
+            {
+                case 1:
+                    OpenCommonLootbox();
+                    break;
+                case 2:
+                    OpenRareLootbox();
+                    break;
+                case 3:
+                    OpenEpicLootbox();
+                    break;
+                case 4:
+                    OpenLegendaryLootbox1();
+                    break;
+                case 5:
+                    OpenLegendaryLootbox2();
+                    break;
+            }
+        }
+        else
+        {
+            switch (LootboxIndex)
+            {
+                case 1:
+                    GameManager.Instance.DisplayErrorPanel("You do not have any Common Lootboxes");
+                    break;
+                case 2:
+                    GameManager.Instance.DisplayErrorPanel("You do not have any Rare Lootboxes");
+                    break;
+                case 3:
+                    GameManager.Instance.DisplayErrorPanel("You do not have any Epic Lootboxes");
+                    break;
+                case 4:
+                    GameManager.Instance.DisplayErrorPanel("You do not have any Legend 1 Lootboxes");
+                    break;
+                case 5:
+                    GameManager.Instance.DisplayErrorPanel("You do not have any Legend 2 Lootboxes");
+                    break;
+            }
         }
     }
 
@@ -1025,45 +1064,75 @@ public class LootboxCore : MonoBehaviour
                 BotBoxImage.sprite = BotCommonBox;
                 CommonLootboxPanel.SetActive(true);
                 if (PlayerData.CommonLootboxCount > 0)
-                    OpenLootboxBtn.interactable = true;
+                {
+                    HasThisLootbox = true;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                }
                 else
-                    OpenLootboxBtn.interactable = false;
+                {
+                    HasThisLootbox = false;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
+                }
                 break;
             case 2:
                 TopBoxImage.sprite = TopRareBox;
                 BotBoxImage.sprite = BotRareBox;
                 RareLootboxPanel.SetActive(true);
                 if (PlayerData.RareLootboxCount > 0)
-                    OpenLootboxBtn.interactable = true;
+                {
+                    HasThisLootbox = true;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                }
                 else
-                    OpenLootboxBtn.interactable = false;
+                {
+                    HasThisLootbox = false;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
+                }
                 break;
             case 3:
                 TopBoxImage.sprite = TopEpicBox;
                 BotBoxImage.sprite = BotEpicBox;
                 EpicLootboxPanel.SetActive(true);
                 if (PlayerData.EpicLootboxCount > 0)
-                    OpenLootboxBtn.interactable = true;
+                {
+                    HasThisLootbox = true;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                }
                 else
-                    OpenLootboxBtn.interactable = false;
+                {
+                    HasThisLootbox = false;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
+                }
                 break;
             case 4:
                 TopBoxImage.sprite = TopLegend1Box;
                 BotBoxImage.sprite = BotLegend1Box;
                 LegendLootbox1Panel.SetActive(true);
                 if (PlayerData.LegendaryLootbox1Count > 0)
-                    OpenLootboxBtn.interactable = true;
+                {
+                    HasThisLootbox = true;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                }
                 else
-                    OpenLootboxBtn.interactable = false;
+                {
+                    HasThisLootbox = false;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
+                }
                 break;
             case 5:
                 TopBoxImage.sprite = TopLegend2Box;
                 BotBoxImage.sprite = BotLegend2Box;
                 LegendLootbox2Panel.SetActive(true);
                 if (PlayerData.LegendaryLootbox2Count > 0)
-                    OpenLootboxBtn.interactable = true;
+                {
+                    HasThisLootbox = true;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                }
                 else
-                    OpenLootboxBtn.interactable = false;
+                {
+                    HasThisLootbox = false;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
+                }
                 break;
         }
     }

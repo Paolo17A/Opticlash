@@ -14,6 +14,7 @@ public class LoginCore : MonoBehaviour
     [field: SerializeField] private EntryCore EntryCore { get; set; }
     [field: SerializeField] private PlayerData PlayerData { get; set; }
 
+
     [Header("DEBUGGER")]
     private int failedCallbackCounter;
     private Guid myGUID;
@@ -23,9 +24,9 @@ public class LoginCore : MonoBehaviour
         EntryCore.DisplayLoadingPanel();
         RegisterPlayFabUserRequest registerPlayFabUser = new RegisterPlayFabUserRequest();
         registerPlayFabUser.TitleId = "BB42A";
-        registerPlayFabUser.Email = "test@gmail.com";
-        registerPlayFabUser.Username = "test123";
-        registerPlayFabUser.DisplayName = "test123";
+        registerPlayFabUser.Email = "testuser10@gmail.com";
+        registerPlayFabUser.Username = "testuser10";
+        registerPlayFabUser.DisplayName = "testuser10";
         registerPlayFabUser.Password = "password";
 
         PlayFabClientAPI.RegisterPlayFabUser(registerPlayFabUser,
@@ -111,8 +112,6 @@ public class LoginCore : MonoBehaviour
         {
             Debug.Log(resultCallback.FunctionResult);
             failedCallbackCounter = 0;
-            PlayerPrefs.SetString("Username", username);
-            PlayerPrefs.SetString("Password", password);
             if(resultCallback.FunctionResult == null)
             {
                 Debug.Log("nothing was returned");
@@ -136,8 +135,12 @@ public class LoginCore : MonoBehaviour
                     PlayerData.LevelsWon = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "LevelsWon"));
                     PlayerData.DailyQuestClaimed = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "DailyQuestClaimed"));
 
-                    PlayerPrefs.SetString("Username", username);
-                    PlayerPrefs.SetString("Password", password);
+                    if (EntryCore.RememberMeToggle.isOn)
+                    {
+                        PlayerPrefs.SetString("Username", username);
+                        PlayerPrefs.SetString("Password", password);
+                    }
+                    
                     EntryCore.HideLoadingPanel();
                     GameManager.Instance.SceneController.CurrentScene = "LobbyScene";
                 }

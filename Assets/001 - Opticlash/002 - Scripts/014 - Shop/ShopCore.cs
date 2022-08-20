@@ -31,6 +31,8 @@ public class ShopCore : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI ItemNameTMP { get; set; }
     [field: SerializeField] private TextMeshProUGUI ItemDescriptionTMP { get; set; }
     [field: SerializeField] private Button BuyBtn { get; set; }
+    [field: SerializeField] private Sprite MayBuySprite { get; set; }
+    [field: SerializeField] private Sprite MayNotBuySprite { get; set; }
 
     [field: Header("QUANTITY")]
     [field: SerializeField] public int PurchaseQuantity { get; set; }
@@ -148,82 +150,69 @@ public class ShopCore : MonoBehaviour
 
     public void PurchaseCurrentItem()
     {
-        if (GameManager.Instance.DebugMode)
+        if (PlayerData.Optibit >= CurrentItemCost)
         {
-            switch (ShopIndex)
+            if (GameManager.Instance.DebugMode)
             {
-                case 0:
-                    PlayerData.BurnRemovalCharges++;
-                    break;
-                case 1:
-                    PlayerData.BreakRemovalCharges++;
-                    break;
-                case 2:
-                    PlayerData.ConfuseRemovalCharges++;
-                    break;
-                case 3:
-                    PlayerData.FreezeRemovalCharges++;
-                    break;
-                case 4:
-                    PlayerData.SmallHealCharges++;
-                    break;
-                case 5:
-                    PlayerData.MediumHealCharges++;
-                    break;
-                case 6:
-                    PlayerData.LargeHealCharges++;
-                    break;
-                case 7:
-                    PlayerData.ParalyzeRemovalCharges++;
-                    break;
-                case 8:
-                    PlayerData.WeakRemovalCharges++;
-                    break;
+                switch (ShopIndex)
+                {
+                    case 0:
+                        PlayerData.BurnRemovalCharges++;
+                        break;
+                    case 1:
+                        PlayerData.BreakRemovalCharges++;
+                        break;
+                    case 2:
+                        PlayerData.ConfuseRemovalCharges++;
+                        break;
+                    case 3:
+                        PlayerData.FreezeRemovalCharges++;
+                        break;
+                    case 4:
+                        PlayerData.SmallHealCharges++;
+                        break;
+                    case 5:
+                        PlayerData.MediumHealCharges++;
+                        break;
+                    case 6:
+                        PlayerData.LargeHealCharges++;
+                        break;
+                    case 7:
+                        PlayerData.ParalyzeRemovalCharges++;
+                        break;
+                    case 8:
+                        PlayerData.WeakRemovalCharges++;
+                        break;
+                }
+                PlayerData.Optibit -= CurrentItemCost;
+                ProcessBuyButton();
+                LobbyCore.DisplayOptibits();
             }
-            PlayerData.Optibit -= CurrentItemCost;
-            ProcessBuyButton();
-            LobbyCore.DisplayOptibits();
+            else
+            {
+                LobbyCore.DisplayLoadingPanel();
+
+                StartPurchaseRequest startPurchase = new StartPurchaseRequest();
+                startPurchase.CatalogVersion = "Consumables";
+                startPurchase.Items = new List<ItemPurchaseRequest>();
+                startPurchase.Items.Add(new ItemPurchaseRequest() { ItemId = GetConsumableId(ShopIndex), Quantity = (uint)PurchaseQuantity });
+
+                PlayFabClientAPI.StartPurchase(startPurchase,
+                    resultCallback =>
+                    {
+                        failedCallbackCounter = 0;
+                        PayForPurchase(resultCallback.OrderId, resultCallback.PaymentOptions[0].ProviderName);
+                    },
+                    errorCallback =>
+                    {
+                        ErrorCallback(errorCallback.Error,
+                        PurchaseCurrentItem,
+                        () => ProcessError(errorCallback.ErrorMessage));
+                    });
+            }
         }
         else
-        {
-            LobbyCore.DisplayLoadingPanel();
-
-            StartPurchaseRequest startPurchase = new StartPurchaseRequest();
-            startPurchase.CatalogVersion = "Consumables";
-            startPurchase.Items = new List<ItemPurchaseRequest>();
-            startPurchase.Items.Add(new ItemPurchaseRequest() { ItemId = GetConsumableId(ShopIndex), Quantity = (uint)PurchaseQuantity });
-
-            PlayFabClientAPI.StartPurchase(startPurchase,
-                resultCallback =>
-                {
-                    failedCallbackCounter = 0;
-                    PayForPurchase(resultCallback.OrderId, resultCallback.PaymentOptions[0].ProviderName);
-                },
-                errorCallback =>
-                {
-                    ErrorCallback(errorCallback.Error,
-                    PurchaseCurrentItem,
-                    () => ProcessError(errorCallback.ErrorMessage));
-                });
-
-            /*PurchaseItemRequest purchaseItem = new PurchaseItemRequest();
-            purchaseItem.CatalogVersion = "Consumables";
-            purchaseItem.ItemId = GetConsumableId(ShopIndex);
-            purchaseItem.Price = CurrentItemCost;
-            purchaseItem.VirtualCurrency = "OP";
-
-            PlayFabClientAPI.PurchaseItem(purchaseItem,
-                resultCallback =>
-                {
-                    
-                },
-                errorCallback =>
-                {
-                    ErrorCallback(errorCallback.Error,
-                    PurchaseCurrentItem,
-                    () => ProcessError(errorCallback.ErrorMessage));
-                });*/
-        }
+            GameManager.Instance.DisplayErrorPanel("You do not have enough Optibit for this purchase");
     }
 
     private void PayForPurchase(string _orderID, string _providerName)
@@ -315,7 +304,7 @@ public class ShopCore : MonoBehaviour
     {
         if (PlayerData.Optibit >= CurrentItemCost * PurchaseQuantity)
         {
-            BuyBtn.interactable = true;
+            BuyBtn.GetComponent<Image>().sprite = MayBuySprite;
             if (PlayerData.Optibit >= CurrentItemCost * (PurchaseQuantity + 1))
                 IncreaseQuantityBtn.interactable = true;
             else
@@ -323,7 +312,7 @@ public class ShopCore : MonoBehaviour
         }
         else
         {
-            BuyBtn.interactable = false;
+            BuyBtn.GetComponent<Image>().sprite = MayNotBuySprite;
             IncreaseQuantityBtn.interactable = false;
         }
     }
