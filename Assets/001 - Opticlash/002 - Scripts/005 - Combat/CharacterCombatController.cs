@@ -82,7 +82,6 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField] private SpriteRenderer CannonMiddleSprite { get; set; }
     [field: SerializeField] private SpriteRenderer CannonFrontSprite { get; set; }
     [field: SerializeField] private bool Lifestealing { get; set; }
-    [field: SerializeField] private float LifestealHP { get; set; }
 
     [field: Header("POWER UP DATA")]
     [field: SerializeField] private GameObject DoubleDamageEffect {get;set;}
@@ -97,6 +96,16 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField] public int LifestealInstancesRemaining { get; set; }
     [field: SerializeField] public bool LifestealActivated { get; set; }
     [field: SerializeField] public GameObject LifestealEffect { get; set; }
+
+    [field: Header("ITEM EFFECTS")]
+    [field: SerializeField] private GameObject HealUsed { get; set; }
+    [field: SerializeField] private GameObject BreakUsed { get; set; }
+    [field: SerializeField] private GameObject BurnUsed { get; set; }
+    [field: SerializeField] private GameObject ConfuseUsed { get; set; }
+    [field: SerializeField] private GameObject FreezeUsed { get; set; }
+    [field: SerializeField] private GameObject ParalyzeUsed { get; set; }
+    [field: SerializeField] private GameObject WeakUsed { get; set; }
+
 
     [field: Header("SIDE EFFECTS")]
     [field: SerializeField] public SpriteRenderer StatusEffectImage { get; set; }
@@ -124,15 +133,13 @@ public class CharacterCombatController : MonoBehaviour
     [field: Header("PROJECTILES")]
     [field: SerializeField] private GameObject Projectile { get; set; }
     [field: SerializeField] private Transform ProjectileStartingPoint { get; set; }
-    [field: SerializeField] private Transform ProjectileEndPoint { get; set; }
     [field: SerializeField][field: ReadOnly] public bool ProjectileSpawned { get; set; }
-    [field: SerializeField] private TrailRenderer ProjectileTrail { get; set; }
 
     [field: Header("DEBUGGER")]
     [field: SerializeField][field: ReadOnly] public bool EffectNewlyRemoved { get; set; }
     [field: SerializeField][field: ReadOnly] public bool ProjectileCoroutineAllowed { get; set; }
     [field: SerializeField][field: ReadOnly] private int failedCallbackCounter { get; set; }
-    [field: SerializeField][field: ReadOnly] private bool SkillButtonPressed { get; set; }
+    [field: SerializeField][field: ReadOnly] public bool SkillButtonPressed { get; set; }
 
     //===================================================================================
     #endregion
@@ -280,35 +287,18 @@ public class CharacterCombatController : MonoBehaviour
         #endregion
         #region PROJECTILE SPRITES
         Projectile.GetComponent<SpriteRenderer>().sprite = PlayerData.ActiveCustomWeapon.BaseWeaponData.Ammo;
-        //ProjectileTrail.colorGradient = new Gradient();
-        /*if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C2 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C3 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C4 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.C5)
-        {
-            Projectile.transform.GetChild(0).gameObject.SetActive(true);
-            MonstersToSkip = 5;
-        }
-        else if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.B1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.B2 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.B3 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.B4)
-        {
-            Projectile.transform.GetChild(1).gameObject.SetActive(true);
-            MonstersToSkip = 10;
-        }
-        else if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.A1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.A2 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.A3)
-        {
-            Projectile.transform.GetChild(2).gameObject.SetActive(true);
-            MonstersToSkip = 15;
-        }
-        else if (PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.S1 || PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode == WeaponData.WeaponCode.S2)
-        {
-            Projectile.transform.GetChild(3).gameObject.SetActive(true);
-            MonstersToSkip = 20;
-        }*/
         #endregion
         #region HEALTH SPRITES
         HealthBar.SetActive(true);
         HealthSlider.transform.localScale = new Vector3(1f, 1f, 0f);
-        HealthSlider.transform.localPosition = new Vector3(0f, 0f, 10f);
+        HealthSlider.transform.localPosition = new Vector3(0f, 0f, 0f);
         #endregion
         RemoveSideEffects();
-        ShieldInstancesRemaining = 5;
+        DoubleDamageTurnsCooldown = 0;
+        ShieldTurnsCooldown = 0;
+        CombatCore.DoubleDamageImage.SetActive(false);
+        CombatCore.ShieldImage.SetActive(false);
+        //ShieldInstancesRemaining = 5;
         LifestealInstancesRemaining = 1;
         #region STATS
         Attack = PlayerData.ActiveCustomWeapon.Attack;
@@ -351,6 +341,18 @@ public class CharacterCombatController : MonoBehaviour
         WeakKaboom.SetActive(false);
     }
 
+    private IEnumerator DelayUsedItemEffect()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        HealUsed.SetActive(false);
+        BurnUsed.SetActive(false);
+        BreakUsed.SetActive(false);
+        ConfuseUsed.SetActive(false);
+        FreezeUsed.SetActive(false);
+        ParalyzeUsed.SetActive(false);
+        WeakUsed.SetActive(false);
+    }
+
     #region POWERUPS
     public void ActivateDoubleDamage()
     {
@@ -362,7 +364,6 @@ public class CharacterCombatController : MonoBehaviour
             DoubleDamageActivated = true;
             DoubleDamageTurnsCooldown = 5;
             CombatCore.DoubleDamageTMP.text = "Turns Left: " + DoubleDamageTurnsCooldown;
-            //CombatCore.DoubleDamageBtn.interactable = false;
         }
         else
             Debug.Log("Double damage is on cooldown for " + DoubleDamageTurnsCooldown + " more turns");
@@ -370,7 +371,7 @@ public class CharacterCombatController : MonoBehaviour
 
     public void ActivateShield()
     {
-        if (!ShieldsActivated && ShieldInstancesRemaining > 0 && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
+        if (!ShieldsActivated && ShieldTurnsCooldown == 0 && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
         {
             GameManager.Instance.SFXAudioManager.PlayShieldSFX();
             ShieldEffect.SetActive(true);
@@ -388,7 +389,6 @@ public class CharacterCombatController : MonoBehaviour
         if(!Lifestealing && LifestealInstancesRemaining > 0 && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
         {
             Lifestealing = true;
-            LifestealHP = DamageDeal / 2;
             LifestealEffect.SetActive(true);
         }
     }
@@ -397,10 +397,13 @@ public class CharacterCombatController : MonoBehaviour
     #region SKILLS
     public void UseHealSkill()
     {
+        
         if (GameManager.Instance.DebugMode)
         {
-            if (PlayerData.SmallHealCharges > 0 && !SkillButtonPressed)
+            if (PlayerData.SmallHealCharges > 0 && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                HealUsed.SetActive(true);
                 SkillButtonPressed = true;
                 PlayerData.ItemsUsed++;
                 PlayerData.SmallHealCharges--;
@@ -411,12 +414,15 @@ public class CharacterCombatController : MonoBehaviour
                 UpdateHealthBar();
                 CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
                 SkillButtonPressed = false;
+                StartCoroutine(DelayUsedItemEffect());
             }
         }
         else
         {
-            if(PlayerData.SmallHealCharges > 0 && !SkillButtonPressed)
+            if(PlayerData.SmallHealCharges > 0 && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                HealUsed.SetActive(true);
                 SkillButtonPressed = true;
                 ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.SmallHealInstanceID;
@@ -433,6 +439,9 @@ public class CharacterCombatController : MonoBehaviour
                             CombatCore.HealBtn.interactable = false;
                         }
                         CurrentHealth += 10f;
+                        if (CurrentHealth > MaxHealth)
+                            CurrentHealth = MaxHealth;
+                        StartCoroutine(DelayUsedItemEffect());
                         UpdateHealthBar();
                         UpdateQuestData();
                     },
@@ -449,8 +458,10 @@ public class CharacterCombatController : MonoBehaviour
     {
         if (GameManager.Instance.DebugMode)
         {
-            if (PlayerData.MediumHealCharges > 0 && !SkillButtonPressed)
+            if (PlayerData.MediumHealCharges > 0 && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                HealUsed.SetActive(true);
                 SkillButtonPressed = true;
                 PlayerData.ItemsUsed++;
                 PlayerData.MediumHealCharges--;
@@ -458,15 +469,20 @@ public class CharacterCombatController : MonoBehaviour
                 if (PlayerData.MediumHealCharges == 0)
                     CombatCore.MediumHealBtn.interactable = false;
                 CurrentHealth += 15f;
+                if (CurrentHealth > MaxHealth)
+                    CurrentHealth = MaxHealth;
                 UpdateHealthBar();
+                StartCoroutine(DelayUsedItemEffect());
                 CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
                 SkillButtonPressed = false;
             }
         }
         else
         {
-            if (PlayerData.MediumHealCharges > 0 && !SkillButtonPressed)
+            if (PlayerData.MediumHealCharges > 0 && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                HealUsed.SetActive(true);
                 SkillButtonPressed = true;
                 ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.MediumHealInstanceID;
@@ -483,6 +499,9 @@ public class CharacterCombatController : MonoBehaviour
                             CombatCore.MediumHealBtn.interactable = false;
                         }
                         CurrentHealth += 15f;
+                        if (CurrentHealth > MaxHealth)
+                            CurrentHealth = MaxHealth;
+                        StartCoroutine(DelayUsedItemEffect());
                         UpdateHealthBar();
                         UpdateQuestData();
                     },
@@ -499,8 +518,10 @@ public class CharacterCombatController : MonoBehaviour
     {
         if (GameManager.Instance.DebugMode)
         {
-            if (PlayerData.LargeHealCharges > 0 && !SkillButtonPressed)
+            if (PlayerData.LargeHealCharges > 0 && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                HealUsed.SetActive(true);
                 SkillButtonPressed = true;
                 PlayerData.ItemsUsed++;
                 PlayerData.LargeHealCharges--;
@@ -508,6 +529,9 @@ public class CharacterCombatController : MonoBehaviour
                 if (PlayerData.LargeHealCharges == 0)
                     CombatCore.LargeHealBtn.interactable = false;
                 CurrentHealth += 25f;
+                if (CurrentHealth > MaxHealth)
+                    CurrentHealth = MaxHealth;
+                StartCoroutine(DelayUsedItemEffect());
                 UpdateHealthBar();
                 CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
                 SkillButtonPressed = false;
@@ -515,8 +539,10 @@ public class CharacterCombatController : MonoBehaviour
         }
         else
         {
-            if (PlayerData.LargeHealCharges > 0 && !SkillButtonPressed)
+            if (PlayerData.LargeHealCharges > 0 && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                HealUsed.SetActive(true);
                 SkillButtonPressed = true;
                 ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.LargeHealInstanceID;
@@ -533,6 +559,9 @@ public class CharacterCombatController : MonoBehaviour
                             CombatCore.LargeHealBtn.interactable = false;
                         }
                         CurrentHealth += 25f;
+                        if (CurrentHealth > MaxHealth)
+                            CurrentHealth = MaxHealth;
+                        StartCoroutine(DelayUsedItemEffect());
                         UpdateHealthBar();
                         UpdateQuestData();
                     },
@@ -547,24 +576,29 @@ public class CharacterCombatController : MonoBehaviour
     }
     public void UseBreakRemove()
     {
-        if(GameManager.Instance.DebugMode)
+        if (GameManager.Instance.DebugMode)
         {
-            if(PlayerData.BreakRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.BREAK && !SkillButtonPressed)
+            if(PlayerData.BreakRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.BREAK && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                BreakUsed.SetActive(true);
                 SkillButtonPressed = true;
                 PlayerData.ItemsUsed++;
                 PlayerData.BreakRemovalCharges--;
                 CombatCore.BreakChargesTMP.text = PlayerData.BreakRemovalCharges.ToString();
                 if(PlayerData.BreakRemovalCharges == 0)
                     CombatCore.BreakRemoveBtn.interactable = false;
+                StartCoroutine(DelayUsedItemEffect());
                 RemoveSideEffects();
                 UpdateQuestData();
             }
         }
         else
         {
-            if (PlayerData.BreakRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.BREAK && !SkillButtonPressed)
+            if (PlayerData.BreakRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.BREAK && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                BreakUsed.SetActive(true);
                 SkillButtonPressed = true;
                 ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.BreakRemovalInstanceID;
@@ -580,6 +614,7 @@ public class CharacterCombatController : MonoBehaviour
                             PlayerData.BreakRemovalInstanceID = "";
                             CombatCore.BreakRemoveBtn.interactable = false;
                         }
+                        StartCoroutine(DelayUsedItemEffect());
                         RemoveSideEffects();
                         UpdateQuestData();
 
@@ -597,22 +632,27 @@ public class CharacterCombatController : MonoBehaviour
     {
         if (GameManager.Instance.DebugMode)
         {
-            if (PlayerData.WeakRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.WEAK && !SkillButtonPressed)
+            if (PlayerData.WeakRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.WEAK && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                WeakUsed.SetActive(true);
                 SkillButtonPressed = true;
                 PlayerData.ItemsUsed++;
                 PlayerData.WeakRemovalCharges--;
                 CombatCore.WeakChargesTMP.text = PlayerData.WeakRemovalCharges.ToString();
                 if (PlayerData.WeakRemovalCharges == 0)
                     CombatCore.WeakRemoveBtn.interactable = false;
+                StartCoroutine(DelayUsedItemEffect());
                 RemoveSideEffects();
                 UpdateQuestData();
             }
         }
         else
         {
-            if (PlayerData.WeakRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.WEAK && !SkillButtonPressed)
+            if (PlayerData.WeakRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.WEAK && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                WeakUsed.SetActive(true);
                 SkillButtonPressed = true;
                 ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.WeakRemovalInstanceID;
@@ -628,6 +668,7 @@ public class CharacterCombatController : MonoBehaviour
                             PlayerData.WeakRemovalInstanceID = "";
                             CombatCore.WeakRemoveBtn.interactable = false;
                         }
+                        StartCoroutine(DelayUsedItemEffect());
                         RemoveSideEffects();
                         UpdateQuestData();
 
@@ -641,26 +682,30 @@ public class CharacterCombatController : MonoBehaviour
             }
         }
     }
-
     public void UseFreezeRemove()
     {
         if (GameManager.Instance.DebugMode)
         {
-            if (PlayerData.FreezeRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.FREEZE && !SkillButtonPressed)
+            if (PlayerData.FreezeRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.FREEZE && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                FreezeUsed.SetActive(true);
                 SkillButtonPressed = true;
                 PlayerData.FreezeRemovalCharges--;
                 CombatCore.FreezeChargesTMP.text = PlayerData.FreezeRemovalCharges.ToString();
                 if (PlayerData.FreezeRemovalCharges == 0)
                     CombatCore.FreezeRemoveBtn.interactable = false;
+                StartCoroutine(DelayUsedItemEffect());
                 RemoveSideEffects();
                 UpdateQuestData();
             }
         }
         else
         {
-            if (PlayerData.FreezeRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.FREEZE && !SkillButtonPressed)
+            if (PlayerData.FreezeRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.FREEZE && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                FreezeUsed.SetActive(true);
                 SkillButtonPressed = true;
                 ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.FreezeRemovalInstanceID;
@@ -676,6 +721,7 @@ public class CharacterCombatController : MonoBehaviour
                             PlayerData.FreezeRemovalInstanceID = "";
                             CombatCore.FreezeRemoveBtn.interactable = false;
                         }
+                        StartCoroutine(DelayUsedItemEffect());
                         RemoveSideEffects();
                         UpdateQuestData();
                     },
@@ -688,26 +734,30 @@ public class CharacterCombatController : MonoBehaviour
             }
         }
     }
-
     public void UseParalyzeRemove()
     {
         if (GameManager.Instance.DebugMode)
         {
-            if (PlayerData.ParalyzeRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.PARALYZE && !SkillButtonPressed)
+            if (PlayerData.ParalyzeRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.PARALYZE && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                ParalyzeUsed.SetActive(true);
                 SkillButtonPressed = true;
                 PlayerData.ParalyzeRemovalCharges--;
                 CombatCore.ParalyzeChargesTMP.text = PlayerData.ParalyzeRemovalCharges.ToString();
                 if (PlayerData.ParalyzeRemovalCharges == 0)
                     CombatCore.ParalyzeRemoveBtn.interactable = false;
+                StartCoroutine(DelayUsedItemEffect());
                 RemoveSideEffects();
                 UpdateQuestData();
             }
         }
         else
         {
-            if (PlayerData.ParalyzeRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.PARALYZE && !SkillButtonPressed)
+            if (PlayerData.ParalyzeRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.PARALYZE && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                ParalyzeUsed.SetActive(true);
                 SkillButtonPressed = true;
                 ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.ParalyzeRemovalInstanceID;
@@ -723,6 +773,7 @@ public class CharacterCombatController : MonoBehaviour
                             PlayerData.ParalyzeRemovalInstanceID = "";
                             CombatCore.ParalyzeRemoveBtn.interactable = false;
                         }
+                        StartCoroutine(DelayUsedItemEffect());
                         RemoveSideEffects();
                         UpdateQuestData();
                     },
@@ -735,26 +786,30 @@ public class CharacterCombatController : MonoBehaviour
             }
         }
     }
-
     public void UseConfuseRemove()
     {
         if (GameManager.Instance.DebugMode)
         {
-            if (PlayerData.ConfuseRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.CONFUSE && !SkillButtonPressed)
+            if (PlayerData.ConfuseRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.CONFUSE && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                ConfuseUsed.SetActive(true);
                 SkillButtonPressed = true;
                 PlayerData.ConfuseRemovalCharges--;
                 CombatCore.ConfuseChargesTMP.text = PlayerData.ConfuseRemovalCharges.ToString();
                 if (PlayerData.ConfuseRemovalCharges == 0)
                     CombatCore.ConfuseRemoveBtn.interactable = false;
+                StartCoroutine(DelayUsedItemEffect());
                 RemoveSideEffects();
                 UpdateQuestData();
             }
         }
         else
         {
-            if (PlayerData.ConfuseRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.CONFUSE && !SkillButtonPressed)
+            if (PlayerData.ConfuseRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.CONFUSE && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                ConfuseUsed.SetActive(true);
                 SkillButtonPressed = true;
                 ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.ConfuseRemovalInstanceID;
@@ -770,6 +825,7 @@ public class CharacterCombatController : MonoBehaviour
                             PlayerData.ConfuseRemovalInstanceID = "";
                             CombatCore.ConfuseRemoveBtn.interactable = false;
                         }
+                        StartCoroutine(DelayUsedItemEffect());
                         RemoveSideEffects();
                         UpdateQuestData();
                     },
@@ -782,25 +838,33 @@ public class CharacterCombatController : MonoBehaviour
             }
         }
     }
-
     public void UseBurnRemove()
     {
         if (GameManager.Instance.DebugMode)
         {
-            if (PlayerData.BurnRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.BURN && !SkillButtonPressed)
+            if (PlayerData.BurnRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.BURN && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                BurnUsed.SetActive(true);
                 SkillButtonPressed = true;
                 PlayerData.BurnRemovalCharges--;
-                /*if (PlayerData.BurnRemovalCharges == 0)
-                    CombatCore.BurnRemoveBtn.interactable = false;*/
+                CombatCore.BurnChargesTMP.text = PlayerData.BurnRemovalCharges.ToString();
+                if (PlayerData.BurnRemovalCharges == 0)
+                {
+                    PlayerData.BurnRemovalInstanceID = "";
+                    CombatCore.BurnRemoveBtn.interactable = false;
+                }
+                StartCoroutine(DelayUsedItemEffect());
                 RemoveSideEffects();
                 UpdateQuestData();
             }
         }
         else
         {
-            if (PlayerData.BurnRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.BURN && !SkillButtonPressed)
+            if (PlayerData.BurnRemovalCharges > 0 && CurrentSideEffect == EnemyCombatController.SideEffect.BURN && !SkillButtonPressed && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
             {
+                CombatCore.DisableItems();
+                BurnUsed.SetActive(true);
                 SkillButtonPressed = true;
                 ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.BurnRemovalInstanceID;
@@ -810,14 +874,15 @@ public class CharacterCombatController : MonoBehaviour
                     {
                         failedCallbackCounter = 0;
                         PlayerData.BurnRemovalCharges = resultCallback.RemainingUses;
+                        CombatCore.BurnChargesTMP.text = PlayerData.BurnRemovalCharges.ToString();
                         if (resultCallback.RemainingUses == 0)
                         {
                             PlayerData.BurnRemovalInstanceID = "";
-                            //CombatCore.Burn.interactable = false;
+                            CombatCore.BurnRemoveBtn.interactable = false;
                         }
+                        StartCoroutine(DelayUsedItemEffect());
                         RemoveSideEffects();
-                        CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
-                        SkillButtonPressed = false;
+                        UpdateQuestData();
                     },
                     errorCallback =>
                     {
@@ -1020,6 +1085,7 @@ public class CharacterCombatController : MonoBehaviour
             if(ShieldsActivated)
             {
                 // Do not mitigate the damages if you are pierced
+                _damageReceived = 0;
                 if(CurrentSideEffect == EnemyCombatController.SideEffect.PIERCE)
                     CurrentHealth -= _damageReceived;
                 else
@@ -1034,8 +1100,9 @@ public class CharacterCombatController : MonoBehaviour
             }
             else
                 CurrentHealth -= _damageReceived;
-            
-            //StartCoroutine(ShowDamageSprite(Mathf.CeilToInt(_damageReceived)));
+
+            if (CurrentHealth < 0)
+                CurrentHealth = 0;
             UpdateHealthBar();
         }
     }
@@ -1197,13 +1264,13 @@ public class CharacterCombatController : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        HealthSlider.transform.localScale = new Vector3(CurrentHealth / MaxHealth, 1f, 0f);
+        HealthBar.transform.localPosition = new Vector3(HealthBar.transform.localPosition.x, HealthBar.transform.localPosition.y, 0);
+        HealthSlider.transform.localScale = new Vector3(CurrentHealth / MaxHealth, 1f, 1f);
         HealthSlider.transform.localPosition = new Vector3(HealthSlider.transform.localScale.x - 1, HealthSlider.transform.localPosition.y, HealthSlider.transform.localPosition.z);
     }
 
     private void InvokeLifesteal()
     {
-        Debug.Log("Opti will lifesteal");
         CurrentHealth += (DamageDeal / 2);
         if (CurrentHealth > MaxHealth)
             CurrentHealth = MaxHealth;

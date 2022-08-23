@@ -44,7 +44,7 @@ public class LevelSelectController : MonoBehaviour
 
     public void PrimeStagePanel()
     {
-        AdventureCore.StageNumberTMP.text = "Stage" + LevelData.LevelIndex;
+        AdventureCore.StageNumberTMP.text = "Stage " + LevelData.LevelIndex;
         foreach(Image monserSlot in AdventureCore.MonsterSlotImages)
             monserSlot.gameObject.SetActive(false);
         for(int i = 0; i < LevelData.MonsterList.Count; i++)

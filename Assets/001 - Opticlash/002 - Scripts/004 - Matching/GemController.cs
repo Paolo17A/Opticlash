@@ -38,7 +38,7 @@ public class GemController : MonoBehaviour
         if (mousePressed && Input.GetMouseButton(0))
         {
             //mousePressed = false;
-            if(BoardCore.CurrentBoardState == BoardCore.BoardState.MOVING && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
+            if(BoardCore.CurrentBoardState == BoardCore.BoardState.MOVING && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER && !CombatCore.SpawnedPlayer.SkillButtonPressed)
             {
                 endingTouchPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 CalculateAngle();

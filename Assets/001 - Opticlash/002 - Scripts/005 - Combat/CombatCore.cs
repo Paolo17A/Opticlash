@@ -104,6 +104,8 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public TextMeshProUGUI ParalyzeChargesTMP { get; set; }
     [field: SerializeField] public Button ConfuseRemoveBtn { get; set; }
     [field: SerializeField] public TextMeshProUGUI ConfuseChargesTMP { get; set; }
+    [field: SerializeField] public Button BurnRemoveBtn { get; set; }
+    [field: SerializeField] public TextMeshProUGUI BurnChargesTMP { get; set; } 
 
     [field: Header("LOCAL PLAYER DATA")]
     [field: SerializeField] public CharacterCombatController SpawnedPlayer { get; set; }
@@ -186,10 +188,10 @@ public class CombatCore : MonoBehaviour
         else
         {
             StageCounter++;
-            StageTMP.text = StageCounter.ToString();
+            StageTMP.text = "WAVE " + StageCounter.ToString();
             foreach (Transform child in MonsterParent.transform)
             {
-                if (GameManager.Instance.CurrentLevelData.MonsterList[EnemyIndex] == child.GetComponent<EnemyCombatController>().MonsterID)
+                if (child.HasComponent<EnemyCombatController>() && GameManager.Instance.CurrentLevelData.MonsterList[EnemyIndex] == child.GetComponent<EnemyCombatController>().MonsterID)
                 {
                     child.gameObject.SetActive(true);
                     CurrentEnemy = child.GetComponent<EnemyCombatController>();
@@ -246,12 +248,11 @@ public class CombatCore : MonoBehaviour
     public void SetCorrectStage()
     {
         StageCounter++;
-        StageTMP.text = StageCounter.ToString();
+        StageTMP.text = "WAVE " + StageCounter.ToString();
         foreach (Transform child in MonsterParent.transform)
         {
             if (GameManager.Instance.CurrentLevelData.MonsterList[EnemyIndex] == child.GetComponent<EnemyCombatController>().MonsterID)
             {
-                Debug.Log("Current monster should be" + child.name);
                 child.gameObject.SetActive(true);
                 CurrentEnemy = child.GetComponent<EnemyCombatController>();
                 CurrentEnemy.MonsterLevel = GameManager.Instance.CurrentLevelData.MonsterLevels[EnemyIndex];
@@ -266,15 +267,15 @@ public class CombatCore : MonoBehaviour
     #region UI
     public void ProcessPowerUpInteractability()
     {
-        if (SpawnedPlayer.DoubleDamageTurnsCooldown == 0 && !SpawnedPlayer.DoubleDamageActivated)
-            DoubleDamageBtn.interactable = true;
+        if (SpawnedPlayer.DoubleDamageTurnsCooldown > 0)
+            DoubleDamageImage.SetActive(true);
         else
-            DoubleDamageBtn.interactable = false;
+            DoubleDamageImage.SetActive(false);
 
-        if (SpawnedPlayer.ShieldInstancesRemaining > 0 && !SpawnedPlayer.ShieldsActivated)
-            ShieldBtn.interactable = true;
+        if (SpawnedPlayer.ShieldTurnsCooldown > 0)
+            ShieldImage.SetActive(true);
         else
-            ShieldBtn.interactable = false;
+            ShieldImage.SetActive(false);
 
         if (SpawnedPlayer.LifestealInstancesRemaining > 0 && !SpawnedPlayer.LifestealActivated)
             LifestealBtn.interactable = true;
@@ -423,6 +424,7 @@ public class CombatCore : MonoBehaviour
     {
         if(GameManager.Instance.DebugMode)
         {
+            OptibitDroppedTMP.gameObject.SetActive(false);
             if (PlayerData.EnergyCount > 0)
                 GrantRewardedItems();
             else
@@ -437,6 +439,7 @@ public class CombatCore : MonoBehaviour
                 resultCallback =>
                 {
                     failedCallbackCounter = 0;
+                    OptibitDroppedTMP.gameObject.SetActive(false);
                     PlayerData.EnergyCount = resultCallback.VirtualCurrency["EN"];
                     if (PlayerData.EnergyCount > 0)
                         GrantRewardedItems();
@@ -612,6 +615,19 @@ public class CombatCore : MonoBehaviour
     {
         SettingsPanel.SetActive(true);
         GameManager.Instance.PanelActivated = true;
+    }
+
+    public void DisableItems()
+    {
+        HealBtn.interactable = false;
+        MediumHealBtn.interactable = false;
+        LargeHealBtn.interactable = false;
+        BurnRemoveBtn.interactable = false;
+        BreakRemoveBtn.interactable = false;
+        ConfuseRemoveBtn.interactable = false;
+        FreezeRemoveBtn.interactable = false;
+        ParalyzeRemoveBtn.interactable = false;
+        WeakRemoveBtn.interactable = false;
     }
 
     private void DisplayDroppedRewards()
@@ -790,13 +806,15 @@ public class CombatCore : MonoBehaviour
             else
                 restartAction();
         }
+        else if (errorCode == PlayFabErrorCode.InternalServerError)
+            GameManager.Instance.DisplayDualLoginErrorPanel();
         else
             errorAction();
     }
 
     private void ProcessError(string errorMessage)
     {
-        //HideLoadingPanel();
+        CloseLoadingPanel();
         GameManager.Instance.DisplayErrorPanel(errorMessage);
     }
     public void OpenLoadingPanel()

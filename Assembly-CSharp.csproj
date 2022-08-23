@@ -168,6 +168,7 @@
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\008 - Lobby\LobbyCore.cs" />
     <Compile Include="Assets\001 - Opticlash\002 - Scripts\007 - ScriptableObject\001 - Settings\SettingsData.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
+    <Compile Include="Assets\001 - Opticlash\002 - Scripts\003 - LevelSelect\PanelController.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\Minter\Model\BuyNFT.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\PrivateKey\SignVerifyPK.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\PrivateKey\Web3PrivateKeySendTransactionExample.cs" />

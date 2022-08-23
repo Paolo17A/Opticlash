@@ -178,6 +178,7 @@ public class LobbyCore : MonoBehaviour
     #region CORE
     public void InitializeLobby()
     {
+        DisplayLoadingPanel();
         PlayFabClientAPI.GetUserInventory(new GetUserInventoryRequest(),
             resultCallback =>
             {
@@ -290,6 +291,8 @@ public class LobbyCore : MonoBehaviour
             UpgradeCannonCore.CurrentCannonImage.GetComponent<Button>().interactable = true;
             OptiEquipCannon.gameObject.SetActive(true);
             OptiLobbyCannon.gameObject.SetActive(true);
+            AttackTMP.gameObject.SetActive(true);
+            AccuracyTMP.gameObject.SetActive(true);
             //AdventureBtn.interactable = true;
             AdventureBtn.GetComponent<Image>().sprite = MayAdventureSprite;
             foreach (CustomWeaponData weapon in PlayerData.OwnedWeapons)

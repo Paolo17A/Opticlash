@@ -2,6 +2,7 @@ using MyBox;
 using Newtonsoft.Json;
 //using PlayFab;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -101,7 +102,19 @@ public class GameManager : MonoBehaviour
 
     public void CloseErrorPanel()
     {
+        if(SceneController.CurrentScene == "AdventureScene")
+            StartCoroutine(DelayPanelReactivation());
+        else
+        {
+            ErrorPanel.SetActive(false);
+            PanelActivated = false;
+        }
+    }
+
+    private IEnumerator DelayPanelReactivation()
+    {
         ErrorPanel.SetActive(false);
+        yield return new WaitForSeconds(0.01f);
         PanelActivated = false;
     }
     #endregion

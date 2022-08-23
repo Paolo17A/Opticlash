@@ -48,7 +48,6 @@ public class EnemyCombatController : MonoBehaviour
     private void OnEnable()
     {
         onPlayerCombatStateChange += CombatStateChange;
-        Debug.Log("denemy combat controller enabled");
     }
 
     private void OnDisable()
@@ -132,7 +131,7 @@ public class EnemyCombatController : MonoBehaviour
 
     [field: Header("LASER ABILITY")]
     [field: SerializeField] private bool CanShootLaser { get; set; }
-    [field: SerializeField] private int LaserFrequency { get; set; }    
+    [field: SerializeField] private float ParticleDuration { get; set; }
 
     [field: Header("TRANSFORMS")]
     [field: SerializeField] public Vector3 OriginalEnemyPosition { get; set; }
@@ -141,7 +140,6 @@ public class EnemyCombatController : MonoBehaviour
     [field: Header("DEBUGGER")]
     [field: SerializeField][field: ReadOnly] public bool DoneAttacking { get; set; }
     [field: SerializeField][field: ReadOnly] public bool IsCurrentEnemy { get; set; }
-    [field:SerializeField][field: ReadOnly] private bool ShootingLaser { get; set; }
     [field: SerializeField][field: ReadOnly] private CharacterCombatController Opti { get; set; }
     private int failedCallbackCounter;
     //========================================================================================
@@ -202,7 +200,6 @@ public class EnemyCombatController : MonoBehaviour
 
     private void CombatStateChange(object sender, EventArgs e)
     {
-        //Debug.Log("Current enemy state: " + CurrentCombatState);
         EnemyAnim.SetInteger("index", (int)CurrentCombatState);
 
         if (CurrentCombatState == CombatState.DYING)
@@ -228,8 +225,6 @@ public class EnemyCombatController : MonoBehaviour
                 MayAttack = false; 
                 if (AfflictedSideEffect == WeaponData.SideEffect.BURN)
                 {
-                    //StatusEffectActivated = true;
-                    Debug.Log("intaking burn damage");
                     CurrentHealth -= SideEffectDamage;
                     UpdateHealthBar();
                     StatusEffectTextAnimator.SetTrigger("ShowStatus");
@@ -258,8 +253,6 @@ public class EnemyCombatController : MonoBehaviour
             MayAttack = false; 
             if (AfflictedSideEffect == WeaponData.SideEffect.BURN)
             {
-                //StatusEffectActivated = true;
-                Debug.Log("intaking burn damage");
                 CurrentHealth -= SideEffectDamage;
                 UpdateHealthBar();
                 StatusEffectTextAnimator.SetTrigger("ShowStatus");
@@ -276,31 +269,48 @@ public class EnemyCombatController : MonoBehaviour
             if (!CanShootLaser && Vector2.Distance(CombatCore.EnemyProjectile.transform.position, CombatCore.SpawnedPlayer.gameObject.transform.position) > 0.01f)
                 CombatCore.EnemyProjectile.transform.position = Vector2.MoveTowards(CombatCore.EnemyProjectile.transform.position, CombatCore.SpawnedPlayer.gameObject.transform.position, 15 * Time.deltaTime);
             else if (CanShootLaser && Vector2.Distance(CombatCore.EnemyProjectile.transform.position, EnemyAttackPosition) > 0.01f)
-                CombatCore.EnemyProjectile.transform.position = Vector2.MoveTowards(CombatCore.EnemyProjectile.transform.position, EnemyAttackPosition, 0.5f * Time.deltaTime);
+            {
+                CombatCore.EnemyProjectile.transform.position = Vector2.MoveTowards(CombatCore.EnemyProjectile.transform.position, EnemyAttackPosition, ParticleDuration * Time.deltaTime);
+
+            }
 
             else
             {
-                Debug.Log("enemy should be done attacking");
+                if (WillInflictStatusEffect())
+                {
+                    switch (ThisSideEffect)
+                    {
+                        case SideEffect.BREAK:
+                            BreakKaboom.SetActive(true);
+                            break;
+                        case SideEffect.BURN:
+                            BurnKaboom.SetActive(true);
+                            break;
+                        case SideEffect.FREEZE:
+                            FreezeKaboom.SetActive(true);
+                            break;
+                        case SideEffect.PARALYZE:
+                            ParalyzeKaboom.SetActive(true);
+                            break;
+                        case SideEffect.WEAK:
+                            WeakKaboom.SetActive(true);
+                            break;
+                        case SideEffect.CONFUSE:
+                            ConfuseKaboom.SetActive(true);
+                            break;
+                    }
+                }
+                else
+                    NormalKaboom.SetActive(true);
+                StartCoroutine(DelayKaboom());
+
                 CombatCore.EnemyProjectile.SetActive(false);
-                //CombatCore.EnemyLaser.SetActive(false);
                 SpecificProjectile.SetActive(false);
                 DoneAttacking = true;
                 if (AfflictedSideEffect == WeaponData.SideEffect.WEAK)
                     Opti.TakeDamageFromEnemy(DamageDeal / 2);
                 else
                     Opti.TakeDamageFromEnemy(DamageDeal);
-                /*if (ShootingLaser)
-                {
-                    Opti.TakeDamageFromEnemy(DamageDeal * 3);
-                }
-                else
-                {
-                    if (AfflictedSideEffect == WeaponData.SideEffect.WEAK)
-                        Opti.TakeDamageFromEnemy(DamageDeal / 2);
-                    else
-                        Opti.TakeDamageFromEnemy(DamageDeal);
-                }*/
-
             }
         }
     }
@@ -374,36 +384,36 @@ public class EnemyCombatController : MonoBehaviour
 
     public void AttackPlayer()
     {
-        if (WillInflictStatusEffect())
-        {
-            switch (ThisSideEffect)
-            {
-                case SideEffect.BREAK:
-                    BreakKaboom.SetActive(true);
-                    break;
-                case SideEffect.BURN:
-                    BurnKaboom.SetActive(true);
-                    break;
-                case SideEffect.FREEZE:
-                    FreezeKaboom.SetActive(true);
-                    break;
-                case SideEffect.PARALYZE:
-                    ParalyzeKaboom.SetActive(true);
-                    break;
-                case SideEffect.WEAK:
-                    WeakKaboom.SetActive(true);
-                    break;
-                case SideEffect.CONFUSE:
-                    ConfuseKaboom.SetActive(true);
-                    break;
-            }
-        }
-        else
-            NormalKaboom.SetActive(true);
-        StartCoroutine(DelayKaboom());
-
         if (EnemyAttackType == AttackType.MELEE)
         {
+            if (WillInflictStatusEffect())
+            {
+                switch (ThisSideEffect)
+                {
+                    case SideEffect.BREAK:
+                        BreakKaboom.SetActive(true);
+                        break;
+                    case SideEffect.BURN:
+                        BurnKaboom.SetActive(true);
+                        break;
+                    case SideEffect.FREEZE:
+                        FreezeKaboom.SetActive(true);
+                        break;
+                    case SideEffect.PARALYZE:
+                        ParalyzeKaboom.SetActive(true);
+                        break;
+                    case SideEffect.WEAK:
+                        WeakKaboom.SetActive(true);
+                        break;
+                    case SideEffect.CONFUSE:
+                        ConfuseKaboom.SetActive(true);
+                        break;
+                }
+            }
+            else
+                NormalKaboom.SetActive(true);
+            StartCoroutine(DelayKaboom());
+
             if (AfflictedSideEffect == WeaponData.SideEffect.WEAK)
                 Opti.TakeDamageFromEnemy(DamageDeal / 2);
             else
@@ -501,6 +511,7 @@ public class EnemyCombatController : MonoBehaviour
     private void ResetHealthBar()
     {
         HealthBar.SetActive(true);
+        HealthBar.transform.localPosition = new Vector3 (HealthBar.transform.localPosition.x, HealthBar.transform.localPosition.y, 0);
         HealthSlider.transform.localScale = new Vector3(1f, 1f, 0f);
     }
     #endregion
@@ -524,7 +535,6 @@ public class EnemyCombatController : MonoBehaviour
             resultCallback =>
             {
                 failedCallbackCounter = 0;
-                Debug.Log("Quest data has been updated");
             },
             errorCallback =>
             {

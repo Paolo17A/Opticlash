@@ -686,7 +686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2210675893127011703
 Transform:
   m_ObjectHideFlags: 0
@@ -1534,6 +1534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCombatState: 0
   <CombatCore>k__BackingField: {fileID: 0}
+  <SettingsData>k__BackingField: {fileID: 0}
   <MonsterID>k__BackingField: 
   <EnemyAnim>k__BackingField: {fileID: 0}
   <EnemyAttackType>k__BackingField: 0
@@ -1542,6 +1543,11 @@ MonoBehaviour:
   <ThisMonsterPlacement>k__BackingField: 0
   <MayAttack>k__BackingField: 0
   <IsBoss>k__BackingField: 0
+  <SpecificProjectile>k__BackingField: {fileID: 0}
+  <ProjectileStartingPoint>k__BackingField: {x: 0, y: 0, z: 0}
+  <MonsterAudioSource>k__BackingField: {fileID: 0}
+  <HitSFX>k__BackingField: {fileID: 0}
+  <DeathSFX>k__BackingField: []
   <MonsterLevel>k__BackingField: 0
   <CurrentHealth>k__BackingField: 0
   <MaxHealth>k__BackingField: 0
@@ -1550,6 +1556,13 @@ MonoBehaviour:
   <Attack>k__BackingField: 0
   <Accuracy>k__BackingField: 0
   <Defense>k__BackingField: 0
+  <NormalKaboom>k__BackingField: {fileID: 0}
+  <BurnKaboom>k__BackingField: {fileID: 0}
+  <BreakKaboom>k__BackingField: {fileID: 0}
+  <ConfuseKaboom>k__BackingField: {fileID: 0}
+  <FreezeKaboom>k__BackingField: {fileID: 0}
+  <ParalyzeKaboom>k__BackingField: {fileID: 0}
+  <WeakKaboom>k__BackingField: {fileID: 0}
   <StatusEffectImage>k__BackingField: {fileID: 0}
   <StatusEffectText>k__BackingField: {fileID: 0}
   <StatusEffectTextAnimator>k__BackingField: {fileID: 0}
@@ -1742,7 +1755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2210675894150477334
 Transform:
   m_ObjectHideFlags: 0
@@ -2367,7 +2380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2210675894704666083
 Transform:
   m_ObjectHideFlags: 0

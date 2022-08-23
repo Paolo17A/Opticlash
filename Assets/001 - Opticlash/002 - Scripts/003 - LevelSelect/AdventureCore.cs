@@ -58,11 +58,29 @@ public class AdventureCore : MonoBehaviour
                 }
             }
             if (PlayerData.CurrentStage >= 1 && PlayerData.CurrentStage <= 10)
+            {
                 MaxYClamp = 20f;
+                if (PlayerData.CurrentStage <= 5)
+                    _virtualCamera.transform.position = new Vector3(_virtualCamera.transform.position.x, 0, _virtualCamera.transform.position.z);
+                else
+                    _virtualCamera.transform.position = new Vector3(_virtualCamera.transform.position.x, MaxYClamp, _virtualCamera.transform.position.z);
+            }
             else if (PlayerData.CurrentStage >= 11 && PlayerData.CurrentStage <= 20)
+            {
                 MaxYClamp = 57.5f;
+                if (PlayerData.CurrentStage <= 15)
+                    _virtualCamera.transform.position = new Vector3(_virtualCamera.transform.position.x, 39, _virtualCamera.transform.position.z);
+                else
+                    _virtualCamera.transform.position = new Vector3(_virtualCamera.transform.position.x, MaxYClamp, _virtualCamera.transform.position.z);
+            }
             else if (PlayerData.CurrentStage >= 21 && PlayerData.CurrentStage <= 30)
+            {
                 MaxYClamp = 95.7f;
+                if (PlayerData.CurrentStage <= 25)
+                    _virtualCamera.transform.position = new Vector3(_virtualCamera.transform.position.x, 76, _virtualCamera.transform.position.z);
+                else
+                    _virtualCamera.transform.position = new Vector3(_virtualCamera.transform.position.x, MaxYClamp, _virtualCamera.transform.position.z);
+            }
         }
         else
         {
@@ -88,11 +106,29 @@ public class AdventureCore : MonoBehaviour
                             }
                         }
                         if (PlayerData.CurrentStage >= 1 && PlayerData.CurrentStage <= 10)
+                        {
                             MaxYClamp = 20f;
+                            if (PlayerData.CurrentStage <= 5)
+                                _virtualCamera.transform.position = new Vector3(_virtualCamera.transform.position.x, 0, _virtualCamera.transform.position.z);
+                            else
+                                _virtualCamera.transform.position = new Vector3(_virtualCamera.transform.position.x, MaxYClamp, _virtualCamera.transform.position.z);
+                        }
                         else if (PlayerData.CurrentStage >= 11 && PlayerData.CurrentStage <= 20)
+                        {
                             MaxYClamp = 57.5f;
+                            if (PlayerData.CurrentStage <= 15)
+                                _virtualCamera.transform.position = new Vector3(_virtualCamera.transform.position.x, 39, _virtualCamera.transform.position.z);
+                            else
+                                _virtualCamera.transform.position = new Vector3(_virtualCamera.transform.position.x, MaxYClamp, _virtualCamera.transform.position.z);
+                        }
                         else if (PlayerData.CurrentStage >= 21 && PlayerData.CurrentStage <= 30)
+                        {
                             MaxYClamp = 95.7f;
+                            if (PlayerData.CurrentStage <= 25)
+                                _virtualCamera.transform.position = new Vector3(_virtualCamera.transform.position.x, 76, _virtualCamera.transform.position.z);
+                            else
+                                _virtualCamera.transform.position = new Vector3(_virtualCamera.transform.position.x, MaxYClamp, _virtualCamera.transform.position.z);
+                        }
                         HideLoadingPanel();
                     }
                     else
@@ -118,11 +154,12 @@ public class AdventureCore : MonoBehaviour
 
     public void CloseStageSelect()
     {
-        GameManager.Instance.PanelActivated = false;
         LevelWasSelected = false;
         StageSelectAnimator.SetBool("ShowStageSelect", false);
         GameManager.Instance.CurrentLevelData = null;
     }
+
+    
 
     private void ErrorCallback(PlayFabErrorCode errorCode, Action restartAction, Action errorAction)
     {

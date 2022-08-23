@@ -13,7 +13,6 @@ public class LootboxCore : MonoBehaviour
 {
     [field: SerializeField] private PlayerData PlayerData { get; set; }
     [field: SerializeField] private LobbyCore LobbyCore { get; set; }
-    [field: SerializeField] private GameObject GrantPanel { get; set; }
 
     [field: Header("LOOTBOX")]
     [field: SerializeField] private Image TopBoxImage { get; set; }
@@ -352,10 +351,16 @@ public class LootboxCore : MonoBehaviour
                     PlayerData.CommonLootboxCount--;
                     CommonLootboxOwned.text = PlayerData.CommonLootboxCount.ToString();
                     DisplayCurrentLootbox();
-                    if (PlayerData.CommonLootboxCount == 0)
+                    if (PlayerData.CommonLootboxCount > 0)
                     {
+                        HasThisLootbox = true;
+                        OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                    }
+                    else
+                    {
+                        HasThisLootbox = false;
+                        OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
                         PlayerData.CommonLootboxInstanceID = "";
-                        OpenLootboxBtn.interactable = false;
                     }
                     LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
                     LobbyCore.OkBtn.SetActive(false);
@@ -533,10 +538,16 @@ public class LootboxCore : MonoBehaviour
                 {
                     PlayerData.RareLootboxCount--;
                     RareLootboxOwned.text = PlayerData.RareLootboxCount.ToString();
-                    if (PlayerData.RareLootboxCount == 0)
+                    if (PlayerData.CommonLootboxCount > 0)
                     {
+                        HasThisLootbox = true;
+                        OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                    }
+                    else
+                    {
+                        HasThisLootbox = false;
+                        OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
                         PlayerData.RareLootboxInstanceID = "";
-                        OpenLootboxBtn.interactable = false;
                     }
                     LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
                     LobbyCore.OkBtn.SetActive(false);
@@ -687,10 +698,16 @@ public class LootboxCore : MonoBehaviour
                 {
                     PlayerData.EpicLootboxCount--;
                     EpicLootboxOwned.text = PlayerData.EpicLootboxCount.ToString();
-                    if (PlayerData.EpicLootboxCount == 0)
+                    if (PlayerData.CommonLootboxCount > 0)
                     {
+                        HasThisLootbox = true;
+                        OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                    }
+                    else
+                    {
+                        HasThisLootbox = false;
+                        OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
                         PlayerData.EpicLootboxInstanceID = "";
-                        OpenLootboxBtn.interactable = false;
                     }
                     LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
                     LobbyCore.OkBtn.SetActive(false);
@@ -852,10 +869,16 @@ public class LootboxCore : MonoBehaviour
                 {
                     PlayerData.LegendaryLootbox1Count--;
                     LegendLootbox1Owned.text = PlayerData.LegendaryLootbox1Count.ToString();
-                    if (PlayerData.LegendaryLootbox1Count == 0)
+                    if (PlayerData.CommonLootboxCount > 0)
                     {
+                        HasThisLootbox = true;
+                        OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                    }
+                    else
+                    {
+                        HasThisLootbox = false;
+                        OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
                         PlayerData.LegendaryLootbox1InstanceID = "";
-                        OpenLootboxBtn.interactable = false;
                     }
                     LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
                     LobbyCore.OkBtn.SetActive(false);
@@ -1005,10 +1028,16 @@ public class LootboxCore : MonoBehaviour
                 {
                     PlayerData.LegendaryLootbox1Count--;
                     LegendLootbox1Owned.text = PlayerData.LegendaryLootbox1Count.ToString();
-                    if (PlayerData.LegendaryLootbox1Count == 0)
+                    if (PlayerData.CommonLootboxCount > 0)
                     {
-                        PlayerData.LegendaryLootbox1InstanceID = "";
-                        OpenLootboxBtn.interactable = false;
+                        HasThisLootbox = true;
+                        OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                    }
+                    else
+                    {
+                        HasThisLootbox = false;
+                        OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
+                        PlayerData.LegendaryLootbox2InstanceID = "";
                     }
                     LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
                     LobbyCore.OkBtn.SetActive(false);

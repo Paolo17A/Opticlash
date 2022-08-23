@@ -12,7 +12,6 @@ public class CombatController : MonoBehaviour
     {
         GameManager.Instance.SceneController.ActionPass = true;
         CombatCore.onCombatStateChange += CombatStateChange;
-        Debug.Log("Combat controller");
     }
 
     private void OnDisable()
@@ -22,7 +21,6 @@ public class CombatController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("combat controller start");
         foreach (CustomWeaponData weapon in PlayerData.OwnedWeapons)
             if (weapon.WeaponInstanceID == PlayerData.ActiveWeaponID)
             {
@@ -56,13 +54,13 @@ public class CombatController : MonoBehaviour
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.PLAYERTURN)
         {
-            CombatCore.DoubleDamageBtn.interactable = false;
-            CombatCore.ShieldBtn.interactable = false;
             CombatCore.LifestealBtn.interactable = false;
             CombatCore.SpawnedPlayer.ProjectileSpawned = false;
+            CombatCore.DisableItems();
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.ENEMYTURN)
         {
+            CombatCore.DisableItems();
             if (CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.NONE)
             {
                 CombatCore.CurrentEnemy.MayAttack = true;

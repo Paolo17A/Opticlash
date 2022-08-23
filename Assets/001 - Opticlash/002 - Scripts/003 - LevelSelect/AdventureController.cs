@@ -36,7 +36,6 @@ public class AdventureController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("using editor");
                 initialTouchPoint = GameManager.Instance.MainCamera.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, 0));
                 previousTouchPoint = initialTouchPoint;
 
@@ -91,7 +90,6 @@ public class AdventureController : MonoBehaviour
             {
                 if (Input.GetTouch(0).phase == TouchPhase.Began )
                 {
-                    Debug.Log("touch began");
                     initialTouchPoint = GameManager.Instance.MainCamera.ScreenToWorldPoint(new Vector3(0, Input.GetTouch(0).position.y, 0));
                     previousTouchPoint = initialTouchPoint;
                     newCameraPosY = AdventureCore._virtualCamera.transform.position.y;
@@ -112,7 +110,6 @@ public class AdventureController : MonoBehaviour
                         shrunkenLevel.GetComponent<ButtonScaler>().PushButtonUp();
                         shrunkenLevel = null;
                     }
-                    Debug.Log("touch ended");
                     mousePos = GameManager.Instance.MainCamera.ScreenToWorldPoint(Input.GetTouch(0).position);
                     mousePos2D = new Vector2(mousePos.x, mousePos.y);
                     hit = Physics2D.Raycast(mousePos2D, Vector3.forward);

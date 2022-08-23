@@ -97,7 +97,6 @@ public class EntryCore : MonoBehaviour
         }
         else
         {
-            Debug.Log("made it here");
             LoginCore.LoginUserPlayfab(UsernameLoginTMP.text, PasswordLoginTMP.text);
         }
     }

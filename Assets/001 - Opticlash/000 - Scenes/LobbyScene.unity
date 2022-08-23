@@ -25601,10 +25601,10 @@ MonoBehaviour:
   <LegendWeapons>k__BackingField:
   - {fileID: 11400000, guid: e695f21364f841e43815e5fecb70f484, type: 2}
   - {fileID: 11400000, guid: 1af087df1a585964b90bec1437ba3f4e, type: 2}
-  <NormalFragment>k__BackingField: {fileID: 21300000, guid: cf6fde6b1b7fbcb4285d84262712332b, type: 3}
-  <RareFragment>k__BackingField: {fileID: 21300000, guid: d950c4ffda16a7b4cb32a220882d2acc, type: 3}
-  <EpicFragment>k__BackingField: {fileID: 21300000, guid: eefce7440d4658c4d8516c0cc5819796, type: 3}
-  <LegendFragment>k__BackingField: {fileID: 21300000, guid: c755e4919c7e72146ace2feff98f5adf, type: 3}
+  <NormalFragment>k__BackingField: {fileID: 21300000, guid: ee99c6dc74ac4fc46a86730375d4548b, type: 3}
+  <RareFragment>k__BackingField: {fileID: 21300000, guid: 5f85ea0874971c448b9460ab65d4b644, type: 3}
+  <EpicFragment>k__BackingField: {fileID: 21300000, guid: f8ccde2668d174041b07e47d5036b9ba, type: 3}
+  <LegendFragment>k__BackingField: {fileID: 21300000, guid: 8532a58081ff83546bd794e2d11d0a33, type: 3}
   <OptibitReward>k__BackingField: {fileID: 7442260254904175140}
   <FragmentReward>k__BackingField: {fileID: 1564213442}
   <FragmentSprite>k__BackingField: {fileID: 845590958}
