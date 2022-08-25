@@ -85,7 +85,6 @@ public class BoardCore : MonoBehaviour
         {
             if (AllGems[pos.x, pos.y].isMatched)
             {
-
                 Instantiate(AllGems[pos.x, pos.y].BurstEffect, new Vector2(burstPos.x, burstPos.y), Quaternion.identity);
 
                 Destroy(AllGems[pos.x, pos.y].gameObject);
@@ -103,7 +102,6 @@ public class BoardCore : MonoBehaviour
             CombatCore.SpawnedPlayer.DamageDeal = 1.5f * (CombatCore.SpawnedPlayer.Attack * CombatCore.SpawnedPlayer.Attack) / (CombatCore.CurrentEnemy.Attack + CombatCore.CurrentEnemy.Defense);
         else if (MatchFinder.CurrentMatches.Count >= 5)
             CombatCore.SpawnedPlayer.DamageDeal = 1.8f * (CombatCore.SpawnedPlayer.Attack * CombatCore.SpawnedPlayer.Attack) / (CombatCore.CurrentEnemy.Attack + CombatCore.CurrentEnemy.Defense);
-        //Debug.Log(CombatCore.SpawnedPlayer.DamageDeal);
         for (int i = 0; i < MatchFinder.CurrentMatches.Count; i++)
         {
             if(MatchFinder.CurrentMatches[i] != null)
@@ -116,7 +114,6 @@ public class BoardCore : MonoBehaviour
         if (CombatCore.CurrentEnemy.CurrentHealth > 0 && CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING && CombatCore.SpawnedPlayer.CurrentCombatState != CharacterCombatController.CombatState.WALKING)
         {
             ShotsEarned++;
-            //CombatCore.SpawnedPlayer.GetComponent<CharacterCombatController>().CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
         }
         StartCoroutine(DecreaseRowCoroutine());
     }
@@ -147,7 +144,7 @@ public class BoardCore : MonoBehaviour
 
     private IEnumerator FillBoardCoroutine()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         #region REFILL BOARD
         for (int x = 0; x < Width; x++)
         {
@@ -162,25 +159,22 @@ public class BoardCore : MonoBehaviour
         }
         #endregion
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         MatchFinder.FindAllMatches();
 
         if(MatchFinder.CurrentMatches.Count > 0)
         {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
             DestroyMatches();
         }    
         else
         {
-            yield return new WaitForSeconds(0.3f);
-            ShuffleBtn.interactable = true;
+            yield return new WaitForSeconds(0.2f);
+            
             if(CombatCore.CurrentCombatState != CombatCore.CombatState.WALKING)
             {
                 if (PlayerData.ActiveCustomWeapon.BaseWeaponData.HasBonusBullets && CombatCore.RoundCounter % PlayerData.ActiveCustomWeapon.BaseWeaponData.BonusFrequency == 0 && Random.Range(0, 100) < PlayerData.ActiveCustomWeapon.BaseWeaponData.BonusRate)
-                {
-                    Debug.Log("Will shoot extra bullets");
-                    ShotsEarned += PlayerData.ActiveCustomWeapon.BaseWeaponData.BonusBullets;
-                }
+                    ShotsEarned += PlayerData.ActiveCustomWeapon.BaseWeaponData.BonusBullets;              
 
                 if(shuffling)
                 {
@@ -189,7 +183,6 @@ public class BoardCore : MonoBehaviour
                 }
                 else
                     CombatCore.SpawnedPlayer.CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
-
             }
             CurrentBoardState = BoardState.MOVING;
         }
@@ -199,36 +192,8 @@ public class BoardCore : MonoBehaviour
     {
         if(CurrentBoardState != BoardState.WAITING && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
         {
-            ShuffleBtn.interactable = false;
+            CombatCore.ShuffleBtn.interactable = false;
             CurrentBoardState = BoardState.WAITING;
-            /*List<GemController> gemsFromBoard = new List<GemController>();
-
-            //  Get all the already instantiated gems, place them in a list, then empty the 2D array
-            for (int x = 0; x < Width; x++)
-            {
-                for (int y = 0; y < Height; y++)
-                {
-                    gemsFromBoard.Add(AllGems[x, y]);
-                    AllGems[x, y] = null;
-                }
-            }
-
-            for (int x = 0; x < Width; x++)
-            {
-                for (int y = 0; y < Height; y++)
-                {
-                    randomGemIndex = Random.Range(0, gemsFromBoard.Count);
-                    int iterations = 0;
-                    while (MatchesAt(new Vector2Int(x, y), gemsFromBoard[randomGemIndex]) && iterations < 200 && gemsFromBoard.Count > 1)
-                    {
-                        randomGemIndex = Random.Range(0, Gems.Length);
-                        iterations++;
-                    }
-                    gemsFromBoard[randomGemIndex].InititalizeGem(new Vector2Int(x, y), this, new Vector2(0.5f + x + (0.37f * x),1f + y + Height + (0.37f * y)), CombatCore);
-                    AllGems[x, y] = gemsFromBoard[randomGemIndex];
-                    gemsFromBoard.RemoveAt(randomGemIndex);
-                }
-            }*/
             GameManager.Instance.SFXAudioManager.PlayShuffleSFX();
             foreach (Transform child in transform)
             {

@@ -91,9 +91,7 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField] public bool ShieldsActivated { get; set; }
     [field: SerializeField] public int ShieldInstancesRemaining { get; set; }
     [field: SerializeField] public int ShieldTurnsCooldown { get; set; }
-    [field: SerializeField] public bool WarpActivated { get; set; }
-    [field: SerializeField] public int WarpGunInstancesRemaining { get; set; }
-    [field: SerializeField] public int LifestealInstancesRemaining { get; set; }
+    [field: SerializeField] public int LifestealTurnsCooldown { get; set; }
     [field: SerializeField] public bool LifestealActivated { get; set; }
     [field: SerializeField] public GameObject LifestealEffect { get; set; }
 
@@ -135,11 +133,16 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField] private Transform ProjectileStartingPoint { get; set; }
     [field: SerializeField][field: ReadOnly] public bool ProjectileSpawned { get; set; }
 
+    [field: Header("PLAYFAB VARIABLES")]
+    [field: SerializeField][field: ReadOnly] private ConsumeItemRequest consumeItem { get; set; }
+    [field: SerializeField][field: ReadOnly] private UpdateUserDataRequest updateUserData { get; set; }
+
     [field: Header("DEBUGGER")]
     [field: SerializeField][field: ReadOnly] public bool EffectNewlyRemoved { get; set; }
     [field: SerializeField][field: ReadOnly] public bool ProjectileCoroutineAllowed { get; set; }
     [field: SerializeField][field: ReadOnly] private int failedCallbackCounter { get; set; }
     [field: SerializeField][field: ReadOnly] public bool SkillButtonPressed { get; set; }
+    private Dictionary<string, int> quests;
 
     //===================================================================================
     #endregion
@@ -147,6 +150,11 @@ public class CharacterCombatController : MonoBehaviour
     private void OnEnable()
     {
         playerCombatStateChange += CombatStateChange;
+
+        consumeItem = new ConsumeItemRequest();
+        updateUserData = new UpdateUserDataRequest();
+        updateUserData.Data = new Dictionary<string, string>();
+        quests = new Dictionary<string, int>();
     }
 
     private void OnDisable()
@@ -168,7 +176,6 @@ public class CharacterCombatController : MonoBehaviour
             else
             {
                 CombatCore.Portal.SetActive(false);
-                //CombatCore.WarpToNextEnemy();
             }
         }
         else if (ProjectileSpawned)
@@ -258,7 +265,6 @@ public class CharacterCombatController : MonoBehaviour
             ProjectileSpawned = false;
             if (DoubleDamageActivated)
                 DoubleDamageActivated = false;
-            //ProcessDoubleDamage();
             ProcessEndAttack();
         }
     }
@@ -298,8 +304,7 @@ public class CharacterCombatController : MonoBehaviour
         ShieldTurnsCooldown = 0;
         CombatCore.DoubleDamageImage.SetActive(false);
         CombatCore.ShieldImage.SetActive(false);
-        //ShieldInstancesRemaining = 5;
-        LifestealInstancesRemaining = 1;
+        LifestealTurnsCooldown = 0;
         #region STATS
         Attack = PlayerData.ActiveCustomWeapon.Attack;
         ShotAccuracy = PlayerData.ActiveCustomWeapon.Accuracy;
@@ -325,7 +330,6 @@ public class CharacterCombatController : MonoBehaviour
 
     private void CombatStateChange(object sender, EventArgs e)
     {
-        //Debug.Log("Current Opti state: " + CurrentCombatState);
         PlayerAnimator.SetInteger("index", (int)CurrentCombatState);
     }
 
@@ -365,8 +369,6 @@ public class CharacterCombatController : MonoBehaviour
             DoubleDamageTurnsCooldown = 5;
             CombatCore.DoubleDamageTMP.text = "Turns Left: " + DoubleDamageTurnsCooldown;
         }
-        else
-            Debug.Log("Double damage is on cooldown for " + DoubleDamageTurnsCooldown + " more turns");
     }
 
     public void ActivateShield()
@@ -379,17 +381,17 @@ public class CharacterCombatController : MonoBehaviour
             ShieldsActivated = true;
             ShieldTurnsCooldown = 5;
             CombatCore.ShieldTMP.text = "Turns Left: " + ShieldTurnsCooldown;
-            //CombatCore.ShieldBtn.interactable = false;
         }
-        else
-            Debug.Log("Shield is already activated");
     }
     public void ActivateLifesteal()
     {
-        if(!Lifestealing && LifestealInstancesRemaining > 0 && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
+        if(!Lifestealing && LifestealTurnsCooldown == 0 && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
         {
             Lifestealing = true;
             LifestealEffect.SetActive(true);
+            CombatCore.LifestealImage.SetActive(true);
+            LifestealTurnsCooldown = 5;
+            CombatCore.LifestealTMP.text = "Turns Left: " + LifestealTurnsCooldown;
         }
     }
     #endregion
@@ -424,7 +426,6 @@ public class CharacterCombatController : MonoBehaviour
                 CombatCore.DisableItems();
                 HealUsed.SetActive(true);
                 SkillButtonPressed = true;
-                ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.SmallHealInstanceID;
                 consumeItem.ConsumeCount = 1;
                 PlayFabClientAPI.ConsumeItem(consumeItem,
@@ -484,7 +485,6 @@ public class CharacterCombatController : MonoBehaviour
                 CombatCore.DisableItems();
                 HealUsed.SetActive(true);
                 SkillButtonPressed = true;
-                ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.MediumHealInstanceID;
                 consumeItem.ConsumeCount = 1;
                 PlayFabClientAPI.ConsumeItem(consumeItem,
@@ -544,7 +544,6 @@ public class CharacterCombatController : MonoBehaviour
                 CombatCore.DisableItems();
                 HealUsed.SetActive(true);
                 SkillButtonPressed = true;
-                ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.LargeHealInstanceID;
                 consumeItem.ConsumeCount = 1;
                 PlayFabClientAPI.ConsumeItem(consumeItem,
@@ -600,7 +599,6 @@ public class CharacterCombatController : MonoBehaviour
                 CombatCore.DisableItems();
                 BreakUsed.SetActive(true);
                 SkillButtonPressed = true;
-                ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.BreakRemovalInstanceID;
                 consumeItem.ConsumeCount = 1;
                 PlayFabClientAPI.ConsumeItem(consumeItem,
@@ -654,7 +652,6 @@ public class CharacterCombatController : MonoBehaviour
                 CombatCore.DisableItems();
                 WeakUsed.SetActive(true);
                 SkillButtonPressed = true;
-                ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.WeakRemovalInstanceID;
                 consumeItem.ConsumeCount = 1;
                 PlayFabClientAPI.ConsumeItem(consumeItem,
@@ -707,7 +704,6 @@ public class CharacterCombatController : MonoBehaviour
                 CombatCore.DisableItems();
                 FreezeUsed.SetActive(true);
                 SkillButtonPressed = true;
-                ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.FreezeRemovalInstanceID;
                 consumeItem.ConsumeCount = 1;
                 PlayFabClientAPI.ConsumeItem(consumeItem,
@@ -759,7 +755,6 @@ public class CharacterCombatController : MonoBehaviour
                 CombatCore.DisableItems();
                 ParalyzeUsed.SetActive(true);
                 SkillButtonPressed = true;
-                ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.ParalyzeRemovalInstanceID;
                 consumeItem.ConsumeCount = 1;
                 PlayFabClientAPI.ConsumeItem(consumeItem,
@@ -811,7 +806,6 @@ public class CharacterCombatController : MonoBehaviour
                 CombatCore.DisableItems();
                 ConfuseUsed.SetActive(true);
                 SkillButtonPressed = true;
-                ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.ConfuseRemovalInstanceID;
                 consumeItem.ConsumeCount = 1;
                 PlayFabClientAPI.ConsumeItem(consumeItem,
@@ -866,7 +860,6 @@ public class CharacterCombatController : MonoBehaviour
                 CombatCore.DisableItems();
                 BurnUsed.SetActive(true);
                 SkillButtonPressed = true;
-                ConsumeItemRequest consumeItem = new ConsumeItemRequest();
                 consumeItem.ItemInstanceId = PlayerData.BurnRemovalInstanceID;
                 consumeItem.ConsumeCount = 1;
                 PlayFabClientAPI.ConsumeItem(consumeItem,
@@ -951,13 +944,6 @@ public class CharacterCombatController : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.15f);
         CombatCore.MissedSprite.gameObject.SetActive(false);
     }
-    private IEnumerator ShowDamageSprite(int _damage)
-    {
-        CombatCore.PlayerTakenDamage.text = "-" + _damage.ToString();
-        CombatCore.PlayerTakenDamage.gameObject.SetActive(true);
-        yield return new WaitForSecondsRealtime(0.5f);
-        CombatCore.PlayerTakenDamage.gameObject.SetActive(false);
-    }
 
     public void ProcessHealth()
     {
@@ -1021,6 +1007,7 @@ public class CharacterCombatController : MonoBehaviour
         if (BoardCore.ShotsEarned == 0)
         {
             ProcessDoubleDamage();
+            ProcessLifesteal();
             if (CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.NONE)
                 InflictStatusEffect();
             else
@@ -1039,7 +1026,6 @@ public class CharacterCombatController : MonoBehaviour
 
     public void AttackEnemy()
     {
-        //BurnInstanceAccepted = false;
         if (CurrentSideEffect == EnemyCombatController.SideEffect.PARALYZE)
         {
             if (UnityEngine.Random.Range(0, 100) < 20)
@@ -1079,14 +1065,15 @@ public class CharacterCombatController : MonoBehaviour
     {
         if (_damageReceived > 0)
         {
-            CombatCore.PlayerTakenDamage.text = "-" + Mathf.CeilToInt(_damageReceived).ToString();
-            CombatCore.PlayerTakenDamageAnimator.SetTrigger("ShowStatus");
+            
             CurrentCombatState = CombatState.ATTACKED;
             if(ShieldsActivated)
             {
                 // Do not mitigate the damages if you are pierced
                 _damageReceived = 0;
-                if(CurrentSideEffect == EnemyCombatController.SideEffect.PIERCE)
+                CombatCore.PlayerTakenDamage.text = "-" + Mathf.CeilToInt(_damageReceived).ToString();
+                CombatCore.PlayerTakenDamageAnimator.SetTrigger("ShowStatus");
+                if (CurrentSideEffect == EnemyCombatController.SideEffect.PIERCE)
                     CurrentHealth -= _damageReceived;
                 else
                     CurrentHealth -= _damageReceived / 3;
@@ -1099,7 +1086,11 @@ public class CharacterCombatController : MonoBehaviour
                     CombatCore.ShieldImage.SetActive(false);
             }
             else
+            {
                 CurrentHealth -= _damageReceived;
+                CombatCore.PlayerTakenDamage.text = "-" + Mathf.CeilToInt(_damageReceived).ToString();
+                CombatCore.PlayerTakenDamageAnimator.SetTrigger("ShowStatus");
+            }
 
             if (CurrentHealth < 0)
                 CurrentHealth = 0;
@@ -1163,8 +1154,6 @@ public class CharacterCombatController : MonoBehaviour
 
         if (CurrentSideEffect == EnemyCombatController.SideEffect.BURN)
         {
-            //StatusEffectActivated = true;
-            Debug.Log("intaking burn damage");
             CurrentHealth -= SideEffectDamage;
             UpdateHealthBar();
             StatusEffectTextAnimator.SetTrigger("ShowStatus");
@@ -1208,7 +1197,6 @@ public class CharacterCombatController : MonoBehaviour
             {
                 if (CombatCore.RoundCounter % PlayerData.ActiveCustomWeapon.BaseWeaponData.SideEffectsFrequency[i] == 0 && UnityEngine.Random.Range(0, 100) <= PlayerData.ActiveCustomWeapon.BaseWeaponData.SideEffectsRate[i])
                 {
-                    Debug.Log("Afflicting new side effect");
                     CombatCore.CurrentEnemy.AfflictedSideEffect = PlayerData.ActiveCustomWeapon.BaseWeaponData.SideEffects[i];
                     CombatCore.CurrentEnemy.AfflictedSideEffectInstancesLeft = PlayerData.ActiveCustomWeapon.BaseWeaponData.SideEffectsDuration[i];
 
@@ -1250,6 +1238,17 @@ public class CharacterCombatController : MonoBehaviour
         }
     }
 
+    private void ProcessLifesteal()
+    {
+        if(LifestealTurnsCooldown > 0)
+        {
+            LifestealTurnsCooldown--;
+            CombatCore.LifestealTMP.text = "Turns Left: " + LifestealTurnsCooldown;
+            if (LifestealTurnsCooldown == 0)
+                CombatCore.LifestealImage.SetActive(false);
+        }
+    }
+
     public void ProcessStatusEffectInstances()
     {
         StatusEffectActivated = false;
@@ -1271,13 +1270,13 @@ public class CharacterCombatController : MonoBehaviour
 
     private void InvokeLifesteal()
     {
-        CurrentHealth += (DamageDeal / 2);
+        CurrentHealth += DamageDeal;
         if (CurrentHealth > MaxHealth)
             CurrentHealth = MaxHealth;
         UpdateHealthBar();
         LifestealEffect.SetActive(false);
         Lifestealing = false;
-        LifestealInstancesRemaining--;
+        LifestealTurnsCooldown--;
     }
 
     private void ErrorCallback(PlayFabErrorCode errorCode, Action restartAction, Action errorAction)
@@ -1303,7 +1302,6 @@ public class CharacterCombatController : MonoBehaviour
     private void UpdateQuestData()
     {
         PlayerData.ItemsUsed++;
-        Dictionary<string, int> quests = new Dictionary<string, int>();
         quests.Add("DailyCheckIn", PlayerData.DailyCheckIn);
         quests.Add("SocMedShared", PlayerData.SocMedShared);
         quests.Add("ItemsUsed", PlayerData.ItemsUsed);
@@ -1311,8 +1309,7 @@ public class CharacterCombatController : MonoBehaviour
         quests.Add("LevelsWon", PlayerData.LevelsWon);
         quests.Add("DailyQuestClaimed", PlayerData.DailyQuestClaimed);
 
-        UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
-        updateUserData.Data = new Dictionary<string, string>();
+        updateUserData.Data.Clear();
         updateUserData.Data.Add("Quests", JsonConvert.SerializeObject(quests));
         PlayFabClientAPI.UpdateUserData(updateUserData,
             resultCallback =>

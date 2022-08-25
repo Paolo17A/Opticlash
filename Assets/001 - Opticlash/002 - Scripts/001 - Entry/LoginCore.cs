@@ -14,15 +14,24 @@ public class LoginCore : MonoBehaviour
     [field: SerializeField] private EntryCore EntryCore { get; set; }
     [field: SerializeField] private PlayerData PlayerData { get; set; }
 
+    [Header("PLAYFAB VARIABLES")]
+    private RegisterPlayFabUserRequest registerPlayFabUser;
+    private LoginWithPlayFabRequest loginWithPlayFab;
 
     [Header("DEBUGGER")]
     private int failedCallbackCounter;
     private Guid myGUID;
+    private string quests;
     //===============================================================================================
+    private void Awake()
+    {
+        registerPlayFabUser = new RegisterPlayFabUserRequest();
+        loginWithPlayFab = new LoginWithPlayFabRequest();
+    }
+
     public void RegisterNewUserPlayfab()
     {
         EntryCore.DisplayLoadingPanel();
-        RegisterPlayFabUserRequest registerPlayFabUser = new RegisterPlayFabUserRequest();
         registerPlayFabUser.TitleId = "BB42A";
         registerPlayFabUser.Email = "testuser10@gmail.com";
         registerPlayFabUser.Username = "testuser10";
@@ -70,7 +79,6 @@ public class LoginCore : MonoBehaviour
     public void LoginUserPlayfab(string username, string password)
     {
         EntryCore.DisplayLoadingPanel();
-        LoginWithPlayFabRequest loginWithPlayFab = new LoginWithPlayFabRequest();
         loginWithPlayFab.Username = username;
         loginWithPlayFab.Password = password;
 
@@ -80,6 +88,7 @@ public class LoginCore : MonoBehaviour
                 failedCallbackCounter = 0;
                 PlayerData.PlayfabID = resultCallback.PlayFabId;
                 PlayerData.DisplayName = username;
+                //GetEncrypedPassword(username, password);
                 LoginCredentials(username, password);
             },
             errorCallback =>
@@ -92,10 +101,41 @@ public class LoginCore : MonoBehaviour
                     () => LoginUserPlayfab(username, password),
                     () =>
                     {
-                        Debug.Log("error came from h ere");
                         EntryCore.HideLoadingPanel();
                         GameManager.Instance.DisplayErrorPanel(errorCallback.ErrorMessage);
                     } );
+            });
+    }
+
+    public void GetEncrypedPassword(string username, string password)
+    {
+        PlayFabClientAPI.GetUserData(new GetUserDataRequest(),
+            resultCallback =>
+            {
+                failedCallbackCounter = 0;
+                if(resultCallback.Data.ContainsKey("EncryptedPassword"))
+                {
+                    LoginCredentials(username, password);
+                }
+                else
+                {
+                    EntryCore.HideLoadingPanel();
+                    GameManager.Instance.DisplayErrorPanel("Please set up you password in the website");
+                }
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error, () =>
+                {
+                    EntryCore.HideLoadingPanel();
+                    GameManager.Instance.DisplayErrorPanel("Connectivity error. Please connect to strong internet");
+                },
+                    () => GetEncrypedPassword(username, password),
+                    () =>
+                    {
+                        EntryCore.HideLoadingPanel();
+                        GameManager.Instance.DisplayErrorPanel(errorCallback.ErrorMessage);
+                    });
             });
     }
 
@@ -127,7 +167,7 @@ public class LoginCore : MonoBehaviour
                     PlayerData.ActiveConstumeInstanceID = GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "ActiveCostume");
                     PlayerData.CurrentStage = int.Parse(GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "CurrentStage"));
 
-                    string quests = GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "Quests");
+                    quests = GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "Quests");
                     PlayerData.DailyCheckIn = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "DailyCheckIn"));
                     PlayerData.SocMedShared = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "SocMedShared"));
                     PlayerData.ItemsUsed = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "ItemsUsed"));
@@ -146,9 +186,7 @@ public class LoginCore : MonoBehaviour
                 }
                 else
                     EntryCore.HideLoadingPanel();
-            }
-            
-            //GameManager.Instance.SceneController.CurrentScene = "LobbyScene";
+            }          
         },
         errorCallback =>
         {
@@ -182,10 +220,6 @@ public class LoginCore : MonoBehaviour
     }
 
     #region UTILITY
-    private void OpenGameSelectScene()
-    {
-        GameManager.Instance.SceneController.CurrentScene = "GameSelectScene";
-    }
     private string Encrypt(string _password)
     {
         string salt = "CBS";

@@ -23,6 +23,7 @@ public class ProjectileController : MonoBehaviour
     [SerializeField][ReadOnly] private Vector2 p1;
     [SerializeField][ReadOnly] private Vector2 p2;
     [SerializeField][ReadOnly] private Vector2 p3;
+    [SerializeField][ReadOnly] private int childrenPassed;
 
     // Start is called before the first frame update
     private void Start()
@@ -50,20 +51,16 @@ public class ProjectileController : MonoBehaviour
         p2 = designatedRoute.GetChild(2).position;
         p3 = designatedRoute.GetChild(3).position;
 
-        int childrenPassed = 0;
+        childrenPassed = 0;
         while (tParam < 1)
         {
             tParam += Time.deltaTime * speedModifier;
             objectPosition = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
             transform.position = objectPosition;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, -50), rotationSpeed * Time.deltaTime);
-            //transform.LookAt(endPoint);
             if(transform.position.x >= designatedRoute.GetChild(childrenPassed).position.x)
-            {
                 childrenPassed++;
-                /*if(childrenPassed < 4)
-                    transform.LookAt(designatedRoute.GetChild(childrenPassed));*/
-            }
+            
             yield return new WaitForEndOfFrame();
         }
 

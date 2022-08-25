@@ -94,7 +94,7 @@ public class InventoryCore : MonoBehaviour
     public void SelectMediumHeal()
     {
         DisplayedInventoryImage.gameObject.SetActive(true);
-        DisplayedInventoryImage.sprite = SmallHealChargeSprite;
+        DisplayedInventoryImage.sprite = MediumHealChargeSprite;
         InventoryItemNameTMP.gameObject.SetActive(true);
         InventoryItemNameTMP.text = "MEDIUM HEAL CHARGE";
         RectanglePanelInventory.SetActive(true);
@@ -105,7 +105,7 @@ public class InventoryCore : MonoBehaviour
     public void SelectLargeHeal()
     {
         DisplayedInventoryImage.gameObject.SetActive(true);
-        DisplayedInventoryImage.sprite = SmallHealChargeSprite;
+        DisplayedInventoryImage.sprite = LargeHealChargeSprite;
         InventoryItemNameTMP.gameObject.SetActive(true);
         InventoryItemNameTMP.text = "LARGE HEAL CHARGE";
         RectanglePanelInventory.SetActive(true);

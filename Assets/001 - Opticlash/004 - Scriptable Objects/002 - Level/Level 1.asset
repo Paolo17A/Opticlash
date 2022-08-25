@@ -28,7 +28,7 @@ MonoBehaviour:
   <MinDroppedOPB>k__BackingField: 0
   <MaxDroppedOPB>k__BackingField: 100
   <MinDroppedNormalFragment>k__BackingField: 0
-  <MaxDroppedNormalFragment>k__BackingField: 0
+  <MaxDroppedNormalFragment>k__BackingField: 1
   <MinDroppedRareFragment>k__BackingField: 0
   <MaxDroppedRareFragment>k__BackingField: 0
   <MinDroppedEpicFragment>k__BackingField: 0

@@ -5,6 +5,8 @@ using MyBox;
 
 public class AdventureController : MonoBehaviour
 {
+    #region VARIABLES
+    //============================================================================================
     [field:  SerializeField] private AdventureCore AdventureCore { get; set; }
 
     [Header("DRAG VARIABLES")]
@@ -13,7 +15,7 @@ public class AdventureController : MonoBehaviour
     [SerializeField] [ReadOnly] private Vector3 nextTouchPoint;
     [SerializeField] [ReadOnly] private Vector3 draggedEndPoint;
     [SerializeField] [ReadOnly] private Vector3 dummyVector;
-    [SerializeField] private float speed;
+    //[SerializeField] private float speed;
 
     [Header("DEBUGGER")]
     [SerializeField][ReadOnly] private GameObject shrunkenLevel;
@@ -23,6 +25,9 @@ public class AdventureController : MonoBehaviour
     [SerializeField][ReadOnly] private bool isScrolling;
     [SerializeField][ReadOnly] private int normalVector;
     [SerializeField][ReadOnly] private float newCameraPosY;
+    //============================================================================================
+    #endregion
+
     private void Start()
     {
         GameManager.Instance.SceneController.ActionPass = true;
@@ -127,22 +132,15 @@ public class AdventureController : MonoBehaviour
                 }
                 if (Input.GetTouch(0).phase == TouchPhase.Moved)
                 {
-                    //Debug.Log("position changed by: " + Input.GetTouch(0).deltaPosition.y);
-                    //AdventureCore._virtualCamera.transform.position = new Vector3(0, Mathf.Clamp(Input.GetTouch(0).deltaPosition.y, 0, AdventureCore.MaxYClamp), AdventureCore._virtualCamera.transform.position.z);
                     AdventureCore._virtualCamera.transform.position = new Vector3(0, Mathf.Clamp(-newCameraPosY, 0, AdventureCore.MaxYClamp), AdventureCore._virtualCamera.transform.position.z);
-
                     nextTouchPoint = GameManager.Instance.MainCamera.ScreenToWorldPoint(new Vector3(0, Input.GetTouch(0).position.y, 0));
                     if (nextTouchPoint.y != previousTouchPoint.y && !GameManager.Instance.PanelActivated)
                     {
                         isScrolling = true;
-                        //draggedEndPoint = previousTouchPoint - nextTouchPoint;
                         draggedEndPoint = -Input.GetTouch(0).deltaPosition * Time.deltaTime;
                         newCameraPosY += draggedEndPoint.y;
 
-                        //dummyVector = -(AdventureCore._virtualCamera.transform.position + new Vector3(0, draggedEndPoint.y, 0));
                         AdventureCore._virtualCamera.transform.position = new Vector3(0, Mathf.Clamp(newCameraPosY, 0, AdventureCore.MaxYClamp), AdventureCore._virtualCamera.transform.position.z);
-                        //previousTouchPoint = nextTouchPoint;
-                        //Debug.Log(AdventureCore._virtualCamera.transform.position);
                     }
                 }
             }

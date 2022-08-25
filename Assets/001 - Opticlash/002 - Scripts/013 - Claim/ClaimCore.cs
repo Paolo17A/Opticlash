@@ -20,6 +20,8 @@ public class ClaimCore : MonoBehaviour
 
     [field: Header("DEBUGGER")]
     private int failedCallbackCounter;
+    private bool mayClaimFreeCostume;
+    private string unownedCostume;
     //=====================================================================
 
     public void ProcessInputCode()
@@ -32,8 +34,8 @@ public class ClaimCore : MonoBehaviour
         {
             if (CodeInputField.text == "CBS4L1FE0PT1CL4SHB3T4")
             {
-                bool mayClaimFreeCostume = false;
-                string unownedCostume = "";
+                mayClaimFreeCostume = false;
+                unownedCostume = "";
                 foreach (CustomCostumeData costume in PlayerData.OwnedCostumes)
                     if (!costume.CostumeIsOwned)
                     {
@@ -100,7 +102,6 @@ public class ClaimCore : MonoBehaviour
         resultCallback =>
         {
             failedCallbackCounter = 0;
-            //Debug.Log("code has been claimed");
             GrantCostumeCloudscript(_unownedCostume);
         },
         errorCallback =>
@@ -124,10 +125,7 @@ public class ClaimCore : MonoBehaviour
             failedCallbackCounter = 0;
             Debug.Log(resultCallback.FunctionResult);
             CodeInputField.text = "";
-            /*LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.NEWGRANT;
-            LobbyCore.GrantPanel.SetActive(true);
-            RewardedCostume.SetActive(true);*/
-
+            GameManager.Instance.DisplayErrorPanel("A new costume has been added to your inventory");
             LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.CORE;
             LobbyCore.InitializeLobby();
         },

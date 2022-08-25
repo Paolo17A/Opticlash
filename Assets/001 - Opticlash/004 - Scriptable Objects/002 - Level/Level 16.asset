@@ -19,7 +19,7 @@ MonoBehaviour:
   - NormalMonster007
   - WeakMonster007
   - ParalyzeMonster008
-  <MonsterLevels>k__BackingField: 0c0000000c0000000d0000000e0000000f000000
+  <MonsterLevels>k__BackingField: 0b0000000c0000000c0000000d0000000e000000
   <MonsterSprites>k__BackingField:
   - {fileID: 21300000, guid: 38966c997637b7440823d140ad10d36a, type: 3}
   - {fileID: 21300000, guid: 38966c997637b7440823d140ad10d36a, type: 3}

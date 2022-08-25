@@ -46,6 +46,9 @@ public class CombatController : MonoBehaviour
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
         {
+            CombatCore.PowerUpsBtn.interactable = true;
+            CombatCore.ItemsBtn.interactable = true;
+            CombatCore.ShuffleBtn.interactable = true;
             CombatCore.ProcessPowerUpInteractability();
             CombatCore.ProcessSkillsInteractability();
             CombatCore.RoundCounter++;
@@ -54,7 +57,9 @@ public class CombatController : MonoBehaviour
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.PLAYERTURN)
         {
-            CombatCore.LifestealBtn.interactable = false;
+            CombatCore.PowerUpsBtn.interactable = false;
+            CombatCore.ItemsBtn.interactable = false;
+            CombatCore.ShuffleBtn.interactable = false;
             CombatCore.SpawnedPlayer.ProjectileSpawned = false;
             CombatCore.DisableItems();
         }

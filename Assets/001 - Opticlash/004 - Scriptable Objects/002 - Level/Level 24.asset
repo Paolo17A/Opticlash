@@ -19,7 +19,7 @@ MonoBehaviour:
   - BurnMonster009
   - ConfuseMonster011
   - FreezeMonster012
-  <MonsterLevels>k__BackingField: 1400000014000000150000001600000017000000
+  <MonsterLevels>k__BackingField: 1300000014000000140000001500000016000000
   <MonsterSprites>k__BackingField:
   - {fileID: 21300000, guid: dada861a5a84c4d4eb22472f36c4b032, type: 3}
   - {fileID: 21300000, guid: 1ec9e8ef977eb3348a5a7211efce6098, type: 3}

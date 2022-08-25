@@ -11,6 +11,7 @@ using TMPro;
 
 public class AdventureCore : MonoBehaviour
 {
+    #region VARIABLES
     //================================================================================
     [field: SerializeField] private PlayerData PlayerData { get; set; }
     [field: SerializeField] public CinemachineVirtualCamera _virtualCamera { get; set; }
@@ -37,6 +38,7 @@ public class AdventureCore : MonoBehaviour
     [field: SerializeField][field: ReadOnly] public float MaxYClamp { get; set; }
     private int failedCallbackCounter;
     //================================================================================
+    #endregion
 
     public void InitializeLevels()
     {

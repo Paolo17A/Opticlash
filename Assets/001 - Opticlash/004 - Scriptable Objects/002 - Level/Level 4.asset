@@ -18,7 +18,7 @@ MonoBehaviour:
   - NormalMonster001
   - NormalMonster005
   - NormalMonster002
-  <MonsterLevels>k__BackingField: 00000000010000000200000003000000
+  <MonsterLevels>k__BackingField: 00000000010000000100000002000000
   <MonsterSprites>k__BackingField:
   - {fileID: 21300000, guid: 7d57afa22c1c8e146abdb3217d359a93, type: 3}
   - {fileID: 21300000, guid: 7d57afa22c1c8e146abdb3217d359a93, type: 3}

@@ -21,7 +21,7 @@ MonoBehaviour:
   - WeakMonster009
   - ParalyzeMonster010
   - BurnBoss002
-  <MonsterLevels>k__BackingField: 10000000100000001100000012000000130000001400000015000000
+  <MonsterLevels>k__BackingField: 0f000000100000001000000011000000120000001300000014000000
   <MonsterSprites>k__BackingField:
   - {fileID: 21300000, guid: 38966c997637b7440823d140ad10d36a, type: 3}
   - {fileID: 21300000, guid: 7e2c6784072c2ba478941e3cc4f5a0fc, type: 3}

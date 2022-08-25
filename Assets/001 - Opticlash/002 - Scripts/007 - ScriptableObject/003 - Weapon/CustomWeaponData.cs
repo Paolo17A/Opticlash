@@ -19,7 +19,7 @@ public class CustomWeaponData : ScriptableObject
     {
         Attack = (5 * (Level * 0.6f)) + 10;
         Accuracy = (5 * (Level * 0.4f)) + 10;
-        FragmentUpgradeCost = Mathf.CeilToInt(BaseWeaponData.FragmentUpgradeCostConstant * Level);
+        FragmentUpgradeCost = Mathf.CeilToInt((BaseWeaponData.FragmentUpgradeCostConstant * Level)/2);
         OptibitUpgradeCost = Mathf.CeilToInt(BaseWeaponData.OptibitUpgradeCostConstant * Level);
     }
 }

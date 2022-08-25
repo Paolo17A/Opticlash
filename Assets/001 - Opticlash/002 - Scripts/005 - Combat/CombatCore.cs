@@ -73,6 +73,9 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public TextMeshProUGUI StageTMP { get; set; }
     [field: SerializeField] [field: ReadOnly] public int MonstersKilled { get; set; }
     [field: SerializeField] public SpriteRenderer MissedSprite { get; set; }
+    [field: SerializeField] public Button PowerUpsBtn { get; set; }
+    [field: SerializeField] public Button ItemsBtn { get; set; }
+    [field: SerializeField] public Button ShuffleBtn { get; set; }
 
     [field: Header("POWER UPS")]
     [field: SerializeField] public Button DoubleDamageBtn { get; set; }
@@ -82,10 +85,11 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public GameObject ShieldImage { get; set; }
     [field: SerializeField] public TextMeshProUGUI ShieldTMP { get; set; }
     [field: SerializeField] public Button LifestealBtn { get; set; }
+    [field: SerializeField] public GameObject LifestealImage { get; set; }
+    [field: SerializeField] public TextMeshProUGUI LifestealTMP { get; set; }
     [field: SerializeField] public GameObject Portal { get; set; }
     [field: SerializeField] public Transform PortalEndPoint { get; set; }
-    [field: SerializeField] public Animator FlashAnimator { get; set; }
-    [field: SerializeField] public int MonstersSkipped { get; set; }
+
 
     [field: Header("SKILLS")]
     [field: SerializeField] public Button HealBtn { get; set; }
@@ -120,8 +124,6 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public Animator EnemyTakenDamageAnimator { get; set; }
     [field: SerializeField] public GameObject EnemyProjectile { get; set; }
     [field: SerializeField] public Vector3 EnemyProjectileStartingPoint { get; set; }
-    [field: SerializeField] public GameObject EnemyLaser { get; set; }
-    [field: SerializeField] public Vector3 EnemyLaserStartingPoint { get; set; }
 
     [field: Header("GAME OVER")]
     [field: SerializeField] private int OptibitDropped { get; set; }
@@ -277,10 +279,10 @@ public class CombatCore : MonoBehaviour
         else
             ShieldImage.SetActive(false);
 
-        if (SpawnedPlayer.LifestealInstancesRemaining > 0 && !SpawnedPlayer.LifestealActivated)
-            LifestealBtn.interactable = true;
+        if (SpawnedPlayer.LifestealTurnsCooldown > 0)
+            LifestealImage.SetActive(true);
         else
-            LifestealBtn.interactable = false;
+            LifestealImage.SetActive(false);
     }
 
     public void ProcessSkillsInteractability()

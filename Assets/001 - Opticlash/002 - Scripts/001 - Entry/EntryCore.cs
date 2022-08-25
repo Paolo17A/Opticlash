@@ -49,7 +49,6 @@ public class EntryCore : MonoBehaviour
     [field: SerializeField] public Animator EntryAnimator { get; set; }
     [field: SerializeField] private LoginCore LoginCore { get; set; }
     [field: SerializeField] private WalletController WalletController { get; set; }
-    //[field: SerializeField] private PlayerData PlayerData { get; set; }*/
 
     [field: Header("LOADING")]
     [field: SerializeField] private GameObject LoadingPanel { get; set; }
@@ -101,42 +100,16 @@ public class EntryCore : MonoBehaviour
         }
     }
 
-    public void MetamaskLoginButton()
-    {
-
-    }
-
     public void ShowComingSoon()
     {
         GameManager.Instance.DisplayErrorPanel("COMING SOON");
     }
-    
 
-    public void LogOutButton()
-    {
-        //PlayerData.ResetPlayerData();
-        PlayerPrefs.DeleteAll();
-        CurrentEntryState = EntryCore.EntryStates.PLAY;
-    }
-
-    #region LINKS
     public void OpenWebsite()
     {
         Application.OpenURL("https://optibit.tech/");
     }
-    public void OpenFacebook()
-    {
-        Application.OpenURL("https://www.facebook.com/EZMoneyPH/");
-    }
-    public void OpenTwitter()
-    {
-        Application.OpenURL("https://twitter.com/RealEZMoneyPH");
-    }
-    public void OpenInstagram()
-    {
-        Application.OpenURL("https://www.instagram.com/officialezmoneyph/");
-    }
-    #endregion
+    
 
     #region UTILITY
     public void ResetLoginPanel()
