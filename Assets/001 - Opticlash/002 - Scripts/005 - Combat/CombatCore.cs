@@ -515,7 +515,6 @@ public class CombatCore : MonoBehaviour
                 if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
                 {
                     DisplayDroppedRewards();
-                    CloseLoadingPanel();
                     IncreaseCurrentLevel();
                     PurchaseEnergyCharge();
                 }
@@ -539,7 +538,9 @@ public class CombatCore : MonoBehaviour
         if(PlayerData.CurrentStage == GameManager.Instance.CurrentLevelData.LevelIndex)
         {
             if (GameManager.Instance.DebugMode)
+            {
                 PlayerData.CurrentStage++;
+            }
             else
             {
                 UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
@@ -551,6 +552,7 @@ public class CombatCore : MonoBehaviour
                     {
                         failedCallbackCounter = 0;
                         PlayerData.CurrentStage++;
+                        
                     },
                     errorCallback =>
                     {
@@ -601,6 +603,7 @@ public class CombatCore : MonoBehaviour
             {
                 failedCallbackCounter = 0;
                 PlayerData.EnergyCount--;
+                CloseLoadingPanel();
             },
             errorCallback =>
             {
@@ -738,7 +741,7 @@ public class CombatCore : MonoBehaviour
             currentConsumable = consumableRewards.Dequeue();
             currentConsumable.ShowReward();
             currentConsumable.RewardImage.sprite = WeakRemoveSprite;
-            currentConsumable.RewardTMP.text = WeakRemoveSprite.ToString();
+            currentConsumable.RewardTMP.text = WeakRemoveDropped.ToString();
             PlayerData.WeakRemovalCharges += WeakRemoveDropped;
         }
 
@@ -765,7 +768,7 @@ public class CombatCore : MonoBehaviour
             currentConsumable = consumableRewards.Dequeue();
             currentConsumable.ShowReward();
             currentConsumable.RewardImage.sprite = ConfuseRemoveSprite;
-            currentConsumable.RewardTMP.text = ConfuseRemoveSprite.ToString();
+            currentConsumable.RewardTMP.text = ConfuseRemoveDropped.ToString();
             PlayerData.ConfuseRemovalCharges += ConfuseRemoveDropped;
         }
 
@@ -779,7 +782,7 @@ public class CombatCore : MonoBehaviour
         }
         #endregion
 
-        CloseLoadingPanel();
+        //CloseLoadingPanel();
     }
 
     public void HideSettings()

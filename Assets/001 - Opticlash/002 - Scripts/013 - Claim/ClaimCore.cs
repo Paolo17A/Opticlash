@@ -67,15 +67,23 @@ public class ClaimCore : MonoBehaviour
                 failedCallbackCounter = 0;
                 if (resultCallback.Data["LUID"].Value == PlayerData.LUID)
                 {
-                    List<string> claimedCodes = JsonConvert.DeserializeObject<List<string>>(resultCallback.Data["RedeemCode"].Value);
-                    if (claimedCodes.Contains(_inputCode))
+                    if(resultCallback.Data.ContainsKey("RedeemCode"))
                     {
-                        LobbyCore.HideLoadingPanel();
-                        GameManager.Instance.DisplayErrorPanel("You have already claimed this code before");
-                        CodeInputField.text = "";
+                        List<string> claimedCodes = JsonConvert.DeserializeObject<List<string>>(resultCallback.Data["RedeemCode"].Value);
+                        if (claimedCodes.Contains(_inputCode))
+                        {
+                            LobbyCore.HideLoadingPanel();
+                            GameManager.Instance.DisplayErrorPanel("You have already claimed this code before");
+                            CodeInputField.text = "";
+                        }
+                        else
+                            UpdateUserData(claimedCodes, _inputCode, _unownedCostume);
                     }
                     else
+                    {
+                        List<string> claimedCodes = new List<string>();
                         UpdateUserData(claimedCodes, _inputCode, _unownedCostume);
+                    }
                 }
                 else
                 {

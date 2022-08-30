@@ -29,6 +29,7 @@ public class LoginCore : MonoBehaviour
         loginWithPlayFab = new LoginWithPlayFabRequest();
     }
 
+    #region REGISTRATION
     public void RegisterNewUserPlayfab()
     {
         EntryCore.DisplayLoadingPanel();
@@ -73,14 +74,14 @@ public class LoginCore : MonoBehaviour
                     RegistrationDataInitializationCloudscript,
                     () => ProcessError(errorCallback.ErrorMessage));
         });
-        
     }
+    #endregion
 
     public void LoginUserPlayfab(string username, string password)
     {
         EntryCore.DisplayLoadingPanel();
         loginWithPlayFab.Username = username;
-        loginWithPlayFab.Password = password;
+        loginWithPlayFab.Password = "password";
 
         PlayFabClientAPI.LoginWithPlayFab(loginWithPlayFab,
             resultCallback =>
@@ -88,8 +89,8 @@ public class LoginCore : MonoBehaviour
                 failedCallbackCounter = 0;
                 PlayerData.PlayfabID = resultCallback.PlayFabId;
                 PlayerData.DisplayName = username;
-                //GetEncrypedPassword(username, password);
-                LoginCredentials(username, password);
+                GetEncrypedPassword(username, password);
+                //LoginCredentials(username, password);
             },
             errorCallback =>
             {
@@ -113,14 +114,26 @@ public class LoginCore : MonoBehaviour
             resultCallback =>
             {
                 failedCallbackCounter = 0;
-                if(resultCallback.Data.ContainsKey("EncryptedPassword"))
+                if(resultCallback.Data.ContainsKey("Password"))
                 {
-                    LoginCredentials(username, password);
+                    if(resultCallback.Data["Password"].Value == Encrypt(password))
+                    {
+                        Debug.Log(Encrypt(password));
+                        LoginCredentials(username, password);
+                    }
+                    else
+                    {
+                        EntryCore.HideLoadingPanel();
+                        EntryCore.ResetLoginPanel();
+                        PlayerData.ResetPlayerData();
+                        PlayFabClientAPI.ForgetAllCredentials();
+                        GameManager.Instance.DisplayErrorPanel("Incorrect Password");
+                    }
                 }
                 else
                 {
                     EntryCore.HideLoadingPanel();
-                    GameManager.Instance.DisplayErrorPanel("Please set up you password in the website");
+                    GameManager.Instance.DisplayErrorPanel("Please set up your password in the website");
                 }
             },
             errorCallback =>
@@ -223,7 +236,7 @@ public class LoginCore : MonoBehaviour
     private string Encrypt(string _password)
     {
         string salt = "CBS";
-        string pepper = "EZMONEY";
+        string pepper = "OPTIBIT";
 
         using (SHA256 hash = SHA256.Create())
         {
