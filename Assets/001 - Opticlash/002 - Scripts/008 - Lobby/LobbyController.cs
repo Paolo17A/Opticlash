@@ -60,7 +60,7 @@ public class LobbyController : MonoBehaviour
             {
                 LobbyCore.GrantPanel.SetActive(false);
                 LobbyCore.GrantCanvas.SetActive(false);
-                LootboxCore.OptibitReward.SetActive(false);
+                LootboxCore.ConsumableReward.SetActive(false);
                 LootboxCore.FragmentReward.SetActive(false);
                 LootboxCore.CannonReward.SetActive(false);
                 LootboxCore.CostumeReward.SetActive(false);

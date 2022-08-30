@@ -76,6 +76,7 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public Button PowerUpsBtn { get; set; }
     [field: SerializeField] public Button ItemsBtn { get; set; }
     [field: SerializeField] public Button ShuffleBtn { get; set; }
+    [field: SerializeField] public GameObject WaitPanel { get; set; }
 
     [field: Header("POWER UPS")]
     [field: SerializeField] public Button DoubleDamageBtn { get; set; }

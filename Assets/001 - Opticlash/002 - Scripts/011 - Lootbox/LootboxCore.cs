@@ -7,12 +7,12 @@ using MyBox;
 using System;
 using PlayFab;
 using PlayFab.ClientModels;
-using Newtonsoft.Json;
 
 public class LootboxCore : MonoBehaviour
 {
     [field: SerializeField] private PlayerData PlayerData { get; set; }
     [field: SerializeField] private LobbyCore LobbyCore { get; set; }
+    [field: SerializeField] private LobbyController LobbyController { get; set; }
 
     [field: Header("LOOTBOX")]
     [field: SerializeField] private Image TopBoxImage { get; set; }
@@ -62,7 +62,8 @@ public class LootboxCore : MonoBehaviour
     [field: SerializeField] private Sprite LegendFragment { get; set; }
 
     [field: Header("REWARDS")]
-    [field: SerializeField] public GameObject OptibitReward { get; set; }
+    [field: SerializeField] public GameObject ConsumableReward { get; set; }
+    [field: SerializeField] public SpriteRenderer ConsumableSprite { get; set; }
     [field: SerializeField] public GameObject FragmentReward { get; set; }
     [field: SerializeField] private SpriteRenderer FragmentSprite { get; set; }
     [field: SerializeField] public GameObject CannonReward { get; set; }
@@ -82,11 +83,25 @@ public class LootboxCore : MonoBehaviour
     [field: Header("DEBUGGER")]
     [field: SerializeField] private int failedCallbackCounter { get; set; }
     [field: SerializeField] private bool HasThisLootbox { get; set; }
+    [field: SerializeField][field: ReadOnly] private int SmallHealSkillDropped { get; set; }
+    [field: SerializeField][field: ReadOnly] private int MediumHealSkillDropped { get; set; }
+    [field: SerializeField][field: ReadOnly] private int LargeHealSkillDropped { get; set; }
+    [field: SerializeField][field: ReadOnly] private int BreakRemoveDropped { get; set; }
+    [field: SerializeField][field: ReadOnly] private int WeakRemoveDropped { get; set; }
+    [field: SerializeField][field: ReadOnly] private int FreezeRemoveDropped { get; set; }
+    [field: SerializeField][field: ReadOnly] private int ParalyzeRemoveDropped { get; set; }
+    [field: SerializeField][field: ReadOnly] private int ConfuseRemoveDropped { get; set; }
+    [field: SerializeField][field: ReadOnly] private int BurnRemoveDropped { get; set; }
+    [field: SerializeField][field: ReadOnly] private List<string> CannonStrings { get; set; }
+    [field: SerializeField][field: ReadOnly] public List<string> RewardsToDisplay { get; set; }
+    [field: SerializeField][field: ReadOnly] public int RewardIndex { get; set; }
 
-    private void Start()
+    private void Awake()
     {
-
+        CannonStrings = new List<string>();
+        RewardsToDisplay = new List<string>();
     }
+
     public void InitializeLootbox()
     {
         if (GameManager.Instance.DebugMode)
@@ -232,25 +247,9 @@ public class LootboxCore : MonoBehaviour
     private void OpenCommonLootbox()
     {
         int randomNum = UnityEngine.Random.Range(0, 100);
-        int randomAmount = 0;
         if (GameManager.Instance.DebugMode)
         {
-            if (randomNum >= 0 && randomNum <= 39)
-            {
-                randomAmount = UnityEngine.Random.Range(50000, 100000);
-                PlayerData.Optibit += randomAmount;
-                CommonAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 1;
-                LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " OPTIBIT";
-            }
-            else if (randomNum >= 40 && randomNum <= 79)
-            {
-                randomAmount = UnityEngine.Random.Range(600, 1200);
-                PlayerData.NormalFragments += randomAmount;
-                CommonAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 2;
-                LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " NORMAL FRAGMENTS";
-            }
-
-            else if (randomNum >= 80 && randomNum <= 99)
+            if(randomNum >= 50)
             {
                 for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
                 {
@@ -261,8 +260,10 @@ public class LootboxCore : MonoBehaviour
                         break;
                     }
                 }
-                CommonAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
             }
+            ResetDrops();
+            DropRandomConsumables(3);
+            UpdatePlayerInventory();
 
             PlayerData.CommonLootboxCount--;
             CommonLootboxOwned.text = PlayerData.CommonLootboxCount.ToString();
@@ -300,128 +301,87 @@ public class LootboxCore : MonoBehaviour
 
     private void GetNormalBoxContent(int randomNum)
     {
-        string cloudScriptCommand = "";
-        int randomAmount = 0;
-        if (randomNum >= 0 && randomNum <= 39)
-        {
-            cloudScriptCommand = "AddOptibit";
-            randomAmount = UnityEngine.Random.Range(50000, 100000);
-        }
-        else if (randomNum >= 40 && randomNum <= 79)
-        {
-            cloudScriptCommand = "AddNormalFragment";
-            randomAmount = UnityEngine.Random.Range(600, 1200);
-        }
-        else if (randomNum >= 80 && randomNum <= 99)
-        {
-            int cannonIndex = UnityEngine.Random.Range(0, NormalWeapons.Count);
-            switch (cannonIndex)
-            {
-                case 0:
-                    cloudScriptCommand = "GrantC1Cannon";
-                    break;
-                case 1:
-                    cloudScriptCommand = "GrantC2Cannon";
-                    break;
-                case 2:
-                    cloudScriptCommand = "GrantC3Cannon";
-                    break;
-                case 3:
-                    cloudScriptCommand = "GrantC4Cannon";
-                    break;
-                case 4:
-                    cloudScriptCommand = "GrantC5Cannon";
-                    break;
-            }
-        }
-
-
+        RewardsToDisplay.Clear();
+        ResetDrops();
+        DropRandomConsumables(3);
         PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
         {
-            FunctionName = cloudScriptCommand,
-            FunctionParameter = new { localLUID = PlayerData.LUID, amount = randomAmount },
+            FunctionName = "GrantRewardedItems",
+            FunctionParameter = new
+            {
+                localLUID = PlayerData.LUID,
+
+                optibit = 0,
+                normalFragment = 500,
+                rareFragment = 0,
+                epicFragment = 0,
+                legendFragment = 0,
+                smallHeal = SmallHealSkillDropped,
+                mediumHeal = MediumHealSkillDropped,
+                largeHeal = LargeHealSkillDropped,
+                breakRemove = BreakRemoveDropped,
+                burnRemove = BurnRemoveDropped,
+                confuseRemove = ConfuseRemoveDropped,
+                freezeRemove = FreezeRemoveDropped,
+                paralyzeRemove = ParalyzeRemoveDropped,
+                weakRemove = WeakRemoveDropped
+            },
             GeneratePlayStreamEvent = true
         },
-            resultCallback =>
+        resultCallback =>
+        {
+            failedCallbackCounter = 0;
+            Debug.Log(resultCallback.FunctionResult);
+            if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
             {
-                LobbyCore.HideLoadingPanel();
-                failedCallbackCounter = 0;
-                if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
+                PlayerData.CommonLootboxCount--;
+                CommonLootboxOwned.text = PlayerData.CommonLootboxCount.ToString();
+                DisplayCurrentLootbox();
+                if (PlayerData.CommonLootboxCount > 0)
                 {
-                    PlayerData.CommonLootboxCount--;
-                    CommonLootboxOwned.text = PlayerData.CommonLootboxCount.ToString();
-                    DisplayCurrentLootbox();
-                    if (PlayerData.CommonLootboxCount > 0)
-                    {
-                        HasThisLootbox = true;
-                        OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
-                    }
-                    else
-                    {
-                        HasThisLootbox = false;
-                        OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
-                        PlayerData.CommonLootboxInstanceID = "";
-                    }
-                    LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
-                    LobbyCore.OkBtn.SetActive(false);
+                    HasThisLootbox = true;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                }
+                else
+                {
+                    HasThisLootbox = false;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
+                    PlayerData.CommonLootboxInstanceID = "";
+                }
+                LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
+                LobbyCore.OkBtn.SetActive(false);
+
+                LobbyCore.GrantAmountTMP.text = "YOU GAINED 500 NORMAL FRAGMENTS";
+                FragmentSprite.sprite = NormalFragment;
+                PlayerData.NormalFragments += 500;
+                UpdatePlayerInventory();
+                CannonStrings.Clear();
+                RewardsToDisplay.Insert(0, "NORMAL");
+
+                if (randomNum >= 50)
+                {
+                    AddCommonCannon();
+                    DropCannons(0);
+                }
+                else
+                {
                     LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.NEWGRANT;
                     LobbyCore.GrantPanel.SetActive(true);
                     CommonAnimatedBox.SetActive(true);
-                    if (cloudScriptCommand == "AddOptibit")
-                    {
-                        CommonAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 1;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " OPTIBIT";
-                    }
-                    else if (cloudScriptCommand == "AddNormalFragment")
-                    {
-                        FragmentSprite.sprite = NormalFragment;
-                        CommonAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 2;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " NORMAL FRAGMENTS";
-                    }
-                    else if (cloudScriptCommand == "GrantC1Cannon")
-                    {
-                        CannonSprite.sprite = NormalWeapons[0].AnimatedSprite;
-                        CommonAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED C1 CANNON";
+                    LobbyCore.HideLoadingPanel();
 
-                    }
-                    else if (cloudScriptCommand == "GrantC2Cannon")
-                    {
-                        CannonSprite.sprite = NormalWeapons[1].AnimatedSprite;
-                        CommonAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED C2 CANNON";
-                    }
-                    else if (cloudScriptCommand == "GrantC3Cannon")
-                    {
-                        CannonSprite.sprite = NormalWeapons[2].AnimatedSprite;
-                        CommonAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED C3 CANNON";
-                    }
-                    else if (cloudScriptCommand == "GrantC4Cannon")
-                    {
-                        CannonSprite.sprite = NormalWeapons[3].AnimatedSprite;
-                        CommonAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED C4 CANNON";
-                    }
-                    else if (cloudScriptCommand == "GrantC5Cannon")
-                    {
-                        CannonSprite.sprite = NormalWeapons[4].AnimatedSprite;
-                        CommonAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED C5 CANNON";
-                    }
                     GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
                     CommonAnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
                     LobbyCore.InitializeLobby();
                 }
-                else
-                    GameManager.Instance.DisplayDualLoginErrorPanel();
-            },
-            errorCallback =>
-            {
-                ErrorCallback(errorCallback.Error,
-                    () => GetNormalBoxContent(randomNum),
-                    () => ProcessError(errorCallback.ErrorMessage));
-            });
+            }     
+        },
+        errorCallback =>
+        {
+            ErrorCallback(errorCallback.Error,
+                () => GetNormalBoxContent(randomNum),
+                () => ProcessError(errorCallback.ErrorMessage));
+        });
     }
     #endregion
 
@@ -429,34 +389,39 @@ public class LootboxCore : MonoBehaviour
     private void OpenRareLootbox()
     {
         int randomNum = UnityEngine.Random.Range(0, 100);
-        int randomAmount = 0;
         if (GameManager.Instance.DebugMode)
         {
-            if (randomNum >= 0 && randomNum <= 39)
+            if (randomNum >= 60)
             {
-                randomAmount = UnityEngine.Random.Range(250000, 500000);
-                PlayerData.Optibit += randomAmount;
-                RareAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 1;
-                LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " OPTIBIT";
+                for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
+                {
+                    if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
+                    {
+                        PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
+                        PlayerData.OwnedWeapons[i].BaseWeaponData = NormalWeapons[UnityEngine.Random.Range(0, NormalWeapons.Count)];
+                        break;
+                    }
+                }
             }
-            else if (randomNum >= 40 && randomNum <= 79)
+
+            randomNum = UnityEngine.Random.Range(0, 100);
+            if (randomNum >= 30)
             {
-                randomAmount = UnityEngine.Random.Range(700, 1300);
-                PlayerData.RareFragments += randomAmount;
-                RareAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 2;
-                LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " RARE FRAGMENTS";
-            }
-            else if (randomNum >= 80 && randomNum <= 99)
                 for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
                 {
                     if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
                     {
                         PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
                         PlayerData.OwnedWeapons[i].BaseWeaponData = RareWeapons[UnityEngine.Random.Range(0, RareWeapons.Count)];
-                        Debug.Log("Your new weapon is " + PlayerData.OwnedWeapons[i].BaseWeaponData.name);
                         break;
                     }
                 }
+            }
+
+            ResetDrops();
+            DropRandomConsumables(5);
+            UpdatePlayerInventory();
+
             PlayerData.RareLootboxCount--;
             RareLootboxOwned.text = PlayerData.RareLootboxCount.ToString();
             DisplayCurrentLootbox();
@@ -492,117 +457,93 @@ public class LootboxCore : MonoBehaviour
 
     private void GetRareBoxContent(int randomNum)
     {
-        string cloudScriptCommand = "";
-        int randomAmount = 0;
-        if (randomNum >= 0 && randomNum <= 39)
-        {
-            cloudScriptCommand = "AddOptibit";
-            randomAmount = UnityEngine.Random.Range(250000, 500000);
-        }
-        else if (randomNum >= 40 && randomNum <= 79)
-        {
-            cloudScriptCommand = "AddRareFragment";
-            randomAmount = UnityEngine.Random.Range(700, 1300);
-        }
-        else if (randomNum >= 80 && randomNum <= 99)
-        {
-            int cannonIndex = UnityEngine.Random.Range(0, RareWeapons.Count);
-            switch (cannonIndex)
-            {
-                case 0:
-                    cloudScriptCommand = "GrantB1Cannon";
-                    break;
-                case 1:
-                    cloudScriptCommand = "GrantB2Cannon";
-                    break;
-                case 2:
-                    cloudScriptCommand = "GrantB3Cannon";
-                    break;
-                case 3:
-                    cloudScriptCommand = "GrantB4Cannon";
-                    break;
-            }
-        }
-
+        RewardsToDisplay.Clear();
+        ResetDrops();
+        DropRandomConsumables(5);
         PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
         {
-            FunctionName = cloudScriptCommand,
-            FunctionParameter = new { localLUID = PlayerData.LUID, amount = randomAmount },
+            FunctionName = "GrantRewardedItems",
+            FunctionParameter = new
+            {
+                localLUID = PlayerData.LUID,
+
+                optibit = 0,
+                normalFragment = 1000,
+                rareFragment = 500,
+                epicFragment = 0,
+                legendFragment = 0,
+                smallHeal = SmallHealSkillDropped,
+                mediumHeal = MediumHealSkillDropped,
+                largeHeal = LargeHealSkillDropped,
+                breakRemove = BreakRemoveDropped,
+                burnRemove = BurnRemoveDropped,
+                confuseRemove = ConfuseRemoveDropped,
+                freezeRemove = FreezeRemoveDropped,
+                paralyzeRemove = ParalyzeRemoveDropped,
+                weakRemove = WeakRemoveDropped
+            },
             GeneratePlayStreamEvent = true
         },
-            resultCallback =>
+        resultCallback =>
+        {
+            failedCallbackCounter = 0;
+            Debug.Log(resultCallback.FunctionResult);
+            if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
             {
-                LobbyCore.HideLoadingPanel();
-                failedCallbackCounter = 0;
-                if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
+                PlayerData.RareLootboxCount--;
+                RareLootboxOwned.text = PlayerData.RareLootboxCount.ToString();
+                DisplayCurrentLootbox();
+                if (PlayerData.RareLootboxCount > 0)
                 {
-                    PlayerData.RareLootboxCount--;
-                    RareLootboxOwned.text = PlayerData.RareLootboxCount.ToString();
-                    if (PlayerData.CommonLootboxCount > 0)
-                    {
-                        HasThisLootbox = true;
-                        OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
-                    }
-                    else
-                    {
-                        HasThisLootbox = false;
-                        OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
-                        PlayerData.RareLootboxInstanceID = "";
-                    }
-                    LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
-                    LobbyCore.OkBtn.SetActive(false);
+                    HasThisLootbox = true;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                }
+                else
+                {
+                    HasThisLootbox = false;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
+                    PlayerData.RareLootboxInstanceID = "";
+                }
+                LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
+                LobbyCore.OkBtn.SetActive(false);
+
+                LobbyCore.GrantAmountTMP.text = "YOU GAINED 500 RARE FRAGMENTS";
+                FragmentSprite.sprite = RareFragment;
+                PlayerData.NormalFragments += 1000;
+                PlayerData.RareFragments += 500;
+                UpdatePlayerInventory();
+
+                CannonStrings.Clear();
+                RewardsToDisplay.Insert(0, "RARE");
+                RewardsToDisplay.Insert(1, "NORMAL");
+                if (randomNum >= 60)
+                    AddCommonCannon();
+                
+                randomNum = UnityEngine.Random.Range(0, 100);
+                if (randomNum >= 30)
+                    AddRareCannon();
+
+                if (CannonStrings.Count > 0)
+                    DropCannons(1);
+                else
+                {
                     LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.NEWGRANT;
                     LobbyCore.GrantPanel.SetActive(true);
                     RareAnimatedBox.SetActive(true);
-                    if (cloudScriptCommand == "AddOptibit")
-                    {
-                        RareAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 1;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " OPTIBIT";
-                    }
-                    else if (cloudScriptCommand == "AddRareFragment")
-                    {
-                        FragmentSprite.sprite = RareFragment;
-                        RareAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 2;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " RARE FRAGMENTS";
-                    }
-                    else if (cloudScriptCommand == "GrantB1Cannon")
-                    {
-                        CannonSprite.sprite = RareWeapons[0].AnimatedSprite;
-                        RareAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED B1 CANNON";
+                    LobbyCore.HideLoadingPanel();
 
-                    }
-                    else if (cloudScriptCommand == "GrantB2Cannon")
-                    {
-                        CannonSprite.sprite = RareWeapons[1].AnimatedSprite;
-                        RareAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED B2 CANNON";
-                    }
-                    else if (cloudScriptCommand == "GrantB3Cannon")
-                    {
-                        CannonSprite.sprite = RareWeapons[2].AnimatedSprite;
-                        RareAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED B3 CANNON";
-                    }
-                    else if (cloudScriptCommand == "GrantB4Cannon")
-                    {
-                        CannonSprite.sprite = RareWeapons[3].AnimatedSprite;
-                        RareAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED B4 CANNON";
-                    }
                     GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
                     RareAnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
                     LobbyCore.InitializeLobby();
                 }
-                else
-                    GameManager.Instance.DisplayDualLoginErrorPanel();
-            },
-            errorCallback =>
-            {
-                ErrorCallback(errorCallback.Error,
-                    () => GetRareBoxContent(randomNum),
-                    () => ProcessError(errorCallback.ErrorMessage));
-            });
+            }
+        },
+        errorCallback =>
+        {
+            ErrorCallback(errorCallback.Error,
+                () => GetRareBoxContent(randomNum),
+                () => ProcessError(errorCallback.ErrorMessage));
+        });
     }
     #endregion
 
@@ -612,24 +553,55 @@ public class LootboxCore : MonoBehaviour
         int randomNum = UnityEngine.Random.Range(0, 100);
         if (GameManager.Instance.DebugMode)
         {
-            if (randomNum >= 0 && randomNum <= 39)
-                PlayerData.Optibit += UnityEngine.Random.Range(500000, 1000000);
-            else if (randomNum >= 40 && randomNum <= 79)
-                PlayerData.EpicFragments += UnityEngine.Random.Range(800, 1400);
-            else if (randomNum >= 80 && randomNum <= 99)
+            if (randomNum >= 70)
+            {
+                for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
+                {
+                    if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
+                    {
+                        PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
+                        PlayerData.OwnedWeapons[i].BaseWeaponData = NormalWeapons[UnityEngine.Random.Range(0, NormalWeapons.Count)];
+                        break;
+                    }
+                }
+            }
+            randomNum = UnityEngine.Random.Range(0, 100);
+            if (randomNum >= 40)
+            {
+                for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
+                {
+                    if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
+                    {
+                        PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
+                        PlayerData.OwnedWeapons[i].BaseWeaponData = RareWeapons[UnityEngine.Random.Range(0, RareWeapons.Count)];
+                        break;
+                    }
+                }
+            }
+            randomNum = UnityEngine.Random.Range(0, 100);
+            if (randomNum >= 30)
+            {
                 for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
                 {
                     if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
                     {
                         PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
                         PlayerData.OwnedWeapons[i].BaseWeaponData = EpicWeapons[UnityEngine.Random.Range(0, EpicWeapons.Count)];
-                        Debug.Log("Your new weapon is " + PlayerData.OwnedWeapons[i].BaseWeaponData.name);
                         break;
                     }
                 }
+            }
+
             PlayerData.EpicLootboxCount--;
             EpicLootboxOwned.text = PlayerData.EpicLootboxCount.ToString();
             DisplayCurrentLootbox();
+            LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
+            LobbyCore.OkBtn.SetActive(false);
+            LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.NEWGRANT;
+            LobbyCore.GrantPanel.SetActive(true);
+            EpicAnimatedBox.SetActive(true);
+            GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
+            EpicAnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
         }
         else
         {
@@ -655,108 +627,99 @@ public class LootboxCore : MonoBehaviour
 
     private void GetEpicBoxContent(int randomNum)
     {
-        string cloudScriptCommand = "";
-        int randomAmount = 0;
-        if (randomNum >= 0 && randomNum <= 39)
-        {
-            cloudScriptCommand = "AddOptibit";
-            randomAmount = UnityEngine.Random.Range(500000, 1000000);
-        }
-        else if (randomNum >= 40 && randomNum <= 79)
-        {
-            cloudScriptCommand = "AddEpicFragment";
-            randomAmount = UnityEngine.Random.Range(800, 1400);
-        }
-        else if (randomNum >= 80 && randomNum <= 99)
-        {
-            int cannonIndex = UnityEngine.Random.Range(0, EpicWeapons.Count);
-            switch (cannonIndex)
-            {
-                case 0:
-                    cloudScriptCommand = "GrantA1Cannon";
-                    break;
-                case 1:
-                    cloudScriptCommand = "GrantA2Cannon";
-                    break;
-                case 2:
-                    cloudScriptCommand = "GrantA3Cannon";
-                    break;
-            }
-        }
-
+        RewardsToDisplay.Clear();
+        ResetDrops();
+        DropRandomConsumables(10);
         PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
         {
-            FunctionName = cloudScriptCommand,
-            FunctionParameter = new { localLUID = PlayerData.LUID, amount = randomAmount },
+            FunctionName = "GrantRewardedItems",
+            FunctionParameter = new
+            {
+                localLUID = PlayerData.LUID,
+
+                optibit = 0,
+                normalFragment = 1500,
+                rareFragment = 750,
+                epicFragment = 500,
+                legendFragment = 0,
+                smallHeal = SmallHealSkillDropped,
+                mediumHeal = MediumHealSkillDropped,
+                largeHeal = LargeHealSkillDropped,
+                breakRemove = BreakRemoveDropped,
+                burnRemove = BurnRemoveDropped,
+                confuseRemove = ConfuseRemoveDropped,
+                freezeRemove = FreezeRemoveDropped,
+                paralyzeRemove = ParalyzeRemoveDropped,
+                weakRemove = WeakRemoveDropped
+            },
             GeneratePlayStreamEvent = true
         },
-            resultCallback =>
+        resultCallback =>
+        {
+            failedCallbackCounter = 0;
+            Debug.Log(resultCallback.FunctionResult);
+            if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
             {
-                LobbyCore.HideLoadingPanel();
-                failedCallbackCounter = 0;
-                if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
+                PlayerData.EpicLootboxCount--;
+                EpicLootboxOwned.text = PlayerData.EpicLootboxCount.ToString();
+                DisplayCurrentLootbox();
+                if (PlayerData.EpicLootboxCount > 0)
                 {
-                    PlayerData.EpicLootboxCount--;
-                    EpicLootboxOwned.text = PlayerData.EpicLootboxCount.ToString();
-                    if (PlayerData.CommonLootboxCount > 0)
-                    {
-                        HasThisLootbox = true;
-                        OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
-                    }
-                    else
-                    {
-                        HasThisLootbox = false;
-                        OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
-                        PlayerData.EpicLootboxInstanceID = "";
-                    }
-                    LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
-                    LobbyCore.OkBtn.SetActive(false);
+                    HasThisLootbox = true;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                }
+                else
+                {
+                    HasThisLootbox = false;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
+                    PlayerData.EpicLootboxInstanceID = "";
+                }
+                LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
+                LobbyCore.OkBtn.SetActive(false);
+
+                LobbyCore.GrantAmountTMP.text = "YOU GAINED 500 EPIC FRAGMENTS";
+                FragmentSprite.sprite = EpicFragment;
+                PlayerData.NormalFragments += 1500;
+                PlayerData.RareFragments += 750;
+                PlayerData.EpicFragments += 500;
+                UpdatePlayerInventory();
+
+                CannonStrings.Clear();
+                RewardsToDisplay.Insert(0, "EPIC");
+                RewardsToDisplay.Insert(1, "RARE");
+                RewardsToDisplay.Insert(2, "NORMAL");
+                if (randomNum >= 70)
+                    AddCommonCannon();
+
+                randomNum = UnityEngine.Random.Range(0, 100);
+                if (randomNum >= 40)
+                    AddRareCannon();
+
+                randomNum = UnityEngine.Random.Range(0, 100);
+                if (randomNum >= 30)
+                    AddEpicCannon();
+
+                if (CannonStrings.Count > 0)
+                    DropCannons(2);
+                else
+                {
                     LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.NEWGRANT;
                     LobbyCore.GrantPanel.SetActive(true);
                     EpicAnimatedBox.SetActive(true);
-                    if (cloudScriptCommand == "AddOptibit")
-                    {
-                        EpicAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 1;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " OPTIBIT";
-                    }
-                    else if (cloudScriptCommand == "AddEpicFragment")
-                    {
-                        FragmentSprite.sprite = EpicFragment;
-                        EpicAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 2;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " EPIC FRAGMENTS";
-                    }
-                    else if (cloudScriptCommand == "GrantA1Cannon")
-                    {
-                        CannonSprite.sprite = EpicWeapons[0].AnimatedSprite;
-                        EpicAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED A1 CANNON";
+                    LobbyCore.HideLoadingPanel();
 
-                    }
-                    else if (cloudScriptCommand == "GrantA2Cannon")
-                    {
-                        CannonSprite.sprite = EpicWeapons[1].AnimatedSprite;
-                        EpicAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED A2 CANNON";
-                    }
-                    else if (cloudScriptCommand == "GrantA3Cannon")
-                    {
-                        CannonSprite.sprite = EpicWeapons[2].AnimatedSprite;
-                        EpicAnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED A3 CANNON";
-                    }
                     GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
                     EpicAnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
                     LobbyCore.InitializeLobby();
                 }
-                else
-                    GameManager.Instance.DisplayDualLoginErrorPanel();
-            },
-            errorCallback =>
-            {
-                ErrorCallback(errorCallback.Error,
-                    () => GetEpicBoxContent(randomNum),
-                    () => ProcessError(errorCallback.ErrorMessage));
-            });
+            }
+        },
+        errorCallback =>
+        {
+            ErrorCallback(errorCallback.Error,
+                () => GetEpicBoxContent(randomNum),
+                () => ProcessError(errorCallback.ErrorMessage));
+        });
     }
     #endregion
 
@@ -766,55 +729,67 @@ public class LootboxCore : MonoBehaviour
         int randomNum = UnityEngine.Random.Range(0, 100);
         if (GameManager.Instance.DebugMode)
         {
-            if (randomNum >= 0 && randomNum <= 39)
-                PlayerData.Optibit += UnityEngine.Random.Range(1000000, 2000000);
-            else if (randomNum >= 40 && randomNum <= 79)
-                PlayerData.LegendFragments += UnityEngine.Random.Range(900, 1500);
-            else if (randomNum >= 80 && randomNum <= 89)
+            if (randomNum >= 80)
+            {
                 for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
                 {
                     if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
                     {
                         PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
-                        PlayerData.OwnedWeapons[i].BaseWeaponData = LegendWeapons[0];
-                        Debug.Log("Your new weapon is " + PlayerData.OwnedWeapons[i].BaseWeaponData.name);
+                        PlayerData.OwnedWeapons[i].BaseWeaponData = NormalWeapons[UnityEngine.Random.Range(0, NormalWeapons.Count)];
                         break;
                     }
                 }
-            else if (randomNum >= 90 && randomNum <= 99)
+            }
+            randomNum = UnityEngine.Random.Range(0, 100);
+            if (randomNum >= 50)
             {
-                bool mayGrantCostume = false;
-                foreach (CustomCostumeData costume in PlayerData.OwnedCostumes)
-                    if (!costume.CostumeIsOwned)
+                for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
+                {
+                    if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
                     {
-                        mayGrantCostume = true;
+                        PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
+                        PlayerData.OwnedWeapons[i].BaseWeaponData = RareWeapons[UnityEngine.Random.Range(0, RareWeapons.Count)];
                         break;
                     }
-
-                if (mayGrantCostume)
-                {
-                    int randomCostumeIndex = UnityEngine.Random.Range(0, PlayerData.OwnedCostumes.Count);
-                    while (PlayerData.OwnedCostumes[randomCostumeIndex].CostumeIsOwned)
-                        randomCostumeIndex = UnityEngine.Random.Range(0, PlayerData.OwnedCostumes.Count);
-                    PlayerData.OwnedCostumes[randomCostumeIndex].CostumeIsOwned = true;
                 }
-                else
+            }
+            randomNum = UnityEngine.Random.Range(0, 100);
+            if (randomNum >= 40)
+            {
+                for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
                 {
-                    for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
+                    if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
                     {
-                        if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
-                        {
-                            PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
-                            PlayerData.OwnedWeapons[i].BaseWeaponData = LegendWeapons[0];
-                            Debug.Log("Your new weapon is " + PlayerData.OwnedWeapons[i].BaseWeaponData.name);
-                            break;
-                        }
+                        PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
+                        PlayerData.OwnedWeapons[i].BaseWeaponData = EpicWeapons[UnityEngine.Random.Range(0, EpicWeapons.Count)];
+                        break;
+                    }
+                }
+            }
+            randomNum = UnityEngine.Random.Range(0, 100);
+            if (randomNum >= 30)
+            {
+                for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
+                {
+                    if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
+                    {
+                        PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
+                        PlayerData.OwnedWeapons[i].BaseWeaponData = LegendWeapons[UnityEngine.Random.Range(0, LegendWeapons.Count)];
+                        break;
                     }
                 }
             }
             PlayerData.LegendaryLootbox1Count--;
             LegendLootbox1Owned.text = PlayerData.LegendaryLootbox1Count.ToString();
             DisplayCurrentLootbox();
+            LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
+            LobbyCore.OkBtn.SetActive(false);
+            LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.NEWGRANT;
+            LobbyCore.GrantPanel.SetActive(true);
+            Legend1AnimatedBox.SetActive(true);
+            GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
+            Legend1AnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
         }
         else
         {
@@ -840,82 +815,105 @@ public class LootboxCore : MonoBehaviour
 
     private void GetLegendBox1Content(int randomNum)
     {
-        string cloudScriptCommand = "";
-        int randomAmount = 0;
-        if (randomNum >= 0 && randomNum <= 39)
-        {
-            cloudScriptCommand = "AddOptibit";
-            randomAmount = UnityEngine.Random.Range(1000000, 2000000);
-        }
-        else if (randomNum >= 40 && randomNum <= 79)
-        {
-            cloudScriptCommand = "AddLegendFragment";
-            randomAmount = UnityEngine.Random.Range(900, 1500);
-        }
-        else if (randomNum >= 80 && randomNum <= 99)
-            cloudScriptCommand = "GrantS1Cannon";
-
+        RewardsToDisplay.Clear();
+        ResetDrops();
+        DropRandomConsumables(20);
         PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
         {
-            FunctionName = cloudScriptCommand,
-            FunctionParameter = new { localLUID = PlayerData.LUID, amount = randomAmount },
+            FunctionName = "GrantRewardedItems",
+            FunctionParameter = new
+            {
+                localLUID = PlayerData.LUID,
+
+                optibit = 0,
+                normalFragment = 3000,
+                rareFragment = 1500,
+                epicFragment = 1000,
+                legendFragment = 500,
+                smallHeal = SmallHealSkillDropped,
+                mediumHeal = MediumHealSkillDropped,
+                largeHeal = LargeHealSkillDropped,
+                breakRemove = BreakRemoveDropped,
+                burnRemove = BurnRemoveDropped,
+                confuseRemove = ConfuseRemoveDropped,
+                freezeRemove = FreezeRemoveDropped,
+                paralyzeRemove = ParalyzeRemoveDropped,
+                weakRemove = WeakRemoveDropped
+            },
             GeneratePlayStreamEvent = true
         },
-            resultCallback =>
+        resultCallback =>
+        {
+            failedCallbackCounter = 0;
+            Debug.Log(resultCallback.FunctionResult);
+            if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
             {
-                LobbyCore.HideLoadingPanel();
-                failedCallbackCounter = 0;
-                if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
+                PlayerData.LegendaryLootbox1Count--;
+                LegendLootbox1Owned.text = PlayerData.LegendaryLootbox1Count.ToString();
+                DisplayCurrentLootbox();
+                if (PlayerData.LegendaryLootbox1Count > 0)
                 {
-                    PlayerData.LegendaryLootbox1Count--;
-                    LegendLootbox1Owned.text = PlayerData.LegendaryLootbox1Count.ToString();
-                    if (PlayerData.CommonLootboxCount > 0)
-                    {
-                        HasThisLootbox = true;
-                        OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
-                    }
-                    else
-                    {
-                        HasThisLootbox = false;
-                        OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
-                        PlayerData.LegendaryLootbox1InstanceID = "";
-                    }
-                    LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
-                    LobbyCore.OkBtn.SetActive(false);
+                    HasThisLootbox = true;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                }
+                else
+                {
+                    HasThisLootbox = false;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
+                    PlayerData.LegendaryLootbox1InstanceID = "";
+                }
+                LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
+                LobbyCore.OkBtn.SetActive(false);
+
+                LobbyCore.GrantAmountTMP.text = "YOU GAINED 500 LEGEND FRAGMENTS";
+                FragmentSprite.sprite = LegendFragment;
+                PlayerData.NormalFragments += 3000;
+                PlayerData.RareFragments += 1500;
+                PlayerData.EpicFragments += 1000;
+                PlayerData.LegendFragments += 500;
+                UpdatePlayerInventory();
+                RewardsToDisplay.Insert(0, "LEGEND");
+                RewardsToDisplay.Insert(1, "EPIC");
+                RewardsToDisplay.Insert(2, "RARE");
+                RewardsToDisplay.Insert(3, "NORMAL");
+
+                CannonStrings.Clear();
+                if (randomNum >= 80)
+                    AddCommonCannon();
+
+                randomNum = UnityEngine.Random.Range(0, 100);
+                if (randomNum >= 50)
+                    AddRareCannon();
+
+                randomNum = UnityEngine.Random.Range(0, 100);
+                if (randomNum >= 40)
+                    AddEpicCannon();
+
+                randomNum = UnityEngine.Random.Range(0, 100);
+                if (randomNum >= 30)
+                    AddLegendCannon();
+
+                if (CannonStrings.Count > 0)
+                    DropCannons(3);
+                else
+                {
                     LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.NEWGRANT;
                     LobbyCore.GrantPanel.SetActive(true);
                     Legend1AnimatedBox.SetActive(true);
-                    if (cloudScriptCommand == "AddOptibit")
-                    {
-                        Legend1AnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 1;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " OPTIBIT";
-                    }
-                    else if (cloudScriptCommand == "AddLegendFragment")
-                    {
-                        FragmentSprite.sprite = LegendFragment;
-                        Legend1AnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 2;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " LEGEND FRAGMENTS";
-                    }
-                    else if (cloudScriptCommand == "GrantS1Cannon")
-                    {
-                        CannonSprite.sprite = LegendWeapons[0].AnimatedSprite;
-                        Legend1AnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED S1 CANNON";
+                    LobbyCore.HideLoadingPanel();
 
-                    }
                     GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
                     Legend1AnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
                     LobbyCore.InitializeLobby();
                 }
-                else
-                    GameManager.Instance.DisplayDualLoginErrorPanel();
-            },
-            errorCallback =>
-            {
-                ErrorCallback(errorCallback.Error,
-                    () => GetLegendBox1Content(randomNum),
-                    () => ProcessError(errorCallback.ErrorMessage));
-            });
+            }
+        },
+        errorCallback =>
+        {
+            ErrorCallback(errorCallback.Error,
+                () => GetLegendBox1Content(randomNum),
+                () => ProcessError(errorCallback.ErrorMessage));
+        });
     }
     #endregion
 
@@ -925,55 +923,68 @@ public class LootboxCore : MonoBehaviour
         int randomNum = UnityEngine.Random.Range(0, 100);
         if (GameManager.Instance.DebugMode)
         {
-            if (randomNum >= 0 && randomNum <= 39)
-                PlayerData.Optibit += UnityEngine.Random.Range(1000000, 2000000);
-            else if (randomNum >= 40 && randomNum <= 79)
-                PlayerData.LegendFragments += UnityEngine.Random.Range(900, 1500);
-            else if (randomNum >= 80 && randomNum <= 89)
+            if (randomNum >= 90)
+            {
                 for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
                 {
                     if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
                     {
                         PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
-                        PlayerData.OwnedWeapons[i].BaseWeaponData = LegendWeapons[1];
-                        Debug.Log("Your new weapon is " + PlayerData.OwnedWeapons[i].BaseWeaponData.name);
+                        PlayerData.OwnedWeapons[i].BaseWeaponData = NormalWeapons[UnityEngine.Random.Range(0, NormalWeapons.Count)];
                         break;
-                    }
-                }
-            else if (randomNum >= 90 && randomNum <= 99)
-            {
-                bool mayGrantCostume = false;
-                foreach (CustomCostumeData costume in PlayerData.OwnedCostumes)
-                    if (!costume.CostumeIsOwned)
-                    {
-                        mayGrantCostume = true;
-                        break;
-                    }
-
-                if (mayGrantCostume)
-                {
-                    int randomCostumeIndex = UnityEngine.Random.Range(0, PlayerData.OwnedCostumes.Count);
-                    while (PlayerData.OwnedCostumes[randomCostumeIndex].CostumeIsOwned)
-                        randomCostumeIndex = UnityEngine.Random.Range(0, PlayerData.OwnedCostumes.Count);
-                    PlayerData.OwnedCostumes[randomCostumeIndex].CostumeIsOwned = true;
-                }
-                else
-                {
-                    for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
-                    {
-                        if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
-                        {
-                            PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
-                            PlayerData.OwnedWeapons[i].BaseWeaponData = LegendWeapons[1];
-                            Debug.Log("Your new weapon is " + PlayerData.OwnedWeapons[i].BaseWeaponData.name);
-                            break;
-                        }
                     }
                 }
             }
+            randomNum = UnityEngine.Random.Range(0, 100);
+            if (randomNum >= 60)
+            {
+                for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
+                {
+                    if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
+                    {
+                        PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
+                        PlayerData.OwnedWeapons[i].BaseWeaponData = RareWeapons[UnityEngine.Random.Range(0, RareWeapons.Count)];
+                        break;
+                    }
+                }
+            }
+            randomNum = UnityEngine.Random.Range(0, 100);
+            if (randomNum >= 50)
+            {
+                for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
+                {
+                    if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
+                    {
+                        PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
+                        PlayerData.OwnedWeapons[i].BaseWeaponData = EpicWeapons[UnityEngine.Random.Range(0, EpicWeapons.Count)];
+                        break;
+                    }
+                }
+            }
+            randomNum = UnityEngine.Random.Range(0, 100);
+            if (randomNum >= 40)
+            {
+                for (int i = 0; i < PlayerData.OwnedWeapons.Count; i++)
+                {
+                    if (PlayerData.OwnedWeapons[i].BaseWeaponData == null)
+                    {
+                        PlayerData.OwnedWeapons[i].WeaponInstanceID = "newlyCraftedWeapon" + i;
+                        PlayerData.OwnedWeapons[i].BaseWeaponData = LegendWeapons[UnityEngine.Random.Range(0, LegendWeapons.Count)];
+                        break;
+                    }
+                }
+            }
+
             PlayerData.LegendaryLootbox2Count--;
             LegendLootbox2Owned.text = PlayerData.LegendaryLootbox2Count.ToString();
             DisplayCurrentLootbox();
+            LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
+            LobbyCore.OkBtn.SetActive(false);
+            LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.NEWGRANT;
+            LobbyCore.GrantPanel.SetActive(true);
+            Legend2AnimatedBox.SetActive(true);
+            GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
+            Legend2AnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
         }
         else
         {
@@ -999,83 +1010,150 @@ public class LootboxCore : MonoBehaviour
 
     private void GetLegendBox2Content(int randomNum)
     {
-        string cloudScriptCommand = "";
-        int randomAmount = 0;
-        if (randomNum >= 0 && randomNum <= 39)
-        {
-            cloudScriptCommand = "AddOptibit";
-            randomAmount = UnityEngine.Random.Range(1000000, 2000000);
-        }
-        else if (randomNum >= 40 && randomNum <= 79)
-        {
-            cloudScriptCommand = "AddLegendFragment";
-            randomAmount = UnityEngine.Random.Range(900, 1500);
-        }
-        else if (randomNum >= 80 && randomNum <= 99)
-            cloudScriptCommand = "GrantS2Cannon";
-
+        RewardsToDisplay.Clear();
+        ResetDrops();
+        DropRandomConsumables(50);
         PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
         {
-            FunctionName = cloudScriptCommand,
-            FunctionParameter = new { localLUID = PlayerData.LUID, amount = randomAmount },
+            FunctionName = "GrantRewardedItems",
+            FunctionParameter = new
+            {
+                localLUID = PlayerData.LUID,
+
+                optibit = 0,
+                normalFragment = 5000,
+                rareFragment = 2500,
+                epicFragment = 1500,
+                legendFragment = 1000,
+                smallHeal = SmallHealSkillDropped,
+                mediumHeal = MediumHealSkillDropped,
+                largeHeal = LargeHealSkillDropped,
+                breakRemove = BreakRemoveDropped,
+                burnRemove = BurnRemoveDropped,
+                confuseRemove = ConfuseRemoveDropped,
+                freezeRemove = FreezeRemoveDropped,
+                paralyzeRemove = ParalyzeRemoveDropped,
+                weakRemove = WeakRemoveDropped
+            },
             GeneratePlayStreamEvent = true
         },
-            resultCallback =>
+        resultCallback =>
+        {
+            failedCallbackCounter = 0;
+            Debug.Log(resultCallback.FunctionResult);
+            if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
             {
-                LobbyCore.HideLoadingPanel();
-                failedCallbackCounter = 0;
-                if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
+                PlayerData.LegendaryLootbox2Count--;
+                LegendLootbox2Owned.text = PlayerData.LegendaryLootbox2Count.ToString();
+                DisplayCurrentLootbox();
+                if (PlayerData.LegendaryLootbox2Count > 0)
                 {
-                    PlayerData.LegendaryLootbox1Count--;
-                    LegendLootbox1Owned.text = PlayerData.LegendaryLootbox1Count.ToString();
-                    if (PlayerData.CommonLootboxCount > 0)
-                    {
-                        HasThisLootbox = true;
-                        OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
-                    }
-                    else
-                    {
-                        HasThisLootbox = false;
-                        OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
-                        PlayerData.LegendaryLootbox2InstanceID = "";
-                    }
-                    LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
-                    LobbyCore.OkBtn.SetActive(false);
+                    HasThisLootbox = true;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayOpenSprite;
+                }
+                else
+                {
+                    HasThisLootbox = false;
+                    OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
+                    PlayerData.LegendaryLootbox2InstanceID = "";
+                }
+                LobbyCore.GrantAmountTMP.gameObject.SetActive(false);
+                LobbyCore.OkBtn.SetActive(false);
+
+                LobbyCore.GrantAmountTMP.text = "YOU GAINED 1000 LEGEND FRAGMENTS";
+                FragmentSprite.sprite = LegendFragment;
+                PlayerData.NormalFragments += 5000;
+                PlayerData.RareFragments += 2500;
+                PlayerData.EpicFragments += 1500;
+                PlayerData.LegendFragments += 1000;
+                UpdatePlayerInventory();
+
+                CannonStrings.Clear();
+                RewardsToDisplay.Insert(0, "LEGEND");
+                RewardsToDisplay.Insert(1, "EPIC");
+                RewardsToDisplay.Insert(2, "RARE");
+                RewardsToDisplay.Insert(3, "NORMAL");
+
+                if (randomNum >= 90)
+                    AddCommonCannon();
+
+                randomNum = UnityEngine.Random.Range(0, 100);
+                if (randomNum >= 60)
+                    AddRareCannon();
+
+                randomNum = UnityEngine.Random.Range(0, 100);
+                if (randomNum >= 50)
+                    AddEpicCannon();
+
+                randomNum = UnityEngine.Random.Range(0, 100);
+                if (randomNum >= 40)
+                    AddLegendCannon();
+
+                if (CannonStrings.Count > 0)
+                    DropCannons(4);
+                else
+                {
                     LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.NEWGRANT;
                     LobbyCore.GrantPanel.SetActive(true);
                     Legend2AnimatedBox.SetActive(true);
-                    if (cloudScriptCommand == "AddOptibit")
-                    {
-                        Legend2AnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 1;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " OPTIBIT";
-                    }
-                    else if (cloudScriptCommand == "AddLegendFragment")
-                    {
-                        FragmentSprite.sprite = LegendFragment;
-                        Legend2AnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 2;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED " + randomAmount + " LEGEND FRAGMENTS";
-                    }
-                    else if (cloudScriptCommand == "GrantS1Cannon")
-                    {
-                        CannonSprite.sprite = LegendWeapons[1].AnimatedSprite;
-                        Legend2AnimatedBox.GetComponent<LootboxAnimationCore>().RewardIndex = 3;
-                        LobbyCore.GrantAmountTMP.text = "YOU GAINED S2 CANNON";
-                    }
+                    LobbyCore.HideLoadingPanel();
+
                     GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
                     Legend2AnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
                     LobbyCore.InitializeLobby();
                 }
-                else
-                    GameManager.Instance.DisplayDualLoginErrorPanel();
-            },
-            errorCallback =>
-            {
-                ErrorCallback(errorCallback.Error,
-                    () => GetLegendBox2Content(randomNum),
-                    () => ProcessError(errorCallback.ErrorMessage));
-            });
+            }
+        },
+        errorCallback =>
+        {
+            ErrorCallback(errorCallback.Error,
+                () => GetLegendBox2Content(randomNum),
+                () => ProcessError(errorCallback.ErrorMessage));
+        });
     }
 
+    #endregion
+
+    #region REWARD DISPLAY
+    public void ProcessOkayPress()
+    {
+        RewardIndex++;
+        if (RewardIndex != RewardsToDisplay.Count)
+        {
+            ConsumableReward.SetActive(false);
+            FragmentReward.SetActive(false);
+            CannonReward.SetActive(false);
+            CostumeReward.SetActive(false);
+            switch (RewardsToDisplay[RewardIndex])
+            {
+                case "NORMAL":
+                    FragmentSprite.sprite = NormalFragment;
+                    FragmentReward.SetActive(true);
+                    break;
+                case "RARE":
+                    FragmentSprite.sprite = RareFragment;
+                    FragmentReward.SetActive(true);
+                    break;
+                case "EPIC":
+                    FragmentSprite.sprite = EpicFragment;
+                    FragmentReward.SetActive(true);
+                    break;
+                case "LEGEND":
+                    FragmentSprite.sprite = LegendFragment;
+                    FragmentReward.SetActive(true);
+                    break;
+                case "SMALL":
+                    ConsumableSprite.sprite = NormalFragment;
+                    ConsumableReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + SmallHealSkillDropped +  "  SMALL HEAL CHARGES";
+                    break;
+            }
+        }
+        else
+        {
+            LobbyController.LobbyStateToIndex(1);
+        }
+    }
     #endregion
 
     #region UTILITY
@@ -1162,6 +1240,232 @@ public class LootboxCore : MonoBehaviour
                     HasThisLootbox = false;
                     OpenLootboxBtn.GetComponent<Image>().sprite = MayNotOpenSprite;
                 }
+                break;
+        }
+    }
+
+    private void DropRandomConsumables(int _count)
+    {
+        for(int i = 0; i < _count; i++)
+        {
+            switch(UnityEngine.Random.Range(0,9))
+            {
+                case 0:
+                    SmallHealSkillDropped++;
+                    if (!RewardsToDisplay.Contains("SMALL"))
+                        RewardsToDisplay.Add("SMALL");
+                    break;
+                case 1:
+                    MediumHealSkillDropped++;
+                    if (!RewardsToDisplay.Contains("MEDIUM"))
+                        RewardsToDisplay.Add("MEDIUM");
+                    break;
+                case 2:
+                    LargeHealSkillDropped++;
+                    if (!RewardsToDisplay.Contains("LARGE"))
+                        RewardsToDisplay.Add("LARGE");
+                    break;
+                case 3:
+                    BreakRemoveDropped++;
+                    if (!RewardsToDisplay.Contains("BREAK"))
+                        RewardsToDisplay.Add("BREAK");
+                    break;
+                case 4:
+                    BurnRemoveDropped++;
+                    if (!RewardsToDisplay.Contains("BURN"))
+                        RewardsToDisplay.Add("BURN");
+                    break;
+                case 5:
+                    ConfuseRemoveDropped++;
+                    if (!RewardsToDisplay.Contains("CONFUSE"))
+                        RewardsToDisplay.Add("CONFUSE");
+                    break;
+                case 6:
+                    FreezeRemoveDropped++;
+                    if (!RewardsToDisplay.Contains("FREEZE"))
+                        RewardsToDisplay.Add("FREEZE");
+                    break;
+                case 7:
+                    ParalyzeRemoveDropped++;
+                    if (!RewardsToDisplay.Contains("PARALYZE"))
+                        RewardsToDisplay.Add("PARALYZE");
+                    break;
+                case 8:
+                    WeakRemoveDropped++;
+                    if (!RewardsToDisplay.Contains("WEAK"))
+                        RewardsToDisplay.Add("WEAK");
+                    break;
+            }
+        }
+    }
+
+    private void ResetDrops()
+    {
+        SmallHealSkillDropped = 0;
+        MediumHealSkillDropped = 0;
+        LargeHealSkillDropped = 0;
+        BurnRemoveDropped = 0;
+        BreakRemoveDropped = 0;
+        ConfuseRemoveDropped = 0;
+        FreezeRemoveDropped = 0;
+        ParalyzeRemoveDropped = 0;
+        WeakRemoveDropped = 0;
+    }    
+
+    private void UpdatePlayerInventory()
+    {
+        PlayerData.SmallHealCharges += SmallHealSkillDropped;
+        PlayerData.MediumHealCharges += MediumHealSkillDropped;
+        PlayerData.LargeHealCharges += LargeHealSkillDropped;
+        PlayerData.BreakRemovalCharges += BreakRemoveDropped;
+        PlayerData.BurnRemovalCharges += BurnRemoveDropped;
+        PlayerData.ConfuseRemovalCharges += ConfuseRemoveDropped;
+        PlayerData.FreezeRemovalCharges += FreezeRemoveDropped;
+        PlayerData.ParalyzeRemovalCharges += ParalyzeRemoveDropped;
+        PlayerData.WeakRemovalCharges += WeakRemoveDropped;
+    }
+
+    private void DropCannons(int lootboxIndex)
+    {
+        int grantedCannons = 0;
+        for(int i = 0; i < CannonStrings.Count; i++)
+        {
+            PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
+            {
+                FunctionName = CannonStrings[i],
+                GeneratePlayStreamEvent = true
+            },
+            resultCallback =>
+            {
+                grantedCannons++;
+                if(grantedCannons == CannonStrings.Count)
+                {
+                    LobbyCore.HideLoadingPanel();
+                    LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.NEWGRANT;
+                    LobbyCore.GrantPanel.SetActive(true);
+
+                    GameManager.Instance.SFXAudioManager.PlayUpgradeSFX();
+                    switch (lootboxIndex)
+                    {
+                        case 0:
+                            CommonAnimatedBox.SetActive(true);
+                            CommonAnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
+                            break;
+                        case 1:
+                            RareAnimatedBox.SetActive(true);
+                            RareAnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
+                            break;
+                        case 2:
+                            EpicAnimatedBox.SetActive(true);
+                            EpicAnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
+                            break;
+                        case 3:
+                            Legend1AnimatedBox.SetActive(true);
+                            Legend1AnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
+                            break;
+                        case 4:
+                            Legend2AnimatedBox.SetActive(true);
+                            Legend2AnimatedBox.GetComponent<LootboxAnimationCore>().LootboxAnimator.SetTrigger("open");
+                            break;
+                    }
+
+                    LobbyCore.InitializeLobby();
+                }
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error,
+                    () => DropCannons(lootboxIndex),
+                    () => ProcessError(errorCallback.ErrorMessage));
+            });
+        }
+    }
+
+    private void AddCommonCannon()
+    {
+        int cannonIndex = UnityEngine.Random.Range(0, NormalWeapons.Count);
+        switch (cannonIndex)
+        {
+            case 0:
+                CannonStrings.Add("GrantC1Cannon");
+                RewardsToDisplay.Add("C1");
+                break;
+            case 1:
+                CannonStrings.Add("GrantC2Cannon");
+                RewardsToDisplay.Add("C2");
+                break;
+            case 2:
+                CannonStrings.Add("GrantC3Cannon");
+                RewardsToDisplay.Add("C3");
+                break;
+            case 3:
+                CannonStrings.Add("GrantC4Cannon");
+                RewardsToDisplay.Add("C4");
+                break;
+            case 4:
+                CannonStrings.Add("GrantC5Cannon");
+                RewardsToDisplay.Add("C5");
+                break;
+        }
+    }  
+    
+    private void AddRareCannon()
+    {
+        int cannonIndex = UnityEngine.Random.Range(0, RareWeapons.Count);
+        switch (cannonIndex)
+        {
+            case 0:
+                CannonStrings.Add("GrantB1Cannon");
+                RewardsToDisplay.Add("B1");
+                break;
+            case 1:
+                CannonStrings.Add("GrantB2Cannon");
+                RewardsToDisplay.Add("B2");
+                break;
+            case 2:
+                CannonStrings.Add("GrantB3Cannon");
+                RewardsToDisplay.Add("B3");
+                break;
+            case 3:
+                CannonStrings.Add("GrantB4Cannon");
+                RewardsToDisplay.Add("B4");
+                break;
+        }
+    }
+
+    private void AddEpicCannon()
+    {
+        int cannonIndex = UnityEngine.Random.Range(0, EpicWeapons.Count);
+        switch (cannonIndex)
+        {
+            case 0:
+                CannonStrings.Add("GrantA1Cannon");
+                RewardsToDisplay.Add("A1");
+                break;
+            case 1:
+                CannonStrings.Add("GrantA2Cannon");
+                RewardsToDisplay.Add("A2");
+                break;
+            case 2:
+                CannonStrings.Add("GrantA3Cannon");
+                RewardsToDisplay.Add("A3");
+                break;
+        }
+    }
+
+    private void AddLegendCannon()
+    {
+        int cannonIndex = UnityEngine.Random.Range(0, LegendWeapons.Count);
+        switch (cannonIndex)
+        {
+            case 0:
+                CannonStrings.Add("GrantS1Cannon");
+                RewardsToDisplay.Add("S1");
+
+                break;
+            case 1:
+                CannonStrings.Add("GrantS2Cannon");
+                RewardsToDisplay.Add("S2");
                 break;
         }
     }
