@@ -173,6 +173,8 @@ public class AdventureCore : MonoBehaviour
             else
                 restartAction();
         }
+        else if (errorCode == PlayFabErrorCode.InternalServerError)
+            ProcessSpecialError();
         else
             errorAction();
     }
@@ -181,6 +183,12 @@ public class AdventureCore : MonoBehaviour
     {
         HideLoadingPanel();
         GameManager.Instance.DisplayErrorPanel(errorMessage);
+    }
+
+    private void ProcessSpecialError()
+    {
+        HideLoadingPanel();
+        GameManager.Instance.DisplaySpecialErrorPanel("Server Error. Please restart the game");
     }
 
     public void DisplayLoadingPanel()

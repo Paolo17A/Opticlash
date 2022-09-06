@@ -653,9 +653,17 @@ public class EnemyCombatController : MonoBehaviour
             else
                 restartAction();
         }
+        else if (errorCode == PlayFabErrorCode.InternalServerError)
+            ProcessSpecialError();
         else
             errorAction();
     }
+    private void ProcessSpecialError()
+    {
+        CombatCore.CloseLoadingPanel();
+        GameManager.Instance.DisplaySpecialErrorPanel("Server Error. Please restart the game");
+    }
+
 
     private void ProcessError(string errorMessage)
     {

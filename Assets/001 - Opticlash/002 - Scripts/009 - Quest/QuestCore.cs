@@ -198,7 +198,7 @@ public class QuestCore : MonoBehaviour
 
     public void ShareToSocMed()
     {
-        new NativeShare().SetText("Start playing Opticlash with my referral link!").SetUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+        new NativeShare().SetText("Start playing Opticlash!").SetUrl("https://marketplace.optibit.tech/home/customer/dashboard")
             .SetCallback((result, shareTarget) => ProcessShareResult(result))
             .Share();
     }
@@ -242,13 +242,9 @@ public class QuestCore : MonoBehaviour
                 {
                     failedCallbackCounter = 0;
                     LobbyCore.HideLoadingPanel();
-                    Debug.Log(JsonConvert.SerializeObject(resultCallback.FunctionResult));
-                    if (GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "messageValue") == "Success")
-                    {
-                        PlayerData.Optibit = int.Parse(GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "Optibit"));
-                        LobbyCore.DisplayOptibits();
-                        GameManager.Instance.DisplayErrorPanel("You gained 100 Optibits. Your new balance is " + PlayerData.Optibit.ToString("n0"));
-                    }
+                    PlayerData.Optibit += 100;
+                    LobbyCore.DisplayOptibits();
+                    GameManager.Instance.DisplayErrorPanel("You gained 100 Optibits. Your new balance is " + PlayerData.Optibit.ToString("n0"));
                 },
                 errorCallback =>
                 {
@@ -322,14 +318,21 @@ public class QuestCore : MonoBehaviour
             else
                 restartAction();
         }
+        else if (errorCode == PlayFabErrorCode.InternalServerError)
+            ProcessSpecialError();
         else
             errorAction();
     }
 
     private void ProcessError(string errorMessage)
     {
-        //HideLoadingPanel();
+        LobbyCore.HideLoadingPanel();
         GameManager.Instance.DisplayErrorPanel(errorMessage);
+    }
+    private void ProcessSpecialError()
+    {
+        LobbyCore.HideLoadingPanel();
+        GameManager.Instance.DisplaySpecialErrorPanel("Server Error. Please restart the game");
     }
     #endregion
 }

@@ -17,6 +17,7 @@ public class LoginCore : MonoBehaviour
     [Header("PLAYFAB VARIABLES")]
     private RegisterPlayFabUserRequest registerPlayFabUser;
     private LoginWithPlayFabRequest loginWithPlayFab;
+    private LoginWithEmailAddressRequest loginWithEmailAddress;
 
     [Header("DEBUGGER")]
     private int failedCallbackCounter;
@@ -27,6 +28,7 @@ public class LoginCore : MonoBehaviour
     {
         registerPlayFabUser = new RegisterPlayFabUserRequest();
         loginWithPlayFab = new LoginWithPlayFabRequest();
+        loginWithEmailAddress = new LoginWithEmailAddressRequest();
     }
 
     #region REGISTRATION
@@ -90,21 +92,39 @@ public class LoginCore : MonoBehaviour
                 PlayerData.PlayfabID = resultCallback.PlayFabId;
                 PlayerData.DisplayName = username;
                 GetEncrypedPassword(username, password);
-                //LoginCredentials(username, password);
+            },
+            errorCallback =>
+            {
+                LoginEmailPlayfab(username, password);
+            });
+    }
+
+    private void LoginEmailPlayfab(string email, string password)
+    {
+        loginWithEmailAddress.Email = email;
+        loginWithEmailAddress.Password = password;
+
+        PlayFabClientAPI.LoginWithEmailAddress(loginWithEmailAddress,
+            resultCallback =>
+            {
+                failedCallbackCounter = 0;
+                PlayerData.PlayfabID = resultCallback.PlayFabId;
+                PlayerData.DisplayName = "";
+                GetEncrypedPassword(email, password);
             },
             errorCallback =>
             {
                 ErrorCallback(errorCallback.Error, () =>
-                    {
-                        EntryCore.HideLoadingPanel();
-                        GameManager.Instance.DisplayErrorPanel("Connectivity error. Please connect to strong internet");
-                    },
-                    () => LoginUserPlayfab(username, password),
+                {
+                    EntryCore.HideLoadingPanel();
+                    GameManager.Instance.DisplayErrorPanel("Connectivity error. Please connect to strong internet");
+                },
+                    () => LoginEmailPlayfab(email, password),
                     () =>
                     {
                         EntryCore.HideLoadingPanel();
                         GameManager.Instance.DisplayErrorPanel(errorCallback.ErrorMessage);
-                    } );
+                    });
             });
     }
 
@@ -167,7 +187,6 @@ public class LoginCore : MonoBehaviour
             failedCallbackCounter = 0;
             if(resultCallback.FunctionResult == null)
             {
-                Debug.Log("nothing was returned");
                 EntryCore.HideLoadingPanel();
 
             }
@@ -277,6 +296,8 @@ public class LoginCore : MonoBehaviour
             else
                 restartAction();
         }
+        else if (errorCode == PlayFabErrorCode.InternalServerError)
+            ProcessSpecialError();
         else
         {
             if (processError != null)
@@ -297,6 +318,15 @@ public class LoginCore : MonoBehaviour
     {
         EntryCore.HideLoadingPanel();
         GameManager.Instance.DisplayErrorPanel(error);
+        PlayFabClientAPI.ForgetAllCredentials();
+        PlayerData.ResetPlayerData();
+        EntryCore.ResetLoginPanel();
+    }
+
+    private void ProcessSpecialError()
+    {
+        EntryCore.HideLoadingPanel();
+        GameManager.Instance.DisplaySpecialErrorPanel("Server Error. Please restart the game");
         PlayFabClientAPI.ForgetAllCredentials();
         PlayerData.ResetPlayerData();
         EntryCore.ResetLoginPanel();

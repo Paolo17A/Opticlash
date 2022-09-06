@@ -636,6 +636,19 @@ public class CombatCore : MonoBehaviour
         WeakRemoveBtn.interactable = false;
     }
 
+    public void DisablePowerups()
+    {
+        DoubleDamageBtn.interactable = false;
+        ShieldBtn.interactable = false;
+        LifestealBtn.interactable = false;
+    }
+    public void EnablePowerups()
+    {
+        DoubleDamageBtn.interactable = true;
+        ShieldBtn.interactable = true;
+        LifestealBtn.interactable = true;
+    }
+
     private void DisplayDroppedRewards()
     {
         if (OptibitDropped > 0)
@@ -813,7 +826,7 @@ public class CombatCore : MonoBehaviour
                 restartAction();
         }
         else if (errorCode == PlayFabErrorCode.InternalServerError)
-            GameManager.Instance.DisplayDualLoginErrorPanel();
+            ProcessSpecialError();
         else
             errorAction();
     }
@@ -822,6 +835,11 @@ public class CombatCore : MonoBehaviour
     {
         CloseLoadingPanel();
         GameManager.Instance.DisplayErrorPanel(errorMessage);
+    }
+    private void ProcessSpecialError()
+    {
+        CloseLoadingPanel();
+        GameManager.Instance.DisplaySpecialErrorPanel("Server Error. Please restart the game");
     }
     public void OpenLoadingPanel()
     {

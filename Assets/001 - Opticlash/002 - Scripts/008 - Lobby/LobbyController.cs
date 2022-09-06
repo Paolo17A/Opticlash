@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
 
 public class LobbyController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class LobbyController : MonoBehaviour
         LobbyCore.onLobbyStateChange += LobbyStateChange;
 
         GameManager.Instance.SceneController.ActionPass = true;
+        GameManager.Instance.MyUICamera.GetUniversalAdditionalCameraData().renderPostProcessing = true;
+        GameManager.Instance.MainCamera.GetUniversalAdditionalCameraData().renderPostProcessing = true;
         LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.CORE;
     }
 

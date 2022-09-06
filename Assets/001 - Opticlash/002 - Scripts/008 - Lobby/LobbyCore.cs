@@ -71,6 +71,7 @@ public class LobbyCore : MonoBehaviour
     [field: SerializeField] private Image OptiEquipCannon { get; set; }
     [field: SerializeField] private SpriteRenderer OptiLobbyCostume { get; set; }
     [field: SerializeField] private Image OptiEquipCostume { get; set; }
+    [field: SerializeField] private Renderer CannonShader { get; set; }
 
     [field: Header("ENERGY")]
     [field: SerializeField] private TextMeshProUGUI EnergyTMP { get; set; }
@@ -144,8 +145,10 @@ public class LobbyCore : MonoBehaviour
     [field: SerializeField] private List<WeaponData> EpicWeapons { get; set; }
     [field: SerializeField] private List<WeaponData> LegendWeapons { get; set; }
     [field: SerializeField] private Image WeaponLeftImage { get; set; }
+    [SerializeField] private Material LeftWeaponMaterial;
     [field: SerializeField] private Button EquipLeftWeaponBtn { get; set; }
     [field: SerializeField] private Image WeaponRightImage { get; set; }
+    [SerializeField] private Material RightWeaponMaterial;
     [field: SerializeField] private Button EquipRightWeaponBtn { get; set; }
     [field: SerializeField][field: ReadOnly] private int WeaponPageIndex { get; set; }
     [field: SerializeField] private Button PreviousWeaponPageBtn { get; set; }
@@ -180,7 +183,7 @@ public class LobbyCore : MonoBehaviour
     {
         DisplayLoadingPanel();
         PlayFabClientAPI.GetUserInventory(new GetUserInventoryRequest(),
-            resultCallback =>
+        resultCallback =>
             {
                 failedCallbackCounter = 0;
                 int currentDetectedCannon = 0;
@@ -334,8 +337,9 @@ public class LobbyCore : MonoBehaviour
                 }
             }
             SetOptiCannon(PlayerData.ActiveCustomWeapon.BaseWeaponData.AnimatedSprite);
+            SetCannonGlow();
         }
-        
+
     }
     public void GetActiveCostume()
     {
@@ -886,6 +890,15 @@ public class LobbyCore : MonoBehaviour
             EquipLeftWeaponBtn.interactable = false;
         else
             EquipLeftWeaponBtn.interactable = true;
+        int weaponIndex = (int)ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].BaseWeaponData.ThisWeaponCode;
+        if (weaponIndex >= 0 && weaponIndex <= 4)
+            WeaponLeftImage.material.SetColor("GlowColor", Color.green * 9f);
+        else if (weaponIndex >= 5 && weaponIndex <= 8)
+            WeaponLeftImage.material.SetColor("GlowColor", Color.cyan * 9f);
+        else if (weaponIndex >= 9 && weaponIndex <= 11)
+            WeaponLeftImage.material.SetColor("GlowColor", Color.yellow * 9f);
+        else if (weaponIndex >= 12 && weaponIndex <= 14)
+            WeaponLeftImage.material.SetColor("GlowColor", Color.magenta * 9f);
 
         //RIGHT
         if (ActualOwnedWeapons.Count >= (2 * WeaponPageIndex))
@@ -896,9 +909,20 @@ public class LobbyCore : MonoBehaviour
                 EquipRightWeaponBtn.interactable = false;
             else
                 EquipRightWeaponBtn.interactable = true;
+
+            weaponIndex = (int)ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].BaseWeaponData.ThisWeaponCode;
+            if (weaponIndex >= 0 && weaponIndex <= 4)
+                WeaponRightImage.material.SetColor("GlowColor", Color.green * 6f);
+            else if (weaponIndex >= 5 && weaponIndex <= 8)
+                WeaponRightImage.material.SetColor("GlowColor", Color.cyan * 9f);
+            else if (weaponIndex >= 9 && weaponIndex <= 11)
+                WeaponRightImage.material.SetColor("GlowColor", Color.yellow * 9f);
+            else if (weaponIndex >= 12 && weaponIndex <= 14)
+                WeaponRightImage.material.SetColor("GlowColor", Color.magenta * 9f);
         }
         else
             WeaponRightImage.gameObject.SetActive(false);
+        
     }
 
     public void EquipLeftWeapon()
@@ -1004,6 +1028,8 @@ public class LobbyCore : MonoBehaviour
             else
                 restartAction();
         }
+        else if (errorCode == PlayFabErrorCode.InternalServerError)
+            ProcessSpecialError();
         else
             errorAction();
     }
@@ -1014,7 +1040,12 @@ public class LobbyCore : MonoBehaviour
         GameManager.Instance.DisplayErrorPanel(errorMessage);
     }
 
-    
+    private void ProcessSpecialError()
+    {
+        HideLoadingPanel();
+        GameManager.Instance.DisplaySpecialErrorPanel("Server Error. Please restart the game");
+    }
+
     private void ProcessCraftBtn(int fragments, int quota)
     {
         if (fragments >= quota)
@@ -1029,6 +1060,28 @@ public class LobbyCore : MonoBehaviour
     {
         OptiLobbyCannon.sprite = _sprite;
         OptiEquipCannon.sprite = _sprite;
+    }
+
+    public void SetCannonGlow()
+    {
+        int weaponIndex = (int)PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode;
+        if (weaponIndex >= 0 && weaponIndex <= 4)
+            SetProperColor(Color.green, 6f);
+        else if (weaponIndex >= 5 && weaponIndex <= 8)
+            SetProperColor(Color.cyan, 9f);
+        else if (weaponIndex >= 9 && weaponIndex <= 11)
+            SetProperColor(Color.yellow, 6f);
+        else if (weaponIndex >= 12 && weaponIndex <= 14)
+            SetProperColor(Color.magenta, 6f);  
+    }
+
+    private void SetProperColor(Color _color, float _intensity)
+    {
+        UpgradeCannonCore.CurrentCannonBigImage.material.SetColor("GlowColor", _color * _intensity);
+        OptiEquipCannon.material.SetColor("GlowColor", _color * _intensity);
+        CannonShader.material.SetColor("GlowColor", _color * _intensity);
+        WeaponLeftImage.material.SetColor("GlowColor", _color * _intensity);
+        WeaponRightImage.material.SetColor("GlowColor", _color * _intensity);
     }
 
     private void SetOptiCostume(Sprite _sprite)

@@ -19,6 +19,7 @@ public class EntryController : MonoBehaviour
 
     private void Start()
     {
+        EntryCore.VersionTMP.text = "VERSION " +  Application.version;
         if (!GameManager.Instance.BGMAudioManager.IsPlaying)
             GameManager.Instance.BGMAudioManager.SwitchToLoadingMusic();
     }

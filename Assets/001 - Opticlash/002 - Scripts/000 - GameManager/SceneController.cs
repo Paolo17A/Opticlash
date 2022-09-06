@@ -208,12 +208,4 @@ public class SceneController : MonoBehaviour
 
         Time.timeScale = 1f;
     }
-
-    /*public void PushDown(RectTransform rt, float scaleDownMultiplier, Action action)
-    {
-        if (buttonPushDown != 0)
-            LeanTween.cancel(buttonPushDown);
-
-        buttonPushDown = LeanTween.scale(rt, rt.localScale * scaleDownMultiplier, butonSpeed).setEase(buttonEaseType).setOnComplete(action).id;
-    }*/
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class CombatController : MonoBehaviour
 {
@@ -32,9 +33,11 @@ public class CombatController : MonoBehaviour
 
     private void CombatStateChange(object sender, EventArgs e)
     {
-        //Debug.Log(CombatCore.CurrentCombatState);
         if (CombatCore.CurrentCombatState == CombatCore.CombatState.SPAWNING)
         {
+            GameManager.Instance.MainCamera.GetUniversalAdditionalCameraData().renderPostProcessing = true;
+            GameManager.Instance.MyUICamera.GetUniversalAdditionalCameraData().renderPostProcessing = false;
+            CombatCore.SpawnedPlayer.EntireCannon.SetActive(true);
             CombatCore.MonstersKilled = 0;
             PlayerData.CurrentHealth = PlayerData.MaxHealth;
             CombatCore.AmmoCount = PlayerData.ActiveCustomWeapon.BaseWeaponData.StartingAmmo;
@@ -52,6 +55,7 @@ public class CombatController : MonoBehaviour
             CombatCore.ShuffleBtn.interactable = true;
             CombatCore.ProcessPowerUpInteractability();
             CombatCore.ProcessSkillsInteractability();
+            CombatCore.EnablePowerups();
             CombatCore.RoundCounter++;
             CombatCore.RoundTMP.text = "Round: " + CombatCore.RoundCounter.ToString();
             CombatCore.timerCoroutine = StartCoroutine(CombatCore.StartQuestionTimer());
@@ -63,11 +67,13 @@ public class CombatController : MonoBehaviour
             CombatCore.ShuffleBtn.interactable = false;
             CombatCore.SpawnedPlayer.ProjectileSpawned = false;
             CombatCore.DisableItems();
+            CombatCore.DisablePowerups();
             CombatCore.WaitPanel.SetActive(true);
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.ENEMYTURN)
         {
             CombatCore.DisableItems();
+            CombatCore.DisablePowerups();
             if (CombatCore.CurrentEnemy.AfflictedSideEffect == WeaponData.SideEffect.NONE)
             {
                 CombatCore.CurrentEnemy.MayAttack = true;
@@ -127,6 +133,8 @@ public class CombatController : MonoBehaviour
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.GAMEOVER)
         {
+            GameManager.Instance.MyUICamera.GetUniversalAdditionalCameraData().renderPostProcessing = true;
+            CombatCore.SpawnedPlayer.EntireCannon.SetActive(false);
             CombatCore.isPlaying = false;
             CombatCore.CurrentEnemy.gameObject.SetActive(false);
             CombatCore.MonsterParent.transform.position = new Vector3(15, 21, 0);
@@ -142,6 +150,8 @@ public class CombatController : MonoBehaviour
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.STAGECLEAR)
         {
+            GameManager.Instance.MyUICamera.GetUniversalAdditionalCameraData().renderPostProcessing = true;
+            CombatCore.SpawnedPlayer.EntireCannon.SetActive(false);
             CombatCore.isPlaying = false;
             CombatCore.CurrentEnemy.gameObject.SetActive(false);
             CombatCore.MonsterParent.transform.position = new Vector3(15, 21, 0);

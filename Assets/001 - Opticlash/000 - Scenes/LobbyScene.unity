@@ -1120,7 +1120,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 2.5762, y: 209.7861}
+  m_AnchoredPosition: {x: 2.5762, y: 209.78613}
   m_SizeDelta: {x: 788.1523, y: 453.8743}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!225 &49353968
@@ -1169,7 +1169,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 49.74, y: 2.3}
+  m_AnchoredPosition: {x: 49.740005, y: 2.2999992}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &52444715
@@ -14013,7 +14013,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.6, y: -177.8}
+  m_AnchoredPosition: {x: 2.5999985, y: -177.8}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &424186220
@@ -15160,7 +15160,7 @@ GameObject:
   - component: {fileID: 452667422}
   - component: {fileID: 452667423}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: Consumable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15175,7 +15175,7 @@ Transform:
   m_GameObject: {fileID: 452667421}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7442260254904175146}
   m_RootOrder: 0
@@ -15220,7 +15220,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 906368107dfe17d4583d693412f2eca8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3c7e88c75138df43aa0686772ede981, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -18183,7 +18183,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 500}
+  m_AnchoredPosition: {x: 0, y: 700}
   m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &634060126
@@ -18544,7 +18544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.5777, y: -38.1611}
+  m_AnchoredPosition: {x: -3.5776978, y: -38.161102}
   m_SizeDelta: {x: -116.8682, y: -209.8857}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &660693487
@@ -18834,7 +18834,6 @@ MonoBehaviour:
   <LobbyCore>k__BackingField: {fileID: 913910363}
   <LootboxCore>k__BackingField: {fileID: 1002220216}
   <LootboxAnimator>k__BackingField: {fileID: 664249417}
-  <RewardIndex>k__BackingField: 0
 --- !u!95 &664249417 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 971477651259095088, guid: dae54da20680e644ca9871cfaa6806f8, type: 3}
@@ -19191,21 +19190,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 913910362}
-        m_TargetAssemblyTypeName: LobbyController, Assembly-CSharp
-        m_MethodName: LobbyStateToIndex
-        m_Mode: 3
+      - m_Target: {fileID: 2087791490}
+        m_TargetAssemblyTypeName: UpgradeCannonCore, Assembly-CSharp
+        m_MethodName: ProcessUpgradeCannonButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2087791490}
-        m_TargetAssemblyTypeName: UpgradeCannonCore, Assembly-CSharp
-        m_MethodName: ProcessUpgradeCannonButton
+      - m_Target: {fileID: 1002220216}
+        m_TargetAssemblyTypeName: LootboxCore, Assembly-CSharp
+        m_MethodName: ProcessOkayPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19591,6 +19590,7 @@ GameObject:
   - component: {fileID: 709825420}
   - component: {fileID: 709825419}
   - component: {fileID: 709825418}
+  - component: {fileID: 709825421}
   m_Layer: 5
   m_Name: CannonEquipped
   m_TagString: Untagged
@@ -19648,7 +19648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: b429df3126b822f4bba2599c5482bb9e, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -19674,6 +19674,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709825416}
   m_CullTransparentMesh: 1
+--- !u!223 &709825421
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709825416}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
 --- !u!1 &725013389
 GameObject:
   m_ObjectHideFlags: 0
@@ -20433,7 +20454,6 @@ MonoBehaviour:
   <LobbyCore>k__BackingField: {fileID: 913910363}
   <LootboxCore>k__BackingField: {fileID: 1002220216}
   <LootboxAnimator>k__BackingField: {fileID: 746106757}
-  <RewardIndex>k__BackingField: 0
 --- !u!95 &746106757 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4084971117797091131, guid: aab639ae99c426a429244c334964b76f, type: 3}
@@ -21357,7 +21377,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 129.24}
+  m_AnchoredPosition: {x: 0, y: 129.23999}
   m_SizeDelta: {x: 329, y: 94}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &795365675
@@ -22278,7 +22298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: dd3cb092849f01c41ab1c3d3f643724d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -22318,12 +22338,12 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &861494938
 GameObject:
@@ -22613,7 +22633,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875789177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2025690265}
@@ -22636,7 +22656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: b429df3126b822f4bba2599c5482bb9e, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -23653,6 +23673,7 @@ MonoBehaviour:
   <OptiEquipCannon>k__BackingField: {fileID: 709825419}
   <OptiLobbyCostume>k__BackingField: {fileID: 1078727708}
   <OptiEquipCostume>k__BackingField: {fileID: 201277603}
+  <CannonShader>k__BackingField: {fileID: 1376131332}
   <EnergyTMP>k__BackingField: {fileID: 52444715}
   <CoreOptibitTMP>k__BackingField: {fileID: 1097979671}
   <ShopOptibitTMP>k__BackingField: {fileID: 806463028}
@@ -23726,8 +23747,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e695f21364f841e43815e5fecb70f484, type: 2}
   - {fileID: 11400000, guid: 1af087df1a585964b90bec1437ba3f4e, type: 2}
   <WeaponLeftImage>k__BackingField: {fileID: 848581195}
+  LeftWeaponMaterial: {fileID: 0}
   <EquipLeftWeaponBtn>k__BackingField: {fileID: 436840187}
   <WeaponRightImage>k__BackingField: {fileID: 1089608761}
+  RightWeaponMaterial: {fileID: 0}
   <EquipRightWeaponBtn>k__BackingField: {fileID: 1165914262}
   <WeaponPageIndex>k__BackingField: 0
   <PreviousWeaponPageBtn>k__BackingField: {fileID: 399022075}
@@ -25378,7 +25401,6 @@ MonoBehaviour:
   <LobbyCore>k__BackingField: {fileID: 913910363}
   <LootboxCore>k__BackingField: {fileID: 1002220216}
   <LootboxAnimator>k__BackingField: {fileID: 995029789}
-  <RewardIndex>k__BackingField: 0
 --- !u!95 &995029789 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6870198172558761097, guid: 8a568e2c7c862f34ba2d09bda76e2e88, type: 3}
@@ -25551,6 +25573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PlayerData>k__BackingField: {fileID: 11400000, guid: 3fdc035a0b4dc9945a5aac36fdd39207, type: 2}
   <LobbyCore>k__BackingField: {fileID: 913910363}
+  <LobbyController>k__BackingField: {fileID: 913910362}
   <TopBoxImage>k__BackingField: {fileID: 70398265}
   <BotBoxImage>k__BackingField: {fileID: 276697380}
   <OpenLootboxBtn>k__BackingField: {fileID: 939165083}
@@ -25604,7 +25627,17 @@ MonoBehaviour:
   <RareFragment>k__BackingField: {fileID: 21300000, guid: 5f85ea0874971c448b9460ab65d4b644, type: 3}
   <EpicFragment>k__BackingField: {fileID: 21300000, guid: f8ccde2668d174041b07e47d5036b9ba, type: 3}
   <LegendFragment>k__BackingField: {fileID: 21300000, guid: 8532a58081ff83546bd794e2d11d0a33, type: 3}
-  <OptibitReward>k__BackingField: {fileID: 7442260254904175140}
+  <SmallHeal>k__BackingField: {fileID: 21300000, guid: 2ba10d9a7fc54d9429a9ca1802db677b, type: 3}
+  <MediumHeal>k__BackingField: {fileID: 21300000, guid: a48a23b0c529be94ab5cfdef57d97c0f, type: 3}
+  <LargeHeal>k__BackingField: {fileID: 21300000, guid: 0152f56e818b6d34e95f9a15bbe41024, type: 3}
+  <BreakRemoveSprite>k__BackingField: {fileID: 21300000, guid: f3c7e88c75138df43aa0686772ede981, type: 3}
+  <BurnRemoveSprite>k__BackingField: {fileID: 21300000, guid: 99b33df60ef072b4a9c420c313807009, type: 3}
+  <ConfuseRemoveSprite>k__BackingField: {fileID: 21300000, guid: 65b42d0f93e1afc4b9ec764b9d9b5de7, type: 3}
+  <FreezeRemoveSprite>k__BackingField: {fileID: 21300000, guid: 570613d36da542145b38f0f970795058, type: 3}
+  <ParalyzeRemoveSprite>k__BackingField: {fileID: 21300000, guid: 656de0fdfd436d4468c4b13bb52185e3, type: 3}
+  <WeakRemoveSprite>k__BackingField: {fileID: 21300000, guid: 103d0e18db21b634bb5581a3035f0cc3, type: 3}
+  <ConsumableReward>k__BackingField: {fileID: 7442260254904175140}
+  <ConsumableSprite>k__BackingField: {fileID: 452667423}
   <FragmentReward>k__BackingField: {fileID: 1564213442}
   <FragmentSprite>k__BackingField: {fileID: 845590958}
   <CannonReward>k__BackingField: {fileID: 1066985516}
@@ -25619,6 +25652,10 @@ MonoBehaviour:
   <MayNotGoRightSprite>k__BackingField: {fileID: 21300000, guid: c3e280ddd90a02a41a5fe7e8784edcdb, type: 3}
   <failedCallbackCounter>k__BackingField: 0
   <HasThisLootbox>k__BackingField: 0
+  <NormalFragmentsDropped>k__BackingField: 0
+  <RareFragmentsDropped>k__BackingField: 0
+  <EpicFragmentsDropped>k__BackingField: 0
+  <LegendFragmentsDropped>k__BackingField: 0
   <SmallHealSkillDropped>k__BackingField: 0
   <MediumHealSkillDropped>k__BackingField: 0
   <LargeHealSkillDropped>k__BackingField: 0
@@ -25630,6 +25667,7 @@ MonoBehaviour:
   <BurnRemoveDropped>k__BackingField: 0
   <CannonStrings>k__BackingField: []
   <RewardsToDisplay>k__BackingField: []
+  <RewardIndex>k__BackingField: 0
 --- !u!4 &1002220217
 Transform:
   m_ObjectHideFlags: 0
@@ -27515,7 +27553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 242191a296c336d4288b341b4fd2b5cc, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -27555,12 +27593,12 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &1090656156
 GameObject:
@@ -27756,7 +27794,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
 --- !u!1 &1097979669
 GameObject:
   m_ObjectHideFlags: 0
@@ -32720,7 +32758,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8baa58133fe48694b9ec313a37d8df51, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32740,7 +32778,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 66b591f6803986645920e3ba6ec2c485, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -32896,6 +32934,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1387320587}
+  - component: {fileID: 1387320588}
   m_Layer: 5
   m_Name: Equip Idle
   m_TagString: Untagged
@@ -32923,6 +32962,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1387320588
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387320586}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 2
+  m_TargetDisplay: 0
 --- !u!1 &1389798453
 GameObject:
   m_ObjectHideFlags: 0
@@ -34533,7 +34593,6 @@ MonoBehaviour:
   <LobbyCore>k__BackingField: {fileID: 913910363}
   <LootboxCore>k__BackingField: {fileID: 1002220216}
   <LootboxAnimator>k__BackingField: {fileID: 1480200891}
-  <RewardIndex>k__BackingField: 0
 --- !u!95 &1480200891 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8438335908706951607, guid: 95232df7d71d13d47bfd4e857d57ea57, type: 3}
@@ -48738,7 +48797,6 @@ MonoBehaviour:
   <LobbyCore>k__BackingField: {fileID: 913910363}
   <LootboxCore>k__BackingField: {fileID: 1002220216}
   <LootboxAnimator>k__BackingField: {fileID: 1769996384}
-  <RewardIndex>k__BackingField: 0
 --- !u!95 &1769996384 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1042795201815552110, guid: 869ad3e8e764c3749a337d2e7e7ad15d, type: 3}
@@ -50487,7 +50545,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 9, y: -23.23}
+  m_AnchoredPosition: {x: 9, y: -23.22998}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1874096754
@@ -51086,7 +51144,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -51480,7 +51538,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!1 &1915487360
 GameObject:
   m_ObjectHideFlags: 0
@@ -53662,7 +53720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 2.5762, y: 209.7861}
+  m_AnchoredPosition: {x: 2.5762, y: 209.78613}
   m_SizeDelta: {x: 788.1523, y: 453.8743}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!225 &2046194901
@@ -54362,7 +54420,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 122.35}
+  m_AnchoredPosition: {x: 0, y: 122.349976}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2092793953
@@ -59707,7 +59765,7 @@ GameObject:
   - component: {fileID: 7442260254904175141}
   - component: {fileID: 331373598}
   m_Layer: 0
-  m_Name: Acquire Optibit
+  m_Name: Acquire Consumable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

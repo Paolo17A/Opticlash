@@ -61,6 +61,17 @@ public class LootboxCore : MonoBehaviour
     [field: SerializeField] private Sprite EpicFragment { get; set; }
     [field: SerializeField] private Sprite LegendFragment { get; set; }
 
+    [field: Header("CONSUMABLES")]
+    [field: SerializeField] private Sprite SmallHeal { get; set; }
+    [field: SerializeField] private Sprite MediumHeal { get; set; }
+    [field: SerializeField] private Sprite LargeHeal { get; set; }
+    [field: SerializeField] private Sprite BreakRemoveSprite { get; set; }
+    [field: SerializeField] private Sprite BurnRemoveSprite { get; set; }
+    [field: SerializeField] private Sprite ConfuseRemoveSprite { get; set; }
+    [field: SerializeField] private Sprite FreezeRemoveSprite { get; set; }
+    [field: SerializeField] private Sprite ParalyzeRemoveSprite { get; set; }
+    [field: SerializeField] private Sprite WeakRemoveSprite { get; set; }
+
     [field: Header("REWARDS")]
     [field: SerializeField] public GameObject ConsumableReward { get; set; }
     [field: SerializeField] public SpriteRenderer ConsumableSprite { get; set; }
@@ -81,8 +92,12 @@ public class LootboxCore : MonoBehaviour
 
 
     [field: Header("DEBUGGER")]
-    [field: SerializeField] private int failedCallbackCounter { get; set; }
-    [field: SerializeField] private bool HasThisLootbox { get; set; }
+    [field: SerializeField][field: ReadOnly] private int failedCallbackCounter { get; set; }
+    [field: SerializeField][field: ReadOnly] private bool HasThisLootbox { get; set; }
+    [field: SerializeField][field: ReadOnly] private int NormalFragmentsDropped { get; set; }
+    [field: SerializeField][field: ReadOnly] private int RareFragmentsDropped { get; set; }
+    [field: SerializeField][field: ReadOnly] private int EpicFragmentsDropped { get; set; }
+    [field: SerializeField][field: ReadOnly] private int LegendFragmentsDropped { get; set; }
     [field: SerializeField][field: ReadOnly] private int SmallHealSkillDropped { get; set; }
     [field: SerializeField][field: ReadOnly] private int MediumHealSkillDropped { get; set; }
     [field: SerializeField][field: ReadOnly] private int LargeHealSkillDropped { get; set; }
@@ -353,7 +368,7 @@ public class LootboxCore : MonoBehaviour
 
                 LobbyCore.GrantAmountTMP.text = "YOU GAINED 500 NORMAL FRAGMENTS";
                 FragmentSprite.sprite = NormalFragment;
-                PlayerData.NormalFragments += 500;
+                NormalFragmentsDropped = 500;
                 UpdatePlayerInventory();
                 CannonStrings.Clear();
                 RewardsToDisplay.Insert(0, "NORMAL");
@@ -509,8 +524,8 @@ public class LootboxCore : MonoBehaviour
 
                 LobbyCore.GrantAmountTMP.text = "YOU GAINED 500 RARE FRAGMENTS";
                 FragmentSprite.sprite = RareFragment;
-                PlayerData.NormalFragments += 1000;
-                PlayerData.RareFragments += 500;
+                NormalFragmentsDropped = 1000;
+                RareFragmentsDropped = 500;
                 UpdatePlayerInventory();
 
                 CannonStrings.Clear();
@@ -679,9 +694,9 @@ public class LootboxCore : MonoBehaviour
 
                 LobbyCore.GrantAmountTMP.text = "YOU GAINED 500 EPIC FRAGMENTS";
                 FragmentSprite.sprite = EpicFragment;
-                PlayerData.NormalFragments += 1500;
-                PlayerData.RareFragments += 750;
-                PlayerData.EpicFragments += 500;
+                NormalFragmentsDropped = 1500;
+                RareFragmentsDropped = 750;
+                EpicFragmentsDropped = 500;
                 UpdatePlayerInventory();
 
                 CannonStrings.Clear();
@@ -867,10 +882,10 @@ public class LootboxCore : MonoBehaviour
 
                 LobbyCore.GrantAmountTMP.text = "YOU GAINED 500 LEGEND FRAGMENTS";
                 FragmentSprite.sprite = LegendFragment;
-                PlayerData.NormalFragments += 3000;
-                PlayerData.RareFragments += 1500;
-                PlayerData.EpicFragments += 1000;
-                PlayerData.LegendFragments += 500;
+                NormalFragmentsDropped = 3000;
+                RareFragmentsDropped = 1500;
+                EpicFragmentsDropped = 1000;
+                LegendFragmentsDropped = 500;
                 UpdatePlayerInventory();
                 RewardsToDisplay.Insert(0, "LEGEND");
                 RewardsToDisplay.Insert(1, "EPIC");
@@ -1062,10 +1077,10 @@ public class LootboxCore : MonoBehaviour
 
                 LobbyCore.GrantAmountTMP.text = "YOU GAINED 1000 LEGEND FRAGMENTS";
                 FragmentSprite.sprite = LegendFragment;
-                PlayerData.NormalFragments += 5000;
-                PlayerData.RareFragments += 2500;
-                PlayerData.EpicFragments += 1500;
-                PlayerData.LegendFragments += 1000;
+                NormalFragmentsDropped = 5000;
+                RareFragmentsDropped = 2500;
+                EpicFragmentsDropped = 1500;
+                LegendFragmentsDropped = 1000;
                 UpdatePlayerInventory();
 
                 CannonStrings.Clear();
@@ -1126,27 +1141,147 @@ public class LootboxCore : MonoBehaviour
             CostumeReward.SetActive(false);
             switch (RewardsToDisplay[RewardIndex])
             {
+                #region FRAGMENTS
                 case "NORMAL":
                     FragmentSprite.sprite = NormalFragment;
                     FragmentReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + NormalFragmentsDropped + "  NORMAL FRAGMENTS";
                     break;
                 case "RARE":
                     FragmentSprite.sprite = RareFragment;
                     FragmentReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + RareFragmentsDropped + "  RARE FRAGMENTS";
                     break;
                 case "EPIC":
                     FragmentSprite.sprite = EpicFragment;
                     FragmentReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + EpicFragmentsDropped + "  EPIC FRAGMENTS";
                     break;
                 case "LEGEND":
                     FragmentSprite.sprite = LegendFragment;
                     FragmentReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + LegendFragmentsDropped + "  LEGEND FRAGMENTS";
                     break;
+                #endregion
+                #region CONSUMABLES
                 case "SMALL":
-                    ConsumableSprite.sprite = NormalFragment;
+                    ConsumableSprite.sprite = SmallHeal;
                     ConsumableReward.SetActive(true);
                     LobbyCore.GrantAmountTMP.text = "YOU GAINED " + SmallHealSkillDropped +  "  SMALL HEAL CHARGES";
                     break;
+                case "MEDIUM":
+                    ConsumableSprite.sprite = MediumHeal;
+                    ConsumableReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + MediumHealSkillDropped + "  MEDIUM HEAL CHARGES";
+                    break;
+                case "LARGE":
+                    ConsumableSprite.sprite = LargeHeal;
+                    ConsumableReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + LargeHealSkillDropped + "  LARGE HEAL CHARGES";
+                    break;
+                case "BREAK":
+                    ConsumableSprite.sprite = BreakRemoveSprite;
+                    ConsumableReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + BreakRemoveDropped + "  BREAK REMOVE ITEMS";
+                    break;
+                case "BURN":
+                    ConsumableSprite.sprite = BurnRemoveSprite;
+                    ConsumableReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + BurnRemoveDropped + "  BURN REMOVE ITEMS";
+                    break;
+                case "CONFUSE":
+                    ConsumableSprite.sprite = ConfuseRemoveSprite;
+                    ConsumableReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + ConfuseRemoveDropped + "  CONFUSE REMOVE ITEMS";
+                    break;
+                case "FREEZE":
+                    ConsumableSprite.sprite = FreezeRemoveSprite;
+                    ConsumableReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + FreezeRemoveDropped + "  FREEZE REMOVE ITEMS";
+                    break;
+                case "PARALYZE":
+                    ConsumableSprite.sprite = ParalyzeRemoveSprite;
+                    ConsumableReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + ParalyzeRemoveDropped + "  PARALYZE REMOVE ITEMS";
+                    break;
+                case "WEAK":
+                    ConsumableSprite.sprite = WeakRemoveSprite;
+                    ConsumableReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + WeakRemoveDropped + "  WEAK REMOVE ITEMS";
+                    break;
+                #endregion
+                #region CANNONS
+                case "C1":
+                    CannonSprite.sprite = NormalWeapons[0].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + NormalWeapons[0].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                case "C2":
+                    CannonSprite.sprite = NormalWeapons[1].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + NormalWeapons[1].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                case "C3":
+                    CannonSprite.sprite = NormalWeapons[2].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + NormalWeapons[2].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                case "C4":
+                    CannonSprite.sprite = NormalWeapons[3].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + NormalWeapons[3].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                case "C5":
+                    CannonSprite.sprite = NormalWeapons[4].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + NormalWeapons[4].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                case "B1":
+                    CannonSprite.sprite = RareWeapons[0].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + RareWeapons[0].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                case "B2":
+                    CannonSprite.sprite = RareWeapons[1].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + RareWeapons[1].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                case "B3":
+                    CannonSprite.sprite = RareWeapons[2].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + RareWeapons[2].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                case "B4":
+                    CannonSprite.sprite = RareWeapons[3].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + RareWeapons[3].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                case "A1":
+                    CannonSprite.sprite = EpicWeapons[0].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + EpicWeapons[0].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                case "A2":
+                    CannonSprite.sprite = EpicWeapons[1].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + EpicWeapons[1].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                case "A3":
+                    CannonSprite.sprite = EpicWeapons[2].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + EpicWeapons[2].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                case "S1":
+                    CannonSprite.sprite = LegendWeapons[0].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + LegendWeapons[0].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                case "S2":
+                    CannonSprite.sprite = LegendWeapons[1].AnimatedSprite;
+                    CannonReward.SetActive(true);
+                    LobbyCore.GrantAmountTMP.text = "YOU GAINED " + LegendWeapons[1].ThisWeaponCode.ToString() + "  CANNON";
+                    break;
+                #endregion
             }
         }
         else
@@ -1301,6 +1436,10 @@ public class LootboxCore : MonoBehaviour
 
     private void ResetDrops()
     {
+        NormalFragmentsDropped = 0;
+        RareFragmentsDropped = 0;
+        EpicFragmentsDropped = 0;
+        LegendFragmentsDropped = 0;
         SmallHealSkillDropped = 0;
         MediumHealSkillDropped = 0;
         LargeHealSkillDropped = 0;
@@ -1314,6 +1453,10 @@ public class LootboxCore : MonoBehaviour
 
     private void UpdatePlayerInventory()
     {
+        PlayerData.NormalFragments += NormalFragmentsDropped;
+        PlayerData.RareFragments += RareFragmentsDropped;
+        PlayerData.EpicFragments += EpicFragmentsDropped;
+        PlayerData.LegendFragments += LegendFragmentsDropped;
         PlayerData.SmallHealCharges += SmallHealSkillDropped;
         PlayerData.MediumHealCharges += MediumHealSkillDropped;
         PlayerData.LargeHealCharges += LargeHealSkillDropped;
@@ -1480,6 +1623,8 @@ public class LootboxCore : MonoBehaviour
             else
                 restartAction();
         }
+        else if (errorCode == PlayFabErrorCode.InternalServerError)
+            ProcessSpecialError();
         else
             errorAction();
     }
@@ -1488,6 +1633,12 @@ public class LootboxCore : MonoBehaviour
     {
         LobbyCore.HideLoadingPanel();
         GameManager.Instance.DisplayErrorPanel(errorMessage);
+    }
+
+    private void ProcessSpecialError()
+    {
+        LobbyCore.HideLoadingPanel();
+        GameManager.Instance.DisplaySpecialErrorPanel("Server Error. Please restart the game");
     }
     #endregion
 }

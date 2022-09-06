@@ -1,6 +1,7 @@
 using MyBox;
 using Newtonsoft.Json;
-//using PlayFab;
+using PlayFab;
+using PlayFab.ServerModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     [field: Header("ERROR")]
     [field: SerializeField] private GameObject DualLogInErrorPanel { get; set; }
+    [field: SerializeField] private TextMeshProUGUI SpecialErrorTMP { get; set; }
     [field: SerializeField] private GameObject ErrorPanel { get; set; }
     [field: SerializeField] private TextMeshProUGUI ErrorTMP { get; set; }
 
@@ -74,6 +76,21 @@ public class GameManager : MonoBehaviour
             SceneController.CurrentScene = "EntryScene";
             /*if (string.IsNullOrEmpty(PlayFabSettings.TitleId))
                 PlayFabSettings.TitleId = "C1147";*/
+
+            PlayFabServerAPI.GetTitleData(new GetTitleDataRequest(),
+                resultCallback =>
+                {
+                    if (resultCallback.Data.ContainsKey("Version") && resultCallback.Data["Version"] == Application.version)
+                    {
+
+                    }
+                    else
+                        DisplaySpecialErrorPanel("Game is outdated. Please update.");
+                },
+                errorCallback =>
+                { 
+                
+                });
         }
     }
 
@@ -86,6 +103,12 @@ public class GameManager : MonoBehaviour
     public void DisplayDualLoginErrorPanel()
     {
         DualLogInErrorPanel.SetActive(true);
+    }
+
+    public void DisplaySpecialErrorPanel(string _message)
+    {
+        DualLogInErrorPanel.SetActive(true);
+        SpecialErrorTMP.text = _message;
     }
 
     public void CloseGame()

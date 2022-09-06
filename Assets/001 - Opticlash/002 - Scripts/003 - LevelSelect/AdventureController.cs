@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MyBox;
+using UnityEngine.Rendering.Universal;
 
 public class AdventureController : MonoBehaviour
 {
@@ -27,6 +28,13 @@ public class AdventureController : MonoBehaviour
     [SerializeField][ReadOnly] private float newCameraPosY;
     //============================================================================================
     #endregion
+
+    private void OnEnable()
+    {
+        GameManager.Instance.MainCamera.GetUniversalAdditionalCameraData().renderPostProcessing = false;
+        GameManager.Instance.MyUICamera.GetUniversalAdditionalCameraData().renderPostProcessing = false;
+
+    }
 
     private void Start()
     {

@@ -53,6 +53,9 @@ public class EntryCore : MonoBehaviour
     [field: Header("LOADING")]
     [field: SerializeField] private GameObject LoadingPanel { get; set; }
 
+    [field: Header("VERSION")]
+    [field: SerializeField] public TextMeshProUGUI VersionTMP { get; set; }
+
     [field: Header("LOGIN")]
     [field: SerializeField] public TMP_InputField UsernameLoginTMP { get; set; }
     [field: SerializeField] public TMP_InputField PasswordLoginTMP { get; set; }
