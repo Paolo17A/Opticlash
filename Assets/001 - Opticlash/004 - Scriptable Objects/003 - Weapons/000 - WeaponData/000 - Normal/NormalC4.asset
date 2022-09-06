@@ -17,6 +17,7 @@ MonoBehaviour:
   <BaseDamage>k__BackingField: 5.8
   <Accuracy>k__BackingField: 84
   <StartingAmmo>k__BackingField: 200
+  <StartingLevel>k__BackingField: 4
   <UpgradeValue>k__BackingField: 0.2
   <Abilities>k__BackingField: 20 % chance to shoot 150% stronger bullet in every
     5 turns with 10% chance to apply Weak status to enemy for 2 turns
@@ -32,9 +33,9 @@ MonoBehaviour:
   <BonusBullets>k__BackingField: 0
   <BonusRate>k__BackingField: 0
   <BonusFrequency>k__BackingField: 0
-  <BackSprite>k__BackingField: {fileID: 21300000, guid: f7a2669652a0b5643bf7b4196d85866a, type: 3}
-  <MiddleSprite>k__BackingField: {fileID: 21300000, guid: e5cbbeeb2741f544ca4a5cb9a34bf24b, type: 3}
-  <FrontSprite>k__BackingField: {fileID: 21300000, guid: 47d63a1231f08c74488abc0811c3cb1e, type: 3}
+  <BackSprite>k__BackingField: {fileID: 21300000, guid: 531fec171f783c34593efcddf2fd629a, type: 3}
+  <MiddleSprite>k__BackingField: {fileID: 21300000, guid: a6792aab7cc64fa469e58e924ad114fb, type: 3}
+  <FrontSprite>k__BackingField: {fileID: 21300000, guid: a2ffe854806192a488644f0e1e9b8985, type: 3}
   <AnimatedSprite>k__BackingField: {fileID: 21300000, guid: cdf4808c1c044b14d93b4a921fb0ed20, type: 3}
   <EquippedSprite>k__BackingField: {fileID: 21300000, guid: bd8605215e97ad04481ed06863c888d6, type: 3}
   <InfoSprite>k__BackingField: {fileID: 21300000, guid: 04592fc14775b5c4fab3875ee3d6d0db, type: 3}

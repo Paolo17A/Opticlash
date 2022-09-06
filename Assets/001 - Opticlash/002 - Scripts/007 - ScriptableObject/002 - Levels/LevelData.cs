@@ -8,11 +8,14 @@ public class LevelData : ScriptableObject
 {
     //===============================================================================
     [field: SerializeField] public int LevelIndex { get; set; }
-    [field: SerializeField] public Sprite SelectedLevelSprite { get; set; }
 
     [field: Header("ENEMIES")]
     [field: SerializeField] public List<string> MonsterList { get; set; }
     [field: SerializeField] public List<int> MonsterLevels { get; set; }
+    [field: SerializeField] public List<Sprite> MonsterSprites { get; set; }
+
+    [field: Header("REWARDS")]
+    [field: SerializeField] public List<Sprite> RewardSprites { get; set; }
 
     [field: Header("OPTIBIT")]
     [field: SerializeField] public int MinDroppedOPB { get; set; }
@@ -69,5 +72,6 @@ public class LevelData : ScriptableObject
     [field: Header("LARGE HEAL")]
     [field: SerializeField] public int MinDroppedLargeHeal { get; set; }
     [field: SerializeField] public int MaxDroppedLargeHeal { get; set; }
+
     //===============================================================================
 }

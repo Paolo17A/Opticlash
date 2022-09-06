@@ -15,14 +15,14 @@ MonoBehaviour:
   <PlayfabID>k__BackingField: 
   <DisplayName>k__BackingField: 
   <LUID>k__BackingField: 
-  <CurrentStage>k__BackingField: 1
+  <CurrentStage>k__BackingField: 4
   <TotalKillCount>k__BackingField: 0
-  <EnergyCount>k__BackingField: 20
+  <EnergyCount>k__BackingField: 0
   <Optibit>k__BackingField: 0
   <CurrentHealth>k__BackingField: 100
   <MaxHealth>k__BackingField: 100
-  <ActiveWeaponID>k__BackingField: default
-  <ActiveCustomWeapon>k__BackingField: {fileID: 11400000, guid: e58b2b3803e848140bf807589421281f, type: 2}
+  <ActiveWeaponID>k__BackingField: 
+  <ActiveCustomWeapon>k__BackingField: {fileID: 0}
   <OwnedWeapons>k__BackingField:
   - {fileID: 11400000, guid: e58b2b3803e848140bf807589421281f, type: 2}
   - {fileID: 11400000, guid: 024174ab56a73784d9048a8f4a4a99dd, type: 2}
@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5a016bbcbfd85e4fbfa3dc4dc30ec49, type: 2}
   - {fileID: 11400000, guid: 74693d90e5ac64244b43dc7f63caa18a, type: 2}
   - {fileID: 11400000, guid: c8309acfd25c8e84ea96873124a85029, type: 2}
-  <ActiveConstumeInstanceID>k__BackingField: NONE
+  <ActiveConstumeInstanceID>k__BackingField: 
   <ActiveCostume>k__BackingField: {fileID: 0}
   <OwnedCostumes>k__BackingField:
   - {fileID: 11400000, guid: 6c8fa252fbe8f60419277beb70a68c08, type: 2}
@@ -68,15 +68,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b518ce250db3adf4abb63703f3d8a563, type: 2}
   - {fileID: 11400000, guid: c2024f9a356e40a4fa918e1fa9fe3571, type: 2}
   <CommonLootboxInstanceID>k__BackingField: 
-  <CommonLootboxCount>k__BackingField: 1
+  <CommonLootboxCount>k__BackingField: 2
   <RareLootboxInstanceID>k__BackingField: 
-  <RareLootboxCount>k__BackingField: 2
+  <RareLootboxCount>k__BackingField: 0
   <EpicLootboxInstanceID>k__BackingField: 
-  <EpicLootboxCount>k__BackingField: 3
+  <EpicLootboxCount>k__BackingField: 0
   <LegendaryLootbox1InstanceID>k__BackingField: 
-  <LegendaryLootbox1Count>k__BackingField: 4
+  <LegendaryLootbox1Count>k__BackingField: 0
   <LegendaryLootbox2InstanceID>k__BackingField: 
-  <LegendaryLootbox2Count>k__BackingField: 5
+  <LegendaryLootbox2Count>k__BackingField: 0
   <SmallHealInstanceID>k__BackingField: 
   <SmallHealCharges>k__BackingField: 0
   <MediumHealInstanceID>k__BackingField: 
@@ -95,10 +95,10 @@ MonoBehaviour:
   <ConfuseRemovalCharges>k__BackingField: 0
   <BurnRemovalInstanceID>k__BackingField: 
   <BurnRemovalCharges>k__BackingField: 0
-  <NormalFragments>k__BackingField: 0
-  <RareFragments>k__BackingField: 0
-  <EpicFragments>k__BackingField: 0
-  <LegendFragments>k__BackingField: 0
+  <NormalFragments>k__BackingField: 6908
+  <RareFragments>k__BackingField: 17
+  <EpicFragments>k__BackingField: 12
+  <LegendFragments>k__BackingField: 16
   <Quest1Claimed>k__BackingField: 0
   <Quest2Claimed>k__BackingField: 0
   <Quest3Claimed>k__BackingField: 0
@@ -107,6 +107,6 @@ MonoBehaviour:
   <DailyCheckIn>k__BackingField: 0
   <SocMedShared>k__BackingField: 0
   <ItemsUsed>k__BackingField: 0
-  <MonstersKilled>k__BackingField: 3
+  <MonstersKilled>k__BackingField: 0
   <LevelsWon>k__BackingField: 0
   <DailyQuestClaimed>k__BackingField: 0

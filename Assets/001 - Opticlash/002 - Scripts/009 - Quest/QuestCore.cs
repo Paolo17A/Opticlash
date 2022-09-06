@@ -198,7 +198,7 @@ public class QuestCore : MonoBehaviour
 
     public void ShareToSocMed()
     {
-        new NativeShare().SetText("Start playing Opticlash with my referral link!").SetUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+        new NativeShare().SetText("Start playing Opticlash!").SetUrl("https://marketplace.optibit.tech/home/customer/dashboard")
             .SetCallback((result, shareTarget) => ProcessShareResult(result))
             .Share();
     }
@@ -222,6 +222,7 @@ public class QuestCore : MonoBehaviour
             PlayerData.DailyQuestClaimed++;
             if (!GameManager.Instance.DebugMode)
             {
+                LobbyCore.DisplayLoadingPanel();
                 Dictionary<string, int> quests = new Dictionary<string, int>();
                 quests.Add("DailyCheckIn", PlayerData.DailyCheckIn);
                 quests.Add("SocMedShared", PlayerData.SocMedShared);
@@ -240,12 +241,10 @@ public class QuestCore : MonoBehaviour
                 resultCallback =>
                 {
                     failedCallbackCounter = 0;
-                    Debug.Log(JsonConvert.SerializeObject(resultCallback.FunctionResult));
-                    if (GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "messageValue") == "Success")
-                    {
-                        PlayerData.Optibit = int.Parse(GameManager.Instance.DeserializeStringValue(JsonConvert.SerializeObject(resultCallback.FunctionResult), "Optibit"));
-                        LobbyCore.DisplayOptibits();
-                    }
+                    LobbyCore.HideLoadingPanel();
+                    PlayerData.Optibit += 100;
+                    LobbyCore.DisplayOptibits();
+                    GameManager.Instance.DisplayErrorPanel("You gained 100 Optibits. Your new balance is " + PlayerData.Optibit.ToString("n0"));
                 },
                 errorCallback =>
                 {
@@ -257,7 +256,10 @@ public class QuestCore : MonoBehaviour
             }
         }
         else
-            Debug.Log("Daily quest has already been claimed");
+        {
+            LobbyCore.HideLoadingPanel();
+            GameManager.Instance.DisplayErrorPanel("Daily quest has already been claimed");
+        }
             //Advertisements.Instance.ShowRewardedVideo(CompleteMethod);
     }
     private void CompleteMethod(bool completed)
@@ -316,14 +318,21 @@ public class QuestCore : MonoBehaviour
             else
                 restartAction();
         }
+        else if (errorCode == PlayFabErrorCode.InternalServerError)
+            ProcessSpecialError();
         else
             errorAction();
     }
 
     private void ProcessError(string errorMessage)
     {
-        //HideLoadingPanel();
+        LobbyCore.HideLoadingPanel();
         GameManager.Instance.DisplayErrorPanel(errorMessage);
+    }
+    private void ProcessSpecialError()
+    {
+        LobbyCore.HideLoadingPanel();
+        GameManager.Instance.DisplaySpecialErrorPanel("Server Error. Please restart the game");
     }
     #endregion
 }

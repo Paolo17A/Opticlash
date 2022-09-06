@@ -12,12 +12,16 @@ public class ClaimCore : MonoBehaviour
     //=====================================================================
     [field: SerializeField] private PlayerData PlayerData { get; set; }
     [field: SerializeField] private LobbyCore LobbyCore { get; set; }
+    [field: SerializeField] private GameObject RewardedCostume { get; set; }
+    [field: SerializeField] private SpriteRenderer CostumeSprite { get; set; }
 
     [field: Header("INPUT")]
     [field: SerializeField] private TMP_InputField CodeInputField { get; set; }
 
     [field: Header("DEBUGGER")]
     private int failedCallbackCounter;
+    private bool mayClaimFreeCostume;
+    private string unownedCostume;
     //=====================================================================
 
     public void ProcessInputCode()
@@ -30,8 +34,8 @@ public class ClaimCore : MonoBehaviour
         {
             if (CodeInputField.text == "CBS4L1FE0PT1CL4SHB3T4")
             {
-                bool mayClaimFreeCostume = false;
-                string unownedCostume = "";
+                mayClaimFreeCostume = false;
+                unownedCostume = "";
                 foreach (CustomCostumeData costume in PlayerData.OwnedCostumes)
                     if (!costume.CostumeIsOwned)
                     {
@@ -63,20 +67,28 @@ public class ClaimCore : MonoBehaviour
                 failedCallbackCounter = 0;
                 if (resultCallback.Data["LUID"].Value == PlayerData.LUID)
                 {
-                    List<string> claimedCodes = JsonConvert.DeserializeObject<List<string>>(resultCallback.Data["RedeemCode"].Value);
-                    if (claimedCodes.Contains(_inputCode))
+                    if(resultCallback.Data.ContainsKey("RedeemCode"))
                     {
-                        LobbyCore.HideLoadingPanel();
-                        GameManager.Instance.DisplayErrorPanel("You have already claimed this code before");
-                        CodeInputField.text = "";
+                        List<string> claimedCodes = JsonConvert.DeserializeObject<List<string>>(resultCallback.Data["RedeemCode"].Value);
+                        if (claimedCodes.Contains(_inputCode))
+                        {
+                            LobbyCore.HideLoadingPanel();
+                            GameManager.Instance.DisplayErrorPanel("You have already claimed this code before");
+                            CodeInputField.text = "";
+                        }
+                        else
+                            UpdateUserData(claimedCodes, _inputCode, _unownedCostume);
                     }
                     else
+                    {
+                        List<string> claimedCodes = new List<string>();
                         UpdateUserData(claimedCodes, _inputCode, _unownedCostume);
+                    }
                 }
                 else
                 {
                     LobbyCore.HideLoadingPanel();
-                    Debug.Log("Dual log in");
+                    GameManager.Instance.DisplayDualLoginErrorPanel();
                 }
             },
             errorCallback =>
@@ -98,7 +110,6 @@ public class ClaimCore : MonoBehaviour
         resultCallback =>
         {
             failedCallbackCounter = 0;
-            //Debug.Log("code has been claimed");
             GrantCostumeCloudscript(_unownedCostume);
         },
         errorCallback =>
@@ -122,6 +133,7 @@ public class ClaimCore : MonoBehaviour
             failedCallbackCounter = 0;
             Debug.Log(resultCallback.FunctionResult);
             CodeInputField.text = "";
+            GameManager.Instance.DisplayErrorPanel("A new costume has been added to your inventory");
             LobbyCore.CurrentLobbyState = LobbyCore.LobbyStates.CORE;
             LobbyCore.InitializeLobby();
         },
@@ -145,6 +157,8 @@ public class ClaimCore : MonoBehaviour
             else
                 restartAction();
         }
+        else if (errorCode == PlayFabErrorCode.InternalServerError)
+            ProcessSpecialError();
         else
             errorAction();
     }
@@ -153,6 +167,12 @@ public class ClaimCore : MonoBehaviour
     {
         LobbyCore.HideLoadingPanel();
         GameManager.Instance.DisplayErrorPanel(errorMessage);
+    }
+
+    private void ProcessSpecialError()
+    {
+        LobbyCore.HideLoadingPanel();
+        GameManager.Instance.DisplaySpecialErrorPanel("Server Error. Please restart the game");
     }
     #endregion
 }

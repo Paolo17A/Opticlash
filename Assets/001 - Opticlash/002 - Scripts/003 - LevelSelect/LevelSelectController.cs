@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using MyBox;
 using PlayFab;
 using PlayFab.ClientModels;
@@ -28,9 +29,25 @@ public class LevelSelectController : MonoBehaviour
             {
                 GameManager.Instance.PanelActivated = true;
                 GameManager.Instance.CurrentLevelData = LevelData;
-                AdventureCore.SelectedStageImage.sprite = GameManager.Instance.CurrentLevelData.SelectedLevelSprite;
+
+                AdventureCore.StageNumberTMP.text = "Stage " + LevelData.LevelIndex;
+                foreach (Image monserSlot in AdventureCore.MonsterSlotImages)
+                    monserSlot.gameObject.SetActive(false);
+                for (int i = 0; i < LevelData.MonsterList.Count; i++)
+                {
+                    AdventureCore.MonsterSlotImages[i].gameObject.SetActive(true);
+                    AdventureCore.MonsterSlotImages[i].sprite = LevelData.MonsterSprites[i];
+                }
+                AdventureCore.WavesCountMP.text = LevelData.MonsterList.Count.ToString();
+                foreach (Image rewardSlot in AdventureCore.RewardSlotImages)
+                    rewardSlot.gameObject.SetActive(false);
+                for (int i = 0; i < LevelData.RewardSprites.Count; i++)
+                {
+                    AdventureCore.RewardSlotImages[i].gameObject.SetActive(true);
+                    AdventureCore.RewardSlotImages[i].sprite = LevelData.RewardSprites[i];
+                }
+
                 AdventureCore.StageSelectAnimator.SetBool("ShowStageSelect", true);
-                //OpenCombatScene();
             }
             else
             {
@@ -39,7 +56,4 @@ public class LevelSelectController : MonoBehaviour
             }
         }
     }
-
-
-    
 }

@@ -35,10 +35,10 @@ public class GemController : MonoBehaviour
             transform.position = BoardPosition;
             BoardCore.AllGems[PositionIndex.x, PositionIndex.y] = this;
         }
-        if (mousePressed && Input.GetMouseButtonUp(0))
+        if (mousePressed && Input.GetMouseButton(0))
         {
-            mousePressed = false;
-            if(BoardCore.CurrentBoardState == BoardCore.BoardState.MOVING && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
+            //mousePressed = false;
+            if(BoardCore.CurrentBoardState == BoardCore.BoardState.MOVING && CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER && !CombatCore.SpawnedPlayer.SkillButtonPressed)
             {
                 endingTouchPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 CalculateAngle();
@@ -73,6 +73,7 @@ public class GemController : MonoBehaviour
 
     private void MovePieces()
     {
+        GameManager.Instance.SFXAudioManager.PlayMoveSFX();
         PreviousPosition = PositionIndex;
         PreviousBoardPosition = BoardPosition;
 
@@ -140,6 +141,7 @@ public class GemController : MonoBehaviour
 
                 yield return new WaitForSeconds(0.3f);
                 BoardCore.CurrentBoardState = BoardCore.BoardState.MOVING;
+                mousePressed = false;
             }
             else
             {
@@ -148,6 +150,7 @@ public class GemController : MonoBehaviour
                     BoardCore.ShotsEarned = 0;
                     CombatCore.CurrentCombatState = CombatCore.CombatState.PLAYERTURN;
                 }
+                mousePressed = false;
                 CombatCore.StopTimerCoroutine();
                 BoardCore.DestroyMatches();
             }

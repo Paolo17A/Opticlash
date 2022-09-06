@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using MyBox;
 
@@ -48,14 +49,19 @@ public class EntryCore : MonoBehaviour
     [field: SerializeField] public Animator EntryAnimator { get; set; }
     [field: SerializeField] private LoginCore LoginCore { get; set; }
     [field: SerializeField] private WalletController WalletController { get; set; }
-    //[field: SerializeField] private PlayerData PlayerData { get; set; }*/
 
     [field: Header("LOADING")]
     [field: SerializeField] private GameObject LoadingPanel { get; set; }
 
+    [field: Header("VERSION")]
+    [field: SerializeField] public TextMeshProUGUI VersionTMP { get; set; }
+
     [field: Header("LOGIN")]
     [field: SerializeField] public TMP_InputField UsernameLoginTMP { get; set; }
     [field: SerializeField] public TMP_InputField PasswordLoginTMP { get; set; }
+
+    [field: Header("REMEMBER")]
+    [field: SerializeField] public Toggle RememberMeToggle { get; set; }
     //======================================================================
 
     public void LoginButton()
@@ -93,42 +99,20 @@ public class EntryCore : MonoBehaviour
         }
         else
         {
-            Debug.Log("made it here");
             LoginCore.LoginUserPlayfab(UsernameLoginTMP.text, PasswordLoginTMP.text);
         }
     }
 
-    public void MetamaskLoginButton()
+    public void ShowComingSoon()
     {
-
-    }
-    
-
-    public void LogOutButton()
-    {
-        //PlayerData.ResetPlayerData();
-        PlayerPrefs.DeleteAll();
-        CurrentEntryState = EntryCore.EntryStates.PLAY;
+        GameManager.Instance.DisplayErrorPanel("COMING SOON");
     }
 
-    #region LINKS
     public void OpenWebsite()
     {
-        Application.OpenURL("https://ezmoneyph.com/");
+        Application.OpenURL("https://optibit.tech/");
     }
-    public void OpenFacebook()
-    {
-        Application.OpenURL("https://www.facebook.com/EZMoneyPH/");
-    }
-    public void OpenTwitter()
-    {
-        Application.OpenURL("https://twitter.com/RealEZMoneyPH");
-    }
-    public void OpenInstagram()
-    {
-        Application.OpenURL("https://www.instagram.com/officialezmoneyph/");
-    }
-    #endregion
+    
 
     #region UTILITY
     public void ResetLoginPanel()

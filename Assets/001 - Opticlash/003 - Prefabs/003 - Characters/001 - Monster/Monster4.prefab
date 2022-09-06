@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5712013273423734151}
   - component: {fileID: 5712013273423734150}
-  - component: {fileID: 5712013273423734169}
   m_Layer: 0
   m_Name: T3S
   m_TagString: Untagged
@@ -84,29 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5712013273423734169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5712013273423734148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 5712013274524003961}
-  m_BoneTransforms:
-  - {fileID: 5712013274524003961}
-  - {fileID: 5712013275302305931}
-  - {fileID: 5712013273536952139}
-  - {fileID: 5712013274139663447}
-  m_Bounds:
-    m_Center: {x: 1.5425919, y: -3.0177004, z: 0}
-    m_Extent: {x: 0.98740804, y: 1.2077005, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &5712013273437655664
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +93,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5712013273437655667}
   - component: {fileID: 5712013273437655666}
-  - component: {fileID: 5712013273437655669}
   m_Layer: 0
   m_Name: T4S
   m_TagString: Untagged
@@ -191,29 +166,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5712013273437655669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5712013273437655664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 5712013274452986824}
-  m_BoneTransforms:
-  - {fileID: 5712013274452986824}
-  - {fileID: 5712013274451641207}
-  - {fileID: 5712013274522617757}
-  - {fileID: 5712013273522823293}
-  m_Bounds:
-    m_Center: {x: 5.1694117, y: -2.915, z: 0}
-    m_Extent: {x: 0.9794123, y: 1.2049999, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &5712013273459678180
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +431,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5712013273636172133
@@ -523,7 +475,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5712013273669796165}
   - component: {fileID: 5712013273669796164}
-  - component: {fileID: 5712013273669796167}
   m_Layer: 0
   m_Name: RAS
   m_TagString: Untagged
@@ -597,32 +548,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5712013273669796167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5712013273669796162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 5712013275259890993}
-  m_BoneTransforms:
-  - {fileID: 5712013275259890993}
-  - {fileID: 5712013274761205785}
-  - {fileID: 5712013275073910305}
-  - {fileID: 5712013274880025543}
-  - {fileID: 5712013274201887463}
-  - {fileID: 5712013273636172132}
-  - {fileID: 5712013274703289199}
-  m_Bounds:
-    m_Center: {x: -2.4650004, y: -1.0843894, z: 0}
-    m_Extent: {x: 3.8350008, y: 1.7643902, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &5712013273829955515
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +700,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5712013273906117144}
   - component: {fileID: 5712013273906117147}
-  - component: {fileID: 5712013273906117146}
   m_Layer: 0
   m_Name: T2S
   m_TagString: Untagged
@@ -849,29 +773,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5712013273906117146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5712013273906117145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 5712013275068784735}
-  m_BoneTransforms:
-  - {fileID: 5712013275068784735}
-  - {fileID: 5712013275358522418}
-  - {fileID: 5712013274946976009}
-  - {fileID: 5712013274833899574}
-  m_Bounds:
-    m_Center: {x: 4.0351343, y: -3.0226455, z: 0}
-    m_Extent: {x: 1.0814451, y: 1.3626456, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &5712013273927537789
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,7 +852,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5712013274023517573
@@ -1033,7 +934,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5712013274055872479
@@ -1108,7 +1009,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5712013274132116973}
   - component: {fileID: 5712013274132116972}
-  - component: {fileID: 5712013274132116975}
   m_Layer: 0
   m_Name: Glass
   m_TagString: Untagged
@@ -1181,25 +1081,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5712013274132116975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5712013274132116970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 0}
-  m_BoneTransforms: []
-  m_Bounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &5712013274139663444
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,7 +1327,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5712013274457912073}
   - component: {fileID: 5712013274457912072}
-  - component: {fileID: 5712013274457912075}
   m_Layer: 0
   m_Name: T1S
   m_TagString: Untagged
@@ -1520,29 +1400,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5712013274457912075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5712013274457912310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 5712013275053391039}
-  m_BoneTransforms:
-  - {fileID: 5712013275053391039}
-  - {fileID: 5712013274055872478}
-  - {fileID: 5712013274444275935}
-  - {fileID: 5712013273845028048}
-  m_Bounds:
-    m_Center: {x: 2.6850004, y: -3.1243896, z: 0}
-    m_Extent: {x: 1.0850003, y: 1.3643899, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &5712013274491402906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,7 +1697,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5712013274634790156
@@ -1922,7 +1779,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5712013274644561942
@@ -2004,7 +1861,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5712013274703289196
@@ -2156,7 +2013,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5712013274864365107}
   - component: {fileID: 5712013274864365106}
-  - component: {fileID: 5712013274864365109}
   m_Layer: 0
   m_Name: LAS
   m_TagString: Untagged
@@ -2230,32 +2086,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5712013274864365109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5712013274864365104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RootBone: {fileID: 5712013273491353649}
-  m_BoneTransforms:
-  - {fileID: 5712013273491353649}
-  - {fileID: 5712013274549693215}
-  - {fileID: 5712013274131801087}
-  - {fileID: 5712013274937448347}
-  - {fileID: 5712013275516360402}
-  - {fileID: 5712013275525207405}
-  - {fileID: 5712013273829955514}
-  m_Bounds:
-    m_Center: {x: -2.4650006, y: -1.0843894, z: 0}
-    m_Extent: {x: 3.8350005, y: 1.7643902, z: 0}
-  m_UseBatching: 1
-  m_AlwaysUpdate: 1
 --- !u!1 &5712013274880025540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2428,7 +2258,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5712013274999951019
@@ -2510,7 +2340,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5712013275053391036
@@ -2729,7 +2559,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5712013275196644805
@@ -2811,7 +2641,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5712013275223131715

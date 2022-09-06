@@ -19,4 +19,4 @@ MonoBehaviour:
   <EquippedSprite>k__BackingField: {fileID: 21300000, guid: 4e49db719436fe349b303ca5ce1ae9fb, type: 3}
   <InfoSprite>k__BackingField: {fileID: 21300000, guid: 38985290fa02d7246954b07e20ae7d3c, type: 3}
   <ProvidedImmunity>k__BackingField: 5
-  <CostumeLevel>k__BackingField: 0
+  <CostumeLevel>k__BackingField: 8

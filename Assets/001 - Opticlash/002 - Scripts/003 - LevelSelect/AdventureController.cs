@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MyBox;
+using UnityEngine.Rendering.Universal;
 
 public class AdventureController : MonoBehaviour
 {
+    #region VARIABLES
+    //============================================================================================
     [field:  SerializeField] private AdventureCore AdventureCore { get; set; }
 
     [Header("DRAG VARIABLES")]
@@ -12,12 +15,26 @@ public class AdventureController : MonoBehaviour
     [SerializeField] [ReadOnly] private Vector3 previousTouchPoint;
     [SerializeField] [ReadOnly] private Vector3 nextTouchPoint;
     [SerializeField] [ReadOnly] private Vector3 draggedEndPoint;
-    [SerializeField] private float speed;
+    [SerializeField] [ReadOnly] private Vector3 dummyVector;
+    //[SerializeField] private float speed;
 
     [Header("DEBUGGER")]
+    [SerializeField][ReadOnly] private GameObject shrunkenLevel;
     private Vector3 mousePos;
     private Vector2 mousePos2D;
     private RaycastHit2D hit;
+    [SerializeField][ReadOnly] private bool isScrolling;
+    [SerializeField][ReadOnly] private int normalVector;
+    [SerializeField][ReadOnly] private float newCameraPosY;
+    //============================================================================================
+    #endregion
+
+    private void OnEnable()
+    {
+        GameManager.Instance.MainCamera.GetUniversalAdditionalCameraData().renderPostProcessing = false;
+        GameManager.Instance.MyUICamera.GetUniversalAdditionalCameraData().renderPostProcessing = false;
+
+    }
 
     private void Start()
     {
@@ -28,38 +45,114 @@ public class AdventureController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(Application.isEditor)
         {
-            initialTouchPoint = GameManager.Instance.MainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.y));
-            previousTouchPoint = initialTouchPoint;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            nextTouchPoint = GameManager.Instance.MainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-            if (nextTouchPoint != previousTouchPoint && !GameManager.Instance.PanelActivated)
+            if (Input.GetMouseButtonDown(0))
             {
-                draggedEndPoint = previousTouchPoint - nextTouchPoint;
+                initialTouchPoint = GameManager.Instance.MainCamera.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, 0));
+                previousTouchPoint = initialTouchPoint;
 
-                AdventureCore._virtualCamera.transform.position += new Vector3(0, draggedEndPoint.y, 0) * speed * Time.deltaTime;
-                AdventureCore._virtualCamera.transform.position = new Vector3(0, Mathf.Clamp(AdventureCore._virtualCamera.transform.position.y, 0, 95f), AdventureCore._virtualCamera.transform.position.z);
+                mousePos = GameManager.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+                mousePos2D = new Vector2(mousePos.x, mousePos.y);
+                hit = Physics2D.Raycast(mousePos2D, Vector3.forward);
+                if (!GameManager.Instance.PanelActivated && !AdventureCore.StageSelectAnimator.GetBool("ShowStageSelect")  && hit && hit.collider.gameObject.tag == "Level")
+                {
+                    shrunkenLevel = hit.collider.gameObject;
+                    shrunkenLevel.GetComponent<ButtonScaler>().PushButtonDown();
+                }
 
-                previousTouchPoint = nextTouchPoint;
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                if (shrunkenLevel != null)
+                {
+                    shrunkenLevel.GetComponent<ButtonScaler>().PushButtonUp();
+                    shrunkenLevel = null;
+                }
+                mousePos = GameManager.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+                mousePos2D = new Vector2(mousePos.x, mousePos.y);
+                hit = Physics2D.Raycast(mousePos2D, Vector3.forward);
+                if (!GameManager.Instance.PanelActivated && !AdventureCore.StageSelectAnimator.GetBool("ShowStageSelect") && !isScrolling && hit && hit.collider.gameObject.tag == "Level")
+                {
+                    
+                    hit.collider.gameObject.GetComponent<LevelSelectController>().ProcessLevel();
+                }
+
+                initialTouchPoint = Vector3.zero;
+                previousTouchPoint = Vector3.zero;
+                nextTouchPoint = Vector3.zero;
+                draggedEndPoint = Vector3.zero;
+                isScrolling = false;
+                
+            }
+            if (Input.GetMouseButton(0))
+            {
+                nextTouchPoint = GameManager.Instance.MainCamera.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, 0));
+                if (nextTouchPoint.y != previousTouchPoint.y && !GameManager.Instance.PanelActivated)
+                {
+                    isScrolling = true;
+                    draggedEndPoint = previousTouchPoint - nextTouchPoint;
+                    dummyVector = AdventureCore._virtualCamera.transform.position + new Vector3(0, draggedEndPoint.y, 0);
+                    AdventureCore._virtualCamera.transform.position = new Vector3(0, Mathf.Clamp(dummyVector.y, 0, AdventureCore.MaxYClamp), AdventureCore._virtualCamera.transform.position.z);
+                }
             }
         }
-        else if (Input.GetMouseButtonUp(0))
+        else
         {
-            initialTouchPoint = new Vector3(0, 0, 0);
-            previousTouchPoint = new Vector3(0, 0, 0);
-            nextTouchPoint = new Vector3(0, 0, 0);
-            draggedEndPoint = new Vector3(0, 0, 0);
-
-            mousePos = GameManager.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-            mousePos2D = new Vector2(mousePos.x, mousePos.y);
-            hit = Physics2D.Raycast(mousePos2D, Vector3.forward);
-            if (!GameManager.Instance.PanelActivated && hit && hit.collider.gameObject.tag == "Level")
+            if(Input.touches.Length > 0 && !GameManager.Instance.PanelActivated)
             {
-                hit.collider.gameObject.GetComponent<LevelSelectController>().ProcessLevel();
+                if (Input.GetTouch(0).phase == TouchPhase.Began )
+                {
+                    initialTouchPoint = GameManager.Instance.MainCamera.ScreenToWorldPoint(new Vector3(0, Input.GetTouch(0).position.y, 0));
+                    previousTouchPoint = initialTouchPoint;
+                    newCameraPosY = AdventureCore._virtualCamera.transform.position.y;
+
+                    mousePos = GameManager.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+                    mousePos2D = new Vector2(mousePos.x, mousePos.y);
+                    hit = Physics2D.Raycast(mousePos2D, Vector3.forward);
+                    if (!AdventureCore.StageSelectAnimator.GetBool("ShowStageSelect") && hit && hit.collider.gameObject.tag == "Level")
+                    {
+                        shrunkenLevel = hit.collider.gameObject;
+                        shrunkenLevel.GetComponent<ButtonScaler>().PushButtonDown();
+                    }
+                }
+                else if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                {
+                    if (shrunkenLevel != null)
+                    {
+                        shrunkenLevel.GetComponent<ButtonScaler>().PushButtonUp();
+                        shrunkenLevel = null;
+                    }
+                    mousePos = GameManager.Instance.MainCamera.ScreenToWorldPoint(Input.GetTouch(0).position);
+                    mousePos2D = new Vector2(mousePos.x, mousePos.y);
+                    hit = Physics2D.Raycast(mousePos2D, Vector3.forward);
+                    if (!GameManager.Instance.PanelActivated && !AdventureCore.StageSelectAnimator.GetBool("ShowStageSelect") && !isScrolling && hit && hit.collider.gameObject.tag == "Level")
+                    {
+                        hit.collider.gameObject.GetComponent<LevelSelectController>().ProcessLevel();
+                    }
+
+                    initialTouchPoint = Vector3.zero;
+                    previousTouchPoint = Vector3.zero;
+                    nextTouchPoint = Vector3.zero;
+                    draggedEndPoint = Vector3.zero;
+                    dummyVector = Vector3.zero;
+                    isScrolling = false;
+                }
+                if (Input.GetTouch(0).phase == TouchPhase.Moved)
+                {
+                    AdventureCore._virtualCamera.transform.position = new Vector3(0, Mathf.Clamp(-newCameraPosY, 0, AdventureCore.MaxYClamp), AdventureCore._virtualCamera.transform.position.z);
+                    nextTouchPoint = GameManager.Instance.MainCamera.ScreenToWorldPoint(new Vector3(0, Input.GetTouch(0).position.y, 0));
+                    if (nextTouchPoint.y != previousTouchPoint.y && !GameManager.Instance.PanelActivated)
+                    {
+                        isScrolling = true;
+                        draggedEndPoint = -Input.GetTouch(0).deltaPosition * Time.deltaTime;
+                        newCameraPosY += draggedEndPoint.y;
+
+                        AdventureCore._virtualCamera.transform.position = new Vector3(0, Mathf.Clamp(newCameraPosY, 0, AdventureCore.MaxYClamp), AdventureCore._virtualCamera.transform.position.z);
+                    }
+                }
             }
         }
+        
     }
 }

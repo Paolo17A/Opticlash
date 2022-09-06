@@ -17,6 +17,7 @@ MonoBehaviour:
   <BaseDamage>k__BackingField: 10
   <Accuracy>k__BackingField: 95
   <StartingAmmo>k__BackingField: 350
+  <StartingLevel>k__BackingField: 14
   <UpgradeValue>k__BackingField: 0.5
   <Abilities>k__BackingField: 30 % chance to shoot 180% stronger bullet in every
     2 turns with 25% chance to confuse enemy for 3 turns and apply weak status to

@@ -14,18 +14,31 @@ public class LoginCore : MonoBehaviour
     [field: SerializeField] private EntryCore EntryCore { get; set; }
     [field: SerializeField] private PlayerData PlayerData { get; set; }
 
+    [Header("PLAYFAB VARIABLES")]
+    private RegisterPlayFabUserRequest registerPlayFabUser;
+    private LoginWithPlayFabRequest loginWithPlayFab;
+    private LoginWithEmailAddressRequest loginWithEmailAddress;
+
     [Header("DEBUGGER")]
     private int failedCallbackCounter;
     private Guid myGUID;
+    private string quests;
     //===============================================================================================
+    private void Awake()
+    {
+        registerPlayFabUser = new RegisterPlayFabUserRequest();
+        loginWithPlayFab = new LoginWithPlayFabRequest();
+        loginWithEmailAddress = new LoginWithEmailAddressRequest();
+    }
+
+    #region REGISTRATION
     public void RegisterNewUserPlayfab()
     {
         EntryCore.DisplayLoadingPanel();
-        RegisterPlayFabUserRequest registerPlayFabUser = new RegisterPlayFabUserRequest();
         registerPlayFabUser.TitleId = "BB42A";
-        registerPlayFabUser.Email = "test@gmail.com";
-        registerPlayFabUser.Username = "test123";
-        registerPlayFabUser.DisplayName = "test123";
+        registerPlayFabUser.Email = "testuser10@gmail.com";
+        registerPlayFabUser.Username = "testuser10";
+        registerPlayFabUser.DisplayName = "testuser10";
         registerPlayFabUser.Password = "password";
 
         PlayFabClientAPI.RegisterPlayFabUser(registerPlayFabUser,
@@ -63,15 +76,14 @@ public class LoginCore : MonoBehaviour
                     RegistrationDataInitializationCloudscript,
                     () => ProcessError(errorCallback.ErrorMessage));
         });
-        
     }
+    #endregion
 
     public void LoginUserPlayfab(string username, string password)
     {
         EntryCore.DisplayLoadingPanel();
-        LoginWithPlayFabRequest loginWithPlayFab = new LoginWithPlayFabRequest();
         loginWithPlayFab.Username = username;
-        loginWithPlayFab.Password = password;
+        loginWithPlayFab.Password = "password";
 
         PlayFabClientAPI.LoginWithPlayFab(loginWithPlayFab,
             resultCallback =>
@@ -79,22 +91,84 @@ public class LoginCore : MonoBehaviour
                 failedCallbackCounter = 0;
                 PlayerData.PlayfabID = resultCallback.PlayFabId;
                 PlayerData.DisplayName = username;
-                LoginCredentials(username, password);
+                GetEncrypedPassword(username, password);
+            },
+            errorCallback =>
+            {
+                LoginEmailPlayfab(username, password);
+            });
+    }
+
+    private void LoginEmailPlayfab(string email, string password)
+    {
+        loginWithEmailAddress.Email = email;
+        loginWithEmailAddress.Password = password;
+
+        PlayFabClientAPI.LoginWithEmailAddress(loginWithEmailAddress,
+            resultCallback =>
+            {
+                failedCallbackCounter = 0;
+                PlayerData.PlayfabID = resultCallback.PlayFabId;
+                PlayerData.DisplayName = "";
+                GetEncrypedPassword(email, password);
             },
             errorCallback =>
             {
                 ErrorCallback(errorCallback.Error, () =>
-                    {
-                        EntryCore.HideLoadingPanel();
-                        GameManager.Instance.DisplayErrorPanel("Connectivity error. Please connect to strong internet");
-                    },
-                    () => LoginUserPlayfab(username, password),
+                {
+                    EntryCore.HideLoadingPanel();
+                    GameManager.Instance.DisplayErrorPanel("Connectivity error. Please connect to strong internet");
+                },
+                    () => LoginEmailPlayfab(email, password),
                     () =>
                     {
-                        Debug.Log("error came from h ere");
                         EntryCore.HideLoadingPanel();
                         GameManager.Instance.DisplayErrorPanel(errorCallback.ErrorMessage);
-                    } );
+                    });
+            });
+    }
+
+    public void GetEncrypedPassword(string username, string password)
+    {
+        PlayFabClientAPI.GetUserData(new GetUserDataRequest(),
+            resultCallback =>
+            {
+                failedCallbackCounter = 0;
+                if(resultCallback.Data.ContainsKey("Password"))
+                {
+                    if(resultCallback.Data["Password"].Value == Encrypt(password))
+                    {
+                        Debug.Log(Encrypt(password));
+                        LoginCredentials(username, password);
+                    }
+                    else
+                    {
+                        EntryCore.HideLoadingPanel();
+                        EntryCore.ResetLoginPanel();
+                        PlayerData.ResetPlayerData();
+                        PlayFabClientAPI.ForgetAllCredentials();
+                        GameManager.Instance.DisplayErrorPanel("Incorrect Password");
+                    }
+                }
+                else
+                {
+                    EntryCore.HideLoadingPanel();
+                    GameManager.Instance.DisplayErrorPanel("Please set up your password in the website");
+                }
+            },
+            errorCallback =>
+            {
+                ErrorCallback(errorCallback.Error, () =>
+                {
+                    EntryCore.HideLoadingPanel();
+                    GameManager.Instance.DisplayErrorPanel("Connectivity error. Please connect to strong internet");
+                },
+                    () => GetEncrypedPassword(username, password),
+                    () =>
+                    {
+                        EntryCore.HideLoadingPanel();
+                        GameManager.Instance.DisplayErrorPanel(errorCallback.ErrorMessage);
+                    });
             });
     }
 
@@ -111,11 +185,8 @@ public class LoginCore : MonoBehaviour
         {
             Debug.Log(resultCallback.FunctionResult);
             failedCallbackCounter = 0;
-            PlayerPrefs.SetString("Username", username);
-            PlayerPrefs.SetString("Password", password);
             if(resultCallback.FunctionResult == null)
             {
-                Debug.Log("nothing was returned");
                 EntryCore.HideLoadingPanel();
 
             }
@@ -128,7 +199,7 @@ public class LoginCore : MonoBehaviour
                     PlayerData.ActiveConstumeInstanceID = GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "ActiveCostume");
                     PlayerData.CurrentStage = int.Parse(GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "CurrentStage"));
 
-                    string quests = GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "Quests");
+                    quests = GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "Quests");
                     PlayerData.DailyCheckIn = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "DailyCheckIn"));
                     PlayerData.SocMedShared = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "SocMedShared"));
                     PlayerData.ItemsUsed = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "ItemsUsed"));
@@ -136,16 +207,18 @@ public class LoginCore : MonoBehaviour
                     PlayerData.LevelsWon = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "LevelsWon"));
                     PlayerData.DailyQuestClaimed = int.Parse(GameManager.Instance.DeserializeStringValue(quests, "DailyQuestClaimed"));
 
-                    PlayerPrefs.SetString("Username", username);
-                    PlayerPrefs.SetString("Password", password);
+                    if (EntryCore.RememberMeToggle.isOn)
+                    {
+                        PlayerPrefs.SetString("Username", username);
+                        PlayerPrefs.SetString("Password", password);
+                    }
+                    
                     EntryCore.HideLoadingPanel();
                     GameManager.Instance.SceneController.CurrentScene = "LobbyScene";
                 }
                 else
                     EntryCore.HideLoadingPanel();
-            }
-            
-            //GameManager.Instance.SceneController.CurrentScene = "LobbyScene";
+            }          
         },
         errorCallback =>
         {
@@ -179,14 +252,10 @@ public class LoginCore : MonoBehaviour
     }
 
     #region UTILITY
-    private void OpenGameSelectScene()
-    {
-        GameManager.Instance.SceneController.CurrentScene = "GameSelectScene";
-    }
     private string Encrypt(string _password)
     {
         string salt = "CBS";
-        string pepper = "EZMONEY";
+        string pepper = "OPTIBIT";
 
         using (SHA256 hash = SHA256.Create())
         {
@@ -227,6 +296,8 @@ public class LoginCore : MonoBehaviour
             else
                 restartAction();
         }
+        else if (errorCode == PlayFabErrorCode.InternalServerError)
+            ProcessSpecialError();
         else
         {
             if (processError != null)
@@ -247,6 +318,15 @@ public class LoginCore : MonoBehaviour
     {
         EntryCore.HideLoadingPanel();
         GameManager.Instance.DisplayErrorPanel(error);
+        PlayFabClientAPI.ForgetAllCredentials();
+        PlayerData.ResetPlayerData();
+        EntryCore.ResetLoginPanel();
+    }
+
+    private void ProcessSpecialError()
+    {
+        EntryCore.HideLoadingPanel();
+        GameManager.Instance.DisplaySpecialErrorPanel("Server Error. Please restart the game");
         PlayFabClientAPI.ForgetAllCredentials();
         PlayerData.ResetPlayerData();
         EntryCore.ResetLoginPanel();

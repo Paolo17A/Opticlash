@@ -19,27 +19,33 @@ public class EntryController : MonoBehaviour
 
     private void Start()
     {
-        if (!GameManager.Instance.AudioManager.IsPlaying)
-            GameManager.Instance.AudioManager.SwitchToLoadingMusic();
+        EntryCore.VersionTMP.text = "VERSION " +  Application.version;
+        if (!GameManager.Instance.BGMAudioManager.IsPlaying)
+            GameManager.Instance.BGMAudioManager.SwitchToLoadingMusic();
     }
 
     private void EntryStateChange(object sender, EventArgs e)
     {
         EntryCore.EntryAnimator.SetInteger("index", (int)EntryCore.CurrentEntryState);
 
-        if(EntryCore.CurrentEntryState == EntryCore.EntryStates.LOGIN && !GameManager.Instance.DebugMode && PlayerPrefs.HasKey("Username") && PlayerPrefs.HasKey("Password"))
+        if (EntryCore.CurrentEntryState == EntryCore.EntryStates.LOGIN && !GameManager.Instance.DebugMode && PlayerPrefs.HasKey("Username") && PlayerPrefs.HasKey("Password"))
         {
             EntryCore.UsernameLoginTMP.text = PlayerPrefs.GetString("Username");
             EntryCore.PasswordLoginTMP.text = PlayerPrefs.GetString("Password");
-            if(GameManager.Instance.DebugMode)
+            if (GameManager.Instance.DebugMode)
             {
                 EntryCore.ResetLoginPanel();
                 EntryCore.CurrentEntryState = EntryCore.EntryStates.NONE;
                 GameManager.Instance.SceneController.CurrentScene = "CombatScene";
             }
             else
+            {
+                EntryCore.RememberMeToggle.isOn = true;
                 LoginCore.LoginUserPlayfab(PlayerPrefs.GetString("Username"), PlayerPrefs.GetString("Password"));
+            }
         }
+        else if (EntryCore.CurrentEntryState == EntryCore.EntryStates.METHODS)
+            EntryCore.ResetLoginPanel();
 
     }
     //========================================================================================

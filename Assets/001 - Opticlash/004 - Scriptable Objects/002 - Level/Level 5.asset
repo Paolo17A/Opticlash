@@ -13,13 +13,21 @@ MonoBehaviour:
   m_Name: Level 5
   m_EditorClassIdentifier: 
   <LevelIndex>k__BackingField: 5
-  <SelectedLevelSprite>k__BackingField: {fileID: 21300000, guid: d991ea8743cb27f489868ad793108357, type: 3}
   <MonsterList>k__BackingField:
   - NormalMonster005
   - NormalMonster001
   - NormalMonster005
   - NormalMonster002
-  <MonsterLevels>k__BackingField: 01000000020000000300000004000000
+  <MonsterLevels>k__BackingField: 00000000010000000200000003000000
+  <MonsterSprites>k__BackingField:
+  - {fileID: 21300000, guid: 1334389cdf21d7241967cf429a50e0c4, type: 3}
+  - {fileID: 21300000, guid: 7d57afa22c1c8e146abdb3217d359a93, type: 3}
+  - {fileID: 21300000, guid: 1334389cdf21d7241967cf429a50e0c4, type: 3}
+  - {fileID: 21300000, guid: 8d740f6552b337249940abdcb582c40d, type: 3}
+  <RewardSprites>k__BackingField:
+  - {fileID: 21300000, guid: 738c0d848c97d7a40a362767bd18bfa8, type: 3}
+  - {fileID: 21300000, guid: 01b8e7973d8b4354fb644c055fc9e8ec, type: 3}
+  - {fileID: 21300000, guid: 5ab6d82bb0e71a84c89856286dde6491, type: 3}
   <MinDroppedOPB>k__BackingField: 0
   <MaxDroppedOPB>k__BackingField: 100
   <MinDroppedNormalFragment>k__BackingField: 0

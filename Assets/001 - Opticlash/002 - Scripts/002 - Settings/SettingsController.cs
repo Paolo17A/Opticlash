@@ -32,15 +32,15 @@ public class SettingsController : MonoBehaviour
         else
             SettingsCore.EffectsVolumeValue = 0.5f;
 
-        if(!GameManager.Instance.AudioManager.IsPlaying)
-            GameManager.Instance.AudioManager.SwitchToLoadingMusic();
+        if(!GameManager.Instance.BGMAudioManager.IsPlaying)
+            GameManager.Instance.BGMAudioManager.SwitchToLoadingMusic();
     }
 
     private void MusicVolumeValueChange(object sender, EventArgs e)
     {
         SettingsData.MusicVolume = SettingsCore.MusicVolumeValue;
         SettingsCore.MusicVolumeSlider.value = SettingsData.MusicVolume;
-        GameManager.Instance.AudioManager.AudioSource.volume = SettingsData.MusicVolume;
+        GameManager.Instance.BGMAudioManager.AudioSource.volume = SettingsData.MusicVolume;
 
         PlayerPrefs.SetFloat("MusicVolume", SettingsData.MusicVolume);
     }
@@ -48,6 +48,7 @@ public class SettingsController : MonoBehaviour
     {
         SettingsData.EffectsVolume = SettingsCore.EffectsVolumeValue;
         SettingsCore.EffectsVolumeSlider.value = SettingsData.EffectsVolume;
+        GameManager.Instance.SFXAudioManager.AudioSource.volume = SettingsData.EffectsVolume;
 
         PlayerPrefs.SetFloat("EffectsVolume", SettingsData.EffectsVolume);
     }

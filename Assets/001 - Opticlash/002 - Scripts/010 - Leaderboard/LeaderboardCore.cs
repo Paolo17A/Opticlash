@@ -4,6 +4,7 @@ using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using System;
+using TMPro;
 
 public class LeaderboardCore : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class LeaderboardCore : MonoBehaviour
     [field: SerializeField] private PlayerData PlayerData { get; set; }
     [field: SerializeField] private LobbyCore LobbyCore { get; set; }
     [field: SerializeField] private List<PlacementCore> PlacementList { get; set; }
+    [field: SerializeField] private PlacementCore MyPlacement { get; set; }
+    [field: SerializeField] private TextMeshProUGUI MyPlacementTMP { get; set; }
+
 
     [Header("DEBUGGER")]
     private int failedCallbackCounter;
@@ -29,6 +33,11 @@ public class LeaderboardCore : MonoBehaviour
             PlacementList[0].gameObject.SetActive(true);
             PlacementList[0].NameTMP.text = PlayerData.DisplayName;
             PlacementList[0].ScoreTMP.text = PlayerData.TotalKillCount.ToString();
+
+            MyPlacement.gameObject.SetActive(true);
+            MyPlacementTMP.text = "1st";
+            MyPlacement.NameTMP.text = PlayerData.DisplayName;
+            MyPlacement.ScoreTMP.text = PlayerData.TotalKillCount.ToString();
         }
         else
         {
@@ -54,6 +63,34 @@ public class LeaderboardCore : MonoBehaviour
                         InitializeLeaderboard,
                         () => ProcessError(errorCallback.ErrorMessage));
                 });
+
+            GetLeaderboardAroundPlayerRequest getLeaderboardAroundPlayer = new GetLeaderboardAroundPlayerRequest();
+            getLeaderboardAroundPlayer.PlayFabId = PlayerData.PlayfabID;
+            getLeaderboardAroundPlayer.StatisticName = "TotalKillCount";
+            getLeaderboardAroundPlayer.MaxResultsCount = 1;
+            PlayFabClientAPI.GetLeaderboardAroundPlayer(getLeaderboardAroundPlayer,
+                resultCallback =>
+                {
+                    failedCallbackCounter = 0;
+                    MyPlacement.gameObject.SetActive(true);
+                    if (resultCallback.Leaderboard[0].Position == 0)
+                        MyPlacementTMP.text = "1st";
+                    else if (resultCallback.Leaderboard[0].Position == 1)
+                        MyPlacementTMP.text = "2nd";
+                    else if (resultCallback.Leaderboard[0].Position == 2)
+                        MyPlacementTMP.text = "3rd";
+                    else
+                        MyPlacementTMP.text = (resultCallback.Leaderboard[0].Position + 1).ToString() + "th";
+
+                    MyPlacement.NameTMP.text = resultCallback.Leaderboard[0].DisplayName.ToString();
+                    MyPlacement.ScoreTMP.text = resultCallback.Leaderboard[0].StatValue.ToString();
+                },
+                errorCallback =>
+                {
+                    ErrorCallback(errorCallback.Error,
+                        InitializeLeaderboard,
+                        () => ProcessError(errorCallback.ErrorMessage));
+                });
         }
     }
 
@@ -68,6 +105,8 @@ public class LeaderboardCore : MonoBehaviour
             else
                 restartAction();
         }
+        else if (errorCode == PlayFabErrorCode.InternalServerError)
+            ProcessSpecialError();
         else
             errorAction();
     }
@@ -76,6 +115,12 @@ public class LeaderboardCore : MonoBehaviour
     {
         LobbyCore.HideLoadingPanel();
         GameManager.Instance.DisplayErrorPanel(errorMessage);
+    }
+
+    private void ProcessSpecialError()
+    {
+        LobbyCore.HideLoadingPanel();
+        GameManager.Instance.DisplaySpecialErrorPanel("Server Error. Please restart the game");
     }
     #endregion
 }

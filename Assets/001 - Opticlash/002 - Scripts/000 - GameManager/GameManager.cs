@@ -1,7 +1,9 @@
 using MyBox;
 using Newtonsoft.Json;
-//using PlayFab;
+using PlayFab;
+using PlayFab.ServerModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -39,11 +41,13 @@ public class GameManager : MonoBehaviour
 
     [field: Header("ERROR")]
     [field: SerializeField] private GameObject DualLogInErrorPanel { get; set; }
+    [field: SerializeField] private TextMeshProUGUI SpecialErrorTMP { get; set; }
     [field: SerializeField] private GameObject ErrorPanel { get; set; }
     [field: SerializeField] private TextMeshProUGUI ErrorTMP { get; set; }
 
     [field: Header("MISCELLANEOUS SCRIPTS")]
-    [field: SerializeField] public AudioManager AudioManager { get; set; }
+    [field: SerializeField] public AudioManager BGMAudioManager { get; set; }
+    [field: SerializeField] public AudioManager SFXAudioManager { get; set; }
     [field: SerializeField] public InventoryManager InventoryManager { get; set; }
     [field: SerializeField] public SceneController SceneController { get; set; }
 
@@ -72,13 +76,39 @@ public class GameManager : MonoBehaviour
             SceneController.CurrentScene = "EntryScene";
             /*if (string.IsNullOrEmpty(PlayFabSettings.TitleId))
                 PlayFabSettings.TitleId = "C1147";*/
+
+            PlayFabServerAPI.GetTitleData(new GetTitleDataRequest(),
+                resultCallback =>
+                {
+                    if (resultCallback.Data.ContainsKey("Version") && resultCallback.Data["Version"] == Application.version)
+                    {
+
+                    }
+                    else
+                        DisplaySpecialErrorPanel("Game is outdated. Please update.");
+                },
+                errorCallback =>
+                { 
+                
+                });
         }
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 
     #region ERRORS
     public void DisplayDualLoginErrorPanel()
     {
         DualLogInErrorPanel.SetActive(true);
+    }
+
+    public void DisplaySpecialErrorPanel(string _message)
+    {
+        DualLogInErrorPanel.SetActive(true);
+        SpecialErrorTMP.text = _message;
     }
 
     public void CloseGame()
@@ -95,7 +125,19 @@ public class GameManager : MonoBehaviour
 
     public void CloseErrorPanel()
     {
+        if(SceneController.CurrentScene == "AdventureScene")
+            StartCoroutine(DelayPanelReactivation());
+        else
+        {
+            ErrorPanel.SetActive(false);
+            PanelActivated = false;
+        }
+    }
+
+    private IEnumerator DelayPanelReactivation()
+    {
         ErrorPanel.SetActive(false);
+        yield return new WaitForSeconds(0.01f);
         PanelActivated = false;
     }
     #endregion

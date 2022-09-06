@@ -14,6 +14,7 @@ public class WeaponData : ScriptableObject
     [field: SerializeField] public float BaseDamage { get; set; }
     [field: SerializeField] public int Accuracy { get; set; }
     [field: SerializeField] public int StartingAmmo { get; set; }
+    [field: SerializeField] public int StartingLevel { get; set; }
     [field: SerializeField] public float UpgradeValue { get; set; }
     [field: SerializeField][field: TextArea(15, 10)] public string Abilities { get; set; }
 

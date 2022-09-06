@@ -367,7 +367,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478310774689934996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41, y: -3.13, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 478310775027434624}
@@ -418,17 +418,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCombatState: 0
   <CombatCore>k__BackingField: {fileID: 0}
+  <MonsterID>k__BackingField: 
   <EnemyAnim>k__BackingField: {fileID: 0}
   <EnemyAttackType>k__BackingField: 2
-  <CurrentHealth>k__BackingField: 0
-  <MaxHealth>k__BackingField: 0
-  <DamageDeal>k__BackingField: 0
-  <EvasionValue>k__BackingField: 0
   <HealthBar>k__BackingField: {fileID: 0}
   <HealthSlider>k__BackingField: {fileID: 0}
   <ThisMonsterPlacement>k__BackingField: 0
   <MayAttack>k__BackingField: 0
   <IsBoss>k__BackingField: 0
+  <SpecificProjectile>k__BackingField: {fileID: 0}
+  <MonsterLevel>k__BackingField: 0
+  <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  <DamageDeal>k__BackingField: 0
+  <EvasionValue>k__BackingField: 0
+  <Attack>k__BackingField: 0
+  <Accuracy>k__BackingField: 0
+  <Defense>k__BackingField: 0
   <StatusEffectImage>k__BackingField: {fileID: 0}
   <StatusEffectText>k__BackingField: {fileID: 0}
   <StatusEffectTextAnimator>k__BackingField: {fileID: 0}

@@ -13,13 +13,24 @@ MonoBehaviour:
   m_Name: Level 8
   m_EditorClassIdentifier: 
   <LevelIndex>k__BackingField: 8
-  <SelectedLevelSprite>k__BackingField: {fileID: 21300000, guid: 39fd50629d03b7e4b955575b5e27d562, type: 3}
   <MonsterList>k__BackingField:
   - NormalMonster002
   - BreakMonster005
   - NormalMonster004
   - ParalyzeMonster004
-  <MonsterLevels>k__BackingField: 04000000050000000600000007000000
+  <MonsterLevels>k__BackingField: 03000000040000000500000006000000
+  <MonsterSprites>k__BackingField:
+  - {fileID: 21300000, guid: 8d740f6552b337249940abdcb582c40d, type: 3}
+  - {fileID: 21300000, guid: 1334389cdf21d7241967cf429a50e0c4, type: 3}
+  - {fileID: 21300000, guid: 37cff649781ee1541a35dfc37270a9c7, type: 3}
+  - {fileID: 21300000, guid: 37cff649781ee1541a35dfc37270a9c7, type: 3}
+  <RewardSprites>k__BackingField:
+  - {fileID: 21300000, guid: 738c0d848c97d7a40a362767bd18bfa8, type: 3}
+  - {fileID: 21300000, guid: 06d42cb809b64274bae1b056781c3620, type: 3}
+  - {fileID: 21300000, guid: daa696d56ea2ba0479dd4d259bfc8a00, type: 3}
+  - {fileID: 21300000, guid: a191014334a727e41934d4d5b24bc69d, type: 3}
+  - {fileID: 21300000, guid: 01b8e7973d8b4354fb644c055fc9e8ec, type: 3}
+  - {fileID: 21300000, guid: 5ab6d82bb0e71a84c89856286dde6491, type: 3}
   <MinDroppedOPB>k__BackingField: 0
   <MaxDroppedOPB>k__BackingField: 200
   <MinDroppedNormalFragment>k__BackingField: 0

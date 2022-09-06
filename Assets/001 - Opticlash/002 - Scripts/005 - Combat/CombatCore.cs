@@ -59,8 +59,7 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] private BoardCore BoardCore { get; set; }
 
     [Header("LOADING")]
-    [SerializeField] private GameObject loadingPanel;
-    [SerializeField] private TextMeshProUGUI loadingTextTMP;
+    [SerializeField] private GameObject LoadingPanel;
     
     [field: Header("GAME VARIABLES")]
     [field: SerializeField][field: ReadOnly] public int QuestionTimerLeft { get; set; }
@@ -74,6 +73,10 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public TextMeshProUGUI StageTMP { get; set; }
     [field: SerializeField] [field: ReadOnly] public int MonstersKilled { get; set; }
     [field: SerializeField] public SpriteRenderer MissedSprite { get; set; }
+    [field: SerializeField] public Button PowerUpsBtn { get; set; }
+    [field: SerializeField] public Button ItemsBtn { get; set; }
+    [field: SerializeField] public Button ShuffleBtn { get; set; }
+    [field: SerializeField] public GameObject WaitPanel { get; set; }
 
     [field: Header("POWER UPS")]
     [field: SerializeField] public Button DoubleDamageBtn { get; set; }
@@ -82,15 +85,20 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public Button ShieldBtn { get; set; }
     [field: SerializeField] public GameObject ShieldImage { get; set; }
     [field: SerializeField] public TextMeshProUGUI ShieldTMP { get; set; }
-    [field: SerializeField] public Button WarpBtn { get; set; }
+    [field: SerializeField] public Button LifestealBtn { get; set; }
+    [field: SerializeField] public GameObject LifestealImage { get; set; }
+    [field: SerializeField] public TextMeshProUGUI LifestealTMP { get; set; }
     [field: SerializeField] public GameObject Portal { get; set; }
     [field: SerializeField] public Transform PortalEndPoint { get; set; }
-    [field: SerializeField] public Animator FlashAnimator { get; set; }
-    [field: SerializeField] public int MonstersSkipped { get; set; }
+
 
     [field: Header("SKILLS")]
     [field: SerializeField] public Button HealBtn { get; set; }
     [field: SerializeField] public TextMeshProUGUI HealChargesTMP { get; set; }
+    [field: SerializeField] public Button MediumHealBtn { get; set; }
+    [field: SerializeField] public TextMeshProUGUI MediumHealChargesTMP { get; set; }
+    [field: SerializeField] public Button LargeHealBtn { get; set; }
+    [field: SerializeField] public TextMeshProUGUI LargeHealChargesTMP { get; set; }
     [field: SerializeField] public Button BreakRemoveBtn { get; set; }
     [field: SerializeField] public TextMeshProUGUI BreakChargesTMP { get; set; }
     [field: SerializeField] public Button WeakRemoveBtn { get; set; }
@@ -101,48 +109,59 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public TextMeshProUGUI ParalyzeChargesTMP { get; set; }
     [field: SerializeField] public Button ConfuseRemoveBtn { get; set; }
     [field: SerializeField] public TextMeshProUGUI ConfuseChargesTMP { get; set; }
+    [field: SerializeField] public Button BurnRemoveBtn { get; set; }
+    [field: SerializeField] public TextMeshProUGUI BurnChargesTMP { get; set; } 
 
     [field: Header("LOCAL PLAYER DATA")]
     [field: SerializeField] public CharacterCombatController SpawnedPlayer { get; set; }
+    [field: SerializeField] public TextMeshPro PlayerTakenDamage { get; set; }
+    [field: SerializeField] public Animator PlayerTakenDamageAnimator { get; set; }
 
     [field: Header("LOCAL ENEMY DATA")]
     [field: SerializeField] public GameObject MonsterParent { get; set; }
     [field: SerializeField][field: ReadOnly] public int EnemyIndex { get; set; }
     [field: SerializeField][field: ReadOnly] public EnemyCombatController CurrentEnemy { get; set; }
+    [field: SerializeField] public TextMeshPro EnemyTakenDamage { get; set; }
+    [field: SerializeField] public Animator EnemyTakenDamageAnimator { get; set; }
     [field: SerializeField] public GameObject EnemyProjectile { get; set; }
     [field: SerializeField] public Vector3 EnemyProjectileStartingPoint { get; set; }
-    [field: SerializeField] public GameObject EnemyLaser { get; set; }
-    [field: SerializeField] public Vector3 EnemyLaserStartingPoint { get; set; }
 
     [field: Header("GAME OVER")]
     [field: SerializeField] private int OptibitDropped { get; set; }
     [field: SerializeField] private TextMeshProUGUI OptibitDroppedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int NormalFragmentDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI NormalFragmentTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int RareFragmentDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI RareFragmentTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int EpicFragmentDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI EpicFragmentTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int LegendFragmentDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI LegendFragmentTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int SmallHealSkillDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI SmallHealGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int MediumHealSkillDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI MediumHealGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int LargeHealSkillDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI LargeHealGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int BreakRemoveDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI BreakGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int WeakRemoveDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI WeakGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int FreezeRemoveDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI FreezeGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int ParalyzeRemoveDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI ParalyzeGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int ConfuseRemoveDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI ConfuseGainedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int BurnRemoveDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI BurnGainedTMP { get; set; }
+    [field: SerializeField] public Image OptiCostume { get; set; }
+    [field: SerializeField] public Image OptiCannon { get; set; }
+
+    [field: Header("STAGE CLEAR")]
+    [field: SerializeField] private List<RewardController> FragmentRewards { get; set; }
+    [field: SerializeField] private List<RewardController> ConsumableRewards { get; set; }
+    [field: SerializeField] private Sprite NormalFragmentSprite { get; set; }
+    [field: SerializeField] private Sprite RareFragmentSprite { get; set; }
+    [field: SerializeField] private Sprite EpicFragmentSprite { get; set; }
+    [field: SerializeField] private Sprite LegendFragmentSprite { get; set; }
+    [field: SerializeField] private Sprite SmallHealSprite { get; set; }
+    [field: SerializeField] private Sprite MediumHealSprite { get; set; }
+    [field: SerializeField] private Sprite LargeHealSprite { get; set; }
+    [field: SerializeField] private Sprite BreakRemoveSprite { get; set; }
+    [field: SerializeField] private Sprite BurnRemoveSprite { get; set; }
+    [field: SerializeField] private Sprite ConfuseRemoveSprite { get; set; }
+    [field: SerializeField] private Sprite FreezeRemoveSprite { get; set; }
+    [field: SerializeField] private Sprite ParalyzeRemoveSprite { get; set; }
+    [field: SerializeField] private Sprite WeakRemoveSprite { get; set; }
+
 
     [field: Header("SETTINGS")]
     [field: SerializeField] private GameObject SettingsPanel { get; set; }
@@ -151,13 +170,14 @@ public class CombatCore : MonoBehaviour
     [Header("DEBUGGER")]
     public Coroutine timerCoroutine;
     private int failedCallbackCounter;
+    public bool isPlaying;
     //=================================================================================
 
     #region SPAWNING
     public void SpawnEnemies()
     {
         StageCounter = 0;
-        StageTMP.text = StageCounter.ToString();
+        StageTMP.text = "WAVE " + StageCounter.ToString();
         RoundCounter = 0;
         RoundTMP.text = "Round 1";
         EnemyIndex = 0;
@@ -171,14 +191,15 @@ public class CombatCore : MonoBehaviour
         else
         {
             StageCounter++;
-            StageTMP.text = StageCounter.ToString();
+            StageTMP.text = "WAVE " + StageCounter.ToString();
             foreach (Transform child in MonsterParent.transform)
             {
-                if (GameManager.Instance.CurrentLevelData.MonsterList[EnemyIndex] == child.GetComponent<EnemyCombatController>().MonsterID)
+                if (child.HasComponent<EnemyCombatController>() && GameManager.Instance.CurrentLevelData.MonsterList[EnemyIndex] == child.GetComponent<EnemyCombatController>().MonsterID)
                 {
                     child.gameObject.SetActive(true);
                     CurrentEnemy = child.GetComponent<EnemyCombatController>();
                     CurrentEnemy.MonsterLevel = GameManager.Instance.CurrentLevelData.MonsterLevels[EnemyIndex];
+                    MonsterParent.transform.position = new Vector3(MonsterParent.transform.position.x, CurrentEnemy.OriginalEnemyPosition.y, MonsterParent.transform.position.z);
                     break;
                 }
             }
@@ -193,14 +214,17 @@ public class CombatCore : MonoBehaviour
     {
         CurrentCountdownNumber = 60f;
         QuestionTimerLeft = 60;
-        TimerTMP.text = QuestionTimerLeft.ToString();
+        TimerTMP.color = Color.white;
+        TimerTMP.text = "Time Left: " + QuestionTimerLeft.ToString();
         while (QuestionTimerLeft > 0f && CurrentCombatState == CombatState.TIMER)
         {
             if(!GameManager.Instance.PanelActivated)
             {
                 CurrentCountdownNumber -= Time.deltaTime;
                 QuestionTimerLeft = (int)CurrentCountdownNumber;
-                TimerTMP.text = QuestionTimerLeft.ToString();
+                if (QuestionTimerLeft == 10)
+                    TimerTMP.color = Color.red;
+                TimerTMP.text = "Time Left: " + QuestionTimerLeft.ToString();
                 if (GameManager.Instance.CheatsActivated && QuestionTimerLeft == 57)
                 {
                     StopTimerCoroutine();
@@ -209,6 +233,7 @@ public class CombatCore : MonoBehaviour
                     CurrentCombatState = CombatState.PLAYERTURN;
                     SpawnedPlayer.CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
                 }
+
                     
             }
             yield return null;
@@ -226,73 +251,39 @@ public class CombatCore : MonoBehaviour
     public void SetCorrectStage()
     {
         StageCounter++;
-        StageTMP.text = StageCounter.ToString();
+        StageTMP.text = "WAVE " + StageCounter.ToString();
         foreach (Transform child in MonsterParent.transform)
         {
             if (GameManager.Instance.CurrentLevelData.MonsterList[EnemyIndex] == child.GetComponent<EnemyCombatController>().MonsterID)
             {
-                Debug.Log("Current monster should be" + child.name);
                 child.gameObject.SetActive(true);
                 CurrentEnemy = child.GetComponent<EnemyCombatController>();
                 CurrentEnemy.MonsterLevel = GameManager.Instance.CurrentLevelData.MonsterLevels[EnemyIndex];
+                MonsterParent.transform.position = new Vector3(MonsterParent.transform.position.x, CurrentEnemy.OriginalEnemyPosition.y, MonsterParent.transform.position.z);
                 break;
             }
         }
-        //CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
         CurrentEnemy.InitializeEnemy();
     }
-    /*public void WarpToNextEnemy()
-    {
-        FlashAnimator.SetTrigger("Flash");
-        SpawnedPlayer.MonstersToSkip = PlayerData.CurrentStage - StageCounter;
-        if(EnemyQueue.Count > SpawnedPlayer.MonstersToSkip)
-        {
-            CurrentEnemy.IsCurrentEnemy = false;
-            CurrentEnemy.transform.position = new Vector3(Enemies[Enemies.Count - 1].transform.position.x + 10, CurrentEnemy.gameObject.transform.position.y, CurrentEnemy.gameObject.transform.position.z);
-            for (int i = 0; i < SpawnedPlayer.MonstersToSkip - 1; i++)
-            {
-                StageCounter++;
-                StageTMP.text = StageCounter.ToString();
-                CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
-                CurrentEnemy.transform.position = new Vector3(Enemies[Enemies.Count - 1].transform.position.x + 10 + (10 * (i + 1)), CurrentEnemy.gameObject.transform.position.y, CurrentEnemy.gameObject.transform.position.z);
-            }
-            StageCounter++;
-            StageTMP.text = StageCounter.ToString();
-            CurrentEnemy = EnemyQueue.Dequeue().transform.GetChild(0).GetComponent<EnemyCombatController>();
-            CurrentEnemy.InitializeEnemy();
-            
-            for(int i = 0; i < Enemies.Count; i++)
-            {
-                Enemies[i].transform.position = new Vector3(Enemies[i].transform.position.x - (10 * SpawnedPlayer.MonstersToSkip), Enemies[i].transform.position.y, Enemies[i].transform.position.z);
-            }
-            SpawnedPlayer.CurrentCombatState = CharacterCombatController.CombatState.WALKING;
-            CurrentCombatState = CombatState.WALKING;
-        }
-        else
-        {
-            CurrentCombatState = CombatState.GAMEOVER;
-        }
-        
-    }*/
     #endregion
 
     #region UI
     public void ProcessPowerUpInteractability()
     {
-        if (SpawnedPlayer.DoubleDamageTurnsCooldown == 0 && !SpawnedPlayer.DoubleDamageActivated)
-            DoubleDamageBtn.interactable = true;
+        if (SpawnedPlayer.DoubleDamageTurnsCooldown > 0)
+            DoubleDamageImage.SetActive(true);
         else
-            DoubleDamageBtn.interactable = false;
+            DoubleDamageImage.SetActive(false);
 
-        if (SpawnedPlayer.ShieldInstancesRemaining > 0 && !SpawnedPlayer.ShieldsActivated)
-            ShieldBtn.interactable = true;
+        if (SpawnedPlayer.ShieldTurnsCooldown > 0)
+            ShieldImage.SetActive(true);
         else
-            ShieldBtn.interactable = false;
+            ShieldImage.SetActive(false);
 
-        if (SpawnedPlayer.WarpGunInstancesRemaining > 0 && !SpawnedPlayer.WarpActivated)
-            WarpBtn.interactable = true;
+        if (SpawnedPlayer.LifestealTurnsCooldown > 0)
+            LifestealImage.SetActive(true);
         else
-            WarpBtn.interactable = false;
+            LifestealImage.SetActive(false);
     }
 
     public void ProcessSkillsInteractability()
@@ -306,6 +297,28 @@ public class CombatCore : MonoBehaviour
         {
             HealChargesTMP.text = "0";
             HealBtn.interactable = false;
+        }
+
+        if (PlayerData.MediumHealCharges > 0)
+        {
+            MediumHealChargesTMP.text = PlayerData.MediumHealCharges.ToString();
+            MediumHealBtn.interactable = true;
+        }
+        else
+        {
+            MediumHealChargesTMP.text = "0";
+            MediumHealBtn.interactable = false;
+        }
+
+        if (PlayerData.LargeHealCharges > 0)
+        {
+            LargeHealChargesTMP.text = PlayerData.LargeHealCharges.ToString();
+            LargeHealBtn.interactable = true;
+        }
+        else
+        {
+            LargeHealChargesTMP.text = "0";
+            LargeHealBtn.interactable = false;
         }
 
         if (PlayerData.BreakRemovalCharges > 0)
@@ -383,6 +396,7 @@ public class CombatCore : MonoBehaviour
         if (!GameManager.Instance.DebugMode)
         {
             PlayerData.LevelsWon++;
+            OpenLoadingPanel();
             Dictionary<string, int> quests = new Dictionary<string, int>();
             quests.Add("DailyCheckIn", PlayerData.DailyCheckIn);
             quests.Add("SocMedShared", PlayerData.SocMedShared);
@@ -413,6 +427,7 @@ public class CombatCore : MonoBehaviour
     {
         if(GameManager.Instance.DebugMode)
         {
+            OptibitDroppedTMP.gameObject.SetActive(false);
             if (PlayerData.EnergyCount > 0)
                 GrantRewardedItems();
             else
@@ -427,6 +442,7 @@ public class CombatCore : MonoBehaviour
                 resultCallback =>
                 {
                     failedCallbackCounter = 0;
+                    OptibitDroppedTMP.gameObject.SetActive(false);
                     PlayerData.EnergyCount = resultCallback.VirtualCurrency["EN"];
                     if (PlayerData.EnergyCount > 0)
                         GrantRewardedItems();
@@ -448,19 +464,19 @@ public class CombatCore : MonoBehaviour
     public void GrantRewardedItems()
     {
         OptibitDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedOPB, GameManager.Instance.CurrentLevelData.MaxDroppedOPB);
-        NormalFragmentDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedNormalFragment, GameManager.Instance.CurrentLevelData.MaxDroppedNormalFragment);
-        RareFragmentDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedRareFragment, GameManager.Instance.CurrentLevelData.MaxDroppedRareFragment);
-        EpicFragmentDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedEpicFragment, GameManager.Instance.CurrentLevelData.MaxDroppedEpicFragment);
-        LegendFragmentDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedLegendFragment, GameManager.Instance.CurrentLevelData.MaxDroppedLegendFragment);
-        SmallHealSkillDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedSmallHeal, GameManager.Instance.CurrentLevelData.MaxDroppedSmallHeal);
-        MediumHealSkillDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedMediumHeal, GameManager.Instance.CurrentLevelData.MaxDroppedMediumHeal);
-        LargeHealSkillDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedLargeHeal, GameManager.Instance.CurrentLevelData.MaxDroppedLargeHeal);
-        BreakRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedBreakRemove, GameManager.Instance.CurrentLevelData.MaxDroppedBreakRemove);
-        BurnRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedBurnRemove, GameManager.Instance.CurrentLevelData.MaxDroppedBurnRemove);
-        ConfuseRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedConfuseRemove, GameManager.Instance.CurrentLevelData.MaxDroppedConfuseRemove);
-        FreezeRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedFreezeRemove, GameManager.Instance.CurrentLevelData.MaxDroppedFreezeRemove);
-        ParalyzeRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedParalyzeRemove, GameManager.Instance.CurrentLevelData.MaxDroppedParalyzeRemove);
-        WeakRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedWeakRemove, GameManager.Instance.CurrentLevelData.MaxDroppedWeakRemove);
+        NormalFragmentDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedNormalFragment, GameManager.Instance.CurrentLevelData.MaxDroppedNormalFragment+1);
+        RareFragmentDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedRareFragment, GameManager.Instance.CurrentLevelData.MaxDroppedRareFragment + 1);
+        EpicFragmentDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedEpicFragment, GameManager.Instance.CurrentLevelData.MaxDroppedEpicFragment + 1);
+        LegendFragmentDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedLegendFragment, GameManager.Instance.CurrentLevelData.MaxDroppedLegendFragment + 1);
+        SmallHealSkillDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedSmallHeal, GameManager.Instance.CurrentLevelData.MaxDroppedSmallHeal + 1);
+        MediumHealSkillDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedMediumHeal, GameManager.Instance.CurrentLevelData.MaxDroppedMediumHeal + 1);
+        LargeHealSkillDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedLargeHeal, GameManager.Instance.CurrentLevelData.MaxDroppedLargeHeal + 1);
+        BreakRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedBreakRemove, GameManager.Instance.CurrentLevelData.MaxDroppedBreakRemove + 1);
+        BurnRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedBurnRemove, GameManager.Instance.CurrentLevelData.MaxDroppedBurnRemove + 1);
+        ConfuseRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedConfuseRemove, GameManager.Instance.CurrentLevelData.MaxDroppedConfuseRemove + 1);
+        FreezeRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedFreezeRemove, GameManager.Instance.CurrentLevelData.MaxDroppedFreezeRemove + 1);
+        ParalyzeRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedParalyzeRemove, GameManager.Instance.CurrentLevelData.MaxDroppedParalyzeRemove + 1);
+        WeakRemoveDropped = UnityEngine.Random.Range(GameManager.Instance.CurrentLevelData.MinDroppedWeakRemove, GameManager.Instance.CurrentLevelData.MaxDroppedWeakRemove + 1);
 
         if (GameManager.Instance.DebugMode)
         {
@@ -497,9 +513,17 @@ public class CombatCore : MonoBehaviour
             {
                 failedCallbackCounter = 0;
                 Debug.Log(resultCallback.FunctionResult);
-                DisplayDroppedRewards();
-                IncreaseCurrentLevel();
-                PurchaseEnergyCharge();
+                if (GameManager.Instance.DeserializeStringValue(resultCallback.FunctionResult.ToString(), "messageValue") == "Success")
+                {
+                    DisplayDroppedRewards();
+                    IncreaseCurrentLevel();
+                    PurchaseEnergyCharge();
+                }
+                else
+                {
+                    CloseLoadingPanel();
+                    GameManager.Instance.DisplayDualLoginErrorPanel();
+                }
             },
             errorCallback =>
             {
@@ -515,7 +539,9 @@ public class CombatCore : MonoBehaviour
         if(PlayerData.CurrentStage == GameManager.Instance.CurrentLevelData.LevelIndex)
         {
             if (GameManager.Instance.DebugMode)
+            {
                 PlayerData.CurrentStage++;
+            }
             else
             {
                 UpdateUserDataRequest updateUserData = new UpdateUserDataRequest();
@@ -527,6 +553,7 @@ public class CombatCore : MonoBehaviour
                     {
                         failedCallbackCounter = 0;
                         PlayerData.CurrentStage++;
+                        
                     },
                     errorCallback =>
                     {
@@ -577,6 +604,7 @@ public class CombatCore : MonoBehaviour
             {
                 failedCallbackCounter = 0;
                 PlayerData.EnergyCount--;
+                CloseLoadingPanel();
             },
             errorCallback =>
             {
@@ -584,11 +612,6 @@ public class CombatCore : MonoBehaviour
                     () => ConsumeEnergyCharge(chargeID),
                     () => ProcessError(errorCallback.ErrorMessage));
             });
-    }
-
-    private void UpdateUserInventory()
-    {
-
     }
     
     #endregion
@@ -598,6 +621,32 @@ public class CombatCore : MonoBehaviour
     {
         SettingsPanel.SetActive(true);
         GameManager.Instance.PanelActivated = true;
+    }
+
+    public void DisableItems()
+    {
+        HealBtn.interactable = false;
+        MediumHealBtn.interactable = false;
+        LargeHealBtn.interactable = false;
+        BurnRemoveBtn.interactable = false;
+        BreakRemoveBtn.interactable = false;
+        ConfuseRemoveBtn.interactable = false;
+        FreezeRemoveBtn.interactable = false;
+        ParalyzeRemoveBtn.interactable = false;
+        WeakRemoveBtn.interactable = false;
+    }
+
+    public void DisablePowerups()
+    {
+        DoubleDamageBtn.interactable = false;
+        ShieldBtn.interactable = false;
+        LifestealBtn.interactable = false;
+    }
+    public void EnablePowerups()
+    {
+        DoubleDamageBtn.interactable = true;
+        ShieldBtn.interactable = true;
+        LifestealBtn.interactable = true;
     }
 
     private void DisplayDroppedRewards()
@@ -611,122 +660,143 @@ public class CombatCore : MonoBehaviour
         else
             OptibitDroppedTMP.gameObject.SetActive(false);
 
+        #region FRAGMENTS
+        Queue<RewardController> fragmentRewards = new Queue<RewardController>();
+        RewardController currentFragment;
+        foreach (RewardController fragmentReward in FragmentRewards)
+        {
+            fragmentReward.HideReward();
+            fragmentRewards.Enqueue(fragmentReward);
+        }
+
         if (NormalFragmentDropped > 0)
         {
-            NormalFragmentTMP.gameObject.SetActive(true);
-            NormalFragmentTMP.text = NormalFragmentDropped.ToString();
+            currentFragment = fragmentRewards.Dequeue();
+            currentFragment.ShowReward();
+            currentFragment.RewardImage.sprite = NormalFragmentSprite;
+            currentFragment.RewardTMP.text = NormalFragmentDropped.ToString();
             PlayerData.NormalFragments += NormalFragmentDropped;
         }
-        else
-            NormalFragmentTMP.gameObject.SetActive(false);
 
         if (RareFragmentDropped > 0)
         {
-            RareFragmentTMP.gameObject.SetActive(true);
-            RareFragmentTMP.text = RareFragmentDropped.ToString();
+            currentFragment = fragmentRewards.Dequeue();
+            currentFragment.ShowReward();
+            currentFragment.RewardImage.sprite = RareFragmentSprite;
+            currentFragment.RewardTMP.text = RareFragmentDropped.ToString();
             PlayerData.RareFragments += RareFragmentDropped;
         }
-        else
-            RareFragmentTMP.gameObject.SetActive(false);
 
         if (EpicFragmentDropped > 0)
         {
-            EpicFragmentTMP.gameObject.SetActive(true);
-            EpicFragmentTMP.text = EpicFragmentDropped.ToString();
+            currentFragment = fragmentRewards.Dequeue();
+            currentFragment.ShowReward();
+            currentFragment.RewardImage.sprite = EpicFragmentSprite;
+            currentFragment.RewardTMP.text = EpicFragmentDropped.ToString();
             PlayerData.EpicFragments += EpicFragmentDropped;
         }
-        else
-            EpicFragmentTMP.gameObject.SetActive(false);
 
         if (LegendFragmentDropped > 0)
         {
-            LegendFragmentTMP.gameObject.SetActive(true);
-            LegendFragmentTMP.text = LegendFragmentDropped.ToString();
+            currentFragment = fragmentRewards.Dequeue();
+            currentFragment.ShowReward();
+            currentFragment.RewardImage.sprite = LegendFragmentSprite;
+            currentFragment.RewardTMP.text = LegendFragmentDropped.ToString();
             PlayerData.LegendFragments += LegendFragmentDropped;
         }
-        else
-            LegendFragmentTMP.gameObject.SetActive(false);
+        #endregion
 
+        #region CONSUMABLES
+        Queue<RewardController> consumableRewards = new Queue<RewardController>();
+        RewardController currentConsumable;
+        foreach (RewardController consumableReward in ConsumableRewards)
+        {
+            consumableReward.HideReward();
+            consumableRewards.Enqueue(consumableReward);
+        }
         if (SmallHealSkillDropped > 0)
         {
-            SmallHealGainedTMP.gameObject.SetActive(true);
-            SmallHealGainedTMP.text = SmallHealSkillDropped.ToString();
+            currentConsumable = consumableRewards.Dequeue();
+            currentConsumable.ShowReward();
+            currentConsumable.RewardImage.sprite = SmallHealSprite;
+            currentConsumable.RewardTMP.text = SmallHealSkillDropped.ToString();
             PlayerData.SmallHealCharges += SmallHealSkillDropped;
         }
-        else
-            SmallHealGainedTMP.gameObject.SetActive(false);
 
         if (MediumHealSkillDropped > 0)
         {
-            MediumHealGainedTMP.gameObject.SetActive(true);
-            MediumHealGainedTMP.text = MediumHealSkillDropped.ToString();
+            currentConsumable = consumableRewards.Dequeue();
+            currentConsumable.ShowReward();
+            currentConsumable.RewardImage.sprite = MediumHealSprite;
+            currentConsumable.RewardTMP.text = MediumHealSkillDropped.ToString();
             PlayerData.MediumHealCharges += MediumHealSkillDropped;
         }
-        else
-            MediumHealGainedTMP.gameObject.SetActive(false);
 
         if (LargeHealSkillDropped > 0)
         {
-            LargeHealGainedTMP.gameObject.SetActive(true);
-            LargeHealGainedTMP.text = LargeHealSkillDropped.ToString();
+            currentConsumable = consumableRewards.Dequeue();
+            currentConsumable.ShowReward();
+            currentConsumable.RewardImage.sprite = LargeHealSprite;
+            currentConsumable.RewardTMP.text = LargeHealSkillDropped.ToString();
             PlayerData.LargeHealCharges += LargeHealSkillDropped;
         }
-        else
-            LargeHealGainedTMP.gameObject.SetActive(false);
 
         if (BreakRemoveDropped > 0)
         {
-            BreakGainedTMP.gameObject.SetActive(true);
-            BreakGainedTMP.text = BreakRemoveDropped.ToString();
+            currentConsumable = consumableRewards.Dequeue();
+            currentConsumable.ShowReward();
+            currentConsumable.RewardImage.sprite = BreakRemoveSprite;
+            currentConsumable.RewardTMP.text = BreakRemoveDropped.ToString();
             PlayerData.BreakRemovalCharges += BreakRemoveDropped;
         }
-        else
-            BreakGainedTMP.gameObject.SetActive(false);
 
         if (WeakRemoveDropped > 0)
         {
-            WeakGainedTMP.gameObject.SetActive(true);
-            WeakGainedTMP.text = WeakRemoveDropped.ToString();
+            currentConsumable = consumableRewards.Dequeue();
+            currentConsumable.ShowReward();
+            currentConsumable.RewardImage.sprite = WeakRemoveSprite;
+            currentConsumable.RewardTMP.text = WeakRemoveDropped.ToString();
             PlayerData.WeakRemovalCharges += WeakRemoveDropped;
         }
-        else
-            WeakGainedTMP.gameObject.SetActive(false);
 
         if (FreezeRemoveDropped > 0)
         {
-            FreezeGainedTMP.gameObject.SetActive(true);
-            FreezeGainedTMP.text = FreezeRemoveDropped.ToString();
+            currentConsumable = consumableRewards.Dequeue();
+            currentConsumable.ShowReward();
+            currentConsumable.RewardImage.sprite = FreezeRemoveSprite;
+            currentConsumable.RewardTMP.text = FreezeRemoveDropped.ToString();
             PlayerData.FreezeRemovalCharges += FreezeRemoveDropped;
         }
-        else
-            FreezeGainedTMP.gameObject.SetActive(false);
 
         if (ParalyzeRemoveDropped > 0)
         {
-            ParalyzeGainedTMP.gameObject.SetActive(true);
-            ParalyzeGainedTMP.text = ParalyzeRemoveDropped.ToString();
+            currentConsumable = consumableRewards.Dequeue();
+            currentConsumable.ShowReward();
+            currentConsumable.RewardImage.sprite = ParalyzeRemoveSprite;
+            currentConsumable.RewardTMP.text = ParalyzeRemoveDropped.ToString();
             PlayerData.ParalyzeRemovalCharges += ParalyzeRemoveDropped;
         }
-        else
-            ParalyzeGainedTMP.gameObject.SetActive(false);
 
         if (ConfuseRemoveDropped > 0)
         {
-            ConfuseGainedTMP.gameObject.SetActive(true);
-            ConfuseGainedTMP.text = ConfuseRemoveDropped.ToString();
+            currentConsumable = consumableRewards.Dequeue();
+            currentConsumable.ShowReward();
+            currentConsumable.RewardImage.sprite = ConfuseRemoveSprite;
+            currentConsumable.RewardTMP.text = ConfuseRemoveDropped.ToString();
             PlayerData.ConfuseRemovalCharges += ConfuseRemoveDropped;
         }
-        else
-            ConfuseGainedTMP.gameObject.SetActive(false);
 
         if (BurnRemoveDropped > 0)
         {
-            BurnGainedTMP.gameObject.SetActive(true);
-            BurnGainedTMP.text = BurnRemoveDropped.ToString();
+            currentConsumable = consumableRewards.Dequeue();
+            currentConsumable.ShowReward();
+            currentConsumable.RewardImage.sprite = BurnRemoveSprite;
+            currentConsumable.RewardTMP.text = BurnRemoveDropped.ToString();
             PlayerData.BurnRemovalCharges += BurnRemoveDropped;
         }
-        else
-            BurnGainedTMP.gameObject.SetActive(false);
+        #endregion
+
+        //CloseLoadingPanel();
     }
 
     public void HideSettings()
@@ -755,26 +825,32 @@ public class CombatCore : MonoBehaviour
             else
                 restartAction();
         }
+        else if (errorCode == PlayFabErrorCode.InternalServerError)
+            ProcessSpecialError();
         else
             errorAction();
     }
 
     private void ProcessError(string errorMessage)
     {
-        //HideLoadingPanel();
+        CloseLoadingPanel();
         GameManager.Instance.DisplayErrorPanel(errorMessage);
     }
-    /*public void OpenLoadingPanel(string _message)
+    private void ProcessSpecialError()
+    {
+        CloseLoadingPanel();
+        GameManager.Instance.DisplaySpecialErrorPanel("Server Error. Please restart the game");
+    }
+    public void OpenLoadingPanel()
     {
         LoadingPanel.SetActive(true);
         GameManager.Instance.PanelActivated = true;
-        LoadingTMP.text = _message;
     }
 
     public void CloseLoadingPanel()
     {
         LoadingPanel.SetActive(false);
         GameManager.Instance.PanelActivated = false;
-    }*/
+    }
     #endregion
 }
