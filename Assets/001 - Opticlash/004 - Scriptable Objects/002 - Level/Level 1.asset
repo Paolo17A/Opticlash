@@ -25,8 +25,8 @@ MonoBehaviour:
   <RewardSprites>k__BackingField:
   - {fileID: 21300000, guid: 738c0d848c97d7a40a362767bd18bfa8, type: 3}
   - {fileID: 21300000, guid: 5ab6d82bb0e71a84c89856286dde6491, type: 3}
-  <MinDroppedOPB>k__BackingField: 0
-  <MaxDroppedOPB>k__BackingField: 100
+  <MinDroppedOPB>k__BackingField: 300
+  <MaxDroppedOPB>k__BackingField: 500
   <MinDroppedNormalFragment>k__BackingField: 0
   <MaxDroppedNormalFragment>k__BackingField: 1
   <MinDroppedRareFragment>k__BackingField: 0

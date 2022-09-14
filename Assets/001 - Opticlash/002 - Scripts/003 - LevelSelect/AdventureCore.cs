@@ -75,7 +75,7 @@ public class AdventureCore : MonoBehaviour
                 else
                     _virtualCamera.transform.position = new Vector3(_virtualCamera.transform.position.x, MaxYClamp, _virtualCamera.transform.position.z);
             }
-            else if (PlayerData.CurrentStage >= 21 && PlayerData.CurrentStage <= 30)
+            else if (PlayerData.CurrentStage >= 21 && PlayerData.CurrentStage <= 31)
             {
                 MaxYClamp = 95.7f;
                 if (PlayerData.CurrentStage <= 25)

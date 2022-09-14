@@ -39,8 +39,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 25cf73ce8d06f7c4f86a8e338772ecc3, type: 3}
   - {fileID: 21300000, guid: b0fda6181a2d5164784b56b3e3dd6cbc, type: 3}
   - {fileID: 21300000, guid: 5ab6d82bb0e71a84c89856286dde6491, type: 3}
-  <MinDroppedOPB>k__BackingField: 0
-  <MaxDroppedOPB>k__BackingField: 600
+  <MinDroppedOPB>k__BackingField: 19200
+  <MaxDroppedOPB>k__BackingField: 19400
   <MinDroppedNormalFragment>k__BackingField: 1
   <MaxDroppedNormalFragment>k__BackingField: 3
   <MinDroppedRareFragment>k__BackingField: 1

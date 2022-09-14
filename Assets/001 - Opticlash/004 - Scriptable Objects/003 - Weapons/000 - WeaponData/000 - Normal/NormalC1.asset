@@ -42,4 +42,4 @@ MonoBehaviour:
   <CurrentBigSprite>k__BackingField: {fileID: 21300000, guid: 5827ab11cd6201d4ea2ea2cd84d65608, type: 3}
   <Ammo>k__BackingField: {fileID: 21300000, guid: 61d8617ae8be83044b727811c70e5a9e, type: 3}
   <FragmentUpgradeCostConstant>k__BackingField: 1400
-  <OptibitUpgradeCostConstant>k__BackingField: 50000
+  <OptibitUpgradeCostConstant>k__BackingField: 300000

@@ -191,6 +191,7 @@ public class EnemyCombatController : MonoBehaviour
             CombatCore.MonsterParent.transform.position = Vector3.MoveTowards(CombatCore.MonsterParent.transform.position, CombatCore.CurrentEnemy.OriginalEnemyPosition, 2.5f * Time.deltaTime);
             if (Vector2.Distance(CombatCore.CurrentEnemy.gameObject.transform.parent.position, CombatCore.CurrentEnemy.OriginalEnemyPosition) < 0.01f)
             {
+                CombatCore.ResetTimer();
                 CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
                 Opti.CurrentCombatState = CharacterCombatController.CombatState.IDLE;
                 
@@ -231,10 +232,16 @@ public class EnemyCombatController : MonoBehaviour
                     if (CurrentHealth <= 0)
                         CurrentCombatState = CombatState.DYING;
                     else
+                    {
+                        CombatCore.ResetTimer();
                         CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+                    }
                 }
                 else
+                {
+                    CombatCore.ResetTimer();
                     CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+                }
             }
         }
         else
@@ -259,10 +266,16 @@ public class EnemyCombatController : MonoBehaviour
                 if (CurrentHealth <= 0)
                     CurrentCombatState = CombatState.DYING;
                 else
+                {
+                    CombatCore.ResetTimer();
                     CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+                }
             }
             else
+            {
+                CombatCore.ResetTimer();
                 CombatCore.CurrentCombatState = CombatCore.CombatState.TIMER;
+            }
         }
         else
         {
@@ -450,6 +463,9 @@ public class EnemyCombatController : MonoBehaviour
         {
             CurrentCombatState = CombatState.DYING;
             HealthBar.SetActive(false);
+            Opti.ProcessDoubleDamage();
+            Opti.ProcessShield();
+            Opti.ProcessLifesteal();
         }
     }
 

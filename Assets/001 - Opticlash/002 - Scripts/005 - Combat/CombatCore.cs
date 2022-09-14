@@ -63,8 +63,8 @@ public class CombatCore : MonoBehaviour
     
     [field: Header("GAME VARIABLES")]
     [field: SerializeField][field: ReadOnly] public int QuestionTimerLeft { get; set; }
-    [field: SerializeField] private TextMeshProUGUI TimerTMP { get; set; }
-    [field: SerializeField][field: ReadOnly] private float CurrentCountdownNumber { get; set; }
+    [field: SerializeField] public TextMeshProUGUI TimerTMP { get; set; }
+    [field: SerializeField][field: ReadOnly] public float CurrentCountdownNumber { get; set; }
     [field: SerializeField] public TextMeshProUGUI AmmoTMP { get; set; }
     [field: SerializeField][field: ReadOnly] public int AmmoCount { get; set; }
     [field: SerializeField][field: ReadOnly] public int RoundCounter { get; set; }
@@ -128,7 +128,7 @@ public class CombatCore : MonoBehaviour
 
     [field: Header("GAME OVER")]
     [field: SerializeField] private int OptibitDropped { get; set; }
-    [field: SerializeField] private TextMeshProUGUI OptibitDroppedTMP { get; set; }
+    [field: SerializeField] public TextMeshProUGUI OptibitDroppedTMP { get; set; }
     [field: SerializeField][field: ReadOnly] private int NormalFragmentDropped { get; set; }
     [field: SerializeField][field: ReadOnly] private int RareFragmentDropped { get; set; }
     [field: SerializeField][field: ReadOnly] private int EpicFragmentDropped { get; set; }
@@ -146,8 +146,8 @@ public class CombatCore : MonoBehaviour
     [field: SerializeField] public Image OptiCannon { get; set; }
 
     [field: Header("STAGE CLEAR")]
-    [field: SerializeField] private List<RewardController> FragmentRewards { get; set; }
-    [field: SerializeField] private List<RewardController> ConsumableRewards { get; set; }
+    [field: SerializeField] public List<RewardController> FragmentRewards { get; set; }
+    [field: SerializeField] public List<RewardController> ConsumableRewards { get; set; }
     [field: SerializeField] private Sprite NormalFragmentSprite { get; set; }
     [field: SerializeField] private Sprite RareFragmentSprite { get; set; }
     [field: SerializeField] private Sprite EpicFragmentSprite { get; set; }
@@ -210,6 +210,14 @@ public class CombatCore : MonoBehaviour
     #endregion
 
     #region TIMER
+
+    public void ResetTimer()
+    {
+        CurrentCountdownNumber = 60f;
+        QuestionTimerLeft = 60;
+        TimerTMP.color = Color.white;
+        TimerTMP.text = "Time Left: " + QuestionTimerLeft.ToString();
+    }
     public IEnumerator StartQuestionTimer()
     {
         CurrentCountdownNumber = 60f;
@@ -228,8 +236,9 @@ public class CombatCore : MonoBehaviour
                 if (GameManager.Instance.CheatsActivated && QuestionTimerLeft == 57)
                 {
                     StopTimerCoroutine();
-                    SpawnedPlayer.DamageDeal = 15;
-                    BoardCore.ShotsEarned = 3;
+                    SpawnedPlayer.DamageDeal = 150;
+                    SpawnedPlayer.Lifestealing = true;
+                    BoardCore.ShotsEarned = 1;
                     CurrentCombatState = CombatState.PLAYERTURN;
                     SpawnedPlayer.CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
                 }
@@ -238,7 +247,6 @@ public class CombatCore : MonoBehaviour
             }
             yield return null;
         }
-
         CurrentCombatState = CombatState.ENEMYTURN;
     }
     public void StopTimerCoroutine()
@@ -432,7 +440,7 @@ public class CombatCore : MonoBehaviour
                 GrantRewardedItems();
             else
             {
-                DisplayDroppedRewards();
+                //DisplayDroppedRewards();
                 IncreaseCurrentLevel();
             }
         }
@@ -448,7 +456,7 @@ public class CombatCore : MonoBehaviour
                         GrantRewardedItems();
                     else
                     {
-                        DisplayDroppedRewards();
+                        //DisplayDroppedRewards();
                         IncreaseCurrentLevel();
                     }
                 },
@@ -536,7 +544,7 @@ public class CombatCore : MonoBehaviour
 
     public void IncreaseCurrentLevel()
     {
-        if(PlayerData.CurrentStage == GameManager.Instance.CurrentLevelData.LevelIndex)
+        if (PlayerData.CurrentStage == GameManager.Instance.CurrentLevelData.LevelIndex)
         {
             if (GameManager.Instance.DebugMode)
             {
@@ -553,7 +561,8 @@ public class CombatCore : MonoBehaviour
                     {
                         failedCallbackCounter = 0;
                         PlayerData.CurrentStage++;
-                        
+                        if (PlayerData.EnergyCount == 0)
+                            CloseLoadingPanel();
                     },
                     errorCallback =>
                     {
@@ -563,6 +572,8 @@ public class CombatCore : MonoBehaviour
                     });
             }
         }
+        else if (PlayerData.EnergyCount == 0)
+            CloseLoadingPanel();
     }
 
     private void PurchaseEnergyCharge()
@@ -651,14 +662,14 @@ public class CombatCore : MonoBehaviour
 
     private void DisplayDroppedRewards()
     {
+        OptibitDroppedTMP.gameObject.SetActive(false);
+
         if (OptibitDropped > 0)
         {
             OptibitDroppedTMP.gameObject.SetActive(true);
             OptibitDroppedTMP.text = OptibitDropped.ToString();
             PlayerData.Optibit += OptibitDropped;
         }
-        else
-            OptibitDroppedTMP.gameObject.SetActive(false);
 
         #region FRAGMENTS
         Queue<RewardController> fragmentRewards = new Queue<RewardController>();

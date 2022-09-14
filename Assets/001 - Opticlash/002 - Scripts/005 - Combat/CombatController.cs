@@ -8,6 +8,7 @@ public class CombatController : MonoBehaviour
 {
     [field: SerializeField] private CombatCore CombatCore { get; set; }
     [field: SerializeField] private PlayerData PlayerData { get; set; }
+    [field: SerializeField] private BoardCore BoardCore;
 
     private void OnEnable()
     {
@@ -29,6 +30,34 @@ public class CombatController : MonoBehaviour
                 break;
             }
         CombatCore.CurrentCombatState = CombatCore.CombatState.SPAWNING;
+    }
+
+    private void Update()
+    {
+        if(CombatCore.CurrentCombatState == CombatCore.CombatState.TIMER)
+        {
+            if(CombatCore.QuestionTimerLeft > 0f)
+            {
+                if (!GameManager.Instance.PanelActivated)
+                {
+                    CombatCore.CurrentCountdownNumber -= Time.deltaTime;
+                    CombatCore.QuestionTimerLeft = (int)CombatCore.CurrentCountdownNumber;
+                    if (CombatCore.QuestionTimerLeft == 10)
+                        CombatCore.TimerTMP.color = Color.red;
+                    CombatCore.TimerTMP.text = "Time Left: " + CombatCore.QuestionTimerLeft.ToString();
+                    if (GameManager.Instance.CheatsActivated && CombatCore.QuestionTimerLeft == 57)
+                    {
+                        CombatCore.SpawnedPlayer.DamageDeal = 150;
+                        CombatCore.SpawnedPlayer.Lifestealing = true;
+                        BoardCore.ShotsEarned = 1;
+                        CombatCore.CurrentCombatState = CombatCore.CombatState.PLAYERTURN;
+                        CombatCore.SpawnedPlayer.CurrentCombatState = CharacterCombatController.CombatState.ATTACKING;
+                    }
+                }
+            }
+            else
+                CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
+        }
     }
 
     private void CombatStateChange(object sender, EventArgs e)
@@ -58,7 +87,7 @@ public class CombatController : MonoBehaviour
             CombatCore.EnablePowerups();
             CombatCore.RoundCounter++;
             CombatCore.RoundTMP.text = "Round: " + CombatCore.RoundCounter.ToString();
-            CombatCore.timerCoroutine = StartCoroutine(CombatCore.StartQuestionTimer());
+            //CombatCore.timerCoroutine = StartCoroutine(CombatCore.StartQuestionTimer());
         }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.PLAYERTURN)
         {
@@ -144,10 +173,6 @@ public class CombatController : MonoBehaviour
         {
             CombatCore.SpawnedPlayer.CurrentCombatState = CharacterCombatController.CombatState.WALKING;
         }
-        else if (CombatCore.CurrentCombatState == CombatCore.CombatState.WARPING)
-        {
-            CombatCore.StopTimerCoroutine();
-        }
         else if (CombatCore.CurrentCombatState == CombatCore.CombatState.STAGECLEAR)
         {
             GameManager.Instance.MyUICamera.GetUniversalAdditionalCameraData().renderPostProcessing = true;
@@ -156,7 +181,12 @@ public class CombatController : MonoBehaviour
             CombatCore.CurrentEnemy.gameObject.SetActive(false);
             CombatCore.MonsterParent.transform.position = new Vector3(15, 21, 0);
             CombatCore.UIAnimator.SetBool("StageClear", true);
-            CombatCore.StopTimerCoroutine();
+            //CombatCore.StopTimerCoroutine();
+            CombatCore.OptibitDroppedTMP.gameObject.SetActive(false);
+            foreach (RewardController reward in CombatCore.FragmentRewards)
+                reward.HideReward();
+            foreach (RewardController reward in CombatCore.ConsumableRewards)
+                reward.HideReward();
             CombatCore.UpdateLevelsWon();
         }
     }

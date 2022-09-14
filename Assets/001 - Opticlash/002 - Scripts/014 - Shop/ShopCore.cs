@@ -50,7 +50,7 @@ public class ShopCore : MonoBehaviour
         PurchaseQuantity = 1;
         QuantityTMP.text = PurchaseQuantity.ToString();
         if (ShopIndex == 0)
-            ShopIndex = 6;
+            ShopIndex = 8;
         else
             ShopIndex--;
         DisplayShopItem();
@@ -59,7 +59,7 @@ public class ShopCore : MonoBehaviour
     {
         PurchaseQuantity = 1;
         QuantityTMP.text = PurchaseQuantity.ToString();
-        if (ShopIndex == 6)
+        if (ShopIndex == 8)
             ShopIndex = 0;
         else
             ShopIndex++;
@@ -93,55 +93,55 @@ public class ShopCore : MonoBehaviour
                 CurrentItemDisplayImage.sprite = BreakShopSprite;
                 ItemNameTMP.text = "BREAK REMOVAL";
                 ItemDescriptionTMP.text = "Remove BREAK status";
-                CurrentItemCost = 500;
+                CurrentItemCost = 15000;
                 break;
             case 1:
                 CurrentItemDisplayImage.sprite = BurnShopSprite;
                 ItemNameTMP.text = "BURN REMOVAL";
                 ItemDescriptionTMP.text = "Remove BURN status";
-                CurrentItemCost = 750;
+                CurrentItemCost = 17500;
                 break;
             case 2:
                 CurrentItemDisplayImage.sprite = ConfuseShopSprite;
                 ItemNameTMP.text = "CONFUSE REMOVAL";
                 ItemDescriptionTMP.text = "Remove CONFUSE status";
-                CurrentItemCost = 450;
+                CurrentItemCost = 14500;
                 break;
             case 3:
                 CurrentItemDisplayImage.sprite = FreezeShopSprite;
                 ItemNameTMP.text = "FREEZE REMOVAL";
                 ItemDescriptionTMP.text = "Remove FREEZE status";
-                CurrentItemCost = 500;
+                CurrentItemCost = 15000;
                 break;
             case 4:
                 CurrentItemDisplayImage.sprite = SmallHealShopSprite;
                 ItemNameTMP.text = "SMALL HEAL";
                 ItemDescriptionTMP.text = "HEAL 10 Health Points";
-                CurrentItemCost = 800;
+                CurrentItemCost = 18000;
                 break;
             case 5:
                 CurrentItemDisplayImage.sprite = MediumHealShopSprite;
                 ItemNameTMP.text = "MEDIUM HEAL";
                 ItemDescriptionTMP.text = "HEAL 15 Health Points";
-                CurrentItemCost = 900;
+                CurrentItemCost = 19000;
                 break;
             case 6:
                 CurrentItemDisplayImage.sprite = LargeHealShopSprite;
                 ItemNameTMP.text = "LARGE HEAL";
                 ItemDescriptionTMP.text = "HEAL 25 Health Points";
-                CurrentItemCost = 1000;
+                CurrentItemCost = 20000;
                 break;
             case 7:
                 CurrentItemDisplayImage.sprite = ParalyzeShopSprite;
                 ItemNameTMP.text = "PARALYZE REMOVAL";
                 ItemDescriptionTMP.text = "Remove PARALYZE status";
-                CurrentItemCost = 450;
+                CurrentItemCost = 17500;
                 break;
             case 8:
                 CurrentItemDisplayImage.sprite = WeakShopSprite;
                 ItemNameTMP.text = "WEAK REMOVAL";
                 ItemDescriptionTMP.text = "Remove WEAK status";
-                CurrentItemCost = 450;
+                CurrentItemCost = 14500;
                 break;
         }
         ItemCostTMP.text = (CurrentItemCost * PurchaseQuantity).ToString();

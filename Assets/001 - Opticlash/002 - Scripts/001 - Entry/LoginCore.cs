@@ -136,9 +136,9 @@ public class LoginCore : MonoBehaviour
                 failedCallbackCounter = 0;
                 if(resultCallback.Data.ContainsKey("Password"))
                 {
+                    Debug.Log(Encrypt(password));
                     if(resultCallback.Data["Password"].Value == Encrypt(password))
                     {
-                        Debug.Log(Encrypt(password));
                         LoginCredentials(username, password);
                     }
                     else

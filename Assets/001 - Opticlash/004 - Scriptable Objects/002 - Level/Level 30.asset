@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <LevelIndex>k__BackingField: 30
   <MonsterList>k__BackingField:
-  - WeakeMonster001
+  - WeakMonster001
   - BreakMonster006
   - ParalyzeMonster011
   - BreakBoss001
@@ -55,8 +55,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b0fda6181a2d5164784b56b3e3dd6cbc, type: 3}
   - {fileID: 21300000, guid: c2fad65d14ac9634e93aa45b4b7fd3b1, type: 3}
   - {fileID: 21300000, guid: 5ab6d82bb0e71a84c89856286dde6491, type: 3}
-  <MinDroppedOPB>k__BackingField: 500
-  <MaxDroppedOPB>k__BackingField: 1000
+  <MinDroppedOPB>k__BackingField: 20000
+  <MaxDroppedOPB>k__BackingField: 20200
   <MinDroppedNormalFragment>k__BackingField: 1
   <MaxDroppedNormalFragment>k__BackingField: 5
   <MinDroppedRareFragment>k__BackingField: 1

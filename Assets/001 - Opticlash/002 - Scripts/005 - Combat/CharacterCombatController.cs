@@ -85,7 +85,6 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField] private Renderer CannonBackGlow { get; set; }
     [field: SerializeField] private Renderer CannonMiddleGlow { get; set; }
     [field: SerializeField] private Renderer CannonFrontGlow { get; set; }
-    [field: SerializeField] private bool Lifestealing { get; set; }
 
     [field: Header("POWER UP DATA")]
     [field: SerializeField] private GameObject DoubleDamageEffect {get;set;}
@@ -93,11 +92,11 @@ public class CharacterCombatController : MonoBehaviour
     [field: SerializeField] public int DoubleDamageTurnsCooldown { get; set; }
     [field: SerializeField] private GameObject ShieldEffect { get; set; }
     [field: SerializeField] public bool ShieldsActivated { get; set; }
-    [field: SerializeField] public int ShieldInstancesRemaining { get; set; }
     [field: SerializeField] public int ShieldTurnsCooldown { get; set; }
-    [field: SerializeField] public int LifestealTurnsCooldown { get; set; }
-    [field: SerializeField] public bool LifestealActivated { get; set; }
     [field: SerializeField] public GameObject LifestealEffect { get; set; }
+    [field: SerializeField] public int LifestealTurnsCooldown { get; set; }
+    [field: SerializeField] public bool Lifestealing { get; set; }
+
 
     [field: Header("ITEM EFFECTS")]
     [field: SerializeField] private GameObject HealUsed { get; set; }
@@ -319,9 +318,16 @@ public class CharacterCombatController : MonoBehaviour
         RemoveSideEffects();
         DoubleDamageTurnsCooldown = 0;
         ShieldTurnsCooldown = 0;
+        LifestealTurnsCooldown = 0;
+        DoubleDamageEffect.SetActive(false);
+        ShieldEffect.SetActive(false);
+        LifestealEffect.SetActive(false);
+        DoubleDamageActivated = false;
+        ShieldsActivated = false;
+        Lifestealing = false;
         CombatCore.DoubleDamageImage.SetActive(false);
         CombatCore.ShieldImage.SetActive(false);
-        LifestealTurnsCooldown = 0;
+        CombatCore.LifestealImage.SetActive(false);
         #region STATS
         Attack = PlayerData.ActiveCustomWeapon.Attack;
         ShotAccuracy = PlayerData.ActiveCustomWeapon.Accuracy;
@@ -451,6 +457,9 @@ public class CharacterCombatController : MonoBehaviour
 
             StartCoroutine(DelayUsedItemEffect());
             UpdateHealthBar();
+            ProcessDoubleDamage();
+            ProcessShield();
+            ProcessLifesteal();
             CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
             SkillButtonPressed = false;
         }
@@ -482,6 +491,9 @@ public class CharacterCombatController : MonoBehaviour
 
             StartCoroutine(DelayUsedItemEffect());
             UpdateHealthBar();
+            ProcessDoubleDamage();
+            ProcessShield();
+            ProcessLifesteal();
             CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
             SkillButtonPressed = false;
         }
@@ -512,6 +524,9 @@ public class CharacterCombatController : MonoBehaviour
 
             StartCoroutine(DelayUsedItemEffect());
             UpdateHealthBar();
+            ProcessDoubleDamage();
+            ProcessShield();
+            ProcessLifesteal();
             CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
             SkillButtonPressed = false;
         }
@@ -537,6 +552,9 @@ public class CharacterCombatController : MonoBehaviour
             }
             StartCoroutine(DelayUsedItemEffect());
             RemoveSideEffects();
+            ProcessDoubleDamage();
+            ProcessShield();
+            ProcessLifesteal();
             CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
             SkillButtonPressed = false;
         }
@@ -562,6 +580,9 @@ public class CharacterCombatController : MonoBehaviour
             }
             StartCoroutine(DelayUsedItemEffect());
             RemoveSideEffects();
+            ProcessDoubleDamage();
+            ProcessShield();
+            ProcessLifesteal();
             CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
             SkillButtonPressed = false;
         }
@@ -587,6 +608,9 @@ public class CharacterCombatController : MonoBehaviour
             }
             StartCoroutine(DelayUsedItemEffect());
             RemoveSideEffects();
+            ProcessDoubleDamage();
+            ProcessShield();
+            ProcessLifesteal();
             CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
             SkillButtonPressed = false;
         }
@@ -612,6 +636,9 @@ public class CharacterCombatController : MonoBehaviour
             }
             StartCoroutine(DelayUsedItemEffect());
             RemoveSideEffects();
+            ProcessDoubleDamage();
+            ProcessShield();
+            ProcessLifesteal();
             CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
             SkillButtonPressed = false;
         }
@@ -637,6 +664,9 @@ public class CharacterCombatController : MonoBehaviour
             }
             StartCoroutine(DelayUsedItemEffect());
             RemoveSideEffects();
+            ProcessDoubleDamage();
+            ProcessShield();
+            ProcessLifesteal();
             CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
             SkillButtonPressed = false;
         }
@@ -662,6 +692,9 @@ public class CharacterCombatController : MonoBehaviour
             }
             StartCoroutine(DelayUsedItemEffect());
             RemoveSideEffects();
+            ProcessDoubleDamage();
+            ProcessShield();
+            ProcessLifesteal();
             CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
             SkillButtonPressed = false;
         }
@@ -860,7 +893,6 @@ public class CharacterCombatController : MonoBehaviour
                     CurrentHealth -= _damageReceived / 3;
                 ShieldEffect.SetActive(false);
                 ShieldsActivated = false;
-                ShieldInstancesRemaining--;
                 ShieldTurnsCooldown--;
                 CombatCore.ShieldTMP.text = "Turns Left: " + ShieldTurnsCooldown;
                 if(ShieldTurnsCooldown == 0)
@@ -1008,7 +1040,7 @@ public class CharacterCombatController : MonoBehaviour
         }
     }
 
-    private void ProcessDoubleDamage()
+    public void ProcessDoubleDamage()
     {
         if (DoubleDamageTurnsCooldown > 0)
         {
@@ -1019,7 +1051,7 @@ public class CharacterCombatController : MonoBehaviour
         }
     }
 
-    private void ProcessShield()
+    public void ProcessShield()
     {
         if (ShieldTurnsCooldown > 0)
             ShieldTurnsCooldown--;
@@ -1028,7 +1060,7 @@ public class CharacterCombatController : MonoBehaviour
             CombatCore.ShieldImage.SetActive(false);
     }
 
-    private void ProcessLifesteal()
+    public void ProcessLifesteal()
     {
         if(LifestealTurnsCooldown > 0)
         {
@@ -1113,31 +1145,5 @@ public class CharacterCombatController : MonoBehaviour
                     () => ProcessError(errorCallback.ErrorMessage));
             });
     }
-    /*private void UpdateQuestData()
-    {
-        //PlayerData.ItemsUsed++;
-        quests.Add("DailyCheckIn", PlayerData.DailyCheckIn);
-        quests.Add("SocMedShared", PlayerData.SocMedShared);
-        quests.Add("ItemsUsed", PlayerData.ItemsUsed);
-        quests.Add("MonstersKilled", PlayerData.MonstersKilled);
-        quests.Add("LevelsWon", PlayerData.LevelsWon);
-        quests.Add("DailyQuestClaimed", PlayerData.DailyQuestClaimed);
-
-        updateUserData.Data.Clear();
-        updateUserData.Data.Add("Quests", JsonConvert.SerializeObject(quests));
-        PlayFabClientAPI.UpdateUserData(updateUserData,
-            resultCallback =>
-            {
-                failedCallbackCounter = 0;
-                CombatCore.CurrentCombatState = CombatCore.CombatState.ENEMYTURN;
-                SkillButtonPressed = false;
-            },
-            errorCallback =>
-            {
-                ErrorCallback(errorCallback.Error,
-                    UpdateQuestData,
-                    () => ProcessError(errorCallback.ErrorMessage));
-            });
-    }*/
     #endregion
 }

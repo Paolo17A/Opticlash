@@ -24,6 +24,7 @@ public class GemController : MonoBehaviour
     [field: SerializeField][field: ReadOnly] private bool mousePressed;
     [field: SerializeField][field: ReadOnly] private float swipeAngle;
     [field: SerializeField][field: ReadOnly] private GemController otherGem;
+    public Coroutine CheckMoveCoroutine;
     //==============================================================================
 
     private void Update()
@@ -53,6 +54,12 @@ public class GemController : MonoBehaviour
             initialTouchPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePressed = true;
         }
+    }
+
+    private void OnMouseUp()
+    {
+        if (mousePressed)
+            mousePressed = false;
     }
     public void InititalizeGem(Vector2Int pos, BoardCore board, Vector2 boardPosition, CombatCore combatCore)
     {
@@ -116,10 +123,10 @@ public class GemController : MonoBehaviour
 
         BoardCore.AllGems[PositionIndex.x, PositionIndex.y] = this;
         BoardCore.AllGems[otherGem.PositionIndex.x, otherGem.PositionIndex.y] = otherGem;
-        StartCoroutine(CheckMoveCoroutine());
+        CheckMoveCoroutine = StartCoroutine(CheckMove());
     }
 
-    public IEnumerator CheckMoveCoroutine()
+    public IEnumerator CheckMove()
     {
         BoardCore.CurrentBoardState = BoardCore.BoardState.WAITING;
         yield return new WaitForSeconds(0.5f);
@@ -151,8 +158,10 @@ public class GemController : MonoBehaviour
                     CombatCore.CurrentCombatState = CombatCore.CombatState.PLAYERTURN;
                 }
                 mousePressed = false;
-                CombatCore.StopTimerCoroutine();
+                //StopCoroutine(CheckMoveCoroutine);
+                //CombatCore.StopTimerCoroutine();
                 BoardCore.DestroyMatches();
+
             }
         }
     }

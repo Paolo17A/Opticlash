@@ -993,6 +993,11 @@ public class LobbyCore : MonoBehaviour
     #endregion
     #endregion
 
+    public void SendOptibitToWebsite()
+    {
+
+    }
+
     #region UTILITY
     public void DisplayComingSoon()
     {
