@@ -32,7 +32,8 @@ public class ClaimCore : MonoBehaviour
         }
         else
         {
-            if (CodeInputField.text == "CBS4L1FE0PT1CL4SHB3T4")
+            GameManager.Instance.DisplayErrorPanel("Code is invalid");
+            /*if (CodeInputField.text == "CBS4L1FE0PT1CL4SHB3T4")
             {
                 mayClaimFreeCostume = false;
                 unownedCostume = "";
@@ -53,7 +54,7 @@ public class ClaimCore : MonoBehaviour
             else
             {
                 GameManager.Instance.DisplayErrorPanel("Code is invalid");
-            }
+            }*/
         }
     }
 

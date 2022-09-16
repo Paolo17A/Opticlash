@@ -383,6 +383,17 @@ public class CombatCore : MonoBehaviour
             ConfuseChargesTMP.text = "0";
             ConfuseRemoveBtn.interactable = false;
         }
+
+        if (PlayerData.BurnRemovalCharges > 0)
+        {
+            BurnChargesTMP.text = PlayerData.ConfuseRemovalCharges.ToString();
+            BurnRemoveBtn.interactable = true;
+        }
+        else
+        {
+            BurnChargesTMP.text = "0";
+            BurnRemoveBtn.interactable = false;
+        }
     }
 
     public void ShowPowerUps()

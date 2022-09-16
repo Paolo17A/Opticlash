@@ -891,13 +891,13 @@ public class LobbyCore : MonoBehaviour
         else
             EquipLeftWeaponBtn.interactable = true;
         int weaponIndex = (int)ActualOwnedWeapons[(2 * WeaponPageIndex) - 2].BaseWeaponData.ThisWeaponCode;
-        if (weaponIndex >= 0 && weaponIndex <= 4)
+        if (weaponIndex >= 1 && weaponIndex <= 5)
             WeaponLeftImage.material.SetColor("GlowColor", Color.green * 9f);
-        else if (weaponIndex >= 5 && weaponIndex <= 8)
+        else if (weaponIndex >= 6 && weaponIndex <= 9)
             WeaponLeftImage.material.SetColor("GlowColor", Color.cyan * 9f);
-        else if (weaponIndex >= 9 && weaponIndex <= 11)
+        else if (weaponIndex >= 10 && weaponIndex <= 12)
             WeaponLeftImage.material.SetColor("GlowColor", Color.yellow * 9f);
-        else if (weaponIndex >= 12 && weaponIndex <= 14)
+        else if (weaponIndex >= 13 && weaponIndex <= 14)
             WeaponLeftImage.material.SetColor("GlowColor", Color.magenta * 9f);
 
         //RIGHT
@@ -911,13 +911,13 @@ public class LobbyCore : MonoBehaviour
                 EquipRightWeaponBtn.interactable = true;
 
             weaponIndex = (int)ActualOwnedWeapons[(2 * WeaponPageIndex) - 1].BaseWeaponData.ThisWeaponCode;
-            if (weaponIndex >= 0 && weaponIndex <= 4)
+            if (weaponIndex >= 1 && weaponIndex <= 5)
                 WeaponRightImage.material.SetColor("GlowColor", Color.green * 6f);
-            else if (weaponIndex >= 5 && weaponIndex <= 8)
+            else if (weaponIndex >= 6 && weaponIndex <= 9)
                 WeaponRightImage.material.SetColor("GlowColor", Color.cyan * 9f);
-            else if (weaponIndex >= 9 && weaponIndex <= 11)
+            else if (weaponIndex >= 10 && weaponIndex <= 12)
                 WeaponRightImage.material.SetColor("GlowColor", Color.yellow * 9f);
-            else if (weaponIndex >= 12 && weaponIndex <= 14)
+            else if (weaponIndex >= 13 && weaponIndex <= 14)
                 WeaponRightImage.material.SetColor("GlowColor", Color.magenta * 9f);
         }
         else
@@ -1070,13 +1070,13 @@ public class LobbyCore : MonoBehaviour
     public void SetCannonGlow()
     {
         int weaponIndex = (int)PlayerData.ActiveCustomWeapon.BaseWeaponData.ThisWeaponCode;
-        if (weaponIndex >= 0 && weaponIndex <= 4)
+        if (weaponIndex >= 1 && weaponIndex <= 5)
             SetProperColor(Color.green, 6f);
-        else if (weaponIndex >= 5 && weaponIndex <= 8)
+        else if (weaponIndex >= 6 && weaponIndex <= 9)
             SetProperColor(Color.cyan, 9f);
-        else if (weaponIndex >= 9 && weaponIndex <= 11)
+        else if (weaponIndex >= 10 && weaponIndex <= 12)
             SetProperColor(Color.yellow, 6f);
-        else if (weaponIndex >= 12 && weaponIndex <= 14)
+        else if (weaponIndex >= 13 && weaponIndex <= 14)
             SetProperColor(Color.magenta, 6f);  
     }
 
